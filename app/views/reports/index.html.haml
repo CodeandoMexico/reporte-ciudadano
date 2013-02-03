@@ -4,13 +4,12 @@
 
 .unit.list
   .container
-    %h1 Titulo
-    %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+    %h1 Reportes
+    %p A continaución un listado de los reportes más recientes
 
-    - 5.times do
+    - @reports.each do |report|
       .unit.report
-        %h2 Some title
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        %h2= report.category.name
+        %p= report.description
 
-#main_width
-  skoskos
+= paginate @reports

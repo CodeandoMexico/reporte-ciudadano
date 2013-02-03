@@ -11,6 +11,8 @@ class Report < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  default_scope order: 'created_at DESC'
+
   def category_extra_fields
     self.category_fields.each do |k,v|
       errors.add k.to_sym, "must be present" if v.blank?
