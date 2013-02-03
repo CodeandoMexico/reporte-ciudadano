@@ -16,7 +16,7 @@
         %h2.title= @report.category.name
 
         .starter
-          = image_tag "http://placehold.it/60", class: "avatar"
+          = image_tag @report.user.avatar_url, class: "avatar"
           .name
             = @report.user.name
             dice:
@@ -37,7 +37,7 @@
 
         - if user_signed_in? or admin_signed_in?
           .comment.green
-            = image_tag "http://placehold.it/40", class: "avatar"
+            = image_tag current_user.avatar_url, class: "avatar"
             = form_for Comment.new do |f|
               = f.submit 'Comentar', class: "button green rounded submit"
               = f.text_area :content, placeholder: "Agrega tu comentario"
