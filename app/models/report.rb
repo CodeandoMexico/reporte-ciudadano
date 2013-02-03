@@ -4,6 +4,7 @@ class Report < ActiveRecord::Base
   validates :category_id, presence: true
 
   belongs_to :category
+  belongs_to :user
 
   validate :category_extra_fields
 

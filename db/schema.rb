@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203071011) do
+ActiveRecord::Schema.define(:version => 20130203075143) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -64,9 +64,11 @@ ActiveRecord::Schema.define(:version => 20130203071011) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "image"
+    t.integer  "user_id"
   end
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
+  add_index "reports", ["user_id"], :name => "index_reports_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

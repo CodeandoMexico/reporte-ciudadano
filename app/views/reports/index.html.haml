@@ -11,5 +11,6 @@
       .unit.report
         %h2= report.category.name
         %p= report.description
+        %p= "Reportado por #{report.user.name}"
 
 = paginate @reports
