@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
   has_many :reports
+  has_many :comments, as: :commentable
 
   def self.create_with_omniauth(auth)
     user = User.new(name: auth["info"]["name"], username: auth["info"]["nickname"], email: auth["info"]["email"])
