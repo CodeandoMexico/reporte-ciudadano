@@ -66,3 +66,32 @@
 .footer {
   
 }
+
+/**************
+** NOTICES
+***************/
+
+.alert, .notice, .success {
+  position: absolute;
+  left: 50%;
+  top: 70px;
+  padding: 10px 70px;
+  margin-left: -140px;
+  border: 1px solid;
+  z-index: 1000;
+}
+
+.alert {
+  color: #D8000C;
+  background: #FFBABA;
+}
+
+.success {
+  color: #4F8A10;
+  background: #DFF2BF;
+}
+
+.notice {
+  color: #9F6000;
+  background: #FEEFB3;
+}

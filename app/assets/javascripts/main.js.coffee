@@ -2,6 +2,13 @@ $ ->
   $(window).resize ->
     $("#main_width").html $(window).width()
 
+  setTimeout ->
+    hideFlashMessages()
+  ,4000
+
+  hideFlashMessages = ->
+    $(".alert").fadeOut('slow')
+
   if $("#new-report-map").length > 0
     $("#new-report-map").geolocateMap({
       html5: true
