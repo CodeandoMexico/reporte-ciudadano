@@ -16,4 +16,12 @@ module SessionsHelper
   def failure
     redirect_to root_path, notice: "Authentication not authorized"
   end
+
+  def authenticate_user!
+    deny_access unless user_signed_in?
+  end
+
+  def deny_access
+    redirect_to root_path
+  end
 end
