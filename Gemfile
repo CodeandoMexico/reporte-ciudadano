@@ -32,4 +32,5 @@ gem 'mini_magick'
 gem 'fog'
 gem 'aws-s3'
 gem 'debugger'
+gem 'kaminari'
 

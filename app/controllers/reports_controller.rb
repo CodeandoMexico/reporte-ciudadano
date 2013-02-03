@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
 
   def index
+    @reports = Kaminari.paginate_array(Report.all).page(params[:page])
   end
 
   def new
