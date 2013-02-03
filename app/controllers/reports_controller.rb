@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
 
   def index
-    @reports = Kaminari.paginate_array(Report.all).page(params[:page])
+    @reports = Report.filter_by_search(params).page(params[:page])
   end
 
   def new
@@ -32,6 +32,4 @@ class ReportsController < ApplicationController
       format.js 
     end
   end
-
-  
 end
