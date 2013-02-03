@@ -60,10 +60,12 @@ ActiveRecord::Schema.define(:version => 20130203100806) do
     t.integer  "report_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.string   "ancestry"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
 
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["report_id"], :name => "index_comments_on_report_id"
@@ -94,5 +96,19 @@ ActiveRecord::Schema.define(:version => 20130203100806) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
+
+  create_table "votes", :force => true do |t|
+    t.boolean  "vote",          :default => false, :null => false
+    t.integer  "voteable_id",                      :null => false
+    t.string   "voteable_type",                    :null => false
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
+  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end
