@@ -11,4 +11,8 @@ class Admin < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  def avatar_url
+    Gravatar.new(self.email.to_s).image_url
+  end
+
 end

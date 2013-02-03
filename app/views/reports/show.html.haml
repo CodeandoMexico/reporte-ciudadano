@@ -35,9 +35,10 @@
       .unit.comments
         = render @comments
 
-        - if user_signed_in? or admin_signed_in?
+        - user = current_user || current_admin
+        - if user
           .comment.green
-            = image_tag current_user.avatar_url, class: "avatar"
+            = image_tag user.avatar_url, class: "avatar"
             = form_for Comment.new do |f|
               = f.submit 'Comentar', class: "button green rounded submit"
               = f.text_area :content, placeholder: "Agrega tu comentario"
