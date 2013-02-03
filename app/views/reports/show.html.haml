@@ -1,3 +1,4 @@
 %p 
-  Created by
+  Creado por
   = @report.user.name
+  %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
