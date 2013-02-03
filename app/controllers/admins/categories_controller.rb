@@ -1,6 +1,4 @@
-class Admins::CategoriesController < ApplicationController
-  before_filter :authenticate_admin!
-  layout 'admins'
+class Admins::CategoriesController < Admins::AdminController 
   
   def index
     @categories = Category.all
