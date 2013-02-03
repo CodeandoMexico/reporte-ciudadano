@@ -146,7 +146,7 @@
 
         if @markers.length > 1
           @map.fitBounds(bounds)
-        else
+        else if @markers.length == 1
           @map.setCenter(@markers[0].getPosition())
 
 
