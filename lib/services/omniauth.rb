@@ -12,7 +12,7 @@ module Services
     end
 
     def user
-      @user ||= @omniauth ? user_from_authentication.try(:user) : user_created 
+      user_from_authentication.try(:user) || user_created 
     end
 
     def user_from_authentication

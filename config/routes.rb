@@ -10,7 +10,7 @@ ReporteCiudadano::Application.routes.draw do
   
 
   get "login" => 'sessions#new'
-  get '/auth/:provider/callback' => 'authentications#create'
+  get '/auth/:provider/callback' => 'sessions#create'
   delete "signout", to: 'sessions#destroy'
 
 end

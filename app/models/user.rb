@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :username
 
-  validates :email, :name, presence: true
-
   has_many :authentications, dependent: :destroy
 
   def self.create_with_omniauth(auth)

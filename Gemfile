@@ -26,5 +26,6 @@ end
 
 gem 'jquery-rails'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'debugger'
 
