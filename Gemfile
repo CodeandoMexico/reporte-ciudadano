@@ -8,6 +8,7 @@ gem 'rails', '3.2.11'
 gem 'pg'
 gem 'devise'
 gem 'nested_form'
+gem 'geocoder'
 
 
 # Gems used only for assets and not required

@@ -1,8 +1,14 @@
 = form_for @report do |f|
+  = f.object.errors.messages
+
   .fields
     = f.label :image, "Imágen"
     = f.file_field :image, class: 'js-image-preview'
     .image_preview
+
+  .field
+    %label(for='adress')Dirección
+    %input#address
 
   .fields
     = f.label :description, "Descripción"
@@ -12,8 +18,8 @@
     = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
   %div#category_fields_container
     = render @report.category.category_fields if @report.category?
-  = f.hidden_field :lat
-  = f.hidden_field :lng
+  = f.hidden_field :lat, id: 'lat'
+  = f.hidden_field :lng, id: 'lng'
   .fields
 
   = f.submit 'Guardar'
