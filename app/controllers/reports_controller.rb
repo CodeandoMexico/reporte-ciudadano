@@ -23,5 +23,14 @@ class ReportsController < ApplicationController
     @comments = @report.comments
   end
 
+  def vote
+    @report = Report.find(params[:id])
+    current_user.vote_for(@report)
+    respond_to do |format|
+      format.html { redirect_to reports_path, :notice => 'Voted' }
+      format.js 
+    end
+  end
+
   
 end

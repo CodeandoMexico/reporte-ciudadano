@@ -2,8 +2,14 @@ ReporteCiudadano::Application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
-  resources :reports
   resources :comments
+
+  resources :reports do
+    member do
+      post :vote
+    end
+  end
+
   root :to => 'reports#index'
 
   namespace :admins do

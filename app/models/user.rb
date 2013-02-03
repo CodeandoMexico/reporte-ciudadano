@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :reports
   has_many :comments, as: :commentable
 
+  acts_as_voter
+
   def self.create_with_omniauth(auth)
     user = User.new(name: auth["info"]["name"], username: auth["info"]["nickname"], email: auth["info"]["email"])
     authentication = user.authentications.build(provider: auth['provider'], uid: auth['uid']) 
