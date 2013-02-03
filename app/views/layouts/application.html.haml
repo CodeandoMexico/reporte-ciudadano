@@ -10,7 +10,7 @@
   %body
     = render "shared/header"
     - flash.each do |name, msg|
-      = content_tag :div, :class => "#{name}" do
+      = content_tag :div, :class => "alert #{name}" do
         = msg
  
     .unit.main
