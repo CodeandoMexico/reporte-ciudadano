@@ -4,3 +4,8 @@ TWITTER_SECRET = ENV['TWITTER_SECRET'] || env['twitter']['secret']
 
 FACEBOOK_KEY = ENV['FACEBOOK_KEY'] || env['facebook']['key'] 
 FACEBOOK_SECRET = ENV['FACEBOOK_KEY'] || env['facebook']['secret']  
+
+if Rails.env.production? 
+  AWS_KEY = ENV['AWS_KEY'] || env['aws']['key'] 
+  AWS_SECRET = ENV['AWS_SECRET'] || env['aws']['secret'] 
+end
