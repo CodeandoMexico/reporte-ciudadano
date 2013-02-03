@@ -8,7 +8,15 @@
     %p A continaución un listado de los reportes más recientes
 
     - @reports.each do |report|
-      .unit.report
+      .unit.report{id: "report_#{report.id}"}
+        - if user_signed_in? && !current_user.voted_on?(report)
+          = link_to 'Vota', vote_report_path(report), :remote => true, :method => :post, :class => "js-vote_report"
+        - elsif user_signed_in? && current_user.voted_on?(report)
+          Votado
+        - else
+          = link_to 'Vota', login_path
+        .js-vote_status
+        .js-votes_count= report.votes_for 
         %h2= report.category.name
         %p= report.description
         %p

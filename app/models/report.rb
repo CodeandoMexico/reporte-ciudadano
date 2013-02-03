@@ -22,6 +22,8 @@ class Report < ActiveRecord::Base
     3 => "Cerrado"
   }
 
+  acts_as_voteable
+
   def category_extra_fields
     self.category_fields.each do |k,v|
       errors.add k.to_sym, "must be present" if v.blank?
