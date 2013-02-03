@@ -133,8 +133,8 @@
         map = @map
         bounds = new google.maps.LatLngBounds()
 
-        @markers = markers.map ->
-          pos = new google.maps.LatLng(this.lat, this.lng)
+        @markers = $(markers).map (i, e) ->
+          pos = new google.maps.LatLng(e.lat, e.lng)
           bounds.extend(pos)
           marker = new google.maps.Marker({
               'position': pos
