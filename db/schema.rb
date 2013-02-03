@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130203081948) do
+=======
+ActiveRecord::Schema.define(:version => 20130203075143) do
+>>>>>>> report is built upon user
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -65,7 +69,10 @@ ActiveRecord::Schema.define(:version => 20130203081948) do
     t.datetime "updated_at",                         :null => false
     t.string   "image"
     t.integer  "user_id"
+<<<<<<< HEAD
     t.integer  "status",          :default => 1
+=======
+>>>>>>> report is built upon user
   end
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
