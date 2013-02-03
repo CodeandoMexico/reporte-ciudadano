@@ -1,5 +1,10 @@
 = form_for @report do |f|
   .fields
+    = f.label :image, "Imágen"
+    = f.file_field :image, class: 'js-image-preview'
+    .image_preview
+
+  .fields
     = f.label :description, "Descripción"
     = f.text_area :description
   .fields

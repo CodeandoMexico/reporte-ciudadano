@@ -27,5 +27,9 @@ end
 gem 'jquery-rails'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'aws-s3'
 gem 'debugger'
 
