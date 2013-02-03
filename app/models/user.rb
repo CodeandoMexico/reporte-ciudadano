@@ -18,4 +18,17 @@ class User < ActiveRecord::Base
   def to_s
     self.name 
   end
+
+  def avatar_url
+    if self.authentications.pluck(:provider).include? "twitter"
+      twitter_auth = self.authentications.where(provider: 'twitter').first
+      "http://api.twitter.com/1/users/profile_image?id=#{twitter_auth.uid}&size=bigger"
+    elsif self.authentications.pluck(:provider).include? "facebook"
+      facebook_auth = self.authentications.where(provider: 'facebook').first
+      "https://graph.facebook.com/#{facebook_auth.uid}/picture"
+    else
+      Gravatar.new(self.email.to_s).image_url
+    end
+  end
+
 end
