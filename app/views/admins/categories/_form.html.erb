@@ -1,4 +1,4 @@
-<%= nested_form_for([:admin, @category]) do |f| %>
+<%= nested_form_for([:admins, @category]) do |f| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
