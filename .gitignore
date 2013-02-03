@@ -16,3 +16,4 @@
 .DS_Store
 .sass-cache/
 /config/database.yml
+/config/env_variables.yml

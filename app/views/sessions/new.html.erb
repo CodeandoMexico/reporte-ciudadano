@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <%= current_user.name %>
+  <%= link_to "Sign out", signout_path, method: :delete %>
+<% else %>
+  <ul>
+    <li>
+      <%= link_to 'Facebook', omniauth_provider_path(:facebook) %>
+    </li>
+    <li>
+      <%= link_to 'Twitter', omniauth_provider_path(:twitter) %>
+    </li>
+  </ul>
+<% end %>
+
