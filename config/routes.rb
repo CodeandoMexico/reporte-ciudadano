@@ -5,6 +5,9 @@ ReporteCiudadano::Application.routes.draw do
   resources :comments
 
   resources :reports do
+    collection do
+      get 'filter'
+    end
     member do
       post :vote
     end

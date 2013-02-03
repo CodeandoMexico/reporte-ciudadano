@@ -4,6 +4,24 @@
 
 .unit.list
   .container
+    .filters{style: 'padding-top:80px;'}
+      = form_tag reports_path, method: :get do
+        .fields
+          = label_tag 'start_date', 'De fecha'
+          = text_field_tag 'start_date', params[:start_date], class: 'datepicker'
+        .fields
+          = label_tag 'end_date', 'A fecha'
+          = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
+        .fields
+          = label_tag 'status', 'Estatus'
+          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]))
+        .fields
+          = label_tag 'category_id', 'Categoria'
+          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]))
+        .actions
+          = submit_tag 'Buscar'
+
+
     %h1 Reportes
     %p A continaución un listado de los reportes más recientes
 
