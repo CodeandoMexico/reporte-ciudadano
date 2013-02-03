@@ -12,8 +12,9 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.build(params[:report]) 
     if @report.save
-      redirect_to root_path, notice: 'Successfully created' 
+      redirect_to root_path, flash: { success: 'Reporte creado satisfactoriamente' }
     else
+      flash[:notice] = "Hubo problemas, intenta de nuevo"
       render :new
     end
   end

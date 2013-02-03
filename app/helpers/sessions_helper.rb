@@ -14,7 +14,7 @@ module SessionsHelper
   end
 
   def failure
-    redirect_to root_path, notice: "Authentication not authorized"
+    redirect_to root_path, notice: "No pudimos terminar el proceso, intenta de nuevo."
   end
 
   def authenticate_user!

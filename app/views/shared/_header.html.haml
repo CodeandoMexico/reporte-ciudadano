@@ -1,3 +1,13 @@
 %header.unit.header
   .container
     = image_tag "http://placehold.it/200x50"
+    = link_to 'Reportes', root_path
+
+    - if user_signed_in? || admin_signed_in?
+      = link_to 'Nuevo reporte', new_report_path
+      = link_to "Salir", signout_path, method: :delete
+    - else
+      = link_to 'Nuevo reporte', login_path
+      = link_to 'Facebook', omniauth_provider_path(:facebook) 
+      = link_to 'Twitter', omniauth_provider_path(:twitter)
+      = link_to 'Acceso Gobierno', new_admin_session_path
