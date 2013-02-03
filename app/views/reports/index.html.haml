@@ -1,6 +1,6 @@
 .sidebar
   .container
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    #reports-map(style= "height:400px")
 
 .unit.list
   .container
@@ -8,7 +8,7 @@
     %p A continaución un listado de los reportes más recientes
 
     - @reports.each do |report|
-      .unit.report{id: "report_#{report.id}"}
+      .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
         - if user_signed_in? && !current_user.voted_on?(report)
           = link_to 'Vota', vote_report_path(report), :remote => true, :method => :post, :class => "js-vote_report"
         - elsif user_signed_in? && current_user.voted_on?(report)
