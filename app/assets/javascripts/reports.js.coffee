@@ -1,6 +1,9 @@
 $ ->
   $("abbr.timeago").timeago()
 
+  $('.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
+  })
   $('.js-load_category_fields').change ->
     $.ajax(
       url: '/categories/load_category_fields'
