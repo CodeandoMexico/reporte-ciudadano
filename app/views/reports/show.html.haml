@@ -1,7 +1,27 @@
+.container
+  #show-report-map(style= "height:400px"){ "data-longitude" => @report.lng, "data-latitude" => @report.lat }
+.unit
+  .container
+    %p
+      =@report.category.name
+    %p
+      =@report.votes_for
+    %p
+      =status_name(@report.status)
+    =div_for(@report) do
+      =vote_link_for(@report)
+      .js-vote_status
+
+.unit
+  .container
+
+
 %p 
   Creado por
   = @report.user.name
   %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
+%div
+  = render 'shared/tweet'
 
 = render @comments
 

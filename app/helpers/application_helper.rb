@@ -10,7 +10,9 @@ module ApplicationHelper
     else
       position = request.location
     end
-    {"data-longitude" => position.longitude, "data-latitude" => position.latitude}
+    lng = position ? position.longitude : "17.065593"
+    lat = position ? position.latitude : "-96.724253"
+    { "data-longitude" => lng, "data-latitude" => lat }
   end
 
 end

@@ -9,12 +9,7 @@
 
     - @reports.each do |report|
       .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
-        - if user_signed_in? && !current_user.voted_on?(report)
-          = link_to 'Vota', vote_report_path(report), :remote => true, :method => :post, :class => "js-vote_report"
-        - elsif user_signed_in? && current_user.voted_on?(report)
-          Votado
-        - else
-          = link_to 'Vota', login_path
+        = vote_link_for(report)
         .js-vote_status
         .js-votes_count= report.votes_for 
         %h2= report.category.name
