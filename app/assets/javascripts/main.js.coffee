@@ -28,3 +28,11 @@ $ ->
     $("#reports-map").geolocateMap({
       markers: reports_markers
     })
+
+  if $("#show-report-map").length > 0
+    $("#show-report-map").geolocateMap({
+      markers: [{
+        lat: $("#show-report-map").data("latitude")
+        lng: $("#show-report-map").data("longitude")
+      }]
+    })
