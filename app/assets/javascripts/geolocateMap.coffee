@@ -47,25 +47,31 @@
 
       center = null
 
-      if options.latitude and options.longitude
-        options['center'] = new google.maps.LatLng(options.latitude, options.longitude)
-
       mapOptions = $.extend({
         zoom: 15
         center: new google.maps.LatLng(0.0, 0.0)
         mapTypeId: google.maps.MapTypeId.ROADMAP
         scaleControl: true
-        html5: true
+        html5: false
       }, options)
 
       @map = new google.maps.Map(this[0], mapOptions)
 
-      @marker = new google.maps.Marker({
-          'position': mapOptions['center']
-          'map': @map
-          'draggable': true
-      })
+      console.log mapOptions
+      if mapOptions.latitude and mapOptions.longitude
+        options['center'] = new google.maps.LatLng(options.latitude, options.longitude)
+        @marker = new google.maps.Marker({
+            'position': mapOptions['center']
+            'map': @map
+            'draggable': true
+        })
+        @map.setCenter(@marker.getPosition())
 
+
+
+      #
+      # html5 geolocation
+      #
       if mapOptions['html5'] and navigator.geolocation
         navigator.geolocation.getCurrentPosition(
           ((position) =>
@@ -77,42 +83,69 @@
           )
         )
 
-      sync_elements = mapOptions['sync_input']
-
+      #
       # input listeners
-      if $lat = $(sync_elements['latitude'])
+      #
+      sync_elements = mapOptions['sync_input']
+      sync_elements ?= {}
+
+      if ($lat = $(sync_elements['latitude'])).length > 0
         $lat.val(helpers.marker_lat(@marker))
         $lat.on 'change', =>
           helpers.set_marker_position(@marker, $(this).val(), helpers.marker_lng(@marker))
 
-      if $lng = $(sync_elements['longitude'])
+      if ($lng = $(sync_elements['longitude'])).length > 0
         $lng.val(helpers.marker_lng(@marker))
         $lng.on 'change', =>
           helpers.set_marker_position(@marker, helpers.marker_lat(@marker), $(this).val())
 
-      if $address = $(sync_elements['address'])
+      if ($address = $(sync_elements['address'])).length > 0
         helpers.set_address_to_input_from_marker($address, @marker)
 
         $address.on 'change', =>
           helpers.set_marker_and_map_from_input_address(@marker, @map, $address)
 
+      #
       # on marker move
-      google.maps.event.addListener @marker, 'dragend', =>
-        marker = @marker
+      #
+      if @marker
+        google.maps.event.addListener @marker, 'dragend', =>
+          marker = @marker
+          map = @map
+          position = marker.getPosition()
+
+          if sync_elements['latitude']
+            $lat.val(position.lat())
+
+
+          if sync_elements['longitude']
+            $lng = $(sync_elements['longitude'])
+            $lng.val(position.lng())
+
+          if sync_elements['address']
+            $address = $(sync_elements['address'])
+            helpers.set_address_to_input_from_marker($address, @marker)
+
+      #
+      # set markers
+      #
+      if markers = mapOptions['markers']
         map = @map
-        position = marker.getPosition()
+        bounds = new google.maps.LatLngBounds()
 
-        if sync_elements['latitude']
-          $lat.val(position.lat())
+        @markers = markers.map ->
+          pos = new google.maps.LatLng(this.lat, this.lng)
+          bounds.extend(pos)
+          marker = new google.maps.Marker({
+              'position': pos
+              'map': map
+              'draggable': false
+              'animation': google.maps.Animation.DROP
+          })
+          marker
 
+        @map.fitBounds(bounds)
 
-        if sync_elements['longitude']
-          $lng = $(sync_elements['longitude'])
-          $lng.val(position.lng())
-
-        if sync_elements['address']
-          $address = $(sync_elements['address'])
-          helpers.set_address_to_input_from_marker($address, @marker)
 
       return this
 
