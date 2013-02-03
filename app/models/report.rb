@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Report < ActiveRecord::Base
   attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image
 
@@ -13,6 +14,12 @@ class Report < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   default_scope order: 'created_at DESC'
+
+  STATUS_LIST = {
+    1 => "Abierto",
+    2 => "Revisión",
+    3 => "Cerrado"
+  }
 
   def category_extra_fields
     self.category_fields.each do |k,v|

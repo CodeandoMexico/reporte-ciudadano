@@ -7,6 +7,11 @@ ReporteCiudadano::Application.routes.draw do
 
   namespace :admins do
     resources :categories
+    resources :reports, only: [] do 
+      member do
+        put 'update_status'
+      end
+    end
   end
   
   get "/login" => 'sessions#new'
