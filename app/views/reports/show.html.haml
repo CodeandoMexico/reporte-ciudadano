@@ -24,7 +24,7 @@
             = @report.description
           .time
             %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
-      - if !admin_signed_in?
+      - if admin_signed_in?
         .unit.admin
           = form_for @report, url: update_status_admins_report_path(@report) do |f|
             = f.submit "Actualizar", class: "button blue rounded submit"
