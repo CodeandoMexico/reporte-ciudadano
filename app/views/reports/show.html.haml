@@ -1,5 +1,5 @@
 .container
-  #reports-map(style= "height:400px"){data_position}
+  #reports-map(style= "height:400px"){ "data-longitude" => @report.lng, "data-latitude" => @report.lat }
 .unit
   .container
     %p
