@@ -18,6 +18,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'haml-rails'
   gem 'compass-rails'
+  gem "modular-scale", "~> 1.0.6"
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

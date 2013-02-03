@@ -4,7 +4,7 @@
 
 /** Grid System **/
 @import 'elasticss';
-
+@import 'modular-scale';
 
 /***************************************************
 **  COLORS SETTINGS
@@ -14,9 +14,14 @@
 $gray1:       #eeeeee;
 $gray2:       #dddddd;
 $gray3:       #666666;
+
 // gray4 is for h1, h2. Etc.
 $gray4:       #444444;
-$green:       #77b433;
+
+// buttons
+ $blue:       #7ebbd5;
+ $green:      #a0d34f;
+ $red:        #df3737;
 
 /***** Colors Settings - Foundation **/
 
@@ -34,7 +39,16 @@ $green:       #77b433;
 
 /***** Modular Scale **/
 
- $baseFontSize: 14px;
+ $base-size: 12px;
+ $ratio: golden();
+
+
+/***************************************************
+**  MARGINS + PADDINGS + RADIUS
+***************************************************/
+
+$buttonRadius: 6px;
+$regMargin: 20px;
 
 
 /***************************************************

@@ -1,8 +1,7 @@
-.comment
+.unit.comment
+  = image_tag comment.commentable.avatar_url, class: "avatar"
   .created_by
-    Created by 
     = comment.commentable.name
   .content
     = comment.content
-%br
 
