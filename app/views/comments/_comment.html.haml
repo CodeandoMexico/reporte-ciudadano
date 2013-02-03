@@ -1,5 +1,5 @@
 .unit.comment
-  = image_tag "http://placehold.it/40", class: "avatar"
+  = image_tag comment.commentable.avatar_url, class: "avatar"
   .created_by
     = comment.commentable.name
   .content
