@@ -3,6 +3,8 @@
   = @report.user.name
   %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
 
+= render @comments
+
 - if user_signed_in? or admin_signed_in?
   = form_for Comment.new do |f|
     .fields
