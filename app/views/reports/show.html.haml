@@ -3,6 +3,15 @@
   = @report.user.name
   %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
 
+- if user_signed_in? or admin_signed_in?
+  = form_for Comment.new do |f|
+    .fields
+      = f.label :content
+      = f.text_area :content
+      = f.hidden_field :report_id, value: @report.id
+    .actions
+      = f.submit 'Comentar'
+
 - if admin_signed_in?
   = form_for @report, url: update_status_admins_report_path(@report) do |f|
     .fields
