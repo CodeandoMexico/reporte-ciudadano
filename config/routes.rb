@@ -5,4 +5,7 @@ ReporteCiudadano::Application.routes.draw do
 
   root :to => 'reports#index'
 
+  namespace :admin do
+    resources :categories
+  end
 end
