@@ -3,6 +3,7 @@ ReporteCiudadano::Application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   resources :reports
+  resources :comments
   root :to => 'reports#index'
 
   namespace :admins do

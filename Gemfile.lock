@@ -53,7 +53,6 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
-<<<<<<< HEAD
     debugger (1.2.2)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
@@ -61,25 +60,13 @@ GEM
     debugger-linecache (1.1.2)
       debugger-ruby_core_source (>= 1.1.1)
     debugger-ruby_core_source (1.1.5)
-=======
-    debugger (1.3.0)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.7)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.7)
->>>>>>> 2c82643... Index de proyectos listo con paginación
     devise (2.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
     erubis (2.7.0)
-<<<<<<< HEAD
     excon (0.16.7)
-=======
->>>>>>> 2c82643... Index de proyectos listo con paginación
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.4)
@@ -217,11 +204,8 @@ DEPENDENCIES
   fog
   haml-rails
   jquery-rails
-<<<<<<< HEAD
-  mini_magick
-=======
   kaminari
->>>>>>> 2c82643... Index de proyectos listo con paginación
+  mini_magick
   nested_form
   omniauth-facebook
   omniauth-twitter
