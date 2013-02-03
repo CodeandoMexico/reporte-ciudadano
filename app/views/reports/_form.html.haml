@@ -1,0 +1,14 @@
+= form_for @report do |f|
+  .fields
+    = f.label :description, "Descripción"
+    = f.text_area :description
+  .fields
+    = f.label :category_id, "Categoría"
+    = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
+  %div#category_fields_container
+    = render @report.category.category_fields if @report.category?
+  = f.hidden_field :lat
+  = f.hidden_field :lng
+  .fields
+
+  = f.submit 'Guardar'

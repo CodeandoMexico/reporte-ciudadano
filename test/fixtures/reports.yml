@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: MyString
+  category_id: 1
+  lat: MyString
+  lng: MyString
+  anonymous: false
+
+two:
+  description: MyString
+  category_id: 1
+  lat: MyString
+  lng: MyString
+  anonymous: false
