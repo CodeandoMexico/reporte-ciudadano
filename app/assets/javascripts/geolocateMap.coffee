@@ -144,7 +144,10 @@
           })
           marker
 
-        @map.fitBounds(bounds)
+        if @markers.length > 1
+          @map.fitBounds(bounds)
+        else
+          @map.setCenter(@markers[0].getPosition())
 
 
       return this
