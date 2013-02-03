@@ -1,43 +1,54 @@
-.container
-  #show-report-map(style= "height:400px"){ "data-longitude" => @report.lng, "data-latitude" => @report.lat }
-.unit
-  .container
-    %p
-      =@report.category.name
-    %p
-      =@report.votes_for
-    %p
-      =status_name(@report.status)
-    =div_for(@report) do
-      =vote_link_for(@report)
-      .js-vote_status
+.unit.map#show-report-map{ "data-longitude" => @report.lng, "data-latitude" => @report.lat }
 
-.unit
-  .container
+.columns.on-3.show
+  .container.wrapper
+
+    .column.fixed.votes
+      .counter
+        23
+      =link_to "FIX IT", "#", class: "button blue rounded"
+      .status 
+        %i.icon-flag
+        Abierto
+
+    .column.fixed.info
+      .unit.report_box
+        %h2.title= @report.category.name
+
+        .starter
+          = image_tag @report.user.avatar_url, class: "avatar"
+          .name
+            = @report.user.name
+            dice:
+          .description
+            = @report.description
+          .time
+            %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
+      - if admin_signed_in?
+        .unit.admin
+          = form_for @report, url: update_status_admins_report_path(@report) do |f|
+            = f.submit "Actualizar", class: "button blue rounded submit"
+            .field
+              = f.label :status, "Estatus"
+              = f.collection_select :status, Report::STATUS_LIST, :first, :last
+              
+      .unit.comments
+        = render @comments
+
+        - user = current_user || current_admin
+        - if user
+          .comment.green
+            = image_tag user.avatar_url, class: "avatar"
+            = form_for Comment.new do |f|
+              = f.submit 'Comentar', class: "button green rounded submit"
+              = f.text_area :content, placeholder: "Agrega tu comentario"
+              = f.hidden_field :report_id, value: @report.id
+                
 
 
-%p 
-  Creado por
-  = @report.user.name
-  %abbr.timeago{title: "#{@report.created_at.getutc.iso8601}"} #{@report.created_at.to_s}
-%div
-  = render 'shared/tweet'
 
-= render @comments
+    .column.fixed.social
+      Social Stuff HERE
 
-- if user_signed_in? or admin_signed_in?
-  = form_for Comment.new do |f|
-    .fields
-      = f.label :content
-      = f.text_area :content
-      = f.hidden_field :report_id, value: @report.id
-    .actions
-      = f.submit 'Comentar'
 
-- if admin_signed_in?
-  = form_for @report, url: update_status_admins_report_path(@report) do |f|
-    .fields
-      = f.label :status, "Estatus"
-      = f.collection_select :status, Report::STATUS_LIST, :first, :last
-    .actions
-      = f.submit "Actualizar"
+    
