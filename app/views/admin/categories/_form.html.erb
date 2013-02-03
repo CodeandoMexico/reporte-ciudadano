@@ -1,0 +1,29 @@
+<%= nested_form_for([:admin, @category]) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Nombre' %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.fields_for :category_fields do |task_form| %>
+    <%= task_form.label :name, 'Campo' %><br />
+    <%= task_form.text_field :name %>
+    <%= task_form.link_to_remove "Borrar campo" %>
+  <% end %>
+  <p><%= f.link_to_add "Agregar campo", :category_fields %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
