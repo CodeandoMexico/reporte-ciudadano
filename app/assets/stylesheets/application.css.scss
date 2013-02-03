@@ -3,11 +3,67 @@
 @import "defaults";
 
 
+
 /***************************************************
-**  LAYOUT + GRID
+**  HEADER
 ***************************************************/
 
-.holder {
-  margin: 0 auto;
+.header {
+  background-color: $black;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .container {
+    padding: 15px;
+  }
 }
 
+/***************************************************
+**  MAIN LAYOUT
+***************************************************/
+
+.main {
+  position: fixed;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.list {
+  padding-right: 360px;
+
+  .container {
+    padding: 20px;
+
+    .report {
+      background-color: $white;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.sidebar {
+  background-color: $gray2;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+
+  .container {
+    padding: 40px;
+  }
+}
+
+/***************************************************
+**  FOOTER
+***************************************************/
+
+.footer {
+  
+}
