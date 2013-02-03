@@ -34,4 +34,9 @@ ReporteCiudadano::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #Carrierwave config
+  CarrierWave.configure do |config|
+    config.storage :file
+  end
 end
