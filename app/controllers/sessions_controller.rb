@@ -8,12 +8,12 @@ class SessionsController < ApplicationController
     if auth.authenticated?
       sign_in_and_redirect(auth.user.id)
     else
-      redirect_to root_path
+      redirect_to root_path, flash: { notice: 'Ha ocurrido un problema con tu acceso.' }
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to root_path, flash: { notice: 'Has salido exitosamente del sistema' }
   end
 end
