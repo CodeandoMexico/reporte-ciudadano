@@ -1,10 +1,8 @@
-.sidebar
-  .container
-    #reports-map(style= "height:400px")
+.unit.map#reports-map
 
 .unit.list
   .container
-    .filters{style: 'padding-top:80px;'}
+    .filters
       = form_tag reports_path, method: :get do
         .fields
           = label_tag 'start_date', 'De fecha'
