@@ -41,21 +41,21 @@
       refreshMillis: 60000,
       allowFuture: false,
       strings: {
-        prefixAgo: null,
+        prefixAgo: "hace",
         prefixFromNow: null,
-        suffixAgo: "ago",
-        suffixFromNow: "from now",
-        seconds: "less than a minute",
-        minute: "about a minute",
-        minutes: "%d minutes",
-        hour: "about an hour",
-        hours: "about %d hours",
-        day: "a day",
-        days: "%d days",
-        month: "about a month",
-        months: "%d months",
-        year: "about a year",
-        years: "%d years",
+        suffixAgo: "",
+        suffixFromNow: "",
+        seconds: "menos de un minuto",
+        minute: "un minuto",
+        minutes: "%d minutos",
+        hour: "una hora",
+        hours: "%d horas",
+        day: "un d&iacute;a",
+        days: "%d d&iacute;as",
+        month: "un mes",
+        months: "%d meses",
+        year: "un a&ntilde;o",
+        years: "%d a&ntilde;os",
         wordSeparator: " ",
         numbers: []
       }
@@ -160,4 +160,3 @@
   document.createElement("abbr");
   document.createElement("time");
 }));
-

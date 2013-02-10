@@ -34,7 +34,7 @@
         %p= report.description
         %p
           "Reportado por #{report.user.name}"
-          %abbr.timeago{title: "#{report.created_at.getutc.iso8601}"} #{report.created_at.to_s}
+          = timeago(report.created_at)
         %p= link_to 'Mostrar detalle', report_url(report)
 
 = paginate @reports
