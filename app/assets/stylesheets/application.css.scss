@@ -156,6 +156,18 @@
   padding-top: 65px;
 }
 
+.container {
+  padding: 20px;
+}
+
+.list {
+  .report {
+    background-color: $white;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+}
+
 .sidebar {
   background-color: $gray2;
   position: fixed;
