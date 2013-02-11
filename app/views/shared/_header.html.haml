@@ -1,17 +1,25 @@
 %header.unit.header
   .container
-    = image_tag "http://placehold.it/200x50"
-    = link_to 'Reportes', root_path
+    = link_to image_tag("logo.png"), root_path, class: "logo"
 
-    - if user_signed_in?
-      = link_to 'Nuevo reporte', new_report_path
-      = image_tag current_user.avatar_url
-      = link_to "Salir", signout_path, method: :delete
-    - elsif admin_signed_in?
-      = link_to 'Nuevo reporte', new_report_path
-      = link_to "Salir", destroy_admin_session_path, method: :delete
-    - else
-      = link_to 'Nuevo reporte', login_path
-      = link_to 'Facebook', omniauth_provider_path(:facebook) 
-      = link_to 'Twitter', omniauth_provider_path(:twitter)
-      = link_to 'Acceso Gobierno', new_admin_session_path
+    .menu
+      = link_to 'Reportes', root_path
+
+      - if user_signed_in?
+        = link_to 'Nuevo reporte', new_report_path
+        .unit.box
+          .container
+            = link_to "Salir", signout_path, method: :delete
+            = image_tag current_user.avatar_url, class: "avatar"
+      - elsif admin_signed_in?
+        = link_to 'Nuevo reporte', new_report_path
+        = link_to "Salir", destroy_admin_session_path, method: :delete
+      - else
+        = link_to 'Nuevo reporte', login_path
+
+        .unit.flying.box
+          .container
+            %p Registro • Inicio
+            = link_to 'Facebook', omniauth_provider_path(:facebook) 
+            = link_to 'Twitter', omniauth_provider_path(:twitter)
+        = link_to 'Acceso Gobierno', new_admin_session_path
