@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def omniauth_provider_path(provider)
-    "auth/#{provider.to_s}"
+    "/auth/#{provider.to_s}"
   end
 
   def data_position
