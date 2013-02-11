@@ -1,10 +1,10 @@
-.sidebar
-  .container
-    #reports-map(style= "height:400px")
+.unit.map
+  #reports-map
 
 .unit.list
   .container
-    .filters{style: 'padding-top:80px;'}
+
+    .unit.filters
       = form_tag reports_path, method: :get do
         .fields
           = label_tag 'start_date', 'De fecha'
@@ -19,22 +19,22 @@
           = label_tag 'category_id', 'Categoria'
           = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]))
         .actions
-          = submit_tag 'Buscar'
-
-
-    %h1 Reportes
-    %p A continaución un listado de los reportes más recientes
+          = submit_tag 'Buscar', class: "submit"
 
     - @reports.each do |report|
       .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
-        = vote_link_for(report)
-        .js-vote_status
-        .js-votes_count= report.votes_for 
-        %h2= report.category.name
+
+        .votes
+          .counter
+            = report.votes_for 
+          = vote_link_for(report)
+          -#link_to "FIX IT", "#", class: "button blue rounded"
+
+        %h2= link_to report.category.name, report_url(report), class: "title"
         %p= report.description
         %p
-          "Reportado por #{report.user.name}"
+          Reportado por
+          %span.user= report.user.name
           = timeago(report.created_at)
-        %p= link_to 'Mostrar detalle', report_url(report)
 
 = paginate @reports

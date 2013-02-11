@@ -48,6 +48,7 @@
       center = null
 
       mapOptions = $.extend({
+        scrollwheel: false
         zoom: 15
         center: new google.maps.LatLng(0.0, 0.0)
         mapTypeId: google.maps.MapTypeId.ROADMAP
