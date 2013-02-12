@@ -7,8 +7,3 @@ FACEBOOK_SECRET = ENV['FACEBOOK_SECRET'] || env['facebook']['secret']
 
 GOOGLE_KEY = ENV['GOOGLE_KEY'] || env['google_maps']['key']
 
-if Rails.env.production? 
-  AWS_KEY = ENV['AWS_KEY'] || env['aws']['key'] 
-  AWS_SECRET = ENV['AWS_SECRET'] || env['aws']['secret'] 
-end
-
