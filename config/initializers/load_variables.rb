@@ -1,4 +1,4 @@
-env = YAML.load_file("#{Rails.root}/config/env_variables.yml")[Rails.env]
+env = YAML.load_file("#{Rails.root}/config/env_variables.yml")[Rails.env] unless Rails.env.production?
 TWITTER_KEY = ENV['TWITTER_KEY'] || env['twitter']['key']
 TWITTER_SECRET = ENV['TWITTER_SECRET'] || env['twitter']['secret']
 
