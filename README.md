@@ -32,4 +32,6 @@ reporte](https://github.com/CodeandoMexico/reporte-ciudadano/raw/master/screensh
 
 ## Licencia
 
+Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members)
+
 Disponible bajo la licencia MIT. Ver el documento LICENSE para más información.
