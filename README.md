@@ -18,6 +18,18 @@ Una plataforma abierta para la gestión pública de reportes ciudadanos.
 3. Los usuarios pueden comentar sobre un reporte y subir imágenes. 
 4. Los usuarios pueden votar por reportes.
 
+## Imágenes: 
+
+### Mapa de reportes 
+
+![Mapa de
+reportes](https://github.com/CodeandoMexico/reporte-ciudadano/raw/master/screenshots/index.jpg "Mapa de reportes")
+
+### Vista de reporte 
+
+![Vista de
+reporte](https://github.com/CodeandoMexico/reporte-ciudadano/raw/master/screenshots/show.jpg "Vista de reporte")
+
 ## Licencia
 
 Disponible bajo la licencia MIT. Ver el documento LICENSE para más información.
