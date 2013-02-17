@@ -60,6 +60,8 @@
 
       @map = new google.maps.Map(this[0], mapOptions)
 
+      $(this).data("map",@map)
+
       console.log mapOptions
       if mapOptions.latitude and mapOptions.longitude
         options['center'] = new google.maps.LatLng(options.latitude, options.longitude)
@@ -154,6 +156,9 @@
 
 
       return this
+
+    pan: (position) ->
+      @map.panTo(position)
 
 
   # trigger methods for plugin

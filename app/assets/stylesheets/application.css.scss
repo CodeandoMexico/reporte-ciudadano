@@ -216,6 +216,7 @@
 
       .votes {
         float: right;
+        width: 100px !important;
 
         a {
           margin: 0;
@@ -229,7 +230,7 @@
 **  VOTES WIDGET
 ***************************************************/
 .votes {
-    width: 120px;
+    width: 120px !important;
 
     .counter {
       border: 2px solid $blue;
@@ -280,9 +281,10 @@
   min-height: 320px;
 
   #reports-map {
-    width: 100%;
+    width: 135%;
     height: 100%;
     display: block;
+    @include translateX(35%);
   }
 
   .aereo_box {
