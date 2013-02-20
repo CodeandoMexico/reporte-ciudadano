@@ -1,9 +1,6 @@
-.sidebar
-  .container
-    = render 'form'
-.unit.list
-  .container
-    #new-report-map(style= "height:400px"){data_position}
+.unit.map#new-report-map{data_position}
 
-#main_width
-  skoskos
+.columns.on-3.show
+  .container.wrapper
+    = render 'form'
+
