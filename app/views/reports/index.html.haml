@@ -25,9 +25,10 @@
       .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
 
         .votes
-          .counter
+          .counter.js-votes_count
             = report.votes_for 
-          = vote_link_for(report)
+          .js-vote_status
+            = vote_link_for(report)
 
         %h2= link_to report.category.name, report_url(report), class: "title"
         %p= report.description
