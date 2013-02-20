@@ -51,6 +51,8 @@
         scrollwheel: false
         zoom: 15
         center: new google.maps.LatLng(0.0, 0.0)
+        zoomControlOptions:
+          position: google.maps.ControlPosition.RIGHT_CENTER
         mapTypeId: google.maps.MapTypeId.ROADMAP
         scaleControl: true
         html5: false
