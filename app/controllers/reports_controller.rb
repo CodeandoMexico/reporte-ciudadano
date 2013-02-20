@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.filter_by_search(params).page(params[:page])
+    flash.now[:notice] = "No se encontraron reportes." if @reports.empty?
   end
 
   def new
