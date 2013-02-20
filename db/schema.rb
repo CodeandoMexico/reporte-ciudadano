@@ -60,10 +60,12 @@ ActiveRecord::Schema.define(:version => 20130203100806) do
     t.integer  "report_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.string   "ancestry"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
 
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["report_id"], :name => "index_comments_on_report_id"
