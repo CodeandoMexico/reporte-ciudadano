@@ -5,11 +5,11 @@
 
     .column.fixed.votes
       .counter
-        23
-      =link_to "FIX IT", "#", class: "button blue rounded"
+        = @report.votes_for
+      = vote_link_for(@report)
       .status 
         %i.icon-flag
-        Abierto
+        = Report::STATUS_LIST[@report.status]
 
     .column.fixed.info
       .unit.report_box

@@ -4,6 +4,7 @@ $ ->
   $('.datepicker').datepicker({
     dateFormat: 'yy-mm-dd'
   })
+
   $('.js-load_category_fields').change ->
     $.ajax(
       url: '/categories/load_category_fields'
@@ -11,6 +12,10 @@ $ ->
         id: $(@).val()
       }
     )
+
+  $('.blocked').click (e) ->
+    e.preventDefault()
+    alert 'Regístrate para poder crear reportes.'
 
   if window.FileReader
     $('.js-image-preview').change (event) ->

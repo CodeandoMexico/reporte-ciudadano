@@ -14,10 +14,10 @@
           = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
         .fields
           = label_tag 'status', 'Estatus'
-          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]))
+          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Cualquiera')
         .fields
           = label_tag 'category_id', 'Categoria'
-          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]))
+          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas')
         .actions
           = submit_tag 'Buscar', class: "submit"
 
@@ -28,7 +28,6 @@
           .counter
             = report.votes_for 
           = vote_link_for(report)
-          -#link_to "FIX IT", "#", class: "button blue rounded"
 
         %h2= link_to report.category.name, report_url(report), class: "title"
         %p= report.description
