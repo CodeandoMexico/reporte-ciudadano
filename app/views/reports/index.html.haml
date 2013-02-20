@@ -28,7 +28,6 @@
           .counter
             = report.votes_for 
           = vote_link_for(report)
-          -#link_to "FIX IT", "#", class: "button blue rounded"
 
         %h2= link_to report.category.name, report_url(report), class: "title"
         %p= report.description
