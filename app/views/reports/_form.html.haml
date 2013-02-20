@@ -22,4 +22,4 @@
   = f.hidden_field :lng, id: 'lng'
   .fields
 
-  = f.submit 'Guardar'
+  = f.submit 'Guardar', class: (current_user ? '' : 'blocked')

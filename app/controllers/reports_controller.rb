@@ -1,12 +1,16 @@
 class ReportsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create]
+  before_filter :authenticate_user!, only: [:create]
 
   def index
     @reports = Report.filter_by_search(params).page(params[:page])
   end
 
   def new
-    @report = current_user.reports.build 
+    if current_user
+      @report = current_user.reports.build
+    else
+      @report = Report.new
+    end
   end
 
   def create
