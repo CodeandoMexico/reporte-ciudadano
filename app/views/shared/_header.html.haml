@@ -8,13 +8,12 @@
       = link_to 'Nuevo reporte', new_report_path
       - if admin_signed_in?
         = link_to "Salir", destroy_admin_session_path, method: :delete
+      - elsif user_signed_in?
+        .unit.box
+          .container
+            = link_to "Salir", signout_path, method: :delete
+            = image_tag current_user.avatar_url, class: "avatar"
       - else
-        - if user_signed_in?
-          .unit.box
-            .container
-              = link_to "Salir", signout_path, method: :delete
-              = image_tag current_user.avatar_url, class: "avatar"
-
         .unit.flying.box
           .container
             %p Registro • Inicio
