@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    @comments = @report.comments
+    @comments = @report.comments.order("comments.created_at ASC")
   end
 
   def vote
