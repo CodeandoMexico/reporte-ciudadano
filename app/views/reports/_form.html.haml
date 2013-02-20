@@ -12,7 +12,7 @@
 
   .fields
     = f.label :description, "Descripción"
-    = f.text_area :description
+    = f.text_area :description, { rows: '5' }
   .fields
     = f.label :category_id, "Categoría"
     = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
