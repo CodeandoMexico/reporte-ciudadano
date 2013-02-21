@@ -25,8 +25,13 @@ $ ->
     reports_markers = $(".report").map ->
       return { lat: $(this).data("lat"), lng: $(this).data("lng") }
 
+    $map = $(".map")
+    lat = $map.attr("data-latitude")
+    lng = $map.attr("data-longitude")
+
     $("#reports-map").geolocateMap({
       markers: reports_markers
+      center: new google.maps.LatLng(lat, lng)
     })
 
   if $("#show-report-map").length > 0
