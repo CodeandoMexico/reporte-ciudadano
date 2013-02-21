@@ -15,7 +15,7 @@ $ ->
 
   $('.blocked').click (e) ->
     e.preventDefault()
-    alert 'Regístrate para poder crear reportes.'
+    alert 'Es necesario que te registres en el sistema para realizar esta operación.'
 
   if window.FileReader
     $('.js-image-preview').change (event) ->
