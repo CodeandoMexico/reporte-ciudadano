@@ -199,3 +199,37 @@ es:
   activerecord:
     errors:
       <<: *errors
+    models:
+      category: 'categoría'
+    attributes:
+      admin:
+        email: 'Correo'
+        password: 'Contraseña'
+        remember_me: 'Recordarme'
+      category:
+        name: 'nombre'
+
+  # Ends template file
+  admin:
+    new:
+      title: 'Registro'
+    category:
+      edit:
+        title: 'Editar categoría'
+      new:
+        title: 'Nueva categoría'
+      show:
+        columns:
+          name: 'Tipo'
+          extras: 'Campos adicionales'
+        title: 'Categorías'
+  crud:
+    destroy: 'Eliminar'
+    edit: 'Editar'
+    show: 'Mostrar'
+  form:
+    errors:
+      prohibited: "%{number_of_errors} evitó que la operación se realizara."
+  navigation:
+    back: 'Regresar'
+
