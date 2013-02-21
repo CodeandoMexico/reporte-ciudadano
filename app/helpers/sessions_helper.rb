@@ -8,9 +8,9 @@ module SessionsHelper
     current_user.present?  
   end
 
-  def sign_in_and_redirect(user_id)
+  def sign_in_and_redirect(user_id, path=nil)
     session[:user_id] = user_id
-    redirect_to root_path
+    redirect_to path || root_path
   end
 
   def failure
