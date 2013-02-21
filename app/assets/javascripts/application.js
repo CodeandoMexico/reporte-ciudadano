@@ -3,4 +3,5 @@
 //= require jquery_nested_form
 //= require jquery.ui.datepicker
 //= require jquery-timeago/jquery.timeago
+//= require vendor
 //= require_tree .

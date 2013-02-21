@@ -9,17 +9,17 @@ $ ->
   hideFlashMessages = ->
     $(".alert").fadeOut('slow')
 
-  if $("#new-report-map").length > 0
-    $("#new-report-map").geolocateMap({
-      html5: true
-      latitude: $("#new-report-map").data("latitude")
-      longitude: $("#new-report-map").data("longitude")
-      "sync_input": {
-        longitude: '#lng'
-        latitude: '#lat'
-        address: '#address'
-      }
-    })
+  #if $("#new-report-map").length > 0
+    #$("#new-report-map").geolocateMap({
+      #html5: true
+      #latitude: $("#new-report-map").data("latitude")
+      #longitude: $("#new-report-map").data("longitude")
+      #"sync_input": {
+        #longitude: '#lng'
+        #latitude: '#lat'
+        #address: '#address'
+      #}
+    #})
 
   if $("#reports-map").length > 0
     reports_markers = $(".report").map ->
@@ -31,7 +31,9 @@ $ ->
 
     $("#reports-map").geolocateMap({
       markers: reports_markers
-      center: new google.maps.LatLng(lat, lng)
+      google_maps:
+        zoom: 15
+        center: new google.maps.LatLng(lat, lng)
     })
 
   if $("#show-report-map").length > 0
@@ -40,4 +42,6 @@ $ ->
         lat: $("#show-report-map").data("latitude")
         lng: $("#show-report-map").data("longitude")
       }]
+      google_maps:
+        zoom: 15
     })
