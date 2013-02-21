@@ -54,7 +54,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #888;
   @include box-shadow(0px 0px 10px #222);
 
 
@@ -175,8 +175,16 @@
 
 .filters {
   padding: 20px;
+  padding-bottom: 10px;
   background-color: #7ebbd5;
   margin-bottom: 10px;
+
+  h2 {
+    font-size: ms(2);
+    color: $white;
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
 
   label {
     color: #FFF;
@@ -184,39 +192,137 @@
     display: inline-block;
     width: 100px;
   }
+  
+  .fields {
+    padding: 5px 10px;
+    background: $white;
+    margin-bottom: 10px;
+
+    i {
+      color: $blue;
+      font-size: ms(1);
+      line-height: ms(1.5);
+      display: inline-block;
+      width: 5%;
+    }
+    input {
+      display: inline-block;
+      width: 41%;
+      border: none;
+      padding: 5px;
+    }
+    select {
+      width: 40%;
+      margin-right: 3%;
+      padding: 0;
+      position: relative;
+      top: -2px;
+    }
+  }
+  
   .submit {
-    margin-left: 107px;
-    margin-top: 10px;
+    float: right;
+    width: 115px;
+    height: 35px;
+    line-height: 35px;
+    background-color: $gray4;
+    color: $white;
+    border: none;
+    font-size: ms(.5);
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-right: -20px;
+
+    &:hover{
+      background: $white;
+      color: $blue;
+    }
   }
 }
+
 .list {
   position: relative;
   z-index: 50;
-  left: 20px;
-  width: 37%;
+  left: 0;
+  width: 35%;
   min-width: 390px;
-  background-color: rgba($black, .2);
+  background-color: rgba($black, .3);
 
   .container {
-    padding: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+
 
     .report {
       background-color: $white;
-      padding: 15px;
       margin-bottom: 10px;
+      height: 115px;
 
-      .title {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-      }
-      .user {
-        font-weight: bold;
+      .info {
+        padding: 20px;
+        width: 70%;
+        padding-bottom: 0;
+
+        h2 {
+          margin-bottom: 5px;
+          a:hover {
+            color: $blue;
+          }
+        }
+
+        .title {
+          text-decoration: none;
+          color: #333;
+          font-weight: bold;
+          font-size: ms(1);
+          font-weight: normal;
+        }
+        p {
+          margin-bottom: 0;
+        }
+        .description {
+          color: $gray3;
+          height: 40px;
+        }
+        .time {
+          font-size: ms(0);
+
+          i {
+            margin-right: 5px;
+          }
+          abbr {
+            text-decoration: none;
+          }
+        }
+        .user {
+          font-weight: bold;
+        }
       }
 
-      .votes {
+      .votes_block {
         float: right;
-        width: 100px !important;
+        width: 115px;
+        height: 115px;
+        background-color: $gray1;
+
+        .counter {
+          height: 80px;
+          line-height: 90px;
+          text-align: center;
+          font-size: ms(1.5);
+        }
+        .js-vote_status, .js-vote_status a {
+          height: 35px;
+          @include border-radius(0);
+          padding: 0;
+          line-height: 35px;
+          text-align: center;
+          background-color: $gray4;
+
+          &:hover{
+            background-color: $blue;
+          }
+        }
 
         a {
           margin: 0;
@@ -224,6 +330,11 @@
       }
     }
   }
+}
+
+.paginate {
+  background-color: $white;
+  padding: 10px 20px;
 }
 
 /***************************************************
@@ -287,14 +398,80 @@
     @include translateX(35%);
   }
 
-  .aereo_box {
-    top: 100px;
-    left: 50%;
-    margin-left: 10%;
-    width: 300px;
-    height: 220px;
-    background-color: $white;
+  .details {
     position: absolute;
+    z-index: 1000;
+    right: 32%;
+    margin-right: -15%;
+    bottom: 30%;
+    width: 30%;
+    height: 20%;
+    margin-bottom: -5%;
+    background-color: $white;
+    @include box-shadow(0px 1px 3px #666);
+    display: none;
+    border-bottom: 10px solid $green;
+
+    &:before{
+      content: " ";
+      display:block;
+      top: -20px;
+      left: 50%;
+      margin-left: -20px;
+      position: relative;
+      width: 0; 
+      height: 0; 
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 20px solid $white;
+    }
+
+    .container {
+      padding: 5%;
+      padding-bottom: 0;
+      position: absolute;
+      top: 0;
+      width: 90%;
+      height: 90%;
+
+      .img_container {
+        width: 30%;
+        height: 70%;
+        display: block;
+        float: right;
+        overflow: hidden;
+        border: 5px solid $white;
+        @include box-shadow(0px 1px 3px #888);
+        margin-left: 10px;
+
+        img {
+          height: 110%;
+          width: auto;
+        }
+      }
+
+     h2 {
+        font-weight: normal;
+        margin-bottom: 7px;
+      }
+      h3 {
+        margin-bottom: 5px;
+        font-size: ms(0);
+      }
+      .more {
+        display: inline-block;
+        padding: 5px 15px;
+        background-color: $gray3;
+        color: $white;
+        text-decoration: none;
+
+        &:hover{
+          background-color: $green;
+          color: $gray4;
+        }
+      }
+
+    }
   }
 }
 

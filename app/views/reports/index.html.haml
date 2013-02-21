@@ -1,40 +1,56 @@
 .unit.map
   #reports-map
 
+  .unit.details
+    .container
+      .img_container
+        = image_tag "http://us.123rf.com/400wm/400/400/aremac/aremac0906/aremac090600024/5116083-bache-lleno-de-agua-en-una-calle-de.jpg"
+      %h2 Falla en el drenaje
+      %h3 Direccion:
+      %p Direccion patito 540, Col. Roma, Monterrey, Mexico
+      %a.more{href: "#"} Ver más
+      
+
 .unit.list
   .container
 
     .unit.filters
+      %h2 Filtrar
       = form_tag reports_path, method: :get do
-        .fields
-          = label_tag 'start_date', 'De fecha'
-          = text_field_tag 'start_date', params[:start_date], class: 'datepicker'
-        .fields
-          = label_tag 'end_date', 'A fecha'
-          = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
-        .fields
-          = label_tag 'status', 'Estatus'
-          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Cualquiera')
-        .fields
-          = label_tag 'category_id', 'Categoria'
-          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas')
-        .actions
+        .unit.fields
+          %i.icon-time
+          = text_field_tag 'start_date', params[:start_date], class: 'datepicker', placeholder: "De la fecha"
+          = text_field_tag 'end_date', params[:end_date], class: 'datepicker', placeholder: "A la fecha"
+          
+        .unit.fields
+          %i.icon-comment
+          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Estatus')
+          %i.icon-tag
+          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Categoria')
+        .unit.actions
           = submit_tag 'Buscar', class: "submit"
 
-    - @reports.each do |report|
-      .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
+    - if @reports.size == 0
+      .unit.report
+        .info
+          %h2 No se encontraron reportes
+    - else
+      - @reports.each do |report|
+        .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
 
-        .votes
-          .counter.js-votes_count
-            = report.votes_for 
-          .js-vote_status
-            = vote_link_for(report)
+          .votes_block
+            .counter.js-votes_count
+              = report.votes_for 
+            .js-vote_status
+              = vote_link_for(report)
 
-        %h2= link_to report.category.name, report_url(report), class: "title"
-        %p= report.description
-        %p
-          Reportado por
-          %span.user= report.user.name
-          = timeago(report.created_at)
-
-= paginate @reports
+          .info
+            %h2= link_to report.category.name, report_url(report), class: "title"
+            %p.description= truncate(report.description, length: 90)
+            %p.time
+              %i.icon-pushpin
+              Reportado
+              = timeago(report.created_at)
+    - unless paginate(@reports).blank?
+      .unit.paginate
+        = paginate @reports

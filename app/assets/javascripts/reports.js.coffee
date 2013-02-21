@@ -1,5 +1,5 @@
 $ ->
-  $("abbr.timeago").timeago()
+  $("span.timeago").timeago()
 
   $('.datepicker').datepicker({
     dateFormat: 'yy-mm-dd'
