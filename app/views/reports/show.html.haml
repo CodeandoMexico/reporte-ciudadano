@@ -1,12 +1,13 @@
 .unit.map#show-report-map{ "data-longitude" => @report.lng, "data-latitude" => @report.lat }
 
-.columns.on-3.show
+.columns.on-3.show{id: "report_#{@report.id}"}
   .container.wrapper
 
     .column.fixed.votes
-      .counter
+      .counter.js-votes_count
         = @report.votes_for
-      = vote_link_for(@report)
+      .js-vote_status
+        = vote_link_for(@report)
       .status 
         %i.icon-flag
         = Report::STATUS_LIST[@report.status]
