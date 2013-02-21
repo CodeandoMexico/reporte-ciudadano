@@ -22,4 +22,4 @@
   = f.hidden_field :lng, id: 'lng'
   .fields
 
-  = f.submit 'Guardar', class: (current_user ? '' : 'blocked')
+  = f.submit 'Guardar', class: (current_user ? '' : 'blocked'), data: { message: 'Para crear reportes necesitas registrarte en el sistema.' }

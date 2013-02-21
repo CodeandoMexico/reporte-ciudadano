@@ -10,7 +10,7 @@ module ReportsHelper
     elsif user_signed_in? && current_user.voted_on?(report)
       link_to 'VOTASTE', "javascript:void(0)", class: "button blue rounded"
     else
-      link_to 'VOTA', "javascript:void(0)", class: "button blue rounded blocked"
+      link_to 'VOTA', "javascript:void(0)", { class: "button blue rounded blocked", data: { message: "Para votar necesitas registrarte." } }
     end
   end
 

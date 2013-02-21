@@ -15,7 +15,11 @@ $ ->
 
   $('.blocked').click (e) ->
     e.preventDefault()
-    alert 'Es necesario que te registres en el sistema para realizar esta operación.'
+    receivedMessage = $(@).data('message')
+    if receivedMessage?
+      alert receivedMessage
+    else
+      alert 'Es necesario que te registres en el sistema para realizar esta operación.'
 
   if window.FileReader
     $('.js-image-preview').change (event) ->
