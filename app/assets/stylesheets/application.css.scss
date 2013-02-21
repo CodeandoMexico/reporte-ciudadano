@@ -326,12 +326,16 @@
     }
 
     .starter {
-
       .avatar {
         float: left;
         margin-right: $regMargin;
       }
-
+      .image {
+        padding: 20px 0 0 0;
+        img {
+          max-width: 100%;
+        }
+      }
       .name {
         font-size: ms(.5);
         font-family: "MuseoSans-700";

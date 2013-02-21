@@ -25,6 +25,9 @@
             = @report.description
           .time
             = timeago(@report.created_at)
+          - if @report.image.present?
+            .image
+              = image_tag @report.image_url
       - if admin_signed_in?
         .unit.admin
           = form_for @report, url: update_status_admins_report_path(@report) do |f|
