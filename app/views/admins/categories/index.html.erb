@@ -1,9 +1,9 @@
-<h1>Listing categories</h1>
+<h1><%= t('admin.category.show.title') %></h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Campos adicionales</th>
+    <th><%= t('admin.category.show.columns.name') %></th>
+    <th><%= t('admin.category.show.columns.extras') %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,13 +13,13 @@
   <tr>
     <td><%= category.name %></td>
     <td><%= category.category_fields_names %></td>
-    <td><%= link_to 'Show', admins_category_path(category) %></td>
-    <td><%= link_to 'Edit', edit_admins_category_path(category) %></td>
-    <td><%= link_to 'Destroy', admins_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to t('crud.show'), admins_category_path(category) %></td>
+    <td><%= link_to t('crud.edit'), edit_admins_category_path(category) %></td>
+    <td><%= link_to t('crud.destroy'), admins_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Category', new_admins_category_path %>
+<%= link_to t('admin.category.new.title'), new_admins_category_path %>
