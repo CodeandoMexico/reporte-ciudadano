@@ -4,4 +4,5 @@
 //= require jquery.ui.datepicker
 //= require jquery-timeago/jquery.timeago
 //= require vendor
+//= require jquery.geolocateMap
 //= require_tree .
