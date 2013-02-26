@@ -7,6 +7,7 @@
 
       = link_to 'Nuevo reporte', new_report_path
       - if admin_signed_in?
+        = link_to "Administración", admins_categories_path
         = link_to "Salir", destroy_admin_session_path, method: :delete
       - elsif user_signed_in?
         .unit.box
@@ -19,4 +20,4 @@
             %p Registro • Inicio
             = link_to 'Facebook', omniauth_provider_path(:facebook) 
             = link_to 'Twitter', omniauth_provider_path(:twitter)
-        = link_to 'Acceso Gobierno', new_admin_session_path
+        = link_to 'Administración', new_admin_session_path

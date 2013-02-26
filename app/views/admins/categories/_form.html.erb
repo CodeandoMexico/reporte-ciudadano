@@ -1,7 +1,7 @@
 <%= nested_form_for([:admins, @category]) do |f| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@category.errors.count, "error") %></h2>
 
       <ul>
       <% @category.errors.full_messages.each do |msg| %>
