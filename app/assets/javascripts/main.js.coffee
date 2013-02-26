@@ -29,6 +29,16 @@ $ ->
       markers: reports_markers
     })
 
+    $(".report").hover ->
+      map = $("#reports-map").data("map")
+      latLng = new google.maps.LatLng($(@).data("lat"), $(@).data("lng"))
+      map.panTo(latLng)
+      $(".map .details").hide();
+      $(".map .details").fadeIn();
+
+    $(window).resize ->
+
+
   if $("#show-report-map").length > 0
     $("#show-report-map").geolocateMap({
       markers: [{
@@ -36,3 +46,6 @@ $ ->
         lng: $("#show-report-map").data("longitude")
       }]
     })
+
+  
+
