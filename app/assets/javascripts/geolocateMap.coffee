@@ -39,6 +39,9 @@
         map.setCenter(position)
         map.setZoom(15)
         marker.setPosition(position)
+        # trigger dragend to marker so it updates latitude and longitude inputs
+        google.maps.event.trigger(marker, 'dragend')
+        
   }
 
   methods =
