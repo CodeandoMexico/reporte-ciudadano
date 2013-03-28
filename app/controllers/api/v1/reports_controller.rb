@@ -8,11 +8,10 @@ module Api
       end
 
       def update_status
-        @report = Report.find(params[:id])
+        @report = Report.find(params[:report_id])
         @report.update_attribute :status, params[:status]
         respond_with @report
       end
-
     end
   end
 end

@@ -1,3 +1,4 @@
+require 'api_constraints'
 ReporteCiudadano::Application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
@@ -35,7 +36,7 @@ ReporteCiudadano::Application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json' } do
-    namespace :v1 do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :reports, only: [:create] do
         put 'update_status'
       end
