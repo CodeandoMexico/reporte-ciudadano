@@ -34,4 +34,12 @@ ReporteCiudadano::Application.routes.draw do
     end
   end
 
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :reports, only: [:create] do
+        put 'update_status'
+      end
+    end
+  end
+
 end
