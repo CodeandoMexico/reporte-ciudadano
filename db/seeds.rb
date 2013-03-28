@@ -96,3 +96,6 @@ r = {
 }
 juan.reports.build(r).save
 
+ApiKey.create!
+ApiKey.create!
+ApiKey.create!
