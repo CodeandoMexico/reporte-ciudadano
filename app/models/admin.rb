@@ -20,6 +20,10 @@ class Admin < ActiveRecord::Base
     Gravatar.new(self.email.to_s).image_url
   end
 
+  def to_s
+    self.email 
+  end
+
   def api_key?
     self.api_key.present? 
   end
