@@ -11,7 +11,11 @@ class Api::BaseController < ApplicationController
 
     def restrict_access
       authenticate_or_request_with_http_token do |token, options|  
-        ApiKey.exists?(access_token: token)
+        current_admin.api_key.access_token == token
       end
+    end
+
+    def current_admin
+      Admin.find_by_authentication_token params[:auth_token] 
     end
 end

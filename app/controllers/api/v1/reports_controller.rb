@@ -13,12 +13,6 @@ module Api
         @report.update_attribute :status, params[:status]
         respond_with @report
       end
-
-      private
-
-        def current_admin
-          Admin.find_by_authentication_token params[:auth_token] 
-        end
     end
   end
 end
