@@ -2,9 +2,10 @@ module Api
   module V1
     class ReportsController < Api::BaseController
       respond_to :json
+      before_filter :authenticate_admin!
 
       def create
-        respond_with Report.create(params[:report])  
+        respond_with current_admin.reports.create(params[:report])  
       end
 
       def update_status
@@ -12,6 +13,12 @@ module Api
         @report.update_attribute :status, params[:status]
         respond_with @report
       end
+
+      private
+
+        def current_admin
+          Admin.find_by_authentication_token params[:auth_token] 
+        end
     end
   end
 end

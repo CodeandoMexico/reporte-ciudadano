@@ -1,5 +1,22 @@
 <h1><%= t('admin.category.show.title') %></h1>
 
+<fieldset class="token">
+
+  <legend>Credenciales de autenticación</legend>
+
+  <p>
+    Secret Token: <strong><%= current_admin.authentication_token %></strong>
+  </p>
+   
+  <p>
+  <% if current_admin.api_key? %>
+    Api Token: <strong><%= current_admin.api_key %></strong>
+  <% else %>
+    <%= link_to 'Generar llave', admins_api_keys_path, method: :post %>
+  <% end %>
+  </p>
+</fieldset>
+<br />
 <table>
   <tr>
     <th><%= t('admin.category.show.columns.name') %></th>

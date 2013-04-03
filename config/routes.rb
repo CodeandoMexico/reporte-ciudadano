@@ -18,6 +18,7 @@ ReporteCiudadano::Application.routes.draw do
 
   namespace :admins do
     resources :categories
+    resources :api_keys, only: [:create]
     resources :reports, only: [] do 
       member do
         put 'update_status'
@@ -36,6 +37,7 @@ ReporteCiudadano::Application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json' } do
+    devise_for :admins
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :reports, only: [:create] do
         put 'update_status'

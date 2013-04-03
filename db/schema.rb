@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328004837) do
+ActiveRecord::Schema.define(:version => 20130403231649) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(:version => 20130328004837) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name",                   :default => ""
+    t.string   "authentication_token"
   end
 
+  add_index "admins", ["authentication_token"], :name => "index_admins_on_authentication_token", :unique => true
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
@@ -36,9 +38,11 @@ ActiveRecord::Schema.define(:version => 20130328004837) do
     t.string   "access_token"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "admin_id"
   end
 
   add_index "api_keys", ["access_token"], :name => "index_api_keys_on_access_token"
+  add_index "api_keys", ["admin_id"], :name => "index_api_keys_on_admin_id"
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -90,9 +94,12 @@ ActiveRecord::Schema.define(:version => 20130328004837) do
     t.string   "image"
     t.integer  "user_id"
     t.integer  "status",          :default => 1
+    t.string   "reportable_type"
+    t.integer  "reportable_id"
   end
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
+  add_index "reports", ["reportable_id", "reportable_type"], :name => "index_reports_on_reportable_id_and_reportable_type"
   add_index "reports", ["user_id"], :name => "index_reports_on_user_id"
 
   create_table "users", :force => true do |t|
