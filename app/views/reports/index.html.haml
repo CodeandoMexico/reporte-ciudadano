@@ -20,6 +20,14 @@
           = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas')
         .actions
           = submit_tag 'Buscar', class: "submit"
+      %hr
+      = form_tag reports_path, method: :get do
+        .fields
+          = label_tag 'report_ids', 'Folio:'
+          = text_field_tag 'report_ids', params[:report_ids], placeholder: 'Ej. 1,2,4'
+        .actions
+          = submit_tag 'Buscar', class: "submit"
+
 
     - @reports.each do |report|
       .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
