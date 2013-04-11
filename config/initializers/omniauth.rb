@@ -4,4 +4,3 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 
 OmniAuth.config.on_failure = SessionsHelper.instance_methods(:failure)
-
