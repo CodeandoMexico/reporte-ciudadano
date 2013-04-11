@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130422212211) do
     t.string   "ancestry"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.string   "image"
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
