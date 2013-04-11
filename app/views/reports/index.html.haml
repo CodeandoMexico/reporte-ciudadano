@@ -34,7 +34,12 @@
         %p= report.description
         %p
           Reportado por
-          %span.user= report.user.name
+          %span.user
+            - if report.anonymous?
+              Anónimo 
+            - else
+              = report.user.name
+
           = timeago(report.created_at)
 
 = paginate @reports
