@@ -46,10 +46,11 @@
             = form_for Comment.new do |f|
               = f.submit 'Comentar', class: "button green rounded submit"
               = f.text_area :content, placeholder: "Agrega tu comentario"
-              = f.label :image, "Imágen:"
-              = f.file_field :image
+              = f.file_field :image, class: 'image_uploader'
               = f.hidden_field :report_id, value: @report.id
-                
+              .image_container#draggable_area
+                %span.add_image + 
+                = image_tag '', id: 'preview_image', style: 'display:none'
 
 
 

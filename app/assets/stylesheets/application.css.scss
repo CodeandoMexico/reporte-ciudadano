@@ -379,6 +379,7 @@
     }
 
     .comments {
+      position: relative;
 
       .comment {
         padding: 10px;
@@ -460,4 +461,34 @@
 .notice {
   color: #9F6000;
   background: #FEEFB3;
+}
+
+/**************
+** Images container drag & drop 
+***************/
+
+.image_uploader {
+  height: 100px;
+  width: 610px;
+  border: 2px dashed #ccc;
+  visibility: hidden;
+}
+
+.image_container {
+  border: 2px dashed #ccc;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .add_image {
+    font-size: 72px;
+    color: #999;
+    font-weight: bold;
+  }
 }

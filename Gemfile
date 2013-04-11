@@ -31,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "jquery-fileupload-rails"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'carrierwave'
