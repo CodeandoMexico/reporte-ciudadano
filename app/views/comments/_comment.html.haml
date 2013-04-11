@@ -4,4 +4,7 @@
     = comment.commentable.is_a?(Admin) ? 'Administrador' : comment.commentable.name
   .content
     = comment.content
+    - if comment.image?
+      .image
+        = image_tag comment.image_url
 

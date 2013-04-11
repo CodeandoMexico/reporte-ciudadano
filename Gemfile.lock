@@ -34,11 +34,16 @@ GEM
       mime-types
       xml-simple
     bcrypt-ruby (3.0.1)
+    better_errors (0.5.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.6.8)
     builder (3.0.4)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     chunky_png (1.2.7)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -97,6 +102,9 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -212,6 +220,8 @@ PLATFORMS
 
 DEPENDENCIES
   aws-s3
+  better_errors
+  binding_of_caller
   carrierwave
   coffee-rails (~> 3.2.1)
   compass-rails
@@ -221,6 +231,7 @@ DEPENDENCIES
   geocoder
   gravatar-ultimate
   haml-rails
+  jquery-fileupload-rails
   jquery-rails
   jquery-ui-rails
   kaminari

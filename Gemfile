@@ -10,6 +10,10 @@ gem 'devise'
 gem 'nested_form'
 gem 'geocoder'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem "jquery-fileupload-rails"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'carrierwave'
