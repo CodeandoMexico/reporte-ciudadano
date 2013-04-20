@@ -5,6 +5,7 @@ Report.destroy_all
 
 admin = Admin.new(email: "admin@admin.com", password: "oaxacker", password_confirmation: "oaxacker")
 admin.save
+admin.create_api_key
 juan = User.create(name: "Juan Villanueva")
 
 c = Category.create(name: "Toma tapada")
@@ -95,4 +96,3 @@ r = {
   category_fields: ["Jose del Bosque", "9981427729"]
 }
 juan.reports.build(r).save
-

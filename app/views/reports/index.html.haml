@@ -23,7 +23,6 @@
 
     - @reports.each do |report|
       .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
-
         .votes
           .counter.js-votes_count
             = report.votes_for 
@@ -34,7 +33,7 @@
         %p= report.description
         %p
           Reportado por
-          %span.user= report.user.name
+          %span.user= report.reportable
           = timeago(report.created_at)
 
 = paginate @reports
