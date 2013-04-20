@@ -5,7 +5,7 @@ class Report < ActiveRecord::Base
   validates :category_id, presence: true
 
   belongs_to :category
-  belongs_to :user
+  belongs_to :reportable, polymorphic: true
   has_many :comments
 
   validate :category_extra_fields

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :username
 
   has_many :authentications, dependent: :destroy
-  has_many :reports
+  has_many :reports, as: :reportable
   has_many :comments, as: :commentable
 
   acts_as_voter
