@@ -58,4 +58,13 @@ class Report < ActiveRecord::Base
     reports = reports.on_category(params[:category_id]) unless params[:category_id].blank?
     reports
   end
+
+  def reporter
+    if self.anonymous?
+      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' }
+    else
+      { avatar_url: self.reportable.avatar_url, name: self.reportable.name }
+    end
+  end
+
 end

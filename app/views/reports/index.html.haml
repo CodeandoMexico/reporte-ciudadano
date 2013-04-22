@@ -34,10 +34,7 @@
         %p
           Reportado por
           %span.user
-            - if report.anonymous?
-              Anónimo 
-            - else
-              = report.reportable.name
+            = report.reporter[:name]
 
           = timeago(report.created_at)
 
