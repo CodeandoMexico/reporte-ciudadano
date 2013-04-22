@@ -14,6 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to :back, flash: { notice: 'Has salido exitosamente del sistema' }
+    redirect_to root_path, flash: { notice: 'Has salido exitosamente del sistema' }
   end
 end

@@ -17,9 +17,9 @@
         %h2.title= @report.category.name
 
         .starter
-          = image_tag @report.user.avatar_url, class: "avatar"
+          = image_tag @report.reporter[:avatar_url], class: "avatar"
           .name
-            = @report.user.name
+            = @report.reporter[:name]
             dice:
           .description
             = @report.description
