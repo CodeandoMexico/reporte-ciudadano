@@ -325,6 +325,12 @@
       margin-bottom: $regMargin;
     }
 
+    .report_box, .comments {
+      .image img {
+        max-width: 100%;
+      }
+    }
+
     .starter {
       .avatar {
         float: left;
@@ -332,9 +338,6 @@
       }
       .image {
         padding: 20px 0 0 0;
-        img {
-          max-width: 100%;
-        }
       }
       .name {
         font-size: ms(.5);
@@ -393,7 +396,7 @@
           margin-right: 20px;
         }
         .created_by, .content {
-          padding-left: 60px;
+          padding-left: 93px;
         }
         .created_by {
           font-family: "MuseoSans-700";
