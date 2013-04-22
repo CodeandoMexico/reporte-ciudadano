@@ -38,6 +38,10 @@ class Report < ActiveRecord::Base
     where(category_id: category) 
   }
 
+  scope :find_by_ids, lambda { |ids|
+    where("id IN (?)", ids.split(',')) 
+  }
+
   acts_as_voteable
 
   def category_extra_fields
@@ -56,6 +60,7 @@ class Report < ActiveRecord::Base
     reports = reports.on_finish_date(params[:end_date]) unless params[:end_date].blank?
     reports = reports.with_status(params[:status]) unless params[:status].blank?
     reports = reports.on_category(params[:category_id]) unless params[:category_id].blank?
+    reports = reports.find_by_ids(params[:report_ids]) unless params[:report_ids].blank?
     reports
   end
 
