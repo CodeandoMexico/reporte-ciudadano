@@ -1,7 +1,6 @@
 task :reportable_users => :environment do
   Report.all.each do |report|
-    report.reportable_type = "User"
-    report.reportable_id = report.user_id
-    report.save validate: false
+    report.update_attribute :reportable_type, "User"
+    report.update_attribute :reportable_id, report.user_id
   end
 end
