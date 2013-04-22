@@ -18,6 +18,9 @@
     = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
   %div#category_fields_container
     = render @report.category.category_fields if @report.category?
+  .fields
+    = f.label :anonymous, "Ocultar identidad"
+    = f.check_box :anonymous
   = f.hidden_field :lat, id: 'lat'
   = f.hidden_field :lng, id: 'lng'
   .fields
