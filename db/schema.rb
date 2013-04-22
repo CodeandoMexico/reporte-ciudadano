@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403231649) do
+ActiveRecord::Schema.define(:version => 20130422212211) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20130403231649) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "image"
-    t.integer  "user_id"
     t.integer  "status",          :default => 1
     t.string   "reportable_type"
     t.integer  "reportable_id"
@@ -100,7 +99,6 @@ ActiveRecord::Schema.define(:version => 20130403231649) do
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
   add_index "reports", ["reportable_id", "reportable_type"], :name => "index_reports_on_reportable_id_and_reportable_type"
-  add_index "reports", ["user_id"], :name => "index_reports_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
