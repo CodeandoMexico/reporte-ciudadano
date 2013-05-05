@@ -23,6 +23,15 @@
   <% end %>
   <p><%= f.link_to_add "Agregar campo", :category_fields %></p>
 
+  <%= f.fields_for :messages do |message_form| %>
+    <%= message_form.label :content, "Mensaje" %>
+    <%= message_form.text_area :content %>
+    <%= message_form.label :status, "¿Que estatus?" %>
+    <%= message_form.collection_select :status, Report::STATUS_LIST, :first, :last %>
+    <%= message_form.link_to_remove "Borrar mensaje" %>
+  <% end %>
+  <p><%= f.link_to_add "Agregar mensaje", :messages %></p>
+
   <div class="actions">
     <%= f.submit %>
   </div>
