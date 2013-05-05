@@ -5,4 +5,17 @@ class Admins::ReportsController < Admins::AdminController
     @report.update_attribute :status, params[:report][:status] 
     redirect_to :back 
   end
+
+  def update
+    @report = Report.find params[:id] 
+    if @report.update_attributes params[:report]
+      redirect_to @report, flash: { success: "El reporte fue actualizado correctamente" }
+    else
+     render :edit 
+    end
+  end
+
+  def edit
+    @report = Report.find params[:id] 
+  end
 end
