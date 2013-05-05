@@ -36,7 +36,9 @@
             = report.votes_for 
           .js-vote_status
             = vote_link_for(report)
-
+        - if admin_signed_in?
+          .pull-right.edit_admin_report
+            = link_to "Editar reporte", edit_admins_report_path(report)
         %h2= link_to report.category.name, report_url(report), class: "title"
         %p= report.description
         %p
