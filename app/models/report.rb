@@ -18,8 +18,9 @@ class Report < ActiveRecord::Base
 
   STATUS_LIST = {
     1 => "Abierto",
-    2 => "Revisión",
-    3 => "Cerrado"
+    2 => "Verificación",
+    3 => "Revisión",
+    4 => "Cerrado"
   }
 
   scope :on_start_date, lambda {|from|
