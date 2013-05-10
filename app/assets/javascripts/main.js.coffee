@@ -1,4 +1,15 @@
 $ ->
+
+  $('#report_status').change ->
+    status = $(@).val()
+    report_id = $('#report_id').val()
+    $.ajax(
+      url: "/reports/#{report_id}/messages"
+      data:
+        state: status
+      type: 'GET'
+    )
+
   $(window).resize ->
     $("#main_width").html $(window).width()
 
