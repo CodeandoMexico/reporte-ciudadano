@@ -35,6 +35,10 @@
             .field
               = f.label :status, "Estatus"
               = f.collection_select :status, Report::STATUS_LIST, :first, :last
+            .field
+              = f.label :message, "Mensaje"
+              = f.collection_select :message, @report.category.messages.with_status(@report.status), :status, :content
+              = hidden_field_tag 'report_id', @report.id
               
       .unit.comments
         = render @comments
