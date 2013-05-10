@@ -1,0 +1,10 @@
+= form_for [:admins, @report] do |f|
+  = f.object.errors.messages unless f.object.errors.empty?
+
+  .fields
+    = f.label :category_id, "Categoría"
+    = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
+  %div#category_fields_container
+    = render @report.category.category_fields if @report.category?
+
+  = f.submit 'Guardar', data: { message: 'Para crear reportes necesitas registrarte en el sistema.' }

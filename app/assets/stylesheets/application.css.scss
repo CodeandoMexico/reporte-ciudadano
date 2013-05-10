@@ -169,6 +169,10 @@
   }
 }
 
+.pull-right {
+  float: right;
+}
+
 /***************************************************
 **  INDEX REPORTS
 ***************************************************/
@@ -221,6 +225,19 @@
           margin: 0;
         }
       }
+    }
+  }
+}
+
+.edit_admin_report {
+  margin-right: 10px;
+
+  a {
+    color: #1d1d1d;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
