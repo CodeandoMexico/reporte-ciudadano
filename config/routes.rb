@@ -1,11 +1,14 @@
 require 'api_constraints'
 ReporteCiudadano::Application.routes.draw do
 
+  get "messages/index"
+
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   resources :comments
 
   resources :reports do
+    resources :messages, only: [:index] 
     collection do
       get 'filter'
     end

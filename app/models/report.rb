@@ -12,14 +12,17 @@ class Report < ActiveRecord::Base
 
   serialize :category_fields, JSON
 
+  attr_accessor :message
+
   mount_uploader :image, ImageUploader
 
   default_scope order: 'created_at DESC'
 
   STATUS_LIST = {
-    1 => "Abierto",
-    2 => "Revisión",
-    3 => "Cerrado"
+    :open => "Abierto",
+    :verification => "Verificación",
+    :revision => "Revisión",
+    :closed => "Cerrado"
   }
 
   scope :on_start_date, lambda {|from|

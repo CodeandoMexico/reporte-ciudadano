@@ -96,3 +96,10 @@ r = {
   category_fields: ["Jose del Bosque", "9981427729"]
 }
 juan.reports.build(r).save
+
+Category.all.each do |category|
+  category.messages.create(status: 'open', content: 'Mensaje para status abierto')
+  category.messages.create(status: 'verification', content: 'Mensaje para status verificado')
+  category.messages.create(status: 'revision', content: 'Mensaje para status revisado')
+  category.messages.create(status: 'closed', content: 'Mensaje para status cerrado')
+end
