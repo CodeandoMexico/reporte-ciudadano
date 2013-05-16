@@ -11,7 +11,7 @@
   padding: 8px 20px;
   text-decoration: none;
   text-align: center;
-  font-size: ms(.5);
+  font-size: 18px;
   text-transform: uppercase;
   color: $white;
 
@@ -32,12 +32,111 @@
   }
 }
 
+
+/***************************************************
+**  HEADER
+***************************************************/
+.header {
+  position: relative;
+  height: 100px;
+  @include box-shadow(0 0 10px #000);
+
+  .container {
+    height: 80px;
+    background: $white;
+    padding: 10px 0;
+    z-index: 100;
+    position: relative;
+
+    .right {
+      float: right;
+    }
+  }
+
+  &:before{
+    position: absolute;
+    content: '';
+    top: 10px;
+    width: 50%;
+    left: 0;
+    height: 80px;
+    background: #1fa69f;
+    z-index: 1;
+  }
+}
+
+/***************************************************
+**  SLOGAN + MENU
+***************************************************/
+.slogan {
+  background: #2d2d2d url("bg_gray.png");
+
+  .container {
+    padding-top: 50px;
+
+    .menu {
+      background: $gray3;
+      height: 50px;
+
+      a {
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        color: $white;
+        font-size: 16px;
+        padding: 0 30px;
+        text-decoration: none;
+        border-right: 1px solid lighten($gray3, 10%);
+      }
+
+      .right {
+        float: right;
+        position: relative;
+
+        border-right: none;
+        border-left: 1px solid lighten($gray3, 10%);
+
+        .bottom {
+          top: 50px;
+          right: 0;
+          position: absolute;
+          display: none;
+
+          a {
+            background-color: $gray4;
+            display: block;
+            float: right;
+
+            &:hover{
+              background: lighten($gray4, 5%);;
+            }
+          }
+
+          &:hover{
+            display: block;
+          }
+        }
+
+        .dropdown:hover + .bottom{
+          display: block;
+        }
+      }
+    }
+  }
+
+  .banner {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 50px;
+  }
+}
+
 /***************************************************
 **  GRID
 ***************************************************/
 
 .wrapper {
-  width: 960px;
+  width: 1100px;
   margin: 0 auto;
 }
 

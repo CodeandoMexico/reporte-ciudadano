@@ -1,23 +1,29 @@
-%header.unit.header
-  .container
-    = link_to image_tag("logo.png"), root_path, class: "logo"
+.unit.header
+  .container.wrapper
+    = link_to image_tag("logo_reporte.png"), root_path, class: "logo"
+    = image_tag "logo_adosapaco.png"
+    .right
+      = image_tag "logo_gobierno.png"
+      = image_tag "logo_oaxaca.png"
+      = image_tag "lgoo_otransparente.png"
 
-    .menu
-      = link_to 'Reportes', root_path
-
-      = link_to 'Nuevo reporte', new_report_path
+.unit.slogan
+  .container.wrapper
+    = image_tag "banner.png", class: "banner"
+    .unit.menu
+      = link_to 'Resumen', root_path
+      = link_to 'Reportes', reports_path
+      = link_to 'Realizar Reporte', new_report_path
       - if admin_signed_in?
         = link_to "Administración", admins_categories_path
         = link_to "Salir", destroy_admin_session_path, method: :delete
       - elsif user_signed_in?
-        .unit.box
-          .container
-            = link_to "Salir", signout_path, method: :delete
-            = image_tag current_user.avatar_url, class: "avatar"
+        = link_to "Salir", signout_path, method: :delete
+        = image_tag current_user.avatar_url, class: "avatar"
       - else
-        .unit.flying.box
-          .container
-            %p Registro • Inicio
+        .right
+          = link_to 'Administración', new_admin_session_path
+          = link_to "Iniciar Sesión", "javascript:void(0)", class: "dropdown"
+          .bottom
             = link_to 'Facebook', omniauth_provider_path(:facebook) 
             = link_to 'Twitter', omniauth_provider_path(:twitter)
-        = link_to 'Administración', new_admin_session_path
