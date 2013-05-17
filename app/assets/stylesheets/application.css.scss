@@ -79,7 +79,7 @@
       height: 50px;
 
       a {
-        display: inline-block;
+        display: block;
         height: 50px;
         line-height: 50px;
         color: $white;
@@ -87,6 +87,15 @@
         padding: 0 30px;
         text-decoration: none;
         border-right: 1px solid lighten($gray3, 10%);
+        float: left;
+
+        &:hover{
+          background-color: lighten($gray3, 10%);
+        }
+        &.active {
+          background: $white;
+          color: $gray5;
+        }
       }
 
       .right {
@@ -131,6 +140,51 @@
   }
 }
 
+
+/***************************************************
+**  HOME REPORTS LIST
+***************************************************/
+.recent {
+  padding: 30px 0;
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .report {
+    background: $gray1;
+    padding: 10px 10px 5px 10px;
+    margin-bottom: 10px;
+
+    .votes {
+      width: 100px;
+      float: right;
+
+      .counter {
+        font-size: 30px;
+        text-align: center;
+      }
+    }
+
+    .date {
+      float: left;
+      width: 100px;
+      height: 80px;
+      margin-right: 20px; 
+    }
+
+    h3 {
+      margin: 0;
+
+      a {
+        font-weight: normal;
+        color: #000;
+        font-size: 24px;
+        text-decoration: none;
+      }
+    }
+  }
+}
 /***************************************************
 **  GRID
 ***************************************************/

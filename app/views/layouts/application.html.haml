@@ -9,11 +9,12 @@
     = csrf_meta_tags
   %body
     = render "shared/header"
-    - flash.each do |name, msg|
-      = content_tag :div, :class => "alert #{name}" do
-        = msg
  
-    %section.unit.main
-      = yield
+    .unit.body
+      .container.wrapper
+        - flash.each do |name, msg|
+          = content_tag :div, :class => "alert #{name}" do
+            = msg
+        = yield
 
     = render "shared/footer"
