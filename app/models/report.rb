@@ -45,6 +45,14 @@ class Report < ActiveRecord::Base
     where("id IN (?)", ids.split(',')) 
   }
 
+  scope :closed, lambda {
+    where(status: :closed)
+  }
+
+  scope :open, lambda {
+    where('status != ?', :closed)
+  }
+
   acts_as_voteable
 
   def category_extra_fields

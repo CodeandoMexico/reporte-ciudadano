@@ -3,6 +3,9 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.filter_by_search(params).page(params[:page])
+    @open_reports = Report.open.count
+    @closed_reports = Report.closed.count
+    @all_reports = Report.count
     flash.now[:notice] = "No se encontraron reportes." if @reports.empty?
   end
 

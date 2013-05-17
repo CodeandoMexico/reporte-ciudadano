@@ -29,6 +29,17 @@
           .actions
             = submit_tag 'Buscar', class: "submit"
 
+.unit
+  .columns.on-3
+    .column
+      = @all_reports
+      %h3 Reportes realizados
+    .column
+      = @open_reports
+      %h3 Reportes abiertos
+    .column
+      = @closed_reports
+      %h3 Reportes resueltos
 
 .unit.recent
   %h2 Reportes Recientes
