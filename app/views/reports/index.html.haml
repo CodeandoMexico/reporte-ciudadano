@@ -30,7 +30,7 @@
             = submit_tag 'Buscar', class: "submit"
 
 .unit
-  .columns.on-3
+  .columns.on-3{ id: "reports-stats", data: { total: Report.count } }
     .column
       = @all_reports
       %h3 Reportes realizados
