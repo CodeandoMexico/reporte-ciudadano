@@ -41,6 +41,9 @@
       = @closed_reports
       %h3 Reportes resueltos
 
+#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names }}
+
+
 .unit.recent
   %h2 Reportes Recientes
   - @reports.each do |report|
@@ -57,6 +60,6 @@
         = timeago(report.created_at)
       %h3= link_to report.category.name, report_url(report), class: "title"
       %p= report.description
-        
 
+  
 = paginate @reports

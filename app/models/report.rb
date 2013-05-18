@@ -49,8 +49,12 @@ class Report < ActiveRecord::Base
     where(status: :closed)
   }
 
-  scope :open, lambda {
+  scope :not_closed, lambda {
     where('status != ?', :closed)
+  }
+
+  scope :open, lambda {
+    where(status: :open)
   }
 
   acts_as_voteable
