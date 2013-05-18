@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Report < ActiveRecord::Base
-  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image
+  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status
 
   validates :category_id, presence: true
 
