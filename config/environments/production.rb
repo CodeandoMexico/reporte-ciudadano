@@ -77,6 +77,6 @@ ReporteCiudadano::Application.configure do
         :aws_access_key_id => ENV['AWS_KEY'],
         :aws_secret_access_key => ENV['AWS_SECRET']
     }
-    config.fog_directory = 'reporte-ciudadano' # required
+    config.fog_directory = 'adosapaco' # required
   end 
 end
