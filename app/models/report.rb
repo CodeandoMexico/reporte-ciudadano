@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Report < ActiveRecord::Base
-  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image
+  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status
 
   validates :category_id, presence: true
 
@@ -43,6 +43,18 @@ class Report < ActiveRecord::Base
 
   scope :find_by_ids, lambda { |ids|
     where("id IN (?)", ids.split(',')) 
+  }
+
+  scope :closed, lambda {
+    where(status: :closed)
+  }
+
+  scope :not_closed, lambda {
+    where('status != ?', :closed)
+  }
+
+  scope :open, lambda {
+    where(status: :open)
   }
 
   acts_as_voteable

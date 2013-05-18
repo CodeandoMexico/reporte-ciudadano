@@ -9,6 +9,7 @@ gem 'pg'
 gem 'devise'
 gem 'nested_form'
 gem 'geocoder'
+gem "highcharts-rails", "~> 3.0.0"
 
 group :development do
   gem 'better_errors'

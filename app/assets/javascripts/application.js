@@ -4,4 +4,6 @@
 //= require jquery.ui.datepicker
 //= require jquery-timeago/jquery.timeago
 //= require jquery-fileupload/basic
+//= require highcharts
+//= require highcharts/modules/exporting
 //= require_tree .
