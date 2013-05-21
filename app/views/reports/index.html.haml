@@ -1,49 +1,44 @@
-.unit
-  .columns.on-3{ id: "reports-stats", data: { total: Report.count } }
-    .column
+.columns.on-3#reports-stats{data: { total: Report.count } }
+  .column
+    .container
       = @all_reports
       %h3 Reportes realizados
-    .column
+  .column
+    .container.mid
       = @open_reports
       %h3 Reportes abiertos
-    .column
+  .column
+    .container
       = @closed_reports
       %h3 Reportes resueltos
 
-#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names }}
+.unit#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names }}
 
-%hr
 
-%h2 Filtros de búsqueda
-.unit.list
-  .container
-    .unit.filters
-      = form_tag reports_path, method: :get do
-        .fields
-          = label_tag 'start_date', 'De fecha'
-          = text_field_tag 'start_date', params[:start_date], class: 'datepicker'
-        .fields
-          = label_tag 'end_date', 'A fecha'
-          = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
-        .fields
-          = label_tag 'status', 'Estatus'
-          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Cualquiera')
-        .fields
-          = label_tag 'category_id', 'Categoria'
-          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas')
-        .actions
-          = submit_tag 'Buscar', class: "submit"
-      %hr
-      = form_tag reports_path, method: :get do
-        .fields
-          = label_tag 'report_ids', 'Folio:'
-          = text_field_tag 'report_ids', params[:report_ids], placeholder: 'Ej. 1,2,4'
-        .actions
-          = submit_tag 'Buscar', class: "submit"
+.unit.filters.top
+  %h2 Mapa de reportes
+  = form_tag reports_path, method: :get, class: "unit" do
+    .fields
+      = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker'
+      = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker'
+    .fields
+      = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Cualquier tipo')
+    .fields
+      = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas las categorias')
+    .fields
+      = submit_tag 'Buscar', class: "submit"
+  
 
-%h2 Mapa de reportes
 .unit.map{data_position}
   #reports-map
+
+.unit.filters 
+  = form_tag reports_path, method: :get,class: "unit" do
+    .fields
+      = label_tag 'report_ids', 'Folio:'
+      = text_field_tag 'report_ids', params[:report_ids], placeholder: 'Ej. 1,2,4'
+    .fields
+      = submit_tag 'Buscar', class: "submit"
 
 .unit.recent
   %h2 Reportes recientes

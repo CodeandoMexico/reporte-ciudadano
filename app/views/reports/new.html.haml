@@ -1,6 +1,10 @@
-.unit.map#new-report-map{data_position}
+%h1 Realizar Reporte
 
-.columns.on-3.show
-  .container.wrapper
-    = render 'form'
+.columns.on-2.new-report
+  .container
+    .column
+      = render 'form'
+    .column
+      .unit.map
+        #new-report-map{data_position}
 
