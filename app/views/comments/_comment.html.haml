@@ -1,10 +1,7 @@
-.unit.comment
+.activity.comment
   = image_tag comment.commentable.avatar_url, class: "avatar"
-  .created_by
-    = comment.commentable.is_a?(Admin) ? 'Administrador' : comment.commentable.name
-  .content
-    = comment.content
-    - if comment.image?
-      .image
-        = image_tag comment.image_url
-
+  %p= comment.content
+  %p.name= comment.commentable.is_a?(Admin) ? 'Administrador' : comment.commentable.name
+  .date
+    %i.icon-time
+    = comment.created_at.strftime("%d/%m/%Y")

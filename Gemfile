@@ -10,6 +10,7 @@ gem 'devise'
 gem 'nested_form'
 gem 'geocoder'
 gem "highcharts-rails", "~> 3.0.0"
+gem "font-awesome-rails"
 
 group :development do
   gem 'better_errors'
