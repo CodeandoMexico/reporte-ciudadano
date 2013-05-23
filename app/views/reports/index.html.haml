@@ -1,13 +1,30 @@
+= search_form_for @search, method: :get, class: "unit" do |f|
+  .fields
+    = f.label :date_gteq, "De la fecha"
+    = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker'
+  .fields
+    = f.label :date_lteq, "A la fecha"
+    = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker'
+  .fields
+    = f.label :status_eq, "Cualquier estatus"
+    = f.collection_select :status_eq, Report::STATUS_LIST, :first, :last, { include_blank: true} 
+  .fields
+    = f.label :category_id_eq, "Todas las categorias"
+    = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: true }
+  .fields
+    = submit_tag 'Buscar', class: "submit"
 %table.table
   %theader
     %tr
-      %th Identificador
+      %th= sort_link @search, :id, "Identificador"
+      %th= sort_link @search, :date, "Fecha de creación"
       %th Categoria
       %th Descripción
       %th Estatus
     - @reports.each do |report|
       %tr
         %td= report.id
+        %td= l report.created_at, format: :short
         %td= report.category.name
         %td= truncate report.description
         %td= status_name report.status

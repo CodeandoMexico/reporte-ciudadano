@@ -87,4 +87,12 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def date
+    created_at.to_date 
+  end
+
+  ransacker :date do |parent|
+    Arel::Nodes::InfixOperation.new('||',
+                                    Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
+  end
 end
