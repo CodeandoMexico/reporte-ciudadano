@@ -1,7 +1,7 @@
 module ReportsHelper
 
   def status_name(status_id)
-    Report::STATUS_LIST[status_id]
+    Report::STATUS_LIST[status_id.to_sym]
   end
 
   def vote_link_for(report)
