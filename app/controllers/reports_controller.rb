@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
 
   def index
     @search = Report.unscoped.search(params[:q])
-    @reports = @search.result
+    @reports = @search.result.page(params[:page])
     flash.now[:notice] = "No se encontraron reportes." if @reports.empty?
   end
 
