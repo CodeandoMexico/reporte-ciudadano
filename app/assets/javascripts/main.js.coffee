@@ -1,5 +1,16 @@
 $ ->
 
+  # The body element has the controller and action name as class attribute
+  current_controller_and_action = $("body").attr('class')
+
+  $tabs = $('.menu a')
+  # Activate the tab for the current controller and action
+  $tabs.filter("[class='#{current_controller_and_action}']").addClass('active')
+  # On click change active tab
+  $tabs.click ->
+    $tabs.removeClass 'active'
+    $(@).addClass 'active'
+
   $('#report_status').change ->
     status = $(@).val()
     report_id = $('#report_id').val()

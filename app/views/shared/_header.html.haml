@@ -11,9 +11,9 @@
   .container.wrapper
     = image_tag "banner.png", class: "banner"
     .unit.menu
-      = link_to 'Resumen', root_path, class: "active"
-      = link_to 'Reportes', reports_path
-      = link_to 'Realizar Reporte', new_report_path
+      = link_to 'Resumen', root_path, class: "pages index"
+      = link_to 'Reportes', reports_path, class: "reports index"
+      = link_to 'Realizar Reporte', new_report_path, class: "reports new"
       - if admin_signed_in?
         .right
           = link_to "Administración", admins_categories_path

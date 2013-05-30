@@ -7,7 +7,7 @@
     %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{GOOGLE_KEY}&sensor=false")
     = timeago_script_tag
     = csrf_meta_tags
-  %body
+  %body{:class => "#{controller_name} #{action_name}"}
     = render "shared/header"
  
     .unit.body
