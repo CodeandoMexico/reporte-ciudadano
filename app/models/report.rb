@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Report < ActiveRecord::Base
-  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image
+  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status
 
   validates :category_id, presence: true
 
@@ -45,6 +45,18 @@ class Report < ActiveRecord::Base
     where("id IN (?)", ids.split(',')) 
   }
 
+  scope :closed, lambda {
+    where(status: :closed)
+  }
+
+  scope :not_closed, lambda {
+    where('status != ?', :closed)
+  }
+
+  scope :open, lambda {
+    where(status: :open)
+  }
+
   acts_as_voteable
 
   def category_extra_fields
@@ -75,4 +87,12 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def date
+    created_at.to_date 
+  end
+
+  ransacker :date do |parent|
+    Arel::Nodes::InfixOperation.new('||',
+                                    Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
+  end
 end

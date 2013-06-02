@@ -1,4 +1,4 @@
-= form_for @report do |f|
+= form_for @report, class: "unit" do |f|
   = f.object.errors.messages unless f.object.errors.empty?
 
   .fields
@@ -6,7 +6,7 @@
     = f.file_field :image, class: 'js-image-preview'
     .image_preview
 
-  .field
+  .fields
     %label(for='adress')Dirección
     %input#address
 

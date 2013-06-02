@@ -2,7 +2,8 @@ class ReportsController < ApplicationController
   before_filter :authenticate_user!, only: [:create, :new]
 
   def index
-    @reports = Report.filter_by_search(params).page(params[:page])
+    @search = Report.unscoped.search(params[:q])
+    @reports = @search.result.page(params[:page])
     flash.now[:notice] = "No se encontraron reportes." if @reports.empty?
   end
 

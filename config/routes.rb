@@ -1,8 +1,6 @@
 require 'api_constraints'
 ReporteCiudadano::Application.routes.draw do
 
-  get "messages/index"
-
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
 
   resources :comments
@@ -17,7 +15,7 @@ ReporteCiudadano::Application.routes.draw do
     end
   end
 
-  root :to => 'reports#index'
+  root :to => 'pages#index'
 
   namespace :admins do
     resources :categories
