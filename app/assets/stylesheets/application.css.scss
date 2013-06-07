@@ -206,6 +206,7 @@
 /***************************************************
 **  HOME REPORTS MAP
 ***************************************************/
+
 .map {
   min-height: 320px;
 
@@ -217,8 +218,9 @@
 }
 
 /***************************************************
-**  HOME REPORTS LIST
+**  RECENT REPORTS LIST AT HOME
 ***************************************************/
+
 .recent {
   padding: 30px 0;
 
@@ -260,6 +262,59 @@
     }
   }
 }
+
+/***************************************************
+**  REPORTS LIST
+***************************************************/
+
+.list {
+  padding: 30px 0;
+
+  table.zebra {
+
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px 0px;
+    font-size: 12px;
+
+    tr:nth-child(odd) {
+      background-color: $gray1;
+    }
+
+    th {
+      a { color: white; }
+      background: $gray3;
+      color: #fff;
+      padding: 10px 5px;
+      text-align: center;
+      border-right: 1px solid $gray2;
+      border-left: 1px solid $gray2;
+      letter-spacing: 1px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 10px 5px;
+      border-bottom: 1px solid $gray2;
+      vertical-align: middle;
+      letter-spacing: .5px;
+      text-align: center;
+      border-left: 1px solid $gray2;
+      border-right: 1px solid $gray2;
+    }
+
+    tr {
+      background: #fff;
+    }
+
+    td * {
+      padding: 10px 20px 10px 20px;
+    }
+
+  }
+}
+
 /***************************************************
 **  GRID
 ***************************************************/
