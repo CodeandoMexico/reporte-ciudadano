@@ -1,3 +1,10 @@
 #new-report-map{
   height: 320px;
 }
+
+.table-header {
+
+  &:hover {
+    cursor: pointer;
+  }
+}
