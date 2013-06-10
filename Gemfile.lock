@@ -76,6 +76,9 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.5)
       multipart-post (~> 1.1)
+    figaro (0.6.4)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     fog (1.9.0)
       builder
       excon (~> 0.14)
@@ -228,6 +231,7 @@ DEPENDENCIES
   compass-rails
   debugger
   devise
+  figaro
   fog
   geocoder
   gravatar-ultimate
