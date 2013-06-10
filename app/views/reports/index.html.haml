@@ -16,15 +16,25 @@
         = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Todas' }
       .fields
         = submit_tag 'Buscar', class: "submit"
-
-  %table.zebra
-    %thead
-      %tr
-        %th= sort_link @search, :id, "Identificador"
-        %th= sort_link @search, :date, "Fecha de creación"
-        %th Categoria
-        %th Descripción
-        %th Estatus
+%table.table.sortable_table.zebra
+  %thead
+    %tr
+      %th
+        Identificador
+        %i.icon-chevron-down
+      %th 
+        Fecha de creación
+        %i.icon-chevron-down
+      %th
+        Categoria
+        %i.icon-chevron-down
+      %th
+        Descripción
+        %i.icon-chevron-down
+      %th 
+        Estatus
+        %i.icon-chevron-down
+  %tbody
     - @reports.each do |report|
       %tr
         %td= link_to report.id, report_url(report)

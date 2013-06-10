@@ -6,4 +6,5 @@
 //= require jquery-fileupload/basic
 //= require highcharts
 //= require highcharts/modules/exporting
+//= require jquery.tablesorter
 //= require_tree .
