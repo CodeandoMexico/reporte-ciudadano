@@ -44,3 +44,5 @@ gem 'thumbs_up'
 gem 'gravatar-ultimate'
 gem 'jquery-ui-rails'
 gem 'state_machine'
+gem 'figaro'
+
