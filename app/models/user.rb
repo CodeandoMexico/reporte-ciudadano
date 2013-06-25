@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     self.name 
   end
 
-  def avatar_url
+  def avatar_url(version = nil)
     if self.authentications.pluck(:provider).include? "twitter"
       twitter_auth = self.authentications.where(provider: 'twitter').first
       "http://api.twitter.com/1/users/profile_image?id=#{twitter_auth.uid}&size=bigger"
