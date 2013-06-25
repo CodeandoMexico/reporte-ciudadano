@@ -35,6 +35,9 @@
         %th
           Estatus
           %i.icon-chevron-down
+        %th
+          Votos
+          %i.icon-chevron-down
     %tbody
       - @reports.each do |report|
         %tr
@@ -43,5 +46,6 @@
           %td= report.category.name
           %td= truncate report.description
           %td= status_name report.status
+          %td= report.votes_for
 
 = paginate @reports
