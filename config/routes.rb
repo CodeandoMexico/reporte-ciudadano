@@ -19,6 +19,7 @@ ReporteCiudadano::Application.routes.draw do
 
   namespace :admins do
     resources :categories
+    resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create]
     resources :reports, only: [:edit, :update] do 
       member do

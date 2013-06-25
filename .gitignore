@@ -18,3 +18,4 @@
 /config/database.yml
 /config/env_variables.yml
 /public/uploads/*
+*.dump
