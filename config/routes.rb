@@ -21,7 +21,7 @@ ReporteCiudadano::Application.routes.draw do
     resources :categories
     resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create]
-    resources :reports, only: [:edit, :update] do 
+    resources :reports, only: [:edit, :update, :destroy] do 
       member do
         put 'update_status'
       end
