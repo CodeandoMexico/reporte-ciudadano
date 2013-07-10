@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625175811) do
+ActiveRecord::Schema.define(:version => 20130710160603) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -97,12 +97,12 @@ ActiveRecord::Schema.define(:version => 20130625175811) do
   create_table "reports", :force => true do |t|
     t.string   "description",     :default => ""
     t.integer  "category_id"
-    t.string   "lat",             :default => ""
-    t.string   "lng",             :default => ""
+    t.string   "lat",             :default => "-96.724253"
+    t.string   "lng",             :default => "17.065593"
     t.boolean  "anonymous",       :default => false
     t.text     "category_fields", :default => "{}"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "image"
     t.string   "status",          :default => "1"
     t.string   "reportable_type"
