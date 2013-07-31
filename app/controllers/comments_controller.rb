@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       flash[:success] = "Tu comentario ha sido publicado"
       redirect_to @comment.report
     else
-      flash[:error] = "Hubo un problema publicando tu comentario"
+      flash[:error] = @comment.errors.full_messages
       redirect_to :back
     end
   end
