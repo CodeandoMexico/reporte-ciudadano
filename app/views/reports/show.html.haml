@@ -36,13 +36,12 @@
               = image_tag user.avatar_url(:thumb), class: "avatar"
               = form_for Comment.new do |f|
                 = f.text_area :content, placeholder: "Agrega tu comentario"
+                = f.file_field :image
                 = f.submit 'Comentar', class: "button green rounded submit"
                 = f.hidden_field :report_id, value: @report.id
               .date
                 %i.icon-time
                 = Date.today.strftime("%d/%m/%Y")
-
-
     .column.fixed{style: "width: 30%;"}
       .container.right
 
