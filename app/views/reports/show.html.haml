@@ -14,7 +14,7 @@
 
         .stream
           .activity.start
-            Inicio del Reporte
+            Status: #{status_name @report.status}
             .date
               %i.icon-time
               = @report.created_at.strftime("%d/%m/%Y")
@@ -47,7 +47,7 @@
       .container.right
 
         - if @report.image.present?
-          .image
+          .image.tight
             = image_tag @report.image_url
 
         .location
