@@ -65,6 +65,12 @@
     background: #1fa69f;
     z-index: 1;
   }
+
+  img {
+    max-height: 80px;
+    padding-right: 10px;
+  }
+  .right img:last-child { padding-right: 0; }
 }
 
 /***************************************************
