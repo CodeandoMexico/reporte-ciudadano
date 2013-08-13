@@ -43,7 +43,7 @@
 .unit.recent
   %h2 Reportes recientes
   - @reports.each do |report|
-    .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
+    .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng, description: report_info_window(report) } }
       .votes
         .counter.js-votes_count
           = report.votes_for 

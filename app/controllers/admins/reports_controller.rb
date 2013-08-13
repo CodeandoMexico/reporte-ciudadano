@@ -23,6 +23,6 @@ class Admins::ReportsController < Admins::AdminController
   def destroy
     @report = Report.find params[:id]
     @report.destroy
-    redirect_to reports_path, flash: { success: "El reporte fue eliminado correctamente" }
+    redirect_to :back, flash: { success: "El reporte fue eliminado correctamente" }
   end
 end

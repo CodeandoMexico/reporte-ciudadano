@@ -45,7 +45,7 @@ $ ->
 
   if $("#reports-map").length > 0
     reports_markers = $(".report").map ->
-      return { lat: $(this).data("lat"), lng: $(this).data("lng") }
+      return { lat: $(this).data("lat"), lng: $(this).data("lng"), description: $(this).data("description") }
 
     $map = $(".map")
     lat = $map.attr("data-latitude")
@@ -61,5 +61,7 @@ $ ->
       markers: [{
         lat: $("#show-report-map").data("latitude")
         lng: $("#show-report-map").data("longitude")
+        description: $("#show-report-map").data("description")
       }]
+      center: new google.maps.LatLng($("#show-report-map").data("latitude"), $("#show-report-map").data("longitude"))
     })
