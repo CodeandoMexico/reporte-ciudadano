@@ -112,3 +112,12 @@ Category.all.each do |category|
   category.messages.create(status: 'revision', content: 'Mensaje para status revisado')
   category.messages.create(status: 'closed', content: 'Mensaje para status cerrado')
 end
+
+#Set address using Geocoder
+Report.all.each do |r|
+  geocoder = Geocoder.search("#{r.lat},#{r.lng}")
+  r.update_attribute :address, geocoder[0].data["formatted_address"]
+end
+
+
+

@@ -54,7 +54,9 @@
           = link_to "Editar reporte", edit_admins_report_path(report)
       .date
         = timeago(report.created_at)
-      %h3= link_to report.category.name, report_url(report), class: "title"
+      %h3
+        = link_to report.category.name, report_url(report), class: "title"
+        %span.address= " - #{report.address}"
       %p= report.description
 
   

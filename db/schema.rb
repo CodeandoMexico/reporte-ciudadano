@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813164231) do
+ActiveRecord::Schema.define(:version => 20130813165241) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130813164231) do
     t.string   "status",          :default => "open"
     t.string   "reportable_type"
     t.integer  "reportable_id"
+    t.text     "address"
   end
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"

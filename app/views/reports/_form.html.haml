@@ -7,8 +7,8 @@
     .image_preview
 
   .fields
-    %label(for='adress')Dirección
-    %input#address
+    = f.label :address, "Dirección"
+    = f.text_area :address, id: 'address', rows: '5'
 
   .fields
     = f.label :description, "Descripción"
