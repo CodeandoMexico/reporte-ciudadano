@@ -19,6 +19,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
+  gem 'debugger'
 end
 
 group :production do
@@ -48,7 +49,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'aws-s3'
-gem 'debugger'
 gem 'kaminari'
 gem 'thumbs_up'
 gem 'newrelic_rpm'
