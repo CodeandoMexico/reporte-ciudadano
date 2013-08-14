@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -52,5 +54,4 @@ gem 'thumbs_up'
 gem 'newrelic_rpm'
 gem 'gravatar-ultimate'
 gem 'jquery-ui-rails'
-gem 'state_machine'
 gem 'ransack'
