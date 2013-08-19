@@ -664,7 +664,7 @@ h1 {
   }
 }
 
-.sign-in {
+.sign-in, .forgot-password, .change-password {
   @extend .sign-up;
 }
 

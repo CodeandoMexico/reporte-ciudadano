@@ -20,6 +20,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'thin'
   gem 'debugger'
+  gem 'letter_opener'
 end
 
 group :production do
