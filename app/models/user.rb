@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :username
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :name
+
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable, :registerable
+  devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
 
   has_many :authentications, dependent: :destroy
   has_many :reports, as: :reportable
@@ -10,10 +16,15 @@ class User < ActiveRecord::Base
   before_save :fetch_twitter_avatar, if: :has_twitter_auth?
 
   def self.create_with_omniauth(auth)
-    user = User.new(name: auth["info"]["name"], username: auth["info"]["nickname"], email: auth["info"]["email"])
+    user = User.new(name: auth["info"]["name"], username: auth["info"]["nickname"], email: auth["info"]["email"], password: Devise.friendly_token[0,20])
     authentication = user.authentications.build(provider: auth['provider'], uid: auth['uid']) 
     authentication.user = user
-    user.save
+
+    if auth.provider == "twitter"
+      user.save validate: false #we force the save as twitter does not provide an email
+    else
+      user.save 
+    end
     user 
   end
 

@@ -271,6 +271,7 @@ DEPENDENCIES
   modular-scale (~> 1.0.6)
   nested_form
   newrelic_rpm
+  omniauth
   omniauth-facebook
   omniauth-twitter
   pg
