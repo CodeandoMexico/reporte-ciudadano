@@ -42,6 +42,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'sendgrid'
 gem 'omniauth'
 gem 'jquery-rails'
 gem "jquery-fileupload-rails"

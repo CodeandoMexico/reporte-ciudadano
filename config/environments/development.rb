@@ -39,6 +39,13 @@ ReporteCiudadano::Application.configure do
 
   config.action_mailer.delivery_method = :letter_opener
 
+  #Fallback for development as it uses open letter
+  SENDGRID = {
+    username: '',
+    password: '',
+    domain: ''
+  }
+
 
   #Carrierwave config
   CarrierWave.configure do |config|
