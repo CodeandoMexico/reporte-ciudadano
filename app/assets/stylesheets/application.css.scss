@@ -617,3 +617,57 @@ h1 {
 .destroy_comment {
   float: left;
 }
+
+
+/**************
+** Forms
+***************/
+
+.sign-up {
+  width: 400px;
+  margin: 30px auto 30px auto;
+
+  .form-header {
+    margin: 0 0 20px 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .fields {
+    margin-bottom: 10px;
+
+    label {
+      display: block;
+      font-size: 16px;
+    }
+
+    input {
+      display: block;
+      width: 350px;
+      border: 1px solid #CCC;
+      height: 30px;
+      padding-left: 8px;
+    }
+  }
+
+  .actions {
+    margin-bottom: 25px;
+    input {
+      width: 358px;
+      font-size: 24px;
+    }
+  }
+
+  hr {
+    width: 350px;
+    margin: 0 0 18px 0;
+  }
+}
+
+.shared_devise_links {
+  a {
+    margin-bottom: 5px;
+    display: block;
+  }
+}
+
