@@ -25,8 +25,9 @@
       - else
         .right
           = link_to 'Administración', new_admin_session_path
-          = link_to "Iniciar Sesión", "javascript:void(0)", class: "dropdown last"
+          = link_to "Registrarme", new_user_registration_path 
+          = link_to "Iniciar Sesión", "javascript:void(0)", class: "dropdown"
           .bottom
             = link_to 'Facebook', user_omniauth_authorize_path(:facebook) 
             = link_to 'Twitter', user_omniauth_authorize_path(:twitter)
-            = link_to 'Email', new_user_registration_path
+            = link_to 'Email', new_user_session_path
