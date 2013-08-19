@@ -664,6 +664,10 @@ h1 {
   }
 }
 
+.sign-in {
+  @extend .sign-up;
+}
+
 .shared_devise_links {
   a {
     margin-bottom: 5px;
