@@ -11,7 +11,7 @@ $ ->
     $tabs.removeClass 'active'
     $(@).addClass 'active'
 
-  $('#report_status').change ->
+  $('#report_status_id').change ->
     status_id = $(@).val()
     report_id = $('#report_id').val()
     $.ajax(
