@@ -2,6 +2,16 @@ jQuery ->
 
   if $('#reports-chart').length > 0
     chart_data = $('#reports-chart').data('chart-data')
+    status_names = $('#reports-chart').data('status-names')
+    series = []
+    index = 1
+
+    for status_name in status_names
+      series.push({
+        name: status_name
+        data: $.map chart_data, (e, i) -> parseInt(e["status_#{index}"])
+      })
+      index++
 
     $('#reports-chart').highcharts({
       chart:
@@ -22,27 +32,5 @@ jQuery ->
       plotOptions:
         series:
           stacking: 'normal'
-      series:
-        [
-          {
-            color: '#1fa69f',
-            name: 'Cerrado',
-            data: $.map chart_data, (e, i) -> parseInt(e.closed)
-          },
-          {
-            color: '#59bee0',
-            name: 'Revisión',
-            data: $.map chart_data, (e, i) -> parseInt(e.revision)
-          },
-          {
-            color: '#ceb340',
-            name: 'Verificación',
-            data: $.map chart_data, (e, i) -> parseInt(e.verification)
-          },
-          {
-            color: '#888888',
-            name: 'Abierto',
-            data: $.map chart_data, (e, i) -> parseInt(e.opened)
-          }
-        ]
+      series: series
     })

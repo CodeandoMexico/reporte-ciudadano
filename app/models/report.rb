@@ -89,4 +89,10 @@ class Report < ActiveRecord::Base
     Arel::Nodes::InfixOperation.new('||',
                                     Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
   end
+
+  def self.chart_data
+    statuses = Status.all
+    query = statuses.map { |status| "count(case when status_id = '#{status.id}' then 1 end) as status_#{status.id}" }.join(",") 
+    Report.unscoped.select("category_id, #{query}").group(:category_id).order('category_id')
+  end
 end
