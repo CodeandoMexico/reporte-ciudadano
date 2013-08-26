@@ -18,10 +18,10 @@ module ReportsHelper
 
 
   def report_info_window(report)
-    img = image_tag report.image_url(:info_window), class: 'info_window_image'
+    img = image_tag report.image_url(:info_window), class: 'info_window_image' if report.image_url.present?
     description = content_tag :span, report.description, class: 'info_window_description'
     remove_link = (link_to 'Eliminar', admins_report_path(report), method: :delete, class: 'info_window_link') if admin_signed_in?
-    img + description + remove_link
+    img.to_s + description + remove_link.to_s
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826164930) do
+ActiveRecord::Schema.define(:version => 20130826185728) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20130826164930) do
     t.string   "reportable_type"
     t.integer  "reportable_id"
     t.text     "address"
-    t.integer  "status_id"
+    t.integer  "status_id",       :default => 1
   end
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
