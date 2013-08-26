@@ -12,7 +12,7 @@
       = @closed_reports
       %h3 Reportes resueltos
 
-.unit#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names }}
+.unit#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names, status_names: @status_names }}
 
 
 .unit.filters.top
@@ -22,7 +22,7 @@
       = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker'
       = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker'
     .fields
-      = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Cualquier tipo')
+      = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: 'Cualquier tipo')
     .fields
       = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas las categorias')
     .fields

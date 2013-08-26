@@ -9,8 +9,8 @@
         = f.label :date_lteq, "A la fecha"
         = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker'
       .fields
-        = f.label :status_eq, "Status"
-        = f.collection_select :status_eq, Report::STATUS_LIST, :first, :last, { include_blank: 'Cualquiera' }
+        = f.label :status_id_eq, "Status"
+        = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Cualquiera' }
       .fields
         = f.label :category_id_eq, "Categoría"
         = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Todas' }
