@@ -16,18 +16,11 @@
     <%= f.text_field :name %>
   </div>
 
-  <%= f.fields_for :category_fields do |task_form| %>
-    <%= task_form.label :name, 'Campo' %><br />
-    <%= task_form.text_field :name %>
-    <%= task_form.link_to_remove "Borrar campo" %>
-  <% end %>
-  <p><%= f.link_to_add "Agregar campo", :category_fields %></p>
-
   <%= f.fields_for :messages do |message_form| %>
     <%= message_form.label :content, "Mensaje" %>
     <%= message_form.text_area :content %>
-    <%= message_form.label :status, "¿Que estatus?" %>
-    <%= message_form.collection_select :status, Report::STATUS_LIST, :first, :last %>
+    <%= message_form.label :status_id, "¿Que estatus?" %>
+    <%= message_form.collection_select :status_id, Status.all, :id, :name %>
     <%= message_form.link_to_remove "Borrar mensaje" %>
   <% end %>
   <p><%= f.link_to_add "Agregar mensaje", :messages %></p>

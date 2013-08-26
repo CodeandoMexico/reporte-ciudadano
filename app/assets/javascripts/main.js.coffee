@@ -12,12 +12,12 @@ $ ->
     $(@).addClass 'active'
 
   $('#report_status').change ->
-    status = $(@).val()
+    status_id = $(@).val()
     report_id = $('#report_id').val()
     $.ajax(
       url: "/reports/#{report_id}/messages"
       data:
-        state: status
+        status_id: status_id
       type: 'GET'
     )
 

@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Report < ActiveRecord::Base
-  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status, :address
+  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status_id, :address
 
   validates :category_id, presence: true
 
@@ -18,13 +18,6 @@ class Report < ActiveRecord::Base
 
   default_scope order: 'created_at DESC'
   belongs_to :status
-
-  STATUS_LIST = {
-    :open => "Abierto",
-    :verification => "Verificación",
-    :revision => "Revisión",
-    :closed => "Cerrado"
-  }
 
   scope :on_start_date, lambda {|from|
     where("created_at >= ?", from)

@@ -4,10 +4,10 @@ Category.destroy_all
 Report.destroy_all
 Status.destroy_all
 
-Status.create(name: "Abierto")
-Status.create(name: "Verificación")
-Status.create(name: "Revisión")
-Status.create(name: "Cerrado")
+open_status = Status.create(name: "Abierto")
+verification_status = Status.create(name: "Verificación")
+revision_status = Status.create(name: "Revisión")
+close_status = Status.create(name: "Cerrado")
 
 admin = Admin.new(email: "admin@admin.com", password: "oaxacker", password_confirmation: "oaxacker")
 admin.save
@@ -115,10 +115,10 @@ r = {
 juan.reports.build(r).save
 
 Category.all.each do |category|
-  category.messages.create(status: 'open', content: 'Mensaje para status abierto')
-  category.messages.create(status: 'verification', content: 'Mensaje para status verificado')
-  category.messages.create(status: 'revision', content: 'Mensaje para status revisado')
-  category.messages.create(status: 'closed', content: 'Mensaje para status cerrado')
+  category.messages.create(status_id: open_status.id, content: 'Mensaje para status abierto')
+  category.messages.create(status_id: verification_status.id, content: 'Mensaje para status verificado')
+  category.messages.create(status_id: revision_status.id, content: 'Mensaje para status revisado')
+  category.messages.create(status_id: close_status.id, content: 'Mensaje para status cerrado')
 end
 
 #Set address using Geocoder

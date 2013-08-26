@@ -38,5 +38,23 @@
 </table>
 
 <br />
-
 <%= link_to t('admin.category.new.title'), new_admins_category_path %>
+<br />
+
+<h1>Estatus actuales</h1>
+
+<table border="0">
+   <tr>
+     <th>Nombre</th>
+     <th>Editar</th>
+   </tr>
+
+   <%- @statuses.each do |status| %>
+    <tr>
+      <td><%= status.name %></td>
+      <td><%= link_to "Editar", edit_admins_status_path(status) %></td>
+    </tr>
+   <% end %>
+</table>
+<br />
+<%= link_to "Nuevo estatus", new_admins_status_path %>
