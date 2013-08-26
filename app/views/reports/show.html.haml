@@ -14,7 +14,7 @@
 
         .stream
           .activity.start
-            Status: #{status_name @report.status}
+            Status: #{@report.status}
             .date
               %i.icon-time
               = @report.created_at.strftime("%d/%m/%Y")
@@ -60,7 +60,7 @@
             = vote_link_for(@report)
           .status 
             %i.icon-flag
-            = Report::STATUS_LIST[@report.status]
+            = @report.status
 
         .social
           = render 'shared/tweet'
@@ -72,7 +72,7 @@
               = f.submit "Actualizar", class: "button blue rounded submit"
               .field
                 = f.label :status, "Estatus"
-                = f.collection_select :status, Report::STATUS_LIST, :first, :last
+                = f.collection_select :status, Status.all, :id, :name
               .field
                 = f.label :message, "Mensaje"
                 = f.collection_select :message, @report.category.messages.with_status(@report.status), :status, :content
