@@ -48,7 +48,7 @@
           %td= l report.created_at, format: :short
           %td= report.category.name
           %td= truncate report.description
-          %td= status_name report.status
+          %td= report.status
           %td= report.votes_for
           - if admin_signed_in?
             %td= link_to 'Eliminar', admins_report_path(report), method: :delete
