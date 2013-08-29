@@ -22,7 +22,7 @@ r = {
   description: "Parece que la toma esta tapada.",
   lat: "17.07610765289478",
   lng: "-96.71955585479736",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -32,7 +32,7 @@ r = {
   description: "Se necesita atender una tuberia que se acaba de romper.",
   lat: "17.05811444402115",
   lng: "-96.72695453226964",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -42,7 +42,7 @@ r = {
   description: "Acabo de ver una fuga en el Parque.",
   lat: "17.065020737526442",
   lng: "-96.72539234161377",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -53,7 +53,7 @@ r = {
   description: "Mi vecino dejo abierta una manguera.",
   lat: "17.065593",
   lng: "-96.724253",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -63,7 +63,7 @@ r = {
   description: "Parece ser que se robaron una alcantarilla.",
   lat: "17.068128422248872",
   lng: "-96.7195987701416",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -73,7 +73,7 @@ r = {
   description: "La alcantarilla tiene mal olor y fugas de agua.",
   lat: "17.07714402",
   lng: "-96.71353313",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -83,7 +83,7 @@ r = {
   description: "El drenaje tiene fallas desde hace dos dias.",
   lat: "17.060477065746248",
   lng: "-96.72543525695801",
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -100,7 +100,7 @@ r = {
   lat: "17.046243761147192",
   lng: "-96.76591701931939",
   category_fields: ["Juan Villanueva", "1502819992"],
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
@@ -110,7 +110,7 @@ r = {
   lat: "17.06185146120198",
   lng: "-96.72612190246582",
   category_fields: ["Jose del Bosque", "9981427729"],
-  status: status
+  status_id: status.id
 }
 juan.reports.build(r).save
 
