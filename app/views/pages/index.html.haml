@@ -12,12 +12,12 @@
       = @closed_reports
       %h3 Reportes resueltos
 
-.unit#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names, status_names: @status_names }}
+.row#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names, status_names: @status_names }}
 
 
-.unit.filters.top
+.row.filters.top
   %h2 Mapa de reportes
-  = form_tag reports_path, method: :get, class: "unit" do
+  = form_tag reports_path, method: :get, class: "row" do
     .fields
       = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker'
       = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker'
@@ -29,21 +29,21 @@
       = submit_tag 'Buscar', class: "submit"
   
 
-.unit.map{data_position}
+.row.map{data_position}
   #reports-map
 
-.unit.filters 
-  = form_tag reports_path, method: :get,class: "unit" do
+.row.filters 
+  = form_tag reports_path, method: :get,class: "row" do
     .fields
       = label_tag 'report_ids', 'Folio:'
       = text_field_tag 'report_ids', params[:report_ids], placeholder: 'Ej. 1,2,4'
     .fields
       = submit_tag 'Buscar', class: "submit"
 
-.unit.recent
+.row.recent
   %h2 Reportes recientes
   - @reports.each do |report|
-    .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng, description: report_info_window(report) } }
+    .row.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng, description: report_info_window(report) } }
       .votes
         .counter.js-votes_count
           = report.votes_for 

@@ -1,0 +1,38 @@
+/***************************************************
+**  COLORS SETTINGS
+***************************************************/
+
+// NOTE: The higher the number the darker the gray is.
+$gray1:       #eeeeee;
+$gray2:       #dddddd;
+$gray3:       #888888;
+$gray4:       #666666;
+$gray5:       #444444;
+
+// buttons
+$blue:       #7ebbd5;
+$green:      #1fa69f;
+$red:        #df3737;
+
+$white:      #FFFFFF;
+
+$size: 12px;
+
+
+/***************************************************
+**  MARGINS + PADDINGS + RADIUS
+***************************************************/
+
+$buttonRadius: 6px;
+$mg: 20px;
+
+
+/***************************************************
+**  MIXINS
+***************************************************/
+
+@mixin hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}

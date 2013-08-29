@@ -1,7 +1,7 @@
-.unit.list
+.row.list
 
-  .unit.filters
-    = search_form_for @search, method: :get, class: "unit" do |f|
+  .row.filters
+    = search_form_for @search, method: :get, class: "row" do |f|
       .fields
         = f.label :date_gteq, "De la fecha"
         = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker'
