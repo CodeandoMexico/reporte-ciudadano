@@ -4,4 +4,6 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :report
   mount_uploader :image, ImageUploader
+
+  validates :content, presence: true
 end

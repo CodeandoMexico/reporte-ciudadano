@@ -2,6 +2,7 @@ class Admins::CategoriesController < Admins::AdminController
   
   def index
     @categories = Category.all
+    @statuses = Status.all
   end
 
   def show

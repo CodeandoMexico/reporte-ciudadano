@@ -2,7 +2,7 @@ class Admins::ReportsController < Admins::AdminController
 
   def update_status
     @report = Report.find(params[:id])
-    @report.update_attribute :status, params[:report][:status] 
+    @report.update_attribute :status_id, params[:report][:status_id] 
     current_admin.comments.create content: params[:report][:message], report_id: @report.id
     redirect_to :back 
   end
@@ -18,5 +18,11 @@ class Admins::ReportsController < Admins::AdminController
 
   def edit
     @report = Report.find params[:id] 
+  end
+
+  def destroy
+    @report = Report.find params[:id]
+    @report.destroy
+    redirect_to :back, flash: { success: "El reporte fue eliminado correctamente" }
   end
 end

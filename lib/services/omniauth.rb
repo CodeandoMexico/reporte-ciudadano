@@ -1,5 +1,6 @@
 module Services 
   class Omniauth 
+    attr_accessor :omniauth
 
     def initialize(omniauth = nil)
       @omniauth = omniauth

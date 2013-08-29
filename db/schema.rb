@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509004628) do
+ActiveRecord::Schema.define(:version => 20130826185728) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130509004628) do
     t.datetime "updated_at",                             :null => false
     t.string   "name",                   :default => ""
     t.string   "authentication_token"
+    t.string   "avatar"
   end
 
   add_index "admins", ["authentication_token"], :name => "index_admins_on_authentication_token", :unique => true
@@ -86,40 +87,61 @@ ActiveRecord::Schema.define(:version => 20130509004628) do
   create_table "messages", :force => true do |t|
     t.text     "content"
     t.integer  "category_id"
-    t.string   "status"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "status_id"
   end
 
   add_index "messages", ["category_id"], :name => "index_messages_on_category_id"
+  add_index "messages", ["status_id"], :name => "index_messages_on_status_id"
 
   create_table "reports", :force => true do |t|
     t.string   "description",     :default => ""
     t.integer  "category_id"
-    t.string   "lat",             :default => ""
-    t.string   "lng",             :default => ""
+    t.string   "lat",             :default => "-96.724253"
+    t.string   "lng",             :default => "17.065593"
     t.boolean  "anonymous",       :default => false
     t.text     "category_fields", :default => "{}"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "image"
-    t.string   "status",          :default => "1"
+    t.string   "status",          :default => "open"
     t.string   "reportable_type"
     t.integer  "reportable_id"
+    t.text     "address"
+    t.integer  "status_id",       :default => 1
   end
 
   add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
   add_index "reports", ["reportable_id", "reportable_type"], :name => "index_reports_on_reportable_id_and_reportable_type"
+  add_index "reports", ["status_id"], :name => "index_reports_on_status_id"
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "name"
     t.string   "username"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "avatar"
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "votes", :force => true do |t|
     t.boolean  "vote",          :default => false, :null => false

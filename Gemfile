@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+ruby '2.0.0'
+
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -9,10 +11,20 @@ gem 'pg'
 gem 'devise'
 gem 'nested_form'
 gem 'geocoder'
+gem "highcharts-rails", "~> 3.0.0"
+gem "font-awesome-rails"
+gem 'twitter'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'thin'
+  gem 'debugger'
+  gem 'letter_opener'
+end
+
+group :production do
+  gem 'unicorn'
 end
 
 # Gems used only for assets and not required
@@ -30,6 +42,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'sendgrid'
+gem 'omniauth'
 gem 'jquery-rails'
 gem "jquery-fileupload-rails"
 gem 'omniauth-facebook'
@@ -38,9 +52,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'aws-s3'
-gem 'debugger'
 gem 'kaminari'
 gem 'thumbs_up'
+gem 'newrelic_rpm'
 gem 'gravatar-ultimate'
 gem 'jquery-ui-rails'
-gem 'state_machine'
+gem 'ransack'
