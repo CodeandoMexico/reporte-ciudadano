@@ -1,9 +1,8 @@
 require 'api_constraints'
 ReporteCiudadano::Application.routes.draw do
 
-  get "messages/index"
-
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :comments
 
@@ -17,12 +16,14 @@ ReporteCiudadano::Application.routes.draw do
     end
   end
 
-  root :to => 'reports#index'
+  root :to => 'pages#index'
 
   namespace :admins do
     resources :categories
+    resources :statuses, except: [:destroy]
+    resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create]
-    resources :reports, only: [:edit, :update] do 
+    resources :reports, only: [:edit, :update, :destroy] do 
       member do
         put 'update_status'
       end

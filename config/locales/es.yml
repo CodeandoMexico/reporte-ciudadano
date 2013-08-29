@@ -208,6 +208,8 @@ es:
         remember_me: 'Recordarme'
       category:
         name: 'nombre'
+      comment:
+        content: "Contenido"
 
   # Ends template file
   admin:

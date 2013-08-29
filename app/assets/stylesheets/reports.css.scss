@@ -1,0 +1,35 @@
+#new-report-map{
+  height: 320px;
+}
+
+.table-header {
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.image.tight img {
+  width: 100%
+}
+
+input[type="file"] {
+  margin-bottom: 15px;
+}
+
+span.address {
+  font-size: 12px;
+}
+
+.info_window_image {
+  margin-right: 5px;
+  float: left;
+}
+
+.info_window_description {
+  margin-top: 5px;
+}
+
+.info_window_link {
+  display: block;
+}

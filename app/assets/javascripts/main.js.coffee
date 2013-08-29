@@ -1,12 +1,23 @@
 $ ->
 
-  $('#report_status').change ->
-    status = $(@).val()
+  # The body element has the controller and action name as class attribute
+  current_controller_and_action = $("body").attr('class')
+
+  $tabs = $('.menu a')
+  # Activate the tab for the current controller and action
+  $tabs.filter("[class='#{current_controller_and_action}']").addClass('active')
+  # On click change active tab
+  $tabs.click ->
+    $tabs.removeClass 'active'
+    $(@).addClass 'active'
+
+  $('#report_status_id').change ->
+    status_id = $(@).val()
     report_id = $('#report_id').val()
     $.ajax(
       url: "/reports/#{report_id}/messages"
       data:
-        state: status
+        status_id: status_id
       type: 'GET'
     )
 
@@ -34,7 +45,7 @@ $ ->
 
   if $("#reports-map").length > 0
     reports_markers = $(".report").map ->
-      return { lat: $(this).data("lat"), lng: $(this).data("lng") }
+      return { lat: $(this).data("lat"), lng: $(this).data("lng"), description: $(this).data("description") }
 
     $map = $(".map")
     lat = $map.attr("data-latitude")
@@ -50,5 +61,7 @@ $ ->
       markers: [{
         lat: $("#show-report-map").data("latitude")
         lng: $("#show-report-map").data("longitude")
+        description: $("#show-report-map").data("description")
       }]
+      center: new google.maps.LatLng($("#show-report-map").data("latitude"), $("#show-report-map").data("longitude"))
     })

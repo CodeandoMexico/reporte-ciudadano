@@ -8,4 +8,5 @@
   %body
     - if admin_signed_in?
       = link_to 'cerrar sesion', destroy_admin_session_path, method: :delete
+      = link_to 'Editar perfil', edit_admins_registration_path(current_admin)
     = yield

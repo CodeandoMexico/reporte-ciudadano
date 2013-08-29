@@ -1,0 +1,14 @@
+= form_for [:admins, @admin], url: admins_registration_path, method: :put do |f|
+  = f.object.errors.messages unless f.object.errors.empty?
+
+  .fields
+    = f.label :name, "Nombre"
+    = f.text_field :name
+  .fields
+    = f.label :avatar, "Imágen de perfil"
+    = f.file_field :avatar
+  .fields
+    = f.label :email
+    = f.email_field :email
+  .actions
+    = f.submit "Actualizar"

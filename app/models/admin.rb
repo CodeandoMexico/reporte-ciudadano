@@ -9,16 +9,13 @@ class Admin < ActiveRecord::Base
   before_save :ensure_authentication_token
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name
   # attr_accessible :title, :body
 
   has_many :comments, as: :commentable
   has_many :reports, as: :reportable
   has_one :api_key
-
-  def avatar_url
-    Gravatar.new(self.email.to_s).image_url
-  end
+  mount_uploader :avatar, AvatarUploader
 
   def to_s
     self.email 

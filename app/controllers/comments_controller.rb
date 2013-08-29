@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :can_comment!
+  before_filter :authenticate_admin!, only: [:destroy]
 
   def create
     @current_session = current_user || current_admin
@@ -8,9 +9,15 @@ class CommentsController < ApplicationController
       flash[:success] = "Tu comentario ha sido publicado"
       redirect_to @comment.report
     else
-      flash[:error] = "Hubo un problema publicando tu comentario"
+      flash[:error] = @comment.errors.full_messages
       redirect_to :back
     end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to @comment.report  
   end
 
   private

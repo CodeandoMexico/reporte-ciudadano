@@ -1,50 +1,56 @@
-.unit.map{data_position}
-  #reports-map
-
 .unit.list
-  .container
 
-    .unit.filters
-      = form_tag reports_path, method: :get do
-        .fields
-          = label_tag 'start_date', 'De fecha'
-          = text_field_tag 'start_date', params[:start_date], class: 'datepicker'
-        .fields
-          = label_tag 'end_date', 'A fecha'
-          = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
-        .fields
-          = label_tag 'status', 'Estatus'
-          = select_tag('status', options_from_collection_for_select(Report::STATUS_LIST, :first, :last, params[:status]), prompt: 'Cualquiera')
-        .fields
-          = label_tag 'category_id', 'Categoria'
-          = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas')
-        .actions
-          = submit_tag 'Buscar', class: "submit"
-      %hr
-      = form_tag reports_path, method: :get do
-        .fields
-          = label_tag 'report_ids', 'Folio:'
-          = text_field_tag 'report_ids', params[:report_ids], placeholder: 'Ej. 1,2,4'
-        .actions
-          = submit_tag 'Buscar', class: "submit"
+  .unit.filters
+    = search_form_for @search, method: :get, class: "unit" do |f|
+      .fields
+        = f.label :date_gteq, "De la fecha"
+        = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker'
+      .fields
+        = f.label :date_lteq, "A la fecha"
+        = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker'
+      .fields
+        = f.label :status_id_eq, "Status"
+        = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Cualquiera' }
+      .fields
+        = f.label :category_id_eq, "Categoría"
+        = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Todas' }
+      .fields
+        = submit_tag 'Buscar', class: "submit"
 
-
-    - @reports.each do |report|
-      .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng } }
-        .votes
-          .counter.js-votes_count
-            = report.votes_for 
-          .js-vote_status
-            = vote_link_for(report)
+  %table.table.sortable_table.zebra
+    %thead
+      %tr
+        %th
+          Identificador
+          %i.icon-chevron-down
+        %th
+          Fecha de creación
+          %i.icon-chevron-down
+        %th
+          Categoria
+          %i.icon-chevron-down
+        %th
+          Descripción
+          %i.icon-chevron-down
+        %th
+          Estatus
+          %i.icon-chevron-down
+        %th
+          Votos
+          %i.icon-chevron-down
         - if admin_signed_in?
-          .pull-right.edit_admin_report
-            = link_to "Editar reporte", edit_admins_report_path(report)
-        %h2= link_to report.category.name, report_url(report), class: "title"
-        %p= report.description
-        %p
-          Reportado por
-          %span.user
-            = report.reporter[:name]
-          = timeago(report.created_at)
+          %th
+            Eliminar
+    %tbody
+      - @reports.each do |report|
+        %tr
+          %td= link_to report.id, report_url(report)
+          %td= l report.created_at, format: :short
+          %td= report.category.name
+          %td= truncate report.description
+          %td= report.status
+          %td= report.votes_for
+          - if admin_signed_in?
+            %td= link_to 'Eliminar', admins_report_path(report), method: :delete
 
 = paginate @reports

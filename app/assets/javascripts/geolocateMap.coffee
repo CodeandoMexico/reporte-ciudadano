@@ -66,13 +66,14 @@
       console.log mapOptions
       if mapOptions.latitude and mapOptions.longitude
         options['center'] = new google.maps.LatLng(options.latitude, options.longitude)
+
         @marker = new google.maps.Marker({
             'position': mapOptions['center']
             'map': @map
             'draggable': true
         })
-        @map.setCenter(@marker.getPosition())
 
+        @map.setCenter(@marker.getPosition())
 
 
       #
@@ -135,20 +136,33 @@
       #
       # set markers
       #
+      
       if markers = mapOptions['markers']
         map = @map
         bounds = new google.maps.LatLngBounds()
+        info_window_content = "<strong>Hello world!</strong>"
+        info_window = new google.maps.InfoWindow(
+          content: info_window_content
+          maxWidth: 400
+        )
 
         @markers = $(markers).map (i, e) ->
           pos = new google.maps.LatLng(e.lat, e.lng)
           bounds.extend(pos)
+          console.log e
+
+
           marker = new google.maps.Marker({
               'position': pos
               'map': map
               'draggable': false
               'animation': google.maps.Animation.DROP
           })
-          marker
+
+
+          google.maps.event.addListener marker, 'click', ->
+            info_window.setContent e.description
+            info_window.open(map, marker)
 
         if @markers.length > 1
           @map.fitBounds(bounds)
