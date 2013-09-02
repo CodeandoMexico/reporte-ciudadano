@@ -1,23 +1,17 @@
-.row.list
+= search_form_for @search, method: :get, class: "filters form-inline" do |f|
+  .form-group
+    = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+  .form-group.form-group-separator
+    = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+  .form-group.form-group-separator
+    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Categoría' }, class: 'form-control'
+  .form-group.form-group-separator
+    = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
+  .form-group
+    = submit_tag 'Buscar', class: "submit btn btn-primary btn-large btn-block"
 
-  .row.filters
-    = search_form_for @search, method: :get, class: "row" do |f|
-      .fields
-        = f.label :date_gteq, "De la fecha"
-        = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker'
-      .fields
-        = f.label :date_lteq, "A la fecha"
-        = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker'
-      .fields
-        = f.label :status_id_eq, "Status"
-        = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Cualquiera' }
-      .fields
-        = f.label :category_id_eq, "Categoría"
-        = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Todas' }
-      .fields
-        = submit_tag 'Buscar', class: "submit"
-
-  %table.table.sortable_table.zebra
+.table-responsive
+  %table.table.sortable_table.table-striped
     %thead
       %tr
         %th

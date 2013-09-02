@@ -1,79 +1,76 @@
-.columns.on-2.report-show{id: "report_#{@report.id}"}
-  .container
-    
-    .column.fixed{style: "width: 70%;"}
-      .container.timeline
-
-        %h2.title
-          = "##{@report.id}"
-          = @report.category.name
-        .row.map#show-report-map{ "data-longitude" => @report.lng, "data-latitude" => @report.lat, "data-description" => report_info_window(@report), style: "width:100%; height: 300px;"}
-        .information
-          .time= timeago(@report.created_at)
+.report-show{id: "report_#{@report.id}"}
+  .row
+    .col-md-8
+      %h2.report-show-title
+        = "##{@report.id}"
+        = @report.category.name
+      .report-show-map#show-report-map{ "data-longitude" => @report.lng, "data-latitude" => @report.lat, "data-description" => report_info_window(@report), style: "width:100%; height: 300px;"}
+      .report-show-information
+        = "Hace #{time_ago_in_words(@report.created_at)}"
 
 
-        .stream
-          .activity.start
-            Status: #{@report.status}
+
+      .stream
+        .activity.start
+          Status: #{@report.status}
+          .date
+            %i.icon-time
+            = @report.created_at.strftime("%d/%m/%Y")
+
+        .activity.description
+          = image_tag @report.reporter[:avatar_url], class: "avatar"
+          %p= @report.description
+          %p.name= @report.reporter[:name]
+          .date
+            %i.icon-time
+            = @report.created_at.strftime("%d/%m/%Y")
+
+
+        = render @comments
+
+        - user = current_user || current_admin
+        - if user
+          .activity.form
+            = image_tag user.avatar_url(:thumb), class: "avatar"
+            = form_for Comment.new do |f|
+              = f.text_area :content, placeholder: "Agrega tu comentario"
+              = f.file_field :image
+              = f.submit 'Comentar', class: "button green rounded submit"
+              = f.hidden_field :report_id, value: @report.id
             .date
               %i.icon-time
-              = @report.created_at.strftime("%d/%m/%Y")
+              = Date.today.strftime("%d/%m/%Y")
 
-          .activity.description
-            = image_tag @report.reporter[:avatar_url], class: "avatar"
-            %p= @report.description
-            %p.name= @report.reporter[:name]
-            .date
-              %i.icon-time
-              = @report.created_at.strftime("%d/%m/%Y")
-          
+    %aside.col-md-4
+      - if @report.image.present?
+        .image.tight
+          = image_tag @report.image_url
 
-          = render @comments
+      .location
+        %h3 Ubicacion
+        %p Nombre de la calle 541, Col. Este de Aqui, Oaxaca
 
-          - user = current_user || current_admin
-          - if user
-            .activity.form
-              = image_tag user.avatar_url(:thumb), class: "avatar"
-              = form_for Comment.new do |f|
-                = f.text_area :content, placeholder: "Agrega tu comentario"
-                = f.file_field :image
-                = f.submit 'Comentar', class: "button green rounded submit"
-                = f.hidden_field :report_id, value: @report.id
-              .date
-                %i.icon-time
-                = Date.today.strftime("%d/%m/%Y")
-    .column.fixed{style: "width: 30%;"}
-      .container.right
+      .votes
+        .counter.js-votes_count
+          = @report.votes_for
+        .js-vote_status
+          = vote_link_for(@report)
+        .status
+          %i.icon-flag
+          = @report.status
 
-        - if @report.image.present?
-          .image.tight
-            = image_tag @report.image_url
-
-        .location
-          %h3 Ubicacion
-          %p Nombre de la calle 541, Col. Este de Aqui, Oaxaca
-
-        .votes
-          .counter.js-votes_count
-            = @report.votes_for
-          .js-vote_status
-            = vote_link_for(@report)
-          .status 
-            %i.icon-flag
-            = @report.status
-
-        .social
-          = render 'shared/tweet'
+      .social
+        = render 'shared/tweet'
 
 
-        - if admin_signed_in?
-          .row.admin
-            = form_for @report, url: update_status_admins_report_path(@report) do |f|
-              = f.submit "Actualizar", class: "button blue rounded submit"
-              .field
-                = f.label :status_id, "Estatus"
-                = f.collection_select :status_id, Status.all, :id, :name
-              .field
-                = f.label :message, "Mensaje"
-                = f.collection_select :message, @report.category.messages.with_status(@report.status_id), :content, :content
-                = hidden_field_tag 'report_id', @report.id
+      - if admin_signed_in?
+        .row.admin
+          = form_for @report, url: update_status_admins_report_path(@report) do |f|
+            = f.submit "Actualizar", class: "button blue rounded submit"
+            .field
+              = f.label :status_id, "Estatus"
+              = f.collection_select :status_id, Status.all, :id, :name
+            .field
+              = f.label :message, "Mensaje"
+              = f.collection_select :message, @report.category.messages.with_status(@report.status_id), :content, :content
+              = hidden_field_tag 'report_id', @report.id

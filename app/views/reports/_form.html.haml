@@ -1,28 +1,38 @@
-= form_for @report, class: "row" do |f|
-  = f.object.errors.messages unless f.object.errors.empty?
+= form_for @report, html: {class: "form-horizontal", role: 'form'} do |f|
 
-  .fields
-    = f.label :image, "Imágen"
-    = f.file_field :image, class: 'js-image-preview'
-    .image_preview
+  .form-group
+    = f.label :image, "Imágen", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.file_field :image, class: 'js-image-preview'
+      .image_preview
 
-  .fields
-    = f.label :address, "Dirección"
-    = f.text_area :address, id: 'address', rows: '5'
+  .form-group
+    = f.label :address, "Dirección", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_area :address, id: 'address', rows: '5', class: 'form-control'
 
-  .fields
-    = f.label :description, "Descripción"
-    = f.text_area :description, { rows: '5' }
-  .fields
-    = f.label :category_id, "Categoría"
-    = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
-  %div#category_fields_container
-    = render @report.category.category_fields if @report.category?
-  .fields
-    = f.label :anonymous, "Ocultar identidad"
-    = f.check_box :anonymous
+  .form-group
+    = f.label :description, "Descripción", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_area :description, class: 'form-control', rows: '5'
+
+  .form-group
+    = f.label :category_id, "Categoría", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_form-group form-control' }
+      %div#category_form-group_container
+        = render @report.category.category_form-group if @report.category?
+
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      .checkbox
+      = f.label :anonymous do
+        = f.check_box :anonymous
+        Ocultar identidad
+
   = f.hidden_field :lat, id: 'lat'
   = f.hidden_field :lng, id: 'lng'
-  .fields
 
-  = f.submit 'Guardar', class: (current_user ? '' : 'blocked'), data: { message: 'Para crear reportes necesitas registrarte en el sistema.' }
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit 'Guardar', class: "#{(current_user ? '' : 'blocked')} btn btn-default", data: { message: 'Para crear reportes necesitas registrarte en el sistema.' }

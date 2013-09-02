@@ -1,2 +1,2 @@
 $('#report_<%= @report.id %> .js-votes_count').html(<%= @report.votes_for %>);
-$('#report_<%= @report.id %> .js-vote_status').html('<%=j content_tag :span, 'Votaste', class: 'button blue rounded' %>');
+$('#report_<%= @report.id %> .js-vote_status').html('<%=j content_tag :span, 'Votaste', class: 'btn btn-success' %>');
