@@ -1,33 +1,35 @@
-.unit.header
-  .container.wrapper
-    = link_to image_tag("logo_reporte.png"), root_path, class: "logo"
-    = image_tag "logo_adosapaco.png"
-    .right
-      = image_tag "logo_gobierno.png"
-      = image_tag "logo_oaxaca.png"
-      = image_tag "lgoo_otransparente.png"
-
-.unit.slogan
-  .container.wrapper
-    = image_tag "banner.png", class: "banner"
-    .unit.menu
-      = link_to 'Resumen', root_path, class: "pages index"
-      = link_to 'Reportes', reports_path, class: "reports index"
-      = link_to 'Realizar Reporte', new_report_path, class: "reports new"
-      - if admin_signed_in?
-        .right
-          = link_to "Administración", admins_categories_path
-          = link_to "Salir", destroy_admin_session_path, method: :delete
-      - elsif user_signed_in?
-        .right
-          = link_to "Salir", destroy_user_session_path, method: :delete
-          = image_tag current_user.avatar_url, class: "avatar"
-      - else
-        .right
-          = link_to 'Administración', new_admin_session_path
-          = link_to "Registrarme", new_user_registration_path 
-          = link_to "Iniciar Sesión", "javascript:void(0)", class: "dropdown"
-          .bottom
-            = link_to 'Facebook', user_omniauth_authorize_path(:facebook) 
-            = link_to 'Twitter', user_omniauth_authorize_path(:twitter)
-            = link_to 'Email', new_user_session_path
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Reporte ciudadano
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to 'Resumen', root_path, class: "pages index"
+        %li
+          = link_to 'Reportes', reports_path, class: "reports index"
+        %li
+          = link_to 'Realizar Reporte', new_report_path, class: "reports new"
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to 'Admin', new_admin_session_path
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Iniciar sesión
+            %b.caret
+          %ul.dropdown-menu{:style => "padding: 15px; padding-bottom: 0px;"}
+            = form_tag user_session_path, role: 'form' do
+              .form-group
+                = email_field_tag 'user[email]', nil, class: 'form-control', placeholder: 'Email'
+              .form-group
+                = password_field_tag 'user[password]', nil, class: 'form-control', placeholder: 'Password'
+              = button_tag 'Sign in', class: 'btn btn-primary btn-block'
+              = link_to "Forgot your password?", new_password_path('user')
+            %br
+              %b or
+            = link_to 'Sign in with twitter', user_omniauth_authorize_path(:twitter), class: 'btn btn-primary btn-block'
+            = link_to 'Sign in with facebook', user_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-block'
