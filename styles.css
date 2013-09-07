@@ -47,3 +47,8 @@ h3.title {
   color: #444;
 }
 
+.apps img {
+  width: 560px;
+  max-height: 230px;
+}
+
