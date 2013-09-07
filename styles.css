@@ -41,3 +41,9 @@ body {
   }
 }
 
+h3.title {
+  margin: 25px 0;
+  font-weight: normal;
+  color: #444;
+}
+
