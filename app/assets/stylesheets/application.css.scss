@@ -13,35 +13,97 @@
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
+.field_with_errors {
+  @extend .has-error;
+  @extend .control-group;
+  @extend .error;
+}
 
-.button {
-  display: block;
-  padding: 8px 20px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 18px;
-  text-transform: uppercase;
-  color: $white;
+#error_explanation {
+  margin-bottom: 10px;
 
-  &.blue {
-    background-color: $blue;
+  h2 {
+    font-size: 14px;
+    background-color: #f2dede;
+    color: #b94a48;
+    padding: 10px;
+    border-radius: 4px;
   }
-  &.green {
-    background-color: $green;
-  }
-  &.red {
-    background-color: $red;
-  }
-  &:hover{
-    background-color: #444;
-  }
-  &.rounded {
-    @include border-radius($buttonRadius);
+
+  ul {
+    margin: 0;
+    padding: 0px 15px;
+    color: #b94a48;
   }
 }
 
-.field_with_errors {
-  @extend .has-error;
+.rc-icon {
+  display: inline-block;
+  background: image-url('social-sprite.png') no-repeat;
+
+  &.i-facebook {
+    width: 10px;
+    height: 21px;
+    background-position: 0 0;
+  }
+
+  &.i-twitter {
+    width: 19px;
+    height: 16px;
+    background-position: -19px -2px;
+  }
+}
+
+.social-signup {
+  position: relative;
+  color: #fff;
+  width: 112px;
+  border-radius: 3px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  padding: 10px;
+
+  &.social-signup-fb {
+    background-color: #3c5a97;
+  }
+
+  &.social-signup-tt {
+    background-color: #019ad2;
+  }
+
+  &:hover {
+    color: $gray1;
+  }
+
+  .i-facebook {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+  }
+
+  .i-twitter {
+    position: absolute;
+    left: 5px;
+    top: 8px;
+  }
+
+  .social-signup-text {
+    padding-left: 15px;
+    border-left: 1px solid rgba(34,34,34,0.18);
+    margin-left: 17px;
+    display: inline-block;
+  }
+}
+
+.other-logins {
+  .social-sign-in, .other-logins-registration {
+    display: inline-block;
+  }
+  .other-logins-registration {
+    margin-right: 24px;
+  }
 }
 
 
@@ -277,34 +339,6 @@
   }
 }
 
-/**************
-** NOTICES
-***************/
-
-.alert, .notice, .success {
-  position: absolute;
-  left: 50%;
-  top: 70px;
-  padding: 10px 70px;
-  margin-left: -140px;
-  border: 1px solid;
-  z-index: 1000;
-}
-
-.alert {
-  color: #D8000C;
-  background: #FFBABA;
-}
-
-.success {
-  color: #4F8A10;
-  background: #DFF2BF;
-}
-
-.notice {
-  color: #9F6000;
-  background: #FEEFB3;
-}
 
 /**************
 ** Images container drag & drop
@@ -344,56 +378,42 @@
 /**************
 ** Forms
 ***************/
+.form-short-stacked {
+  max-width: 460px;
+  padding: 15px;
+  margin: 0 auto;
+  position: relative;
 
-.sign-up {
-  width: 400px;
-  margin: 30px auto 30px auto;
+  .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    border-radius: 0px;
 
-  .form-header {
-    margin: 0 0 20px 0;
-    padding: 0;
-    text-align: center;
-  }
-
-  .fields {
-    margin-bottom: 10px;
-
-    label {
-      display: block;
-      font-size: 16px;
+    &.top-field {
+      margin-bottom: -1px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
-    input {
-      display: block;
-      width: 350px;
-      border: 1px solid #CCC;
-      height: 30px;
-      padding-left: 8px;
+    &.bottom-field {
+      margin-bottom: 10px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    &.one-field {
+      margin-bottom: 10px;
+      border-radius: 4px;
     }
   }
 
-  .actions {
-    margin-bottom: 25px;
-    input {
-      width: 358px;
-      font-size: 24px;
-    }
-  }
-
-  hr {
-    width: 350px;
-    margin: 0 0 18px 0;
-  }
 }
-
-.sign-in, .forgot-password, .change-password {
-  @extend .sign-up;
-}
-
-.shared_devise_links {
-  a {
-    margin-bottom: 5px;
-    display: block;
-  }
-}
-

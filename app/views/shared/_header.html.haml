@@ -17,19 +17,5 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to 'Admin', new_admin_session_path
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Iniciar sesión
-            %b.caret
-          %ul.dropdown-menu{:style => "padding: 15px; padding-bottom: 0px;"}
-            = form_tag user_session_path, role: 'form' do
-              .form-group
-                = email_field_tag 'user[email]', nil, class: 'form-control', placeholder: 'Email'
-              .form-group
-                = password_field_tag 'user[password]', nil, class: 'form-control', placeholder: 'Password'
-              = button_tag 'Sign in', class: 'btn btn-primary btn-block'
-              = link_to "Forgot your password?", new_password_path('user')
-            %br
-              %b or
-            = link_to 'Sign in with twitter', user_omniauth_authorize_path(:twitter), class: 'btn btn-primary btn-block'
-            = link_to 'Sign in with facebook', user_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-block'
+        %li
+          = link_to 'Iniciar sesión', new_user_session_path

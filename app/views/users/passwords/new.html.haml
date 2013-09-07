@@ -1,0 +1,16 @@
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, class: 'form-short-stacked' }) do |f|
+  %h2 ¿Olvidates tu contraseña?
+  = devise_error_messages!
+  .other-logins.clearfix.l-margin-m-bottom
+    %p.other-logins-registration
+      ¿No tienes cuenta?
+      = link_to 'Regístrate', new_user_registration_path
+    %div.social-sign-in
+      = link_to user_omniauth_authorize_path(:facebook), class: 'social-signup social-signup-fb l-margin-s-right' do
+        %span.i-facebook.rc-icon
+        %span.social-signup-text Facebook
+      = link_to user_omniauth_authorize_path(:twitter), class: 'social-signup social-signup-tt' do
+        %span.i-twitter.rc-icon
+        %span.social-signup-text Twitter
+  = f.email_field :email, autofocus: true, class: 'form-control one-field', placeholder: 'Email'
+  .actions= f.submit "Enviar instrucciones", class: 'btn btn-lg btn-primary btn-block'

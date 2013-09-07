@@ -1,0 +1,18 @@
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { autocomplete: :off, class: 'form-short-stacked' }) do |f|
+  %h2 Registrarme
+  = devise_error_messages!
+  .other-logins.clearfix.l-margin-m-bottom
+    %p.other-logins-registration
+      ¿Ya eres usuario?
+      = link_to 'Inicia Sesión', new_user_session_path
+    %div.social-sign-in
+      = link_to user_omniauth_authorize_path(:facebook), class: 'social-signup social-signup-fb l-margin-s-right' do
+        %span.i-facebook.rc-icon
+        %span.social-signup-text Facebook
+      = link_to user_omniauth_authorize_path(:twitter), class: 'social-signup social-signup-tt' do
+        %span.i-twitter.rc-icon
+        %span.social-signup-text Twitter
+  = f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: 'Email'
+  = f.password_field :password, placeholder: 'Password', class: 'form-control'
+  = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control bottom-field'
+  .actions= f.submit "Registrarme", class: 'btn btn-lg btn-primary btn-block'
