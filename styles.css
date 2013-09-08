@@ -52,3 +52,21 @@ h3.title {
   max-height: 230px;
 }
 
+.people {
+  margin-bottom: 50px;
+  max-height: 200px;
+}
+.people img {
+  width: 180px;
+}
+
+.people i {
+  color: #444;
+  padding: 0 5px;
+}
+
+.people i:hover {
+  color: #444;
+  text-decoration: none;
+}
+
