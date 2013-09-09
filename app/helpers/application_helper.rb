@@ -24,4 +24,13 @@ module ApplicationHelper
     content_tag(:abbr, time.to_s, options.merge(:title => time.getutc.iso8601)) if time
   end
 
+  def flash_class(level)
+    case level
+      when :notice then "alert alert-info"
+      when :success then "alert alert-success"
+      when :error then "alert alert-danger"
+      when :alert then "alert alert-danger"
+    end
+  end
+
 end

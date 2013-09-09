@@ -1,10 +1,7 @@
 %h1 Realizar Reporte
 
-.columns.on-2.new-report
-  .container
-    .column
-      = render 'form'
-    .column
-      .unit.map
-        #new-report-map{default_report_data_position}
-
+.row
+  .col-md-6
+    = render 'form'
+  .col-md-6
+    #new-report-map{default_report_data_position}

@@ -17,7 +17,7 @@ jQuery ->
       chart:
         type: 'bar'
       title:
-        text: 'Reportes por categoría'
+        text: ''
       xAxis:
         categories: $('#reports-chart').data('category-names')
       yAxis:

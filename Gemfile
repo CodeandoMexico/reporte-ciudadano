@@ -35,6 +35,7 @@ group :assets do
   gem 'haml-rails'
   gem 'compass-rails'
   gem "modular-scale", "~> 1.0.6"
+  gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

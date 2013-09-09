@@ -1,0 +1,44 @@
+.l-margin-s-bottom {
+  margin-bottom: 10px;
+}
+
+.l-margin-m-bottom {
+  margin-bottom: 20px;
+}
+
+.l-margin-l-bottom {
+  margin-bottom: 30px;
+}
+
+.l-margin-s-right {
+  margin-right: 10px;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -150px;
+  /* Pad bottom by footer height */
+  padding: 0 0 150px;
+}
+
+#wrap > .container {
+  padding: 70px 15px 0px;
+}
+
+#footer {
+  height: 150px;
+  background-color: #303030;
+  color: #FFF;
+  text-align: center;
+
+  >.container {
+    padding: 30px 0px;
+  }
+
+  .footer-logo {
+    margin: 0 auto;
+  }
+}

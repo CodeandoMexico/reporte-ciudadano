@@ -1,176 +1,121 @@
-@import "base";
+@import "twitter/bootstrap";
+@import "compass/css3";
+@import "compass/utilities/general";
+@import "jquery.ui.datepicker";
+@import "jquery.fileupload-ui";
+@import "variables";
 @import "fonts";
-@import "defaults";
 @import "font-awesome";
+@import "base";
+@import "layout";
 @import "reports";
 
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
+.field_with_errors {
+  @extend .has-error;
+  @extend .control-group;
+  @extend .error;
+}
 
-.button {
-  display: block;
-  padding: 8px 20px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 18px;
-  text-transform: uppercase;
-  color: $white;
+#error_explanation {
+  margin-bottom: 10px;
 
-  &.blue {
-    background-color: $blue;
+  h2 {
+    font-size: 14px;
+    background-color: #f2dede;
+    color: #b94a48;
+    padding: 10px;
+    border-radius: 4px;
   }
-  &.green {
-    background-color: $green;
-  }
-  &.red {
-    background-color: $red;
-  }
-  &:hover{
-    background-color: #444;
-  }
-  &.rounded {
-    @include border-radius($buttonRadius);
+
+  ul {
+    margin: 0;
+    padding: 0px 15px;
+    color: #b94a48;
   }
 }
 
+.rc-icon {
+  display: inline-block;
+  background: image-url('social-sprite.png') no-repeat;
 
-/***************************************************
-**  HEADER
-***************************************************/
-.header {
+  &.i-facebook {
+    width: 10px;
+    height: 21px;
+    background-position: 0 0;
+  }
+
+  &.i-twitter {
+    width: 19px;
+    height: 16px;
+    background-position: -19px -2px;
+  }
+}
+
+.social-signup {
   position: relative;
-  height: 100px;
-  @include box-shadow(0 0 10px #000);
+  color: #fff;
+  width: 112px;
+  border-radius: 3px;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  padding: 10px;
 
-  .container {
-    height: 80px;
-    background: $white;
-    padding: 10px 0;
-    z-index: 100;
-    position: relative;
-
-    .right {
-      float: right;
-    }
+  &.social-signup-fb {
+    background-color: #3c5a97;
   }
 
-  &:before{
+  &.social-signup-tt {
+    background-color: #019ad2;
+  }
+
+  &:hover {
+    color: $gray1;
+  }
+
+  .i-facebook {
     position: absolute;
-    content: '';
-    top: 10px;
-    width: 50%;
-    left: 0;
-    height: 80px;
-    background: #1fa69f;
-    z-index: 1;
+    left: 10px;
+    top: 6px;
   }
 
-  img {
-    max-height: 80px;
-    padding-right: 10px;
-  }
-  .right img:last-child { padding-right: 0; }
-}
-
-/***************************************************
-**  SLOGAN + MENU
-***************************************************/
-.slogan {
-  background: #2d2d2d url("bg_gray.png");
-
-  .container {
-    padding-top: 50px;
-
-    .menu {
-      background: $gray3;
-      height: 50px;
-
-      a {
-        display: block;
-        height: 50px;
-        line-height: 50px;
-        color: $white;
-        font-size: 16px;
-        padding: 0 30px;
-        text-decoration: none;
-        border-right: 1px solid lighten($gray3, 10%);
-        float: left;
-
-        &:hover{
-          background-color: lighten($gray3, 10%);
-        }
-        &.active {
-          background: $white;
-          color: $gray5;
-        }
-      }
-
-      .avatar {
-        height: 50px;
-      }
-
-      .right {
-        float: right;
-        position: relative;
-
-        border-right: none;
-        border-left: 1px solid lighten($gray3, 10%);
-
-
-        img {
-          display: block;
-        }
-
-        .bottom {
-          top: 50px;
-          right: 0;
-          position: absolute;
-          display: none;
-
-          a {
-            background-color: $gray4;
-            display: block;
-            float: right;
-
-            &:hover{
-              background: lighten($gray4, 5%);;
-            }
-          }
-
-          &:hover{
-            display: block;
-          }
-        }
-
-        .dropdown:hover + .bottom{
-          display: block;
-        }
-
-        .dropdown.last {
-          border-right: none;
-        }
-      }
-    }
+  .i-twitter {
+    position: absolute;
+    left: 5px;
+    top: 8px;
   }
 
-  .banner {
-    margin: 0 auto;
-    display: block;
-    margin-bottom: 50px;
+  .social-signup-text {
+    padding-left: 15px;
+    border-left: 1px solid rgba(34,34,34,0.18);
+    margin-left: 17px;
+    display: inline-block;
   }
 }
+
+.other-logins {
+  .social-sign-in, .other-logins-registration {
+    display: inline-block;
+  }
+  .other-logins-registration {
+    margin-right: 24px;
+  }
+}
+
+
 /***************************************************
 **  HOME REPORT STATS
 ***************************************************/
-#reports-stats {
+.reports-stats {
 
-  .container {
-    height: 70px;
+  .reports-stats-block {
     padding: 30px;
     text-align: center;
-    border-bottom: 1px solid #DDD;
-    font-size: 56px;
+    font-size: 4em;
     line-height: 50px;
     font-weight: bold;
 
@@ -179,39 +124,41 @@
       border-right: 1px solid #DDD;
     }
 
-    h3 {
+    .reports-stats-name {
       font-size: 20px;
       line-height: 20px;
     }
 
-
   }
 }
+
+
 /***************************************************
-**  HOME MAP FILTERS
+**  BLOCK SUMMARY
 ***************************************************/
-
-.filters {
-
-  &.top {
+.blk-summary {
+  .blk-summary-title {
     border-top: 1px solid #DDDDDD;
     padding-top: 30px;
   }
+}
 
-  h2 {
-    font-size: 20px;
-  }
 
-  form {
-    background: #FAFAFA;
-    border: 1px solid #e0e0e0;
-  }
+/***************************************************
+**  FILTERS
+***************************************************/
+.filters {
+  @include clearfix;
+  background: #FAFAFA;
+  border: 1px solid #e0e0e0;
 
-  .fields {
-    float: left;
+  .form-group {
     padding: 10px;
-    border-right: 1px solid #EEEEEE;
+    &.form-group-separator {
+      border-right: 1px solid #EEE;
+    }
   }
+
 }
 
 /***************************************************
@@ -231,146 +178,21 @@
 /***************************************************
 **  RECENT REPORTS LIST AT HOME
 ***************************************************/
+.recent-report-sum {
+  background: $gray1;
+  padding: 10px 10px 0px;
+  margin-bottom: 10px;
+  list-style: none;
 
-.recent {
-  padding: 30px 0;
-
-  h2 {
-    font-size: 20px;
+  .recent-report-title {
+    display: inline-block;
   }
 
-  .report {
-    background: $gray1;
-    padding: 10px 10px 5px 10px;
-    margin-bottom: 10px;
-
-    .votes {
-      width: 100px;
-      float: right;
-
-      .counter {
-        font-size: 30px;
-        text-align: center;
-      }
-    }
-
-    .date {
-      float: left;
-      width: 100px;
-      height: 80px;
-      margin-right: 20px; 
-    }
-
-    h3 {
-      margin: 0;
-
-      a {
-        font-weight: normal;
-        color: #000;
-        font-size: 24px;
-        text-decoration: none;
-      }
-    }
-  }
-}
-
-/***************************************************
-**  REPORTS LIST
-***************************************************/
-
-.list {
-  padding: 30px 0;
-
-  table.zebra {
-
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0px 0px;
-    font-size: 12px;
-
-    tr:nth-child(odd) {
-      background-color: $gray1;
-    }
-
-    th {
-      a { color: white; }
-      background: $gray3;
-      color: #fff;
-      padding: 10px 5px;
-      text-align: center;
-      border-right: 1px solid $gray2;
-      border-left: 1px solid $gray2;
-      letter-spacing: 1px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    td {
-      padding: 10px 5px;
-      border-bottom: 1px solid $gray2;
-      vertical-align: middle;
-      letter-spacing: .5px;
-      text-align: center;
-      border-left: 1px solid $gray2;
-      border-right: 1px solid $gray2;
-    }
-
-    tr {
-      background: #fff;
-    }
-
-    td * {
-      padding: 10px 20px 10px 20px;
-    }
-
-  }
-}
-
-/***************************************************
-**  GRID
-***************************************************/
-
-.wrapper {
-  width: 1100px;
-  margin: 0 auto;
-}
-
-
-
-/***************************************************
-**  NEW REPORT FORM
-***************************************************/
-
-h1 {
-  font-size: 30px;
-  padding: 30px 0;
-  margin-bottom: 0;
-}
-.new-report {
-  padding-bottom: 50px;
-
-  .map {
-    background-color: #EFEFEF;
+  .recent-report-counter {
+    font-size: 30px;
+    text-align: center;
   }
 
-  form {
-    .fields {
-      padding: 10px 0;
-      border-TOP: 1px solid #E0E0E0;
-
-      label {
-        float: left;
-        width: 160px;
-        display: block;
-        font-size: 16px;
-      }
-    }
-
-    input[type="text"], select, textarea, #address {
-      display: block;
-      width: 200px;
-    }
-  }
 }
 
 
@@ -379,213 +201,147 @@ h1 {
 ***************************************************/
 
 .report-show {
-  padding-top: 50px;
 
-  > .container {
+  .report-show-title {
+    background-color: #FAFAFA;
+    height: 60px;
+    font-size: 30px;
+    padding: 0 20px;
+    line-height: 60px;
+    margin: 0;
+  }
+  .report-show-map {
+    background-color: #CCCCCC;
+  }
+
+  .report-show-information {
+    padding: 20px;
+    background-color: #EEEEEE;
+  }
+
+}
+
+.stream {
+  padding-left: 100px;
+  padding-top: 40px;
+  position: relative;
+  margin-bottom: 50px;
+
+  &:before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    background-color: #EEEEEE;
+    left: 48px;
+    top: 0;
+  }
+
+  .activity {
     position: relative;
+    padding: 10px;
+    background-color: #EFEFEF;
+    @include box-shadow(1px 1px 0px #DDDDDD);
+    margin-bottom: 20px;
+    width: 75%;
+    z-index: 1000;
+    font-size: 18px;
 
-    .title {
-      background-color: #FAFAFA;
-      height: 60px;
-      font-size: 30px;
-      padding: 0 20px;
-      line-height: 60px;
-      margin: 0;
+    &:before {
+      width: 20px;
+      height: 20px;
+      content: '';
+      background-color: #46a59f;
+      @include border-radius(50%);
+      display: block;
+      position: absolute;
+      left: -59px;
+      top: 10px;
+      z-index: 10;
     }
-    .map {
-      background-color: #CCCCCC;
-    }
-
-    .information {
-      padding: 20px;
+    &:after {
+      width: 55px;
+      height: 5px;
+      content: '';
       background-color: #EEEEEE;
+      display: block;
+      position: absolute;
+      left: -55px;
+      top: 17px;
+      z-index: 0;
     }
 
-    .stream {
-      padding-left: 100px;
-      padding-top: 40px;
-      position: relative;
-      margin-bottom: 50px;
+    img.avatar {
+      width: 45px;
+      height: 45px;
+      border: 4px solid #FFF;
+      @include box-shadow(1px 1px 2px #DDDDDD);
+      position: absolute;
+      left: -75px;
+      top: 0;
+      z-index: 1000;
+    }
 
-      &:before{
-        content: '';
-        width: 5px;
-        height: 100%;
-        position: absolute;
-        background-color: #EEEEEE;
-        left: 48px;
-        top: 0;
-      }
+    .date {
+      position: absolute;
+      width: 30%;
+      right: -35%;
+      top: 5px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 30px;
+      color: #666;
+      font-weight: normal;
 
-      .activity {
-        position: relative;
-        padding: 10px;
-        background-color: #EFEFEF;
-        @include box-shadow(1px 1px 0px #DDDDDD);
-        margin-bottom: 20px;
-        width: 75%;
-        z-index: 1000;
-        font-size: 18px;
-
-        &:before{
-          width: 20px;
-          height: 20px;
-          content: '';
-          background-color: #46a59f;
-          @include border-radius(50%);
-          display: block;
-          position: absolute;
-          left: -59px;
-          top: 10px;
-          z-index: 10;
-        }
-        &:after{
-          width: 55px;
-          height: 5px;
-          content: '';
-          background-color: #EEEEEE;
-          display: block;
-          position: absolute;
-          left: -55px;
-          top: 17px;
-          z-index: 0;
-        }
-
-        img.avatar {
-          width: 45px;
-          height: 45px;
-          border: 4px solid #FFF;
-          @include box-shadow(1px 1px 2px #DDDDDD);
-          position: absolute;
-          left: -75px;
-          top: 0;
-          z-index: 1000;
-        }
-
-        .date {
-          position: absolute;
-          width: 30%;
-          right: -35%;
-          top: 5px;
-          height: 30px;
-          font-size: 16px;
-          line-height: 30px;
-          color: #666;
-          font-weight: normal;
-
-          i {
-            margin-right: 5px;
-          }
-        }
-
-        &.description, &.comment {
-
-          p {
-            margin: 0 0 5px 0;
-          }
-          .name {
-            text-align: right;
-            font-size: 12px;
-            color: #000;
-            font-weight: bold;
-            margin: 0;
-            text-transform: uppercase;
-          }
-        }
-
-        &.form {
-          textarea {
-            width: 100%;
-            height: 90px;
-            border: none;
-            padding: 10px;
-            @include box-sizing(border-box);
-            margin-bottom: 5px;
-          }
-          input {
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-          }
-        }
-
-        &.start {
-          background-color: #46a59f;
-          color: #FFF;
-          font-weight: bold;
-        }
-
+      i {
+        margin-right: 5px;
       }
     }
 
-    .right {
-      padding-left: 30px;
+    &.description, &.comment {
 
-      .location {
-        p {
-          font-size: 18px;
-        }
+      p {
+        margin: 0 0 5px 0;
       }
-      h3 {
+      .name {
+        text-align: right;
+        font-size: 12px;
+        color: #000;
         font-weight: bold;
-        font-size: 26px;
-        margin-bottom: 10px;
+        margin: 0;
+        text-transform: uppercase;
       }
     }
+
+    &.form {
+      textarea {
+        width: 100%;
+        height: 90px;
+        border: none;
+        padding: 10px;
+        @include box-sizing(border-box);
+        margin-bottom: 5px;
+      }
+      input {
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+
+    &.start {
+      background-color: #46a59f;
+      color: #FFF;
+      font-weight: bold;
+    }
+
   }
 }
 
-/***************************************************
-**  FOOTER
-***************************************************/
-
-.footer {
-  background-color: #303030;
-  height: 150px;
-  color: #FFF;
-  text-align: center;
-
-  .container {
-    padding: 20px 0;
-  }
-
-  .cmx-logo {
-    height: 100px;
-  }
-}
 
 /**************
-** NOTICES
-***************/
-
-.alert, .notice, .success {
-  position: absolute;
-  left: 50%;
-  top: 70px;
-  padding: 10px 70px;
-  margin-left: -140px;
-  border: 1px solid;
-  z-index: 1000;
-}
-
-.alert {
-  color: #D8000C;
-  background: #FFBABA;
-}
-
-.success {
-  color: #4F8A10;
-  background: #DFF2BF;
-}
-
-.notice {
-  color: #9F6000;
-  background: #FEEFB3;
-}
-
-/**************
-** Images container drag & drop 
+** Images container drag & drop
 ***************/
 
 .image_uploader {
@@ -622,56 +378,42 @@ h1 {
 /**************
 ** Forms
 ***************/
+.form-short-stacked {
+  max-width: 460px;
+  padding: 15px;
+  margin: 0 auto;
+  position: relative;
 
-.sign-up {
-  width: 400px;
-  margin: 30px auto 30px auto;
+  .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    border-radius: 0px;
 
-  .form-header {
-    margin: 0 0 20px 0;
-    padding: 0;
-    text-align: center;
-  }
-
-  .fields {
-    margin-bottom: 10px;
-
-    label {
-      display: block;
-      font-size: 16px;
+    &.top-field {
+      margin-bottom: -1px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
-    input {
-      display: block;
-      width: 350px;
-      border: 1px solid #CCC;
-      height: 30px;
-      padding-left: 8px;
+    &.bottom-field {
+      margin-bottom: 10px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    &.one-field {
+      margin-bottom: 10px;
+      border-radius: 4px;
     }
   }
 
-  .actions {
-    margin-bottom: 25px;
-    input {
-      width: 358px;
-      font-size: 24px;
-    }
-  }
-
-  hr {
-    width: 350px;
-    margin: 0 0 18px 0;
-  }
 }
-
-.sign-in, .forgot-password, .change-password {
-  @extend .sign-up;
-}
-
-.shared_devise_links {
-  a {
-    margin-bottom: 5px;
-    display: block;
-  }
-}
-

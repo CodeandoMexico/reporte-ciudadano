@@ -5,14 +5,17 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{GOOGLE_KEY}&sensor=false")
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
   %body{:class => "#{controller_name} #{action_name}"}
-    = render "shared/header"
- 
-    .unit.body
-      .container.wrapper
+
+    #wrap
+
+      = render "shared/header"
+
+      .container
         - flash.each do |name, msg|
-          = content_tag :div, :class => "alert #{name}" do
+          = content_tag :div, :class => "alert #{flash_class(name)}" do
             = msg
         = yield
 

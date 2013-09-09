@@ -1,63 +1,69 @@
-.columns.on-3#reports-stats{data: { total: Report.count } }
-  .column
-    .container
-      = @all_reports
-      %h3 Reportes realizados
-  .column
-    .container.mid
-      = @open_reports
-      %h3 Reportes abiertos
-  .column
-    .container
-      = @closed_reports
-      %h3 Reportes resueltos
+.row.reports-stats{data: { total: Report.count } }
+  .col-md-4.col-sm-4.col-xs-4.reports-stats-block
+    = @all_reports
+    %h3.reports-stats-name Reportes realizados
+  .col-md-4.col-sm-4.col-xs-4.reports-stats-block.mid
+    = @open_reports
+    %h3.reports-stats-name Reportes abiertos
+  .col-md-4.col-sm-4.col-xs-4.reports-stats-block
+    = @closed_reports
+    %h3.reports-stats-name Reportes resueltos
 
-.unit#reports-chart{ data: { chart_data: @chart_data, category_names: @category_names, status_names: @status_names }}
+.row.blk-summary.l-margin-l-bottom
+  .container
+    %h2.blk-summary-title Reportes por categoría
+    #reports-chart{ data: { chart_data: @chart_data, category_names: @category_names, status_names: @status_names }}
 
 
-.unit.filters.top
-  %h2 Mapa de reportes
-  = form_tag reports_path, method: :get, class: "unit" do
-    .fields
-      = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker'
-      = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker'
-    .fields
-      = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: 'Cualquier tipo')
-    .fields
-      = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas las categorias')
-    .fields
-      = submit_tag 'Buscar', class: "submit"
-  
+.row.blk-summary.l-margin-l-bottom
+  .container
+    %h2.blk-summary-title Mapa de reportes
+    = form_tag reports_path, method: :get, class: "filters form-inline" do
+      .form-group
+        = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+      .form-group.form-group-separator
+        = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+      .form-group.form-group-separator
+        = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: 'Cualquier tipo', class: 'form-control')
+      .form-group.form-group-separator
+        = select_tag('category_id', options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: 'Todas las categorias', class: 'form-control')
+      .form-group
+        = submit_tag 'Buscar', class: "btn btn-primary btn-block"
 
-.unit.map{data_position}
-  #reports-map
 
-.unit.filters 
-  = form_tag reports_path, method: :get,class: "unit" do
-    .fields
-      = label_tag 'report_ids', 'Folio:'
-      = text_field_tag 'report_ids', params[:report_ids], placeholder: 'Ej. 1,2,4'
-    .fields
-      = submit_tag 'Buscar', class: "submit"
+    .map{data_position}
+      #reports-map
 
-.unit.recent
-  %h2 Reportes recientes
-  - @reports.each do |report|
-    .unit.report{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng, description: report_info_window(report) } }
-      .votes
-        .counter.js-votes_count
-          = report.votes_for 
-        .js-vote_status
-          = vote_link_for(report)
-      - if admin_signed_in?
-        .pull-right.edit_admin_report
-          = link_to "Editar reporte", edit_admins_report_path(report)
-      .date
-        = timeago(report.created_at)
-      %h3
-        = link_to report.category.name, report_url(report), class: "title"
-        %span.address= " - #{report.address}"
-      %p= report.description
+    = form_tag reports_path, method: :get, class: 'filters form-inline' do
+      .form-group.form-group-separator
+        = text_field_tag 'report_ids', params[:report_ids], placeholder: 'No. Folio', class: 'form-control'
+      .form-group
+        = submit_tag 'Buscar', class: "btn btn-primary btn-block"
 
-  
+.row.blk-summary.l-margin-l-bottom
+  .container
+    %h2.blk-summary-title Reportes recientes
+    - unless @reports.empty?
+      - @reports.each do |report|
+        .recent-report-sum{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng, description: report_info_window(report) } }
+          .row
+            .col-md-2.recent-report-sum-date.l-margin-s-bottom
+              = timeago(report.created_at)
+            .col-md-8.recent-report-sum-info.l-margin-s-bottom
+              %h3.recent-report-title
+                = link_to report.category.name, report_url(report), class: "title"
+              %span.recent-report-address= " - #{report.address}" if report.address
+              %p= report.description
+            .col-md-2.text-center.l-margin-s-bottom
+              .recent-report-counter.js-votes_count
+                = report.votes_for
+              .js-vote_status
+                = vote_link_for(report)
+              - if admin_signed_in?
+                .pull-right.edit_admin_report
+                  = link_to "Editar reporte", edit_admins_report_path(report)
+    - else
+      .row.report
+
+
 = paginate @reports

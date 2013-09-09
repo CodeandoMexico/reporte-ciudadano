@@ -1,0 +1,31 @@
+%h2
+  Edit #{resource_name.to_s.humanize}
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, role: 'form', class: 'l-margin-l-bottom' }) do |f|
+  = devise_error_messages!
+  .form-group
+    = f.label :email
+    .row
+      .col-lg-6
+        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
+  .form-group
+    = f.label :password
+    .row
+      .col-lg-6
+        = f.password_field :password, placeholder: 'Password', class: 'form-control'
+  .form-group
+    = f.label :password_confirmation
+    .row
+      .col-lg-6
+        = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control'
+  .form-group
+    = f.label :current_password
+    .row
+      .col-lg-6
+        = f.password_field :current_password, placeholder: 'Password actual', class: 'form-control bottom-field'
+  .actions= f.submit "Guardar", class: 'btn btn-lg btn-primary'
+
+.l-margin-l-bottom
+  %h3 Cancel my account
+  %p
+    Unhappy?
+    = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger'
