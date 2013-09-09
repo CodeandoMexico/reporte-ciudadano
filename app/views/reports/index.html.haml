@@ -38,9 +38,9 @@
     %tbody
       - @reports.each do |report|
         %tr
-          %td= link_to report.id, report_url(report)
+          %td= link_to report.id, report
           %td= l report.created_at, format: :short
-          %td= report.category.name
+          %td= link_to report.category.name, report
           %td= truncate report.description
           %td= report.status
           %td= report.votes_for
