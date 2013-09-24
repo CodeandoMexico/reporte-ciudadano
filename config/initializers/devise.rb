@@ -6,9 +6,6 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "no-reply@adosapaco.com"
 
-  #Secret key https://github.com/plataformatec/devise/commit/d56641f514f54da04f778b2a9b816561df7910c2 
-  config.secret_key = 'bdcec9d76810866f838928cdcfc64761341d8403d8baae64f973582f49435573857d3387633050efcd614550757ff65cc4c049ebafaeabfaec3f93f68b9837d8'
-
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 

@@ -8,12 +8,24 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'devise'
+gem 'devise', '2.2.4'
 gem 'nested_form'
 gem 'geocoder'
 gem "highcharts-rails", "~> 3.0.0"
 gem "font-awesome-rails"
 gem 'twitter'
+
+group :test do
+  gem 'ffaker'
+  gem 'database_cleaner'
+  gem 'launchy'
+end
+
+group :development,:test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+end
 
 group :development do
   gem 'better_errors'
@@ -21,6 +33,10 @@ group :development do
   gem 'thin'
   gem 'debugger'
   gem 'letter_opener'
+  gem 'quiet_assets'
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-pow'
 end
 
 group :production do
