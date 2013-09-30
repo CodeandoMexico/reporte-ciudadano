@@ -12,6 +12,8 @@ describe Admin do
   context 'attributes' do
     it { should respond_to :avatar }
     it { should respond_to :name }
+    it { should respond_to :email }
+    it { should respond_to :authentication_token }
   end
   context 'associations' do
     it { should have_many :comments }
@@ -23,7 +25,8 @@ describe Admin do
     it '#to_s returns email' do
       expect(admin.to_s).to eq admin.email
     end
-    xit '#api_key?' do
+    it '#api_key?' do
+      create(:api_key, admin: admin)
       expect(admin.api_key?).to be_true
     end
   end
