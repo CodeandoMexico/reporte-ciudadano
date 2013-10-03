@@ -56,6 +56,7 @@ class Report < ActiveRecord::Base
   end
 
   def self.filter_by_search(params)
+    reports = Report.order('created_at DESC')
     reports = reports.on_start_date(params[:start_date]) unless params[:start_date].blank?
     reports = reports.on_finish_date(params[:end_date]) unless params[:end_date].blank?
     reports = reports.with_status(params[:status_id]) unless params[:status_id].blank?
