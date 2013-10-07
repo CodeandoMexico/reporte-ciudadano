@@ -4,10 +4,20 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'capybara/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+module HelperMethods
+  include I18n
+
+  def t *args
+    I18n.t *args
+  end
+
+end
 
 RSpec.configure do |config|
   # If true, the base class of anonymous controllers will be inferred
@@ -20,4 +30,5 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  config.include HelperMethods
 end

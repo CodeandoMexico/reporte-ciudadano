@@ -235,3 +235,9 @@ es:
   navigation:
     back: 'Regresar'
 
+
+  flash:
+    category:
+      created: 'Categoría creada correctamente.'
+      updated: 'Categoría actualizada correctamente.'
+      destroyed: 'Categoría ha sido eliminada.'
