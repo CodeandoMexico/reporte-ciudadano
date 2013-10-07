@@ -19,6 +19,7 @@ group :test do
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'capybara'
 end
 
 group :development,:test do

@@ -9,4 +9,9 @@
     - if admin_signed_in?
       = link_to 'cerrar sesion', destroy_admin_session_path, method: :delete
       = link_to 'Editar perfil', edit_admins_registration_path(current_admin)
+
+    - flash.each do |name, msg|
+      = content_tag :div, :class => "alert #{flash_class(name)}" do
+        = msg
+
     = yield

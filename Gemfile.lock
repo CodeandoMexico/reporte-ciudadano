@@ -44,6 +44,12 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -300,6 +306,8 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     xml-simple (1.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -309,6 +317,7 @@ DEPENDENCIES
   aws-s3
   better_errors
   binding_of_caller
+  capybara
   carrierwave
   coffee-rails (~> 3.2.1)
   compass-rails
