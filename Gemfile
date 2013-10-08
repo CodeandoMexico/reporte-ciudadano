@@ -20,6 +20,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development,:test do
