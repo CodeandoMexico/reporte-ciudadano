@@ -241,3 +241,6 @@ es:
       created: 'Categoría creada correctamente.'
       updated: 'Categoría actualizada correctamente.'
       destroyed: 'Categoría ha sido eliminada.'
+    status:
+      created: 'Estatus creado correctamente.'
+      updated: 'Estatus actualizado correctamente.'
