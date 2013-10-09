@@ -244,3 +244,5 @@ es:
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
+    admin:
+      updated: 'El perfil fue editado satisfactoriamente.'

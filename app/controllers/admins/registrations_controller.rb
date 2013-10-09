@@ -7,7 +7,7 @@ class Admins::RegistrationsController < Admins::AdminController
   def update
     @admin = current_admin
     if @admin.update_attributes(params[:admin])
-      redirect_to admins_categories_path, notice: 'El perfil fue editado satisfactoriamente'
+      redirect_to admins_categories_path, notice: I18n.t('flash.admin.updated')
     else
       render :edit
     end
