@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :category do
-    name { Faker::Lorem.words(2) }
+    name { Faker::Lorem.word }
 
     factory :invalid_category do
       name nil

@@ -4,9 +4,9 @@
   .form-group.form-group-separator
     = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
   .form-group.form-group-separator
-    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Categoría' }, class: 'form-control'
+    = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Categoría' }, class: 'form-control'
   .form-group.form-group-separator
-    = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
+    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
   .form-group
     = submit_tag 'Buscar', class: "submit btn btn-primary btn-large btn-block"
 
