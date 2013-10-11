@@ -19,6 +19,8 @@ group :test do
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development,:test do

@@ -18,7 +18,7 @@
         - if current_user
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              = current_user.email
+              = current_user.name || current_user.email
               %b.caret
             %ul.dropdown-menu
               %li
