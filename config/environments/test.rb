@@ -34,4 +34,7 @@ ReporteCiudadano::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Enable testing mode for omniauth requests
+  OmniAuth.config.test_mode = true
 end

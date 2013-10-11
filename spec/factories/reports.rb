@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :report do
     category
+    status
     association :reportable, factory: :user
     address     { Faker::Lorem.words(3) }
     description { Faker::Lorem.paragraph(2) }
