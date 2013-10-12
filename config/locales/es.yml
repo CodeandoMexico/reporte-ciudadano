@@ -225,6 +225,13 @@ es:
           name: 'Tipo'
           extras: 'Campos adicionales'
         title: 'Categorías'
+
+  admins:
+    sessions:
+      new:
+        title: "Iniciar sesión"
+        submit: "Entrar"
+
   crud:
     destroy: 'Eliminar'
     edit: 'Editar'
