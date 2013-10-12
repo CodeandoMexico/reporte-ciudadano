@@ -2,16 +2,18 @@
 %html
   %head
     %title Reporte Ciudadano
-    =# stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
   %body
-    - if admin_signed_in?
-      = link_to 'cerrar sesion', destroy_admin_session_path, method: :delete
-      = link_to 'Editar perfil', edit_admins_registration_path(current_admin)
+    #wrap
+      = render "admins/shared/header"
 
-    - flash.each do |name, msg|
-      = content_tag :div, :class => "alert #{flash_class(name)}" do
-        = msg
+      .container
+        - flash.each do |name, msg|
+          = content_tag :div, :class => "alert #{flash_class(name)}" do
+            = msg
+        = yield
 
-    = yield
+    = render "admins/shared/footer"
