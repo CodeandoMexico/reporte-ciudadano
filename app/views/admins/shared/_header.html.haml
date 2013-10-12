@@ -5,15 +5,15 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Reporte ciudadano', root_path, class: 'navbar-brand'
+      = link_to 'Reporte ciudadano', dashboard_admins_reports_path, class: 'navbar-brand'
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li
-          = link_to 'Resumen', root_path, class: "pages index"
+          = link_to 'Resumen', dashboard_admins_reports_path, class: "pages index"
         %li
-          = link_to 'Reportes', reports_path, class: "reports index"
+          = link_to 'Personalizar Reportes', reports_path, class: "reports index"
         %li
-          = link_to 'Realizar Reporte', new_report_path, class: "reports new"
+          = link_to 'Diseño', new_report_path, class: "reports new"
       %ul.nav.navbar-nav.navbar-right
         - if current_admin
           %li.dropdown

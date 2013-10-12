@@ -27,6 +27,9 @@ ReporteCiudadano::Application.routes.draw do
       member do
         put 'update_status'
       end
+      collection do
+        get 'dashboard'
+      end
     end
   end
   
