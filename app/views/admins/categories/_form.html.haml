@@ -1,0 +1,20 @@
+= nested_form_for([:admins, @category]) do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@category.errors.count, "error")
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name, 'Nombre'
+    %br/
+    = f.text_field :name
+  = f.fields_for :messages do |message_form|
+    = message_form.label :content, "Mensaje"
+    = message_form.text_area :content
+    = message_form.label :status_id, "¿Que estatus?"
+    = message_form.collection_select :status_id, Status.all, :id, :name
+    = message_form.link_to_remove "Borrar mensaje"
+  %p= f.link_to_add "Agregar mensaje", :messages
+  .actions
+    = f.submit

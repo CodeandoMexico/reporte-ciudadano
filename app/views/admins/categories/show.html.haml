@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b Nombre:
+  = @category.name
+%p
+  %b Campos adicionales:
+  = @category.category_fields_names
+= link_to t('crud.edit'), edit_admins_category_path(@category)
+|
+\#{link_to t('navigation.back'), admins_categories_path}

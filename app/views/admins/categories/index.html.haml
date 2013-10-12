@@ -1,0 +1,43 @@
+%h1= t('admin.category.show.title')
+%h2 Copycopter
+%p= link_to 'Copycopter', 'http://copycopter.com/'
+%fieldset.token
+  %legend Credenciales de autenticación
+  %p
+    Secret Token:
+    %strong= current_admin.authentication_token
+  %p
+    - if current_admin.api_key?
+      Api Token:
+      %strong= current_admin.api_key
+    - else
+      = link_to 'Generar llave', admins_api_keys_path, method: :post
+%br/
+%table
+  %tr
+    %th= t('admin.category.show.columns.name')
+    %th= t('admin.category.show.columns.extras')
+    %th
+    %th
+    %th
+  - @categories.each do |category|
+    %tr
+      %td= category.name
+      %td= category.category_fields_names
+      %td= link_to t('crud.show'), admins_category_path(category)
+      %td= link_to t('crud.edit'), edit_admins_category_path(category)
+      %td= link_to t('crud.destroy'), admins_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to t('admin.category.new.title'), new_admins_category_path
+%br/
+%h1 Estatus actuales
+%table{border: "0"}
+  %tr
+    %th Nombre
+    %th Editar
+  - @statuses.each do |status|
+    %tr
+      %td= status.name
+      %td= link_to "Editar", edit_admins_status_path(status)
+%br/
+= link_to "Nuevo estatus", new_admins_status_path
