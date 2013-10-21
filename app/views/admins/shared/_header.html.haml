@@ -18,18 +18,9 @@
         - if current_admin
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              = current_admin.email
+              = 
               %b.caret
             %ul.dropdown-menu
-              %li
-                = link_to  edit_admins_registration_path(current_admin) do
-                  %i.icon-cog
-                  Editar perfil
-              %li.divider
-              %li
-                = link_to destroy_admin_session_path, method: :delete do
-                  %i.icon-off
-                  Cerrar Sesión
         - else
           %li
             = link_to 'Iniciar sesión', new_admin_session_path

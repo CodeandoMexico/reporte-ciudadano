@@ -1,0 +1,25 @@
+#sidebar-wrapper
+  %ul.sidebar-nav
+    %li.sidebar-brand
+      = link_to "Admin dashboard", dashboard_admins_reports_path
+    %li
+      = link_to 'Resumen', dashboard_admins_reports_path
+    %li
+      = link_to 'Personalizar Reportes',  dashboard_admins_reports_path 
+    %li
+      = link_to 'Diseño', '#'
+
+    %hr
+    %li
+      = current_admin.email
+    %li
+      = link_to  edit_admins_registration_path(current_admin) do
+        %i.icon-cog
+        Editar perfil
+    %li
+      = link_to destroy_admin_session_path, method: :delete do
+        %i.icon-off
+        Cerrar Sesión
+
+
+
