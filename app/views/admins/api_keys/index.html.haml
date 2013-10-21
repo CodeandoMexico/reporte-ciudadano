@@ -1,0 +1,13 @@
+.content-header
+  %h1 API: Credenciales de autenticación
+
+.page-content.inset
+  %p
+    Secret Token:
+    %strong= current_admin.authentication_token
+  %p
+    - if current_admin.api_key?
+      Api Token:
+      %strong= current_admin.api_key
+    - else
+      = link_to 'Generar llave', admins_api_keys_path, method: :post
