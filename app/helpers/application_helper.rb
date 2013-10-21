@@ -33,4 +33,8 @@ module ApplicationHelper
     end
   end
 
+  def current_theme
+    "theme_one"
+  end
+
 end
