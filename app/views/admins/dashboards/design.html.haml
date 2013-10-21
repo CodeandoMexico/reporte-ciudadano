@@ -1,0 +1,28 @@
+.content-header
+  %h1= t('.header')
+
+.page-content.inset
+
+  .page-description
+    %blockquote
+      %i= t('.page-description')
+
+.dashboard-entity
+  %header.dashboard-entity-header
+    %h2
+      = t('.logos')
+    .dashboard-entity-header-tools
+      = link_to new_admins_logo_path, class: 'btn btn-primary btn-xs' do
+        %span.glyphicon.glyphicon-plus
+      %small.dashboard-entity-help
+        Arrastra los logos para determinar su posición
+
+  .dashboard-entity-content
+    - unless @logos.empty?
+      %ul.plain-ul.l-grid.clearfix.js-sortable{data: {url: rearrange_admins_logos_path}}
+        - @logos.each do |logo|
+          %li{id: "logo_#{logo.id}", class: 'l-grid-el'}
+            = link_to edit_admins_logo_path(logo), class: 'thumbnail' do
+              = image_tag logo.image.footer_thumb.url
+    - else
+      %p No hay logos

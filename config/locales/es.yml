@@ -231,6 +231,8 @@ es:
       new:
         title: "Iniciar sesión"
         submit: "Entrar"
+    design:
+      new_logo: "Agregar logo"
     categories:
       index:
         header: "Personalizar reportes"
@@ -256,6 +258,10 @@ es:
         edit: "Editar categoría"
         additional_fields: "Campos adicionales"
         back: "Regresar"
+    dashboards:
+      design:
+        header: "Diseño"
+        page-description: 'Personaliza el diseño de tu aplicación'
 
   crud:
     destroy: 'Eliminar'
@@ -280,3 +286,13 @@ es:
       updated: 'Estatus actualizado correctamente.'
     admin:
       updated: 'El perfil fue editado satisfactoriamente.'
+    logo:
+      created: 'Logo creado correctamente.'
+      updated: 'Logo actualizado correctamente.'
+      destroyed: 'Logo ha sigo eliminado.'
+
+  navbar:
+    admin:
+      design: "Diseño"
+
+

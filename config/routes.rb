@@ -31,8 +31,18 @@ ReporteCiudadano::Application.routes.draw do
         get 'dashboard'
       end
     end
+    resources :dashboards, only: [:index] do
+      collection do
+        get 'design'
+      end
+    end
+    resources :logos, except: :index do
+      collection do
+        post 'rearrange'
+      end
+    end
   end
-  
+
   get "/login" => 'sessions#new'
   get '/auth/:provider/callback' => 'sessions#create'
   delete "signout", to: 'sessions#destroy'
