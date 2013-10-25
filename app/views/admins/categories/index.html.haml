@@ -1,32 +1,44 @@
 .content-header
-  %h1= t('admin.category.show.title')
+  %h1= t('.header')
 
 .page-content.inset
-  %table
+
+  .page-description
+    %blockquote
+      %i= t('.page-description')
+
+  .btn-group.admin-actions
+    = link_to t('.new_category'), new_admins_category_path, class: 'btn btn-primary'
+    = link_to t('.new_status'), new_admins_status_path, class: 'btn btn-primary'
+
+
+  %h2= t('.categories')
+
+  %table.table.table-hover
     %tr
       %th= t('admin.category.show.columns.name')
       %th= t('admin.category.show.columns.extras')
       %th
-      %th
-      %th
     - @categories.each do |category|
       %tr
-        %td= category.name
+        %td= link_to category.name, admins_category_path(category)
         %td= category.category_fields_names
-        %td= link_to t('crud.show'), admins_category_path(category)
-        %td= link_to t('crud.edit'), edit_admins_category_path(category)
-        %td= link_to t('crud.destroy'), admins_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }
-  %br/
-  = link_to t('admin.category.new.title'), new_admins_category_path
-  %br/
-  %h1 Estatus actuales
-  %table{border: "0"}
+        %td
+          .btn-group
+            = link_to edit_admins_category_path(category), class: 'btn btn-default' do
+              %span.glyphicon.glyphicon-wrench
+            = link_to admins_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+              %span.glyphicon.glyphicon-trash
+
+  %h2= t('.statuses')
+  %table.table.table-hover
     %tr
-      %th Nombre
-      %th Editar
+      %th= t('.name')
+      %th
     - @statuses.each do |status|
       %tr
         %td= status.name
-        %td= link_to "Editar", edit_admins_status_path(status)
-  %br/
-  = link_to "Nuevo estatus", new_admins_status_path
+        %td
+          = link_to edit_admins_status_path(status), class: 'btn btn-default' do
+            %span.glyphicon.glyphicon-wrench
+

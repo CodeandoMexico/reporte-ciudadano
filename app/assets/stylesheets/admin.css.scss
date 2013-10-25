@@ -3,6 +3,9 @@
     padding-left: 250px;
     transition: all 0.4s ease 0s;
   }
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+  font-family: Helvetica Neue, sans-serif;
 }
 
 #sidebar-wrapper {
@@ -68,6 +71,8 @@
 .content-header {
   height: 65px;
   line-height: 65px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eeeeee;
 
   h1 {
     margin: 0;
@@ -83,6 +88,11 @@
 
 .inset {
   padding: 20px;
+}
+
+.admin-actions {
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 @media (max-width:767px) {

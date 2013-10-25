@@ -231,6 +231,16 @@ es:
       new:
         title: "Iniciar sesión"
         submit: "Entrar"
+    categories:
+      index:
+        header: "Personalizar reportes"
+        page-description: "Personaliza el tipo de categorías y status con las cuales los reportes serán creados. Los usuarios
+                          seleccionarán las categorías al crear el reporte."
+        categories: "Categorías"
+        statuses: "Estatus actuales"
+        new_category: "Nueva categoría"
+        new_status: "Nuevo estatus"
+        name: "Nombre"
 
   crud:
     destroy: 'Eliminar'
