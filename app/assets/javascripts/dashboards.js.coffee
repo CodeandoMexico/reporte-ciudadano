@@ -12,3 +12,14 @@ jQuery ->
         console.log ids
   ).disableSelection()
 
+  $('body').on 'click', '.js-form-submitter', ->
+    $(@).closest('form').submit()
+    $(@).next('.js-save-box').removeClass('hide')
+
+  $('.edit_setting').bind('ajax:success', (e, data, status, xhr) ->
+    setTimeout (->
+      $('.js-save-box','.edit_setting' ).addClass('hide')
+    ), 500
+  ).bind 'ajax:error', (e, xhr, status, error) ->
+    $('.js-save-box', @).addClass('hide')
+

@@ -34,7 +34,12 @@ module ApplicationHelper
   end
 
   def current_theme
-    "theme_one"
+    ApplicationSettings::CssTheme.get.name
   end
+
+  def saving_spinner
+    content_tag :span, 'Guardando...', class: 'hide js-save-box loading'
+  end
+
 
 end

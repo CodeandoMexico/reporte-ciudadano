@@ -1,6 +1,12 @@
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
+.loading {
+  display: inline-block;
+  background: image-url('loader.gif') no-repeat center right;
+  padding-right: 20px;
+}
+
 .field_with_errors {
   @extend .has-error;
   @extend .control-group;

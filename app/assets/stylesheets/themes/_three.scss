@@ -1,13 +1,21 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+// Global values
+// --------------------------------------------------
+
 // Grays
 // -------------------------
 
-$ps-text:         #2C3D51;
-$ps-nav-bg:       #00509C;
-$ps-link-text:    #00509C;
-$ps-nav-text:     #EEEEEE;
-$ps-well-bg:      #EEEEEE;
-$ps-jumbotron-bg: #EEEEEE;
-$ps-bg:           #FFFFFF;
+$ps-text:         #484648;
+$ps-nav-bg:       #E32C38;
+$ps-link-text:    #09A857;
+$ps-nav-text:     #FBFAFA;
+$ps-well-bg:      #B0B2B4;
+$ps-jumbotron-bg: #B0B2B4;
+$ps-bg:           #FBFAFA;
 
 $gray-darker:            lighten(#000, 13.5%); // #222
 $gray-dark:              lighten(#000, 20%);   // #333
@@ -18,7 +26,7 @@ $gray-lighter:           lighten(#000, 93.5%); // #eee
 // Brand colors
 // -------------------------
 
-$brand-primary:         #00509C;
+$brand-primary:         #09A857;
 $brand-success:         #5cb85c;
 $brand-warning:         #f0ad4e;
 $brand-danger:          #d9534f;
@@ -39,7 +47,7 @@ $link-hover-color:      darken($link-color, 15%);
 // Typography
 // -------------------------
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  'Droid Sans', sans-serif;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 $font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 $font-family-base:        $font-family-sans-serif;
@@ -110,7 +118,7 @@ $btn-default-color:              #333;
 $btn-default-bg:                 #fff;
 $btn-default-border:             #ccc;
 
-$btn-primary-color:              contrast($brand-primary, black, white);
+$btn-primary-color:              #fff;
 $btn-primary-bg:                 $brand-primary;
 $btn-primary-border:             darken($btn-primary-bg, 5%);
 
@@ -364,19 +372,19 @@ $jumbotron-heading-color:        inherit;
 
 $state-warning-text:             #c09853;
 $state-warning-bg:               #fcf8e3;
-$state-warning-border:           darken($state-warning-bg, 3%);
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 3%);
 
 $state-danger-text:              #b94a48;
 $state-danger-bg:                #f2dede;
-$state-danger-border:            darken($state-danger-bg, 3%);
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 3%);
 
 $state-success-text:             #468847;
 $state-success-bg:               #dff0d8;
-$state-success-border:           darken($state-success-bg, 5%);
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%);
 
 $state-info-text:                #3a87ad;
 $state-info-bg:                  #d9edf7;
-$state-info-border:              darken($state-info-bg, 7%);
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%);
 
 
 // Tooltips
