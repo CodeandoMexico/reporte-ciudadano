@@ -6,8 +6,9 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
   %body
-    #wrapper
-      = render "admins/shared/sidebar"
+    #wrapper{class: ("is-logged-in" if admin_signed_in?) }
+      - if admin_signed_in?
+        = render "admins/shared/sidebar"
 
       #page-content-wrapper
         - flash.each do |name, msg|
