@@ -27,7 +27,7 @@
           .btn-group
             = link_to edit_admins_category_path(category), class: 'btn btn-default' do
               %span.glyphicon.glyphicon-wrench
-            = link_to admins_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+            = link_to admins_category_path(category), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, class: 'btn btn-danger' do
               %span.glyphicon.glyphicon-trash
 
   %h2= t('.statuses')

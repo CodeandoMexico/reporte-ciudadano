@@ -1,10 +1,13 @@
-%p#notice= notice
-%p
-  %b Nombre:
-  = @category.name
-%p
-  %b Campos adicionales:
+.content-header
+  %h1= t('.header', category_name: @category.name)
+
+.page-content.inset
+
+  .btn-group.admin-actions
+    = link_to t('.edit'), edit_admins_category_path(@category), class: 'btn btn-default'
+
+  %h3= t('.additional_fields')
   = @category.category_fields_names
-= link_to t('crud.edit'), edit_admins_category_path(@category)
-|
-\#{link_to t('navigation.back'), admins_categories_path}
+
+  %br
+  = link_to t('.back'), admins_categories_path

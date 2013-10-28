@@ -1,3 +1,10 @@
-%h1= t('admin.category.new.title')
-= render 'form'
-= link_to t('navigation.back'), admins_categories_path
+.content-header
+  %h1= t('.header')
+
+
+.page-content.inset
+  .row
+    .col-md-6
+      = render 'form'
+
+  = link_to t('.back'), admins_categories_path
