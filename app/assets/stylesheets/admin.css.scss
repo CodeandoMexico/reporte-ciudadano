@@ -3,9 +3,7 @@
     padding-left: 250px;
     transition: all 0.4s ease 0s;
   }
-  padding-left: 250px;
-  transition: all 0.4s ease 0s;
-  font-family: Helvetica Neue, sans-serif;
+  padding-left: 0;
 }
 
 #sidebar-wrapper {
@@ -98,7 +96,9 @@
 @media (max-width:767px) {
 
   #wrapper {
-    padding-left: 0;
+    &.is-logged-in {
+      padding-left: 0;
+    }
   }
 
   #sidebar-wrapper {
