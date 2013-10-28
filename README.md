@@ -1,24 +1,43 @@
-## Plataforma pública para la gestión de reportes de ADOSAPACO
+## Reporte Ciudadano
 
-Este es un fork de reporte-ciudadano y está en http://tuadosapaco.herokuapp.com/
+[![Build Status](https://travis-ci.org/CodeandoMexico/reporte-ciudadano.png)](https://travis-ci.org/CodeandoMexico/reporte-ciudadano)
 
-## Antecedentes: 
-El estado de Oaxaca carece de espacios, mecanismos y herramientas específicas para encausar la participación ciudadana ordenada y estratégica en la resolución de problemas públicos. El sector de agua y saneamiento no es la excepción, y actualmente el órgano operador para la capital del estado enfrenta dificultades financieras debido al bajo nivel de recuperación de cuotas. Además, no cuenta con herramientas tecnológicas que permitan a los ciudadanos reportar por internet cuando hay irregularidades en el suministro de agua, ordenar pipas de agua, reportar fugas de agua, reportar robo de medidor de agua, y realizar reportes o quejas en línea, entre otras situaciones. 
+Reporte Ciudadano es una plataforma de código abierto para la gestión de reportes ciudadanos. 
+Tiene como fin facilitar una herramienta base para gobiernos y organizaciones civiles en la administración 
+de la comunicación con la ciudadanía y los reportes de cuestiones en sus servicios públicos.
 
-## Propuesta: 
-Una plataforma abierta para la gestión pública de reportes ciudadanos. 
+[Sitio web](http://codeandomexico.github.io/reporte-ciudadano/) |
+[Wiki](https://github.com/CodeandoMexico/reporte-ciudadano/wiki) |
+[Bugtracker](https://github.com/CodeandoMexico/reporte-ciudadano/issues) |
+[Licencia](/LICENSE) |
+[Equipo](http://codeandomexico.github.io/reporte-ciudadano/team.html)
 
-## Funcionalidad: 
-1. El ciudadano levanta un reporte con los siguientes datos:  
-1.1 Categoría  
-1.2 Descripción   
-1.3 Ubicación  
-2. Los administradores pueden cambiar el status de los reportes.
-3. Los usuarios pueden comentar sobre un reporte y subir imágenes. 
-4. Los usuarios pueden votar por reportes.
+### Dependencias
+- Ruby 2.0
+- Rails 3.2
+- Bootstrap 3.0
+- Rspec 2.14
 
-## Licencia
+### ¿Dudas?
+
+Llevamos toda la conversación en nuestra sección de [issues](https://github.com/CodeandoMexico/reporte-ciudadano/issues), pero si deseas contactarnos, escríbenos a <equipo@codeandomexico.org>.
+
+### Contribuye
+
+Reporte Ciudadano es una iniciativa que requiere de muchas manos para llegar a ser la mejor solución de reportes 311.
+Buscamos que el proyecto sea un resultado colaborativo de la comunidad; puedes apoyarnos con [código](https://github.com/CodeandoMexico/reporte-ciudadano/pulls), [ideas](https://github.com/CodeandoMexico/reporte-ciudadano/issues), [traducciones](https://github.com/CodeandoMexico/reporte-ciudadano/tree/master/config/locales),
+[reportando bugs](https://github.com/CodeandoMexico/reporte-ciudadano/issues) y/o [replicando](http://codeandomexico.github.io/reporte-ciudadano/ejemplos.html) la aplicación en tu ciudad.
+
+### Equipo
+
+El proyecto ha sido iniciado por [Codeando México](https://github.com/CodeandoMexico?tab=members).
+El core team:
+- [Eddie Ruvalcaba](https://github.com/eddie-ruva)
+- [Juan Pablo Escobar](https://github.com/juanpabloe)
+- [Abraham Kuri](https://github.com/kurenn)
+
+### Licencia
 
 Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members)
 
-Disponible bajo la licencia MIT. Ver el documento LICENSE para más información.
+Disponible bajo la licencia MIT. Ver el documento [LICENSE](/LICENSE) para más información.
