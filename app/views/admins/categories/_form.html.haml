@@ -1,0 +1,32 @@
+= nested_form_for([:admins, @category], html: { class: 'form-horizontal' }) do |f|
+  - if @category.errors.any?
+    #error_explanation
+      %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@category.errors.count, "error")
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, t('.name'), class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_field :name, class: 'form-control'
+
+  = f.fields_for :messages do |message_form|
+    .well
+      .form-group
+        = message_form.label :content, t('.message'), class: 'col-lg-2 control-label'
+        .col-lg-10
+          = message_form.text_area :content, rows: '3', class: 'form-control'
+      .form-group
+        = message_form.label :status_id, t('.which_status'), class: 'col-lg-2 control-label'
+        .col-lg-10
+          = message_form.collection_select :status_id, Status.all, :id, :name, class: 'form-control'
+      = message_form.link_to_remove t('.remove_message'), class: 'btn btn-xs btn-danger'
+
+  .add-message
+    = f.link_to_add t('.add_message'), :messages, class: "btn btn-sm btn-default"
+
+
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit t('.save'), class: 'btn btn-primary'

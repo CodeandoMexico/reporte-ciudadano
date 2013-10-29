@@ -1,0 +1,10 @@
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-short-stacked' }) do |f|
+  %h2= t(".title")
+  = f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: 'Email'
+  = f.password_field :password, placeholder: 'Password', class: 'form-control bottom-field'
+  - if devise_mapping.rememberable?
+    %div
+      = f.label :remember_me do
+        = f.check_box :remember_me
+        Remember me
+  .actions= f.submit t(".submit"), class: 'btn btn-lg btn-primary btn-block'

@@ -1,0 +1,13 @@
+.content-header
+  %h1= t('.header', category_name: @category.name)
+
+.page-content.inset
+
+  .btn-group.admin-actions
+    = link_to t('.edit'), edit_admins_category_path(@category), class: 'btn btn-default'
+
+  %h3= t('.additional_fields')
+  = @category.category_fields_names
+
+  %br
+  = link_to t('.back'), admins_categories_path

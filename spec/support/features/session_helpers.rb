@@ -4,7 +4,7 @@ module SessionHelpers
     visit new_admin_session_path
     fill_in 'admin[email]',    with: admin.email
     fill_in 'admin[password]', with: opts[:password] || admin.password
-    click_button 'Registro'
+    click_button 'Entrar'
   end
 
   def sign_in_user(user, opts={})

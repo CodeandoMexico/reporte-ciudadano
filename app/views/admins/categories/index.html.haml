@@ -1,0 +1,44 @@
+.content-header
+  %h1= t('.header')
+
+.page-content.inset
+
+  .page-description
+    %blockquote
+      %i= t('.page-description')
+
+  .btn-group.admin-actions
+    = link_to t('.new_category'), new_admins_category_path, class: 'btn btn-primary'
+    = link_to t('.new_status'), new_admins_status_path, class: 'btn btn-primary'
+
+
+  %h2= t('.categories')
+
+  %table.table.table-hover
+    %tr
+      %th= t('admin.category.show.columns.name')
+      %th= t('admin.category.show.columns.extras')
+      %th
+    - @categories.each do |category|
+      %tr
+        %td= link_to category.name, admins_category_path(category)
+        %td= category.category_fields_names
+        %td
+          .btn-group
+            = link_to edit_admins_category_path(category), class: 'btn btn-default' do
+              %span.glyphicon.glyphicon-wrench
+            = link_to admins_category_path(category), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, class: 'btn btn-danger' do
+              %span.glyphicon.glyphicon-trash
+
+  %h2= t('.statuses')
+  %table.table.table-hover
+    %tr
+      %th= t('.name')
+      %th
+    - @statuses.each do |status|
+      %tr
+        %td= status.name
+        %td
+          = link_to edit_admins_status_path(status), class: 'btn btn-default' do
+            %span.glyphicon.glyphicon-wrench
+

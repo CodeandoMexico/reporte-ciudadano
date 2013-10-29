@@ -225,6 +225,38 @@ es:
           name: 'Tipo'
           extras: 'Campos adicionales'
         title: 'Categorías'
+
+  admins:
+    sessions:
+      new:
+        title: "Iniciar sesión"
+        submit: "Entrar"
+    categories:
+      index:
+        header: "Personalizar reportes"
+        page-description: "Personaliza el tipo de categorías y status con las cuales los reportes serán creados. Los usuarios
+                          seleccionarán las categorías al crear el reporte."
+        categories: "Categorías"
+        statuses: "Estatus actuales"
+        new_category: "Nueva categoría"
+        new_status: "Nuevo estatus"
+        name: "Nombre"
+      new:
+        header: 'Nueva categoría'
+        back: "Regresar al listado de categorías"
+      form:
+        name: 'Nombre'
+        message: "Mensaje"
+        which_status: "Estatus"
+        remove_message: "Borrar mensaje"
+        add_message: "Agregar mensaje"
+        save: "Guardar"
+      show:
+        header: "Categoría: %{category_name}"
+        edit: "Editar categoría"
+        additional_fields: "Campos adicionales"
+        back: "Regresar"
+
   crud:
     destroy: 'Eliminar'
     edit: 'Editar'
@@ -234,6 +266,8 @@ es:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
   navigation:
     back: 'Regresar'
+  alerts:
+    destroy_confirmation: "¿Estás seguro de eliminar?"
 
 
   flash:
