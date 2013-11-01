@@ -17,7 +17,7 @@ feature 'As an admin I can manage report categories' do
   scenario 'I can create a new category' do
     click_link 'Nueva categoría'
     fill_in 'category[name]', with: 'Categoría nueva'
-    click_button 'Crear categoría'
+    click_button 'Guardar'
     page.should have_content t('flash.category.created')
   end
 
@@ -25,14 +25,14 @@ feature 'As an admin I can manage report categories' do
     category = create(:category)
     visit edit_admins_category_path(category)
     fill_in 'category[name]', with: 'Categoría editada'
-    click_button 'Actualizar categoría'
+    click_button 'Guardar'
     page.should have_content t('flash.category.updated')
   end
 
   scenario 'I can show a category' do
-    category = create(:category, name: 'category')
+    category = create(:category, name: 'Nombre de categoria')
     visit admins_categories_path
-    click_link 'Mostrar'
+    click_link 'Nombre de categoria'
     current_path.should == admins_category_path(category)
     page.should have_content category.name
   end
@@ -40,7 +40,7 @@ feature 'As an admin I can manage report categories' do
   scenario 'I can delete a category' do
     category = create(:category, name: 'category')
     visit admins_categories_path
-    click_link 'Eliminar'
+    click_link 'destroy-btn'
     page.should_not have_content category.name
     page.should have_content t('flash.category.destroyed')
   end
@@ -54,10 +54,10 @@ feature 'As an admin I can manage report categories' do
     click_link 'Agregar mensaje'
     within '#new_category' do
       fill_in 'Mensaje', with: 'Mensaje para status abierto'
-      select 'Abierto', from: '¿Que estatus?'
+      select 'Abierto', from: 'Estatus'
     end
 
-    click_button 'Crear categoría'
+    click_button 'Guardar'
 
     page.should have_content t('flash.category.created')
   end
