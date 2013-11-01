@@ -131,3 +131,22 @@
 .add-message {
   margin-bottom: 30px;
 }
+
+.l-grid {
+  li {
+    float: left;
+    margin: 5px;
+  }
+}
+
+.dashboard-entity {
+  .dashboard-entity-header {
+    h2 {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .dashboard-entity-header-tools {
+      display: inline-block;
+    }
+  }
+}

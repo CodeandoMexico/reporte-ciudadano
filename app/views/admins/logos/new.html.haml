@@ -1,0 +1,5 @@
+%h1 Agregar nuevo logo
+.row
+  .col-md-6
+    = form_for [:admins, @logo], html: { class: 'form-horizontal', role: 'form'} do |f|
+      = render partial: 'form', locals: { f: f }
