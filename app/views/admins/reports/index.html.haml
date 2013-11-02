@@ -1,0 +1,55 @@
+.content-header
+  %h1 Reportes
+
+.page-content.inset
+
+  = search_form_for @search, url: admins_reports_path, method: :get, class: "filters form-inline" do |f|
+    .form-group
+      = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+    .form-group.form-group-separator
+      = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+    .form-group.form-group-separator
+      = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Categoría' }, class: 'form-control'
+    .form-group.form-group-separator
+      = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
+    .form-group
+      = submit_tag 'Buscar', class: "submit btn btn-primary btn-large"
+
+  .table-responsive
+    %table.table.sortable_table.table-striped
+      %thead
+        %tr
+          %th
+            ID
+            %i.icon-chevron-down
+          %th
+            Fecha de creación
+            %i.icon-chevron-down
+          %th
+            Categoria
+            %i.icon-chevron-down
+          %th
+            Descripción
+            %i.icon-chevron-down
+          %th
+            Estatus
+            %i.icon-chevron-down
+          %th
+            Votos
+            %i.icon-chevron-down
+          - if admin_signed_in?
+            %th
+              Eliminar
+      %tbody
+        - @reports.each do |report|
+          %tr
+            %td= link_to report.id, edit_admins_report_path(report)
+            %td= l report.created_at, format: :short
+            %td= link_to report.category.name, edit_admins_report_path(report)
+            %td= truncate report.description
+            %td= report.status
+            %td= report.votes_for
+            - if admin_signed_in?
+              %td= link_to 'Eliminar', admins_report_path(report), method: :delete
+
+  = paginate @reports

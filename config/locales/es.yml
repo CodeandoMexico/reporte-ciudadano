@@ -262,6 +262,13 @@ es:
       design:
         header: "Diseño"
         page-description: 'Personaliza el diseño de tu aplicación'
+    reports:
+      edit:
+        update_report: "Actualizar reporte"
+        category: "Categoría"
+        status: "Estatus"
+        update: "Actualizar"
+        user_info: "Info del usuario"
 
   crud:
     destroy: 'Eliminar'

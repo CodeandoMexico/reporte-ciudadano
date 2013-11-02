@@ -1,10 +1,67 @@
-= form_for [:admins, @report] do |f|
-  = f.object.errors.messages unless f.object.errors.empty?
+.content-header
+  %h1
+    = "Reporte ##{@report.id}"
+    = @report.category.name
 
-  .fields
-    = f.label :category_id, "Categoría"
-    = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_fields' }
-  %div#category_fields_container
-    = render @report.category.category_fields if @report.category?
+.page-content.inset
+  .report-show
+    .row
+      .col-md-8
+        .report-show-map#show-report-map{ "data-longitude" => @report.lng, "data-latitude" => @report.lat, "data-description" => report_info_window(@report), style: "width:100%; height: 200px;"}
+        .report-show-information
+          = "Dirección: #{@report.address}"
+          %p= "Hace #{time_ago_in_words(@report.created_at)}"
 
-  = f.submit 'Guardar', data: { message: 'Para crear reportes necesitas registrarte en el sistema.' }
+        .stream
+          .activity.start
+            Status: #{@report.status}
+            .date
+              %i.icon-time
+              = @report.created_at.strftime("%d/%m/%Y")
+
+          .activity.description
+            = image_tag @report.reporter[:avatar_url], class: "avatar"
+            %p= @report.description
+            %p.name= @report.reporter[:name]
+            .date
+              %i.icon-time
+              = @report.created_at.strftime("%d/%m/%Y")
+
+          = render @comments
+
+          .activity.form
+            = image_tag current_admin.avatar_url(:thumb), class: "avatar"
+            = form_for Comment.new do |f|
+              = f.text_area :content, placeholder: "Agrega tu comentario"
+              = f.file_field :image
+              = f.submit 'Comentar', class: "button green rounded submit"
+              = f.hidden_field :report_id, value: @report.id
+            .date
+              %i.icon-time
+              = Date.today.strftime("%d/%m/%Y")
+
+      %aside.col-md-4
+        .row.well
+          %h4= t('.user_info')
+          %p= @report.reportable.name
+          %p= @report.reportable.email
+          %p= "No. de cuenta: #{@report.reportable.id}"
+
+          - if @report.image.present?
+            .image.tight
+              = image_tag @report.image_url
+
+        .row.well
+          %h4= t('.update_report')
+          = form_for [:admins, @report] do |f|
+            = f.object.errors.messages unless f.object.errors.empty?
+
+            .form-group
+              = f.label :category_id, t('.category')
+              = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
+            .form-group
+              = f.label :status_id, t('.status')
+              = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm' }
+              = render @report.category.category_fields if @report.category?
+
+            = f.submit t('.update'), class: 'btn btn-primary'
