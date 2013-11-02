@@ -48,7 +48,7 @@
 
       .location
         %h3 Ubicacion
-        %p Nombre de la calle 541, Col. Este de Aqui, Oaxaca
+        %p= @report.address
 
       .votes
         .counter.js-votes_count
@@ -61,16 +61,3 @@
 
       .social
         = render 'shared/tweet'
-
-
-      - if admin_signed_in?
-        .row.admin
-          = form_for @report, url: update_status_admins_report_path(@report) do |f|
-            = f.submit "Actualizar", class: "button blue rounded submit"
-            .field
-              = f.label :status_id, "Estatus"
-              = f.collection_select :status_id, Status.all, :id, :name
-            .field
-              = f.label :message, "Mensaje"
-              = f.collection_select :message, @report.category.messages.with_status(@report.status_id), :content, :content
-              = hidden_field_tag 'report_id', @report.id

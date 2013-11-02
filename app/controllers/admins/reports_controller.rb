@@ -1,5 +1,11 @@
 class Admins::ReportsController < Admins::AdminController 
 
+  def index
+    @search = Report.unscoped.search(params[:q])
+    @reports = @search.result.page(params[:page])
+    flash.now[:notice] = "No se encontraron reportes." if @reports.empty?
+  end
+
   def update_status
     @report = Report.find(params[:id])
     @report.update_attribute :status_id, params[:report][:status_id] 
@@ -10,14 +16,15 @@ class Admins::ReportsController < Admins::AdminController
   def update
     @report = Report.find params[:id] 
     if @report.update_attributes params[:report]
-      redirect_to @report, flash: { success: "El reporte fue actualizado correctamente" }
+      redirect_to edit_admins_report_path(@report), flash: { success: "El reporte fue actualizado correctamente" }
     else
      render :edit 
     end
   end
 
   def edit
-    @report = Report.find params[:id] 
+    @report = Report.find params[:id]
+    @comments = @report.comments.order("comments.created_at ASC")
   end
 
   def destroy

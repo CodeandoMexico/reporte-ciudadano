@@ -23,7 +23,7 @@ ReporteCiudadano::Application.routes.draw do
     resources :statuses, except: [:destroy]
     resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create, :index]
-    resources :reports, only: [:edit, :update, :destroy] do 
+    resources :reports, only: [:index, :edit, :update, :destroy] do 
       member do
         put 'update_status'
       end
