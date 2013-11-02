@@ -6,9 +6,9 @@
 //= require jquery.timeago
 //= require jquery-timeago/locales/jquery.timeago.es
 //= require jquery-fileupload/basic
-//= require twitter/bootstrap/dropdown
-//= require twitter/bootstrap/collapse
-//= require twitter/bootstrap/modal
+//= require bootstrap/dropdown
+//= require bootstrap/collapse
+//= require bootstrap/modal
 //= require highcharts
 //= require highcharts/modules/exporting
 //= require jquery.tablesorter

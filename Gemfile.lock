@@ -29,9 +29,6 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.5)
-    anjlab-bootstrap-rails (3.0.0.2)
-      railties (>= 3.0)
-      sass (>= 3.2)
     arel (3.0.2)
     aws-s3 (0.6.3)
       builder
@@ -43,6 +40,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.0.0.rc2)
+      sass (~> 3.2)
     builder (3.0.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -322,10 +321,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  anjlab-bootstrap-rails (>= 3.0.0.0)
   aws-s3
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.0.0.0.rc)
   capybara
   carrierwave
   coffee-rails (~> 3.2.1)

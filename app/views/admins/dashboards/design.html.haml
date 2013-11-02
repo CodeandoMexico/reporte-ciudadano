@@ -26,3 +26,13 @@
               = image_tag logo.image.footer_thumb.url
     - else
       %p No hay logos
+
+%h2 Color scheme
+= form_for ApplicationSettings::CssTheme.get, url: css_theme_admins_application_settings_path(@default_css_theme, format: :json), remote: true, as: :setting do |f|
+  .row
+    - ApplicationSettings::CssTheme::THEMES.each do |theme|
+      .col-md-3
+        = f.label "name_#{theme}", class: 'text-center l-margin-l-bottom'  do
+          = image_tag "themes/#{theme}.png", class: 'l-margin-s-bottom l-blocky'
+          = f.radio_button :name, theme, class: 'js-form-submitter'
+          = saving_spinner

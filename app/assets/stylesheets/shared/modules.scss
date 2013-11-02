@@ -1,19 +1,12 @@
-@import "twitter/bootstrap";
-@import "compass/css3";
-@import "compass/utilities/general";
-@import "jquery.ui.datepicker";
-@import "jquery.fileupload-ui";
-@import "variables";
-@import "fonts";
-@import "font-awesome";
-@import "base";
-@import "layout";
-@import "reports";
-@import "admin";
-
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
+.loading {
+  display: inline-block;
+  background: image-url('loader.gif') no-repeat center right;
+  padding-right: 20px;
+}
+
 .field_with_errors {
   @extend .has-error;
   @extend .control-group;
@@ -75,7 +68,8 @@
   }
 
   &:hover {
-    color: $gray1;
+    text-decoration: none;
+    color: $gray-lighter;
   }
 
   .i-facebook {
@@ -180,7 +174,7 @@
 **  RECENT REPORTS LIST AT HOME
 ***************************************************/
 .recent-report-sum {
-  background: $gray1;
+  background: $gray-lighter;
   padding: 10px 10px 0px;
   margin-bottom: 10px;
   list-style: none;
@@ -252,7 +246,7 @@
       width: 20px;
       height: 20px;
       content: '';
-      background-color: #46a59f;
+      background-color: $brand-info;
       @include border-radius(50%);
       display: block;
       position: absolute;
@@ -332,7 +326,7 @@
     }
 
     &.start {
-      background-color: #46a59f;
+      background-color: $brand-info;
       color: #FFF;
       font-weight: bold;
     }
@@ -423,4 +417,39 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+/**************
+** Reports
+***************/
+
+#new-report-map{
+  height: 320px;
+}
+
+.table-header {
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.image.tight img {
+  width: 100%
+}
+
+span.address {
+  font-size: 12px;
+}
+
+.info_window_image {
+  margin-right: 5px;
+  float: left;
+}
+
+.info_window_description {
+  margin-top: 5px;
+}
+
+.info_window_link {
+  display: block;
 }

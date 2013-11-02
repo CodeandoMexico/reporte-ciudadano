@@ -36,9 +36,16 @@ ReporteCiudadano::Application.routes.draw do
         get 'design'
       end
     end
+
     resources :logos, except: :index do
       collection do
         post 'rearrange'
+      end
+    end
+
+    resources :application_settings do
+      collection do
+        put :css_theme
       end
     end
   end

@@ -35,7 +35,7 @@
             = form_for Comment.new do |f|
               = f.text_area :content, placeholder: "Agrega tu comentario"
               = f.file_field :image
-              = f.submit 'Comentar', class: "button green rounded submit"
+              = f.submit 'Comentar', class: "btn btn-primary"
               = f.hidden_field :report_id, value: @report.id
             .date
               %i.icon-time
