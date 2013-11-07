@@ -1,24 +1,24 @@
-.row.reports-stats{data: { total: Report.count } }
+.row.reports-stats{data: { total: ServiceRequest.count } }
   .col-md-4.col-sm-4.col-xs-4.reports-stats-block
-    = @all_reports
-    %h3.reports-stats-name Reportes realizados
+    = @all_service_requests
+    %h3.reports-stats-name Solicitudes realizadas
   .col-md-4.col-sm-4.col-xs-4.reports-stats-block.mid
-    = @open_reports
-    %h3.reports-stats-name Reportes abiertos
+    = @open_service_requests
+    %h3.reports-stats-name Solicitudes abiertas
   .col-md-4.col-sm-4.col-xs-4.reports-stats-block
-    = @closed_reports
-    %h3.reports-stats-name Reportes resueltos
+    = @closed_service_requests
+    %h3.reports-stats-name Solicitudes resueltas
 
 .row.blk-summary.l-margin-l-bottom
   .container
-    %h2.blk-summary-title Reportes por categoría
+    %h2.blk-summary-title Solicitudes por categoría
     #reports-chart{ data: { chart_data: @chart_data, category_names: @category_names, status_names: @status_names }}
 
 
 .row.blk-summary.l-margin-l-bottom
   .container
-    %h2.blk-summary-title Mapa de reportes
-    = form_tag reports_path, method: :get, class: "filters form-inline" do
+    %h2.blk-summary-title Mapa de solicitudes
+    = form_tag service_requests_path, method: :get, class: "filters form-inline" do
       .form-group
         = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
       .form-group.form-group-separator
@@ -34,36 +34,33 @@
     .map{data_position}
       #reports-map
 
-    = form_tag reports_path, method: :get, class: 'filters form-inline' do
+    = form_tag service_requests_path, method: :get, class: 'filters form-inline' do
       .form-group.form-group-separator
-        = text_field_tag 'report_ids', params[:report_ids], placeholder: 'No. Folio', class: 'form-control'
+        = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: 'No. Folio', class: 'form-control'
       .form-group
         = submit_tag 'Buscar', class: "btn btn-primary btn-block"
 
 .row.blk-summary.l-margin-l-bottom
   .container
-    %h2.blk-summary-title Reportes recientes
-    - unless @reports.empty?
-      - @reports.each do |report|
-        .recent-report-sum{id: "report_#{report.id}", data: { lat: report.lat, lng: report.lng, description: report_info_window(report) } }
+    %h2.blk-summary-title Solicitudes recientes
+    - unless @service_requests.empty?
+      - @service_requests.each do |service_request|
+        .recent-report-sum{id: "service_request_#{service_request.id}", data: { lat: service_request.lat, lng: service_request.lng, description: service_request_info_window(service_request) } }
           .row
             .col-md-2.recent-report-sum-date.l-margin-s-bottom
-              = timeago(report.created_at)
+              = timeago(service_request.created_at)
             .col-md-8.recent-report-sum-info.l-margin-s-bottom
               %h3.recent-report-title
-                = link_to report.category.name, report_url(report), class: "title"
-              %span.recent-report-address= " - #{report.address}" if report.address
-              %p= report.description
+                = link_to service_request.category.name, service_request_url(service_request), class: "title"
+              %span.recent-report-address= " - #{service_request.address}" if service_request.address
+              %p= service_request.description
             .col-md-2.text-center.l-margin-s-bottom
               .recent-report-counter.js-votes_count
-                = report.votes_for
+                = service_request.votes_for
               .js-vote_status
-                = vote_link_for(report)
-              - if admin_signed_in?
-                .pull-right.edit_admin_report
-                  = link_to "Editar reporte", edit_admins_report_path(report)
+                = vote_link_for(service_request)
     - else
-      .row.report
+      .row.service_request
 
 
-= paginate @reports
+= paginate @service_requests

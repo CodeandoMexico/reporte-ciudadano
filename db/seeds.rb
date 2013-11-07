@@ -1,7 +1,7 @@
 # Destroy'em all
 Admin.destroy_all
 Category.destroy_all
-Report.destroy_all
+ServiceRequest.destroy_all
 Status.destroy_all
 
 open_status = Status.create(name: "Abierto")
@@ -9,10 +9,8 @@ verification_status = Status.create(name: "Verificación")
 revision_status = Status.create(name: "Revisión")
 close_status = Status.create(name: "Cerrado")
 
-admin = Admin.new(email: "admin@admin.com", password: "oaxacker", password_confirmation: "oaxacker")
-admin.save
-admin.create_api_key
-juan = User.create(name: "Juan Villanueva", email: 'juan@juan.com', password: "12345678", password_confirmation: "12345678")
+admin = Admin.create(email: "admin@admin.com", password: "password", password_confirmation: "password")
+user = User.create(name: "Juan Villanueva", email: 'juan@juan.com', password: "userpassword", password_confirmation: "userpassword")
 
 status = Status.first
 
@@ -24,7 +22,7 @@ r = {
   lng: "-96.71955585479736",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 c = Category.create(name: "Ruptura de tuberia")
 r = {
@@ -34,7 +32,7 @@ r = {
   lng: "-96.72695453226964",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 c = Category.create(name: "Fuga")
 r = {
@@ -44,7 +42,7 @@ r = {
   lng: "-96.72539234161377",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 c = Category.create(name: "Desperdicio de agua")
 r = {
@@ -55,7 +53,7 @@ r = {
   lng: "-96.724253",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 c = Category.create(name: "Robo de alcantarilla")
 r = {
@@ -65,7 +63,7 @@ r = {
   lng: "-96.7195987701416",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 c = Category.create(name: "Alcantarilla en mal estado")
 r = {
@@ -75,7 +73,7 @@ r = {
   lng: "-96.71353313",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 c = Category.create(name: "Falla en el drenaje")
 r = {
@@ -85,7 +83,7 @@ r = {
   lng: "-96.72543525695801",
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 special_categories = []
 special_categories << Category.create(name: "Retraso del servicio")
@@ -102,7 +100,7 @@ r = {
   category_fields: ["Juan Villanueva", "1502819992"],
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 r = {
   category_id: special_categories[1].id,
@@ -112,7 +110,7 @@ r = {
   category_fields: ["Jose del Bosque", "9981427729"],
   status_id: status.id
 }
-juan.reports.build(r).save
+user.service_requests.build(r).save
 
 Category.all.each do |category|
   category.messages.create(status_id: open_status.id, content: 'Mensaje para status abierto')
@@ -122,10 +120,7 @@ Category.all.each do |category|
 end
 
 #Set address using Geocoder
-Report.all.each do |r|
+ServiceRequest.all.each do |r|
   geocoder = Geocoder.search("#{r.lat},#{r.lng}")
   r.update_attribute :address, geocoder[0].data["formatted_address"]
 end
-
-
-

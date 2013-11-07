@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   attr_accessible :name, :category_fields_attributes, :messages_attributes, :status
-  has_many :reports
+  has_many :service_requests
 
   validates :name, presence: true
 

@@ -12,7 +12,7 @@
     %h2
       = t('.logos')
     .dashboard-entity-header-tools
-      = link_to new_admins_logo_path, class: 'btn btn-primary btn-xs' do
+      = link_to new_admins_logo_path, class: 'btn btn-primary btn-xs', id: 'new-logo-btn' do
         %span.glyphicon.glyphicon-plus
       %small.dashboard-entity-help
         Arrastra los logos para determinar su posición

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025225801) do
+ActiveRecord::Schema.define(:version => 20131107170807) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -78,20 +78,20 @@ ActiveRecord::Schema.define(:version => 20131025225801) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "content",          :default => ""
-    t.integer  "report_id"
+    t.string   "content",            :default => ""
+    t.integer  "service_request_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.string   "ancestry"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "image"
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
-  add_index "comments", ["report_id"], :name => "index_comments_on_report_id"
+  add_index "comments", ["service_request_id"], :name => "index_comments_on_service_request_id"
 
   create_table "logos", :force => true do |t|
     t.string   "title"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20131025225801) do
   add_index "messages", ["category_id"], :name => "index_messages_on_category_id"
   add_index "messages", ["status_id"], :name => "index_messages_on_status_id"
 
-  create_table "reports", :force => true do |t|
+  create_table "service_requests", :force => true do |t|
     t.string   "description",     :default => ""
     t.integer  "category_id"
     t.string   "lat",             :default => "-96.724253"
@@ -122,15 +122,15 @@ ActiveRecord::Schema.define(:version => 20131025225801) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "image"
-    t.string   "reportable_type"
-    t.integer  "reportable_id"
+    t.string   "requester_type"
+    t.integer  "requester_id"
     t.text     "address"
     t.integer  "status_id",       :default => 1
   end
 
-  add_index "reports", ["category_id"], :name => "index_reports_on_category_id"
-  add_index "reports", ["reportable_id", "reportable_type"], :name => "index_reports_on_reportable_id_and_reportable_type"
-  add_index "reports", ["status_id"], :name => "index_reports_on_status_id"
+  add_index "service_requests", ["category_id"], :name => "index_service_requests_on_category_id"
+  add_index "service_requests", ["requester_id", "requester_type"], :name => "index_service_requests_on_request_id_and_requester_type"
+  add_index "service_requests", ["status_id"], :name => "index_service_requests_on_status_id"
 
   create_table "statuses", :force => true do |t|
     t.string   "name"

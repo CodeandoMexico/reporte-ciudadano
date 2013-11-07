@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'As an admin I can manage report categories' do
+feature 'As an admin I can manage requests categories' do
 
   let(:admin) { create(:admin) }
 

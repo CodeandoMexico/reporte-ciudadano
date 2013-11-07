@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Report < ActiveRecord::Base
+class ServiceRequest < ActiveRecord::Base
   attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status_id, :address
 
   attr_accessor :message
@@ -8,7 +8,7 @@ class Report < ActiveRecord::Base
   validate :category_extra_fields
 
   belongs_to :category
-  belongs_to :reportable, polymorphic: true
+  belongs_to :requester, polymorphic: true
   belongs_to :status
   has_many :comments
 
@@ -56,20 +56,20 @@ class Report < ActiveRecord::Base
   end
 
   def self.filter_by_search(params)
-    reports = Report.order('created_at DESC')
-    reports = reports.on_start_date(params[:start_date]) unless params[:start_date].blank?
-    reports = reports.on_finish_date(params[:end_date]) unless params[:end_date].blank?
-    reports = reports.with_status(params[:status_id]) unless params[:status_id].blank?
-    reports = reports.on_category(params[:category_id]) unless params[:category_id].blank?
-    reports = reports.find_by_ids(params[:report_ids]) unless params[:report_ids].blank?
-    reports
+    requests = ServiceRequest.order('created_at DESC')
+    requests = requests.on_start_date(params[:start_date]) unless params[:start_date].blank?
+    requests = requests.on_finish_date(params[:end_date]) unless params[:end_date].blank?
+    requests = requests.with_status(params[:status_id]) unless params[:status_id].blank?
+    requests = requests.on_category(params[:category_id]) unless params[:category_id].blank?
+    requests = requests.find_by_ids(params[:service_request_ids]) unless params[:service_request_ids].blank?
+    requests
   end
 
-  def reporter
+  def service_requester
     if self.anonymous?
       { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' }
     else
-      { avatar_url: self.reportable.avatar_url, name: self.reportable.name }
+      { avatar_url: self.requester.avatar_url, name: self.requester.name }
     end
   end
 
@@ -85,7 +85,7 @@ class Report < ActiveRecord::Base
   def self.chart_data
     query = Status.all.map { |status| "count(case when status_id = '#{status.id}' then 1 end) as status_#{status.id}" }.join(",")
     select_clause = query.blank? ? "category_id" : "category_id, #{query}"
-    Report.unscoped.select(select_clause).group(:category_id).order('category_id')
+    ServiceRequest.unscoped.select(select_clause).group(:category_id).order('category_id')
   end
 
 

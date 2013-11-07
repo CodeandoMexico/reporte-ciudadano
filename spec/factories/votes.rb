@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :vote do
-    association :voteable, factory: :report
+    association :voteable, factory: :service_request
     association :voter, factory: :user
   end
 end

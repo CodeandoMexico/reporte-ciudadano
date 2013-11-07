@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
 
   has_many :authentications, dependent: :destroy
-  has_many :reports, as: :reportable
+  has_many :service_requests, as: :requester
   has_many :comments, as: :commentable
 
   acts_as_voter

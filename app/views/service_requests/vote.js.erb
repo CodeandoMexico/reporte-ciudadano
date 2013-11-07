@@ -1,0 +1,2 @@
+$('#service_request_<%= @service_request.id %> .js-votes_count').html(<%= @service_request.votes_for %>);
+$('#service_request_<%= @service_request.id %> .js-vote_status').html('<%=j content_tag :span, 'Votaste', class: 'btn btn-success' %>');

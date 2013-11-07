@@ -1,4 +1,4 @@
-= form_for @report, html: {class: "form-horizontal", role: 'form'} do |f|
+= form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
 
   .form-group
     = f.label :image, "Imágen", class: 'col-lg-2 control-label'
@@ -21,7 +21,7 @@
     .col-lg-10
       = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_form-group form-control' }
       %div#category_form-group_container
-        = render @report.category.category_form-group if @report.category?
+        = render @service_request.category.category_form-group if @service_request.category?
 
   .form-group
     .col-lg-offset-2.col-lg-10
@@ -35,4 +35,4 @@
 
   .form-group
     .col-lg-offset-2.col-lg-10
-      = f.submit 'Guardar', class: "#{(current_user ? '' : 'blocked')} btn btn-primary", data: { message: 'Para crear reportes necesitas registrarte en el sistema.' }
+      = f.submit 'Guardar', class: "#{(current_user ? '' : 'blocked')} btn btn-primary", data: { message: 'Para crear solicitudes necesitas registrarte en el sistema.' }

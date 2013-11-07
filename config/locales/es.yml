@@ -235,9 +235,9 @@ es:
       new_logo: "Agregar logo"
     categories:
       index:
-        header: "Personalizar reportes"
-        page-description: "Personaliza el tipo de categorías y status con las cuales los reportes serán creados. Los usuarios
-                          seleccionarán las categorías al crear el reporte."
+        header: "Personalizar solicitudes de servicio"
+        page-description: "Personaliza el tipo de categorías y status con las cuales las solicitudes de servicio serán creados. Los usuarios
+                          seleccionarán las categorías al crear la solicitud de servicio."
         categories: "Categorías"
         statuses: "Estatus actuales"
         new_category: "Nueva categoría"
@@ -262,9 +262,9 @@ es:
       design:
         header: "Diseño"
         page-description: 'Personaliza el diseño de tu aplicación'
-    reports:
+    service_requests:
       edit:
-        update_report: "Actualizar reporte"
+        update_service_request: "Actualizar solicitud de servicio"
         category: "Categoría"
         status: "Estatus"
         update: "Actualizar"

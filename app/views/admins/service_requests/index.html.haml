@@ -1,9 +1,9 @@
 .content-header
-  %h1 Reportes
+  %h1 Solicitudes de servicio
 
 .page-content.inset
 
-  = search_form_for @search, url: admins_reports_path, method: :get, class: "filters form-inline" do |f|
+  = search_form_for @search, url: admins_service_requests_path, method: :get, class: "filters form-inline" do |f|
     .form-group
       = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
     .form-group.form-group-separator
@@ -41,15 +41,15 @@
             %th
               Eliminar
       %tbody
-        - @reports.each do |report|
+        - @service_requests.each do |service_request|
           %tr
-            %td= link_to report.id, edit_admins_report_path(report)
-            %td= l report.created_at, format: :short
-            %td= link_to report.category.name, edit_admins_report_path(report)
-            %td= truncate report.description
-            %td= report.status
-            %td= report.votes_for
+            %td= link_to service_request.id, edit_admins_service_request_path(service_request)
+            %td= l service_request.created_at, format: :short
+            %td= link_to service_request.category.name, edit_admins_service_request_path(service_request)
+            %td= truncate service_request.description
+            %td= service_request.status
+            %td= service_request.votes_for
             - if admin_signed_in?
-              %td= link_to 'Eliminar', admins_report_path(report), method: :delete
+              %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
 
-  = paginate @reports
+  = paginate @service_requests

@@ -17,7 +17,7 @@ describe Admin do
   end
   context 'associations' do
     it { should have_many :comments }
-    it { should have_many :reports }
+    it { should have_many :service_requests }
     it { should have_one :api_key }
   end
   context 'methods' do

@@ -11,7 +11,7 @@ describe Comment do
   end
   context 'attributes' do
     it { should respond_to :content }
-    it { should respond_to :report }
+    it { should respond_to :service_request }
     it { should respond_to :image }
     it { should respond_to :commentable }
     it { should respond_to :ancestry }
@@ -19,6 +19,6 @@ describe Comment do
   end
   context 'associations' do
     it { should belong_to :commentable }
-    it { should belong_to :report }
+    it { should belong_to :service_request }
   end
 end

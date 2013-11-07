@@ -1,31 +1,31 @@
 .content-header
   %h1
-    = "Reporte ##{@report.id}"
-    = @report.category.name
+    = "Solicitud ##{@service_request.id}"
+    = @service_request.category.name
 
 .page-content.inset
   .report-show
     .row
       .col-md-8
-        .report-show-map#show-report-map{ "data-longitude" => @report.lng, "data-latitude" => @report.lat, "data-description" => report_info_window(@report), style: "width:100%; height: 200px;"}
+        .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 200px;"}
         .report-show-information
-          = "Dirección: #{@report.address}"
-          %p= "Hace #{time_ago_in_words(@report.created_at)}"
+          = "Dirección: #{@service_request.address}"
+          %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
 
         .stream
           .activity.start
-            Status: #{@report.status}
+            Status: #{@service_request.status}
             .date
               %i.icon-time
-              = @report.created_at.strftime("%d/%m/%Y")
+              = @service_request.created_at.strftime("%d/%m/%Y")
 
           .activity.description
-            = image_tag @report.reporter[:avatar_url], class: "avatar"
-            %p= @report.description
-            %p.name= @report.reporter[:name]
+            = image_tag @service_request.service_requester[:avatar_url], class: "avatar"
+            %p= @service_request.description
+            %p.name= @service_request.service_requester[:name]
             .date
               %i.icon-time
-              = @report.created_at.strftime("%d/%m/%Y")
+              = @service_request.created_at.strftime("%d/%m/%Y")
 
           = render @comments
 
@@ -35,7 +35,7 @@
               = f.text_area :content, placeholder: "Agrega tu comentario"
               = f.file_field :image
               = f.submit 'Comentar', class: "button green rounded submit"
-              = f.hidden_field :report_id, value: @report.id
+              = f.hidden_field :service_request_id, value: @service_request.id
             .date
               %i.icon-time
               = Date.today.strftime("%d/%m/%Y")
@@ -43,17 +43,17 @@
       %aside.col-md-4
         .row.well
           %h4= t('.user_info')
-          %p= @report.reportable.name
-          %p= @report.reportable.email
-          %p= "No. de cuenta: #{@report.reportable.id}"
+          %p= @service_request.requester.name
+          %p= @service_request.requester.email
+          %p= "No. de cuenta: #{@service_request.requester.id}"
 
-          - if @report.image.present?
+          - if @service_request.image.present?
             .image.tight
-              = image_tag @report.image_url
+              = image_tag @service_request.image_url
 
         .row.well
-          %h4= t('.update_report')
-          = form_for [:admins, @report] do |f|
+          %h4= t('.update_service_request')
+          = form_for [:admins, @service_request] do |f|
             = f.object.errors.messages unless f.object.errors.empty?
 
             .form-group
@@ -62,6 +62,6 @@
             .form-group
               = f.label :status_id, t('.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm' }
-              = render @report.category.category_fields if @report.category?
+              = render @service_request.category.category_fields if @service_request.category?
 
             = f.submit t('.update'), class: 'btn btn-primary'

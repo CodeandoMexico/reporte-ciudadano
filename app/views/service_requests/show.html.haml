@@ -1,0 +1,63 @@
+.report-show{id: "service_request_#{@service_request.id}"}
+  .row
+    .col-md-8
+      %h2.report-show-title
+        = "##{@service_request.id}"
+        = @service_request.category.name
+      .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 300px;"}
+      .report-show-information
+        = "Hace #{time_ago_in_words(@service_request.created_at)}"
+
+
+
+      .stream
+        .activity.start
+          Status: #{@service_request.status}
+          .date
+            %i.icon-time
+            = @service_request.created_at.strftime("%d/%m/%Y")
+
+        .activity.description
+          = image_tag @service_request.service_requester[:avatar_url], class: "avatar"
+          %p= @service_request.description
+          %p.name= @service_request.service_requester[:name]
+          .date
+            %i.icon-time
+            = @service_request.created_at.strftime("%d/%m/%Y")
+
+
+        = render @comments
+
+        - user = current_user || current_admin
+        - if user
+          .activity.form
+            = image_tag user.avatar_url(:thumb), class: "avatar"
+            = form_for Comment.new do |f|
+              = f.text_area :content, placeholder: "Agrega tu comentario"
+              = f.file_field :image
+              = f.submit 'Comentar', class: "btn btn-primary"
+              = f.hidden_field :service_request_id, value: @service_request.id
+            .date
+              %i.icon-time
+              = Date.today.strftime("%d/%m/%Y")
+
+    %aside.col-md-4
+      - if @service_request.image.present?
+        .image.tight
+          = image_tag @service_request.image_url
+
+      .location
+        %h3 Ubicacion
+        %p= @service_request.address
+
+      .votes
+        .counter.js-votes_count
+          = @service_request.votes_for
+        .js-vote_status
+          = vote_link_for(@service_request)
+        .status
+          %i.icon-flag
+          = @service_request.status
+
+      .social
+        = render 'shared/tweet'

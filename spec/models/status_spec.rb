@@ -13,7 +13,7 @@ describe Status do
     it { should respond_to :name }
   end
   context 'associations' do
-    it { should have_many :reports }
+    it { should have_many :service_requests }
     it { should have_many :messages }
   end
   context 'methods' do
