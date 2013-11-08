@@ -7,6 +7,8 @@ class ServiceRequest < ActiveRecord::Base
   validates :service_id, presence: true
   validate :service_extra_fields
 
+  #TODO: A Service Request must have a Status. Create a filter that ensures this.
+
   belongs_to :service
   belongs_to :requester, polymorphic: true
   belongs_to :status
