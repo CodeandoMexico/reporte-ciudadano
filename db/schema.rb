@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107170807) do
+ActiveRecord::Schema.define(:version => 20131107191933) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -64,19 +64,6 @@ ActiveRecord::Schema.define(:version => 20131107170807) do
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "category_fields", :force => true do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.string   "content",            :default => ""
     t.integer  "service_request_id"
@@ -103,34 +90,47 @@ ActiveRecord::Schema.define(:version => 20131107170807) do
 
   create_table "messages", :force => true do |t|
     t.text     "content"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "service_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "status_id"
   end
 
-  add_index "messages", ["category_id"], :name => "index_messages_on_category_id"
+  add_index "messages", ["service_id"], :name => "index_messages_on_service_id"
   add_index "messages", ["status_id"], :name => "index_messages_on_status_id"
 
+  create_table "service_fields", :force => true do |t|
+    t.string   "name"
+    t.integer  "service_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "service_requests", :force => true do |t|
-    t.string   "description",     :default => ""
-    t.integer  "category_id"
-    t.string   "lat",             :default => "-96.724253"
-    t.string   "lng",             :default => "17.065593"
-    t.boolean  "anonymous",       :default => false
-    t.text     "category_fields", :default => "{}"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.string   "description",    :default => ""
+    t.integer  "service_id"
+    t.string   "lat",            :default => "-96.724253"
+    t.string   "lng",            :default => "17.065593"
+    t.boolean  "anonymous",      :default => false
+    t.text     "service_fields", :default => "{}"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "image"
     t.string   "requester_type"
     t.integer  "requester_id"
     t.text     "address"
-    t.integer  "status_id",       :default => 1
+    t.integer  "status_id",      :default => 1
   end
 
-  add_index "service_requests", ["category_id"], :name => "index_service_requests_on_category_id"
   add_index "service_requests", ["requester_id", "requester_type"], :name => "index_service_requests_on_request_id_and_requester_type"
+  add_index "service_requests", ["service_id"], :name => "index_service_requests_on_service_id"
   add_index "service_requests", ["status_id"], :name => "index_service_requests_on_status_id"
+
+  create_table "services", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "statuses", :force => true do |t|
     t.string   "name"

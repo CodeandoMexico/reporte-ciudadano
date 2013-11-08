@@ -1,0 +1,7 @@
+= label_tag "service_request[service_fields][#{service_field}]", service_field.name.capitalize
+%br
+- if @service_request.nil?
+  = text_field_tag "service_request[service_fields][#{service_field}]"
+- else
+  = text_field_tag "service_request[service_fields][#{service_field}]", @service_request.service_fields[service_field.to_s]
+%br

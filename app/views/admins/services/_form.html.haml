@@ -1,9 +1,9 @@
-= nested_form_for([:admins, @category], html: { class: 'form-horizontal' }) do |f|
-  - if @category.errors.any?
+= nested_form_for([:admins, @service], html: { class: 'form-horizontal' }) do |f|
+  - if @service.errors.any?
     #error_explanation
-      %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@category.errors.count, "error")
+      %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@service.errors.count, "error")
       %ul
-        - @category.errors.full_messages.each do |msg|
+        - @service.errors.full_messages.each do |msg|
           %li= msg
 
   .form-group

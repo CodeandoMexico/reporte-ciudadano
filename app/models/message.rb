@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
   attr_accessible :content, :status_id
 
-  belongs_to :category
+  belongs_to :service
   belongs_to :status
 
   scope :with_status, lambda { |status_id|

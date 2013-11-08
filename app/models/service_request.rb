@@ -1,18 +1,18 @@
 #encoding: utf-8
 class ServiceRequest < ActiveRecord::Base
-  attr_accessible :anonymous, :category_id, :description, :lat, :lng, :category_fields, :image, :status_id, :address
+  attr_accessible :anonymous, :service_id, :description, :lat, :lng, :service_fields, :image, :status_id, :address
 
   attr_accessor :message
 
-  validates :category_id, presence: true
-  validate :category_extra_fields
+  validates :service_id, presence: true
+  validate :service_extra_fields
 
-  belongs_to :category
+  belongs_to :service
   belongs_to :requester, polymorphic: true
   belongs_to :status
   has_many :comments
 
-  serialize :category_fields, JSON
+  serialize :service_fields, JSON
 
   mount_uploader :image, ImageUploader
   acts_as_voteable
@@ -31,8 +31,8 @@ class ServiceRequest < ActiveRecord::Base
     where(status_id: status_id) 
   }
 
-  scope :on_category, lambda { |category| 
-    where(category_id: category) 
+  scope :on_service, lambda { |service|
+    where(service_id: service)
   }
 
   scope :find_by_ids, lambda { |ids|
@@ -51,8 +51,8 @@ class ServiceRequest < ActiveRecord::Base
     where(status: 1)
   }
 
-  def category?
-    self.category.present? 
+  def service?
+    self.service.present?
   end
 
   def self.filter_by_search(params)
@@ -60,7 +60,7 @@ class ServiceRequest < ActiveRecord::Base
     requests = requests.on_start_date(params[:start_date]) unless params[:start_date].blank?
     requests = requests.on_finish_date(params[:end_date]) unless params[:end_date].blank?
     requests = requests.with_status(params[:status_id]) unless params[:status_id].blank?
-    requests = requests.on_category(params[:category_id]) unless params[:category_id].blank?
+    requests = requests.on_service(params[:service_id]) unless params[:service_id].blank?
     requests = requests.find_by_ids(params[:service_request_ids]) unless params[:service_request_ids].blank?
     requests
   end
@@ -84,15 +84,15 @@ class ServiceRequest < ActiveRecord::Base
 
   def self.chart_data
     query = Status.all.map { |status| "count(case when status_id = '#{status.id}' then 1 end) as status_#{status.id}" }.join(",")
-    select_clause = query.blank? ? "category_id" : "category_id, #{query}"
-    ServiceRequest.unscoped.select(select_clause).group(:category_id).order('category_id')
+    select_clause = query.blank? ? "service_id" : "service_id, #{query}"
+    ServiceRequest.unscoped.select(select_clause).group(:service_id).order('service_id')
   end
 
 
   private
 
-  def category_extra_fields
-    self.category_fields.each do |k,v|
+  def service_extra_fields
+    self.service_fields.each do |k,v|
       errors.add k.to_sym, "must be present" if v.blank?
     end
   end

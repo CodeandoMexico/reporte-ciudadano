@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     @closed_service_requests = ServiceRequest.closed.count
     @all_service_requests = ServiceRequest.count
     @chart_data = ServiceRequest.chart_data.to_json
-    @category_names = Category.order('id').pluck(:name).to_json 
+    @service_names = Service.order('id').pluck(:name).to_json
     @status_names = Status.pluck(:name).to_json 
     flash.now[:notice] = "No se encontraron solicitudes de servicio." if @service_requests.empty?
   end

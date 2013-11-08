@@ -14,12 +14,12 @@ describe ServiceRequest do
     it { should respond_to :description }
     it { should respond_to :lat }
     it { should respond_to :lng }
-    it { should respond_to :category_fields }
+    it { should respond_to :service_fields }
     it { should respond_to :address }
     it { should respond_to :message }
   end
   context 'associations' do
-    it { should belong_to :category }
+    it { should belong_to :service }
     it { should belong_to :requester }
     it { should belong_to :status }
     it { should have_many :comments }
@@ -43,8 +43,8 @@ describe ServiceRequest do
       expect(ServiceRequest.on_finish_date(1.days.ago)).to eq([service_requests[1], service_requests[2]])
     end
 
-    it '.on_category returns service_requests related to certain category' do
-      categorized_service_requests = ServiceRequest.on_category(service_requests.first.category)
+    it '.on_service returns service_requests related to certain service' do
+      categorized_service_requests = ServiceRequest.on_service(service_requests.first.service)
       expect(categorized_service_requests).to eq([service_requests.first])
     end
 
@@ -57,8 +57,8 @@ describe ServiceRequest do
   context :methods do
     let(:service_request) { create(:service_request) }
 
-    it '#category? tells me if my service_request has a category' do
-      expect(service_request.category?).to be_true
+    it '#service? tells me if my service_request has a service' do
+      expect(service_request.service?).to be_true
     end
 
     it '#service_requester returns a hash with the avatar_url and name from the service_requester' do
@@ -76,9 +76,9 @@ describe ServiceRequest do
       expect(service_request.date).to eq(service_request.created_at.to_date)
     end
 
-    it '.chart_data returns service_requests grouped by category' do
+    it '.chart_data returns service_requests grouped by service' do
       data = ServiceRequest.chart_data
-      expect(data.to_a.count).to eq(Category.count)
+      expect(data.to_a.count).to eq(Service.count)
     end
 
   end

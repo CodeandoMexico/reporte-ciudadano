@@ -15,23 +15,23 @@ feature 'As an admin I can manage service requests' do
       click_link 'Solicitudes'
     end
     current_path == admins_service_requests_path
-    page.should have_content service_requests.first.category.name
-    page.should have_content service_requests[1].category.name
-    page.should have_content service_requests.last.category.name
+    page.should have_content service_requests.first.service.name
+    page.should have_content service_requests[1].service.name
+    page.should have_content service_requests.last.service.name
   end
 
   scenario 'I can go to admin view for a service request' do
     visit admins_service_requests_path
-    click_link service_request.category.name
+    click_link service_request.service.name
 
     current_path == edit_admins_service_request_path(service_request)
-    page.should have_content service_request.category.name
+    page.should have_content service_request.service.name
     page.should have_content service_request.status
   end
 
   scenario 'I can see the requester full name and email' do
     visit admins_service_requests_path
-    click_link service_request.category.name
+    click_link service_request.service.name
 
     current_path == edit_admins_service_request_path(service_request)
     page.should have_content service_request.requester.name
@@ -49,15 +49,15 @@ feature 'As an admin I can manage service requests' do
     page.should have_content "Status: #{statuses.first.name}"
   end
 
-  scenario 'I can update the category of a service request' do
-    categories = create_list(:category, 2)
+  scenario 'I can update the service of a service request' do
+    services = create_list(:service, 2)
     visit edit_admins_service_request_path(service_request)
     within '.edit_service_request' do
-      select categories.last.name, from: 'service_request[category_id]'
+      select services.last.name, from: 'service_request[service_id]'
     end
     click_button 'Actualizar'
     current_path.should == edit_admins_service_request_path(service_request)
-    page.should have_content categories.last.name
+    page.should have_content services.last.name
   end
 
   scenario 'I can delete a service request' do

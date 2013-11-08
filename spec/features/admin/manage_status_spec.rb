@@ -33,7 +33,7 @@ feature 'Managing statuses' do
 
   scenario 'As an admin I can see a list of statuses' do
     first, second, third = create_list(:status, 3)
-    visit admins_categories_path
+    visit admins_services_path
     page.should have_content(first.name)
     page.should have_content(second.name)
     page.should have_content(third.name)

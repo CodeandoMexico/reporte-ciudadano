@@ -9,7 +9,7 @@ feature 'Registration integration' do
   end
 
   scenario 'As an admin I can see an edit link' do
-    visit admins_categories_path
+    visit admins_services_path
     page.should have_content 'Editar perfil'
   end
 

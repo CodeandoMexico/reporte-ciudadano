@@ -1,7 +1,7 @@
 .content-header
   %h1
     = "Solicitud ##{@service_request.id}"
-    = @service_request.category.name
+    = @service_request.service.name
 
 .page-content.inset
   .report-show
@@ -57,11 +57,11 @@
             = f.object.errors.messages unless f.object.errors.empty?
 
             .form-group
-              = f.label :category_id, t('.category')
-              = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
+              = f.label :service_id, t('.service')
+              = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
             .form-group
               = f.label :status_id, t('.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm' }
-              = render @service_request.category.category_fields if @service_request.category?
+              = render @service_request.service.service_fields if @service_request.service?
 
             = f.submit t('.update'), class: 'btn btn-primary'

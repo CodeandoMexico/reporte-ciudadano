@@ -9,10 +9,10 @@ describe Message do
   context 'attributes' do
     it { should respond_to :content }
     it { should respond_to :status }
-    it { should respond_to :category }
+    it { should respond_to :service }
   end
   context 'associations' do
-    it { should belong_to :category }
+    it { should belong_to :service }
     it { should belong_to :status }
   end
   context 'scopes' do

@@ -200,13 +200,13 @@ es:
     errors:
       <<: *errors
     models:
-      category: 'categoría'
+      service: 'servicio'
     attributes:
       admin:
         email: 'Correo'
         password: 'Contraseña'
         remember_me: 'Recordarme'
-      category:
+      service:
         name: 'nombre'
       comment:
         content: "Contenido"
@@ -215,16 +215,16 @@ es:
   admin:
     new:
       title: 'Registro'
-    category:
+    service:
       edit:
-        title: 'Editar categoría'
+        title: 'Editar servicio'
       new:
-        title: 'Nueva categoría'
+        title: 'Nuevo servicio'
       show:
         columns:
           name: 'Tipo'
           extras: 'Campos adicionales'
-        title: 'Categorías'
+        title: 'Servicios'
 
   admins:
     sessions:
@@ -233,19 +233,19 @@ es:
         submit: "Entrar"
     design:
       new_logo: "Agregar logo"
-    categories:
+    services:
       index:
         header: "Personalizar solicitudes de servicio"
-        page-description: "Personaliza el tipo de categorías y status con las cuales las solicitudes de servicio serán creados. Los usuarios
-                          seleccionarán las categorías al crear la solicitud de servicio."
-        categories: "Categorías"
+        page-description: "Personaliza el tipo de servicios y status con las cuales las solicitudes de servicio serán creados. Los usuarios
+                          seleccionarán las servicios al crear la solicitud de servicio."
+        services: "Servicios"
         statuses: "Estatus actuales"
-        new_category: "Nueva categoría"
+        new_service: "Nuevo servicio"
         new_status: "Nuevo estatus"
         name: "Nombre"
       new:
-        header: 'Nueva categoría'
-        back: "Regresar al listado de categorías"
+        header: 'Nuevo servicio'
+        back: "Regresar al listado de servicios"
       form:
         name: 'Nombre'
         message: "Mensaje"
@@ -254,8 +254,8 @@ es:
         add_message: "Agregar mensaje"
         save: "Guardar"
       show:
-        header: "Categoría: %{category_name}"
-        edit: "Editar categoría"
+        header: "Servicio: %{service_name}"
+        edit: "Editar servicio"
         additional_fields: "Campos adicionales"
         back: "Regresar"
     dashboards:
@@ -265,7 +265,7 @@ es:
     service_requests:
       edit:
         update_service_request: "Actualizar solicitud de servicio"
-        category: "Categoría"
+        service: "Servicio"
         status: "Estatus"
         update: "Actualizar"
         user_info: "Info del usuario"
@@ -284,10 +284,10 @@ es:
 
 
   flash:
-    category:
-      created: 'Categoría creada correctamente.'
-      updated: 'Categoría actualizada correctamente.'
-      destroyed: 'Categoría ha sido eliminada.'
+    service:
+      created: 'Servicio creada correctamente.'
+      updated: 'Servicio actualizada correctamente.'
+      destroyed: 'Servicio ha sido eliminada.'
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'

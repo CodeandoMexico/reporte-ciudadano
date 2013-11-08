@@ -8,26 +8,26 @@
       %i= t('.page-description')
 
   .btn-group.admin-actions
-    = link_to t('.new_category'), new_admins_category_path, class: 'btn btn-primary'
+    = link_to t('.new_service'), new_admins_service_path, class: 'btn btn-primary'
     = link_to t('.new_status'), new_admins_status_path, class: 'btn btn-primary'
 
 
-  %h2= t('.categories')
+  %h2= t('.services')
 
   %table.table.table-hover
     %tr
-      %th= t('admin.category.show.columns.name')
-      %th= t('admin.category.show.columns.extras')
+      %th= t('admin.service.show.columns.name')
+      %th= t('admin.service.show.columns.extras')
       %th
-    - @categories.each do |category|
+    - @services.each do |service|
       %tr
-        %td= link_to category.name, admins_category_path(category)
-        %td= category.category_fields_names
+        %td= link_to service.name, admins_service_path(service)
+        %td= service.service_fields_names
         %td
           .btn-group
-            = link_to edit_admins_category_path(category), class: 'btn btn-default' do
+            = link_to edit_admins_service_path(service), class: 'btn btn-default' do
               %span.glyphicon.glyphicon-wrench
-            = link_to admins_category_path(category), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger' do
+            = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger' do
               %span.glyphicon.glyphicon-trash
 
   %h2= t('.statuses')

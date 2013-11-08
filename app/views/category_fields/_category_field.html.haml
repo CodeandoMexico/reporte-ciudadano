@@ -1,7 +1,0 @@
-= label_tag "service_request[category_fields][#{category_field}]", category_field.name.capitalize
-%br
-- if @service_request.nil?
-  = text_field_tag "service_request[category_fields][#{category_field}]"
-- else
-  = text_field_tag "service_request[category_fields][#{category_field}]", @service_request.category_fields[category_field.to_s]
-%br

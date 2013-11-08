@@ -49,11 +49,11 @@ feature 'Managing service requests' do
       page.should have_content service_requests[1].description.truncate(30)
     end
 
-    scenario 'can search for service requests by category' do
+    scenario 'can search for service requests by service' do
       service_requests = create_list(:service_request, 3)
       visit service_requests_path
       within '#service_request_search' do
-        select service_requests.first.category.name, from: 'q[category_id_eq]'
+        select service_requests.first.service.name, from: 'q[service_id_eq]'
         click_button 'Buscar'
       end
       page.should have_content service_requests.first.description.truncate(30)
@@ -75,7 +75,7 @@ feature 'Managing service requests' do
 
     scenario 'can go see a service request' do
       visit service_request_path(service_request)
-      page.should have_content(service_request.category.name)
+      page.should have_content(service_request.service.name)
     end
 
 
@@ -88,13 +88,13 @@ feature 'Managing service requests' do
     end
 
     scenario 'can create a new service request successfully' do
-      categories = create_list(:category, 3)
+      categories = create_list(:service, 3)
       visit new_service_request_path
       within '#new_service_request' do
         attach_file 'service_request[image]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
-        select categories.last.name, from: 'service_request[category_id]'
+        select categories.last.name, from: 'service_request[service_id]'
         click_button  'Guardar'
       end
       current_url.should eq root_url

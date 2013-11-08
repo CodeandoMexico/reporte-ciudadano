@@ -17,11 +17,11 @@
       = f.text_area :description, class: 'form-control', rows: '5'
 
   .form-group
-    = f.label :category_id, "Categoría", class: 'col-lg-2 control-label'
+    = f.label :service_id, "Servicio", class: 'col-lg-2 control-label'
     .col-lg-10
-      = f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_category_form-group form-control' }
+      = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_form-group form-control' }
       %div#category_form-group_container
-        = render @service_request.category.category_form-group if @service_request.category?
+        = render @service_request.service.service_form-group if @service_request.service?
 
   .form-group
     .col-lg-offset-2.col-lg-10
