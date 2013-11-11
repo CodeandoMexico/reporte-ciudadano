@@ -11,11 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107191933) do
+ActiveRecord::Schema.define(:version => 20131025225801) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "name",                   :default => "", :null => false
+    t.string   "avatar"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -24,11 +26,9 @@ ActiveRecord::Schema.define(:version => 20131107191933) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "name",                   :default => ""
-    t.string   "authentication_token"
-    t.string   "avatar"
   end
 
   add_index "admins", ["authentication_token"], :name => "index_admins_on_authentication_token", :unique => true
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(:version => 20131107191933) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "access_token"
+    t.integer  "admin_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "admin_id"
   end
 
   add_index "api_keys", ["access_token"], :name => "index_api_keys_on_access_token"
@@ -67,17 +67,16 @@ ActiveRecord::Schema.define(:version => 20131107191933) do
   create_table "comments", :force => true do |t|
     t.string   "content",            :default => ""
     t.integer  "service_request_id"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
+    t.integer  "commentable_id",                     :null => false
+    t.string   "commentable_type",                   :null => false
     t.string   "ancestry"
+    t.string   "image"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
-    t.string   "image"
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
-  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["service_request_id"], :name => "index_comments_on_service_request_id"
 
   create_table "logos", :force => true do |t|
@@ -108,21 +107,22 @@ ActiveRecord::Schema.define(:version => 20131107191933) do
 
   create_table "service_requests", :force => true do |t|
     t.string   "description",    :default => ""
-    t.integer  "service_id"
-    t.string   "lat",            :default => "-96.724253"
-    t.string   "lng",            :default => "17.065593"
+    t.string   "lat",            :default => ""
+    t.string   "lng",            :default => ""
     t.boolean  "anonymous",      :default => false
     t.text     "service_fields", :default => "{}"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "image"
-    t.string   "requester_type"
-    t.integer  "requester_id"
-    t.text     "address"
-    t.integer  "status_id",      :default => 1
+    t.text     "address",        :default => ""
+    t.string   "title",          :default => ""
+    t.string   "media"
+    t.integer  "service_id"
+    t.integer  "requester_id",                      :null => false
+    t.string   "requester_type",                    :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "status_id"
   end
 
-  add_index "service_requests", ["requester_id", "requester_type"], :name => "index_service_requests_on_request_id_and_requester_type"
+  add_index "service_requests", ["requester_id", "requester_type"], :name => "index_service_requests_on_requester_id_and_requester_type"
   add_index "service_requests", ["service_id"], :name => "index_service_requests_on_service_id"
   add_index "service_requests", ["status_id"], :name => "index_service_requests_on_status_id"
 
@@ -139,12 +139,10 @@ ActiveRecord::Schema.define(:version => 20131107191933) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email"
     t.string   "name"
     t.string   "username"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
     t.string   "avatar"
+    t.string   "email",                  :default => ""
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -154,9 +152,11 @@ ActiveRecord::Schema.define(:version => 20131107191933) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "votes", :force => true do |t|

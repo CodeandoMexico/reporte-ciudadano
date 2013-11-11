@@ -67,7 +67,7 @@ describe ServiceRequest do
     end
 
     it '#service_requester returns a hash with an anonymous user when no user detected' do
-      anonymous_service_request = create(:service_request, anonymous: true, requester: nil)
+      anonymous_service_request = create(:service_request, anonymous: true)
       service_requester = {avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo'}
       expect(anonymous_service_request.service_requester).to eq(service_requester)
     end

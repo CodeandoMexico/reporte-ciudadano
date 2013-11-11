@@ -1,6 +1,6 @@
 #encoding: utf-8
 class ServiceRequest < ActiveRecord::Base
-  attr_accessible :anonymous, :service_id, :description, :lat, :lng, :service_fields, :image, :status_id, :address
+  attr_accessible :anonymous, :service_id, :description, :lat, :lng, :service_fields, :media, :status_id, :address
 
   attr_accessor :message
 
@@ -16,7 +16,7 @@ class ServiceRequest < ActiveRecord::Base
 
   serialize :service_fields, JSON
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :media, ImageUploader
   acts_as_voteable
 
   default_scope order: 'created_at DESC'

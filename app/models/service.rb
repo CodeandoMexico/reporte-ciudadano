@@ -1,5 +1,5 @@
 class Service < ActiveRecord::Base
-  attr_accessible :name, :service_fields_attributes, :messages_attributes, :status
+  attr_accessible :name, :service_fields_attributes, :messages_attributes
   has_many :service_requests
 
   validates :name, presence: true

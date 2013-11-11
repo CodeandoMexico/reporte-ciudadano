@@ -47,9 +47,9 @@
           %p= @service_request.requester.email
           %p= "No. de cuenta: #{@service_request.requester.id}"
 
-          - if @service_request.image.present?
+          - if @service_request.media.present?
             .image.tight
-              = image_tag @service_request.image_url
+              = image_tag @service_request.media_url
 
         .row.well
           %h4= t('.update_service_request')

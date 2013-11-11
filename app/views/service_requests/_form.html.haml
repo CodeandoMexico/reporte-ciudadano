@@ -1,9 +1,9 @@
 = form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
 
   .form-group
-    = f.label :image, "Imágen", class: 'col-lg-2 control-label'
+    = f.label :media, "Imágen", class: 'col-lg-2 control-label'
     .col-lg-10
-      = f.file_field :image, class: 'js-image-preview'
+      = f.file_field :media, class: 'js-image-preview'
       .image_preview
 
   .form-group
