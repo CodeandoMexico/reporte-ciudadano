@@ -2,8 +2,12 @@ class DeviseCreateAdmins < ActiveRecord::Migration
   def change
     create_table(:admins) do |t|
       ## Database authenticatable
-      t.string :email,              :null => false, :default => ""
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :email,              null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
+
+      # Other fields
+      t.string :name,               null: false, default: ""
+      t.string :avatar
 
       ## Recoverable
       t.string   :reset_password_token
@@ -19,6 +23,9 @@ class DeviseCreateAdmins < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
+      ## Token authenticatable
+      t.string :authentication_token
+
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at
@@ -30,17 +37,13 @@ class DeviseCreateAdmins < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      ## Token authenticatable
-      # t.string :authentication_token
-
-
       t.timestamps
     end
 
     add_index :admins, :email,                :unique => true
     add_index :admins, :reset_password_token, :unique => true
+    add_index :admins, :authentication_token, :unique => true
     # add_index :admins, :confirmation_token,   :unique => true
     # add_index :admins, :unlock_token,         :unique => true
-    # add_index :admins, :authentication_token, :unique => true
   end
 end

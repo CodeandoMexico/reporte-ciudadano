@@ -1,6 +1,6 @@
 class Status < ActiveRecord::Base
   attr_accessible :name
-  has_many :reports
+  has_many :service_requests
   has_many :messages
 
   validates :name, presence: true

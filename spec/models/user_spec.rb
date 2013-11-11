@@ -19,7 +19,7 @@ describe User do
   end
   context 'associations' do
     it { should have_many :authentications }
-    it { should have_many :reports }
+    it { should have_many :service_requests }
     it { should have_many :comments }
   end
   context 'methods' do

@@ -1,0 +1,10 @@
+.content-header
+  %h1= t('.header')
+
+
+.page-content.inset
+  .row
+    .col-md-6
+      = render 'form'
+
+  = link_to t('.back'), admins_services_path

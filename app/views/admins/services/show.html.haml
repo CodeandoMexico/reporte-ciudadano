@@ -1,0 +1,13 @@
+.content-header
+  %h1= t('.header', service_name: @service.name)
+
+.page-content.inset
+
+  .btn-group.admin-actions
+    = link_to t('.edit'), edit_admins_service_path(@service), class: 'btn btn-default'
+
+  %h3= t('.additional_fields')
+  = @service.service_fields_names
+
+  %br
+  = link_to t('.back'), admins_services_path

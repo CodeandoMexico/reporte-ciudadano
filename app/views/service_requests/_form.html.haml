@@ -1,0 +1,38 @@
+= form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
+
+  .form-group
+    = f.label :media, "Imágen", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.file_field :media, class: 'js-image-preview'
+      .image_preview
+
+  .form-group
+    = f.label :address, "Dirección", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_area :address, id: 'address', rows: '5', class: 'form-control'
+
+  .form-group
+    = f.label :description, "Descripción", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_area :description, class: 'form-control', rows: '5'
+
+  .form-group
+    = f.label :service_id, "Servicio", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_form-group form-control' }
+      %div#category_form-group_container
+        = render @service_request.service.service_form-group if @service_request.service?
+
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      .checkbox
+      = f.label :anonymous do
+        = f.check_box :anonymous
+        Ocultar identidad
+
+  = f.hidden_field :lat, id: 'lat'
+  = f.hidden_field :lng, id: 'lng'
+
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit 'Guardar', class: "#{(current_user ? '' : 'blocked')} btn btn-primary", data: { message: 'Para crear solicitudes necesitas registrarte en el sistema.' }

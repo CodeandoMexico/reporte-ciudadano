@@ -13,7 +13,7 @@ class Admin < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :comments, as: :commentable
-  has_many :reports, as: :reportable
+  has_many :service_requests, as: :requester
   has_one :api_key
   mount_uploader :avatar, AvatarUploader
 

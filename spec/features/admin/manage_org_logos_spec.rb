@@ -10,12 +10,8 @@ feature 'As an admin I can upload organization logos' do
   end
 
   scenario 'I can visit the upload logos view' do
-    click_link 'Agregar logo'
-
-    page.should have_content "Logo 1"
-    page.should have_content "Logo 2"
-    page.should have_content "Logo 3"
-    page.should have_content "Agregar otro logo"
+    page.find("a[href='#{new_admins_logo_path}']").click
+    page.should have_content "Agregar nuevo logo"
   end
 
 end

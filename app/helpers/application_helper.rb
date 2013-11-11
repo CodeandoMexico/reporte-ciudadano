@@ -15,7 +15,7 @@ module ApplicationHelper
     { "data-longitude" => lng, "data-latitude" => lat }
   end
 
-  def default_report_data_position
+  def default_service_request_data_position
     { "data-longitude" => '17.065593', "data-latitude" => '-96.724253' }
   end
 

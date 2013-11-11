@@ -1,7 +1,0 @@
-= label_tag "report[category_fields][#{category_field}]", category_field.name.capitalize
-%br
-- if @report.nil?
-  = text_field_tag "report[category_fields][#{category_field}]"
-- else
-  = text_field_tag "report[category_fields][#{category_field}]", @report.category_fields[category_field.to_s]
-%br

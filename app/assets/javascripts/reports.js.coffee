@@ -5,9 +5,9 @@ $ ->
     dateFormat: 'yy-mm-dd'
   })
 
-  $('.js-load_category_fields').change ->
+  $('.js-load_service_fields').change ->
     $.ajax(
-      url: '/categories/load_category_fields'
+      url: '/services/load_service_fields'
       data: {
         id: $(@).val()
       }

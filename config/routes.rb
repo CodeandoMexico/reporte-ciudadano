@@ -6,7 +6,7 @@ ReporteCiudadano::Application.routes.draw do
 
   resources :comments
 
-  resources :reports do
+  resources :requests, as: :service_requests, controller: :service_requests do
     resources :messages, only: [:index] 
     collection do
       get 'filter'
@@ -19,11 +19,11 @@ ReporteCiudadano::Application.routes.draw do
   root :to => 'pages#index'
 
   namespace :admins do
-    resources :categories
+    resources :services
     resources :statuses, except: [:destroy]
     resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create, :index]
-    resources :reports, only: [:index, :edit, :update, :destroy] do 
+    resources :requests, as: :service_requests, controller: :service_requests, only: [:index, :edit, :update, :destroy]  do
       member do
         put 'update_status'
       end
@@ -54,9 +54,9 @@ ReporteCiudadano::Application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   delete "signout", to: 'sessions#destroy'
 
-  resources :categories, only: [] do
+  resources :services, only: [] do
     collection do
-      get 'load_category_fields'
+      get 'load_service_fields'
     end
   end
 

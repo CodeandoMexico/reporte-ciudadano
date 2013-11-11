@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :comment do
     content { Faker::Lorem.paragraph(5) }
-    report
+    service_request
     association :commentable, factory: :user
 
     factory :invalid_comment do

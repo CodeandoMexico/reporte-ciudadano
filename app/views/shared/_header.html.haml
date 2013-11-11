@@ -11,9 +11,9 @@
         %li
           = link_to 'Resumen', root_path, class: "pages index"
         %li
-          = link_to 'Reportes', reports_path, class: "reports index"
+          = link_to 'Solicitudes', service_requests_path, class: "reports index"
         %li
-          = link_to 'Realizar Reporte', new_report_path, class: "reports new"
+          = link_to 'Realizar Reporte', new_service_request_path, class: "reports new"
       %ul.nav.navbar-nav.navbar-right
         - if current_user
           %li.dropdown

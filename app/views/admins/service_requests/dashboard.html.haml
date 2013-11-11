@@ -1,0 +1,72 @@
+.content-header
+  %a#menu-toggle.btn.btn-default{href: "#"}
+    %i.icon-reorder
+
+  %h1 Admin dashboard
+
+.page-content.inset
+  .row.reports-stats{data: { total: ServiceRequest.count } }
+    .col-md-4.col-sm-4.col-xs-4.reports-stats-block
+      = @all_service_requests
+      %h3.reports-stats-name Solicitudes realizadas
+    .col-md-4.col-sm-4.col-xs-4.reports-stats-block.mid
+      = @open_service_requests
+      %h3.reports-stats-name Solicitudes abiertas
+    .col-md-4.col-sm-4.col-xs-4.reports-stats-block
+      = @closed_service_requests
+      %h3.reports-stats-name Solicitudes resueltas
+
+  .row.blk-summary.l-margin-l-bottom
+    .container
+      %h2.blk-summary-title Solicitudes por servicios
+      #reports-chart{ data: { chart_data: @chart_data, service_names: @service_names, status_names: @status_names }}
+
+
+  .row.blk-summary.l-margin-l-bottom
+    .container
+      %h2.blk-summary-title Mapa de solicitudes
+      = form_tag service_requests_path, method: :get, class: "filters form-inline" do
+        .form-group
+          = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+        .form-group.form-group-separator
+          = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+        .form-group.form-group-separator
+          = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: 'Cualquier tipo', class: 'form-control')
+        .form-group.form-group-separator
+          = select_tag('service_id', options_from_collection_for_select(Service.all, :id, :name, params[:service_id]), prompt: 'Todos los servicios', class: 'form-control')
+        .form-group
+          = submit_tag 'Buscar', class: "btn btn-primary btn-block"
+
+
+      .map{data_position}
+        #reports-map
+
+      = form_tag service_requests_path, method: :get, class: 'filters form-inline' do
+        .form-group.form-group-separator
+          = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: 'No. Folio', class: 'form-control'
+        .form-group
+          = submit_tag 'Buscar', class: "btn btn-primary btn-block"
+
+  .row.blk-summary.l-margin-l-bottom
+    .container
+      %h2.blk-summary-title Solicitudes recientes
+      - unless @service_requests.empty?
+        - @service_requests.each do |service_request|
+          .recent-report-sum{id: "service_request_#{service_request.id}", data: { lat: service_request.lat, lng: service_request.lng, description: service_request_info_window(service_request) } }
+            .row
+              .col-md-2.recent-reports-sum-date.l-margin-s-bottom
+                = timeago(service_request.created_at)
+              .col-md-8.recent-reports-sum-info.l-margin-s-bottom
+                %h3.recent-reports-title
+                  = link_to service_request.service.name, service_request_url(service_request), class: "title"
+                %span.recent-reports-address= " - #{service_request.address}" if service_request.address
+                %p= service_request.description
+              .col-md-2.text-center.l-margin-s-bottom
+                .recent-reports-counter.js-votes_count
+                  = service_request.votes_for
+                = link_to "Editar solicitud", edit_admins_service_request_path(service_request), class: 'btn pull-right btn-default btn-xs'
+      - else
+        .row.service_request
+
+
+  = paginate @service_requests
