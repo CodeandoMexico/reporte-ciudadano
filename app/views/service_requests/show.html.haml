@@ -42,9 +42,9 @@
               = Date.today.strftime("%d/%m/%Y")
 
     %aside.col-md-4
-      - if @service_request.image.present?
+      - if @service_request.media.present?
         .image.tight
-          = image_tag @service_request.image_url
+          = image_tag @service_request.media_url
 
       .location
         %h3 Ubicacion
