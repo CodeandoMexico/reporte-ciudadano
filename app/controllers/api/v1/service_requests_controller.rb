@@ -2,17 +2,15 @@ module Api
   module V1
     class ServiceRequestsController < Api::BaseController
       respond_to :json
-      before_filter :authenticate_admin!
 
-      def create
-        respond_with current_admin.service_requests.create(params[:service_request])
-      end
-
-      def update_status
-        @service_request = ServiceRequest.find(params[:service_request_id])
-        @service_request.update_attribute :status, params[:status]
+      def show
+        @service_request = ServiceRequest.find(params[:id])
         respond_with @service_request
+      rescue ActiveRecord::RecordNotFound
+        @response = {error: 404, description: "Service request not found"}
+        respond_with @response, status: :not_found
       end
+
     end
   end
 end
