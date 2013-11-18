@@ -32,16 +32,16 @@
           console.log("geocoder fail: #{status}")
           $input.val("")
 
-    set_marker_and_map_from_input_address: (marker, map, $input) ->
+    set_marker_and_map_from_input_address: (marker, map, $input, $lat, $lng) ->
       geocoder = new google.maps.Geocoder()
       geocoder.geocode {address: $input.val()}, (result, status) ->
         position = result[0].geometry.location
         map.setCenter(position)
         map.setZoom(15)
         marker.setPosition(position)
-        # trigger dragend to marker so it updates latitude and longitude inputs
-        google.maps.event.trigger(marker, 'dragend')
-        
+        # updates latitude and longitude from inputs
+        $lat.val(helpers.marker_lat(marker))
+        $lng.val(helpers.marker_lng(marker))
   }
 
   methods =
@@ -63,7 +63,6 @@
 
       @map = new google.maps.Map(this[0], mapOptions)
 
-      console.log mapOptions
       if mapOptions.latitude and mapOptions.longitude
         options['center'] = new google.maps.LatLng(options.latitude, options.longitude)
 
@@ -110,7 +109,7 @@
         helpers.set_address_to_input_from_marker($address, @marker)
 
         $address.on 'change', =>
-          helpers.set_marker_and_map_from_input_address(@marker, @map, $address)
+          helpers.set_marker_and_map_from_input_address(@marker, @map, $address, $lat, $lng)
 
       #
       # on marker move
@@ -149,8 +148,6 @@
         @markers = $(markers).map (i, e) ->
           pos = new google.maps.LatLng(e.lat, e.lng)
           bounds.extend(pos)
-          console.log e
-
 
           marker = new google.maps.Marker({
               'position': pos
