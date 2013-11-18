@@ -61,11 +61,8 @@ ReporteCiudadano::Application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json' } do
-    devise_for :admins
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :reports, only: [:create] do
-        put 'update_status'
-      end
+      resources :requests, as: :service_requests, controller: :service_requests, only: [:show, :index]
     end
   end
 
