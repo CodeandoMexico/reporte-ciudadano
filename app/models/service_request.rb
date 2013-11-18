@@ -22,23 +22,27 @@ class ServiceRequest < ActiveRecord::Base
   default_scope order: 'created_at DESC'
 
   scope :on_start_date, lambda {|from|
-    where("created_at >= ?", from)
+    where("service_requests.created_at >= ?", from) unless from.blank?
   }
-      
+
   scope :on_finish_date, lambda { |to|
-    where("created_at <= ?", to)
+    where("service_requests.created_at <= ?", to) unless to.blank?
   }
 
   scope :with_status, lambda { |status_id|
-    where(status_id: status_id) 
+    where(status_id: status_id) unless status_id.blank?
   }
 
-  scope :on_service, lambda { |service|
-    where(service_id: service)
+  scope :on_status_name, lambda { |status_name|
+    joins(:status).where('statuses.name = ?', status_name) unless status_name.blank?
+  }
+
+  scope :on_service, lambda { |service_ids|
+    where(service_id: service_ids.split(',')) unless service_ids.blank?
   }
 
   scope :find_by_ids, lambda { |ids|
-    where("id IN (?)", ids.split(',')) 
+    where("service_requests.id IN (?)", ids.split(',')) unless ids.blank?
   }
 
   scope :closed, lambda {
@@ -59,11 +63,24 @@ class ServiceRequest < ActiveRecord::Base
 
   def self.filter_by_search(params)
     requests = ServiceRequest.order('created_at DESC')
-    requests = requests.on_start_date(params[:start_date]) unless params[:start_date].blank?
-    requests = requests.on_finish_date(params[:end_date]) unless params[:end_date].blank?
-    requests = requests.with_status(params[:status_id]) unless params[:status_id].blank?
-    requests = requests.on_service(params[:service_id]) unless params[:service_id].blank?
-    requests = requests.find_by_ids(params[:service_request_ids]) unless params[:service_request_ids].blank?
+    requests = requests.on_start_date(params[:start_date])
+    requests = requests.on_finish_date(params[:end_date])
+    requests = requests.with_status(params[:status_id])
+    requests = requests.on_service(params[:service_id])
+    requests = requests.find_by_ids(params[:service_request_ids])
+    requests
+  end
+
+  def self.filter_by_search_311(params)
+    requests = ServiceRequest.order('created_at DESC')
+    if params[:service_request_id].present?
+      requests = requests.find_by_ids(params[:service_request_id])
+    else
+      requests = requests.on_start_date(params[:start_date])
+      requests = requests.on_finish_date(params[:end_date])
+      requests = requests.on_service(params[:service_code])
+      requests = requests.on_status_name(params[:status])
+    end
     requests
   end
 

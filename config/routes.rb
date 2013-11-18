@@ -62,7 +62,7 @@ ReporteCiudadano::Application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :requests, as: :service_requests, controller: :service_requests, only: [:show]
+      resources :requests, as: :service_requests, controller: :service_requests, only: [:show, :index]
     end
   end
 
