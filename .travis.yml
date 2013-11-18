@@ -8,4 +8,6 @@ script:
   - bundle exec rake db:create db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec
-before_install: cp config/database.travis.yml config/database.yml
+before_install: 
+  - cp config/database.travis.yml config/database.yml
+  - gem install selenium-webdriver
