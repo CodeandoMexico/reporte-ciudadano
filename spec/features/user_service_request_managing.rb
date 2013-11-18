@@ -4,7 +4,7 @@ require 'active_support/core_ext/string/filters'
 feature 'Managing service requests' do
 
   let(:user) { create(:user) }
-  let(:service_request) { create(:service_request, service_requestable: user) }
+  let(:service_request) { create(:service_request, requester: user) }
 
   context 'when not logged in user' do
     scenario 'get redirected to sign in page after trying to go to create a new service request' do
@@ -91,7 +91,7 @@ feature 'Managing service requests' do
       categories = create_list(:service, 3)
       visit new_service_request_path
       within '#new_service_request' do
-        attach_file 'service_request[image]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
+        attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
         select categories.last.name, from: 'service_request[service_id]'
@@ -103,7 +103,7 @@ feature 'Managing service requests' do
 
     scenario 'can vote on an service request', js: true do
       visit service_request_path(service_request)
-      page.find("a[href='/service_requests/#{service_request.id}/vote']").click
+      page.find("a[href='/requests/#{service_request.id}/vote']").click
       page.should have_content('Votaste')
     end
 

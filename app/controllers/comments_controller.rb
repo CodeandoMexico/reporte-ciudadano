@@ -4,10 +4,10 @@ class CommentsController < ApplicationController
 
   def create
     @current_session = current_user || current_admin
-    @comment = @current_session.comments.build(params[:comment]) 
+    @comment = @current_session.comments.build(params[:comment])
     if @comment.save
       flash[:success] = "Tu comentario ha sido publicado"
-      redirect_to @comment.report
+      redirect_to @comment.service_request
     else
       flash[:error] = @comment.errors.full_messages
       redirect_to :back
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to @comment.report  
+    redirect_to @comment.service_request
   end
 
   private
