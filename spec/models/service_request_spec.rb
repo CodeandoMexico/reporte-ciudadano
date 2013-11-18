@@ -44,7 +44,7 @@ describe ServiceRequest do
     end
 
     it '.on_service returns service_requests related to certain service' do
-      categorized_service_requests = ServiceRequest.on_service(service_requests.first.service)
+      categorized_service_requests = ServiceRequest.on_service(service_requests.first.service_id.to_s)
       expect(categorized_service_requests).to eq([service_requests.first])
     end
 
