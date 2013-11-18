@@ -10,4 +10,5 @@ script:
   - bundle exec rspec spec
 before_install: 
   - cp config/database.travis.yml config/database.yml
-  - gem install selenium-webdriver
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
