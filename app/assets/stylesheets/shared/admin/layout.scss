@@ -47,9 +47,19 @@
         text-decoration: none;
       }
     }
+
+    &.admin-email {
+      color: #999999;
+    }
+
+    i.glyphicon {
+      display: inline;
+      font-size: 10px;
+    }
+
   }
   hr {
-    border-top: 1px solid #333333;
+    border-top: 1px dotted #666;
   }
 }
 

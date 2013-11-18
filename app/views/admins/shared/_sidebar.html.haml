@@ -15,15 +15,16 @@
 
 
     %hr
-    %li
+    %li.admin-email
+      %i.glyphicon.glyphicon-user
       = current_admin.email
     %li
       = link_to  edit_admins_registration_path(current_admin) do
-        %i.icon-cog
+        %i.glyphicon.glyphicon-cog
         Editar perfil
     %li
       = link_to destroy_admin_session_path, method: :delete do
-        %i.icon-off
+        %i.glyphicon.glyphicon-off
         Cerrar Sesión
 
 
