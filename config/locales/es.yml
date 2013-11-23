@@ -269,6 +269,9 @@ es:
         status: "Estatus"
         update: "Actualizar"
         user_info: "Info del usuario"
+      index:
+        new_service_request: "Crear nueva solicitud"
+        search: "Buscar"
     statuses:
       new:
         header: "Nuevo status"
