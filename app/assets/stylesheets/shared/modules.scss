@@ -317,11 +317,9 @@
         @include box-sizing(border-box);
         margin-bottom: 5px;
       }
-      input {
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
+
+      input[type=file] {
+        font-size: 12px;
       }
     }
 
