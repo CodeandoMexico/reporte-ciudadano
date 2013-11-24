@@ -25,7 +25,7 @@
   .row.blk-summary.l-margin-l-bottom
     .container
       %h2.blk-summary-title Mapa de solicitudes
-      = form_tag service_requests_path, method: :get, class: "filters form-inline" do
+      = form_tag admins_dashboards_path, method: :get, class: "filters form-inline" do
         .form-group
           = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
         .form-group.form-group-separator
@@ -58,7 +58,7 @@
                 = timeago(service_request.created_at)
               .col-md-8.recent-reports-sum-info.l-margin-s-bottom
                 %h3.recent-reports-title
-                  = link_to service_request.service.name, service_request_url(service_request), class: "title"
+                  = link_to service_request.service.name, edit_admins_service_request_path(service_request), class: "title"
                 %span.recent-reports-address= " - #{service_request.address}" if service_request.address
                 %p= service_request.description
               .col-md-2.text-center.l-margin-s-bottom
