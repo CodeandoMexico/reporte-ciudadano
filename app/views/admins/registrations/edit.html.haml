@@ -1,14 +1,27 @@
-= form_for [:admins, @admin], url: admins_registration_path, method: :put do |f|
-  = f.object.errors.messages unless f.object.errors.empty?
+.content-header
+  %h1 Editar perfil
 
-  .fields
-    = f.label :name, "Nombre"
-    = f.text_field :name
-  .fields
-    = f.label :avatar, "Imágen de perfil"
-    = f.file_field :avatar
-  .fields
-    = f.label :email
-    = f.email_field :email
-  .actions
-    = f.submit "Actualizar"
+.page-content.inset
+  = form_for [:admins, @admin], url: admins_registration_path, html: { method: :put, role: 'form'}  do |f|
+
+    .form-group
+      = f.label :name, "Nombre"
+      .row
+        .col-lg-6
+          = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Nombre'
+
+    .form-group
+      = f.label :avatar, "Imagen de perfil"
+      .row
+        .col-lg-6
+          = image_tag @admin.avatar_url(:thumb), class: 'pull-left l-margin-s-right' if @admin.avatar_url
+          = f.file_field :avatar, class: 'pull-left'
+
+    .form-group
+      = f.label :email, "Correo electrónico"
+      .row
+        .col-lg-6
+          = f.text_field :email, class: 'form-control', placeholder: 'correo@correo.com'
+          = errors_on_resource_for_field(@admin, :email)
+    .actions
+      = f.submit "Actualizar", class: 'btn btn-primary'
