@@ -308,6 +308,12 @@
       }
     }
 
+    &.comment {
+      .comment-img {
+        width: 100%;
+      }
+    }
+
     &.form {
       textarea {
         width: 100%;
