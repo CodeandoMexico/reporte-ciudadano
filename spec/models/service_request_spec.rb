@@ -17,12 +17,22 @@ describe ServiceRequest do
     it { should respond_to :address }
     it { should respond_to :message }
   end
+
   context 'associations' do
     it { should belong_to :service }
     it { should belong_to :requester }
     it { should belong_to :status }
     it { should have_many :comments }
   end
+
+  context 'callbacks' do
+    it 'should assign a default status before validation on create' do
+      default_status = create(:default_status)
+      service_request = create(:service_request)
+      expect(service_request.status).to eq(default_status)
+    end
+  end
+
   context 'scopes' do
     let(:service_requests) {[]}
 
