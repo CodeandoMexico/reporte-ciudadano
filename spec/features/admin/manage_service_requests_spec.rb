@@ -40,7 +40,7 @@ feature 'As an admin I can manage service requests' do
   end
 
   scenario 'I can update the status of a service request' do
-    statuses = create_list(:status, 3)
+    statuses = create_list(:status, 2)
     visit edit_admins_service_request_path(service_request)
     within '.edit_service_request' do
       select statuses.first.name, from: 'service_request[status_id]'

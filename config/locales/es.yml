@@ -269,6 +269,11 @@ es:
         status: "Estatus"
         update: "Actualizar"
         user_info: "Info del usuario"
+    statuses:
+      new:
+        header: "Nuevo status"
+      edit:
+        header: 'Editar status'
 
   crud:
     destroy: 'Eliminar'

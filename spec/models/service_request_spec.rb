@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe ServiceRequest do
-  context 'factories' do
+  context 'validations' do
     it 'has a valid factory' do
       expect(build(:service_request)).to be_valid
     end
-    it 'has an invalid factory' do
-      expect(build(:invalid_service_request)).to_not be_valid
-    end
+    it { should validate_presence_of(:service_id) }
+    it { should validate_presence_of(:description) }
   end
   context 'attributes' do
     it { should respond_to :anonymous }

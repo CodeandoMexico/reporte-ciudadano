@@ -4,7 +4,7 @@
   - if comment.image?
     %p
       = link_to comment.image_url, target: '_blank' do
-        = image_tag comment.image_url(:comment)
+        = image_tag comment.image_url(:comment), class: 'comment-img'
   %p.name= comment.commentable.is_a?(Admin) ? 'Administrador' : comment.commentable.name
   .date
     %i.icon-time

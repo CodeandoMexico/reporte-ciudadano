@@ -308,6 +308,12 @@
       }
     }
 
+    &.comment {
+      .comment-img {
+        width: 100%;
+      }
+    }
+
     &.form {
       textarea {
         width: 100%;
@@ -317,11 +323,9 @@
         @include box-sizing(border-box);
         margin-bottom: 5px;
       }
-      input {
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
+
+      input[type=file] {
+        font-size: 12px;
       }
     }
 
@@ -452,4 +456,13 @@ span.address {
 
 .info_window_link {
   display: block;
+}
+
+.errors-form {
+  background: $label-danger-bg;
+  color: $label-color;
+  font-size: $font-size-small;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: $border-radius-base;
 }

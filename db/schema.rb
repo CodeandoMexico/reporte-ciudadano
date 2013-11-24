@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025225801) do
+ActiveRecord::Schema.define(:version => 20131124222201) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20131025225801) do
   end
 
   create_table "service_requests", :force => true do |t|
-    t.string   "description",    :default => ""
+    t.text     "description",    :default => ""
     t.string   "lat",            :default => ""
     t.string   "lng",            :default => ""
     t.boolean  "anonymous",      :default => false

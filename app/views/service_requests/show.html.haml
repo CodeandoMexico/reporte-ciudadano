@@ -34,7 +34,7 @@
             = image_tag user.avatar_url(:thumb), class: "avatar"
             = form_for Comment.new do |f|
               = f.text_area :content, placeholder: "Agrega tu comentario"
-              = f.file_field :image
+              = f.file_field :image, class: "l-margin-s-bottom"
               = f.submit 'Comentar', class: "btn btn-primary"
               = f.hidden_field :service_request_id, value: @service_request.id
             .date
