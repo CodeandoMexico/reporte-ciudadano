@@ -35,7 +35,7 @@
         .form-group.form-group-separator
           = select_tag('service_id', options_from_collection_for_select(Service.all, :id, :name, params[:service_id]), prompt: 'Todos los servicios', class: 'form-control')
         .form-group
-          = submit_tag 'Buscar', class: "btn btn-primary btn-block"
+          = submit_tag 'Buscar', class: "btn btn-primary"
 
 
       .map{data_position}
@@ -45,7 +45,7 @@
         .form-group.form-group-separator
           = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: 'No. Folio', class: 'form-control'
         .form-group
-          = submit_tag 'Buscar', class: "btn btn-primary btn-block"
+          = submit_tag 'Buscar', class: "btn btn-primary"
 
   .row.blk-summary.l-margin-l-bottom
     .container
