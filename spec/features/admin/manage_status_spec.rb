@@ -22,10 +22,8 @@ feature 'Managing statuses' do
   scenario 'As an admin I can edit a status' do
     status = create(:status)
     visit edit_admins_status_path(status)
-    within '.edit_status' do
-      fill_in 'status[name]', with: 'Open'
-      click_button 'Guardar'
-    end
+    fill_in 'status[name]', with: 'Open'
+    click_button 'Guardar'
 
     page.should have_content t('flash.status.updated')
 
