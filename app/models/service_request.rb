@@ -1,11 +1,12 @@
 #encoding: utf-8
 class ServiceRequest < ActiveRecord::Base
-  attr_accessible :anonymous, :service_id, :description, :lat, :lng, :service_fields, :media, :status_id, :address
+  attr_accessible :anonymous, :service_id, :description, :lat, :lng,
+                  :service_fields, :media, :status_id, :address, :title
 
   attr_accessor :message
 
   validates :service_id, presence: true
-  validate :service_extra_fields
+  validates :description, presence: true
 
   #TODO: A Service Request must have a Status. Create a filter that ensures this.
 

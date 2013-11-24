@@ -457,3 +457,12 @@ span.address {
 .info_window_link {
   display: block;
 }
+
+.errors-form {
+  background: $label-danger-bg;
+  color: $label-color;
+  font-size: $font-size-small;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: $border-radius-base;
+}

@@ -1,6 +1,11 @@
 = form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
 
   .form-group
+    = f.label :title, "Título", class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_field :title, class: 'form-control'
+
+  .form-group
     = f.label :media, "Imágen", class: 'col-lg-2 control-label'
     .col-lg-10
       = f.file_field :media, class: 'js-image-preview'
@@ -15,6 +20,7 @@
     = f.label :description, "Descripción", class: 'col-lg-2 control-label'
     .col-lg-10
       = f.text_area :description, class: 'form-control', rows: '5'
+      = errors_on_resource_for_field(@service_request, :description)
 
   .form-group
     = f.label :service_id, "Servicio", class: 'col-lg-2 control-label'
@@ -22,6 +28,7 @@
       = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_form-group form-control' }
       %div#category_form-group_container
         = render @service_request.service.service_form-group if @service_request.service?
+      = errors_on_resource_for_field(@service_request, :service_id)
 
   .form-group
     .col-lg-offset-2.col-lg-10
