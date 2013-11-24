@@ -12,7 +12,7 @@ module HelperMethods
   include I18n
 
   def t *args
-    I18n.t *args
+    I18n.t(*args)
   end
 
 end
@@ -32,4 +32,6 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
 
   config.include HelperMethods
+
+  config.include SessionHelpers, type: :feature
 end
