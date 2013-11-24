@@ -1,4 +1,9 @@
-= form_for [:admins, @status] do |f|
-  = f.label :name, "Nombre:"
-  = f.text_field :name
-  = f.submit "Guardar "
+= form_for [:admins, @status], html: { role: 'form', class: 'form-horizontal' } do |f|
+  .form-group
+    = f.label :name, "Nombre", class: 'col-lg-2 control-label'
+    .col-lg-6
+      = f.text_field :name, class: 'form-control'
+      = errors_on_resource_for_field(@status, :name)
+
+  .actions
+    = f.submit "Guardar ", class: 'btn btn-primary'
