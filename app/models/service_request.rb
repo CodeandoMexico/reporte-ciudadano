@@ -8,7 +8,7 @@ class ServiceRequest < ActiveRecord::Base
   validates :service_id, presence: true
   validates :description, presence: true
 
-  #TODO: A Service Request must have a Status. Create a filter that ensures this.
+  before_validation :assign_default_status, on: :create
 
   belongs_to :service
   belongs_to :requester, polymorphic: true
@@ -115,6 +115,10 @@ class ServiceRequest < ActiveRecord::Base
     self.service_fields.each do |k,v|
       errors.add k.to_sym, "must be present" if v.blank?
     end
+  end
+
+  def assign_default_status
+    self.status = Status.where(is_default: true).first
   end
 
 end

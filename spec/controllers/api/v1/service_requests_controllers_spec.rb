@@ -70,9 +70,11 @@ module Api
         end
 
         it 'returns a list of service requests specified by status' do
+          another_request = create(:service_request)
+          another_request.update_attribute(:status, create(:status))
           get :index, format: 'json', status: service_requests.first.status.name
           body = JSON.parse(response.body)
-          expect(body['service_requests'].count).to eq(1)
+          expect(body['service_requests'].count).to eq(3)
         end
 
       end

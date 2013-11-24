@@ -7,5 +7,9 @@ FactoryGirl.define do
     factory :invalid_status do
       name nil
     end
+
+    factory :default_status do
+      is_default true
+    end
   end
 end

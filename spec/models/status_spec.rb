@@ -11,6 +11,7 @@ describe Status do
   end
   context 'attributes' do
     it { should respond_to :name }
+    it { should respond_to :is_default }
   end
   context 'associations' do
     it { should have_many :service_requests }
