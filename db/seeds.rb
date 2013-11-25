@@ -4,7 +4,7 @@ Service.destroy_all
 ServiceRequest.destroy_all
 Status.destroy_all
 
-open_status = Status.create(name: "Abierto", default: true)
+open_status = Status.create(name: "Abierto", is_default: true)
 verification_status = Status.create(name: "Verificación")
 revision_status = Status.create(name: "Revisión")
 close_status = Status.create(name: "Cerrado")
