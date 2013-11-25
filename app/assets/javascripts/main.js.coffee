@@ -44,7 +44,7 @@ $ ->
     })
 
   if $("#reports-map").length > 0
-    reports_markers = $(".report").map ->
+    reports_markers = $(".recent-report-sum").map ->
       return { lat: $(this).data("lat"), lng: $(this).data("lng"), description: $(this).data("description") }
 
     $map = $(".map")
