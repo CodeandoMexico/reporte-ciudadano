@@ -27,7 +27,7 @@
               %i.icon-time
               = @service_request.created_at.strftime("%d/%m/%Y")
 
-          = render @comments
+          = render partial: 'comments/comment', collection: @comments
 
           .activity.form
             = image_tag current_admin.avatar_url(:thumb), class: "avatar"
