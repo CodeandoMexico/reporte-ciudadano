@@ -23,5 +23,31 @@ describe Service do
       2.times { |n| create(:service_field, name: "field_#{n}", service: service) }
       expect(service.service_fields_names).to eq "field_0, field_1"
     end
+
+    describe '.chart_data' do
+      let!(:services) { create_list(:service, 2) }
+      let!(:first_request) { create(:service_request, service: services.first) }
+      let!(:second_request) { create(:service_request, service: services.last) }
+
+      it 'returns all the services' do
+        expect(Service.chart_data.to_a.count).to eq(Service.count)
+      end
+
+      it 'each service responds to a method for each status' do
+        service = Service.chart_data.first
+        expect(service).to respond_to("status_#{first_request.status.id}")
+        expect(service).to respond_to("status_#{second_request.status.id}")
+      end
+
+      it 'shows the right count by status by service' do
+        service = Service.chart_data.first
+        expect(service.status_1.to_i).to eq(1)
+        expect(service.status_2.to_i).to eq(0)
+      end
+
+    end
+
   end
+
+
 end
