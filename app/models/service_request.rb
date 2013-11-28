@@ -7,6 +7,7 @@ class ServiceRequest < ActiveRecord::Base
 
   validates :service_id, presence: true
   validates :description, presence: true
+  validate :service_extra_fields
 
   before_validation :assign_default_status, on: :create
 
@@ -113,7 +114,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def service_extra_fields
     self.service_fields.each do |k,v|
-      errors.add k.to_sym, "must be present" if v.blank?
+      errors.add(k.to_sym, I18n.t('errors.messages.blank')) if v.blank?
     end
   end
 

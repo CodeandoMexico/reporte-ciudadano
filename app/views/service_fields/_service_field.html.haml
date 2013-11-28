@@ -1,0 +1,8 @@
+.form-group
+  = label_tag "service_request[service_fields][#{service_field}]", service_field.name.capitalize, class: 'col-lg-3 control-label'
+  .col-lg-9
+    - if @service_request.nil?
+      = text_field_tag "service_request[service_fields][#{service_field}]", nil, class: 'form-control'
+    - else
+      = text_field_tag "service_request[service_fields][#{service_field}]", @service_request.service_fields[service_field.to_s], class: 'form-control'
+    = errors_on_resource_for_field(@service_request, service_field.name.to_sym) if @service_request
