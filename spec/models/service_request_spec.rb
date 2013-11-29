@@ -85,10 +85,5 @@ describe ServiceRequest do
       expect(service_request.date).to eq(service_request.created_at.to_date)
     end
 
-    it '.chart_data returns service_requests grouped by service' do
-      data = ServiceRequest.chart_data
-      expect(data.to_a.count).to eq(Service.count)
-    end
-
   end
 end

@@ -102,13 +102,6 @@ class ServiceRequest < ActiveRecord::Base
                                     Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
   end
 
-  def self.chart_data
-    query = Status.all.map { |status| "count(case when status_id = '#{status.id}' then 1 end) as status_#{status.id}" }.join(",")
-    select_clause = query.blank? ? "service_id" : "service_id, #{query}"
-    ServiceRequest.unscoped.select(select_clause).group(:service_id).order('service_id')
-  end
-
-
   private
 
   def service_extra_fields
