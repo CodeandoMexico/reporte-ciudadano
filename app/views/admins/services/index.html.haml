@@ -42,3 +42,10 @@
           = link_to edit_admins_status_path(status), class: 'btn btn-default' do
             %span.glyphicon.glyphicon-wrench
 
+  %h2= t('.geographical_area')
+  %blockquote
+    Modifica el zoom del mapa para definir la zona donde se pueden crear reportes
+
+  #bounding-box-map.l-margin-s-bottom{"data-map-constraints" => current_map_constrainsts}
+  = button_tag 'Guardar restricción', class: 'btn btn-primary js-save-map js-ajax-button', data: {url:map_constraints_admins_application_settings_path(format: :json)}
+  = saving_spinner

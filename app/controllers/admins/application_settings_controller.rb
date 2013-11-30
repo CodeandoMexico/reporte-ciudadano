@@ -6,6 +6,11 @@ class Admins::ApplicationSettingsController < ApplicationController
     respond_with(:admins, @setting)
   end
 
+  def map_constraints
+    update_setting ApplicationSettings::MapConstraints
+    respond_with(:admins, @setting)
+  end
+
   private
 
   def update_setting(klass)

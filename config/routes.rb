@@ -46,6 +46,7 @@ ReporteCiudadano::Application.routes.draw do
     resources :application_settings do
       collection do
         put :css_theme
+        put :map_constraints
       end
     end
   end
