@@ -29,7 +29,7 @@ $ ->
         return (e) ->
           $('.image_preview').html("<img src='#{e.target.result}' title='#{theFile.name}' width='99' height='88' />"))(files)
       reader.readAsDataURL(files)
-  
+
   $(".sortable_table").tablesorter(
     cssHeader: 'table-header'
     sortList: [[0,0]]

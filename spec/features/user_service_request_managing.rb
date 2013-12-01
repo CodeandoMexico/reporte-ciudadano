@@ -87,17 +87,17 @@ feature 'Managing service requests' do
       sign_in_user user
     end
 
-    scenario 'can create a new service request successfully' do
-      categories = create_list(:service, 3)
+    scenario 'can create a new service request successfully', js: true do
+      service = create(:service_with_service_fields)
       visit new_service_request_path
       within '#new_service_request' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
-        select categories.last.name, from: 'service_request[service_id]'
+        select service.name, from: 'service_request[service_id]'
+        fill_in "service_request[service_fields][#{service.service_fields.first.name}]", with: 'more fields'
         click_button  'Guardar'
       end
-      current_url.should eq root_url
       page.should have_content '123 Governor Dr, San Diego, CA 92122'
     end
 
