@@ -45,7 +45,10 @@
           %h4= t('.user_info')
           %p= @service_request.requester.name
           %p= @service_request.requester.email
-          %p= "No. de cuenta: #{@service_request.requester.id}"
+          %p= "ID usuario: #{@service_request.requester.id}"
+          - if @service_request.service_fields?
+            - @service_request.service_fields.each do |name, value|
+              %p= "#{name}: #{value}"
 
           - if @service_request.media.present?
             .image.tight
@@ -62,6 +65,5 @@
             .form-group
               = f.label :status_id, t('.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm' }
-              = render @service_request.service.service_fields if @service_request.service?
 
             = f.submit t('.update'), class: 'btn btn-primary'
