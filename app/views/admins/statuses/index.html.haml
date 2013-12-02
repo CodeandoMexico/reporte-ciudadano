@@ -1,9 +1,0 @@
-%h1 Estatus actuales
-%table{:border => "0"}
-  %tr
-    %th Nombre
-    %th Editar
-  - @statuses.each do |status|
-    %tr
-      %td= status.name
-      %td= link_to edit_admins_status_path(status)

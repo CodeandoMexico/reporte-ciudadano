@@ -7,7 +7,7 @@ feature 'Admin session handling' do
   scenario 'signs in with valid email and password' do
     sign_in_admin admin
 
-    current_path.should == admins_services_path
+    current_path.should == admins_dashboards_path
   end
 
   scenario 'cannot sign in with invalid email and password' do

@@ -5,7 +5,7 @@
 
   .page-description
     %blockquote
-      %i= t('.page-description')
+      %i= t('.page_description')
 
 .dashboard-entity
   %header.dashboard-entity-header
@@ -15,8 +15,7 @@
       = link_to new_admins_logo_path, class: 'btn btn-primary btn-xs', id: 'new-logo-btn' do
         %span.glyphicon.glyphicon-plus
       %small.dashboard-entity-help
-        Arrastra los logos para determinar su posición
-
+        = t('.logos_help_notice')
   .dashboard-entity-content
     - unless @logos.empty?
       %ul.plain-ul.l-grid.clearfix.js-sortable{data: {url: rearrange_admins_logos_path}}
@@ -25,9 +24,9 @@
             = link_to edit_admins_logo_path(logo), class: 'thumbnail' do
               = image_tag logo.image.footer_thumb.url
     - else
-      %p No hay logos
+      %p= t('.no_logos')
 
-%h2 Color scheme
+%h2= t('.color_scheme')
 = form_for ApplicationSettings::CssTheme.get, url: css_theme_admins_application_settings_path(@default_css_theme, format: :json), remote: true, as: :setting do |f|
   .row
     - ApplicationSettings::CssTheme::THEMES.each do |theme|

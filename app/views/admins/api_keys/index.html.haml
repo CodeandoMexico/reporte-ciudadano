@@ -1,13 +1,13 @@
 .content-header
-  %h1 API: Credenciales de autenticación
+  %h1= t('.header')
 
 .page-content.inset
   %p
-    Secret Token:
+    = t('.secret_token')
     %strong= current_admin.authentication_token
   %p
     - if current_admin.api_key?
       Api Token:
       %strong= current_admin.api_key
     - else
-      = link_to 'Generar llave', admins_api_keys_path, method: :post
+      = link_to t('.generate_key'), admins_api_keys_path, method: :post

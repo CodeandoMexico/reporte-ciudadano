@@ -2,40 +2,40 @@
   %a#menu-toggle.btn.btn-default{href: "#"}
     %i.icon-reorder
 
-  %h1 Admin dashboard
+  %h1= t('.header')
 
 .page-content.inset
   .row.reports-stats{data: { total: ServiceRequest.count } }
     .col-md-4.col-sm-4.col-xs-4.reports-stats-block
       = @all_service_requests
-      %h3.reports-stats-name Solicitudes realizadas
+      %h3.reports-stats-name= t('dashboards.total_requests')
     .col-md-4.col-sm-4.col-xs-4.reports-stats-block.mid
       = @open_service_requests
-      %h3.reports-stats-name Solicitudes abiertas
+      %h3.reports-stats-name= t('dashboards.open_requests')
     .col-md-4.col-sm-4.col-xs-4.reports-stats-block
       = @closed_service_requests
-      %h3.reports-stats-name Solicitudes resueltas
+      %h3.reports-stats-name= t('dashboards.closed_requests')
 
   .row.blk-summary.l-margin-l-bottom
     .container
-      %h2.blk-summary-title Solicitudes por servicios
+      %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
       #reports-chart{ data: { chart_data: @chart_data, status_names: @status_names }}
 
 
   .row.blk-summary.l-margin-l-bottom
     .container
-      %h2.blk-summary-title Mapa de solicitudes
+      %h2.blk-summary-title= t('dashboards.requests_map')
       = form_tag admins_dashboards_path, method: :get, class: "filters form-inline" do
         .form-group
-          = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+          = text_field_tag 'start_date', params[:start_date], placeholder: t('search_form.from_date'), class: 'datepicker form-control col-lg-6'
         .form-group.form-group-separator
-          = text_field_tag 'end_date', params[:end_date], placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+          = text_field_tag 'end_date', params[:end_date], placeholder: t('search_form.to_date'), class: 'datepicker form-control col-lg-6'
         .form-group.form-group-separator
-          = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: 'Cualquier tipo', class: 'form-control')
+          = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: t('search_form.status'), class: 'form-control')
         .form-group.form-group-separator
-          = select_tag('service_id', options_from_collection_for_select(Service.all, :id, :name, params[:service_id]), prompt: 'Todos los servicios', class: 'form-control')
+          = select_tag('service_id', options_from_collection_for_select(Service.all, :id, :name, params[:service_id]), prompt: t('search_form.service'), class: 'form-control')
         .form-group
-          = submit_tag 'Buscar', class: "btn btn-primary"
+          = submit_tag t('search'), class: "btn btn-primary"
 
 
       .map{data_position}
@@ -43,13 +43,13 @@
 
       = form_tag service_requests_path, method: :get, class: 'filters form-inline' do
         .form-group.form-group-separator
-          = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: 'No. Folio', class: 'form-control'
+          = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: t('search_form.id'), class: 'form-control'
         .form-group
-          = submit_tag 'Buscar', class: "btn btn-primary"
+          = submit_tag t('search'), class: "btn btn-primary"
 
   .row.blk-summary.l-margin-l-bottom
     .container
-      %h2.blk-summary-title Solicitudes recientes
+      %h2.blk-summary-title= t('dashboards.recent_requests')
       - unless @service_requests.empty?
         - @service_requests.each do |service_request|
           .recent-report-sum{id: "service_request_#{service_request.id}", data: { lat: service_request.lat, lng: service_request.lng, description: service_request_info_window(service_request) } }
@@ -64,7 +64,7 @@
               .col-md-2.text-center.l-margin-s-bottom
                 .recent-reports-counter.js-votes_count
                   = service_request.votes_for
-                = link_to "Editar solicitud", edit_admins_service_request_path(service_request), class: 'btn pull-right btn-default btn-xs'
+                = link_to t('crud.edit'), edit_admins_service_request_path(service_request), class: 'btn pull-right btn-default btn-xs'
       - else
         .row.service_request
 

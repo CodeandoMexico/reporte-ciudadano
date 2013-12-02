@@ -1,10 +1,10 @@
 .form-group
-  = f.label :title, class: 'col-lg-2 control-label'
+  = f.label :title, t('.title'), class: 'col-lg-2 control-label'
   .col-lg-10
     = f.text_field :title, class: 'form-control'
 
 .form-group
-  = f.label :image, class: 'col-lg-2 control-label'
+  = f.label :image, t('.image'), class: 'col-lg-2 control-label'
   .col-lg-10
     = image_tag(f.object.image.footer_thumb.url) if f.object.image.present?
     = f.file_field :image
@@ -12,5 +12,5 @@
 
 .form-group
   .col-lg-offset-2.col-lg-10
-    = f.submit 'Guardar', class: "btn btn-primary"
+    = f.submit t('save'), class: "btn btn-primary"
 

@@ -1,7 +1,9 @@
 .content-header
-  %h1= t('admin.service.edit.title')
+  %h1= t('.header')
 
 .page-content.inset
   .row
     .col-md-10
       = render 'form'
+
+  = link_to t('back'), admins_services_path

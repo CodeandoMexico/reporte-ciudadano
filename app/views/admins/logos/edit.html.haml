@@ -1,11 +1,11 @@
-%h1 Editar logo
+%h1= t('.header')
 .row
   .col-md-6
     = form_for [:admins, @logo], html: { class: 'form-horizontal', role: 'form'} do |f|
       = render partial: 'form', locals: { f: f }
 
 .l-margin-l-bottom
-  %h2 Eliminar logo
+  %h3= t('.delete_logo')
   %p
-    ¿Deseas eliminar el logo?
-    = link_to "Eliminar", admins_logo_path(@logo), data: { confirm: "¿Estás seguro?" }, method: :delete, class: 'btn btn-danger'
+    = t('.delete_logo_message')
+    = link_to t('crud.delete'), admins_logo_path(@logo), data: { confirm: "¿Estás seguro?" }, method: :delete, class: 'btn btn-danger'

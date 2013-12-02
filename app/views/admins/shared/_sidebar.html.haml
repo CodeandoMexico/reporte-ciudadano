@@ -1,17 +1,17 @@
 #sidebar-wrapper
   %ul.sidebar-nav
     %li.sidebar-brand
-      = link_to "Admin dashboard", admins_dashboards_path
+      = link_to t('.dashboard'), admins_dashboards_path
     %li
-      = link_to 'Resumen', admins_dashboards_path
+      = link_to t('.summary'), admins_dashboards_path
     %li
-      = link_to 'Solicitudes', admins_service_requests_path
+      = link_to t('.requests'), admins_service_requests_path
     %li
-      = link_to 'Personalizar solicitudes',  admins_services_path
+      = link_to t('.config_requests'),  admins_services_path
     %li
-      = link_to 'Diseño', design_admins_dashboards_path
+      = link_to t('.design'), design_admins_dashboards_path
     %li
-      = link_to 'API', admins_api_keys_path
+      = link_to t('.api'), admins_api_keys_path
 
 
     %hr
@@ -21,11 +21,11 @@
     %li
       = link_to  edit_admins_registration_path(current_admin) do
         %i.glyphicon.glyphicon-cog
-        Editar perfil
+        = t('.edit_profile')
     %li
       = link_to destroy_admin_session_path, method: :delete do
         %i.glyphicon.glyphicon-off
-        Cerrar Sesión
+        = t('sign_out')
 
 
 
