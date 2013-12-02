@@ -25,11 +25,11 @@
 
 
   .table-responsive
-    %table.table.sortable_table.table-striped
+    %table.table.sortable_table.table-striped.table-hover
       %thead
         %tr
           %th
-            ID
+            Folio
             %i.icon-chevron-down
           %th
             Fecha de creación
@@ -38,7 +38,7 @@
             Servicio
             %i.icon-chevron-down
           %th
-            Descripción
+            Dirección
             %i.icon-chevron-down
           %th
             Estatus
@@ -46,19 +46,17 @@
           %th
             Votos
             %i.icon-chevron-down
-          - if admin_signed_in?
-            %th
-              Eliminar
+          %th
+            Eliminar
       %tbody
         - @service_requests.each do |service_request|
           %tr
             %td= link_to service_request.id, edit_admins_service_request_path(service_request)
             %td= l service_request.created_at, format: :short
             %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
-            %td= truncate service_request.description
+            %td= truncate service_request.address, length: 45
             %td= service_request.status
             %td= service_request.votes_for
-            - if admin_signed_in?
-              %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
+            %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
 
   = paginate @service_requests
