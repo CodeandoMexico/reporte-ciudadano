@@ -7,7 +7,6 @@ ReporteCiudadano::Application.routes.draw do
   resources :comments
 
   resources :requests, as: :service_requests, controller: :service_requests do
-    resources :messages, only: [:index] 
     collection do
       get 'filter'
     end
@@ -19,7 +18,9 @@ ReporteCiudadano::Application.routes.draw do
   root :to => 'pages#index'
 
   namespace :admins do
-    resources :services
+    resources :services do
+      resources :messages, only: :index
+    end
     resources :statuses, except: [:destroy]
     resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create, :index]
