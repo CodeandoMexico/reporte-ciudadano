@@ -11,11 +11,11 @@ $ ->
     $tabs.removeClass 'active'
     $(@).addClass 'active'
 
-  $('#report_status_id').change ->
+  $('#service_request_status_id').change ->
     status_id = $(@).val()
-    report_id = $('#report_id').val()
+    service_id = $(@).data('service-id')
     $.ajax(
-      url: "/reports/#{report_id}/messages"
+      url: "/admins/services/#{service_id}/messages"
       data:
         status_id: status_id
       type: 'GET'

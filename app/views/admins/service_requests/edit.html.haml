@@ -64,6 +64,9 @@
               = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
             .form-group
               = f.label :status_id, t('.status')
-              = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm' }
+              = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm', data: {service_id: @service_request.service_id} }
+            .form-group#service_request_message
+              - if @messages
+                = render 'admins/messages/message_options', messages: @messages
 
             = f.submit t('.update'), class: 'btn btn-primary'

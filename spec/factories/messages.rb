@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :message do
-    content { Faker::Lorem.paragraph(5) }
+    content { Faker::Lorem.word }
     service
     status
   end

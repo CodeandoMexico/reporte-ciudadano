@@ -22,15 +22,17 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def edit
     @service_request = ServiceRequest.find params[:id]
+    @messages = @service_request.service.messages.with_status(@service_request.status_id)
     @comments = @service_request.comments.order("comments.created_at ASC")
   end
 
   def update
     @service_request = ServiceRequest.find params[:id]
     if @service_request.update_attributes params[:service_request]
+      @service_request.comments.create content: params[:message], commentable: current_admin if params[:message].present?
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: "La solicitud fue actualizada correctamente" }
     else
-     render :edit 
+     render :edit
     end
   end
 
