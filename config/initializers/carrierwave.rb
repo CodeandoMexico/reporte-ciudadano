@@ -6,8 +6,8 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = ENV['S3_BUCKET']
   config.fog_public     = true
-  config.root      = Rails.root.join('tmp')
-  config.cache_dir = 'files'
+  # config.root      = Rails.root.join('tmp')
+  # config.cache_dir = 'files'
 
   config.permissions = 0600
 
