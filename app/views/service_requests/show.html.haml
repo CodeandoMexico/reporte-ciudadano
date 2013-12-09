@@ -1,12 +1,13 @@
 .report-show{id: "service_request_#{@service_request.id}"}
   .row
-    .col-md-8
+    .col-md-9
       %h2.report-show-title
         = "##{@service_request.id}"
         = @service_request.service.name
       .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 300px;"}
       .report-show-information
-        = "Hace #{time_ago_in_words(@service_request.created_at)}"
+        %p= @service_request.address
+        %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
 
 
 
@@ -41,23 +42,26 @@
               %i.icon-time
               = Date.today.strftime("%d/%m/%Y")
 
-    %aside.col-md-4
+    %aside.col-md-3
       - if @service_request.media.present?
-        .image.tight
-          = image_tag @service_request.media_url
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title Foto
+          .panel-body
+            .image.tight
+              = image_tag @service_request.media_url(:comment)
 
-      .location
-        %h3 Ubicacion
-        %p= @service_request.address
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Votos
+        .panel-body
+          .profile-report-count.js-votes_count
+            = @service_request.votes_for
+          .js-vote_status.text-center
+            = vote_link_for(@service_request)
 
-      .votes
-        .counter.js-votes_count
-          = @service_request.votes_for
-        .js-vote_status
-          = vote_link_for(@service_request)
-        .status
-          %i.icon-flag
-          = @service_request.status
-
-      .social
-        = render 'shared/tweet'
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Compártelo
+        .panel-body
+          = render 'shared/tweet'

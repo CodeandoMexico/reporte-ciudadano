@@ -4,15 +4,15 @@ module ServiceRequestsHelper
     ServiceRequest::STATUS_LIST[status_id.to_sym]
   end
 
-  def vote_link_for(service_request)
+  def vote_link_for(service_request, options={})
     if user_signed_in? && !current_user.voted_on?(service_request)
-      link_to 'VOTA', vote_service_request_path(service_request), :remote => true, :method => :post, :class => "js-vote_service_request", class: "btn btn-primary btn-block"
+      link_to 'VOTA', vote_service_request_path(service_request), :remote => true, :method => :post, :class => "js-vote_service_request btn btn-primary #{options[:class]}"
     elsif user_signed_in? && current_user.voted_on?(service_request)
-      link_to 'VOTASTE', "javascript:void(0)", class: "btn btn-success btn-block"
+      link_to 'VOTASTE', "javascript:void(0)", class: "btn btn-success #{options[:class]}"
     elsif admin_signed_in?
-      link_to 'VOTA', "javascript:void(0)", { class: "btn btn-primary blocked btn-block", data: { message: "Los administradores no pueden votar." } }
+      link_to 'VOTA', "javascript:void(0)", { class: "btn btn-primary blocked #{options[:class]}", data: { message: "Los administradores no pueden votar." } }
     else
-      link_to 'VOTA', "javascript:void(0)", { class: "btn btn-primary blocked btn-block", data: { message: "Para votar necesitas registrarte." } }
+      link_to 'VOTA', "javascript:void(0)", { class: "btn btn-primary blocked #{options[:class]}", data: { message: "Para votar necesitas registrarte." } }
     end
   end
 

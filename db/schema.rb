@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131124222826) do
+ActiveRecord::Schema.define(:version => 20131208005334) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20131124222826) do
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "comments", :force => true do |t|
-    t.string   "content",            :default => ""
+    t.text     "content",            :default => ""
     t.integer  "service_request_id"
     t.integer  "commentable_id",                     :null => false
     t.string   "commentable_type",                   :null => false

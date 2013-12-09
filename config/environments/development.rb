@@ -45,10 +45,4 @@ ReporteCiudadano::Application.configure do
     password: '',
     domain: ''
   }
-
-
-  #Carrierwave config
-  CarrierWave.configure do |config|
-    config.storage :file
-  end
 end

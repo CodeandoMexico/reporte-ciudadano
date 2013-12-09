@@ -21,17 +21,17 @@ module Api
 
       def set_date_range_in_params
         if params[:start_date].blank? || older_than_90_days(params[:start_date])
-          params[:start_date] = Date.today.beginning_of_day - 90.days
+          params[:start_date] = DateTime.now.in_time_zone.beginning_of_day - 90.days
         end
 
         if params[:end_date].blank? || older_than_90_days(params[:end_date])
-          params[:end_date] = Date.today.end_of_day
+          params[:end_date] = DateTime.now.in_time_zone.end_of_day
         end
       end
 
       def older_than_90_days(date)
-        parsed_date = Date.parse date
-        parsed_date < (Date.today - 90.days)
+        parsed_date = Time.parse(date).in_time_zone
+        parsed_date < (DateTime.now.in_time_zone - 90.days)
       end
 
     end

@@ -66,20 +66,6 @@ ReporteCiudadano::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   #
-  config.action_mailer.default_url_options = { :host => 'tuadosapaco.herokuapp.com' }
-  
-  #Carrierwave config
-  CarrierWave.configure do |config|
-    config.root = Rails.root.join('tmp')
-    config.cache_dir = 'files'
-    config.permissions = 0777
+  config.action_mailer.default_url_options = { :host => ENV['ACTION_MAILER_DEFAULT_URL'] }
 
-    config.storage = :fog
-    config.fog_credentials = {
-        :provider => 'AWS', # required
-        :aws_access_key_id => ENV['AWS_KEY'],
-        :aws_secret_access_key => ENV['AWS_SECRET']
-    }
-    config.fog_directory = 'adosapaco' # required
-  end 
 end

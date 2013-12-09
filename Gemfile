@@ -4,9 +4,6 @@ ruby '2.0.0'
 
 gem 'rails', '3.2.13'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'pg'
 gem 'devise', '2.2.4'
 gem 'nested_form'
@@ -54,10 +51,6 @@ group :assets do
   gem 'compass-rails'
   gem "modular-scale", "~> 1.0.6"
   gem 'bootstrap-sass', '~> 3.0.0.0.rc'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -73,10 +66,8 @@ gem 'fog'
 gem 'aws-s3'
 gem 'kaminari'
 gem 'thumbs_up'
-gem 'newrelic_rpm'
 gem 'gravatar-ultimate'
 gem 'jquery-ui-rails'
 gem 'ransack'
-gem 'state_machine'
 gem 'figaro'
 gem 'active_model_serializers'
