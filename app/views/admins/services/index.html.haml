@@ -21,7 +21,7 @@
       %th
     - @services.each do |service|
       %tr
-        %td= link_to service.name, admins_service_path(service)
+        %td= link_to service.name, edit_admins_service_path(service)
         %td= service.service_fields_names
         %td
           .btn-group
