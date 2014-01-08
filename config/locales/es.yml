@@ -269,6 +269,7 @@ es:
         status: "Estatus"
         update: "Actualizar"
         user_info: "Info del usuario"
+        votes: "Votos"
       index:
         new_service_request: "Crear nueva solicitud"
         search: "Buscar"
