@@ -1,12 +1,8 @@
-class Admins::ServicesController < Admins::AdminController 
-  
+class Admins::ServicesController < Admins::AdminController
+
   def index
     @services = Service.all
     @statuses = Status.all
-  end
-
-  def show
-    @service = Service.find(params[:id])
   end
 
   def new
@@ -21,7 +17,7 @@ class Admins::ServicesController < Admins::AdminController
     @service = Service.new(params[:service])
 
     if @service.save
-      redirect_to [:admins, @service], notice: I18n.t('flash.service.created')
+      redirect_to admins_services_path, notice: I18n.t('flash.service.created')
     else
       render action: "new"
     end
@@ -31,7 +27,7 @@ class Admins::ServicesController < Admins::AdminController
     @service = Service.find(params[:id])
 
     if @service.update_attributes(params[:service])
-      redirect_to [:admins, @service], notice: I18n.t('flash.service.updated')
+      redirect_to admins_services_path, notice: I18n.t('flash.service.updated')
     else
       render action: "edit"
     end
