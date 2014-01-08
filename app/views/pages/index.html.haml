@@ -18,7 +18,17 @@
 .row.blk-summary.l-margin-l-bottom
   .container
     %h2.blk-summary-title Mapa de solicitudes
-    = form_tag service_requests_path, method: :get, class: "filters form-inline" do
+
+    = form_tag root_path, method: :get, class: 'filters form-inline' do
+      .form-group.form-group-separator
+        = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: 'No. Folio', class: 'form-control'
+      .form-group
+        = submit_tag 'Buscar', class: "btn btn-primary"
+
+    .map{data_position}
+      #reports-map
+
+    = form_tag root_path, method: :get, class: "filters form-inline" do
       .form-group
         = text_field_tag 'start_date', params[:start_date], placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
       .form-group.form-group-separator
@@ -27,16 +37,6 @@
         = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: 'Cualquier tipo', class: 'form-control')
       .form-group.form-group-separator
         = select_tag('service_id', options_from_collection_for_select(Service.all, :id, :name, params[:service_id]), prompt: 'Todas los servicios', class: 'form-control')
-      .form-group
-        = submit_tag 'Buscar', class: "btn btn-primary"
-
-
-    .map{data_position}
-      #reports-map
-
-    = form_tag service_requests_path, method: :get, class: 'filters form-inline' do
-      .form-group.form-group-separator
-        = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: 'No. Folio', class: 'form-control'
       .form-group
         = submit_tag 'Buscar', class: "btn btn-primary"
 
