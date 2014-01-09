@@ -252,7 +252,12 @@ es:
         which_status: "Estatus"
         remove_message: "Borrar mensaje"
         add_message: "Agregar mensaje"
+        add_service_field: "Agregar campo adicional"
+        messages_title: 'Mensajes para estatuses'
+        service_fields_title: 'Campos adicionales'
+        remove_service_field: 'Borrar campo adicional'
         save: "Guardar"
+        cancel: 'Cancelar'
       show:
         header: "Servicio: %{service_name}"
         edit: "Editar servicio"
