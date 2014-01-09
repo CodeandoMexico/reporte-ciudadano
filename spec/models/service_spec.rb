@@ -21,6 +21,7 @@ describe Service do
 
     it '#service_fields_names returns a comma separated string with the service fields names' do
       2.times { |n| create(:service_field, name: "field_#{n}", service: service) }
+      service.reload
       expect(service.service_fields_names).to eq "field_0, field_1"
     end
 
