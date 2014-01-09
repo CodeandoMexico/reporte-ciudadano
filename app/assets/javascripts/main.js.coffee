@@ -32,15 +32,22 @@ $ ->
     $(".alert").fadeOut('slow')
 
   if $("#new-report-map").length > 0
-    $("#new-report-map").geolocateMap({
+    newReportMap = $('#new-report-map')
+    mapConstraints = newReportMap.data('map-constraints')
+    newReportMap.geolocateMap({
       html5: true
-      latitude: $("#new-report-map").data("latitude")
-      longitude: $("#new-report-map").data("longitude")
-      "sync_input": {
+      zoom: mapConstraints.zoom
+      sync_input:
         longitude: '#lng'
         latitude: '#lat'
         address: '#address'
-      }
+      bounds:
+        sw:
+          latitude: mapConstraints.bounds[0][0]
+          longitude: mapConstraints.bounds[0][1]
+        ne:
+          latitude: mapConstraints.bounds[1][0]
+          longitude: mapConstraints.bounds[1][1]
     })
 
   if $("#reports-map").length > 0
@@ -51,8 +58,7 @@ $ ->
     lat = $map.attr("data-latitude")
     lng = $map.attr("data-longitude")
 
-    $("#reports-map").geolocateMap({
-      markers: reports_markers
+    $("#reports-map").pinDropper(reports_markers, {
       center: new google.maps.LatLng(lat, lng)
     })
 

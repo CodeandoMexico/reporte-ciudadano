@@ -15,10 +15,6 @@ module ApplicationHelper
     { "data-longitude" => lng, "data-latitude" => lat }
   end
 
-  def default_service_request_data_position
-    { "data-longitude" => '17.065593', "data-latitude" => '-96.724253' }
-  end
-
   def timeago(time, options = {})
     options[:class] ||= "timeago"
     content_tag(:abbr, time.to_s, options.merge(:title => time.getutc.iso8601)) if time
@@ -35,6 +31,10 @@ module ApplicationHelper
 
   def current_theme
     ApplicationSettings::CssTheme.get.name
+  end
+
+  def current_map_constrainsts
+    ApplicationSettings::MapConstraints.get.map_constraints
   end
 
   def saving_spinner
