@@ -3,6 +3,7 @@ class Service < ActiveRecord::Base
   has_many :service_requests
 
   validates :name, presence: true
+  validates_associated :service_fields
 
   has_many :service_fields
   has_many :messages

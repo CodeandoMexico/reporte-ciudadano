@@ -29,14 +29,6 @@ feature 'As an admin I can manage requests services' do
     page.should have_content t('flash.service.updated')
   end
 
-  scenario 'I can show a service' do
-    service = create(:service, name: 'Nombre de servicio')
-    visit admins_services_path
-    click_link 'Nombre de servicio'
-    current_path.should == admins_service_path(service)
-    page.should have_content service.name
-  end
-
   scenario 'I can delete a service' do
     service = create(:service, name: 'service')
     visit admins_services_path
