@@ -36,7 +36,7 @@ $ ->
     mapConstraints = newReportMap.data('map-constraints')
     newReportMap.geolocateMap({
       html5: true
-      zoom: mapConstraints.zoom
+      zoom: parseInt(mapConstraints.zoom)
       sync_input:
         longitude: '#lng'
         latitude: '#lat'
