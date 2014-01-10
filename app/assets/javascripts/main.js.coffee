@@ -63,11 +63,18 @@ $ ->
     })
 
   if $("#show-report-map").length > 0
-    $("#show-report-map").geolocateMap({
-      markers: [{
-        lat: $("#show-report-map").data("latitude")
-        lng: $("#show-report-map").data("longitude")
-        description: $("#show-report-map").data("description")
-      }]
-      center: new google.maps.LatLng($("#show-report-map").data("latitude"), $("#show-report-map").data("longitude"))
+    $map = $("#show-report-map")
+    lat = $map.attr("data-latitude")
+    lng = $map.attr("data-longitude")
+
+    reports_markers = [
+      {
+        lat: $map.data("latitude")
+        lng: $map.data("longitude")
+        description: $map.data("description")
+      }
+    ]
+
+    $map.pinDropper(reports_markers, {
+      center: new google.maps.LatLng(lat, lng)
     })

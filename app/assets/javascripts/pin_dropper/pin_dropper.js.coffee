@@ -40,6 +40,8 @@ class window.PinDropper
         info_window.setContent e.description
         info_window.open(map, marker)
 
+      marker
+
     if markers.length > 1
       @map.fitBounds(bounds)
     else if markers.length == 1
