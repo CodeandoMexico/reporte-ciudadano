@@ -229,7 +229,7 @@ es:
   admins:
     shared:
       sidebar:
-        dashboard: "Admin dashboard"
+        dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Reportes"
         config_requests: "Personalizar reportes"
@@ -256,6 +256,9 @@ es:
         new_service: "Nuevo servicio"
         new_status: "Nuevo estatus"
         name: "Nombre"
+        geographical_area: "Área geográfica de los reportes"
+        geographical_area_description: "Modifica el zoom del mapa para definir la zona donde se pueden crear reportes"
+        save_restriction: "Guardar restricción"
       new:
         header: 'Nuevo servicio'
       edit:
@@ -302,7 +305,7 @@ es:
         status: "Estatus: %{status}"
         user_id: "ID del usuario: %{id}"
         update_service_request: "Actualizar reporte"
-        user_info: "Info del usuario"
+        user_info: "Datos del usuario"
         votes: "Votos"
       index:
         header: "Todos los reportes"
