@@ -20,8 +20,8 @@ module ServiceRequestsHelper
   def service_request_info_window(service_request)
     img = image_tag service_request.media_url(:info_window), class: 'info_window_image' if service_request.media_url.present?
     description = content_tag :span, service_request.description, class: 'info_window_description'
-    remove_link = (link_to 'Eliminar', admins_service_request_path(service_request), method: :delete, class: 'info_window_link') if admin_signed_in?
-    img.to_s + description + remove_link.to_s
+    show_link = (link_to 'Ver completo', edit_admins_service_request_path(service_request), class: 'info_window_link') if admin_signed_in?
+    img.to_s + description + show_link.to_s
   end
 
 end
