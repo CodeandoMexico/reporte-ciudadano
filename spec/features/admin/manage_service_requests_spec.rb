@@ -81,4 +81,23 @@ feature 'As an admin I can manage service requests' do
     page.should have_content t('flash.service_requests.destroyed')
   end
 
+  scenario 'I can post a comment on a service request' do
+    visit edit_admins_service_request_path(service_request)
+    within '#new_comment' do
+      fill_in 'comment[content]', with: 'Reporte ciudadano es lo mejor'
+      attach_file 'comment[image]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
+      click_button 'Comentar'
+    end
+
+    page.should have_content 'Reporte ciudadano es lo mejor'
+    page.should have_content 'Tu comentario ha sido publicado'
+  end
+
+  scenario 'I can delete a comment on a service request' do
+    comment = create(:comment, service_request: service_request)
+    visit edit_admins_service_request_path(service_request)
+    page.find("a[href='#{comment_path(comment)}']").click
+    page.should_not have_content comment.content
+  end
+
 end
