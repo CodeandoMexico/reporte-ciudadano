@@ -8,7 +8,7 @@ class window.MapBounder
 
   _init_map: (html_node, constraints) ->
     map_options =
-      zoom: constraints.zoom
+      zoom: parseInt(constraints.zoom)
       center: new google.maps.LatLng(0.0, 0.0)
     new google.maps.Map(html_node, map_options)
 
