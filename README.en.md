@@ -12,7 +12,7 @@ based on the [Open 311](http://open311.org) standard.
 [Team](http://codeandomexico.github.io/reporte-ciudadano/team.html)
 
 ### Dependencies
-- Ruby 2.0
+- Ruby 2.1
 - Rails 3.2
 - Bootstrap 3.0
 - Rspec 2.14

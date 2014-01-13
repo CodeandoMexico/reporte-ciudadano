@@ -15,7 +15,7 @@ de la comunicación con la ciudadanía y los reportes de cuestiones en sus servi
 [README English Version](https://github.com/CodeandoMexico/reporte-ciudadano/blob/master/README.en.md)
 
 ### Dependencias
-- Ruby 2.0
+- Ruby 2.1
 - Rails 3.2
 - Bootstrap 3.0
 - Rspec 2.14
