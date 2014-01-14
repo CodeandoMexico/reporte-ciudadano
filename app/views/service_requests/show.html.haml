@@ -30,10 +30,9 @@
 
         = render @comments
 
-        - user = current_user || current_admin
-        - if user
+        - if current_user
           .activity.form
-            = image_tag user.avatar_url(:thumb), class: "avatar"
+            = image_tag current_user.avatar_url(:thumb), class: "avatar"
             = form_for Comment.new do |f|
               = f.text_area :content, placeholder: "Agrega tu comentario"
               = f.file_field :image, class: "l-margin-s-bottom"
