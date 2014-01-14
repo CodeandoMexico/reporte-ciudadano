@@ -11,4 +11,4 @@
     = comment.created_at.strftime("%d/%m/%Y")
     - if admin_signed_in?
       .destroy_comment
-        = link_to 'Eliminar', comment_path(comment), method: :delete
+        = link_to t('.destroy'), comment_path(comment), method: :delete

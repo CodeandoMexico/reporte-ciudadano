@@ -1,5 +1,5 @@
 .content-header
-  %h1 Solicitudes de servicio
+  %h1= t('.header')
 
 .page-content.inset
 
@@ -11,17 +11,17 @@
 
   = search_form_for @search, url: admins_service_requests_path, method: :get, class: "filters form-inline" do |f|
     .form-group
-      = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+      = f.text_field :date_gteq, placeholder: t('search_form.from_date'), class: 'datepicker form-control col-lg-6'
     .form-group.form-group-separator
-      = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+      = f.text_field :date_lteq, placeholder: t('search_form.to_date'), class: 'datepicker form-control col-lg-6'
     .form-group.form-group-separator
-      = f.collection_select :service_id_eq, Service.all, :id, :name, { include_blank: 'Servicio' }, class: 'form-control'
+      = f.collection_select :service_id_eq, Service.all, :id, :name, { include_blank: t('form.labels.service') }, class: 'form-control'
     .form-group.form-group-separator
-      = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
+      = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: t('form.labels.status') }, class: 'form-control'
     .form-group
       = button_tag class: "submit btn btn-default" do
         %i.glyphicon.glyphicon-search
-        = t('.search')
+        = t('search')
 
 
   .table-responsive
@@ -29,25 +29,25 @@
       %thead
         %tr
           %th
-            Folio
+            = t('.id')
             %i.icon-chevron-down
           %th
-            Fecha de creación
+            = t('.created_at')
             %i.icon-chevron-down
           %th
-            Servicio
+            = t('form.labels.service')
             %i.icon-chevron-down
           %th
-            Dirección
+            = t('form.labels.address')
             %i.icon-chevron-down
           %th
-            Estatus
+            = t('form.labels.status')
             %i.icon-chevron-down
           %th
-            Votos
+            = t('.votes')
             %i.icon-chevron-down
           %th
-            Eliminar
+            = t('crud.delete')
       %tbody
         - @service_requests.each do |service_request|
           %tr
@@ -57,6 +57,6 @@
             %td= truncate service_request.address, length: 45
             %td= service_request.status
             %td= service_request.votes_for
-            %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
+            %td= link_to t('crud.delete'), admins_service_request_path(service_request), method: :delete
 
   = paginate @service_requests

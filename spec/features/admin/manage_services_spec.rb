@@ -15,6 +15,7 @@ feature 'As an admin I can manage requests services' do
   end
 
   scenario 'I can create a new service' do
+    visit admins_services_path
     click_link 'Nuevo servicio'
     fill_in 'service[name]', with: 'Servicio nuevo'
     click_button 'Guardar'
@@ -40,6 +41,7 @@ feature 'As an admin I can manage requests services' do
   scenario 'I can create a new service with status message', js: true do
     create(:status, name: 'Abierto')
 
+    visit admins_services_path
     click_link 'Nuevo servicio'
     fill_in 'service[name]', with: 'Servicio nuevo'
 

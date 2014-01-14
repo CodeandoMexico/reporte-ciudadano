@@ -1,23 +1,23 @@
 .row.reports-stats{data: { total: ServiceRequest.count } }
   .col-md-4.col-sm-4.col-xs-4.reports-stats-block
     = @all_service_requests
-    %h3.reports-stats-name Solicitudes realizadas
+    %h3.reports-stats-name= t('dashboards.total_requests')
   .col-md-4.col-sm-4.col-xs-4.reports-stats-block.mid
     = @open_service_requests
-    %h3.reports-stats-name Solicitudes abiertas
+    %h3.reports-stats-name= t('dashboards.open_requests')
   .col-md-4.col-sm-4.col-xs-4.reports-stats-block
     = @closed_service_requests
-    %h3.reports-stats-name Solicitudes resueltas
+    %h3.reports-stats-name= t('dashboards.closed_requests')
 
 .row.blk-summary.l-margin-l-bottom
   .container
-    %h2.blk-summary-title Solicitudes por servicio
+    %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
     #reports-chart{ data: { chart_data: @chart_data, status_names: @status_names }}
 
 
 .row.blk-summary.l-margin-l-bottom
   .container
-    %h2.blk-summary-title Mapa de solicitudes
+    %h2.blk-summary-title= t('dashboards.requests_map')
 
     = form_tag root_path, method: :get, class: 'filters form-inline' do
       .form-group.form-group-separator
@@ -42,7 +42,7 @@
 
 .row.blk-summary.l-margin-l-bottom
   .container
-    %h2.blk-summary-title Solicitudes recientes
+    %h2.blk-summary-title= t('dashboards.recent_requests')
     - unless @service_requests.empty?
       - @service_requests.each do |service_request|
         .recent-report-sum{id: "service_request_#{service_request.id}", data: { lat: service_request.lat, lng: service_request.lng, description: service_request_info_window(service_request) } }

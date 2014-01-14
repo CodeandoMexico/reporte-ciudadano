@@ -227,10 +227,23 @@ es:
         title: 'Servicios'
 
   admins:
+    shared:
+      sidebar:
+        dashboard: "Panel de administración"
+        summary: "Resumen"
+        requests: "Reportes"
+        config_requests: "Personalizar reportes"
+        design: "Diseño"
+        api: "API"
+        edit_profile: "Editar perfil"
     sessions:
       new:
-        title: "Iniciar sesión"
+        header: "Iniciar sesión"
         submit: "Entrar"
+        remember_me: "Recuérdame"
+    registrations:
+      edit:
+        header: "Editar perfil"
     design:
       new_logo: "Agregar logo"
     services:
@@ -243,12 +256,14 @@ es:
         new_service: "Nuevo servicio"
         new_status: "Nuevo estatus"
         name: "Nombre"
+        geographical_area: "Área geográfica de los reportes"
+        geographical_area_description: "Modifica el zoom del mapa para definir la zona donde se pueden crear reportes"
+        save_restriction: "Guardar restricción"
       new:
         header: 'Nuevo servicio'
-        back: "Regresar al listado de servicios"
+      edit:
+        header: "Editar servicio"
       form:
-        name: 'Nombre'
-        message: "Mensaje"
         which_status: "Estatus"
         remove_message: "Borrar mensaje"
         add_message: "Agregar mensaje"
@@ -262,46 +277,165 @@ es:
         header: "Servicio: %{service_name}"
         edit: "Editar servicio"
         additional_fields: "Campos adicionales"
-        back: "Regresar"
+
     dashboards:
       design:
         header: "Diseño"
-        page-description: 'Personaliza el diseño de tu aplicación'
+        page_description: 'Personaliza el diseño de tu aplicación'
+        logos: "Logos"
+        logos_help_notice: "Arrastra los logos para determinar su posición"
+        no_logos: "No hay logos"
+        color_scheme: "Esquemas de colores"
+      index:
+        header: "Resumen de actividad"
+    logos:
+      new:
+        header: "Agregar nuevo logo"
+      edit:
+        header: "Editar logo"
+        delete_logo: "Eliminar logo"
+        delete_logo_message: "¿Deseas eliminar el logo?"
+      form:
+        title: "Título"
+        image: "Imagen"
     service_requests:
       edit:
-        update_service_request: "Actualizar solicitud de servicio"
-        service: "Servicio"
-        status: "Estatus"
-        update: "Actualizar"
-        user_info: "Info del usuario"
+        address: "Dirección: %{address}"
+        time_ago: "Hace %{created_at}"
+        status: "Estatus: %{status}"
+        user_id: "ID del usuario: %{id}"
+        update_service_request: "Actualizar reporte"
+        user_info: "Datos del usuario"
         votes: "Votos"
       index:
-        new_service_request: "Crear nueva solicitud"
-        search: "Buscar"
+        header: "Todos los reportes"
+        new_service_request: "Crear nuevo reporte"
+        id: "Folio"
+        created_at: "Fecha de creación"
+        votes: "Votos"
+      new:
+        header: "Crear nuevo reporte"
+      form:
+        media: "Imagen"
+        service: "Servicio"
     statuses:
       new:
         header: "Nuevo status"
       edit:
         header: 'Editar status'
+    api_keys:
+      index:
+        header: "API: Credenciales de autenticación"
+        secret_token: "Token Secreto"
+        generate_key: "Generar llave"
+
+  dashboards:
+    total_requests: "Total de reportes"
+    open_requests: "Reportes abiertos"
+    closed_requests: "Reportes resueltos"
+    recent_requests: "Solicitudes recientes"
+    requests_by_service_chart: "Reportes por tipo de servicio"
+    requests_map: "Mapa de reportes"
+
+  comments:
+    comment:
+      destroy: "Eliminar"
+
+  service_requests:
+    new:
+      header: "Crear nuevo reporte"
+    form:
+      anonymise: "Ocultar identidad"
+    show:
+      votes: "Votos"
+      share_it: "Compártelo"
+      image: "Imagen"
+
+  users:
+    registrations:
+      edit:
+        edit_profile: "Editar perfil"
+        cancel_my_account: "Cancelar mi cuenta"
+        unhappy: "¿Estás insatisfecho?"
+
+  public_nav_bar:
+    name: "Reporte Ciudadano"
+    summary: "Resumen"
+    service_requests: "Reportes"
+    new_service_request: "Realizar reporte"
+    edit_profile: "Editar perfil"
+    sign_out: "Cerrar sesión"
+    sign_up: "Registrarme"
+    sign_in: "Iniciar sesión"
+
+  # Global words. Commonly used thru the platform
+  search: 'Buscar'
+  save: 'Guardar'
+  update: "Actualizar"
+  back: "Regresar"
+
+  sign_out: "Cerrar sesión"
+
+  # Forms
+  form:
+    labels:
+      name: "Nombre"
+      profile_picture: "Imagen de perfil"
+      image: "Imagen"
+      email: "Correo electrónico"
+      title: "Título"
+      address: "Dirección"
+      description: "Descripción"
+      service: "Servicio"
+      status: "Estatus"
+      message: "Mensaje"
+      password: "Contraseña"
+      password_confirmation: "Confirmar contraseña"
+      current_password: "Contraseña actual"
+    placeholders:
+      email: "correo@correo.com"
+      password: "contraseña"
+      current_password: "contraseña actual"
+    errors:
+      prohibited: "%{number_of_errors} evitó que la operación se realizara."
+
+  search_form:
+    from_date: "De la fecha"
+    to_date: "A la fecha"
+    status: "Cualquier estatus"
+    service: "Todos los servicios"
+    id: "No. Folio"
+
+  comments_form:
+    comment: "Comentar"
+    placeholders:
+      add: "Agrega tu comentario"
 
   crud:
     destroy: 'Eliminar'
+    delete: 'Eliminar'
     edit: 'Editar'
     show: 'Mostrar'
-  form:
-    errors:
-      prohibited: "%{number_of_errors} evitó que la operación se realizara."
+
   navigation:
     back: 'Regresar'
+
   alerts:
     destroy_confirmation: "¿Estás seguro de eliminar?"
 
 
   flash:
+    dashboards:
+      requests_not_found: 'No se encontraron reportes.'
+    service_requests:
+      created: "El reporte fue creado correctamente"
+      updated: "El reporte fue actualizado correctamente"
+      destroyed: "El reporte fue eliminado correctamente"
+      try_again: "Hubo problemas, intenta de nuevo."
     service:
-      created: 'Servicio creada correctamente.'
-      updated: 'Servicio actualizada correctamente.'
-      destroyed: 'Servicio ha sido eliminada.'
+      created: 'Servicio creado correctamente.'
+      updated: 'Servicio actualizado correctamente.'
+      destroyed: 'Servicio ha sido eliminado.'
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'

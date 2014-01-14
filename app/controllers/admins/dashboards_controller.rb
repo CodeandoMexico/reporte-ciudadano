@@ -11,7 +11,7 @@ class Admins::DashboardsController < Admins::AdminController
     @all_service_requests = ServiceRequest.count
     @chart_data = Service.chart_data.to_json
     @status_names = Status.pluck(:name).to_json
-    flash.now[:notice] = "No se encontraron solicitudes." if @service_requests.empty?
+    flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
   end
 
 end

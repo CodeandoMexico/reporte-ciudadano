@@ -5,7 +5,7 @@
 
   %fieldset
     .form-group
-      = f.label :name, t('.name'), class: 'col-lg-2 control-label'
+      = f.label :name, t('form.labels.name'), class: 'col-lg-2 control-label'
       .col-lg-8
         = f.text_field :name, class: 'form-control'
         = errors_on_resource_for_field(@service, :name)
@@ -30,7 +30,7 @@
     = f.fields_for :messages do |message_form|
       .well
         .form-group
-          = message_form.label :content, t('.message'), class: 'col-lg-2 control-label'
+          = message_form.label :content, t('form.labels.message'), class: 'col-lg-2 control-label'
           .col-lg-10
             = message_form.text_area :content, rows: '3', class: 'form-control'
         .form-group
