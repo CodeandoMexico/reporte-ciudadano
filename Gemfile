@@ -11,6 +11,24 @@ gem 'geocoder'
 gem "highcharts-rails", "~> 3.0.0"
 gem "font-awesome-rails"
 gem 'twitter'
+gem 'sendgrid'
+gem 'omniauth'
+gem 'jquery-rails'
+gem "jquery-fileupload-rails"
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'aws-s3'
+gem 'kaminari'
+gem 'thumbs_up'
+gem 'gravatar-ultimate'
+gem 'jquery-ui-rails'
+gem 'ransack'
+gem 'figaro'
+gem 'active_model_serializers'
+gem 'coveralls', require: false
 
 group :test do
   gem 'ffaker'
@@ -53,21 +71,3 @@ group :assets do
   gem 'bootstrap-sass', '~> 3.0.0.0.rc'
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'sendgrid'
-gem 'omniauth'
-gem 'jquery-rails'
-gem "jquery-fileupload-rails"
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog'
-gem 'aws-s3'
-gem 'kaminari'
-gem 'thumbs_up'
-gem 'gravatar-ultimate'
-gem 'jquery-ui-rails'
-gem 'ransack'
-gem 'figaro'
-gem 'active_model_serializers'

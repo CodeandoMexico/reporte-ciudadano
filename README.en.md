@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/CodeandoMexico/reporte-ciudadano.png)](https://travis-ci.org/CodeandoMexico/reporte-ciudadano)
 [![Code Climate](https://codeclimate.com/github/CodeandoMexico/reporte-ciudadano.png)](https://codeclimate.com/github/CodeandoMexico/reporte-ciudadano)
+[![Coverage Status](https://coveralls.io/repos/CodeandoMexico/reporte-ciudadano/badge.png)](https://coveralls.io/r/CodeandoMexico/reporte-ciudadano)
 
 Reporte Ciudadano is an open source platform for civic issue tracking
 based on the [Open 311](http://open311.org) standard.
