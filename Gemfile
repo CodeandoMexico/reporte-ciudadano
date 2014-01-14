@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.0'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.16'
 
 gem 'pg'
 gem 'devise', '2.2.4'
