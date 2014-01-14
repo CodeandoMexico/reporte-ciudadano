@@ -38,4 +38,11 @@ class ServiceRequestsController < ApplicationController
       format.js
     end
   end
+
+  def markers_for_gmap
+    service_requests = ServiceRequest.filter_by_search_311(params)
+    respond_to do |format|
+      format.json { render :json => service_requests }
+    end
+  end
 end

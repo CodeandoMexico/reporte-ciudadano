@@ -25,27 +25,27 @@
   .row.blk-summary.l-margin-l-bottom
     .container
       %h2.blk-summary-title= t('dashboards.requests_map')
-      = form_tag admins_dashboards_path, method: :get, class: "filters form-inline" do
+
+      = form_tag markers_for_gmap_service_requests_path, method: :get, class: 'filters form-inline', remote: true do
+        .form-group.form-group-separator
+          = text_field_tag 'service_request_id', params[:service_request_id], placeholder: t('search_form.id'), class: 'form-control'
+        .form-group
+          = submit_tag t('search'), class: "btn btn-primary js-ajax-sender", data: { processing_label: t('searching'), stealth_label: t('search') }
+
+      .map{data_position}
+        #reports-map
+
+      = form_tag markers_for_gmap_service_requests_path, method: :get, class: "filters form-inline", remote: true do
         .form-group
           = text_field_tag 'start_date', params[:start_date], placeholder: t('search_form.from_date'), class: 'datepicker form-control col-lg-6'
         .form-group.form-group-separator
           = text_field_tag 'end_date', params[:end_date], placeholder: t('search_form.to_date'), class: 'datepicker form-control col-lg-6'
         .form-group.form-group-separator
-          = select_tag('status_id', options_from_collection_for_select(Status.all, :id, :name, params[:status_id]), prompt: t('search_form.status'), class: 'form-control')
+          = select_tag('status', options_from_collection_for_select(Status.all, :name, :name, params[:status]), prompt: t('search_form.status'), class: 'form-control')
         .form-group.form-group-separator
-          = select_tag('service_id', options_from_collection_for_select(Service.all, :id, :name, params[:service_id]), prompt: t('search_form.service'), class: 'form-control')
+          = select_tag('service_code', options_from_collection_for_select(Service.all, :id, :name, params[:service_code]), prompt: t('search_form.service'), class: 'form-control')
         .form-group
-          = submit_tag t('search'), class: "btn btn-primary"
-
-
-      .map{data_position}
-        #reports-map
-
-      = form_tag service_requests_path, method: :get, class: 'filters form-inline' do
-        .form-group.form-group-separator
-          = text_field_tag 'service_request_ids', params[:service_request_ids], placeholder: t('search_form.id'), class: 'form-control'
-        .form-group
-          = submit_tag t('search'), class: "btn btn-primary"
+          = submit_tag t('search'), class: "btn btn-primary js-ajax-sender", data: { processing_label: t('searching'), stealth_label: t('search') }
 
   .row.blk-summary.l-margin-l-bottom
     .container
