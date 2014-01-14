@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :service do
-    name { Faker::Lorem.word }
+    sequence(:name) { |n| "Service # #{n}" }
 
     factory :invalid_service do
       name nil
