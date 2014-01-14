@@ -370,6 +370,7 @@ es:
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
+  searching: 'Buscando...'
   save: 'Guardar'
   update: "Actualizar"
   back: "Regresar"

@@ -9,6 +9,7 @@ ReporteCiudadano::Application.routes.draw do
   resources :requests, as: :service_requests, controller: :service_requests do
     collection do
       get 'filter'
+      get 'markers_for_gmap'
     end
     member do
       post :vote

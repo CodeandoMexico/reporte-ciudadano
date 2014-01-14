@@ -58,9 +58,17 @@ $ ->
     lat = $map.attr("data-latitude")
     lng = $map.attr("data-longitude")
 
-    $("#reports-map").pinDropper(reports_markers, {
-      center: new google.maps.LatLng(lat, lng)
-    })
+    report_map = new PinDropper('#reports-map', reports_markers, {center: new google.maps.LatLng(lat, lng)})
+
+    $(".filters").on("ajax:success", (e, data, status, xhr) ->
+      report_map.updateMarkers(
+        $.map data['service_requests'], (val, index)->
+          return { lat: val.lat, lng: val.long, description: val.description }
+      )
+      submit_button = $(this).find('.js-ajax-sender')
+      submit_button.val(submit_button.data('stealth-label'))
+    ).bind "ajax:error", (e, xhr, status, error) ->
+      console.log 'ERROR!'
 
   if $("#show-report-map").length > 0
     $map = $("#show-report-map")

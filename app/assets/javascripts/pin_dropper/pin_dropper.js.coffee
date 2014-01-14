@@ -1,8 +1,17 @@
 class window.PinDropper
 
-  constructor: (map_node, markers, options) ->
-    @map = new google.maps.Map(map_node, @_options(options))
+  constructor: (map_selector, markers, options) ->
+    @map = new google.maps.Map($(map_selector)[0], @_options(options))
     @markers = @_build_markers_on_bulk(markers)
+
+  updateMarkers: (markers) ->
+    @clearMap()
+    @markers = @_build_markers_on_bulk(markers)
+
+  clearMap: ->
+    for marker in @markers
+      marker.setMap(null)
+    @markers = []
 
   _options: (raw_options) ->
     mapOptions = $.extend({
