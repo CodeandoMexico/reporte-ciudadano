@@ -2,10 +2,16 @@
 
 FactoryGirl.define do
   factory :service do
-    name { Faker::Lorem.word }
+    sequence(:name) { |n| "Service # #{n}" }
 
     factory :invalid_service do
       name nil
+    end
+
+    factory :service_with_service_fields do
+      after(:create) do |service|
+        service.service_fields << FactoryGirl.build(:service_field)
+      end
     end
   end
 end

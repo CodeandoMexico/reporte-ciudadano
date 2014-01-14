@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment = @current_session.comments.build(params[:comment])
     if @comment.save
       flash[:success] = "Tu comentario ha sido publicado"
-      redirect_to @comment.service_request
+      redirect_to after_comment_path
     else
       flash[:error] = @comment.errors.full_messages
       redirect_to :back
@@ -17,12 +17,20 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to @comment.service_request
+    redirect_to edit_admins_service_request_path(@comment.service_request)
   end
 
   private
 
   def can_comment!
-    deny_access unless user_signed_in? or admin_signed_in? 
+    deny_access unless user_signed_in? or admin_signed_in?
+  end
+
+  def after_comment_path
+    if current_admin
+      edit_admins_service_request_path(@comment.service_request)
+    else
+      service_request_path(@comment.service_request)
+    end
   end
 end

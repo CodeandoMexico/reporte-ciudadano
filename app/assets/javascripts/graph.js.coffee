@@ -4,6 +4,7 @@ jQuery ->
     chart_data = $('#reports-chart').data('chart-data')
     status_names = $('#reports-chart').data('status-names')
     series = []
+    services_names = []
     index = 1
 
     for status_name in status_names
@@ -13,13 +14,16 @@ jQuery ->
       })
       index++
 
+    for service in chart_data
+      services_names.push(service.name)
+
     $('#reports-chart').highcharts({
       chart:
         type: 'bar'
       title:
         text: ''
       xAxis:
-        categories: $('#reports-chart').data('service-names')
+        categories: services_names
       yAxis:
         allowDecimals: false
         gridLineWidth: 0

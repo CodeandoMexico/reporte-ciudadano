@@ -1,6 +1,6 @@
 .content-header
   %h1
-    = "Solicitud ##{@service_request.id}"
+    = "##{@service_request.id}"
     = @service_request.service.name
 
 .page-content.inset
@@ -9,12 +9,12 @@
       .col-md-8
         .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 200px;"}
         .report-show-information
-          = "Dirección: #{@service_request.address}"
-          %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
+          = t('.address', address: @service_request.address)
+          %p= t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
 
         .stream
           .activity.start
-            Status: #{@service_request.status}
+            = t('.status', status: @service_request.status)
             .date
               %i.icon-time
               = @service_request.created_at.strftime("%d/%m/%Y")
@@ -27,14 +27,14 @@
               %i.icon-time
               = @service_request.created_at.strftime("%d/%m/%Y")
 
-          = render @comments
+          = render partial: 'comments/comment', collection: @comments
 
           .activity.form
             = image_tag current_admin.avatar_url(:thumb), class: "avatar"
             = form_for Comment.new do |f|
-              = f.text_area :content, placeholder: "Agrega tu comentario"
+              = f.text_area :content, placeholder: t('comments_form.placeholders.add')
               = f.file_field :image, class: "l-margin-s-bottom"
-              = f.submit 'Comentar', class: "btn btn-primary"
+              = f.submit t('comments_form.comment'), class: "btn btn-primary"
               = f.hidden_field :service_request_id, value: @service_request.id
             .date
               %i.icon-time
@@ -43,13 +43,21 @@
       %aside.col-md-4
         .row.well
           %h4= t('.user_info')
+          %p= t(".user_id", id: @service_request.requester.id)
           %p= @service_request.requester.name
           %p= @service_request.requester.email
-          %p= "No. de cuenta: #{@service_request.requester.id}"
+          - if @service_request.service_fields?
+            - @service_request.service_fields.each do |name, value|
+              %p= "#{name}: #{value}"
 
           - if @service_request.media.present?
             .image.tight
               = image_tag @service_request.media_url
+
+        .row.well
+          %h4= t('.votes')
+          .profile-report-count
+            = @service_request.votes_for
 
         .row.well
           %h4= t('.update_service_request')
@@ -57,11 +65,13 @@
             = f.object.errors.messages unless f.object.errors.empty?
 
             .form-group
-              = f.label :service_id, t('.service')
+              = f.label :service_id, t('form.labels.service')
               = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
             .form-group
-              = f.label :status_id, t('.status')
-              = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm' }
-              = render @service_request.service.service_fields if @service_request.service?
+              = f.label :status_id, t('form.labels.status')
+              = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm', data: {service_id: @service_request.service_id} }
+            .form-group#service_request_message
+              - if @messages
+                = render 'admins/messages/message_options', messages: @messages
 
-            = f.submit t('.update'), class: 'btn btn-primary'
+            = f.submit t('update'), class: 'btn btn-primary'

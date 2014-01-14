@@ -1,31 +1,30 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
+%h2= t('.edit_profile')
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, role: 'form', class: 'l-margin-l-bottom' }) do |f|
   = devise_error_messages!
   .form-group
-    = f.label :email
+    = f.label :email, t('form.labels.email')
     .row
       .col-lg-6
-        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
+        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: t('form.placeholders.email')
   .form-group
-    = f.label :password
+    = f.label :password, t('form.labels.password')
     .row
       .col-lg-6
-        = f.password_field :password, placeholder: 'Password', class: 'form-control'
+        = f.password_field :password, placeholder: t('form.placeholders.password'), class: 'form-control'
   .form-group
-    = f.label :password_confirmation
+    = f.label :password_confirmation, t('form.labels.password_confirmation')
     .row
       .col-lg-6
         = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control'
   .form-group
-    = f.label :current_password
+    = f.label :current_password, t('form.labels.current_password')
     .row
       .col-lg-6
-        = f.password_field :current_password, placeholder: 'Password actual', class: 'form-control bottom-field'
-  .actions= f.submit "Guardar", class: 'btn btn-lg btn-primary'
+        = f.password_field :current_password, placeholder: t('form.placeholders.current_password'), class: 'form-control bottom-field'
+  .actions= f.submit t('update'), class: 'btn btn-lg btn-primary'
 
 .l-margin-l-bottom
-  %h3 Cancel my account
+  %h3= t('.cancel_my_account')
   %p
-    Unhappy?
-    = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger'
+    = t('.unhappy')
+    = link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: "#{t('alerts.destroy_confirmation')}" }, method: :delete, class: 'btn btn-danger'

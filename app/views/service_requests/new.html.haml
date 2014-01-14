@@ -1,7 +1,7 @@
-%h1 Realizar Solicitud
+%h1= t('.header')
 
 .row
   .col-md-6
     = render 'form'
   .col-md-6
-    #new-report-map{default_service_request_data_position}
+    #new-report-map{'data-map-constraints' => current_map_constrainsts}

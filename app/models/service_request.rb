@@ -7,6 +7,7 @@ class ServiceRequest < ActiveRecord::Base
 
   validates :service_id, presence: true
   validates :description, presence: true
+  validate :service_extra_fields
 
   before_validation :assign_default_status, on: :create
 
@@ -102,18 +103,11 @@ class ServiceRequest < ActiveRecord::Base
                                     Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
   end
 
-  def self.chart_data
-    query = Status.all.map { |status| "count(case when status_id = '#{status.id}' then 1 end) as status_#{status.id}" }.join(",")
-    select_clause = query.blank? ? "service_id" : "service_id, #{query}"
-    ServiceRequest.unscoped.select(select_clause).group(:service_id).order('service_id')
-  end
-
-
   private
 
   def service_extra_fields
     self.service_fields.each do |k,v|
-      errors.add k.to_sym, "must be present" if v.blank?
+      errors.add(k.to_sym, I18n.t('errors.messages.blank')) if v.blank?
     end
   end
 

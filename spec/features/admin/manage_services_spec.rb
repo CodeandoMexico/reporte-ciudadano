@@ -15,6 +15,7 @@ feature 'As an admin I can manage requests services' do
   end
 
   scenario 'I can create a new service' do
+    visit admins_services_path
     click_link 'Nuevo servicio'
     fill_in 'service[name]', with: 'Servicio nuevo'
     click_button 'Guardar'
@@ -29,14 +30,6 @@ feature 'As an admin I can manage requests services' do
     page.should have_content t('flash.service.updated')
   end
 
-  scenario 'I can show a service' do
-    service = create(:service, name: 'Nombre de servicio')
-    visit admins_services_path
-    click_link 'Nombre de servicio'
-    current_path.should == admins_service_path(service)
-    page.should have_content service.name
-  end
-
   scenario 'I can delete a service' do
     service = create(:service, name: 'service')
     visit admins_services_path
@@ -48,6 +41,7 @@ feature 'As an admin I can manage requests services' do
   scenario 'I can create a new service with status message', js: true do
     create(:status, name: 'Abierto')
 
+    visit admins_services_path
     click_link 'Nuevo servicio'
     fill_in 'service[name]', with: 'Servicio nuevo'
 

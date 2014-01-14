@@ -1,8 +1,9 @@
 language: ruby
 rvm:
-  - 2.0.0
+  - 2.1.0
 env:
   - DB=postgresql
+bundler_args: --without development
 script:
   - export RAILS_ENV=test
   - bundle exec rake db:create db:migrate

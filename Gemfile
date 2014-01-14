@@ -1,11 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.0'
 
-gem 'rails', '3.2.13'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.2.16'
 
 gem 'pg'
 gem 'devise', '2.2.4'
@@ -14,6 +11,24 @@ gem 'geocoder'
 gem "highcharts-rails", "~> 3.0.0"
 gem "font-awesome-rails"
 gem 'twitter'
+gem 'sendgrid'
+gem 'omniauth'
+gem 'jquery-rails'
+gem "jquery-fileupload-rails"
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'aws-s3'
+gem 'kaminari'
+gem 'thumbs_up'
+gem 'gravatar-ultimate'
+gem 'jquery-ui-rails'
+gem 'ransack'
+gem 'figaro'
+gem 'active_model_serializers'
+gem 'coveralls', require: false
 
 group :test do
   gem 'ffaker'
@@ -54,29 +69,5 @@ group :assets do
   gem 'compass-rails'
   gem "modular-scale", "~> 1.0.6"
   gem 'bootstrap-sass', '~> 3.0.0.0.rc'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'sendgrid'
-gem 'omniauth'
-gem 'jquery-rails'
-gem "jquery-fileupload-rails"
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog'
-gem 'aws-s3'
-gem 'kaminari'
-gem 'thumbs_up'
-gem 'newrelic_rpm'
-gem 'gravatar-ultimate'
-gem 'jquery-ui-rails'
-gem 'ransack'
-gem 'state_machine'
-gem 'figaro'
-gem 'active_model_serializers'

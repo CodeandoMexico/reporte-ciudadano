@@ -1,45 +1,46 @@
 = form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
 
   .form-group
-    = f.label :title, "Título", class: 'col-lg-2 control-label'
-    .col-lg-10
+    = f.label :title, t('form.labels.title'), class: 'col-lg-3 control-label'
+    .col-lg-9
       = f.text_field :title, class: 'form-control'
 
   .form-group
-    = f.label :media, "Imagen", class: 'col-lg-2 control-label'
-    .col-lg-10
+    = f.label :media, t('form.labels.image'), class: 'col-lg-3 control-label'
+    .col-lg-9
       = f.file_field :media, class: 'js-image-preview'
       .image_preview
 
   .form-group
-    = f.label :address, "Dirección", class: 'col-lg-2 control-label'
-    .col-lg-10
+    = f.label :address, t('form.labels.address'), class: 'col-lg-3 control-label'
+    .col-lg-9
       = f.text_area :address, id: 'address', rows: '5', class: 'form-control'
 
   .form-group
-    = f.label :description, "Descripción", class: 'col-lg-2 control-label'
-    .col-lg-10
+    = f.label :description, t('form.labels.description'), class: 'col-lg-3 control-label'
+    .col-lg-9
       = f.text_area :description, class: 'form-control', rows: '5'
       = errors_on_resource_for_field(@service_request, :description)
 
   .form-group
-    = f.label :service_id, "Servicio", class: 'col-lg-2 control-label'
-    .col-lg-10
-      = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_form-group form-control' }
-      %div#category_form-group_container
-        = render @service_request.service.service_form-group if @service_request.service?
+    = f.label :service_id, t('form.labels.service'), class: 'col-lg-3 control-label'
+    .col-lg-9
+      = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_fields form-control' }
       = errors_on_resource_for_field(@service_request, :service_id)
 
+  %div#service_fields_container
+    = render @service_request.service.service_fields if @service_request.service?
+
   .form-group
-    .col-lg-offset-2.col-lg-10
+    .col-lg-offset-3.col-lg-9
       .checkbox
       = f.label :anonymous do
         = f.check_box :anonymous
-        Ocultar identidad
+        = t('.anonymise')
 
   = f.hidden_field :lat, id: 'lat'
   = f.hidden_field :lng, id: 'lng'
 
   .form-group
-    .col-lg-offset-2.col-lg-10
-      = f.submit 'Guardar', class: "#{(current_user ? '' : 'blocked')} btn btn-primary", data: { message: 'Para crear solicitudes necesitas registrarte en el sistema.' }
+    .col-lg-offset-3.col-lg-9
+      = f.submit t('save'), class: "btn btn-primary"

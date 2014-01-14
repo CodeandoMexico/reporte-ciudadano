@@ -1,4 +1,4 @@
-%h1 Agregar nuevo logo
+%h1= t('.header')
 .row
   .col-md-6
     = form_for [:admins, @logo], html: { class: 'form-horizontal', role: 'form'} do |f|

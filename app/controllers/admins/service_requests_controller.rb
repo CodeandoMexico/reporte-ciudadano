@@ -3,7 +3,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
     @service_requests = @search.result.page(params[:page])
-    flash.now[:notice] = "No se encontraron solicitudes." if @service_requests.empty?
+    flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
   end
 
   def new
@@ -13,31 +13,33 @@ class Admins::ServiceRequestsController < Admins::AdminController
   def create
     @service_request = current_admin.service_requests.build(params[:service_request])
     if @service_request.save
-      redirect_to edit_admins_service_request_path(@service_request), flash: { success: 'La solicitud fue creada satisfactoriamente' }
+      redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.created') }
     else
-      flash[:notice] = "Hubo problemas, intenta de nuevo"
+      flash[:notice] = t('flash.service_requests.try_again')
       render :new
     end
   end
 
   def edit
     @service_request = ServiceRequest.find params[:id]
+    @messages = @service_request.service.messages.with_status(@service_request.status_id)
     @comments = @service_request.comments.order("comments.created_at ASC")
   end
 
   def update
     @service_request = ServiceRequest.find params[:id]
     if @service_request.update_attributes params[:service_request]
-      redirect_to edit_admins_service_request_path(@service_request), flash: { success: "La solicitud fue actualizada correctamente" }
+      @service_request.comments.create content: params[:message], commentable: current_admin if params[:message].present?
+      redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
     else
-     render :edit 
+     render :edit
     end
   end
 
   def destroy
     @service_request = ServiceRequest.find params[:id]
     @service_request.destroy
-    redirect_to :back, flash: { success: "La solicitud fue eliminada correctamente" }
+    redirect_to :back, flash: { success: I18n.t('flash.service_requests.destroyed') }
   end
 
 

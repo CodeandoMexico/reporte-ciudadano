@@ -1,5 +1,9 @@
-%h1= t('admin.service.edit.title')
-= render 'form'
-= link_to t('crud.show'), admins_service_path(@service)
-|
-\#{link_to t('navigation.back'), admins_services_path}
+.content-header
+  %h1= t('.header')
+
+.page-content.inset
+  .row
+    .col-md-10
+      = render 'form'
+
+  = link_to t('back'), admins_services_path

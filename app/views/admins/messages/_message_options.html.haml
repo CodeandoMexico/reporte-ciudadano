@@ -1,0 +1,7 @@
+= label_tag 'message', t('form.labels.message') unless messages.empty?
+- messages.each do |message|
+  .radio
+    %label
+      = radio_button_tag 'message', message.content
+      = message.content
+

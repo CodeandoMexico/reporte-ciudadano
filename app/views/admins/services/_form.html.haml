@@ -2,31 +2,49 @@
   - if @service.errors.any?
     #error_explanation
       %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@service.errors.count, "error")
-      %ul
-        - @service.errors.full_messages.each do |msg|
-          %li= msg
 
+  %fieldset
+    .form-group
+      = f.label :name, t('form.labels.name'), class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.text_field :name, class: 'form-control'
+        = errors_on_resource_for_field(@service, :name)
+
+  %fieldset
+    %legend
+      = t '.service_fields_title'
+    = f.fields_for :service_fields do |service_field_form|
+      .well
+        .form-group
+          = service_field_form.label :content, t('.name'), class: 'col-lg-2 control-label'
+          .col-lg-10
+            = service_field_form.text_field :name, class: 'form-control'
+        = service_field_form.link_to_remove t('.remove_service_field'), class: 'btn btn-xs btn-danger'
+
+    .add-message
+      = f.link_to_add t('.add_service_field'), :service_fields, class: "btn btn-sm btn-default"
+
+  %fieldset
+    %legend
+      = t '.messages_title'
+    = f.fields_for :messages do |message_form|
+      .well
+        .form-group
+          = message_form.label :content, t('form.labels.message'), class: 'col-lg-2 control-label'
+          .col-lg-10
+            = message_form.text_area :content, rows: '3', class: 'form-control'
+        .form-group
+          = message_form.label :status_id, t('.which_status'), class: 'col-lg-2 control-label'
+          .col-lg-10
+            = message_form.collection_select :status_id, Status.all, :id, :name, class: 'form-control'
+        = message_form.link_to_remove t('.remove_message'), class: 'btn btn-xs btn-danger'
+
+    .add-message
+      = f.link_to_add t('.add_message'), :messages, class: "btn btn-sm btn-default"
+
+
+  %hr
   .form-group
-    = f.label :name, t('.name'), class: 'col-lg-2 control-label'
-    .col-lg-10
-      = f.text_field :name, class: 'form-control'
-
-  = f.fields_for :messages do |message_form|
-    .well
-      .form-group
-        = message_form.label :content, t('.message'), class: 'col-lg-2 control-label'
-        .col-lg-10
-          = message_form.text_area :content, rows: '3', class: 'form-control'
-      .form-group
-        = message_form.label :status_id, t('.which_status'), class: 'col-lg-2 control-label'
-        .col-lg-10
-          = message_form.collection_select :status_id, Status.all, :id, :name, class: 'form-control'
-      = message_form.link_to_remove t('.remove_message'), class: 'btn btn-xs btn-danger'
-
-  .add-message
-    = f.link_to_add t('.add_message'), :messages, class: "btn btn-sm btn-default"
-
-
-  .form-group
-    .col-lg-offset-2.col-lg-10
+    .col-lg-8
       = f.submit t('.save'), class: 'btn btn-primary'
+      = link_to t('.cancel'), admins_services_path, class: 'btn btn-default'

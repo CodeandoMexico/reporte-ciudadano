@@ -7,9 +7,9 @@ ReporteCiudadano::Application.routes.draw do
   resources :comments
 
   resources :requests, as: :service_requests, controller: :service_requests do
-    resources :messages, only: [:index] 
     collection do
       get 'filter'
+      get 'markers_for_gmap'
     end
     member do
       post :vote
@@ -19,7 +19,9 @@ ReporteCiudadano::Application.routes.draw do
   root :to => 'pages#index'
 
   namespace :admins do
-    resources :services
+    resources :services do
+      resources :messages, only: :index
+    end
     resources :statuses, except: [:destroy]
     resources :registrations, only: [:edit, :update]
     resources :api_keys, only: [:create, :index]
@@ -46,6 +48,7 @@ ReporteCiudadano::Application.routes.draw do
     resources :application_settings do
       collection do
         put :css_theme
+        put :map_constraints
       end
     end
   end

@@ -11,11 +11,11 @@ $ ->
     $tabs.removeClass 'active'
     $(@).addClass 'active'
 
-  $('#report_status_id').change ->
+  $('#service_request_status_id').change ->
     status_id = $(@).val()
-    report_id = $('#report_id').val()
+    service_id = $(@).data('service-id')
     $.ajax(
-      url: "/reports/#{report_id}/messages"
+      url: "/admins/services/#{service_id}/messages"
       data:
         status_id: status_id
       type: 'GET'
@@ -32,15 +32,22 @@ $ ->
     $(".alert").fadeOut('slow')
 
   if $("#new-report-map").length > 0
-    $("#new-report-map").geolocateMap({
+    newReportMap = $('#new-report-map')
+    mapConstraints = newReportMap.data('map-constraints')
+    newReportMap.geolocateMap({
       html5: true
-      latitude: $("#new-report-map").data("latitude")
-      longitude: $("#new-report-map").data("longitude")
-      "sync_input": {
+      zoom: parseInt(mapConstraints.zoom)
+      sync_input:
         longitude: '#lng'
         latitude: '#lat'
         address: '#address'
-      }
+      bounds:
+        sw:
+          latitude: mapConstraints.bounds[0][0]
+          longitude: mapConstraints.bounds[0][1]
+        ne:
+          latitude: mapConstraints.bounds[1][0]
+          longitude: mapConstraints.bounds[1][1]
     })
 
   if $("#reports-map").length > 0
@@ -51,17 +58,31 @@ $ ->
     lat = $map.attr("data-latitude")
     lng = $map.attr("data-longitude")
 
-    $("#reports-map").geolocateMap({
-      markers: reports_markers
-      center: new google.maps.LatLng(lat, lng)
-    })
+    report_map = new PinDropper('#reports-map', reports_markers, {center: new google.maps.LatLng(lat, lng)})
+
+    $(".filters").on("ajax:success", (e, data, status, xhr) ->
+      report_map.updateMarkers(
+        $.map data['service_requests'], (val, index)->
+          return { lat: val.lat, lng: val.long, description: val.description }
+      )
+      submit_button = $(this).find('.js-ajax-sender')
+      submit_button.val(submit_button.data('stealth-label'))
+    ).bind "ajax:error", (e, xhr, status, error) ->
+      console.log 'ERROR!'
 
   if $("#show-report-map").length > 0
-    $("#show-report-map").geolocateMap({
-      markers: [{
-        lat: $("#show-report-map").data("latitude")
-        lng: $("#show-report-map").data("longitude")
-        description: $("#show-report-map").data("description")
-      }]
-      center: new google.maps.LatLng($("#show-report-map").data("latitude"), $("#show-report-map").data("longitude"))
+    $map = $("#show-report-map")
+    lat = $map.attr("data-latitude")
+    lng = $map.attr("data-longitude")
+
+    reports_markers = [
+      {
+        lat: $map.data("latitude")
+        lng: $map.data("longitude")
+        description: $map.data("description")
+      }
+    ]
+
+    $map.pinDropper(reports_markers, {
+      center: new google.maps.LatLng(lat, lng)
     })

@@ -338,6 +338,11 @@
   }
 }
 
+.profile-report-count {
+  font-size: 42px;
+  text-align: center;
+}
+
 
 /**************
 ** Images container drag & drop
@@ -465,4 +470,8 @@ span.address {
   padding: 5px 10px;
   margin: 5px 0;
   border-radius: $border-radius-base;
+}
+
+#bounding-box-map {
+  height: 320px;
 }

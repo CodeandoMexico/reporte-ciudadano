@@ -16,6 +16,13 @@ jQuery ->
     $(@).closest('form').submit()
     $(@).next('.js-save-box').removeClass('hide')
 
+  $('body').on 'click', '.js-ajax-button', ->
+    $(@).next('.js-save-box').removeClass('hide')
+
+  $('body').on 'click', '.js-ajax-sender', ->
+    $(@).val($(@).data('processing-label'))
+
+
   $('.edit_setting').bind('ajax:success', (e, data, status, xhr) ->
     setTimeout (->
       $('.js-save-box','.edit_setting' ).addClass('hide')
