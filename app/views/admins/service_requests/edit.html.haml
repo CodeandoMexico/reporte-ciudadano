@@ -47,8 +47,8 @@
           %p= @service_request.requester.name
           %p= @service_request.requester.email
           - if @service_request.service_fields?
-            - @service_request.service_fields.each do |name, value|
-              %p= "#{name}: #{value}"
+            - @service_request.service_fields_hash.each do |service_field|
+              %p= "#{service_field[:name]}: #{service_field[:value]}"
 
           - if @service_request.media.present?
             .image.tight
