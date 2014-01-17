@@ -98,6 +98,14 @@ class ServiceRequest < ActiveRecord::Base
     created_at.to_date 
   end
 
+  def service_fields_hash
+    service_fields_ids = self.service_fields.map {|key,val| key}
+    service_fields = ServiceField.find_by_id(service_fields_ids)
+    service_fields.map do |service_field|
+      {name: service_field.name, value: self.service_fields[service_field.id.to_s]}
+    end
+  end
+
   ransacker :date do |parent|
     Arel::Nodes::InfixOperation.new('||',
                                     Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
