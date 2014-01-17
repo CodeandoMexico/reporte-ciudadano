@@ -100,7 +100,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def service_fields_hash
     service_fields_ids = self.service_fields.map {|key,val| key}
-    service_fields = ServiceField.find_by_id(service_fields_ids)
+    service_fields = ServiceField.find(service_fields_ids)
     service_fields.map do |service_field|
       {name: service_field.name, value: self.service_fields[service_field.id.to_s]}
     end
