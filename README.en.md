@@ -43,7 +43,7 @@ The current core team:
 
 ### License
 
-Created by [Codeando México](https://github.com/CodeandoMexico?tab=members)
+Created by [Codeando México](https://github.com/CodeandoMexico?tab=members), 2013 - 2014.
 
-This project under MIT License. Check out the [LICENSE](/LICENSE) doc to get
+This project under GNU Affero General Public License (AGPL) v3.0. Check out the [LICENSE](/LICENSE) doc to get
 more info.
