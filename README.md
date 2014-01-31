@@ -42,6 +42,6 @@ El core team:
 
 ### Licencia
 
-Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members)
+Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members), 2013 - 2014.
 
-Disponible bajo la licencia MIT. Ver el documento [LICENSE](/LICENSE) para más información.
+Disponible bajo la licencia GNU Affero General Public License (AGPL) v3.0. Ver el documento [LICENSE](/LICENSE) para más información.
