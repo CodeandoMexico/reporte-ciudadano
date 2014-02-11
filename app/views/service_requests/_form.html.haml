@@ -1,15 +1,13 @@
 = form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
 
   .form-group
-    = f.label :title, t('form.labels.title'), class: 'col-lg-3 control-label'
+    = f.label :service_id, t('form.labels.service'), class: 'col-lg-3 control-label'
     .col-lg-9
-      = f.text_field :title, class: 'form-control'
+      = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_fields form-control' }
+      = errors_on_resource_for_field(@service_request, :service_id)
 
-  .form-group
-    = f.label :media, t('form.labels.image'), class: 'col-lg-3 control-label'
-    .col-lg-9
-      = f.file_field :media, class: 'js-image-preview'
-      .image_preview
+  %div#service_fields_container
+    = render @service_request.service.service_fields if @service_request.service?
 
   .form-group
     = f.label :address, t('form.labels.address'), class: 'col-lg-3 control-label'
@@ -23,13 +21,10 @@
       = errors_on_resource_for_field(@service_request, :description)
 
   .form-group
-    = f.label :service_id, t('form.labels.service'), class: 'col-lg-3 control-label'
+    = f.label :media, t('form.labels.image'), class: 'col-lg-3 control-label'
     .col-lg-9
-      = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'js-load_service_fields form-control' }
-      = errors_on_resource_for_field(@service_request, :service_id)
-
-  %div#service_fields_container
-    = render @service_request.service.service_fields if @service_request.service?
+      = f.file_field :media, class: 'js-image-preview'
+      .image_preview
 
   .form-group
     .col-lg-offset-3.col-lg-9

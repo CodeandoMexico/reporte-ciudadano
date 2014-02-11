@@ -25,7 +25,7 @@ class window.GeolocateMap
     @jq_address_field.on 'change', =>
       @map.validates_address_text @jq_address_field.val(), (result, is_valid) =>
         if is_valid
-          @map.marker.setPosition(result.geometry.location)
+          @map.update_marker_position(result.geometry.location)
           @_update_lat_and_lng_from_marker()
         else
           @_rollback_to_last_valid_address()
