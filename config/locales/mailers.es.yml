@@ -1,0 +1,4 @@
+es:
+  mailer:
+    subject:
+      status_change_notification: 'Cambio de estatus en reporte'

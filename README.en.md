@@ -18,6 +18,7 @@ based on the [Open 311](http://open311.org) standard.
 - Rails 3.2
 - Bootstrap 3.0
 - Rspec 2.14
+- Redis 2.8.6
 
 ### Questions?
 

@@ -35,14 +35,10 @@ ReporteCiudadano::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # Action Mailer
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
   config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
-  #Fallback for development as it uses open letter
-  SENDGRID = {
-    username: '',
-    password: '',
-    domain: ''
-  }
 end
