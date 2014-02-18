@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: reporte_ciudadano_development
+  pool: 5
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: reporte_ciudadano_test
+  pool: 5
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: reporte_ciudadano_production
+  pool: 5
+  password:
