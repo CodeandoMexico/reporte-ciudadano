@@ -10,6 +10,7 @@ class ServiceRequest < ActiveRecord::Base
   validate :service_extra_fields
 
   before_validation :assign_default_status, on: :create
+  after_update :send_notification_for_status_update
 
   belongs_to :service
   belongs_to :requester, polymorphic: true
@@ -106,6 +107,11 @@ class ServiceRequest < ActiveRecord::Base
     end
   end
 
+  def requested_by_user?
+    self.requester_type == 'User'
+  end
+
+
   ransacker :date do |parent|
     Arel::Nodes::InfixOperation.new('||',
                                     Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
@@ -121,6 +127,12 @@ class ServiceRequest < ActiveRecord::Base
 
   def assign_default_status
     self.status = Status.where(is_default: true).first
+  end
+
+  def send_notification_for_status_update
+    if self.requested_by_user? && self.status_id_changed?
+      UserMailer.delay.notify_service_request_status_change(self.id, self.status_id_was)
+    end
   end
 
 end

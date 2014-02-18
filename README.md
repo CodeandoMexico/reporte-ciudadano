@@ -21,6 +21,7 @@ de la comunicación con la ciudadanía y los reportes de cuestiones en sus servi
 - Rails 3.2
 - Bootstrap 3.0
 - Rspec 2.14
+- Redis 2.8.6
 
 ### ¿Dudas?
 

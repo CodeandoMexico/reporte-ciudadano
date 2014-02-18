@@ -30,12 +30,15 @@ gem 'figaro'
 gem 'active_model_serializers'
 gem 'coveralls', require: false
 
+# Async backgroun job handling
+gem 'sidekiq'
+
 group :test do
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', "~> 2.38.0"
 end
 
 group :development,:test do
