@@ -25,3 +25,4 @@
 .ruby-version
 .rspec
 Guardfile
+coverage

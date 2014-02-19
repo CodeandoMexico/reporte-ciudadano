@@ -1,4 +1,5 @@
 require 'api_constraints'
+
 ReporteCiudadano::Application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admins/sessions' }

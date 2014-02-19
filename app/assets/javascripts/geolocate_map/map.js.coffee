@@ -35,6 +35,14 @@ class GeolocateMap.Map
       else
         cb(undefined, false)
 
+  update_marker_position: (position) ->
+    @marker.setPosition(position)
+    @_zoom_on_marker()
+
+  _zoom_on_marker: ->
+    @g_map.setZoom(17);
+    @g_map.panTo(@marker.getPosition());
+
   _add_listener_for_map_drag_end: ->
     google.maps.event.addListener @g_map, 'dragend', =>
       @reset_to_center unless @validates_position(@g_map.getCenter())
@@ -48,6 +56,7 @@ class GeolocateMap.Map
       mapTypeId: google.maps.MapTypeId.ROADMAP
       scaleControl: true
       html5: false
+      zoom: 15
     }, @_options)
 
   _build_marker_on_center: ->
@@ -65,6 +74,7 @@ class GeolocateMap.Map
           if @validates_position(latLng)
             @marker.setPosition(latLng)
             @g_map.setCenter(latLng)
+            @_zoom_on_marker()
           $(window).trigger('first_location')
         ),
         ((msg) ->

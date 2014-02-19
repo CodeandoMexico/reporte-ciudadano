@@ -55,7 +55,9 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
-    childprocess (0.3.9)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
+    childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.2.8)
     coderay (1.1.0)
@@ -73,6 +75,7 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    connection_pool (1.2.0)
     coveralls (0.7.0)
       multi_json (~> 1.3)
       rest-client
@@ -255,6 +258,9 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.0.7)
+    redis-namespace (1.4.1)
+      redis (~> 3.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec-core (2.14.5)
@@ -269,7 +275,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-hmac (0.4.0)
-    rubyzip (0.9.9)
+    rubyzip (1.1.0)
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -277,16 +283,22 @@ GEM
       tilt (~> 1.3)
     sassy-math (1.5)
       compass (~> 0.11)
-    selenium-webdriver (2.35.1)
+    selenium-webdriver (2.38.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
-      rubyzip (< 1.0.0)
+      rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     sendgrid (1.2.0)
       json
       json
     shoulda-matchers (2.3.0)
       activesupport (>= 3.0.0)
+    sidekiq (2.17.5)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 1.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     simple_oauth (0.2.0)
     simplecov (0.8.2)
       docile (~> 1.1.0)
@@ -311,6 +323,7 @@ GEM
       activerecord
       statistics2
     tilt (1.4.1)
+    timers (1.1.0)
     tins (0.13.1)
     treetop (1.4.15)
       polyglot
@@ -381,9 +394,10 @@ DEPENDENCIES
   ransack
   rspec-rails
   sass-rails (~> 3.2.3)
-  selenium-webdriver
+  selenium-webdriver (~> 2.38.0)
   sendgrid
   shoulda-matchers
+  sidekiq
   thin
   thumbs_up
   twitter

@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'coveralls'
+require 'sidekiq/testing/inline'
 
 Coveralls.wear!
 
@@ -35,6 +36,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
 
   config.include HelperMethods
+  config.include MailerHelpers
 
   config.include SessionHelpers, type: :feature
 end

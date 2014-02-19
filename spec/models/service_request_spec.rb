@@ -31,6 +31,31 @@ describe ServiceRequest do
       service_request = create(:service_request)
       expect(service_request.status).to eq(default_status)
     end
+
+    describe '.send_notification_for_status_update' do
+      let!(:service_request) { FactoryGirl.create(:service_request) }
+
+      it 'sends an email when a service request status is updated and was requested by a user' do
+        expect do
+          service_request.update_attributes(status_id: FactoryGirl.create(:status).id)
+        end.to change { ActionMailer::Base.deliveries.size }.by(1)
+      end
+
+      it 'does not send an email when the service was created by an admin' do
+        admin = create(:admin)
+        admin_request = create(:service_request, requester: admin)
+        expect do
+          admin_request.update_attributes(status_id: FactoryGirl.create(:status).id)
+        end.to_not change{ ActionMailer::Base.deliveries.size }.by(1)
+      end
+
+      it 'does not send an email when any other attribute was updated' do
+        expect do
+          service_request.update_attributes(address: 'Nueva direccion')
+        end.to_not change{ ActionMailer::Base.deliveries.size }.by(1)
+      end
+
+    end
   end
 
   context 'scopes' do
@@ -83,6 +108,19 @@ describe ServiceRequest do
 
     it '#date returns the service_request created date with date format' do
       expect(service_request.date).to eq(service_request.created_at.to_date)
+    end
+
+    describe '.requested_by_user?' do
+      it 'returns true when the service request was made by a user' do
+        expect(service_request.requested_by_user?).to be true
+      end
+
+      it 'returns false when the service request was not made by a user' do
+        admin = FactoryGirl.create(:admin)
+        admin_request = FactoryGirl.create(:service_request, requester: admin)
+        expect(admin_request.requested_by_user?).to be false
+
+      end
     end
 
   end
