@@ -1,0 +1,36 @@
+# More info at https://github.com/laserlemon/figaro
+
+
+# Facebook credentials
+FACEBOOK_SECRET: ''
+FACEBOOK_KEY: ''
+
+# Twitter credentials
+TWITTER_KEY: ''
+TWITTER_SECRET: ''
+TWITTER_OAUTH_TOKEN: ''
+TWITTER_OAUTH_TOKEN_SECRET: ''
+
+# Sendgrid credentials
+SENDGRID_USERNAME: ''
+SENDGRID_PASSWORD: ''
+
+# Coverall creadentials
+COVERALLS_TOKEN: ''
+
+# From whom do I send the emails from
+MAILER_FROM: ''
+
+# Who's my host?
+HOST: ''
+
+# Redis server URL
+REDISCLOUD_URL: ''
+
+# S3 credentials
+S3_BUCKET: ''
+AWS_SECRET: ''
+AWS_KEY: ''
+
+# Google Maps credentials
+GOOGLE_KEY: ''
