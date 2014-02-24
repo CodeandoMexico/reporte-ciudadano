@@ -33,6 +33,8 @@ Reporte Ciudadano es una iniciativa que requiere de muchas manos para llegar a s
 Buscamos que el proyecto sea un resultado colaborativo de la comunidad; puedes apoyarnos con [código](https://github.com/CodeandoMexico/reporte-ciudadano/pulls), [ideas](https://github.com/CodeandoMexico/reporte-ciudadano/issues), [traducciones](https://github.com/CodeandoMexico/reporte-ciudadano/tree/master/config/locales),
 [reportando bugs](https://github.com/CodeandoMexico/reporte-ciudadano/issues) y/o [replicando](http://codeandomexico.github.io/reporte-ciudadano/ejemplos.html) la aplicación en tu ciudad.
 
+Consulta la [guía completa](https://github.com/CodeandoMexico/reporte-ciudadano/blob/master/CONTRIBUTING.md) para conocer los pasos sobre como contribuir.
+
 ### Equipo
 
 El proyecto ha sido iniciado por [Codeando México](https://github.com/CodeandoMexico?tab=members).
