@@ -346,6 +346,10 @@ es:
       header: "Crear nuevo reporte"
     form:
       anonymise: "Ocultar identidad"
+      prompt_service: 'Tipo de servicio'
+      address_placeholder: 'Ej. Av Revolucion 2342, 64830 Monterrey, Nuevo León, México'
+      description_placeholder: 'Favor de detallar su reporte y dar señas sobre la ubicación.'
+      map_help: 'El marcador se posiciona aproximadamente en la dirección proporcionada, en caso de no estar en la posición correcta puedes ubicarlo manualmente.'
     show:
       votes: "Votos"
       share_it: "Compártelo"

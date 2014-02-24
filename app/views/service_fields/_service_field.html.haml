@@ -1,6 +1,6 @@
 .form-group
-  = label_tag "service_request[service_fields][#{service_field.id}]", service_field.name.capitalize, class: 'col-lg-3 control-label'
-  .col-lg-9
+  = label_tag "service_request[service_fields][#{service_field.id}]", service_field.name.capitalize, class: 'col-md-2 control-label'
+  .col-md-10
     - if @service_request.nil?
       = text_field_tag "service_request[service_fields][#{service_field.id}]", nil, class: 'form-control'
     - else
