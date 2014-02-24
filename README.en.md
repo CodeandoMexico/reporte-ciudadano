@@ -33,6 +33,7 @@ community to become the best Open 311 solution for Latinamerica.
 You can help us with [code](https://github.com/CodeandoMexico/reporte-ciudadano/pulls), [ideas](https://github.com/CodeandoMexico/reporte-ciudadano/issues), [translations](https://github.com/CodeandoMexico/reporte-ciudadano/tree/master/config/locales),
 [reporting bugs](https://github.com/CodeandoMexico/reporte-ciudadano/issues) and/or [forking](http://codeandomexico.github.io/reporte-ciudadano/ejemplos.html) the app and using it in your city.
 
+Check out the [contribuiting guidelines](https://github.com/CodeandoMexico/reporte-ciudadano/blob/master/CONTRIBUTING.md).
 
 ### Core team
 
