@@ -3,7 +3,6 @@
 
 .page-content.inset
   .row
-    .col-md-6
-      = render 'form'
-    .col-md-6
-      #new-report-map{'data-map-constraints' => current_map_constrainsts}
+    .col-md-12
+      = form_for [:admins, @service_request], html: { class: "form-horizontal", role: 'form'} do |f|
+        = render 'service_requests/form', f: f

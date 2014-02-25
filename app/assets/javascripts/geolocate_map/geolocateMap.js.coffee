@@ -1,7 +1,7 @@
 class window.GeolocateMap
 
   constructor: (map_div_node, options) ->
-    $(map_div_node).after("<p class='error-map alert alert-danger' style='display:none;'>Lo sentimos tu dirección esta fuera del alcance permitido</p>")
+    $(map_div_node).before("<p class='error-map alert alert-danger' style='display:none;'>Lo sentimos tu dirección esta fuera del alcance permitido</p>")
     @_prepare_inputs(options['sync_input'])
     @map = new GeolocateMap.Map(map_div_node, options)
     @_add_listener_for_first_location()
@@ -15,9 +15,7 @@ class window.GeolocateMap
 
   _add_listener_for_marker: ->
     @map.marker.onDragEnd =>
-      if @map.validates_position(@map.marker.g_marker.getPosition())
-        @_update_form_from_marker_values()
-      else
+      unless @map.validates_position(@map.marker.g_marker.getPosition())
         @map.marker.rollback_to_last_valid_position()
         @_display_map_error()
 
