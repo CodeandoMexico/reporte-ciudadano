@@ -12,7 +12,8 @@
       = link_to user_omniauth_authorize_path(:twitter), class: 'social-signup social-signup-tt' do
         %span.i-twitter.rc-icon
         %span.social-signup-text Twitter
-  = f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: 'Email'
-  = f.password_field :password, placeholder: 'Password', class: 'form-control'
-  = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control bottom-field'
+  = f.email_field :email, autofocus: true, class: "form-control #{f.object.password_required? ? 'top-field' : 'one-field'}", placeholder: 'Email'
+  - if f.object.password_required?
+    = f.password_field :password, placeholder: 'Password', class: 'form-control si'
+    = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control bottom-field'
   .actions= f.submit "Registrarme", class: 'btn btn-lg btn-primary btn-block'

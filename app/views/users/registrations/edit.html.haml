@@ -16,11 +16,12 @@
     .row
       .col-lg-6
         = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control'
-  .form-group
-    = f.label :current_password, t('form.labels.current_password')
-    .row
-      .col-lg-6
-        = f.password_field :current_password, placeholder: t('form.placeholders.current_password'), class: 'form-control bottom-field'
+  - if f.object.encrypted_password.present?
+    .form-group
+      = f.label :current_password, t('form.labels.current_password')
+      .row
+        .col-lg-6
+          = f.password_field :current_password, placeholder: t('form.placeholders.current_password'), class: 'form-control bottom-field'
   .actions= f.submit t('update'), class: 'btn btn-lg btn-primary'
 
 .l-margin-l-bottom

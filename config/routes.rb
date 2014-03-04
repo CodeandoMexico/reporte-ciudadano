@@ -3,7 +3,10 @@ require 'api_constraints'
 ReporteCiudadano::Application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
+  devise_scope :user do
+    get 'users/finish_registration', to: 'users/registrations#finish_registration'
+  end
 
   resources :comments
 
