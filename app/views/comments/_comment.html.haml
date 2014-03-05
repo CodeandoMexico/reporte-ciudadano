@@ -1,5 +1,5 @@
 .activity.comment
-  = image_tag comment.commentable.avatar_url(:thumb), class: "avatar"
+  = image_tag comment.commentable.avatar_url, class: "avatar"
   %p= comment.content
   - if comment.image?
     %p

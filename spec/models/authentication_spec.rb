@@ -14,17 +14,13 @@ describe Authentication do
     it { should belong_to :user }
   end
   context 'methods' do
-    let(:authentication) { create(:authentication) }
-    it '.create_with_omniauth returns a new authentication from omniauth' do
-      expect do
-        Authentication.create_with_omniauth(omniauth_facebook_valid_hash)
-      end.to change{Authentication.count}.from(0).to(1)
-    end
+    let!(:authentication) { create(:authentication) }
 
-    it '.find_for_provider_oauth returns an authentication from omniauth' do
-      user = create(:user)
-      auth = Authentication.find_for_provider_oauth(omniauth_facebook_valid_hash, user)
-      expect(auth.user.id).not_to be_nil
+    describe '.find_with_omniauth' do
+      it 'returns an authentication found by provider and uid' do
+        auth = Authentication.find_with_omniauth(omniauth_facebook_valid_hash)
+        expect(auth.uid).to eq(omniauth_facebook_valid_hash.uid)
+      end
     end
   end
 end
