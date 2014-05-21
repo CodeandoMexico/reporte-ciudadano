@@ -2,9 +2,9 @@ class window.GeolocateMap
 
   constructor: (map_div_node, options) ->
     $(map_div_node).before("<p class='error-map alert alert-danger' style='display:none;'>Lo sentimos tu dirección esta fuera del alcance permitido</p>")
+    @_add_listener_for_first_location()
     @_prepare_inputs(options['sync_input'])
     @map = new GeolocateMap.Map(map_div_node, options)
-    @_add_listener_for_first_location()
     @_add_listener_for_marker()
     @_add_listener_for_address_field()
 
@@ -33,8 +33,12 @@ class window.GeolocateMap
       @last_valid_address = @jq_address_field.val()
 
   _add_listener_for_first_location: ->
-    $(window).on 'first_location', =>
-      @_update_form_from_marker_values()
+    $(window).on 'first_location', (e, data) =>
+      if data.userPermission
+        @_update_form_from_marker_values()
+      else
+        @_update_lat_and_lng_from_marker()
+
 
   _update_form_from_marker_values: ->
     @_update_lat_and_lng_from_marker()
