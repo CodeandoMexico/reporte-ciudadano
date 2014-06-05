@@ -75,12 +75,15 @@ class GeolocateMap.Map
             @marker.setPosition(latLng)
             @g_map.setCenter(latLng)
             @_zoom_on_marker()
-          $(window).trigger('first_location')
+          $(window).trigger('first_location', {userPermission: true})
         ),
         ((msg) ->
-          console.log("geolocation error: #{msg}")
+          $(window).trigger('first_location', {userPermission: false})
         )
       )
+    else
+      $(window).trigger('first_location', {userPermission: false})
+
 
   _build_bounds: ->
     bounds = @_options['bounds']

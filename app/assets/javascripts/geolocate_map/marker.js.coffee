@@ -26,10 +26,8 @@ class GeolocateMap.Marker
         if results[0]
           cb(results[0].formatted_address)
         else
-          console.log("geocoder not found")
           cb('')
       else
-        console.log("geocoder fail: #{status}")
         cb('')
 
   onDragEnd: (cb) ->
