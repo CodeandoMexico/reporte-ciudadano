@@ -51,7 +51,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
-  gem 'debugger'
+  gem 'byebug'
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'guard'
