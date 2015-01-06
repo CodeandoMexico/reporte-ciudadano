@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.5'
 
 gem 'rails', '3.2.16'
 
@@ -51,7 +51,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
-  gem 'debugger'
+  gem 'byebug'
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'guard'
