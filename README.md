@@ -1,5 +1,7 @@
 ## Reporte Ciudadano
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CodeandoMexico/reporte-ciudadano?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/CodeandoMexico/reporte-ciudadano.png)](https://travis-ci.org/CodeandoMexico/reporte-ciudadano)
 [![Code Climate](https://codeclimate.com/github/CodeandoMexico/reporte-ciudadano.png)](https://codeclimate.com/github/CodeandoMexico/reporte-ciudadano)
 [![Coverage Status](https://coveralls.io/repos/CodeandoMexico/reporte-ciudadano/badge.png)](https://coveralls.io/r/CodeandoMexico/reporte-ciudadano)
