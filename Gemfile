@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 
-gem 'rails', '3.2.16'
+gem 'rails', '4.2.0'
 
 gem 'pg'
-gem 'devise', '2.2.4'
+gem 'devise'
 gem 'nested_form'
 gem 'geocoder'
 gem "highcharts-rails", "~> 3.0.0"
@@ -63,14 +63,11 @@ group :production do
   gem 'unicorn'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'haml-rails'
-  gem 'compass-rails'
-  gem "modular-scale", "~> 1.0.6"
-  gem 'bootstrap-sass', '~> 3.0.0.0.rc'
-  gem 'uglifier', '>= 1.0.3'
-end
+# Assets
+gem 'sass-rails',   '~> 5.0'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'haml-rails'
+gem 'compass-rails'
+gem "modular-scale", "~> 1.0.6"
+gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'uglifier', '>= 1.3.0'
