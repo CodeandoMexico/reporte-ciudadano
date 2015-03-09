@@ -16,7 +16,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def create
-    @service_request = current_user.service_requests.build(params[:service_request])
+    @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
       redirect_to root_path, flash: { success: 'La solicitud fue creada satisfactoriamente' }
     else
@@ -45,4 +45,12 @@ class ServiceRequestsController < ApplicationController
       format.json { render :json => service_requests }
     end
   end
+
+  private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def service_request_params
+    params.require(:service_request).permit(:name, :service_fields_attributes, :messages_attributes)
+  end
+
 end
