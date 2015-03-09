@@ -2,12 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  # Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  Bundler.require(:default, :assets, Rails.env)
-end
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
 module ReporteCiudadano
   class Application < Rails::Application
@@ -71,5 +68,8 @@ module ReporteCiudadano
         routing_specs:false,controller_specs:true,request_specs:false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

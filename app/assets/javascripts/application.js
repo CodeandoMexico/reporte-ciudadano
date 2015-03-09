@@ -12,4 +12,5 @@
 //= require highcharts
 //= require highcharts/modules/exporting
 //= require jquery.tablesorter
+//= require turbolinks
 //= require_tree .
