@@ -1,5 +1,5 @@
 class Status < ActiveRecord::Base
-  attr_accessible :name, :is_default
+  #attr_accessible :name, :is_default
   has_many :service_requests
   has_many :messages
 

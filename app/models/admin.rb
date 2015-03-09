@@ -3,10 +3,8 @@ class Admin < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :token_authenticatable
-  
-  before_save :ensure_authentication_token
+         :recoverable, :rememberable, :trackable, :validatable
+  #before_save :ensure_authentication_token
 
   # attr_accessible :title, :body
 

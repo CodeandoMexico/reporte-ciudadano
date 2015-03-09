@@ -2,7 +2,7 @@ class ApplicationSettings::CssTheme < ApplicationSetting
   DEFAULT_THEME_NAME = "theme_one"
   THEMES = %w{theme_one theme_two theme_three theme_four}
 
-  attr_accessible :name
+  #attr_accessible :name
   validates :name, presence: true, inclusion: { in: THEMES }
 
   def self.get

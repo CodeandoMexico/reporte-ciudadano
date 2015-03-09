@@ -8,7 +8,7 @@ class ApplicationSettings::MapConstraints < ApplicationSetting
     ]
   }
 
-  attr_accessible :map_constraints
+  #attr_accessible :map_constraints
   validates :map_constraints, presence: true
 
   def self.get
