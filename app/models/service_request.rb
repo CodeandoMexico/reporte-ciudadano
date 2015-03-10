@@ -21,41 +21,41 @@ class ServiceRequest < ActiveRecord::Base
   mount_uploader :media, ImageUploader
   acts_as_voteable
 
-  default_scope order: 'created_at DESC'
+  default_scope { order('created_at DESC') }
 
-  scope :on_start_date, lambda {|from|
+  scope :on_start_date, -> (from) {
     where("service_requests.created_at >= ?", from) unless from.blank?
   }
 
-  scope :on_finish_date, lambda { |to|
+  scope :on_finish_date, -> (to) {
     where("service_requests.created_at <= ?", to) unless to.blank?
   }
 
-  scope :with_status, lambda { |status_id|
+  scope :with_status, -> (status_id) {
     where(status_id: status_id) unless status_id.blank?
   }
 
-  scope :on_status_name, lambda { |status_name|
+  scope :on_status_name, -> (status_name) {
     joins(:status).where('statuses.name = ?', status_name) unless status_name.blank?
   }
 
-  scope :on_service, lambda { |service_ids|
+  scope :on_service, -> (service_ids) {
     where(service_id: service_ids.split(',')) unless service_ids.blank?
   }
 
-  scope :find_by_ids, lambda { |ids|
+  scope :find_by_ids, -> (ids) {
     where("service_requests.id IN (?)", ids.split(',')) unless ids.blank?
   }
 
-  scope :closed, lambda {
+  scope :closed, -> {
     where(status_id: 4)
   }
 
-  scope :not_closed, lambda {
+  scope :not_closed, -> {
     where('status_id != ?', 4)
   }
 
-  scope :open, lambda {
+  scope :open, -> {
     where(status: 1)
   }
 

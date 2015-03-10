@@ -7,7 +7,7 @@ class Status < ActiveRecord::Base
 
   before_create :set_default_if_is_the_first
 
-  default_scope order('created_at')
+  default_scope { order('created_at') }
 
   def to_s
     name

@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
   belongs_to :service
   belongs_to :status
 
-  scope :with_status, lambda { |status_id|
+  scope :with_status,-> (status_id) {
     where(status_id: status_id)
   }
 end
