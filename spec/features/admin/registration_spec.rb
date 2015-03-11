@@ -10,7 +10,7 @@ feature 'Registration integration' do
 
   scenario 'As an admin I can see an edit link' do
     visit admins_services_path
-    page.should have_content 'Editar perfil'
+    expect(page).to have_content 'Editar perfil'
   end
 
   scenario 'As an admin I can update my profile' do
@@ -21,7 +21,7 @@ feature 'Registration integration' do
       fill_in 'admin[email]', with: 'nuevo@correo.com'
     end
     click_button 'Actualizar'
-    page.should have_content t('flash.admin.updated')
+    expect(page).to have_content t('flash.admin.updated')
   end
 
 end
