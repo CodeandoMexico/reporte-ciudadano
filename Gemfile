@@ -38,7 +38,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
-  gem 'selenium-webdriver', "~> 2.38.0"
+  gem 'selenium-webdriver'
 end
 
 group :development,:test do
