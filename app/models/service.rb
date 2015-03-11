@@ -24,6 +24,4 @@ class Service < ActiveRecord::Base
     query = query.group('services.id')
     query = query.order('services.id')
   end
-
-
 end

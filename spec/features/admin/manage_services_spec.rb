@@ -46,7 +46,7 @@ feature 'As an admin I can manage requests services' do
     fill_in 'service[name]', with: 'Servicio nuevo'
 
     click_link 'Agregar mensaje'
-    within '#new_service' do
+    within first('.add-message .fields') do
       fill_in 'Mensaje', with: 'Mensaje para status abierto'
       select 'Abierto', from: 'Estatus'
     end
