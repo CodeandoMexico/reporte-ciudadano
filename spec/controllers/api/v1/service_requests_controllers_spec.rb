@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Api
   module V1
-    describe ServiceRequestsController do
+    describe ServiceRequestsController, type: :controller do
 
       describe 'GET show' do
         let(:service_request) { create(:service_request)}
