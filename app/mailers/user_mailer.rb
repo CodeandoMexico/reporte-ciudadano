@@ -7,6 +7,5 @@ class UserMailer < ActionMailer::Base
     @previous_status = Status.find(previous_status_id)
     mail(subject: I18n.t('mailer.subject.status_change_notification'), to: @user.email)
   end
-
 end
 

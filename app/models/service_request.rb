@@ -60,7 +60,7 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   def service?
-    self.service.present?
+    service.present?
   end
 
   def self.filter_by_search(params)
@@ -130,7 +130,7 @@ class ServiceRequest < ActiveRecord::Base
 
   def send_notification_for_status_update
     if self.requested_by_user? && self.status_id_changed?
-      UserMailer.delay.notify_service_request_status_change(self.id, self.status_id_was)
+      UserMailer.notify_service_request_status_change(self.id, self.status_id_was).deliver_later
     end
   end
 

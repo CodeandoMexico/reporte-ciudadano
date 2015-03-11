@@ -49,13 +49,13 @@ describe ServiceRequest do
         admin_request = create(:service_request, requester: admin)
         expect do
           admin_request.update_attributes(status_id: FactoryGirl.create(:status).id)
-        end.to_not change{ ActionMailer::Base.deliveries.size }.by(1)
+        end.to_not change{ ActionMailer::Base.deliveries.size }
       end
 
       it 'does not send an email when any other attribute was updated' do
         expect do
           service_request.update_attributes(address: 'Nueva direccion')
-        end.to_not change{ ActionMailer::Base.deliveries.size }.by(1)
+        end.to_not change{ ActionMailer::Base.deliveries.size }
       end
 
     end
@@ -95,7 +95,7 @@ describe ServiceRequest do
     let(:service_request) { create(:service_request) }
 
     it '#service? tells me if my service_request has a service' do
-      expect(service_request.service?).to be_true
+      expect(service_request.service?).to be
     end
 
     it '#service_requester returns a hash with the avatar_url and name from the service_requester' do
