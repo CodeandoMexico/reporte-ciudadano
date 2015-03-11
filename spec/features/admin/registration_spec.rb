@@ -23,5 +23,4 @@ feature 'Registration integration' do
     click_button 'Actualizar'
     expect(page).to have_content t('flash.admin.updated')
   end
-
 end
