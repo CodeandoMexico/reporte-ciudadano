@@ -44,10 +44,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def service_request_params
-    params.require(:service_request).permit(:name, :service_fields_attributes, :messages_attributes)
+    params.require(:service_request).permit(:name, :status_id, :service_fields_attributes, :messages_attributes)
   end
-
-
 end

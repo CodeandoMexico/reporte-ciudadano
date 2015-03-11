@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @current_session = current_user || current_admin
-    @comment = @current_session.comments.build(params[:comment])
+    @comment = @current_session.comments.build(comment_params)
     if @comment.save
       flash[:success] = "Tu comentario ha sido publicado"
       redirect_to after_comment_path
@@ -21,6 +21,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def comment_params
+    params.require(:comment).permit(:content, :service_request_id, :image)
+  end
 
   def can_comment!
     deny_access unless user_signed_in? or admin_signed_in?
