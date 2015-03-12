@@ -14,7 +14,7 @@ feature 'As an admin I can manage service requests' do
     within '.sidebar-nav' do
       click_link t('admins.shared.sidebar.requests')
     end
-    current_path == admins_service_requests_path
+    expect(current_path).to eq admins_service_requests_path
     expect(page).to have_content service_requests.first.service.name
     expect(page).to have_content service_requests[1].service.name
     expect(page).to have_content service_requests.last.service.name
@@ -24,7 +24,7 @@ feature 'As an admin I can manage service requests' do
     visit admins_service_requests_path
     click_link service_request.service.name
 
-    current_path == edit_admins_service_request_path(service_request)
+    expect(current_path).to eq edit_admins_service_request_path(service_request)
     expect(page).to have_content service_request.service.name
     expect(page).to have_content service_request.status
   end
@@ -46,7 +46,7 @@ feature 'As an admin I can manage service requests' do
     visit admins_service_requests_path
     click_link service_request.service.name
 
-    current_path == edit_admins_service_request_path(service_request)
+    expect(current_path).to eq edit_admins_service_request_path(service_request)
     expect(page).to have_content service_request.requester.name
     expect(page).to have_content service_request.requester.email
     expect(page).to have_content service_request.requester.id
@@ -69,7 +69,7 @@ feature 'As an admin I can manage service requests' do
       select services.last.name, from: 'service_request[service_id]'
     end
     click_button t('update')
-    current_path.should == edit_admins_service_request_path(service_request)
+    expect(current_path).to eq edit_admins_service_request_path(service_request)
     expect(page).to have_content services.last.name
   end
 
