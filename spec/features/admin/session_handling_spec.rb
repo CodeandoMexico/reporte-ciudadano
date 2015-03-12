@@ -7,21 +7,20 @@ feature 'Admin session handling' do
   scenario 'signs in with valid email and password' do
     sign_in_admin admin
 
-    current_path.should == admins_dashboards_path
+    expect(current_path).to eq admins_dashboards_path
   end
 
   scenario 'cannot sign in with invalid email and password' do
     sign_in_admin admin, password: 'invalid'
 
-    current_path.should == new_admin_session_path
-    page.should have_content "Correo o contraseña inválidos"
+    expect(current_path).to eq new_admin_session_path
+    expect(page).to have_content "Correo o contraseña inválidos"
   end
 
   scenario 'signs out and is redirected to the root page' do
     sign_in_admin admin
     page.find('a[href="/admins/sign_out"]').click
-    page.should have_content 'Iniciar sesión'
-    current_url.should eq root_url
+    expect(page).to have_content 'Iniciar sesión'
+    expect(current_url).to eq root_url
   end
-
 end

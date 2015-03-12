@@ -11,7 +11,7 @@ feature 'As an admin I can upload organization logos' do
 
   scenario 'I can visit the upload logos view' do
     page.find("a[href='#{new_admins_logo_path}']").click
-    page.should have_content "Agregar nuevo logo"
+    expect(page).to have_content "Agregar nuevo logo"
   end
 
 end
