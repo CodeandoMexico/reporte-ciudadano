@@ -29,6 +29,19 @@ feature 'As an admin I can manage service requests' do
     expect(page).to have_content service_request.status
   end
 
+  scenario 'I can create a service request' do
+    services = create_list(:service, 2)
+    visit new_admins_service_request_path
+
+    select services.first.name, from: 'service_request[service_id]'
+    fill_in 'service_request[address]', with: 'An address #111'
+    set_location_as(lat: "12.12", lng: "12.13")
+    fill_in 'service_request[description]', with: 'Request description'
+    click_button t('save')
+
+    expect(page).to have_content t('flash.service_requests.created')
+  end
+
   scenario 'I can see the requester full name and email' do
     visit admins_service_requests_path
     click_link service_request.service.name
@@ -100,4 +113,8 @@ feature 'As an admin I can manage service requests' do
     expect(page).not_to have_content comment.content
   end
 
+  def set_location_as(lat:, lng:)
+    find("#lat").set(lat)
+    find("#lng").set(lng)
+  end
 end

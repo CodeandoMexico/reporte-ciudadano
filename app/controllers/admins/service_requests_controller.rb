@@ -45,6 +45,6 @@ class Admins::ServiceRequestsController < Admins::AdminController
   private
 
   def service_request_params
-    params.require(:service_request).permit(:name, :status_id, :service_fields_attributes, :messages_attributes)
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng)
   end
 end
