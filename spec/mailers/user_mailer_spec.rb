@@ -12,7 +12,7 @@ describe UserMailer do
     it "sends the email" do
       reset_email
       mail.deliver!
-      ActionMailer::Base.deliveries.size.should be 1
+      expect(ActionMailer::Base.deliveries.size).to eq 1
     end
 
     it "sends an email to the requester" do
