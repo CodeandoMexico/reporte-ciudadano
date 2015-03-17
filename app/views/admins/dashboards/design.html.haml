@@ -27,7 +27,7 @@
       %p= t('.no_logos')
 
 %h2= t('.color_scheme')
-= form_for ApplicationSettings::CssTheme.get, url: css_theme_admins_application_settings_path(@default_css_theme, format: :json), remote: true, as: :setting do |f|
+= form_for ApplicationSettings::CssTheme.get, url: css_theme_admins_application_settings_path(@default_css_theme, format: :json), remote: true, as: :setting, method: :put do |f|
   .row
     - ApplicationSettings::CssTheme::THEMES.each do |theme|
       .col-md-3
