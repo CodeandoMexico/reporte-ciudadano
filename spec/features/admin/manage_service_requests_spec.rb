@@ -74,7 +74,7 @@ feature 'As an admin I can manage service requests' do
   end
 
   scenario 'I can update the message of a service request', js: true do
-    message = create(:message, service: service_request.service)
+    message = create(:message, service: service_request.service, status: service_request.status)
     visit edit_admins_service_request_path(service_request)
     within '.edit_service_request' do
       select message.status.name, from: 'service_request[status_id]'
