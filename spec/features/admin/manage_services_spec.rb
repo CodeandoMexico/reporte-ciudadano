@@ -38,6 +38,14 @@ feature 'As an admin I can manage requests services' do
     expect(page).to have_content t('flash.service.destroyed')
   end
 
+  scenario 'I can delete a service unless it has associated requests' do
+    service = create(:service, name: 'service')
+    create :service_request, service: service
+    visit admins_services_path
+    expect(destroy_link).to be_disabled
+    expect(page).to have_content service.name
+  end
+
   scenario 'I can create a new service with status message', js: true do
     create(:status, name: 'Abierto')
 
@@ -56,4 +64,7 @@ feature 'As an admin I can manage requests services' do
     expect(page).to have_content t('flash.service.created')
   end
 
+  def destroy_link
+    find("#destroy-btn")
+  end
 end

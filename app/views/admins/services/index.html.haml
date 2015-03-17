@@ -27,7 +27,7 @@
           .btn-group
             = link_to edit_admins_service_path(service), class: 'btn btn-default' do
               %span.glyphicon.glyphicon-wrench
-            = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger' do
+            = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
               %span.glyphicon.glyphicon-trash
 
   %h2= t('.statuses')

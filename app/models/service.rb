@@ -24,4 +24,8 @@ class Service < ActiveRecord::Base
     query = query.group('services.id')
     query = query.order('services.id')
   end
+
+  def cant_be_deleted?
+    service_requests.any?
+  end
 end
