@@ -1,5 +1,5 @@
 $(document).on 'ready page:load', ->
-  if $('#reports-chart').length > 0
+  $('#reports-chart').each ->
     chart_data = $('#reports-chart').data('chart-data')
     status_names = $('#reports-chart').data('status-names')
     series = []

@@ -50,7 +50,7 @@ $ ->
           longitude: mapConstraints.bounds[1][1]
     })
 
-  if $("#reports-map").length > 0
+  $("#reports-map").each ->
     reports_markers = $(".recent-report-sum").map ->
       return { lat: $(this).data("lat"), lng: $(this).data("lng"), description: $(this).data("description") }
 
@@ -70,7 +70,7 @@ $ ->
     ).bind "ajax:error", (e, xhr, status, error) ->
       console.log 'ERROR!'
 
-  if $("#show-report-map").length > 0
+  $("#show-report-map").each ->
     $map = $("#show-report-map")
     lat = $map.attr("data-latitude")
     lng = $map.attr("data-longitude")
