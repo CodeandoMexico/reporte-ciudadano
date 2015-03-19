@@ -31,15 +31,30 @@ feature 'As an admin I can manage service requests' do
 
   scenario 'I can create a service request' do
     services = create_list(:service, 2)
-    visit new_admins_service_request_path
+    first_service = services.first
 
-    select services.first.name, from: 'service_request[service_id]'
+    visit new_admins_service_request_path
+    select first_service.name, from: 'service_request[service_id]'
+
     fill_in 'service_request[address]', with: 'An address #111'
     set_location_as(lat: "12.12", lng: "12.13")
     fill_in 'service_request[description]', with: 'Request description'
     click_button t('save')
 
     expect(page).to have_content t('flash.service_requests.created')
+  end
+
+  scenario 'I can see the service extra fields when creating a request', js: true do
+    services = create_list(:service, 2)
+    first_service = services.first
+
+    given_service_with_extra_fields(first_service)
+    visit new_admins_service_request_path
+
+    select first_service.name, from: 'service_request[service_id]'
+
+    expect(page).to have_content "Field one"
+    expect(page).to have_content "Field two"
   end
 
   scenario 'I can see the requester full name and email' do
@@ -116,5 +131,10 @@ feature 'As an admin I can manage service requests' do
   def set_location_as(lat:, lng:)
     find("#lat").set(lat)
     find("#lng").set(lng)
+  end
+
+  def given_service_with_extra_fields(service)
+    create :service_field, name: "field one", service: service
+    create :service_field, name: "field two", service: service
   end
 end

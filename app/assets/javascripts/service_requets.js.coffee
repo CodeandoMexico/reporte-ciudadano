@@ -1,17 +1,16 @@
-$ ->
+$(document).on 'ready page:load', ->
   $("abbr.timeago").timeago()
 
   $('.datepicker').datepicker({
     dateFormat: 'yy-mm-dd'
   })
 
-  $('.js-load_service_fields').change ->
-    $.ajax(
+  $('.js-load_service_fields').on "change",  ->
+    $.ajax
       url: '/services/load_service_fields'
       data: {
         id: $(@).val()
       }
-    )
 
   $('.blocked').click (e) ->
     e.preventDefault()
