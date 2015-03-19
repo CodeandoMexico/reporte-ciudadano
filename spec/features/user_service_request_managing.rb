@@ -51,26 +51,29 @@ feature 'Managing service requests' do
 
     scenario 'can search for service requests by service' do
       service_requests = create_list(:service_request, 3)
+      first_service = service_requests.first
+      
       visit service_requests_path
       within '#service_request_search' do
-        select service_requests.first.service.name, from: 'q[service_id_eq]'
+        select first_service.service.name, from: 'q[service_id_eq]'
         click_button 'Buscar'
       end
-      expect(page).to have_content service_requests.first.description.truncate(30)
-      expect(page).to have_content service_requests[1].description.truncate(30)
-      expect(page).to have_content service_requests.last.description.truncate(30)
+      expect(page).to have_content first_service.description.truncate(30)
+      expect(page).not_to have_content service_requests[1].description.truncate(30)
+      expect(page).not_to have_content service_requests.last.description.truncate(30)
     end
 
     scenario 'can search for service requests by status' do
-      service_requests = create_list(:service_request, 3)
+      custom_status = create :status
+      service_requests = create_list(:service_request, 3, status: custom_status)
       visit service_requests_path
       within '#service_request_search' do
         select service_requests.first.status.name, from: 'q[status_id_eq]'
         click_button 'Buscar'
       end
       expect(page).to have_content service_requests.first.description.truncate(30)
-      expect(page).not_to have_content service_requests[1].description.truncate(30)
-      expect(page).not_to have_content service_requests.last.description.truncate(30)
+      expect(page).to have_content service_requests[1].description.truncate(30)
+      expect(page).to have_content service_requests.last.description.truncate(30)
     end
 
     scenario 'can go see a service request' do
@@ -85,15 +88,14 @@ feature 'Managing service requests' do
       sign_in_user user
     end
 
-    scenario 'can create a new service request successfully', js: true do
-      service = create(:service_with_service_fields)
+    scenario 'can create a new service request successfully' do
+      service = create(:service)
       visit new_service_request_path
       within '#new_service_request' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
         select service.name, from: 'service_request[service_id]'
-        fill_in "service_request[service_fields][#{service.service_fields.first.name}]", with: 'more fields'
         click_button  'Guardar'
       end
       expect(page).to have_content '123 Governor Dr, San Diego, CA 92122'

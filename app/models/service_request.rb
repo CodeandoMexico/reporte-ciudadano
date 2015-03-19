@@ -111,9 +111,8 @@ class ServiceRequest < ActiveRecord::Base
   end
 
 
-  ransacker :date do |parent|
-    Arel::Nodes::InfixOperation.new('||',
-                                    Arel::Nodes::InfixOperation.new('||', parent.table[:created_at], ' '), parent.table[:created_at])
+  ransacker :date do
+    Arel.sql('date(created_at)')
   end
 
   private

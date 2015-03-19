@@ -1,5 +1,5 @@
 class ServiceRequestsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new]
 
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
@@ -49,6 +49,9 @@ class ServiceRequestsController < ApplicationController
   private
 
   def service_request_params
-    params.require(:service_request).permit(:name, :service_fields_attributes, :messages_attributes)
+    service_fields = params[:service_request].delete(:service_fields)
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng).tap do |whitelisted|
+      whitelisted[:service_fields] = service_fields || {}
+    end
   end
 end
