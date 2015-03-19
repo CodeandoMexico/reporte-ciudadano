@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'ready page:load', ->
   # The body element has the controller and action name as class attribute
   current_controller_and_action = $("body").attr('class')
 
@@ -32,7 +32,6 @@ $ ->
 
   $("#new-report-map").each ->
     newReportMap = $('#new-report-map')
-    console.log "entra"
     mapConstraints = newReportMap.data('map-constraints')
     newReportMap.geolocateMap({
       html5: true
