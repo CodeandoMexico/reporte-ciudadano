@@ -14,6 +14,8 @@ feature 'Signing in' do
     OmniAuth.config.mock_auth[:twitter] = omniauth_twitter_valid_hash
     visit new_user_registration_path
     click_link 'Twitter'
+    fill_in 'user[email]', with: 'johnq@mail.com'
+    click_button "Completar"
     expect(page).to have_content 'John Q Public'
     expect(current_url).to eq root_url
   end
@@ -55,6 +57,8 @@ feature 'As a user I can login' do
     OmniAuth.config.mock_auth[:twitter] = omniauth_twitter_valid_hash
     visit new_user_session_path
     click_link 'Twitter'
+    fill_in 'user[email]', with: 'johnq@mail.com'
+    click_button "Completar"
     expect(page).to have_content 'John Q Public'
     expect(current_url).to eq root_url
   end
