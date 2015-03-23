@@ -1,17 +1,15 @@
 $(document).on 'ready page:load', ->
   $('#reports-chart').each ->
     chart_data = $('#reports-chart').data('chart-data')
-    status_names = $('#reports-chart').data('status-names')
+    status_data = $('#reports-chart').data('status-data')
     series = []
     services_names = []
-    index = 1
 
-    for status_name in status_names
+    for status in status_data
       series.push({
-        name: status_name
-        data: $.map chart_data, (e, i) -> parseInt(e["status_#{index}"])
+        name: status["name"]
+        data: $.map chart_data, (e, i) -> parseInt(e["status_#{status['id']}"])
       })
-      index++
 
     for service in chart_data
       services_names.push(service.name)
@@ -26,7 +24,7 @@ $(document).on 'ready page:load', ->
       yAxis:
         allowDecimals: false
         gridLineWidth: 0
-        max: $('#reports-stats').data('total')
+        max: $('.reports-stats').data('total')
         min: 0
         title: 'Total de reportes'
       legend:
