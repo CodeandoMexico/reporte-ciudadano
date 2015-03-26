@@ -19,11 +19,11 @@ de la comunicación con la ciudadanía y los reportes de cuestiones en sus servi
 [README English Version](https://github.com/CodeandoMexico/reporte-ciudadano/blob/master/README.en.md)
 
 ### Dependencias
-- Ruby 2.0
-- Rails 3.2
+- Ruby 2.1.5
+- Rails 4.2.0
 - Bootstrap 3.0
-- Rspec 2.14
-- Redis 2.8.6
+- Rspec 3.2.2
+- Redis 3.2.1
 
 ### ¿Dudas?
 
@@ -44,9 +44,10 @@ El core team:
 - [Eddie Ruvalcaba](https://github.com/eddie-ruva)
 - [Juan Pablo Escobar](https://github.com/juanpabloe)
 - [Abraham Kuri](https://github.com/kurenn)
+- [Abi Sosa](https://github.com/abisosa)
 
 ### Licencia
 
-Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members), 2013 - 2014.
+Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members), 2013 - 2015.
 
 Disponible bajo la licencia GNU Affero General Public License (AGPL) v3.0. Ver el documento [LICENSE](/LICENSE) para más información.
