@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def finish_registration
     self.resource = resource_class.new
-    self.resource.apply_omniauth(session[:omniauth])
+    self.resource.apply_omniauth(omniauth_hash)
     respond_with self.resource
   end
 
@@ -21,8 +21,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def build_resource(hash=nil)
     super
     if session[:omniauth]
-      self.resource.apply_omniauth(session[:omniauth])
+      self.resource.apply_omniauth(omniauth_hash)
       self.resource.valid?
     end
+  end
+
+  def omniauth_hash
+    session[:omniauth].deep_symbolize_keys
   end
 end

@@ -11,7 +11,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   def create
-    @service_request = current_admin.service_requests.build(params[:service_request])
+    @service_request = current_admin.service_requests.build(service_request_params)
     if @service_request.save
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.created') }
     else
@@ -28,7 +28,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def update
     @service_request = ServiceRequest.find params[:id]
-    if @service_request.update_attributes params[:service_request]
+    if @service_request.update_attributes(service_request_params)
       @service_request.comments.create content: params[:message], commentable: current_admin if params[:message].present?
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
     else
@@ -42,5 +42,12 @@ class Admins::ServiceRequestsController < Admins::AdminController
     redirect_to :back, flash: { success: I18n.t('flash.service_requests.destroyed') }
   end
 
+  private
 
+  def service_request_params
+    service_fields = params[:service_request].delete(:service_fields)
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng).tap do |whitelisted|
+      whitelisted[:service_fields] = service_fields || {}
+    end
+  end
 end

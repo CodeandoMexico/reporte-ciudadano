@@ -14,7 +14,7 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def create
-    @service = Service.new(params[:service])
+    @service = Service.new(service_params)
 
     if @service.save
       redirect_to admins_services_path, notice: I18n.t('flash.service.created')
@@ -26,7 +26,7 @@ class Admins::ServicesController < Admins::AdminController
   def update
     @service = Service.find(params[:id])
 
-    if @service.update_attributes(params[:service])
+    if @service.update_attributes(service_params)
       redirect_to admins_services_path, notice: I18n.t('flash.service.updated')
     else
       render action: "edit"
@@ -37,5 +37,11 @@ class Admins::ServicesController < Admins::AdminController
     @service = Service.find(params[:id])
     @service.destroy
     redirect_to admins_services_url, notice: I18n.t('flash.service.destroyed')
+  end
+
+  private
+
+  def service_params
+    params.require(:service).permit(:name, messages: [:content, :status_id], service_fields: [:name])
   end
 end

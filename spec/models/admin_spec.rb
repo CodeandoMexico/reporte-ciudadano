@@ -27,7 +27,7 @@ describe Admin do
     end
     it '#api_key?' do
       create(:api_key, admin: admin)
-      expect(admin.api_key?).to be_true
+      expect(admin.api_key?).to be
     end
   end
 end

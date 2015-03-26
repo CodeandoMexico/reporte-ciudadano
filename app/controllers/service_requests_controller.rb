@@ -1,5 +1,5 @@
 class ServiceRequestsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new]
 
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
@@ -16,7 +16,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def create
-    @service_request = current_user.service_requests.build(params[:service_request])
+    @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
       redirect_to root_path, flash: { success: 'La solicitud fue creada satisfactoriamente' }
     else
@@ -43,6 +43,15 @@ class ServiceRequestsController < ApplicationController
     service_requests = ServiceRequest.filter_by_search_311(params)
     respond_to do |format|
       format.json { render :json => service_requests }
+    end
+  end
+
+  private
+
+  def service_request_params
+    service_fields = params[:service_request].delete(:service_fields)
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng).tap do |whitelisted|
+      whitelisted[:service_fields] = service_fields || {}
     end
   end
 end

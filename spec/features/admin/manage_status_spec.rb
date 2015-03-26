@@ -16,8 +16,7 @@ feature 'Managing statuses' do
       click_button t('save')
     end
 
-    page.should have_content t('flash.status.created')
-
+    expect(page).to have_content t('flash.status.created')
   end
 
   scenario 'As an admin I can edit a status' do
@@ -26,17 +25,14 @@ feature 'Managing statuses' do
     fill_in 'status[name]', with: 'Open'
     click_button t('save')
 
-    page.should have_content t('flash.status.updated')
-
+    expect(page).to have_content t('flash.status.updated')
   end
 
   scenario 'As an admin I can see a list of statuses' do
     first, second, third = create_list(:status, 3)
     visit admins_services_path
-    page.should have_content(first.name)
-    page.should have_content(second.name)
-    page.should have_content(third.name)
+    expect(page).to have_content(first.name)
+    expect(page).to have_content(second.name)
+    expect(page).to have_content(third.name)
   end
-
-
 end

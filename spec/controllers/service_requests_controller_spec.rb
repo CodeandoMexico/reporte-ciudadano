@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ServiceRequestsController do
+describe ServiceRequestsController, type: :controller do
 
   describe 'GET markers_for_gmap' do
     it 'returns a group of service_requests' do

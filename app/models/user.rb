@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :name
+  #attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :name
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :registerable
@@ -14,19 +14,19 @@ class User < ActiveRecord::Base
   acts_as_voter
 
   def self.find_or_build_with_omniauth(omniauth)
-    user = User.find_by_email(omniauth.info.email) unless omniauth.info.email.nil?
+    user = User.find_by_email(omniauth[:info][:email]) unless omniauth[:info][:email].nil?
     if user.nil?
       user = User.new
       user.apply_omniauth(omniauth)
     else
-      user.authentications.build(provider: omniauth['provider'], uid: omniauth['uid'])
+      user.authentications.build(provider: omniauth[:provider], uid: omniauth[:uid])
     end
     user
   end
 
   def apply_omniauth(omniauth)
     self.collect_omniauth_attributes(omniauth)
-    self.authentications.build(provider: omniauth['provider'], uid: omniauth['uid'])
+    self.authentications.build(provider: omniauth[:provider], uid: omniauth[:uid])
   end
 
   def to_s
@@ -42,10 +42,10 @@ class User < ActiveRecord::Base
   end
 
   def collect_omniauth_attributes(omniauth)
-    self.name = omniauth.info.name
-    self.username = omniauth.info.nickname
+    self.name = omniauth[:info][:name]
+    self.username = omniauth[:info][:nickname]
     self.avatar = fetch_image_from_omniauth(omniauth)
-    self.email = omniauth.info.email if self.email.blank?
+    self.email = omniauth[:info][:email] if self.email.blank?
   end
 
   # Devise override
@@ -77,11 +77,9 @@ class User < ActiveRecord::Base
   private
 
     def fetch_image_from_omniauth(omniauth)
-      case omniauth.provider
+      case omniauth[:provider]
       when 'facebook' then "https://graph.facebook.com/#{omniauth.uid}/picture?type=large"
-      when 'twitter' then omniauth.info.image
+      when 'twitter' then omniauth[:info][:image]
       end
     end
-
-
 end

@@ -1,5 +1,4 @@
-$ ->
-
+$(document).on 'ready page:load', ->
   # The body element has the controller and action name as class attribute
   current_controller_and_action = $("body").attr('class')
 
@@ -31,7 +30,7 @@ $ ->
   hideFlashMessages = ->
     $(".alert").fadeOut('slow')
 
-  if $("#new-report-map").length > 0
+  $("#new-report-map").each ->
     newReportMap = $('#new-report-map')
     mapConstraints = newReportMap.data('map-constraints')
     newReportMap.geolocateMap({
@@ -50,7 +49,7 @@ $ ->
           longitude: mapConstraints.bounds[1][1]
     })
 
-  if $("#reports-map").length > 0
+  $("#reports-map").each ->
     reports_markers = $(".recent-report-sum").map ->
       return { lat: $(this).data("lat"), lng: $(this).data("lng"), description: $(this).data("description") }
 
@@ -70,7 +69,7 @@ $ ->
     ).bind "ajax:error", (e, xhr, status, error) ->
       console.log 'ERROR!'
 
-  if $("#show-report-map").length > 0
+  $("#show-report-map").each ->
     $map = $("#show-report-map")
     lat = $map.attr("data-latitude")
     lng = $map.attr("data-longitude")

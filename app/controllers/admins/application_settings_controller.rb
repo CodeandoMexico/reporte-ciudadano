@@ -15,7 +15,10 @@ class Admins::ApplicationSettingsController < ApplicationController
 
   def update_setting(klass)
     @setting = klass.get
-    @setting.update_attributes(params[:setting])
+    @setting.update_attributes(setting_params)
   end
 
+  def setting_params
+    params.require(:setting).permit(:name)
+  end
 end

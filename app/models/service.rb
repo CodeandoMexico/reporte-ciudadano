@@ -1,5 +1,4 @@
 class Service < ActiveRecord::Base
-  attr_accessible :name, :service_fields_attributes, :messages_attributes
   has_many :service_requests
 
   validates :name, presence: true
@@ -26,5 +25,7 @@ class Service < ActiveRecord::Base
     query = query.order('services.id')
   end
 
-
+  def cant_be_deleted?
+    service_requests.any?
+  end
 end

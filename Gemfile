@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 
-gem 'rails', '3.2.16'
+gem 'rails', '4.2.0'
 
 gem 'pg'
-gem 'devise', '2.2.4'
+gem 'devise'
 gem 'nested_form'
 gem 'geocoder'
 gem "highcharts-rails", "~> 3.0.0"
@@ -20,7 +20,7 @@ gem 'omniauth-twitter'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-gem 'aws-s3'
+gem 'aws-sdk', '< 2.0'
 gem 'kaminari'
 gem 'thumbs_up'
 gem 'gravatar-ultimate'
@@ -38,20 +38,24 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
-  gem 'selenium-webdriver', "~> 2.38.0"
+  gem 'selenium-webdriver'
 end
 
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'byebug'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  # Spring speeds up development by keeping your application running in the background
+  gem 'spring'
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
-  gem 'byebug'
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'guard'
@@ -63,14 +67,17 @@ group :production do
   gem 'unicorn'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'haml-rails'
-  gem 'compass-rails'
-  gem "modular-scale", "~> 1.0.6"
-  gem 'bootstrap-sass', '~> 3.0.0.0.rc'
-  gem 'uglifier', '>= 1.0.3'
-end
+# Assets
+gem 'sass-rails',   '~> 5.0'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'haml-rails'
+gem 'compass-rails'
+gem "modular-scale", "~> 1.0.6"
+gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'uglifier', '>= 1.3.0'
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'

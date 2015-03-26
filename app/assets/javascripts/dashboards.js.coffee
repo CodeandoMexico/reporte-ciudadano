@@ -1,4 +1,4 @@
-jQuery ->
+$ ->
   $('.js-sortable').sortable(
     revert: 100
     cursor: "move"

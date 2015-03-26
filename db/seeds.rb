@@ -1,5 +1,6 @@
 # Destroy'em all
 Admin.destroy_all
+User.destroy_all
 Service.destroy_all
 ServiceRequest.destroy_all
 Status.destroy_all
@@ -18,16 +19,18 @@ c = Service.create(name: "Toma tapada")
 r = {
   service_id: c.id,
   description: "Parece que la toma esta tapada.",
+  address: "Calle Benito Juarez",
   lat: "17.07610765289478",
   lng: "-96.71955585479736",
   status_id: status.id
 }
-user.service_requests.build(r).save
+user.service_requests.build(r)
 
 c = Service.create(name: "Ruptura de tuberia")
 r = {
   service_id: c.id,
   description: "Se necesita atender una tuberia que se acaba de romper.",
+  address: "Calle Benito Juarez",
   lat: "17.05811444402115",
   lng: "-96.72695453226964",
   status_id: status.id
@@ -38,6 +41,7 @@ c = Service.create(name: "Fuga")
 r = {
   service_id: c.id,
   description: "Acabo de ver una fuga en el Parque.",
+  address: "Calle Benito Juarez",
   lat: "17.065020737526442",
   lng: "-96.72539234161377",
   status_id: status.id
@@ -49,6 +53,7 @@ r = {
   anonymous: true,
   service_id: c.id,
   description: "Mi vecino dejo abierta una manguera.",
+  address: "Calle Benito Juarez",
   lat: "17.065593",
   lng: "-96.724253",
   status_id: status.id
@@ -59,6 +64,7 @@ c = Service.create(name: "Robo de alcantarilla")
 r = {
   service_id: c.id,
   description: "Parece ser que se robaron una alcantarilla.",
+  address: "Calle Benito Juarez",
   lat: "17.068128422248872",
   lng: "-96.7195987701416",
   status_id: status.id
@@ -69,6 +75,7 @@ c = Service.create(name: "Alcantarilla en mal estado")
 r = {
   service_id: c.id,
   description: "La alcantarilla tiene mal olor y fugas de agua.",
+  address: "Calle Benito Juarez",
   lat: "17.07714402",
   lng: "-96.71353313",
   status_id: status.id
@@ -79,6 +86,7 @@ c = Service.create(name: "Falla en el drenaje")
 r = {
   service_id: c.id,
   description: "El drenaje tiene fallas desde hace dos dias.",
+  address: "Calle Benito Juarez",
   lat: "17.060477065746248",
   lng: "-96.72543525695801",
   status_id: status.id
@@ -94,6 +102,7 @@ special_services.each do |c|
 end
 r = {
   service_id: special_services[0].id,
+  address: "Calle Benito Juarez",
   description: "El dia de hoy no paso mi servicio!.",
   lat: "17.046243761147192",
   lng: "-96.76591701931939",
@@ -105,6 +114,7 @@ user.service_requests.build(r).save
 r = {
   service_id: special_services[1].id,
   description: "Hoy en la manana note que mi medidor habia sido robado.",
+  address: "Calle Benito Juarez",
   lat: "17.06185146120198",
   lng: "-96.72612190246582",
   service_fields: ["Jose del Bosque", "9981427729"],

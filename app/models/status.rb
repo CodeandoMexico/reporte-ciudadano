@@ -1,5 +1,5 @@
 class Status < ActiveRecord::Base
-  attr_accessible :name, :is_default
+
   has_many :service_requests
   has_many :messages
 
@@ -7,7 +7,7 @@ class Status < ActiveRecord::Base
 
   before_create :set_default_if_is_the_first
 
-  default_scope order('created_at')
+  default_scope { order('created_at') }
 
   def to_s
     name

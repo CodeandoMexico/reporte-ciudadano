@@ -1,5 +1,4 @@
-jQuery ->
-
+$ ->
   $('.image_container').click (e) ->
     $('#comment_image').click()
 
