@@ -55,6 +55,8 @@ Rails.application.routes.draw do
         put :map_constraints
       end
     end
+
+    resources :service_admins, only: :index
   end
 
   get "/login" => 'sessions#new'

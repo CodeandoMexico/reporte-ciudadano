@@ -1,0 +1,26 @@
+.table-responsive
+  %table.table.sortable_table.table-striped
+    %thead
+      %tr
+        %th
+          t(".id")
+        %th
+          t(".name")
+        %th
+          t(".record_number")
+        %th
+          t(".dependency")
+        %th
+          t(".administrative_unit")
+        %th
+          t(".charge")
+    %tbody
+      - @service_admins.each do |service_admin|
+        %tr.service_admin
+          %td= service_admin.name
+          %td= service_admin.record_number
+          %td= service_admin.dependency
+          %td= service_admin.administrative_unit
+          %td= service_admin.charge
+
+

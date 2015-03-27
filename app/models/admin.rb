@@ -14,11 +14,14 @@ class Admin < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def to_s
-    self.email 
+    self.email
   end
 
   def api_key?
-    self.api_key.present? 
+    self.api_key.present?
   end
 
+  def self.service_admins_sorted_by_name
+    where(is_service_admin: true).order(name: :asc)
+  end
 end

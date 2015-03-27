@@ -11,27 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211002335) do
+ActiveRecord::Schema.define(version: 20150327174804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "name",                   limit: 255, default: "", null: false
-    t.string   "avatar",                 limit: 255
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "name",                   default: "", null: false
+    t.string   "avatar"
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "authentication_token",   limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_service_admin"
+    t.string   "record_number"
+    t.string   "dependency"
+    t.string   "administrative_unit"
+    t.string   "charge"
   end
 
   add_index "admins", ["authentication_token"], name: "index_admins_on_authentication_token", unique: true, using: :btree
@@ -39,43 +44,43 @@ ActiveRecord::Schema.define(version: 20140211002335) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "api_keys", force: :cascade do |t|
-    t.string   "access_token", limit: 255
+    t.string   "access_token"
     t.integer  "admin_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", using: :btree
   add_index "api_keys", ["admin_id"], name: "index_api_keys_on_admin_id", using: :btree
 
   create_table "application_settings", force: :cascade do |t|
-    t.string   "type",       limit: 255
-    t.string   "value",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "type"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "application_settings", ["type"], name: "index_application_settings_on_type", unique: true, using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider",   limit: 255
-    t.string   "uid",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content",                        default: ""
+    t.text     "content",            default: ""
     t.integer  "service_request_id"
-    t.integer  "commentable_id",                              null: false
-    t.string   "commentable_type",   limit: 255,              null: false
-    t.string   "ancestry",           limit: 255
-    t.string   "image",              limit: 255
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.integer  "commentable_id",                  null: false
+    t.string   "commentable_type",                null: false
+    t.string   "ancestry"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
@@ -83,18 +88,18 @@ ActiveRecord::Schema.define(version: 20140211002335) do
   add_index "comments", ["service_request_id"], name: "index_comments_on_service_request_id", using: :btree
 
   create_table "logos", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "image",      limit: 255
+    t.string   "title"
+    t.string   "image"
     t.integer  "position"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
     t.integer  "service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "status_id"
   end
 
@@ -102,25 +107,25 @@ ActiveRecord::Schema.define(version: 20140211002335) do
   add_index "messages", ["status_id"], name: "index_messages_on_status_id", using: :btree
 
   create_table "service_fields", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name"
     t.integer  "service_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "service_requests", force: :cascade do |t|
-    t.text     "description",                default: ""
-    t.string   "lat",            limit: 255, default: ""
-    t.string   "lng",            limit: 255, default: ""
-    t.boolean  "anonymous",                  default: false
-    t.text     "service_fields",             default: "{}"
-    t.text     "address",                    default: ""
-    t.string   "media",          limit: 255
+    t.text     "description",    default: ""
+    t.string   "lat",            default: ""
+    t.string   "lng",            default: ""
+    t.boolean  "anonymous",      default: false
+    t.text     "service_fields", default: "{}"
+    t.text     "address",        default: ""
+    t.string   "media"
     t.integer  "service_id"
-    t.integer  "requester_id",                               null: false
-    t.string   "requester_type", limit: 255,                 null: false
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.integer  "requester_id",                   null: false
+    t.string   "requester_type",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "status_id"
   end
 
@@ -129,47 +134,47 @@ ActiveRecord::Schema.define(version: 20140211002335) do
   add_index "service_requests", ["status_id"], name: "index_service_requests_on_status_id", using: :btree
 
   create_table "services", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "statuses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "is_default",             default: false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_default", default: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   limit: 255
-    t.string   "username",               limit: 255
-    t.string   "avatar",                 limit: 255
-    t.string   "email",                  limit: 255, default: ""
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "name"
+    t.string   "username"
+    t.string   "avatar"
+    t.string   "email",                  default: ""
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
-    t.boolean  "vote",                      default: false, null: false
-    t.integer  "voteable_id",                               null: false
-    t.string   "voteable_type", limit: 255,                 null: false
+    t.boolean  "vote",          default: false, null: false
+    t.integer  "voteable_id",                   null: false
+    t.string   "voteable_type",                 null: false
     t.integer  "voter_id"
-    t.string   "voter_type",    limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.string   "voter_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "votes", ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type", using: :btree
