@@ -1,19 +1,25 @@
+.page-content.inset
+  %h2
+    = t('.service_admins')
+    .btn-group.pull-right
+      = link_to t('.new_service_admin'), new_admins_service_admin_path, class: 'btn btn-primary'
+
 .table-responsive
-  %table.table.sortable_table.table-striped
+  %table.table.table-striped
     %thead
       %tr
         %th
-          t(".id")
+          =t(".id")
         %th
-          t(".name")
+          =t(".name")
         %th
-          t(".record_number")
+          =t(".record_number")
         %th
-          t(".dependency")
+          =t(".dependency")
         %th
-          t(".administrative_unit")
+          =t(".administrative_unit")
         %th
-          t(".charge")
+          =t(".charge")
     %tbody
       - @service_admins.each do |service_admin|
         %tr.service_admin
@@ -22,5 +28,3 @@
           %td= service_admin.dependency
           %td= service_admin.administrative_unit
           %td= service_admin.charge
-
-

@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :service_admins, only: :index
+    resources :service_admins, only: [:index, :new, :create]
   end
 
   get "/login" => 'sessions#new'

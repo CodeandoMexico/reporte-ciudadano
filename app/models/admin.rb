@@ -10,6 +10,7 @@ class Admin < ActiveRecord::Base
 
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
+  has_many :services
   has_one :api_key
   mount_uploader :avatar, AvatarUploader
 
@@ -23,5 +24,9 @@ class Admin < ActiveRecord::Base
 
   def self.service_admins_sorted_by_name
     where(is_service_admin: true).order(name: :asc)
+  end
+
+  def services_ids
+    services.map(&:id)
   end
 end

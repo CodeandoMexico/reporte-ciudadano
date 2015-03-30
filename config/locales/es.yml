@@ -57,39 +57,39 @@ es:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: alrededor de 1 hora
-        other: alrededor de %{count} horas
+        one: 'alrededor de 1 hora'
+        other: 'alrededor de %{count} horas'
       about_x_months:
-        one: alrededor de 1 mes
-        other: alrededor de %{count} meses
+        one: 'alrededor de 1 mes'
+        other: 'alrededor de %{count} meses'
       about_x_years:
-        one: alrededor de 1 año
-        other: alrededor de %{count} años
+        one: 'alrededor de 1 año'
+        other: 'alrededor de %{count} años'
       almost_x_years:
-        one: casi 1 año
-        other: casi %{count} años
+        one: 'casi 1 año'
+        other: 'casi %{count} años'
       half_a_minute: medio minuto
       less_than_x_minutes:
-        one: menos de 1 minuto
-        other: menos de %{count} minutos
+        one: 'menos de 1 minuto'
+        other: 'menos de %{count} minutos'
       less_than_x_seconds:
-        one: menos de 1 segundo
-        other: menos de %{count} segundos
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
       over_x_years:
-        one: más de 1 año
-        other: más de %{count} años
+        one: 'más de 1 año'
+        other: 'más de %{count} años'
       x_days:
-        one: 1 día
-        other: ! '%{count} días'
+        one: '1 día'
+        other: '%{count} días'
       x_minutes:
-        one: 1 minuto
-        other: ! '%{count} minutos'
+        one: '1 minuto'
+        other: '%{count} minutos'
       x_months:
-        one: 1 mes
-        other: ! '%{count} meses'
+        one: '1 mes'
+        other: '%{count} meses'
       x_seconds:
-        one: 1 segundo
-        other: ! '%{count} segundos'
+        one: '1 segundo'
+        other: '%{count} segundos'
     prompts:
       day: Día
       hour: Hora
@@ -278,7 +278,19 @@ es:
         header: "Servicio: %{service_name}"
         edit: "Editar servicio"
         additional_fields: "Campos adicionales"
-
+    service_admins:
+      new:
+        new_service_admin: "Nuevo administrador de servicios"
+        services_to_assign: "Asignar servicios"
+      index:
+        id: '#'
+        name: "Nombre completo"
+        record_number: "Número de expediente"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        charge: "Cargo"
+        service_admins: "Administradores de servicios"
+        new_service_admin: "Agregar administrador"
     dashboards:
       design:
         header: "Diseño"
@@ -398,6 +410,10 @@ es:
       password: "Contraseña"
       password_confirmation: "Confirmar contraseña"
       current_password: "Contraseña actual"
+      record_number: "Número de registro"
+      dependency: "Dependencia"
+      administrative_unit: "Unidad administrativa"
+      charge: "Cargo"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
@@ -429,7 +445,6 @@ es:
   alerts:
     destroy_confirmation: "¿Estás seguro de eliminar?"
 
-
   flash:
     dashboards:
       requests_not_found: 'No se encontraron reportes.'
@@ -451,6 +466,8 @@ es:
       created: 'Logo creado correctamente.'
       updated: 'Logo actualizado correctamente.'
       destroyed: 'Logo ha sigo eliminado.'
+    service_admin:
+      created: "El administrador de servicios se ha registrado exitosamente."
 
   navbar:
     admin:
