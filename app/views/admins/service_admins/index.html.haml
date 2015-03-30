@@ -20,11 +20,14 @@
           =t(".administrative_unit")
         %th
           =t(".charge")
+        %th
     %tbody
       - @service_admins.each do |service_admin|
         %tr.service_admin
+          %td= service_admin.id
           %td= service_admin.name
           %td= service_admin.record_number
           %td= service_admin.dependency
           %td= service_admin.administrative_unit
           %td= service_admin.charge
+          %td= link_to t(".edit"), edit_admins_service_admin_path(service_admin), class: "btn btn-default", id: "edit_service_admin_#{service_admin.id}"

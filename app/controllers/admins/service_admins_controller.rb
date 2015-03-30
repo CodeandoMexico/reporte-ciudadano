@@ -20,6 +20,20 @@ class Admins::ServiceAdminsController < ApplicationController
     @service_admins = Admin.service_admins_sorted_by_name.page(params[:page]).per(25)
   end
 
+  def edit
+    @admin = Admin.find(params[:id])
+    @services = Service.for_user(@admin)
+  end
+
+  def update
+    @admin = Admin.find(params[:id])
+    if @admin.update_attributes(service_admin_params)
+      redirect_to admins_service_admins_path, notice: t('flash.service_admin.updated')
+    else
+      render :edit
+    end
+  end
+
   private
 
   def service_admin_params

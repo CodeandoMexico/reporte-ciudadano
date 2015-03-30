@@ -291,6 +291,10 @@ es:
         charge: "Cargo"
         service_admins: "Administradores de servicios"
         new_service_admin: "Agregar administrador"
+        edit: "Editar"
+      edit:
+        edit_service_admin: "Editar administrador de servicios"
+        update: "Actualizar"
     dashboards:
       design:
         header: "Diseño"
@@ -468,6 +472,7 @@ es:
       destroyed: 'Logo ha sigo eliminado.'
     service_admin:
       created: "El administrador de servicios se ha registrado exitosamente."
+      updated: "El administrador de servicios se ha actualizado exitosamente."
 
   navbar:
     admin:

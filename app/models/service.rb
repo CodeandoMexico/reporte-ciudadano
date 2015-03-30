@@ -33,4 +33,8 @@ class Service < ActiveRecord::Base
   def self.not_assigned
     where(admin_id: nil)
   end
+
+  def self.for_user(user)
+    where("admin_id IS NULL OR admin_id = #{user.id}")
+  end
 end
