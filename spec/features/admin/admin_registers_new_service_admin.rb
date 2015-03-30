@@ -38,6 +38,13 @@ feature 'As an admin I can create new service admins' do
     expect(page).to have_content "El administrador de servicios se ha registrado exitosamente."
     expect(current_path).to eq admins_service_admins_path
     expect(page).to have_content "María Gómez"
+    expect_mail_sent_to "maria@mail.com"
+  end
+
+  def expect_mail_sent_to(email)
+    last_email = ActionMailer::Base.deliveries.last
+    expect(last_email.to).to include(email)
+    expect(last_email.subject).to include "Bienvenido a"
   end
 
   def service_admins_count

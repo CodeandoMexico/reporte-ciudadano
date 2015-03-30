@@ -2,3 +2,4 @@ es:
   mailer:
     subject:
       status_change_notification: 'Cambio de estatus en reporte'
+      send_account_invitation: "Bienvenido a %{app_name}"

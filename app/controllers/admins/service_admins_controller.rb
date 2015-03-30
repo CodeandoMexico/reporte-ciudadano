@@ -9,7 +9,8 @@ class Admins::ServiceAdminsController < ApplicationController
   def create
     @admin = Admin.new(service_admin_params)
     if @admin.save
-      redirect_to admins_service_admins_path, notice: t('flash.service.created')
+      AdminMailer.send_account_invitation(admin: @admin, password: @password).deliver
+      redirect_to admins_service_admins_path, notice: t('flash.service_admin.created')
     else
       render :new
     end
