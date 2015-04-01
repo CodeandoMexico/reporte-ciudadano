@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  default from: ENV["MAILER_FROM"]
+  default from: ENV["MAILER_FROM"] || 'Urbem <no-responder@urbem.org>'
 
   def send_account_invitation(admin:, password:)
     @password = password
