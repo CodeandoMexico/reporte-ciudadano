@@ -424,6 +424,12 @@ es:
       current_password: "contraseña actual"
     errors:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
+    options:
+      service_type_select: "Selecciona tipo de servicio"
+      dependency_select: "Selecciona Dependencia"
+      administrative_unit_select: "Seleccciona Unidad administrativa"
+      cis_select: "Selecciona Centro de atención"
+      admin_select: "Selecciona Administrador de servicio"
 
   search_form:
     from_date: "De la fecha"
@@ -477,5 +483,10 @@ es:
   navbar:
     admin:
       design: "Diseño"
+
+  service_type_options:
+    service: "Servicio"
+    step: "Trámite"
+    support_program: "Programa de Apoyo"
 
 

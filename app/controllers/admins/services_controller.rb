@@ -1,4 +1,5 @@
 class Admins::ServicesController < Admins::AdminController
+  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options
 
   def index
     @services = Service.all
@@ -7,10 +8,12 @@ class Admins::ServicesController < Admins::AdminController
 
   def new
     @service = Service.new
+    @available_admins = Admin.service_admins
   end
 
   def edit
     @service = Service.find(params[:id])
+    @available_admins = Admin.service_admins
   end
 
   def create
@@ -41,7 +44,23 @@ class Admins::ServicesController < Admins::AdminController
 
   private
 
+  def service_type_options
+    Services.service_type_options
+  end
+
+  def service_dependency_options
+    Services.service_dependency_options
+  end
+
+  def service_administrative_unit_options
+    Services.service_administrative_unit_options
+  end
+
+  def service_cis_options
+    Services.service_cis_options
+  end
+
   def service_params
-    params.require(:service).permit(:name, messages: [:content, :status_id], service_fields: [:name])
+    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :cis, :admin_id, messages: [:content, :status_id], service_fields: [:name])
   end
 end

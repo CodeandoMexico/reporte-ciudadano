@@ -29,4 +29,8 @@ class Admin < ActiveRecord::Base
   def services_ids
     services.map(&:id)
   end
+
+  def self.service_admins
+    where(is_service_admin: true)
+  end
 end
