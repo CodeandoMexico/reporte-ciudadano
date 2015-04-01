@@ -41,6 +41,17 @@ feature 'As an admin I can create new service admins' do
     expect_mail_sent_to "maria@mail.com"
   end
 
+  scenario 'And only as a super admin' do
+    service_admin = create :admin, :service_admin
+
+    click_link "Cerrar sesión"
+    sign_in_admin service_admin
+    expect(page).not_to have_link "Administradores"
+
+    visit new_admins_service_admin_path
+    expect(current_path).to eq admins_dashboards_path
+  end
+
   def expect_mail_sent_to(email)
     last_email = ActionMailer::Base.deliveries.last
     expect(last_email.to).to include(email)

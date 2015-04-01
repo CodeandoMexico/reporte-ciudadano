@@ -1,4 +1,5 @@
 class Admins::ServiceAdminsController < ApplicationController
+  before_action :verify_super_admin_access
   before_action :set_services, only: [:new, :create]
   layout 'admins'
 
@@ -27,6 +28,7 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def update
     @admin = Admin.find(params[:id])
+    @services = Service.for_user(@admin)
     if @admin.update_attributes(service_admin_params)
       redirect_to admins_service_admins_path, notice: t('flash.service_admin.updated')
     else
@@ -35,6 +37,13 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   private
+
+  def verify_super_admin_access
+    @permissions = ServiceAdmins.permissions_for_admin(current_admin)
+    unless @permissions.can_manage_service_admins?
+      redirect_to admins_dashboards_path
+    end
+  end
 
   def service_admin_params
     services = Service.where(id: params[:admin].delete(:services_ids))

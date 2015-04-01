@@ -8,8 +8,9 @@
       = link_to t('.requests'), admins_service_requests_path
     %li
       = link_to t('.config_requests'),  admins_services_path
-    %li
-      = link_to t('.service_admins'), admins_service_admins_path
+    - unless current_admin.is_service_admin
+      %li
+        = link_to t('.service_admins'), admins_service_admins_path
     %li
       = link_to t('.design'), design_admins_dashboards_path
     %li
