@@ -237,6 +237,7 @@ es:
         api: "API"
         edit_profile: "Editar perfil"
         service_admins: "Administradores"
+        public_servants: "Servidores Públicos"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -295,6 +296,19 @@ es:
       edit:
         edit_service_admin: "Editar administrador de servicios"
         update: "Actualizar"
+    public_servants:
+      index:
+        id: '#'
+        name: "Nombre completo"
+        record_number: "Número de expediente"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        charge: "Cargo"
+        public_servants: "Servidores Públicos"
+        new_public_servant: "Agregar servidor público"
+        edit: "Editar"
+      new:
+        new_public_servant: "Nuevo servidor público"
     dashboards:
       design:
         header: "Diseño"
@@ -479,6 +493,8 @@ es:
     service_admin:
       created: "El administrador de servicios se ha registrado exitosamente."
       updated: "El administrador de servicios se ha actualizado exitosamente."
+    public_servant:
+      created: "El servidor público se ha registrado exitosamente."
 
   navbar:
     admin:

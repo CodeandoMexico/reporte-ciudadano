@@ -1,0 +1,33 @@
+.page-content.inset
+  %h2
+    = t('.public_servants')
+    .btn-group.pull-right
+      = link_to t('.new_public_servant'), new_admins_public_servant_path, class: 'btn btn-primary'
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          =t(".id")
+        %th
+          =t(".name")
+        %th
+          =t(".record_number")
+        %th
+          =t(".dependency")
+        %th
+          =t(".administrative_unit")
+        %th
+          =t(".charge")
+        %th
+    %tbody
+      - @public_servants.each do |public_servant|
+        %tr.public_servant
+          %td= public_servant.id
+          %td= public_servant.name
+          %td= public_servant.record_number
+          %td= public_servant.dependency
+          %td= public_servant.administrative_unit
+          %td= public_servant.charge
+          %td= link_to t(".edit"), "#", class: "btn btn-default", id: "edit_service_admin_#{}"

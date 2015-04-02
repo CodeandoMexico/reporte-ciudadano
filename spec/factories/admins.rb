@@ -8,6 +8,7 @@ FactoryGirl.define do
     name { Faker::NameMX.full_name }
     authentication_token { SecureRandom.hex(64) }
     is_service_admin false
+    is_public_servant false
 
     factory :invalid_admin do
       email nil
@@ -17,6 +18,10 @@ FactoryGirl.define do
 
     trait :service_admin do
       is_service_admin true
+    end
+
+    trait :public_servant do
+      is_public_servant true
     end
   end
 end

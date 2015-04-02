@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     end
 
     resources :service_admins
+    resources :public_servants
   end
 
   get "/login" => 'sessions#new'
