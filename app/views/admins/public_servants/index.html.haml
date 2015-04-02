@@ -31,3 +31,4 @@
           %td= public_servant.administrative_unit
           %td= public_servant.charge
           %td= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}"
+          %td= link_to t(".disable"), disable_admins_public_servant_path(public_servant), class: "btn btn-default", id: "disable_public_servant_#{public_servant.id}", "data-confirm" => t(".disable_admin_confirm")

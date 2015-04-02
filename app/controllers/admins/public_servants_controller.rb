@@ -23,6 +23,21 @@ class Admins::PublicServantsController < ApplicationController
     @admin = Admin.find_by_id(params[:id])
   end
 
+  def update
+    @admin = Admin.find(params[:id])
+    if @admin.update_attributes(public_servant_params)
+      redirect_to admins_public_servants_path, notice: t('flash.public_servant.updated')
+    else
+      render :edit
+    end
+  end
+
+  def disable
+    @admin = Admin.find(params[:id])
+    @admin.update_attributes(disabled: true)
+    redirect_to admins_public_servants_path, notice: t('flash.public_servant.disabled')
+  end
+
   private
 
   def public_servant_params

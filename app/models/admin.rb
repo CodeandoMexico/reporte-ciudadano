@@ -27,7 +27,7 @@ class Admin < ActiveRecord::Base
   end
 
   def self.public_servants_sorted_by_name
-    where(is_public_servant: true).order(name: :asc)
+    where(is_public_servant: true, disabled: false).order(name: :asc)
   end
 
   def services_ids

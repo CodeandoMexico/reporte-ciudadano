@@ -307,6 +307,8 @@ es:
         public_servants: "Servidores Públicos"
         new_public_servant: "Agregar servidor público"
         edit: "Editar"
+        disable: "Desactivar"
+        disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
       new:
         new_public_servant: "Nuevo servidor público"
       edit:
@@ -498,7 +500,8 @@ es:
       updated: "El administrador de servicios se ha actualizado exitosamente."
     public_servant:
       created: "El servidor público se ha registrado exitosamente."
-
+      updated: "El servidor público se ha actualizado exitosamente."
+      disabled: "El servidor público se ha desactivado exitosamente."
   navbar:
     admin:
       design: "Diseño"

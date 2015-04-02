@@ -10,7 +10,6 @@ feature 'As a service admin I can edit a public servant' do
 
   scenario 'I can edit a public servant' do
     public_servants = create_list(:admin, 3, :public_servant)
-    services = create_list(:service, 2)
     first_public_servant = public_servants.first
 
     visit admins_dashboards_path

@@ -9,6 +9,7 @@ FactoryGirl.define do
     authentication_token { SecureRandom.hex(64) }
     is_service_admin false
     is_public_servant false
+    disabled false
 
     factory :invalid_admin do
       email nil
