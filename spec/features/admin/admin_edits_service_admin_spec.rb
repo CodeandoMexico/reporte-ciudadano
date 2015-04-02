@@ -8,7 +8,7 @@ feature 'As an admin I can edit a service admin' do
     sign_in_admin admin
   end
 
-  scenario 'I can see a list of service admins' do
+  scenario 'I can edit a service admin' do
     service_admins = create_list(:admin, 3, :service_admin)
     services = create_list(:service, 2)
     first_service_admin = service_admins.first

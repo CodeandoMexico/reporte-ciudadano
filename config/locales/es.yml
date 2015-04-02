@@ -309,6 +309,9 @@ es:
         edit: "Editar"
       new:
         new_public_servant: "Nuevo servidor público"
+      edit:
+        edit_public_servant: "Editar servidor público"
+        update: "Actualizar"
     dashboards:
       design:
         header: "Diseño"

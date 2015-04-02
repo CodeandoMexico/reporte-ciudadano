@@ -30,4 +30,4 @@
           %td= public_servant.dependency
           %td= public_servant.administrative_unit
           %td= public_servant.charge
-          %td= link_to t(".edit"), "#", class: "btn btn-default", id: "edit_service_admin_#{}"
+          %td= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}"

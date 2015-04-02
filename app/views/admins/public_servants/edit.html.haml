@@ -1,0 +1,37 @@
+.page-content.inset
+  .row
+    .col-md-12
+      %h2
+        = t('.edit_public_servant')
+      = form_for(:admin, url: admins_public_servant_path(@admin.id), html: { method: :patch, class: 'form-horizontal' }) do |f|
+
+        - if @admin.errors.any?
+          #error_explanation
+            %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@admin.errors.count, "error")
+        %fieldset
+          .form-group
+            = f.label :name, t('form.labels.name'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :name, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :record_number, t('form.labels.record_number'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :record_number, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :dependency, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :administrative_unit, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :charge, t('form.labels.charge'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :charge, class: 'form-control'
+        .actions.col-md-2
+          = f.submit t(".update"), class: 'btn btn-primary'

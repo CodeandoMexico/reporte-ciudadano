@@ -19,6 +19,10 @@ class Admins::PublicServantsController < ApplicationController
     end
   end
 
+  def edit
+    @admin = Admin.find_by_id(params[:id])
+  end
+
   private
 
   def public_servant_params
