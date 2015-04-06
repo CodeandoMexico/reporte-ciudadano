@@ -14,4 +14,7 @@ class Admins::DashboardsController < Admins::AdminController
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
   end
 
+  def services
+    @services = current_admin.services
+  end
 end

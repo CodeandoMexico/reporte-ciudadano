@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative '../../app/services/service_admins'
 
-module Permissions
+module ServiceAdmins
   describe 'Permissions for user' do
     describe 'can_manage_service_admin' do
       it 'unless is not a super admin' do

@@ -238,6 +238,7 @@ es:
         edit_profile: "Editar perfil"
         service_admins: "Administradores"
         public_servants: "Servidores Públicos"
+        all_services: "Ver servicios"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -324,6 +325,17 @@ es:
         color_scheme: "Esquemas de colores"
       index:
         header: "Resumen de actividad"
+      services:
+        managed_services: "Servicios administrados"
+        name: "Nombre"
+        service_type: "Tipo"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        cis: "Centro de atención"
+        service_type_options:
+          step: "Trámite"
+          service: "Servicio"
+          support_program: "Programa de apoyo"
     logos:
       new:
         header: "Agregar nuevo logo"
