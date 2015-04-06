@@ -239,6 +239,7 @@ es:
         service_admins: "Administradores"
         public_servants: "Servidores Públicos"
         all_services: "Ver servicios"
+        no_requests: "No tiene servicios asignados"
     sessions:
       new:
         header: "Iniciar sesión"

@@ -5,12 +5,26 @@
     %li
       = link_to t('.summary'), admins_dashboards_path
     %li
-      = link_to t('.requests'), admins_service_requests_path
-    %li
       = link_to t('.all_services'), services_admins_dashboards_path
+    - if current_admin.is_service_admin?
+      %li.dropdown
+        = link_to services_admins_dashboards_path, class: "dropdown-toggle", id: "dropdown_service_requests", "data-toggle" => "dropdown" do
+          = t('.requests')
+          %span.caret
+        %ul.dropdown-menu
+          - current_admin.services.each do |service|
+            %li
+              = link_to service.name, admins_service_path(service)
+          - unless current_admin.services.any?
+            %li
+              %em
+                = t(".no_requests")
+    - elsif current_admin.is_super_admin?
+      %li
+        = link_to t('.requests'), admins_service_requests_path
     %li
       = link_to t('.config_requests'),  admins_services_path
-    - unless current_admin.is_service_admin
+    - unless current_admin.is_service_admin?
       %li
         = link_to t('.service_admins'), admins_service_admins_path
     %li
@@ -19,7 +33,6 @@
       = link_to t('.design'), design_admins_dashboards_path
     %li
       = link_to t('.api'), admins_api_keys_path
-
 
     %hr
     %li.admin-email

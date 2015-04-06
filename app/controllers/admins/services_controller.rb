@@ -42,6 +42,11 @@ class Admins::ServicesController < Admins::AdminController
     redirect_to admins_services_url, notice: I18n.t('flash.service.destroyed')
   end
 
+  def show
+    @service = current_admin.services.find(params[:id])
+    @service_requests = @service.service_requests
+  end
+
   private
 
   def service_type_options

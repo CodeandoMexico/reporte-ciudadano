@@ -37,4 +37,12 @@ class Admin < ActiveRecord::Base
   def self.service_admins
     where(is_service_admin: true)
   end
+
+  def is_service_admin?
+    is_service_admin
+  end
+
+  def is_super_admin?
+    !(is_service_admin || is_public_servant)
+  end
 end
