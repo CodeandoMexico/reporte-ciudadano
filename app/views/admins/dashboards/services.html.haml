@@ -6,13 +6,12 @@
       %th= t('.name')
       %th= t('.service_type')
       %th= t('.dependency')
-      %th= t('.administrative_units')
+      %th= t('.administrative_unit')
       %th= t('.cis')
     - @services.each do |service|
       %tr
         %td= service.name
-        %td= t(".service_type_options.#{service.service_type}")
+        %td= service.service_type
         %td= service.dependency
         %td= service.administrative_unit
         %td= service.cis
-

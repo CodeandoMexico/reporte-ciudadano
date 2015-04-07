@@ -281,6 +281,9 @@ es:
         header: "Servicio: %{service_name}"
         edit: "Editar servicio"
         additional_fields: "Campos adicionales"
+        votes: "Votos"
+        created_at: "Fecha de creación"
+        service_requests_for: "Reportes de %{service}"
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de servicios"
