@@ -10,8 +10,9 @@ class Admin < ActiveRecord::Base
 
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
-  has_many :services
+  has_many :managed_services, class: Service
   has_one :api_key
+  belongs_to :service
   mount_uploader :avatar, AvatarUploader
 
   def to_s
@@ -31,7 +32,7 @@ class Admin < ActiveRecord::Base
   end
 
   def services_ids
-    services.map(&:id)
+    managed_services.map(&:id)
   end
 
   def self.service_admins
@@ -44,5 +45,13 @@ class Admin < ActiveRecord::Base
 
   def is_super_admin?
     !(is_service_admin || is_public_servant)
+  end
+
+  def has_service_assigned?
+    service.present?
+  end
+
+  def assigned_service_name
+    service.name
   end
 end

@@ -12,10 +12,10 @@
           = t('.requests')
           %span.caret
         %ul.dropdown-menu
-          - current_admin.services.each do |service|
+          - current_admin.managed_services.each do |service|
             %li
               = link_to service.name, admins_service_path(service)
-          - unless current_admin.services.any?
+          - unless current_admin.managed_services.any?
             %li
               %em
                 = t(".no_requests")

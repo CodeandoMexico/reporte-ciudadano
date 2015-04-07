@@ -15,6 +15,6 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-    @services = current_admin.services
+    @services = current_admin.managed_services
   end
 end

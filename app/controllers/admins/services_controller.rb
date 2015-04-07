@@ -43,7 +43,7 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def show
-    @service = current_admin.services.find(params[:id])
+    @service = current_admin.managed_services.find(params[:id])
     @service_requests = @service.service_requests
   end
 

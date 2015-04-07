@@ -4,6 +4,7 @@ class Admins::PublicServantsController < ApplicationController
 
   def index
     @public_servants = Admin.public_servants_sorted_by_name
+    @available_services = current_admin.managed_services
   end
 
   def new
@@ -44,7 +45,7 @@ class Admins::PublicServantsController < ApplicationController
   def public_servant_params
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :service_id)
       .merge(password: password, password_confirmation: password, is_public_servant: true)
   end
 

@@ -315,6 +315,9 @@ es:
         edit: "Editar"
         disable: "Desactivar"
         disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
+        assign_service: "Asignar servicio"
+        assign: "Asignar"
+        service: "Servicio"
       new:
         new_public_servant: "Nuevo servidor público"
       edit:
