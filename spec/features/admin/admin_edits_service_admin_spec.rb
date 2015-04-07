@@ -20,13 +20,15 @@ feature 'As an admin I can edit a service admin' do
     expect(find_field('admin[name]').value).to eq first_service_admin.name
 
     fill_in "admin[name]", with: "New name"
-    fill_in "admin[dependency]", with: "A dependency"
+    select "Dependencia 2", from: "admin[dependency]"
+    select "Unidad administrativa 2", from: "admin[administrative_unit]"
     check "admin_services_ids_#{services.first.id}"
     click_button "Actualizar"
 
     expect(page).to have_content "El administrador de servicios se ha actualizado exitosamente"
     expect(page).to have_content "New name"
-    expect(page).to have_content "A dependency"
+    expect(page).to have_content "Dependencia 2"
+    expect(page).to have_content "Unidad administrativa 2"
 
     click_edit_link_for first_service_admin
     expect(service_checkbox(services.first)).to be_checked

@@ -19,12 +19,14 @@ feature 'As a service admin I can edit a public servant' do
     expect(find_field('admin[name]').value).to eq first_public_servant.name
 
     fill_in "admin[name]", with: "New name"
-    fill_in "admin[dependency]", with: "A dependency"
+    select "Dependencia 2", from: "admin[dependency]"
+    select "Unidad administrativa 2", from: "admin[administrative_unit]"
     click_button "Actualizar"
 
     expect(page).to have_content "El servidor público se ha actualizado exitosamente"
     expect(page).to have_content "New name"
-    expect(page).to have_content "A dependency"
+    expect(page).to have_content "Dependencia 2"
+    expect(page).to have_content "Unidad administrativa 2"
   end
 
   def click_edit_link_for(public_servant)
