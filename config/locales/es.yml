@@ -236,7 +236,7 @@ es:
         design: "Diseño"
         api: "API"
         edit_profile: "Editar perfil"
-        service_admins: "Administradores"
+        service_admins: "Administradores de servicios"
         public_servants: "Servidores Públicos"
         all_services: "Ver servicios"
         no_requests: "No tiene servicios asignados"
@@ -298,6 +298,7 @@ es:
       edit:
         edit_service_admin: "Editar administrador de servicios"
         update: "Actualizar"
+        services_to_assign: "Asignar servicios"
     public_servants:
       index:
         id: '#'
