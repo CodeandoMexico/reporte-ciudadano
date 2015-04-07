@@ -1,4 +1,5 @@
 class Admins::PublicServantsController < ApplicationController
+  helper_method :dependency_options, :administrative_unit_options
   layout 'admins'
 
   def index
@@ -49,5 +50,13 @@ class Admins::PublicServantsController < ApplicationController
 
   def password
     @password ||= Devise.friendly_token.first(8)
+  end
+
+  def dependency_options
+    Services.service_dependency_options
+  end
+
+  def administrative_unit_options
+    Services.service_administrative_unit_options
   end
 end

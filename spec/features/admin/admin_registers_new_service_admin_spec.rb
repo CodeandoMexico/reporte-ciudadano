@@ -28,8 +28,8 @@ feature 'As an admin I can create new service admins' do
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
-    fill_in "admin[dependency]", with: "Dependencia"
-    fill_in "admin[administrative_unit]", with: "Unidad"
+    select "Dependencia 1", from: "admin[dependency]"
+    select "Unidad administrativa 2", from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Director"
     check "admin_services_ids_2"
 

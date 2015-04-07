@@ -21,7 +21,7 @@
         = f.select :dependency, service_dependency_options, prompt: I18n.t("form.options.dependency_select")
   %fieldset
     .form-group
-      = f.label :administrative_unit, t('form.labels.administrative_units'), class: 'col-lg-2 control-label'
+      = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-lg-2 control-label'
       .col-lg-8
         = f.select :administrative_unit, service_administrative_unit_options, prompt: I18n.t("form.options.administrative_unit_select")
   %fieldset

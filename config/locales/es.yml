@@ -450,6 +450,9 @@ es:
       dependency: "Dependencia"
       administrative_unit: "Unidad administrativa"
       charge: "Cargo"
+      service_type: "Tipo de servicio"
+      cis: "Centro de atención"
+      admin_id: "Administrador de servicio"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"

@@ -1,6 +1,7 @@
 class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
   before_action :set_services, only: [:new, :create]
+  helper_method :dependency_options, :administrative_unit_options
   layout 'admins'
 
   def new
@@ -59,5 +60,13 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def set_services
     @services ||= Service.not_assigned
+  end
+
+  def dependency_options
+    Services.service_dependency_options
+  end
+
+  def administrative_unit_options
+    Services.service_administrative_unit_options
   end
 end
