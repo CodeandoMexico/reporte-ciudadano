@@ -15,6 +15,10 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-    @services = current_admin.managed_services
+    if current_admin.is_super_admin?
+      @services = Service.all
+    else
+      @services = current_admin.managed_services
+    end
   end
 end
