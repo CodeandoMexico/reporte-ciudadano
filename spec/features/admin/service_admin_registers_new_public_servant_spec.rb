@@ -2,19 +2,21 @@ require 'spec_helper'
 
 feature 'As a service admin I can create new public servant' do
 
-  let(:admin) { create(:admin, :service_admin) }
+  let(:admin) { create(:admin, :service_admin, dependency: "Dependencia 1") }
 
   background do
     sign_in_admin admin
   end
 
-  scenario 'I can see a list of public servants' do
-    public_servants = create_list(:admin, 3, :public_servant)
+  scenario 'I can see a list of public servants in my dependency' do
+    public_servants = create_list(:admin, 3, :public_servant, dependency: admin.dependency)
+    other_public_servant = create :admin, :public_servant
 
     visit admins_dashboards_path
     click_link "Servidores Públicos"
 
     expect(page).to have_content public_servants.first.name
+    expect(page).not_to have_content other_public_servant.name
     expect(public_servants_count).to eq 3
   end
 

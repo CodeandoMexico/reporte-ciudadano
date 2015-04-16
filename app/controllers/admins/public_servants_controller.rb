@@ -3,7 +3,7 @@ class Admins::PublicServantsController < ApplicationController
   layout 'admins'
 
   def index
-    @public_servants = Admin.public_servants_sorted_by_name
+    @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
     @available_services = current_admin.managed_services
   end
 
