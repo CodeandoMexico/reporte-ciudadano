@@ -11,7 +11,9 @@
     - @services.each do |service|
       %tr
         %td= service.name
-        %td= service.service_type
+        %td
+          - if service.service_type.present?
+            = t(".service_type_options.#{service.service_type}")
         %td= service.dependency
         %td= service.administrative_unit
         %td= service.cis
