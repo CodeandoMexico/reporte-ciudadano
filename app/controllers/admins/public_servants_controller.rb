@@ -4,6 +4,7 @@ class Admins::PublicServantsController < ApplicationController
 
   def index
     @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
+    @disabled_public_servants = Admin.disabled_public_servants_by_dependency(current_admin.dependency)
     @available_services = current_admin.managed_services
   end
 

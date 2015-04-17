@@ -9,6 +9,7 @@
 #= require bootstrap/dropdown
 #= require bootstrap/collapse
 #= require bootstrap/modal
+#= require bootstrap/tab
 #= require highcharts
 #= require highcharts/modules/exporting
 #= require jquery.tablesorter

@@ -31,6 +31,10 @@ class Admin < ActiveRecord::Base
     where(is_public_servant: true, disabled: false, dependency: dependency).order(name: :asc)
   end
 
+  def self.disabled_public_servants_by_dependency(dependency)
+    where(is_public_servant: true, disabled: true, dependency: dependency).order(name: :asc)
+  end
+
   def services_ids
     managed_services.map(&:id)
   end

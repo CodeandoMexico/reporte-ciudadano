@@ -306,6 +306,7 @@ es:
       index:
         id: '#'
         name: "Nombre completo"
+        email: "Email"
         record_number: "Número de expediente"
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
@@ -318,6 +319,8 @@ es:
         assign_service: "Asignar servicio"
         assign: "Asignar"
         service: "Servicio"
+        enabled: "Activos"
+        disabled: "Inactivos"
       new:
         new_public_servant: "Nuevo servidor público"
       edit:
