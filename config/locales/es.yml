@@ -531,6 +531,7 @@ es:
       updated: "El servidor público se ha actualizado exitosamente."
       disabled: "El servidor público se ha desactivado exitosamente."
       enabled: "El servidor público se ha activado exitosamente."
+      disabled_admin: "Tu cuenta ha sido desactivada, por favor contacta a tu Administrador."
   navbar:
     admin:
       design: "Diseño"

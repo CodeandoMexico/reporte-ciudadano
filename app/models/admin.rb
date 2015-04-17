@@ -58,4 +58,12 @@ class Admin < ActiveRecord::Base
   def assigned_service_name
     service.name
   end
+
+  def active_for_authentication?
+    super && (self.is_super_admin? || self.is_service_admin? || (self.is_public_servant && !self.disabled))
+  end
+
+  def inactive_message
+    I18n.t("flash.public_servant.disabled_admin")
+  end
 end
