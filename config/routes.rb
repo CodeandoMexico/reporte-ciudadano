@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     resources :service_admins
     resources :public_servants do
       get :disable, on: :member
+      get :enable, on: :member
     end
   end
 

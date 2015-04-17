@@ -316,11 +316,13 @@ es:
         edit: "Editar"
         disable: "Desactivar"
         disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
+        enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
         assign_service: "Asignar servicio"
         assign: "Asignar"
         service: "Servicio"
         enabled: "Activos"
         disabled: "Inactivos"
+        enable: "Activar"
       new:
         new_public_servant: "Nuevo servidor público"
       edit:
@@ -528,6 +530,7 @@ es:
       created: "El servidor público se ha registrado exitosamente."
       updated: "El servidor público se ha actualizado exitosamente."
       disabled: "El servidor público se ha desactivado exitosamente."
+      enabled: "El servidor público se ha activado exitosamente."
   navbar:
     admin:
       design: "Diseño"

@@ -99,6 +99,7 @@
               <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
             </td>
             <td>
+              <%= link_to t(".enable"), enable_admins_public_servant_path(public_servant), class: "btn btn-success", id: "enable_public_servant_#{public_servant.id}", "data-confirm" => t(".enable_admin_confirm") %>
             </td>
           </tr>
         <% end %>

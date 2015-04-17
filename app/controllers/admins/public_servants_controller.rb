@@ -41,6 +41,12 @@ class Admins::PublicServantsController < ApplicationController
     redirect_to admins_public_servants_path, notice: t('flash.public_servant.disabled')
   end
 
+  def enable
+    @admin = Admin.find(params[:id])
+    @admin.update_attributes(disabled: false)
+    redirect_to admins_public_servants_path, notice: t('flash.public_servant.enabled')
+  end
+
   private
 
   def public_servant_params
