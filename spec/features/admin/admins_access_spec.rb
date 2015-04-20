@@ -36,4 +36,20 @@ feature 'Admins access' do
       expect(page).to have_link "Servidores Públicos"
     end
   end
+
+  scenario 'Public servant access' do
+    sign_in_admin public_servant
+
+    within ".sidebar-nav" do
+      expect(page).not_to have_link "Resumen"
+      expect(page).not_to have_link "Administradores de servicios"
+      expect(page).not_to have_link "Diseño"
+      expect(page).not_to have_link "API"
+      expect(page).not_to have_link "Personalizar reportes"
+      expect(page).not_to have_link "Servicios"
+      expect(page).not_to have_link "Servidores Públicos"
+
+      expect(page).to have_link "Reportes"
+    end
+  end
 end

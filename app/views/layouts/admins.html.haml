@@ -13,6 +13,8 @@
         = render "admins/shared/super_admin_sidebar"
       - elsif admin_signed_in? && current_admin.is_service_admin?
         = render "admins/shared/service_admin_sidebar"
+      - elsif admin_signed_in? && current_admin.is_public_servant?
+        = render "admins/shared/public_servant_sidebar"
 
       #page-content-wrapper
         .container

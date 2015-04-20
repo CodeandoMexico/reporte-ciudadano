@@ -3,8 +3,11 @@
     <li>
       <%= link_to i18n_admin_sidebar('.services'), services_admins_dashboards_path %>
     </li>
-    <li>
-      <%= link_to i18n_admin_sidebar('.requests'), admins_service_requests_path %>
+    <li class="dropdown">
+      <%= link_to services_admins_dashboards_path, class: "dropdown-toggle", id: "dropdown_service_requests", "data-toggle" => "dropdown" do %>
+        <%= i18n_admin_sidebar('.requests') %>
+        <span class="caret"></span>
+      <% end %>
     </li>
     <li>
       <%= link_to i18n_admin_sidebar('.public_servants'), admins_public_servants_path %>
