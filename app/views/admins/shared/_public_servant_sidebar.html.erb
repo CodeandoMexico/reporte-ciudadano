@@ -5,6 +5,15 @@
         <%= i18n_admin_sidebar('.requests') %>
         <span class="caret"></span>
       <% end %>
+      <ul class="dropdown-menu">
+        <% unless current_admin.has_service_assigned? %>
+          <li><em><%= i18n_admin_sidebar(".no_requests") %></em></li>
+        <% else %>
+          <li>
+            <%= link_to current_admin.assigned_service_name, admins_service_path(current_admin.service) %>
+          </li>
+        <% end %>
+      </ul>
     </li>
     <hr>
     <li class="admin-email">
