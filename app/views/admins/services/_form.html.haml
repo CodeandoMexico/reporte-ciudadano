@@ -9,7 +9,31 @@
       .col-lg-8
         = f.text_field :name, class: 'form-control'
         = errors_on_resource_for_field(@service, :name)
-
+  %fieldset
+    .form-group
+      = f.label :service_type, t('form.labels.service_type'), class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.select :service_type, service_type_options, prompt: I18n.t("form.options.service_type_select")
+  %fieldset
+    .form-group
+      = f.label :dependency, t('form.labels.dependency'), class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.select :dependency, service_dependency_options, prompt: I18n.t("form.options.dependency_select")
+  %fieldset
+    .form-group
+      = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.select :administrative_unit, service_administrative_unit_options, prompt: I18n.t("form.options.administrative_unit_select")
+  %fieldset
+    .form-group
+      = f.label :cis, t('form.labels.cis'), class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.select :cis, service_cis_options, prompt: I18n.t("form.options.cis_select")
+  %fieldset
+    .form-group
+      = f.label :admin_id, t('form.labels.admin_id'), class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.collection_select :admin_id, @available_admins, :id, :name
   %fieldset
     %legend
       = t '.service_fields_title'

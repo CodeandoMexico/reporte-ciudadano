@@ -62,10 +62,16 @@ module ReporteCiudadano
 
     config.assets.initialize_on_precompile = false
 
-    config.generators do |g|
-      g.test_framework :rspec, fixtures: true,view_specs:false,helper_specs:false,
-        routing_specs:false,controller_specs:true,request_specs:false
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    config.generators do |gen|
+      gen.orm :active_record
+      gen.test_framework :rspec
+      gen.fixture_replacement :factory_girl, dir: 'spec/factories'
+      gen.view_specs = false
+      gen.controller_specs = false
+      gen.routing_specs = false
+      gen.helper = false
+      gen.stylesheets = false
+      gen.javascripts = false
     end
 
     # Do not swallow errors in after_commit/after_rollback callbacks.

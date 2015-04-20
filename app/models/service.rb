@@ -6,6 +6,8 @@ class Service < ActiveRecord::Base
 
   has_many :service_fields
   has_many :messages
+  has_many :public_servants, class: Admin
+  belongs_to :service_admin, class: Admin
   accepts_nested_attributes_for :service_fields, allow_destroy: true
   accepts_nested_attributes_for :messages, allow_destroy: true, reject_if: lambda { |attr| attr[:content].blank? }
 
@@ -27,5 +29,13 @@ class Service < ActiveRecord::Base
 
   def cant_be_deleted?
     service_requests.any?
+  end
+
+  def self.unmanaged
+    where(admin_id: nil)
+  end
+
+  def self.for_user(user)
+    where("admin_id IS NULL OR admin_id = #{user.id}")
   end
 end

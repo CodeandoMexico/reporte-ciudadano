@@ -1,0 +1,33 @@
+.page-content.inset
+  %h2= t('.service_requests_for', service: @service.name)
+  .table-responsive
+    %table.table.sortable_table.table-striped.table-hover
+      %thead
+        %tr
+          %th
+            = t('.id')
+            %i.icon-chevron-down
+          %th
+            = t('.created_at')
+            %i.icon-chevron-down
+          %th
+            = t('form.labels.service')
+            %i.icon-chevron-down
+          %th
+            = t('form.labels.address')
+            %i.icon-chevron-down
+          %th
+            = t('form.labels.status')
+            %i.icon-chevron-down
+          %th
+            = t('.votes')
+            %i.icon-chevron-down
+      %tbody
+        - @service_requests.each do |service_request|
+          %tr.service_request
+            %td= link_to service_request.id, edit_admins_service_request_path(service_request)
+            %td= l service_request.created_at, format: :short
+            %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
+            %td= truncate service_request.address, length: 45
+            %td= service_request.status
+            %td= service_request.votes_for

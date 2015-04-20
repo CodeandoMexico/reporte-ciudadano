@@ -1,0 +1,46 @@
+.page-content.inset
+  .row
+    .col-md-12
+      %h2
+        = t('.edit_service_admin')
+      = form_for(:admin, url: admins_service_admin_path(@admin.id), html: { method: :patch, class: 'form-horizontal' }) do |f|
+
+        - if @admin.errors.any?
+          #error_explanation
+            %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@admin.errors.count, "error")
+        %fieldset
+          .form-group
+            = f.label :name, t('form.labels.name'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :name, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :record_number, t('form.labels.record_number'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :record_number, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.select :dependency, dependency_options, prompt: I18n.t("form.options.dependency_select")
+        %fieldset
+          .form-group
+            = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.select :administrative_unit, administrative_unit_options, prompt: I18n.t("form.options.administrative_unit_select")
+        %fieldset
+          .form-group
+            = f.label :charge, t('form.labels.charge'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :charge, class: 'form-control'
+        %fieldset
+          .form-group.col-md-5
+            %h3
+              = t(".services_to_assign")
+            - @services.each do |service|
+              .checkbox
+                = f.check_box :services_ids, { multiple: true }, service.id, nil
+                = f.label :services_ids, service.name, value: service.id
+
+        .actions.col-md-2
+          = f.submit t(".update"), class: 'btn btn-primary'

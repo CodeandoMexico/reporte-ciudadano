@@ -1,0 +1,109 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('.public_servants') %>
+    <div class="btn-group pull-right">
+      <%= link_to t('.new_public_servant'), new_admins_public_servant_path, class: 'btn btn-primary' %>
+    </div>
+  </h2>
+</div>
+
+<ul class="js-tabs nav nav-tabs">
+  <li class="active">
+    <%= link_to t(".enabled"), "#enabled", "data-toggle" => "tab" %>
+  </li>
+  <li>
+    <%= link_to t(".disabled"), "#disabled", "data-toggle" => "tab" %>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="enabled">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= t(".name") %></th>
+            <th><%= t(".email") %></th>
+            <th><%= t(".record_number") %></th>
+            <th><%= t(".dependency") %></th>
+            <th><%= t(".administrative_unit") %></th>
+            <th><%= t(".charge") %></th>
+            <th><%= t(".service") %></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @public_servants.each do |public_servant| %>
+            <tr class="public_servant">
+              <td><%= public_servant.name %></td>
+              <td><%= public_servant.email %></td>
+              <td><%= public_servant.record_number %></td>
+              <td><%= public_servant.dependency %></td>
+              <td><%= public_servant.administrative_unit %></td>
+              <td><%= public_servant.charge %></td>
+              <td>
+                <% if public_servant.has_service_assigned? %>
+                  <%= public_servant.assigned_service_name %>
+                <% else %>
+                  <%= button_tag t(".assign_service"), class: "js-assign-service btn btn-default" %>
+                  <%= form_for(:admin, url: admins_public_servant_path(public_servant.id), html: { method: :patch, class: "js-assign-service-form hidden" }) do |f| %>
+                    <div class="form-group">
+                      <%= f.collection_select(:service_id, @available_services, :id, :name) %>
+                    </div>
+                    <%= f.submit t(".assign"), class: "btn btn-xs btn-primary" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
+              </td>
+              <td>
+                <%= link_to t(".disable"), disable_admins_public_servant_path(public_servant), class: "btn btn-danger", id: "disable_public_servant_#{public_servant.id}", "data-confirm" => t(".disable_admin_confirm") %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane" id="disabled">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t(".name") %></th>
+          <th><%= t(".email") %></th>
+          <th><%= t(".record_number") %></th>
+          <th><%= t(".dependency") %></th>
+          <th><%= t(".administrative_unit") %></th>
+          <th><%= t(".charge") %></th>
+          <th><%= t(".service") %></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @disabled_public_servants.each do |public_servant| %>
+          <tr class="public_servant">
+            <td><%= public_servant.name %></td>
+            <td><%= public_servant.email %></td>
+            <td><%= public_servant.record_number %></td>
+            <td><%= public_servant.dependency %></td>
+            <td><%= public_servant.administrative_unit %></td>
+            <td><%= public_servant.charge %></td>
+            <td>
+              <% if public_servant.has_service_assigned? %>
+                <%= public_servant.assigned_service_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
+            </td>
+            <td>
+              <%= link_to t(".enable"), enable_admins_public_servant_path(public_servant), class: "btn btn-success", id: "enable_public_servant_#{public_servant.id}", "data-confirm" => t(".enable_admin_confirm") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
