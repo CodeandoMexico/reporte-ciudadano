@@ -1,0 +1,51 @@
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <%= link_to t('.dashboard'), admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to t('.summary'), admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to t('.services'), services_admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to t('.requests'), admins_service_requests_path %>
+    </li>
+    <li>
+      <%= link_to t('.config_requests'),  admins_services_path %>
+    </li>
+    <li>
+      <%= link_to t('.service_admins'), admins_service_admins_path %>
+    </li>
+    <li>
+      <%= link_to t('.public_servants'), admins_public_servants_path %>
+    </li>
+    <li>
+      <%= link_to t('.design'), design_admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to t('.api'), admins_api_keys_path %>
+    </li>
+    <hr>
+    <li class="admin-email">
+      <i class="glyphicon glyphicon-user"></i>
+      <%= current_admin.email %>
+    </li>
+    <li>
+      <%= link_to edit_admins_registration_path(current_admin) do %>
+        <i class="glyphicon glyphicon-cog"></i>
+        <%= t('.edit_profile') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to destroy_admin_session_path, method: :delete do %>
+        <i class="glyphicon glyphicon-off"></i>
+        <%= t('sign_out') %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+
+

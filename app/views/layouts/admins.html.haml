@@ -9,8 +9,8 @@
     %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}")
   %body
     #wrapper{class: ("is-logged-in" if admin_signed_in?) }
-      - if admin_signed_in?
-        = render "admins/shared/sidebar"
+      - if admin_signed_in? && current_admin.is_super_admin?
+        = render "admins/shared/super_admin_sidebar"
 
       #page-content-wrapper
         .container

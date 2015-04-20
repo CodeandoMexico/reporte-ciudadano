@@ -228,7 +228,7 @@ es:
 
   admins:
     shared:
-      sidebar:
+      super_admin_sidebar:
         dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Reportes"
@@ -238,7 +238,7 @@ es:
         edit_profile: "Editar perfil"
         service_admins: "Administradores de servicios"
         public_servants: "Servidores Públicos"
-        all_services: "Ver servicios"
+        services: "Servicios"
         no_requests: "No tiene servicios asignados"
     sessions:
       new:
