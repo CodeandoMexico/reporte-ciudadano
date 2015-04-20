@@ -228,7 +228,7 @@ es:
 
   admins:
     shared:
-      super_admin_sidebar:
+      sidebar:
         dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Reportes"

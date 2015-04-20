@@ -11,6 +11,8 @@
     #wrapper{class: ("is-logged-in" if admin_signed_in?) }
       - if admin_signed_in? && current_admin.is_super_admin?
         = render "admins/shared/super_admin_sidebar"
+      - elsif admin_signed_in? && current_admin.is_service_admin?
+        = render "admins/shared/service_admin_sidebar"
 
       #page-content-wrapper
         .container

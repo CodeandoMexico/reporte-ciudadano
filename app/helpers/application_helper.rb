@@ -47,5 +47,7 @@ module ApplicationHelper
     end
   end
 
-
+  def i18n_admin_sidebar(option)
+    t("admins.shared.sidebar.#{option}")
+  end
 end
