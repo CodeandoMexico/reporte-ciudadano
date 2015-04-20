@@ -236,6 +236,7 @@ es:
         design: "Diseño"
         api: "API"
         edit_profile: "Editar perfil"
+        sign_out: "Cerrar sesión"
         service_admins: "Administradores de servicios"
         public_servants: "Servidores Públicos"
         services: "Servicios"
