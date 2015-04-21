@@ -10,6 +10,7 @@ feature 'Admins access' do
     sign_in_admin super_admin
 
     within ".sidebar-nav" do
+      expect(page).to have_content "Panel de administración"
       expect(page).to have_link "Resumen"
       expect(page).to have_link "Reportes"
       expect(page).to have_link "Servicios"
@@ -25,6 +26,7 @@ feature 'Admins access' do
     sign_in_admin service_admin
 
     within ".sidebar-nav" do
+      expect(page).to have_content "Panel de administración"
       expect(page).not_to have_link "Resumen"
       expect(page).not_to have_link "Administradores de servicios"
       expect(page).not_to have_link "Diseño"
@@ -41,6 +43,7 @@ feature 'Admins access' do
     sign_in_admin public_servant
 
     within ".sidebar-nav" do
+      expect(page).to have_content "Panel de administración"
       expect(page).not_to have_link "Resumen"
       expect(page).not_to have_link "Administradores de servicios"
       expect(page).not_to have_link "Diseño"

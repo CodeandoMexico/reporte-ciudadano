@@ -1,5 +1,8 @@
 <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <%= link_to i18n_admin_sidebar('.dashboard'), admins_dashboards_path %>
+    </li>
     <li class="dropdown">
       <%= link_to services_admins_dashboards_path, class: "dropdown-toggle", id: "dropdown_service_requests", "data-toggle" => "dropdown" do %>
         <%= i18n_admin_sidebar('.requests') %>
