@@ -1,4 +1,5 @@
 class Admins::ServicesController < Admins::AdminController
+  before_action :authorize_admin, only: :show
   helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options
 
   def index
@@ -43,11 +44,22 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def show
-    @service = current_admin.managed_services.find(params[:id])
+    @service = Service.find(params[:id])
     @service_requests = @service.service_requests
   end
 
   private
+
+  def authorize_admin
+    permissions = Admins.permissions_for_admin(current_admin)
+    unless permissions.can_manage_service_requests?(current_service)
+      redirect_to admins_dashboards_path
+    end
+  end
+
+  def current_service
+    @service ||= Service.find(params[:id])
+  end
 
   def service_type_options
     Services.service_type_options

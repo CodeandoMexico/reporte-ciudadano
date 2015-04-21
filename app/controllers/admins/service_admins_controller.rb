@@ -40,7 +40,7 @@ class Admins::ServiceAdminsController < ApplicationController
   private
 
   def verify_super_admin_access
-    @permissions = ServiceAdmins.permissions_for_admin(current_admin)
+    @permissions = Admins.permissions_for_admin(current_admin)
     unless @permissions.can_manage_service_admins?
       redirect_to admins_dashboards_path
     end
