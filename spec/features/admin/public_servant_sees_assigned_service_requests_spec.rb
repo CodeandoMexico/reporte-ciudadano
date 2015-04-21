@@ -32,6 +32,23 @@ feature 'As a public servant I can see every service request from assigned servi
     expect(services_request_count).to eq 0
   end
 
+  scenario 'I can see a service request' do
+    service = create :service, name: "Mi servicio"
+    service_requests = create(:service_request, service: service)
+    given_service_assigned_to(admin, service)
+
+    click_link "Reportes"
+    click_link "Mi servicio"
+
+    within '.service_request' do
+      click_link "Mi servicio"
+    end
+
+    expect(current_path).to eq edit_admins_service_request_path(service)
+    expect(page).to have_content "Votos"
+    expect(page).to have_content "Actualizar reporte"
+  end
+
   def given_service_assigned_to(admin, service)
     admin.update_attributes(service_id: service.id)
     admin.reload
