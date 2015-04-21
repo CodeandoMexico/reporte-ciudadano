@@ -1,4 +1,5 @@
-class Admins::ServiceRequestsController < Admins::AdminController 
+class Admins::ServiceRequestsController < Admins::AdminController
+  before_action :authorize_admin, only: :edit
 
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
@@ -43,6 +44,17 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   private
+
+  def authorize_admin
+    permissions = Admins.permissions_for_admin(current_admin)
+    unless permissions.can_manage_service_requests?(current_service)
+      redirect_to admins_dashboards_path
+    end
+  end
+
+  def current_service
+    ServiceRequest.find(params[:id]).service
+  end
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)

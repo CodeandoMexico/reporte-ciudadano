@@ -34,7 +34,9 @@ feature 'As a public servant I can see every service request from assigned servi
 
   scenario 'I can see a service request' do
     service = create :service, name: "Mi servicio"
-    service_requests = create(:service_request, service: service)
+    service_request = create(:service_request, service: service)
+    other_service = create :service, name: "Otro servicio"
+    other_service_request = create(:service_request, service: other_service)
     given_service_assigned_to(admin, service)
 
     click_link "Reportes"
@@ -47,6 +49,9 @@ feature 'As a public servant I can see every service request from assigned servi
     expect(current_path).to eq edit_admins_service_request_path(service)
     expect(page).to have_content "Votos"
     expect(page).to have_content "Actualizar reporte"
+
+    visit edit_admins_service_request_path(other_service)
+    expect(current_path).to eq admins_dashboards_path
   end
 
   def given_service_assigned_to(admin, service)
