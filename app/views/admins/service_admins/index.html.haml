@@ -1,0 +1,33 @@
+.page-content.inset
+  %h2
+    = t('.service_admins')
+    .btn-group.pull-right
+      = link_to t('.new_service_admin'), new_admins_service_admin_path, class: 'btn btn-primary'
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          =t(".id")
+        %th
+          =t(".name")
+        %th
+          =t(".record_number")
+        %th
+          =t(".dependency")
+        %th
+          =t(".administrative_unit")
+        %th
+          =t(".charge")
+        %th
+    %tbody
+      - @service_admins.each do |service_admin|
+        %tr.service_admin
+          %td= service_admin.id
+          %td= service_admin.name
+          %td= service_admin.record_number
+          %td= service_admin.dependency
+          %td= service_admin.administrative_unit
+          %td= service_admin.charge
+          %td= link_to t(".edit"), edit_admins_service_admin_path(service_admin), class: "btn btn-default", id: "edit_service_admin_#{service_admin.id}"

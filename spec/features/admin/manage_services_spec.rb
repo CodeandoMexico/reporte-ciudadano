@@ -15,11 +15,27 @@ feature 'As an admin I can manage requests services' do
   end
 
   scenario 'I can create a new service' do
+    service_admin = create :admin, :service_admin
+
     visit admins_services_path
     click_link 'Nuevo servicio'
+
     fill_in 'service[name]', with: 'Servicio nuevo'
+    select "Trámite", from: "service[service_type]"
+    select "Dependencia 2", from: "service[dependency]"
+    select "Unidad administrativa 2", from: "service[administrative_unit]"
+    select "Centro 2", from: "service[cis]"
+    select service_admin.name, from: "service[admin_id]"
+
     click_button 'Guardar'
     expect(page).to have_content t('flash.service.created')
+
+    visit edit_admins_service_path(Service.last)
+    expect(page).to have_content "Trámite"
+    expect(page).to have_content "Dependencia 2"
+    expect(page).to have_content "Unidad administrativa 2"
+    expect(page).to have_content "Centro 2"
+    expect(page).to have_content service_admin.name
   end
 
   scenario 'I can edit a service' do

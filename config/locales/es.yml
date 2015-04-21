@@ -11,7 +11,7 @@ es:
     - vie
     - sáb
     abbr_month_names:
-    - 
+    -
     - ene
     - feb
     - mar
@@ -37,7 +37,7 @@ es:
       long: ! '%d de %B de %Y'
       short: ! '%d de %b'
     month_names:
-    - 
+    -
     - enero
     - febrero
     - marzo
@@ -57,39 +57,39 @@ es:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: alrededor de 1 hora
-        other: alrededor de %{count} horas
+        one: 'alrededor de 1 hora'
+        other: 'alrededor de %{count} horas'
       about_x_months:
-        one: alrededor de 1 mes
-        other: alrededor de %{count} meses
+        one: 'alrededor de 1 mes'
+        other: 'alrededor de %{count} meses'
       about_x_years:
-        one: alrededor de 1 año
-        other: alrededor de %{count} años
+        one: 'alrededor de 1 año'
+        other: 'alrededor de %{count} años'
       almost_x_years:
-        one: casi 1 año
-        other: casi %{count} años
+        one: 'casi 1 año'
+        other: 'casi %{count} años'
       half_a_minute: medio minuto
       less_than_x_minutes:
-        one: menos de 1 minuto
-        other: menos de %{count} minutos
+        one: 'menos de 1 minuto'
+        other: 'menos de %{count} minutos'
       less_than_x_seconds:
-        one: menos de 1 segundo
-        other: menos de %{count} segundos
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
       over_x_years:
-        one: más de 1 año
-        other: más de %{count} años
+        one: 'más de 1 año'
+        other: 'más de %{count} años'
       x_days:
-        one: 1 día
-        other: ! '%{count} días'
+        one: '1 día'
+        other: '%{count} días'
       x_minutes:
-        one: 1 minuto
-        other: ! '%{count} minutos'
+        one: '1 minuto'
+        other: '%{count} minutos'
       x_months:
-        one: 1 mes
-        other: ! '%{count} meses'
+        one: '1 mes'
+        other: '%{count} meses'
       x_seconds:
-        one: 1 segundo
-        other: ! '%{count} segundos'
+        one: '1 segundo'
+        other: '%{count} segundos'
     prompts:
       day: Día
       hour: Hora
@@ -236,6 +236,11 @@ es:
         design: "Diseño"
         api: "API"
         edit_profile: "Editar perfil"
+        sign_out: "Cerrar sesión"
+        service_admins: "Administradores de servicios"
+        public_servants: "Servidores Públicos"
+        services: "Servicios"
+        no_requests: "No tiene servicios asignados"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -277,7 +282,53 @@ es:
         header: "Servicio: %{service_name}"
         edit: "Editar servicio"
         additional_fields: "Campos adicionales"
-
+        votes: "Votos"
+        created_at: "Fecha de creación"
+        service_requests_for: "Reportes de %{service}"
+    service_admins:
+      new:
+        new_service_admin: "Nuevo administrador de servicios"
+        services_to_assign: "Asignar servicios"
+      index:
+        id: '#'
+        name: "Nombre completo"
+        record_number: "Número de expediente"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        charge: "Cargo"
+        service_admins: "Administradores de servicios"
+        new_service_admin: "Agregar administrador"
+        edit: "Editar"
+      edit:
+        edit_service_admin: "Editar administrador de servicios"
+        update: "Actualizar"
+        services_to_assign: "Asignar servicios"
+    public_servants:
+      index:
+        id: '#'
+        name: "Nombre completo"
+        email: "Email"
+        record_number: "Número de expediente"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        charge: "Cargo"
+        public_servants: "Servidores Públicos"
+        new_public_servant: "Agregar servidor público"
+        edit: "Editar"
+        disable: "Desactivar"
+        disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
+        enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
+        assign_service: "Asignar servicio"
+        assign: "Asignar"
+        service: "Servicio"
+        enabled: "Activos"
+        disabled: "Inactivos"
+        enable: "Activar"
+      new:
+        new_public_servant: "Nuevo servidor público"
+      edit:
+        edit_public_servant: "Editar servidor público"
+        update: "Actualizar"
     dashboards:
       design:
         header: "Diseño"
@@ -288,6 +339,17 @@ es:
         color_scheme: "Esquemas de colores"
       index:
         header: "Resumen de actividad"
+      services:
+        managed_services: "Servicios administrados"
+        name: "Nombre"
+        service_type: "Tipo"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        cis: "Centro de atención"
+        service_type_options:
+          step: "Trámite"
+          service: "Servicio"
+          support_program: "Programa de apoyo"
     logos:
       new:
         header: "Agregar nuevo logo"
@@ -397,12 +459,25 @@ es:
       password: "Contraseña"
       password_confirmation: "Confirmar contraseña"
       current_password: "Contraseña actual"
+      record_number: "Número de registro"
+      dependency: "Dependencia"
+      administrative_unit: "Unidad administrativa"
+      charge: "Cargo"
+      service_type: "Tipo de servicio"
+      cis: "Centro de atención"
+      admin_id: "Administrador de servicio"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
       current_password: "contraseña actual"
     errors:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
+    options:
+      service_type_select: "Selecciona tipo de servicio"
+      dependency_select: "Selecciona Dependencia"
+      administrative_unit_select: "Seleccciona Unidad administrativa"
+      cis_select: "Selecciona Centro de atención"
+      admin_select: "Selecciona Administrador de servicio"
 
   search_form:
     from_date: "De la fecha"
@@ -428,7 +503,6 @@ es:
   alerts:
     destroy_confirmation: "¿Estás seguro de eliminar?"
 
-
   flash:
     dashboards:
       requests_not_found: 'No se encontraron reportes.'
@@ -450,9 +524,22 @@ es:
       created: 'Logo creado correctamente.'
       updated: 'Logo actualizado correctamente.'
       destroyed: 'Logo ha sigo eliminado.'
-
+    service_admin:
+      created: "El administrador de servicios se ha registrado exitosamente."
+      updated: "El administrador de servicios se ha actualizado exitosamente."
+    public_servant:
+      created: "El servidor público se ha registrado exitosamente."
+      updated: "El servidor público se ha actualizado exitosamente."
+      disabled: "El servidor público se ha desactivado exitosamente."
+      enabled: "El servidor público se ha activado exitosamente."
+      disabled_admin: "Tu cuenta ha sido desactivada, por favor contacta a tu Administrador."
   navbar:
     admin:
       design: "Diseño"
+
+  service_type_options:
+    service: "Servicio"
+    step: "Trámite"
+    support_program: "Programa de Apoyo"
 
 

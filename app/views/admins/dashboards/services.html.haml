@@ -1,0 +1,19 @@
+.page-content.inset
+  %h2= t('.managed_services')
+
+  %table.table.table-hover
+    %tr
+      %th= t('.name')
+      %th= t('.service_type')
+      %th= t('.dependency')
+      %th= t('.administrative_unit')
+      %th= t('.cis')
+    - @services.each do |service|
+      %tr
+        %td= service.name
+        %td
+          - if service.service_type.present?
+            = t(".service_type_options.#{service.service_type}")
+        %td= service.dependency
+        %td= service.administrative_unit
+        %td= service.cis
