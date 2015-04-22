@@ -14,6 +14,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   def create
     @service_request = current_admin.service_requests.build(service_request_params)
     if @service_request.save
+      notify_public_servants
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.created') }
     else
       flash[:notice] = t('flash.service_requests.try_again')
@@ -60,6 +61,13 @@ class Admins::ServiceRequestsController < Admins::AdminController
     service_fields = params[:service_request].delete(:service_fields)
     params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
+    end
+  end
+
+  def notify_public_servants
+    public_servants = @service_request.service.public_servants
+    public_servants.each do |public_servant|
+      AdminMailer.notify_new_request(admin: public_servant, service_request: @service_request).deliver
     end
   end
 end
