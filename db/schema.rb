@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407201446) do
+ActiveRecord::Schema.define(version: 20150428214441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150407201446) do
     t.boolean  "is_public_servant"
     t.boolean  "disabled",               default: false
     t.integer  "service_id"
+    t.boolean  "active",                 default: false
   end
 
   add_index "admins", ["authentication_token"], name: "index_admins_on_authentication_token", unique: true, using: :btree

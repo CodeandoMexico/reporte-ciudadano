@@ -249,6 +249,10 @@ es:
     registrations:
       edit:
         header: "Editar perfil"
+      set_password:
+        change_password: "Cambiar contraseña"
+        new_password: "Nueva contraseña"
+        confirm_new_password: "Confirma la nueva contraseña"
     design:
       new_logo: "Agregar logo"
     services:

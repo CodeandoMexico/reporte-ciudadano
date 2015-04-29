@@ -4,9 +4,7 @@ class Admin < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-  #before_save :ensure_authentication_token
-
-  # attr_accessible :title, :body
+  before_create :generate_authentication_token
 
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
@@ -65,5 +63,16 @@ class Admin < ActiveRecord::Base
 
   def inactive_message
     I18n.t("flash.public_servant.disabled_admin")
+  end
+
+  def is_active?
+    active
+  end
+
+  private
+
+  def generate_authentication_token
+    token_generator = UniqueTokenGenerator.new(Admin, :authentication_token)
+    self.authentication_token = token_generator.generate_token
   end
 end

@@ -27,7 +27,9 @@ Rails.application.routes.draw do
       resources :messages, only: :index
     end
     resources :statuses, except: [:destroy]
-    resources :registrations, only: [:edit, :update]
+    resources :registrations, only: [:edit, :update] do
+      get :set_password, on: :member
+    end
     resources :api_keys, only: [:create, :index]
     resources :requests, as: :service_requests, controller: :service_requests, except: [:show]  do
       member do

@@ -51,7 +51,7 @@ class Admins::ServiceAdminsController < ApplicationController
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(managed_services: services, password: password, password_confirmation: password, is_service_admin: true)
+      .merge(managed_services: services, password: password, password_confirmation: password, is_service_admin: true, active: false)
   end
 
   def password

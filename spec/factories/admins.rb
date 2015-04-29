@@ -10,6 +10,7 @@ FactoryGirl.define do
     is_service_admin false
     is_public_servant false
     disabled false
+    active true
 
     factory :invalid_admin do
       email nil
@@ -19,10 +20,12 @@ FactoryGirl.define do
 
     trait :service_admin do
       is_service_admin true
+      active false
     end
 
     trait :public_servant do
       is_public_servant true
+      active false
     end
   end
 end
