@@ -1,6 +1,6 @@
 <p>Hola, <strong><%= @admin.name %></strong>.</p>
 
-<p>Fuiste invitado a la plataforma <%= @app_name %> como Administrador de Servicio. Para iniciar sesión y establecer tu contraseña, ingresa <%= link_to "aquí", admins_dashboards_url(admin_email: @admin.email, admin_token: @admin.authentication_token) %>.</p>
+<p>Fuiste invitado a la plataforma <%= @app_name %> como Administrador de Servicio. Para iniciar sesión y establecer tu contraseña, puedes hacerlo <%= link_to "aquí", admins_dashboards_url(admin_email: @admin.email, admin_token: @admin.authentication_token) %>.</p>
 
 Email: <strong><%= @admin.email %></strong><br>
 

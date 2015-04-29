@@ -1,9 +1,8 @@
 <p>Hola, <strong><%= @admin.name %></strong>.</p>
 
-<p>Fuiste invitado a la plataforma <%= @app_name %> como Servidor Público. Para iniciar sesión, puedes hacerlo en <%= new_admin_session_url %> con los datos de acceso:</p>
+<p>Fuiste invitado a la plataforma <%= @app_name %> como Servidor Público. Para iniciar sesión y establecer tu contraseña, puedes hacerlo <%= link_to "aquí", admins_dashboards_url(admin_email: @admin.email, admin_token: @admin.authentication_token) %></p>
 
 Email: <strong><%= @admin.email %></strong><br>
-Contraseña temporal: <strong><%= @password %></strong>
 
 <p>Gracias por tu colaboración.</p>
 <%= @app_name %>

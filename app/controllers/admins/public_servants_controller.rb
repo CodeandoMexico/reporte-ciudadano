@@ -15,7 +15,7 @@ class Admins::PublicServantsController < ApplicationController
   def create
     @admin = Admin.new(public_servant_params)
     if @admin.save
-      AdminMailer.send_public_servant_account(admin: @admin, password: @password).deliver
+      AdminMailer.send_public_servant_account(admin: @admin).deliver
       redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
     else
       render :new

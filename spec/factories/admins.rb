@@ -11,6 +11,7 @@ FactoryGirl.define do
     is_public_servant false
     disabled false
     active true
+    dependency "Dependencia 1"
 
     factory :invalid_admin do
       email nil
@@ -20,12 +21,12 @@ FactoryGirl.define do
 
     trait :service_admin do
       is_service_admin true
-      active false
+      active true
     end
 
     trait :public_servant do
       is_public_servant true
-      active false
+      active true
     end
   end
 end
