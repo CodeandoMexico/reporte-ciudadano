@@ -26,7 +26,6 @@ feature 'As a service admin I can create new public servant' do
 
     visit admins_public_servants_path
     click_link "Agregar servidor público"
-    save_and_open_page
 
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"

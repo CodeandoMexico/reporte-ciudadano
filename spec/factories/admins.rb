@@ -11,7 +11,7 @@ FactoryGirl.define do
     is_public_servant false
     disabled false
     active true
-    dependency "Dependencia 1"
+    dependency "Dependency"
 
     factory :invalid_admin do
       email nil

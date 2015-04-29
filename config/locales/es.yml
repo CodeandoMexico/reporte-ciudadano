@@ -478,8 +478,6 @@ es:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
     options:
       service_type_select: "Selecciona tipo de servicio"
-      dependency_select: "Selecciona Dependencia"
-      administrative_unit_select: "Seleccciona Unidad administrativa"
       cis_select: "Selecciona Centro de atención"
       admin_select: "Selecciona Administrador de servicio"
 

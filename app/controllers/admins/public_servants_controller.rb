@@ -61,7 +61,11 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def dependency_options
-    [current_admin.dependency]
+    if current_admin.is_super_admin?
+      Services.service_dependency_options
+    else
+      [current_admin.dependency]
+    end
   end
 
   def administrative_unit_options

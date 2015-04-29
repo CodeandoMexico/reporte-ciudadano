@@ -38,7 +38,7 @@
           <div class="form-group">
             <%= f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
             <div class="col-md-5">
-              <%= f.select :dependency, dependency_options, prompt: I18n.t("form.options.dependency_select") %>
+              <%= f.select :dependency, dependency_options %>
             </div>
           </div>
         </fieldset>
@@ -46,7 +46,7 @@
           <div class="form-group">
             <%= f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
             <div class="col-md-5">
-              <%= f.select :administrative_unit, administrative_unit_options, prompt: I18n.t("form.options.administrative_unit_select") %>
+              <%= f.select :administrative_unit, administrative_unit_options %>
             </div>
           </div>
         </fieldset>
