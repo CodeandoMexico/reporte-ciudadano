@@ -22,6 +22,13 @@ class Admins::RegistrationsController < Admins::AdminController
   private
 
   def admin_params
-    params.require(:admin).permit(:name, :avatar, :email, :password, :password_confirmation, :active)
+    if params[:admin][:password_confirmation].present?
+      params[:admin].merge!(authentication_token: token_generator.generate_token)
+    end
+    params.require(:admin).permit(:name, :avatar, :email, :password, :password_confirmation, :active, :authentication_token)
+  end
+
+  def token_generator
+    UniqueTokenGenerator.new(Admin, :authentication_token)
   end
 end
