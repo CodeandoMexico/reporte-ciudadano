@@ -246,6 +246,11 @@ es:
         header: "Iniciar sesión"
         submit: "Entrar"
         remember_me: "Recuérdame"
+        forgot_password: "Olvidé mi contraseña"
+    passwords:
+      new:
+        forgot_password: "¿ Olvidaste tu contraseña ?"
+        send_instructions: "Enviar instrucciones"
     registrations:
       edit:
         header: "Editar perfil"
@@ -474,6 +479,8 @@ es:
       email: "correo@correo.com"
       password: "contraseña"
       current_password: "contraseña actual"
+      new_password: "Nueva contraseña"
+      confirm_password: "Confirmar nueva contraseña"
     errors:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
     options:
