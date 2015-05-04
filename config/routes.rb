@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :statuses, except: [:destroy]
     resources :registrations, only: [:edit, :update] do
       get :set_password, on: :member
+      put :update_password, on: :member
     end
     resources :api_keys, only: [:create, :index]
     resources :requests, as: :service_requests, controller: :service_requests, except: [:show]  do

@@ -241,6 +241,7 @@ es:
         public_servants: "Servidores Públicos"
         services: "Servicios"
         no_requests: "No tiene servicios asignados"
+        change_password: "Cambiar contraseña"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -254,6 +255,7 @@ es:
     registrations:
       edit:
         header: "Editar perfil"
+        change_password: "Cambiar contraseña"
       set_password:
         change_password: "Cambiar contraseña"
         new_password: "Nueva contraseña"
@@ -528,6 +530,7 @@ es:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
     admin:
+      password_updated: "La contraseña se ha actualizado con éxito."
       updated: 'El perfil fue editado satisfactoriamente.'
     logo:
       created: 'Logo creado correctamente.'
