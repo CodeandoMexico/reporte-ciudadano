@@ -13,6 +13,8 @@
         %th
           =t(".name")
         %th
+          =t(".email")
+        %th
           =t(".record_number")
         %th
           =t(".dependency")
@@ -26,6 +28,7 @@
         %tr.service_admin
           %td= service_admin.id
           %td= service_admin.name
+          %td= service_admin.email
           %td= service_admin.record_number
           %td= service_admin.dependency
           %td= service_admin.administrative_unit

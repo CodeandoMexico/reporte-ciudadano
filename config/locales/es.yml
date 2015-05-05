@@ -303,6 +303,7 @@ es:
       index:
         id: '#'
         name: "Nombre completo"
+        email: "Correo electrónico"
         record_number: "Número de expediente"
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
