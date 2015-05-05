@@ -4,17 +4,16 @@ feature 'As a public servant I can see every service request from assigned servi
 
   let(:admin) { create(:admin, :public_servant, dependency: "Dependencia 1") }
 
-  background do
-    sign_in_admin admin
-  end
-
   scenario 'I can see a list of service requests' do
     service = create :service, name: "Mi servicio"
     service_requests = create_list(:service_request, 3, service: service)
     given_service_assigned_to(admin, service)
+    sign_in_admin admin
 
-    click_link "Reportes"
-    click_link "Mi servicio"
+    within '.sidebar-nav' do
+      click_link "Reportes"
+      click_link "Mi servicio"
+    end
 
     expect(page).to have_content service.name
     expect(services_request_count).to eq 3
@@ -24,8 +23,12 @@ feature 'As a public servant I can see every service request from assigned servi
     service = create :service, name: "Otro servicio"
     service_requests = create_list(:service_request, 3, service: service)
 
-    click_link "Reportes"
-    expect(page).not_to have_link "Otro servicio"
+    sign_in_admin admin
+
+    within '.sidebar-nav' do
+      click_link "Reportes"
+      expect(page).not_to have_link "Otro servicio"
+    end
 
     visit admins_service_path(service)
     expect(current_path).to eq admins_dashboards_path
@@ -39,8 +42,11 @@ feature 'As a public servant I can see every service request from assigned servi
     other_service_request = create(:service_request, service: other_service)
     given_service_assigned_to(admin, service)
 
-    click_link "Reportes"
-    click_link "Mi servicio"
+    sign_in_admin admin
+    within '.sidebar-nav' do
+      click_link "Reportes"
+      click_link "Mi servicio"
+    end
 
     within '.service_request' do
       click_link "Mi servicio"
