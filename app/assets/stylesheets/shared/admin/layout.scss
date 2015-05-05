@@ -34,6 +34,11 @@
   li {
     line-height: 40px;
     text-indent: 20px;
+
+    .sidebar-info-text {
+      color: #ffffff;
+    }
+
     a {
       color: #999999;
       display: block;
@@ -64,6 +69,10 @@
 
   .caret {
     border-top:4px solid #999999;
+  }
+
+  ul {
+    list-style: none;
   }
 }
 

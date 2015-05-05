@@ -18,7 +18,7 @@
           </li>
         <% end %>
         <% unless current_admin.managed_services.any? %>
-          <li><em><%= i18n_admin_sidebar(".no_requests") %></em></li>
+          <li class="sidebar-info-text"><em><%= i18n_admin_sidebar(".no_requests") %></em></li>
         <% end %>
       </ul>
     </li>
