@@ -47,7 +47,7 @@
         .form-group
           = submit_tag t('search'), class: "btn btn-primary js-ajax-sender", data: { processing_label: t('searching'), stealth_label: t('search') }
 
-  .row.blk-summary.l-margin-l-bottom
+  .row.blk-summary.l-margin-l-bottom.recent-reports
     .container
       %h2.blk-summary-title= t('dashboards.recent_requests')
       - unless @service_requests.empty?

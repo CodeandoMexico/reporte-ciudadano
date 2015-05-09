@@ -115,6 +115,14 @@ class ServiceRequest < ActiveRecord::Base
     Arel.sql('date(created_at)')
   end
 
+  def closed?
+    status_id == 4
+  end
+
+  def open?
+    !closed?
+  end
+
   private
 
   def service_extra_fields

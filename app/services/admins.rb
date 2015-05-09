@@ -3,6 +3,14 @@ module Admins
     Permissions.new(admin)
   end
 
+  def self.service_requests_for(admin, params)
+    if admin.is_super_admin?
+      ServiceRequest.filter_by_search(params)
+    elsif admin.is_service_admin?
+      admin.managed_services.map(&:service_requests).flatten
+    end
+  end
+
   class Permissions
     def initialize(admin)
       @admin = admin
