@@ -95,7 +95,7 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def date
-    created_at.to_date 
+    created_at.to_date
   end
 
   def service_fields_hash

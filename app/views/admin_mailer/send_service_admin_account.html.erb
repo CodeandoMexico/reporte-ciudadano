@@ -1,0 +1,9 @@
+<p>Hola, <strong><%= @admin.name %></strong>.</p>
+
+<p>Fuiste invitado a la plataforma <%= @app_name %> como Administrador de Servicio. Para iniciar sesión, puedes hacerlo <%= link_to "aquí", new_admin_session_url %> con los datos de acceso:</p>
+
+Email: <strong><%= @admin.email %></strong><br>
+Contraseña temporal: <strong><%= @password %></strong>
+
+<p>Gracias por tu colaboración.</p>
+<%= @app_name %>

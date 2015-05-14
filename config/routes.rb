@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :dashboards, only: [:index] do
       collection do
         get 'design'
+        get 'services'
       end
     end
 
@@ -54,6 +55,12 @@ Rails.application.routes.draw do
         put :css_theme
         put :map_constraints
       end
+    end
+
+    resources :service_admins
+    resources :public_servants do
+      get :disable, on: :member
+      get :enable, on: :member
     end
   end
 

@@ -85,3 +85,7 @@ $(document).on 'ready page:load', ->
     $map.pinDropper(reports_markers, {
       center: new google.maps.LatLng(lat, lng)
     })
+
+  $('.js-tabs a').on "click", (e)->
+    e.preventDefault()
+    $(this).tab('show')
