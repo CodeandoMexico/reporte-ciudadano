@@ -330,7 +330,7 @@ es:
         disable: "Desactivar"
         disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
         enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
-        assign_service: "Asignar servicio"
+        assign_services: "Asignar servicios"
         assign: "Asignar"
         service: "Servicio"
         enabled: "Activos"
@@ -341,6 +341,9 @@ es:
       edit:
         edit_public_servant: "Editar servidor público"
         update: "Actualizar"
+      assign_services:
+        assign_services: "Asignar servicios"
+        assign: "Asignar"
     dashboards:
       design:
         header: "Diseño"

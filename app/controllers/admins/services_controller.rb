@@ -78,6 +78,6 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def service_params
-    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :cis, :admin_id, messages: [:content, :status_id], service_fields: [:name])
+    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :cis, :service_admin_id, messages: [:content, :status_id], service_fields: [:name])
   end
 end

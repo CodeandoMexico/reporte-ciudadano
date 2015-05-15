@@ -24,12 +24,12 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def edit
     @admin = Admin.find(params[:id])
-    @services = Service.for_user(@admin)
+    @services = Service.for_service_admin(@admin)
   end
 
   def update
     @admin = Admin.find(params[:id])
-    @services = Service.for_user(@admin)
+    @services = Service.for_service_admin(@admin)
     if @admin.update_attributes(service_admin_params)
       redirect_to admins_service_admins_path, notice: t('flash.service_admin.updated')
     else
@@ -51,7 +51,7 @@ class Admins::ServiceAdminsController < ApplicationController
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(managed_services: services, password: password, password_confirmation: password, is_service_admin: true, active: false)
+      .merge(managed_services: services, password: password, password_confirmation: password, is_service_admin: true)
   end
 
   def password

@@ -5,7 +5,6 @@ class Admins::PublicServantsController < ApplicationController
   def index
     @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
     @disabled_public_servants = Admin.disabled_public_servants_by_dependency(current_admin.dependency)
-    @available_services = current_admin.managed_services
   end
 
   def new
@@ -47,13 +46,19 @@ class Admins::PublicServantsController < ApplicationController
     redirect_to admins_public_servants_path, notice: t('flash.public_servant.enabled')
   end
 
+  def assign_services
+    @public_servant = Admin.find(params[:id])
+    @available_services = current_admin.managed_services
+  end
+
   private
 
   def public_servant_params
+    services = Service.where(id: params[:admin][:services_ids])
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :service_id)
-      .merge(password: password, password_confirmation: password, is_public_servant: true)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
+      .merge(managed_services: services, password: password, password_confirmation: password, is_public_servant: true)
   end
 
   def password

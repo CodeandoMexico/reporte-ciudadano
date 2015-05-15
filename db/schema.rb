@@ -142,14 +142,12 @@ ActiveRecord::Schema.define(version: 20150428214441) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin_id"
     t.string   "service_type"
     t.string   "dependency"
     t.string   "administrative_unit"
     t.string   "cis"
+    t.integer  "admin_id"
   end
-
-  add_index "services", ["admin_id"], name: "index_services_on_admin_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
@@ -194,5 +192,4 @@ ActiveRecord::Schema.define(version: 20150428214441) do
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
   add_foreign_key "admins", "services"
-  add_foreign_key "services", "admins"
 end

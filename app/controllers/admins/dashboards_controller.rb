@@ -40,7 +40,7 @@ class Admins::DashboardsController < Admins::AdminController
     return Service.chart_data if current_admin.is_super_admin?
 
     if current_admin.is_service_admin?
-      Service.chart_data(admin_id: current_admin.id)
+      Service.chart_data(service_admin_id: current_admin.id)
     end
   end
 end

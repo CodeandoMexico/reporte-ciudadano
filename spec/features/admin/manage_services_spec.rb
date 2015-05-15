@@ -25,7 +25,7 @@ feature 'As an admin I can manage requests services' do
     select "Dependencia 2", from: "service[dependency]"
     select "Unidad administrativa 2", from: "service[administrative_unit]"
     select "Centro 2", from: "service[cis]"
-    select service_admin.name, from: "service[admin_id]"
+    select service_admin.name, from: "service[service_admin_id]"
 
     click_button 'Guardar'
     expect(page).to have_content t('flash.service.created')

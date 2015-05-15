@@ -8,9 +8,9 @@ class Admin < ActiveRecord::Base
 
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
-  has_many :managed_services, class: Service
+  has_many :managed_services, class: Service, foreign_key: :service_admin_id
+  has_many :assigned_services, class: Service, foreign_key: :public_servant_id
   has_one :api_key
-  belongs_to :service
   mount_uploader :avatar, AvatarUploader
 
   def to_s
@@ -47,10 +47,6 @@ class Admin < ActiveRecord::Base
 
   def is_super_admin?
     !(is_service_admin || is_public_servant)
-  end
-
-  def has_service_assigned?
-    service.present?
   end
 
   def assigned_service_name
