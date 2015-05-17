@@ -27,7 +27,8 @@
             <th><%= t(".dependency") %></th>
             <th><%= t(".administrative_unit") %></th>
             <th><%= t(".charge") %></th>
-            <th><%= t(".service") %></th>
+            <th><%= t(".services") %></th>
+            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -41,6 +42,11 @@
               <td><%= public_servant.dependency %></td>
               <td><%= public_servant.administrative_unit %></td>
               <td><%= public_servant.charge %></td>
+              <td>
+                <% unless public_servant.has_no_services? %>
+                  <%= public_servant.services_names %>
+                <% end %>
+              </td>
               <td>
                 <%= link_to t(".assign_services"), assign_services_admins_public_servant_path(public_servant), class: "btn btn-default" %>
               </td>
@@ -66,7 +72,7 @@
           <th><%= t(".dependency") %></th>
           <th><%= t(".administrative_unit") %></th>
           <th><%= t(".charge") %></th>
-          <th><%= t(".service") %></th>
+          <th><%= t(".services") %></th>
           <th></th>
           <th></th>
         </tr>

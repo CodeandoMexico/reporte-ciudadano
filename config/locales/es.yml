@@ -332,7 +332,7 @@ es:
         enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
         assign_services: "Asignar servicios"
         assign: "Asignar"
-        service: "Servicio"
+        services: "Servicios"
         enabled: "Activos"
         disabled: "Inactivos"
         enable: "Activar"
