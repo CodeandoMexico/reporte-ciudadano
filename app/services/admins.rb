@@ -7,7 +7,9 @@ module Admins
     if admin.is_super_admin?
       ServiceRequest.filter_by_search(params)
     elsif admin.is_service_admin?
-      admin.managed_services.map(&:service_requests).flatten
+      admin.managed_service_requests
+    else admin.is_public_servant?
+      admin.assigned_service_requests
     end
   end
 

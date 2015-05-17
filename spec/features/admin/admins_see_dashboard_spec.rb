@@ -48,11 +48,33 @@ feature 'Admins see dashboard' do
     expect(services_request_count).to eq 2
   end
 
+  scenario 'as public servant' do
+    first_service_request = create :service_request
+    second_service_request = create :service_request, service: first_service_request.service
+    third_service_request =  create :service_request
+
+    given_admin_has_assigned(first_service_request.service, public_servant)
+    sign_in_admin public_servant
+
+    expect(current_path).to eq admins_service_requests_path
+
+    within '.sortable_table' do
+      expect(page).to have_content first_service_request.service.name
+      expect(page).to have_content second_service_request.service.name
+      expect(page).not_to have_content third_service_request.service.name
+    end
+  end
+
   def given_admin_manages(service, admin)
     service.update_attributes(service_admin_id: admin.id)
   end
 
   def services_request_count
     all(".recent-report-sum").size
+  end
+
+  def given_admin_has_assigned(service, admin)
+    admin.services = [service]
+    admin.save
   end
 end

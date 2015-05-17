@@ -5,7 +5,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def index
-    @service_requests = paginated_requests(admin_requests)
+    @service_requests = admin_requests.page(params[:page])
     @open_service_requests = admin_requests.select(&:open?).count
     @closed_service_requests =  admin_requests.select(&:closed?).count
     @all_service_requests = admin_requests.count
@@ -26,14 +26,6 @@ class Admins::DashboardsController < Admins::AdminController
 
   def admin_requests
     @requests ||= Admins.service_requests_for(current_admin, params)
-  end
-
-  def paginated_requests(requests)
-    if requests.kind_of?(Array)
-      Kaminari.paginate_array(requests).page(params[:page])
-    else
-      requests.page(params[:page])
-    end
   end
 
   def chart_data

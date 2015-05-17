@@ -2,7 +2,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   before_action :authorize_admin, only: :edit
 
   def index
-    @search = ServiceRequest.unscoped.search(params[:q])
+    @search = service_requests_for_search.search(params[:q])
     @service_requests = @search.result.page(params[:page])
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
   end
@@ -45,6 +45,14 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   private
+
+  def service_requests_for_search
+    if current_admin.is_super_admin?
+      ServiceRequest.unscoped
+    else
+      Admins.service_requests_for(current_admin, {})
+    end
+  end
 
   def authorize_admin
     permissions = Admins.permissions_for_admin(current_admin)

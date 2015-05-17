@@ -30,10 +30,8 @@ feature 'As an admin I can manage service requests' do
   end
 
   scenario 'I can create a service request' do
-    services = create_list(:service, 2)
-    first_service = services.first
+    first_service = create :service, name: 'my srv'
     public_servant = create :admin, :public_servant, services: [first_service]
-
     visit new_admins_service_request_path
     select first_service.name, from: 'service_request[service_id]'
 

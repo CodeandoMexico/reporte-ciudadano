@@ -3,12 +3,13 @@ require_relative '../../app/services/admins'
 
 module ServiceAdmins
   class TestAdmin
-    attr_accessor :managed_services, :is_service_admin, :is_public_servant
+    attr_accessor :managed_service_requests, :is_service_admin, :is_public_servant, :assigned_service_requests
 
     def initialize(attrs)
-      @managed_services = attrs[:managed_services]
+      @managed_service_requests = attrs[:managed_service_requests]
       @is_service_admin = attrs[:is_service_admin]
       @is_public_servant = attrs[:is_public_servant]
+      @assigned_service_requests = attrs[:assigned_service_requests]
     end
 
     def is_super_admin?
@@ -17,6 +18,10 @@ module ServiceAdmins
 
     def is_service_admin?
       is_service_admin
+    end
+
+    def is_public_servant?
+      is_public_servant
     end
   end
 
@@ -51,7 +56,15 @@ module ServiceAdmins
 
     it 'returns the managed services when is service admin' do
       service = TestService.new(service_requests: service_requests.first, id: 'service-id')
-      admin = TestAdmin.new(managed_services: [service], is_service_admin: true)
+      admin = TestAdmin.new(is_service_admin: true, managed_service_requests: [service_requests.first])
+
+      expect(ServiceRequest).not_to receive(:filter_by_search).with({})
+      expect(service_requests_for(admin, {}).count).to eq 1
+    end
+
+    it 'returns the assigned services when is public servant' do
+      service = TestService.new(service_requests: service_requests.first, id: 'service-id')
+      admin = TestAdmin.new(is_public_servant: true, assigned_service_requests: [service_requests.first])
 
       expect(ServiceRequest).not_to receive(:filter_by_search).with({})
       expect(service_requests_for(admin, {}).count).to eq 1
