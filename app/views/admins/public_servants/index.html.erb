@@ -81,6 +81,9 @@
             <td><%= public_servant.administrative_unit %></td>
             <td><%= public_servant.charge %></td>
             <td>
+              <% unless public_servant.has_no_services? %>
+                <%= public_servant.services_names %>
+              <% end %>
             </td>
             <td>
               <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>

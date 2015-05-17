@@ -17,7 +17,6 @@ feature 'As a service admin I can disable a public servant' do
     confirm_dialog
 
     expect(page).to have_content "El servidor público se ha desactivado exitosamente"
-
     click_link "Inactivos"
     expect(page).to have_content first_public_servant.name
 

@@ -9,11 +9,12 @@
         <span class="caret"></span>
       <% end %>
       <ul class="js-collapse collapse" id="service_requests_menu">
-        <% if current_admin.has_service_assigned? %>
+        <% current_admin.services.each do |service| %>
           <li class="sidebar-info-text">
-            <%= link_to current_admin.assigned_service_name, admins_service_path(current_admin.service) %>
+            <%= link_to service.name, admins_service_path(service) %>
           </li>
-        <% else %>
+        <% end %>
+        <% if current_admin.has_no_services? %>
           <li class="sidebar-info-text"><em><%= i18n_admin_sidebar(".no_requests") %></em></li>
         <% end %>
       </ul>

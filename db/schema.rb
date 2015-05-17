@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428214441) do
+ActiveRecord::Schema.define(version: 20150517004237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,14 +39,17 @@ ActiveRecord::Schema.define(version: 20150428214441) do
     t.string   "charge"
     t.boolean  "is_public_servant"
     t.boolean  "disabled",               default: false
-    t.integer  "service_id"
     t.boolean  "active",                 default: false
   end
 
   add_index "admins", ["authentication_token"], name: "index_admins_on_authentication_token", unique: true, using: :btree
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
-  add_index "admins", ["service_id"], name: "index_admins_on_service_id", using: :btree
+
+  create_table "admins_services", force: :cascade do |t|
+    t.integer "admin_id",   null: false
+    t.integer "service_id", null: false
+  end
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "access_token"
@@ -146,8 +149,10 @@ ActiveRecord::Schema.define(version: 20150428214441) do
     t.string   "dependency"
     t.string   "administrative_unit"
     t.string   "cis"
-    t.integer  "admin_id"
+    t.integer  "service_admin_id"
   end
+
+  add_index "services", ["service_admin_id"], name: "index_services_on_service_admin_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
@@ -191,5 +196,4 @@ ActiveRecord::Schema.define(version: 20150428214441) do
   add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
-  add_foreign_key "admins", "services"
 end

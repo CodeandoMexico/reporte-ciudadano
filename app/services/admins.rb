@@ -39,7 +39,7 @@ module Admins
     end
 
     def has_service_assigned?(service)
-      admin.service_id == service.id
+      Services.is_assigned_to_public_servant?(service, admin)
     end
   end
 end

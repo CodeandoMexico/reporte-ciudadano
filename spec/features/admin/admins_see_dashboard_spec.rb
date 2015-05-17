@@ -49,7 +49,7 @@ feature 'Admins see dashboard' do
   end
 
   def given_admin_manages(service, admin)
-    service.update_attributes(admin_id: admin.id)
+    service.update_attributes(service_admin_id: admin.id)
   end
 
   def services_request_count

@@ -32,7 +32,7 @@ feature 'As an admin I can manage service requests' do
   scenario 'I can create a service request' do
     services = create_list(:service, 2)
     first_service = services.first
-    public_servant = create :admin, :public_servant, service: first_service
+    public_servant = create :admin, :public_servant, services: [first_service]
 
     visit new_admins_service_request_path
     select first_service.name, from: 'service_request[service_id]'
@@ -141,7 +141,7 @@ feature 'As an admin I can manage service requests' do
   end
 
   def expect_service_request_email_sent_to(email)
-    last_email = ActionMailer::Base.deliveries.last
+    last_email = ActionMailer::Base.deliveries.last || :no_email_sent
     expect(last_email.to).to include(email)
     expect(last_email.subject).to include "Nuevo reporte de servicio"
   end

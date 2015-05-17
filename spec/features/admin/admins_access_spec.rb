@@ -41,6 +41,7 @@ feature 'Admins access' do
 
   scenario 'Public servant access' do
     sign_in_admin public_servant
+    expect(current_path).to eq admins_service_requests_path
 
     within ".sidebar-nav" do
       expect(page).to have_content "Panel de administración"

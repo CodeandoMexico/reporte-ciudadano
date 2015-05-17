@@ -4,7 +4,7 @@
     <div class="form-group">
       <% @available_services.each do |service| %>
         <div class="checkbox">
-          <%= f.check_box :services_ids,  { multiple: true }, service.id, nil %>
+          <%= f.check_box :services_ids,  { multiple: true, checked: is_assigned_to_public_servant?(service, @public_servant) }, service.id, nil %>
           <%= f.label :services_ids, service.name, value: service.id %>
         </div>
       <% end %>

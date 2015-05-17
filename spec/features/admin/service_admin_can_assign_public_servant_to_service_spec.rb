@@ -10,8 +10,8 @@ feature 'As a service admin I can assign a public servant to a service' do
 
   scenario 'I can assign a public servant' do
     public_servant = create :admin, :public_servant
-    unassigned_service = create :service, name: "Fuga", admin_id: admin.id
-    other_unassigned_service = create :service, name: "Tubería rota", admin_id: admin.id
+    unassigned_service = create :service, name: "Fuga", service_admin_id: admin.id
+    other_unassigned_service = create :service, name: "Tubería rota", service_admin_id: admin.id
 
     visit admins_dashboards_path
     click_link "Servidores Públicos"
@@ -27,9 +27,9 @@ feature 'As a service admin I can assign a public servant to a service' do
     expect(current_path).to eq admins_public_servants_path
 
     click_link "Asignar servicios"
-    raise public_servant.managed_services.inspect
 
     expect(checkbox(unassigned_service)).to be_checked
+    expect(checkbox(other_unassigned_service)).not_to be_checked
   end
 
   def checkbox(service)

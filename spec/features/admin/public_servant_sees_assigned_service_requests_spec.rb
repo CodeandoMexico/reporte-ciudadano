@@ -7,7 +7,7 @@ feature 'As a public servant I can see every service request from assigned servi
   scenario 'I can see a list of service requests' do
     service = create :service, name: "Mi servicio"
     service_requests = create_list(:service_request, 3, service: service)
-    given_service_assigned_to(admin, service)
+    given_services_assigned_to(admin, [service])
     sign_in_admin admin
 
     within '.sidebar-nav' do
@@ -40,7 +40,7 @@ feature 'As a public servant I can see every service request from assigned servi
     service_request = create(:service_request, service: service)
     other_service = create :service, name: "Otro servicio"
     other_service_request = create(:service_request, service: other_service)
-    given_service_assigned_to(admin, service)
+    given_services_assigned_to(admin, [service])
 
     sign_in_admin admin
     within '.sidebar-nav' do
@@ -60,9 +60,9 @@ feature 'As a public servant I can see every service request from assigned servi
     expect(current_path).to eq admins_dashboards_path
   end
 
-  def given_service_assigned_to(admin, service)
-    admin.update_attributes(service_id: service.id)
-    admin.reload
+  def given_services_assigned_to(admin, services)
+    admin.services = services
+    admin.save
   end
 
   def services_request_count

@@ -90,7 +90,7 @@ feature 'Managing service requests' do
 
     scenario 'can create a new service request successfully' do
       service = create(:service)
-      public_servant = create(:admin, :public_servant, service_id: service.id)
+      public_servant = create(:admin, :public_servant, services: [service])
 
       visit new_service_request_path
       within '#new_service_request' do
@@ -130,7 +130,7 @@ feature 'Managing service requests' do
     end
 
     def expect_service_request_email_sent_to(email)
-      last_email = ActionMailer::Base.deliveries.last
+      last_email = ActionMailer::Base.deliveries.last || :no_email_sent
       expect(last_email.to).to include(email)
       expect(last_email.subject).to include "Nuevo reporte de servicio"
     end

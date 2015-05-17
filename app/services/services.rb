@@ -15,6 +15,10 @@ module Services
     load_values(:cis).fetch("cis").values
   end
 
+  def self.is_assigned_to_public_servant?(service, public_servant)
+    public_servant.services.include?(service)
+  end
+
   private
 
   def self.load_values(object)

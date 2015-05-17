@@ -15,6 +15,7 @@ class ServiceRequest < ActiveRecord::Base
   belongs_to :requester, polymorphic: true
   belongs_to :status
   has_many :comments
+  has_many :public_servants, through: :service, source: :admins
 
   serialize :service_fields, JSON
 

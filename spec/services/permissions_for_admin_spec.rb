@@ -27,7 +27,7 @@ module ServiceAdmins
 
       it 'if public servant and has been assigned to service' do
         service = double :service, id: 'service-id'
-        admin = double :admin, is_service_admin?: false, is_public_servant?: true, service_id: 'service-id'
+        admin = double :admin, is_service_admin?: false, is_public_servant?: true, services: [service]
         permissions = permissions_for_user(admin)
         expect(permissions.can_manage_service_requests?(service)).to be
       end
@@ -48,7 +48,7 @@ module ServiceAdmins
 
       it 'unless public servant and has NOT been assigned to service' do
         service = double :service, id: 'service-id'
-        admin = double :admin, is_service_admin?: false, is_public_servant?: true, service_id: 'other-service-id'
+        admin = double :admin, is_service_admin?: false, is_public_servant?: true, services: []
         permissions = permissions_for_user(admin)
         expect(permissions.can_manage_service_requests?(service)).not_to be
       end

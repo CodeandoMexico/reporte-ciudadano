@@ -65,7 +65,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   def notify_public_servants
-    public_servants = @service_request.service.public_servants
+    public_servants = @service_request.service.admins
     public_servants.each do |public_servant|
       AdminMailer.notify_new_request(admin: public_servant, service_request: @service_request).deliver
     end

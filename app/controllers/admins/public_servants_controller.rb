@@ -1,5 +1,5 @@
 class Admins::PublicServantsController < ApplicationController
-  helper_method :dependency_options, :administrative_unit_options
+  helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?
   layout 'admins'
 
   def index
@@ -58,7 +58,7 @@ class Admins::PublicServantsController < ApplicationController
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(managed_services: services, password: password, password_confirmation: password, is_public_servant: true)
+      .merge(services: services, password: password, password_confirmation: password, is_public_servant: true)
   end
 
   def password
@@ -75,5 +75,9 @@ class Admins::PublicServantsController < ApplicationController
 
   def administrative_unit_options
     Services.service_administrative_unit_options
+  end
+
+  def is_assigned_to_public_servant?(service, public_servant)
+    Services.is_assigned_to_public_servant?(service, public_servant)
   end
 end
