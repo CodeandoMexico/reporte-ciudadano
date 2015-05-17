@@ -1,4 +1,5 @@
 class Admins::DashboardsController < Admins::AdminController
+  before_action :authorize_admin, only: :index
 
   def design
     @logos = Logo.by_position
@@ -23,6 +24,12 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   private
+
+  def authorize_admin
+    if current_admin.is_public_servant?
+      redirect_to admins_service_requests_path
+    end
+  end
 
   def admin_requests
     @requests ||= Admins.service_requests_for(current_admin, params)
