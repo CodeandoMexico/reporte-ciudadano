@@ -31,7 +31,7 @@ feature 'As a public servant I can see every service request from assigned servi
     end
 
     visit admins_service_path(service)
-    expect(current_path).to eq admins_dashboards_path
+    expect(current_path).to eq admins_service_requests_path
     expect(services_request_count).to eq 0
   end
 
@@ -57,7 +57,7 @@ feature 'As a public servant I can see every service request from assigned servi
     expect(page).to have_content "Actualizar reporte"
 
     visit edit_admins_service_request_path(other_service)
-    expect(current_path).to eq admins_dashboards_path
+    expect(current_path).to eq admins_service_requests_path
   end
 
   def given_services_assigned_to(admin, services)
