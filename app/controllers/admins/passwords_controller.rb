@@ -4,7 +4,7 @@ class Admins::PasswordsController < Devise::PasswordsController
   protected
 
   def after_sending_reset_password_instructions_path_for(resource_name)
-    admins_dashboards_path
+    new_admin_session_path
   end
 
   def after_resetting_password_path_for(resource)
