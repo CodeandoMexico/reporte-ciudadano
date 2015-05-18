@@ -12,6 +12,8 @@ class Service < ActiveRecord::Base
   accepts_nested_attributes_for :service_fields, allow_destroy: true
   accepts_nested_attributes_for :messages, allow_destroy: true, reject_if: lambda { |attr| attr[:content].blank? }
 
+  serialize :cis, Array
+
   def service_fields_names
     self.service_fields.map(&:name).join(', ')
   end

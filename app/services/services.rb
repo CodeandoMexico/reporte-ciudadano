@@ -12,11 +12,17 @@ module Services
   end
 
   def self.service_cis_options
-    load_values(:cis).fetch("cis").values
+    load_values(:cis).map do |cis|
+      { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }
+    end
   end
 
   def self.is_assigned_to_public_servant?(service, public_servant)
     public_servant.services.include?(service)
+  end
+
+  def self.is_assigned_to_cis?(service, cis)
+    service.cis.include? cis.fetch(:id).to_s
   end
 
   private

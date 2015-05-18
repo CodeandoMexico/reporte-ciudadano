@@ -360,7 +360,7 @@ es:
         service_type: "Tipo"
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
-        cis: "Centro de atención"
+        cis: "Centros de atención"
         service_type_options:
           step: "Trámite"
           service: "Servicio"
@@ -479,7 +479,7 @@ es:
       administrative_unit: "Unidad administrativa"
       charge: "Cargo"
       service_type: "Tipo de servicio"
-      cis: "Centro de atención"
+      cis: "Centros de atención"
       admin_id: "Administrador de servicio"
     placeholders:
       email: "correo@correo.com"

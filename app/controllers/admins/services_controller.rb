@@ -1,6 +1,6 @@
 class Admins::ServicesController < Admins::AdminController
   before_action :authorize_admin, only: :show
-  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options
+  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?
 
   def index
     @services = Service.all
@@ -50,6 +50,10 @@ class Admins::ServicesController < Admins::AdminController
 
   private
 
+  def is_assigned_to_cis?(service, cis)
+    Services.is_assigned_to_cis?(service, cis)
+  end
+
   def authorize_admin
     permissions = Admins.permissions_for_admin(current_admin)
     unless permissions.can_manage_service_requests?(current_service)
@@ -78,6 +82,6 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def service_params
-    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :cis, :service_admin_id, messages: [:content, :status_id], service_fields: [:name])
+    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
   end
 end

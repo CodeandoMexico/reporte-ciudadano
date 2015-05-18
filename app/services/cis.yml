@@ -1,5 +1,13 @@
-cis:
-  1: "Centro 1"
-  2: "Centro 2"
-  3: "Centro 3"
-  4: "Centro 4"
+---
+- :id: 1
+  :name: "Centro 1"
+  :address: "Calle 1 Colonia 1 CP 11111"
+- :id: 2
+  :name: "Centro 2"
+  :address: "Calle 2 Colonia 2 CP 22222"
+- :id: 3
+  :name: "Centro 3"
+  :address: "Calle 3 Colonia 3 CP 33333"
+- :id: 4
+  :name: "Centro 4"
+  :address: "Calle 4 Colonia 4 CP 44444"
