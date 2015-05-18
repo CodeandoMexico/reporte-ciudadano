@@ -31,7 +31,7 @@
         - service_cis_options.each do |cis|
           .checkbox
             = f.check_box :cis, { multiple: true, checked: is_assigned_to_cis?(@service, cis) }, cis[:id], nil
-            = f.label :services_ids, cis[:label], value: cis[:id]
+            = f.label :cis, cis[:label], value: cis[:id]
   %fieldset
     .form-group
       = f.label :service_admin_id, t('form.labels.admin_id'), class: 'col-lg-2 control-label'
