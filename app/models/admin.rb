@@ -4,15 +4,16 @@ class Admin < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-  #before_save :ensure_authentication_token
-
-  # attr_accessible :title, :body
+  before_create :generate_authentication_token
 
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
-  has_many :managed_services, class: Service
+  has_many :managed_services, class: Service, foreign_key: :service_admin_id
+  has_many :managed_service_requests, through: :managed_services, source: :service_requests
   has_one :api_key
-  belongs_to :service
+  has_and_belongs_to_many :services
+  has_many :assigned_service_requests, through: :services, source: :service_requests
+
   mount_uploader :avatar, AvatarUploader
 
   def to_s
@@ -51,10 +52,6 @@ class Admin < ActiveRecord::Base
     !(is_service_admin || is_public_servant)
   end
 
-  def has_service_assigned?
-    service.present?
-  end
-
   def assigned_service_name
     service.name
   end
@@ -65,5 +62,24 @@ class Admin < ActiveRecord::Base
 
   def inactive_message
     I18n.t("flash.public_servant.disabled_admin")
+  end
+
+  def is_active?
+    active
+  end
+
+  def has_no_services?
+    services.empty?
+  end
+
+  def services_names
+    services.pluck(:name).join(", ")
+  end
+
+  private
+
+  def generate_authentication_token
+    token_generator = UniqueTokenGenerator.new(Admin, :authentication_token)
+    self.authentication_token = token_generator.generate_token
   end
 end

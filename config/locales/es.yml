@@ -236,18 +236,30 @@ es:
         design: "Diseño"
         api: "API"
         edit_profile: "Editar perfil"
+        sign_out: "Cerrar sesión"
         service_admins: "Administradores de servicios"
         public_servants: "Servidores Públicos"
-        all_services: "Ver servicios"
+        services: "Servicios"
         no_requests: "No tiene servicios asignados"
+        change_password: "Cambiar contraseña"
     sessions:
       new:
         header: "Iniciar sesión"
         submit: "Entrar"
         remember_me: "Recuérdame"
+        forgot_password: "Olvidé mi contraseña"
+    passwords:
+      new:
+        forgot_password: "¿ Olvidaste tu contraseña ?"
+        send_instructions: "Enviar instrucciones"
     registrations:
       edit:
         header: "Editar perfil"
+        change_password: "Cambiar contraseña"
+      set_password:
+        change_password: "Cambiar contraseña"
+        new_password: "Nueva contraseña"
+        confirm_new_password: "Confirma la nueva contraseña"
     design:
       new_logo: "Agregar logo"
     services:
@@ -291,6 +303,7 @@ es:
       index:
         id: '#'
         name: "Nombre completo"
+        email: "Correo electrónico"
         record_number: "Número de expediente"
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
@@ -317,9 +330,9 @@ es:
         disable: "Desactivar"
         disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
         enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
-        assign_service: "Asignar servicio"
+        assign_services: "Asignar servicios"
         assign: "Asignar"
-        service: "Servicio"
+        services: "Servicios"
         enabled: "Activos"
         disabled: "Inactivos"
         enable: "Activar"
@@ -328,6 +341,9 @@ es:
       edit:
         edit_public_servant: "Editar servidor público"
         update: "Actualizar"
+      assign_services:
+        assign_services: "Asignar servicios"
+        assign: "Asignar"
     dashboards:
       design:
         header: "Diseño"
@@ -344,7 +360,7 @@ es:
         service_type: "Tipo"
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
-        cis: "Centro de atención"
+        cis: "Centros de atención"
         service_type_options:
           step: "Trámite"
           service: "Servicio"
@@ -463,18 +479,18 @@ es:
       administrative_unit: "Unidad administrativa"
       charge: "Cargo"
       service_type: "Tipo de servicio"
-      cis: "Centro de atención"
+      cis: "Centros de atención"
       admin_id: "Administrador de servicio"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
       current_password: "contraseña actual"
+      new_password: "Nueva contraseña"
+      confirm_password: "Confirmar nueva contraseña"
     errors:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
     options:
       service_type_select: "Selecciona tipo de servicio"
-      dependency_select: "Selecciona Dependencia"
-      administrative_unit_select: "Seleccciona Unidad administrativa"
       cis_select: "Selecciona Centro de atención"
       admin_select: "Selecciona Administrador de servicio"
 
@@ -518,6 +534,7 @@ es:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
     admin:
+      password_updated: "La contraseña se ha actualizado con éxito."
       updated: 'El perfil fue editado satisfactoriamente.'
     logo:
       created: 'Logo creado correctamente.'

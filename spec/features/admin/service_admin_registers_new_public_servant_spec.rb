@@ -30,6 +30,7 @@ feature 'As a service admin I can create new public servant' do
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
+    expect(page).not_to have_content "Dependencia 2"
     select "Dependencia 1", from: "admin[dependency]"
     select "Unidad administrativa 2", from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Servidor"

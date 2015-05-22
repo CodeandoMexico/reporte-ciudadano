@@ -9,7 +9,7 @@ feature 'As a service admin I can see managed service requests' do
   end
 
   scenario 'I can see the dashboard with every service request' do
-    managed_services = create_list(:service, 2, admin_id: admin.id)
+    managed_services = create_list(:service, 2, service_admin_id: admin.id)
     given_service_has_info(managed_services.first, name: "Primer servicio", requests: 2)
     given_service_has_info(managed_services.last, name: "Segundo servicio", requests: 3)
 

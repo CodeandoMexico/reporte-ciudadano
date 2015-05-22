@@ -17,7 +17,9 @@ class ServiceRequestsController < ApplicationController
 
   def create
     @service_request = current_user.service_requests.build(service_request_params)
+
     if @service_request.save
+      notify_public_servants
       redirect_to root_path, flash: { success: 'La solicitud fue creada satisfactoriamente' }
     else
       flash[:notice] = "Hubo problemas, intenta de nuevo"
@@ -47,6 +49,13 @@ class ServiceRequestsController < ApplicationController
   end
 
   private
+
+  def notify_public_servants
+    public_servants = @service_request.public_servants
+    public_servants.each do |public_servant|
+      AdminMailer.notify_new_request(admin: public_servant, service_request: @service_request).deliver
+    end
+  end
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)

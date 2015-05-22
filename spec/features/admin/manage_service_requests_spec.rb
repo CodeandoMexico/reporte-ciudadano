@@ -30,9 +30,8 @@ feature 'As an admin I can manage service requests' do
   end
 
   scenario 'I can create a service request' do
-    services = create_list(:service, 2)
-    first_service = services.first
-
+    first_service = create :service, name: 'my srv'
+    public_servant = create :admin, :public_servant, services: [first_service]
     visit new_admins_service_request_path
     select first_service.name, from: 'service_request[service_id]'
 
@@ -41,6 +40,7 @@ feature 'As an admin I can manage service requests' do
     fill_in 'service_request[description]', with: 'Request description'
     click_button t('save')
 
+    expect_service_request_email_sent_to public_servant.email
     expect(page).to have_content t('flash.service_requests.created')
   end
 
@@ -136,5 +136,11 @@ feature 'As an admin I can manage service requests' do
   def given_service_with_extra_fields(service)
     create :service_field, name: "field one", service: service
     create :service_field, name: "field two", service: service
+  end
+
+  def expect_service_request_email_sent_to(email)
+    last_email = ActionMailer::Base.deliveries.last || :no_email_sent
+    expect(last_email.to).to include(email)
+    expect(last_email.subject).to include "Nuevo reporte de servicio"
   end
 end

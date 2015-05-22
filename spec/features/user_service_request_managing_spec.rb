@@ -52,7 +52,7 @@ feature 'Managing service requests' do
     scenario 'can search for service requests by service' do
       service_requests = create_list(:service_request, 3)
       first_service = service_requests.first
-      
+
       visit service_requests_path
       within '#service_request_search' do
         select first_service.service.name, from: 'q[service_id_eq]'
@@ -90,15 +90,19 @@ feature 'Managing service requests' do
 
     scenario 'can create a new service request successfully' do
       service = create(:service)
+      public_servant = create(:admin, :public_servant, services: [service])
+
       visit new_service_request_path
       within '#new_service_request' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
+        set_location_as(lat: "12.12", lng: "12.13")
         select service.name, from: 'service_request[service_id]'
         click_button  'Guardar'
       end
       expect(page).to have_content '123 Governor Dr, San Diego, CA 92122'
+      expect_service_request_email_sent_to public_servant.email
     end
 
     scenario 'can vote on an service request', js: true do
@@ -118,6 +122,17 @@ feature 'Managing service requests' do
       expect(current_url).to eq service_request_url(service_request)
       expect(page).to have_content(comment_content)
       expect(page).to have_xpath("//img[@src=\"/uploads/comment/image/1/comment_avatar.png\"]")
+    end
+
+    def set_location_as(lat:, lng:)
+      find("#lat").set(lat)
+      find("#lng").set(lng)
+    end
+
+    def expect_service_request_email_sent_to(email)
+      last_email = ActionMailer::Base.deliveries.last || :no_email_sent
+      expect(last_email.to).to include(email)
+      expect(last_email.subject).to include "Nuevo reporte de servicio"
     end
   end
 end

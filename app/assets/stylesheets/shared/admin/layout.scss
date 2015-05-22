@@ -34,6 +34,11 @@
   li {
     line-height: 40px;
     text-indent: 20px;
+
+    .sidebar-info-text {
+      color: #ffffff;
+    }
+
     a {
       color: #999999;
       display: block;
@@ -62,13 +67,12 @@
     border-top: 1px dotted #666;
   }
 
-  ul.dropdown-menu {
-    background: rgba(255,255,255,0.2);
-    position: relative;
+  .caret {
+    border-top:4px solid #999999;
   }
 
-  .dropdown .caret {
-    border-top:4px solid #999999;
+  ul {
+    list-style: none;
   }
 }
 

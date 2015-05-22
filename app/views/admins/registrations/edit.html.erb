@@ -1,0 +1,88 @@
+<div class="content-header">
+  <h1><%= t('.header') %></h1>
+</div>
+
+<div class="page-content inset">
+  <%= form_for [:admins, @admin], url: admins_registration_path, html: { method: :put, role: 'form'}  do |f| %>
+
+    <div class="form-group">
+      <%= f.label :name, t('form.labels.name') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: t('form.labels.name') %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :avatar, t('form.labels.profile_picture') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= image_tag @admin.avatar_url(:thumb), class: 'pull-left l-margin-s-right' if @admin.avatar_url %>
+          <%= f.file_field :avatar, class: 'pull-left' %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, t('form.labels.email') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :email, class: 'form-control', placeholder: t('form.placeholders.email') %>
+          <%= errors_on_resource_for_field(@admin, :email) %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :dependency, t('form.labels.dependency') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :dependency, class: 'form-control', disabled: 'disabled' %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :administrative_unit, t('form.labels.administrative_unit') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :administrative_unit, class: 'form-control', disabled: 'disabled' %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit t('update'), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<hr/>
+<div class="page-content inset">
+  <%= form_for [:admins, @admin], url: update_password_admins_registration_path, html: { method: :put, role: 'form'}  do |f| %>
+    <h3><%= t('.change_password') %></h3>
+    <div class="form-group">
+      <%= f.label :current_password, t('form.labels.current_password') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, t('form.labels.password') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, t('form.labels.password_confirmation') %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit t('.change_password'), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

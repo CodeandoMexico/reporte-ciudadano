@@ -24,8 +24,9 @@ feature 'As an admin I can manage requests services' do
     select "Trámite", from: "service[service_type]"
     select "Dependencia 2", from: "service[dependency]"
     select "Unidad administrativa 2", from: "service[administrative_unit]"
-    select "Centro 2", from: "service[cis]"
-    select service_admin.name, from: "service[admin_id]"
+    check "service_cis_1"
+    check "service_cis_2"
+    select service_admin.name, from: "service[service_admin_id]"
 
     click_button 'Guardar'
     expect(page).to have_content t('flash.service.created')
@@ -34,7 +35,8 @@ feature 'As an admin I can manage requests services' do
     expect(page).to have_content "Trámite"
     expect(page).to have_content "Dependencia 2"
     expect(page).to have_content "Unidad administrativa 2"
-    expect(page).to have_content "Centro 2"
+    expect(cis("service_cis_1")).to be_checked
+    expect(cis("service_cis_2")).to be_checked
     expect(page).to have_content service_admin.name
   end
 
@@ -78,6 +80,10 @@ feature 'As an admin I can manage requests services' do
     click_button 'Guardar'
 
     expect(page).to have_content t('flash.service.created')
+  end
+
+  def cis(cis)
+    find("##{cis}")
   end
 
   def destroy_link

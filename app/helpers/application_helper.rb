@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def flash_class(level)
-    case level
+    case level.to_sym
       when :notice then "alert alert-info"
       when :success then "alert alert-success"
       when :error then "alert alert-danger"
@@ -47,5 +47,7 @@ module ApplicationHelper
     end
   end
 
-
+  def i18n_admin_sidebar(option)
+    t("admins.shared.sidebar.#{option}")
+  end
 end

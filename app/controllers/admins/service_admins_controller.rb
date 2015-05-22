@@ -11,7 +11,7 @@ class Admins::ServiceAdminsController < ApplicationController
   def create
     @admin = Admin.new(service_admin_params)
     if @admin.save
-      AdminMailer.send_service_admin_account(admin: @admin, password: @password).deliver
+      AdminMailer.send_service_admin_account(admin: @admin).deliver
       redirect_to admins_service_admins_path, notice: t('flash.service_admin.created')
     else
       render :new
@@ -24,12 +24,12 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def edit
     @admin = Admin.find(params[:id])
-    @services = Service.for_user(@admin)
+    @services = Service.for_service_admin(@admin)
   end
 
   def update
     @admin = Admin.find(params[:id])
-    @services = Service.for_user(@admin)
+    @services = Service.for_service_admin(@admin)
     if @admin.update_attributes(service_admin_params)
       redirect_to admins_service_admins_path, notice: t('flash.service_admin.updated')
     else
@@ -40,7 +40,7 @@ class Admins::ServiceAdminsController < ApplicationController
   private
 
   def verify_super_admin_access
-    @permissions = ServiceAdmins.permissions_for_admin(current_admin)
+    @permissions = Admins.permissions_for_admin(current_admin)
     unless @permissions.can_manage_service_admins?
       redirect_to admins_dashboards_path
     end

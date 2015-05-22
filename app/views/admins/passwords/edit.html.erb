@@ -1,0 +1,15 @@
+<div class="change-password">
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, class: 'form-short-stacked' }) do |f| %>
+    <h2 class="form-header">Cambia tu contraseña</h2>
+
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <%= f.password_field :password, :autofocus => true, class: 'form-control top-field', placeholder:  t('form.placeholders.new_password') %>
+    <%= f.password_field :password_confirmation, class: 'form-control bottom-field', placeholder: t('form.placeholders.confirm_password') %>
+
+    <div class="actions">
+      <%= f.submit "Cambiar contraseña", class: "btn btn-lg btn-primary btn-block" %>
+    </div>
+  <% end %>
+</div>

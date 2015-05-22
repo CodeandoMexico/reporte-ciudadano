@@ -1,0 +1,17 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-short-stacked' }) do |f| %>
+  <h2><%= t(".header") %></h2>
+  <%= f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: t('form.placeholders.email') %>
+  <%= f.password_field :password, placeholder: t('form.placeholders.password'), class: 'form-control bottom-field' %>
+  <% if devise_mapping.rememberable? %>
+    <div>
+      <%= f.label :remember_me do %>
+        <%= f.check_box :remember_me %>
+        <%= t('.remember_me') %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit t(".submit"), class: 'btn btn-lg btn-primary btn-block' %>
+    <%= link_to t(".forgot_password"), new_password_path(resource_name) %><br />
+  </div>
+<% end %>

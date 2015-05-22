@@ -6,22 +6,27 @@ class Service < ActiveRecord::Base
 
   has_many :service_fields
   has_many :messages
-  has_many :public_servants, class: Admin
-  belongs_to :service_admin, class: Admin
+  belongs_to :service_admin, class: Admin, foreign_key: :service_admin_id
+  has_and_belongs_to_many :admins
+
   accepts_nested_attributes_for :service_fields, allow_destroy: true
   accepts_nested_attributes_for :messages, allow_destroy: true, reject_if: lambda { |attr| attr[:content].blank? }
+
+  serialize :cis, Array
 
   def service_fields_names
     self.service_fields.map(&:name).join(', ')
   end
 
-  def self.chart_data
+  def self.chart_data(service_admin_id: nil)
     count_query = Status.all.map do |status|
       "count(case when status_id = '#{status.id}' then 1 end) as status_#{status.id}"
     end.join(",")
     select_clause = "services.id, services.name"
     select_clause = "#{select_clause}, #{count_query}" unless count_query.blank?
-    query = Service.joins('LEFT OUTER JOIN service_requests ON services.id = service_requests.service_id')
+    query = Service
+    query = query.where(service_admin_id: service_admin_id) if service_admin_id.present?
+    query = query.joins('LEFT OUTER JOIN service_requests ON services.id = service_requests.service_id')
     query = query.select(select_clause)
     query = query.group('services.id')
     query = query.order('services.id')
@@ -32,10 +37,10 @@ class Service < ActiveRecord::Base
   end
 
   def self.unmanaged
-    where(admin_id: nil)
+    where(service_admin_id: nil)
   end
 
-  def self.for_user(user)
-    where("admin_id IS NULL OR admin_id = #{user.id}")
+  def self.for_service_admin(admin)
+    where("service_admin_id IS NULL OR service_admin_id = #{admin.id}")
   end
 end

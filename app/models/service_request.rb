@@ -15,6 +15,7 @@ class ServiceRequest < ActiveRecord::Base
   belongs_to :requester, polymorphic: true
   belongs_to :status
   has_many :comments
+  has_many :public_servants, through: :service, source: :admins
 
   serialize :service_fields, JSON
 
@@ -113,6 +114,14 @@ class ServiceRequest < ActiveRecord::Base
 
   ransacker :date do
     Arel.sql('date(created_at)')
+  end
+
+  def closed?
+    status_id == 4
+  end
+
+  def open?
+    !closed?
   end
 
   private

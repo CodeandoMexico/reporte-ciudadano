@@ -1,11 +1,10 @@
 class Admins::PublicServantsController < ApplicationController
-  helper_method :dependency_options, :administrative_unit_options
+  helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?
   layout 'admins'
 
   def index
     @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
     @disabled_public_servants = Admin.disabled_public_servants_by_dependency(current_admin.dependency)
-    @available_services = current_admin.managed_services
   end
 
   def new
@@ -15,7 +14,7 @@ class Admins::PublicServantsController < ApplicationController
   def create
     @admin = Admin.new(public_servant_params)
     if @admin.save
-      AdminMailer.send_public_servant_account(admin: @admin, password: @password).deliver
+      AdminMailer.send_public_servant_account(admin: @admin).deliver
       redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
     else
       render :new
@@ -47,13 +46,19 @@ class Admins::PublicServantsController < ApplicationController
     redirect_to admins_public_servants_path, notice: t('flash.public_servant.enabled')
   end
 
+  def assign_services
+    @public_servant = Admin.find(params[:id])
+    @available_services = current_admin.managed_services
+  end
+
   private
 
   def public_servant_params
+    services = Service.where(id: params[:admin][:services_ids])
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :service_id)
-      .merge(password: password, password_confirmation: password, is_public_servant: true)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
+      .merge(services: services, password: password, password_confirmation: password, is_public_servant: true)
   end
 
   def password
@@ -61,10 +66,18 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def dependency_options
-    Services.service_dependency_options
+    if current_admin.is_super_admin?
+      Services.service_dependency_options
+    else
+      [current_admin.dependency]
+    end
   end
 
   def administrative_unit_options
     Services.service_administrative_unit_options
+  end
+
+  def is_assigned_to_public_servant?(service, public_servant)
+    Services.is_assigned_to_public_servant?(service, public_servant)
   end
 end

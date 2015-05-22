@@ -1,0 +1,43 @@
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <%= link_to i18n_admin_sidebar('.dashboard'), admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to "#service_requests_menu", id: "collapse_service_requests", "data-toggle" => "collapse" do %>
+        <%= i18n_admin_sidebar('.requests') %>
+        <span class="caret"></span>
+      <% end %>
+      <ul class="js-collapse collapse" id="service_requests_menu">
+        <% current_admin.services.each do |service| %>
+          <li class="sidebar-info-text">
+            <%= link_to service.name, admins_service_path(service) %>
+          </li>
+        <% end %>
+        <% if current_admin.has_no_services? %>
+          <li class="sidebar-info-text"><em><%= i18n_admin_sidebar(".no_requests") %></em></li>
+        <% end %>
+      </ul>
+    </li>
+    <hr>
+    <li class="admin-email">
+      <i class="glyphicon glyphicon-user"></i>
+      <%= current_admin.email %>
+    </li>
+    <li>
+      <%= link_to edit_admins_registration_path(current_admin) do %>
+        <i class="glyphicon glyphicon-cog"></i>
+        <%= i18n_admin_sidebar('.edit_profile') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to destroy_admin_session_path, method: :delete do %>
+        <i class="glyphicon glyphicon-off"></i>
+        <%= i18n_admin_sidebar('sign_out') %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+
+
