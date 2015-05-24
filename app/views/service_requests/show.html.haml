@@ -4,12 +4,9 @@
       %h2.report-show-title
         = "##{@service_request.id}"
         = @service_request.service.name
-      .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 300px;"}
       .report-show-information
         %p= @service_request.address
         %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
-
-
 
       .stream
         .activity.start

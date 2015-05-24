@@ -7,7 +7,6 @@
   .report-show
     .row
       .col-md-8
-        .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 200px;"}
         .report-show-information
           = t('.address', address: @service_request.address)
           %p= t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))

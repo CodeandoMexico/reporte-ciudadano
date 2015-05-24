@@ -67,7 +67,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng).tap do |whitelisted|
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
     end
   end

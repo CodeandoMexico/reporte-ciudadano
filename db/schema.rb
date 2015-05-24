@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518191031) do
+ActiveRecord::Schema.define(version: 20150523211733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,8 +123,6 @@ ActiveRecord::Schema.define(version: 20150518191031) do
 
   create_table "service_requests", force: :cascade do |t|
     t.text     "description",    default: ""
-    t.string   "lat",            default: ""
-    t.string   "lng",            default: ""
     t.boolean  "anonymous",      default: false
     t.text     "service_fields", default: "{}"
     t.text     "address",        default: ""
