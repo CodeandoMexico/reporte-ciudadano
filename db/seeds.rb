@@ -27,7 +27,7 @@ status = Status.first
 c = Service.create(
   name: "Acta de Nacimiento",
   service_admin_id: service_admin_1.id,
-  cis: ['Centro 1', 'Centro 2'],
+  cis: ['1', '2'],
   administrative_unit: "Unidad administrativa 1",
   service_type: :step,
   admins: [public_servant_1]
@@ -44,7 +44,7 @@ user.service_requests.build(r)
 c = Service.create(
   name: "Cambio de placas",
   service_admin_id: service_admin_2.id,
-  cis: ['Centro 3'],
+  cis: ['3'],
   administrative_unit: "Unidad administrativa 2",
   service_type: :service,
   admins: [public_servant_2]
@@ -61,7 +61,7 @@ user.service_requests.build(r).save
 c = Service.create(
   name: "Pago de predial",
   service_admin_id: service_admin_3.id,
-  cis: ['Centro 2', 'Centro 3'],
+  cis: ['2', '3'],
   administrative_unit: "Unidad administrativa 3",
   service_type: :support_program,
   admins: [public_servant_3]
