@@ -9,7 +9,10 @@
       .col-md-8
         .report-show-information
           = t('.address', address: @service_request.address)
-          %p= t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
+          %p
+            = t('.cis', cis: service_cis_label(@service_request.cis))
+          %p
+            = t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
 
         .stream
           .activity.start

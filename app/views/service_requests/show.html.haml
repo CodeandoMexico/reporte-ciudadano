@@ -6,6 +6,7 @@
         = @service_request.service.name
       .report-show-information
         %p= @service_request.address
+        %p= service_cis_label(@service_request.cis)
         %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
 
       .stream

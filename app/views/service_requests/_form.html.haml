@@ -20,6 +20,16 @@
     = errors_on_resource_for_field(@service_request, :description)
 
 .form-group
+  = f.label :cis, t('form.labels.cis'), class: 'col-md-2 control-label'
+  .col-md-10
+    %ul.list-unstyled
+      - service_cis_options.each do |cis|
+        %li
+          %label
+            = f.radio_button :cis, cis[:id]
+            = cis[:label]
+
+.form-group
   = f.label :media, t('form.labels.image'), class: 'col-md-2 control-label'
   .col-md-10
     = f.file_field :media, class: 'js-image-preview'

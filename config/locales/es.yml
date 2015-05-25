@@ -378,6 +378,7 @@ es:
     service_requests:
       edit:
         address: "Dirección: %{address}"
+        cis: "Centro de atención: %{cis}"
         time_ago: "Hace %{created_at}"
         status: "Estatus: %{status}"
         user_id: "ID del usuario: %{id}"
