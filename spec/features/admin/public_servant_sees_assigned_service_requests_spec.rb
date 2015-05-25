@@ -11,7 +11,7 @@ feature 'As a public servant I can see every service request from assigned servi
     sign_in_admin admin
 
     within '.sidebar-nav' do
-      click_link "Reportes"
+      click_link "Quejas o sugerencias"
       click_link "Mi servicio"
     end
 
@@ -26,7 +26,7 @@ feature 'As a public servant I can see every service request from assigned servi
     sign_in_admin admin
 
     within '.sidebar-nav' do
-      click_link "Reportes"
+      click_link "Quejas o sugerencias"
       expect(page).not_to have_link "Otro servicio"
     end
 
@@ -44,7 +44,7 @@ feature 'As a public servant I can see every service request from assigned servi
 
     sign_in_admin admin
     within '.sidebar-nav' do
-      click_link "Reportes"
+      click_link "Quejas o sugerencias"
       click_link "Mi servicio"
     end
 
@@ -54,7 +54,7 @@ feature 'As a public servant I can see every service request from assigned servi
 
     expect(current_path).to eq edit_admins_service_request_path(service)
     expect(page).to have_content "Votos"
-    expect(page).to have_content "Actualizar reporte"
+    expect(page).to have_content "Actualizar queja o sugerencia"
 
     visit edit_admins_service_request_path(other_service)
     expect(current_path).to eq admins_service_requests_path

@@ -9,7 +9,7 @@ feature 'As an admin I can manage service requests' do
     sign_in_admin admin
   end
 
-  scenario 'I can see a the service requests index list' do
+  scenario 'I can see the service requests index list' do
     service_requests = create_list(:service_request, 3)
     within '.sidebar-nav' do
       click_link t('admins.shared.sidebar.requests')
@@ -36,12 +36,14 @@ feature 'As an admin I can manage service requests' do
     select first_service.name, from: 'service_request[service_id]'
 
     fill_in 'service_request[address]', with: 'An address #111'
-    set_location_as(lat: "12.12", lng: "12.13")
     fill_in 'service_request[description]', with: 'Request description'
+    choose "Centro 2 - Calle 2 Colonia 2 CP 22222"
     click_button t('save')
 
     expect_service_request_email_sent_to public_servant.email
     expect(page).to have_content t('flash.service_requests.created')
+    expect(page).to have_content 'Request description'
+    expect(page).to have_content 'Centro 2 - Calle 2 Colonia 2 CP 22222'
   end
 
   scenario 'I can see the service extra fields when creating a request', js: true do
@@ -126,11 +128,6 @@ feature 'As an admin I can manage service requests' do
     visit edit_admins_service_request_path(service_request)
     page.find("a[href='#{comment_path(comment)}']").click
     expect(page).not_to have_content comment.content
-  end
-
-  def set_location_as(lat:, lng:)
-    find("#lat").set(lat)
-    find("#lng").set(lng)
   end
 
   def given_service_with_extra_fields(service)
