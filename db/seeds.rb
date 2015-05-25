@@ -32,14 +32,13 @@ c = Service.create(
   service_type: :step,
   admins: [public_servant_1]
 )
-
 r = {
   service_id: c.id,
   description: "Descripción reporte acta de nacimiento.",
   address: "Calle Benito Juarez",
   status_id: status.id
 }
-user.service_requests.build(r)
+user.service_requests.build(r).save
 
 c = Service.create(
   name: "Cambio de placas",
