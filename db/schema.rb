@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525002630) do
+ActiveRecord::Schema.define(version: 20150526204713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,16 @@ ActiveRecord::Schema.define(version: 20150525002630) do
   add_index "service_requests", ["service_id"], name: "index_service_requests_on_service_id", using: :btree
   add_index "service_requests", ["status_id"], name: "index_service_requests_on_status_id", using: :btree
 
+  create_table "service_surveys", force: :cascade do |t|
+    t.string   "title"
+    t.string   "phase"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "admin_id"
+  end
+
+  add_index "service_surveys", ["admin_id"], name: "index_service_surveys_on_admin_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -152,6 +162,11 @@ ActiveRecord::Schema.define(version: 20150525002630) do
   end
 
   add_index "services", ["service_admin_id"], name: "index_services_on_service_admin_id", using: :btree
+
+  create_table "services_service_surveys", force: :cascade do |t|
+    t.integer "service_id",        null: false
+    t.integer "service_survey_id", null: false
+  end
 
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
@@ -195,4 +210,5 @@ ActiveRecord::Schema.define(version: 20150525002630) do
   add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
+  add_foreign_key "service_surveys", "admins"
 end

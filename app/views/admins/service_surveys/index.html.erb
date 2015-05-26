@@ -1,0 +1,31 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('.service_surveys') %>
+    <div class="btn-group pull-right">
+      <%= link_to t('.new_service_survey'), new_admins_service_survey_path, class: 'btn btn-primary' %>
+    </div>
+  </h2>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t(".title") %></th>
+          <th><%= t(".services") %></th>
+          <th><%= t(".phase") %></th>
+          <th><%= t(".admin") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_surveys.each do |survey| %>
+          <tr class="service_survey">
+            <td><%= survey.title %></td>
+            <td><%= survey.services_names %></td>
+            <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
+            <td><%= survey.admin_name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

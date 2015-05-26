@@ -40,6 +40,8 @@ Rails.application.routes.draw do
         get 'dashboard'
       end
     end
+
+    resources :service_surveys, only: [:index, :new, :create]
     resources :dashboards, only: [:index] do
       collection do
         get 'design'

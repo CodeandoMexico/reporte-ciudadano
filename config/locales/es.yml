@@ -242,6 +242,7 @@ es:
         services: "Servicios"
         no_requests: "No tiene servicios asignados"
         change_password: "Cambiar contraseña"
+        service_surveys: "Encuestas de servicio"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -344,6 +345,20 @@ es:
       assign_services:
         assign_services: "Asignar servicios"
         assign: "Asignar"
+    service_surveys:
+      index:
+        service_surveys: "Encuestas de servicio"
+        new_service_survey: "Crear nueva encuesta"
+        title: "Título"
+        phase: "Etapa"
+        services: "Servicios"
+        admin: "Administrador de servicio"
+      new:
+        new_service_survey: "Nueva encuesta de servicio"
+        phase_options:
+          start: "Al inicio"
+          middle: "A la mitad"
+          end: "Al cierre"
     dashboards:
       design:
         header: "Diseño"
@@ -482,6 +497,8 @@ es:
       service_type: "Tipo de servicio"
       cis: "Centros de atención"
       admin_id: "Administrador de servicio"
+      services: "Servicios"
+      phase: "Etapa de la encuesta"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
@@ -550,6 +567,8 @@ es:
       disabled: "El servidor público se ha desactivado exitosamente."
       enabled: "El servidor público se ha activado exitosamente."
       disabled_admin: "Tu cuenta ha sido desactivada, por favor contacta a tu Administrador."
+    service_survey:
+      created: "La encuesta se ha creado exitosamente."
   navbar:
     admin:
       design: "Diseño"
@@ -558,5 +577,9 @@ es:
     service: "Servicio"
     step: "Trámite"
     support_program: "Programa de Apoyo"
+  service_survey_phase_options:
+    start: "Al inicio"
+    middle: "A la mitad"
+    end: "Al cierre"
 
 
