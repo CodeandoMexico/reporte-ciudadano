@@ -47,6 +47,42 @@
             </div>
           </div>
         </fieldset>
+
+        <div class="well">
+          <%= f.fields_for :questions do |q| %>
+            <div class="row">
+              <%= q.label :criterion, t('form.labels.criterion'), class: 'col-md-2 text-right' %>
+              <div class="col-md-2">
+                <%= q.select :criterion, criterion_options %>
+              </div>
+            </div>
+            <div class="row">
+              <%= q.label :text, t('form.labels.text'), class: 'col-md-2 text-right' %>
+              <div class="col-md-5">
+                <%= q.text_field :text, class: "form-control" %>
+              </div>
+            </div>
+            <div class="row">
+              <%= q.label :answer_type, t('form.labels.answer_type'), class: 'col-md-2 text-right' %>
+              <div class="col-md-2">
+                <%= q.select :answer_type, answer_type_options, { prompt: I18n.t("form.options.answer_type_select") }, { class: "js-answer-selection" } %>
+              </div>
+            </div>
+            <div id="binary" class="row hidden js-answer-wrapper">
+              <div class="well col-md-6 col-md-offset-2">
+                <p class="text-muted">
+                  <%= radio_button_tag :answer, :yes, false, disabled: true %>
+                  <em><%= t('answer_type.binary.positive') %></em>
+                </p>
+                <p class="text-muted">
+                  <%= radio_button_tag :answer, :no, false, disabled: true %>
+                  <em><%= t('answer_type.binary.negative') %></em>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
         <div class="actions col-md-2">
           <%= f.submit "Guardar", class: 'btn btn-primary' %>
         </div>

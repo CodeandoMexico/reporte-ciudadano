@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526204713) do
+ActiveRecord::Schema.define(version: 20150527182315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,19 @@ ActiveRecord::Schema.define(version: 20150526204713) do
   add_index "messages", ["service_id"], name: "index_messages_on_service_id", using: :btree
   add_index "messages", ["status_id"], name: "index_messages_on_status_id", using: :btree
 
+  create_table "questions", force: :cascade do |t|
+    t.decimal  "value"
+    t.string   "criterion"
+    t.text     "text"
+    t.string   "answer_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "answers"
+    t.integer  "service_survey_id"
+  end
+
+  add_index "questions", ["service_survey_id"], name: "index_questions_on_service_survey_id", using: :btree
+
   create_table "service_fields", force: :cascade do |t|
     t.string   "name"
     t.integer  "service_id"
@@ -210,5 +223,6 @@ ActiveRecord::Schema.define(version: 20150526204713) do
   add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
+  add_foreign_key "questions", "service_surveys"
   add_foreign_key "service_surveys", "admins"
 end

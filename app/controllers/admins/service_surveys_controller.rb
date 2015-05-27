@@ -1,6 +1,6 @@
 class Admins::ServiceSurveysController < ApplicationController
   layout 'admins'
-  helper_method :phase_options
+  helper_method :phase_options, :criterion_options, :answer_type_options
 
   def index
     @service_surveys = ServiceSurvey.all
@@ -12,7 +12,7 @@ class Admins::ServiceSurveysController < ApplicationController
   end
 
   def create
-    @service_survey = current_admin.service_surveys.new(service_survey_params)
+    @service_survey = current_admin.service_surveys.new(service_survey_record)
     if @service_survey.save
       redirect_to admins_service_surveys_path, notice: t('flash.service_survey.created')
     else
@@ -22,11 +22,23 @@ class Admins::ServiceSurveysController < ApplicationController
 
   private
 
+  def service_survey_record
+    ServiceSurveys.generate_hash_for_record(service_survey_params.symbolize_keys)
+  end
+
   def service_survey_params
-    params.require(:service_survey).permit(:title, :phase, service_ids: [])
+    params.require(:service_survey).permit(:title, :phase, { questions: [:criterion, :text, :answer_type, answers: []] }, service_ids: [])
   end
 
   def phase_options
     ServiceSurveys.phase_options
+  end
+
+  def criterion_options
+    ServiceSurveys.criterion_options
+  end
+
+  def answer_type_options
+    ServiceSurveys.answer_type_options
   end
 end
