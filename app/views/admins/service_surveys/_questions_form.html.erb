@@ -1,0 +1,99 @@
+<div class="well">
+  <%= f.fields_for :questions do |q| %>
+    <div class="row">
+      <%= q.label :criterion, t('form.labels.criterion'), class: 'col-md-2 text-right' %>
+      <div class="col-md-2">
+        <%= q.select :criterion, criterion_options %>
+      </div>
+    </div>
+    <div class="row">
+      <%= q.label :text, t('form.labels.text'), class: 'col-md-2 text-right' %>
+      <div class="col-md-5">
+        <%= q.text_field :text, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <%= q.label :answer_type, t('form.labels.answer_type'), class: 'col-md-2 text-right' %>
+      <div class="col-md-2">
+        <%= q.select :answer_type, answer_type_options, { prompt: I18n.t("form.options.answer_type_select") }, { class: "js-answer-selection" } %>
+      </div>
+    </div>
+    <div id="binary" class="row hidden js-answer-wrapper">
+      <div class="well col-md-6 col-md-offset-2">
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :yes, false, disabled: true %>
+          <em><%= t('answer_type.binary.positive') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :no, false, disabled: true %>
+          <em><%= t('answer_type.binary.negative') %></em>
+        </p>
+      </div>
+    </div>
+
+    <div id="rating" class="hidden js-answer-wrapper">
+      <div class="row">
+        <%= q.label :value, t('form.labels.value'), class: 'col-md-2 text-right' %>
+        <div class="col-md-2">
+          <%= q.number_field :value, min: 1, max: 100, class: "form-control" %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="well col-md-4 col-md-offset-2">
+        <label>
+          <%= q.radio_button :answer_rating_range, :good, checked: true %>
+          <%= q.label :answer_rating_range_good, t('answer_type.rating.good_answers') %>
+        </label>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :first, false, disabled: true %>
+          <em><%= t('answer_type.rating.good.first') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :second, false, disabled: true %>
+          <em><%= t('answer_type.rating.good.second') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :third, false, disabled: true %>
+          <em><%= t('answer_type.rating.good.third') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :fourth, false, disabled: true %>
+          <em><%= t('answer_type.rating.good.fourth') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :fifth, false, disabled: true %>
+          <em><%= t('answer_type.rating.good.fifth') %></em>
+        </p>
+        </div>
+        <div class="well col-md-4">
+        <label>
+          <%= q.radio_button :answer_rating_range, :satisfied %>
+          <%= q.label :answer_rating_range_satisfied, t('answer_type.rating.satisfied_answers') %>
+        </label>
+
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :first, false, disabled: true %>
+          <em><%= t('answer_type.rating.satisfied.first') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :second, false, disabled: true %>
+          <em><%= t('answer_type.rating.satisfied.second') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :third, false, disabled: true %>
+          <em><%= t('answer_type.rating.satisfied.third') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :fourth, false, disabled: true %>
+          <em><%= t('answer_type.rating.satisfied.fourth') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :fifth, false, disabled: true %>
+          <em><%= t('answer_type.rating.satisfied.fifth') %></em>
+        </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

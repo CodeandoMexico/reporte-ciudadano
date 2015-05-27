@@ -502,6 +502,7 @@ es:
       criterion: "Criterio a evaluar"
       text: "Texto"
       answer_type: "Tipo de respuesta"
+      value: "Valor (%)"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
@@ -600,3 +601,18 @@ es:
     binary:
       positive: "Sí"
       negative: "No"
+    rating:
+      good_answers: "Muy bueno - Muy malo"
+      satisfied_answers: "Muy satisfecho - Nada satisfecho"
+      good:
+        first: "Muy bueno"
+        second: "Bueno"
+        third: "Regular"
+        fourth: "Malo"
+        fifth: "Muy malo"
+      satisfied:
+        first: "Muy satisfecho"
+        second: "Satisfecho"
+        third: "Regular"
+        fourth: "Poco satisfecho"
+        fifth: "Nada satisfecho"

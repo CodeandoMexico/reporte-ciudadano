@@ -18,6 +18,8 @@ module ServiceSurveys
   private
 
   class ServiceSurvey
+    include ActiveModel::Model
+
     def initialize(attrs)
       @title = attrs[:title]
       @phase = attrs[:phase]
@@ -48,6 +50,8 @@ module ServiceSurveys
       @criterion = attrs["criterion"]
       @text = attrs["text"]
       @answer_type = attrs["answer_type"]
+      @answer_rating_range = attrs["answer_rating_range"]
+      @value = attrs["value"]
     end
 
     def to_record_params
@@ -55,18 +59,25 @@ module ServiceSurveys
         criterion: criterion,
         text: text,
         answer_type: answer_type,
-        answers: answers
+        answers: answers,
+        value: value
       }
     end
 
     private
 
-    attr_reader :answer_type, :criterion, :text
+    attr_reader :answer_type, :criterion, :text, :answer_rating_range, :value
 
     def answers
       case answer_type
       when "binary"
         ["Sí", "No"]
+      when "rating"
+        if answer_rating_range == "good"
+          ["Muy bueno", "Bueno", "Regular", "Malo", "Muy malo"]
+        elsif answer_rating_range == "satisfied"
+          ["Muy satisfecho", "Satisfecho", "Regular", "Poco satisfecho", "Nada satisfecho"]
+        end
       else
         []
       end
