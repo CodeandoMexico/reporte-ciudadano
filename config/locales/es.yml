@@ -502,7 +502,7 @@ es:
       criterion: "Criterio a evaluar"
       text: "Texto"
       answer_type: "Tipo de respuesta"
-      value: "Valor (%)"
+      value: "Valor %"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
