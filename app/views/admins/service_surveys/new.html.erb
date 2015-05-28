@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h2><%= t('.new_service_survey') %></h2>
-      <%= form_for(:service_survey, url: admins_service_surveys_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
+      <%= form_for(@service_survey, url: admins_service_surveys_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
         <% if @service_survey.errors.any? %>
           <div id="error_explanation">
             <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@service_survey.errors.count, "error") %></h2>
@@ -48,9 +48,14 @@
             </div>
           </div>
         </fieldset>
-
-        <%= render "questions_form", f: f %>
-
+        <div id="questions">
+          <%= f.fields_for :questions do |question| %>
+            <%= render "question_fields", f: question %>
+          <% end %>
+          <div class="links pull-right">
+            <%= link_to_add_association t(".add_question"), f, :questions, class: "btn btn-primary" %>
+          </div>
+        </div>
         <div class="actions col-md-2">
           <%= f.submit "Guardar", class: 'btn btn-primary' %>
         </div>

@@ -35,10 +35,11 @@ feature 'As a service admin I can create a new survey' do
 
     check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
+    click_link "Agregar pregunta"
 
-    select "Transparencia", from: "service_survey_questions_criterion"
-    fill_in "service_survey_questions_text", with: "¿ Te gustó el servicio ?"
-    select "Seleccionar de 2 posibles (Sí/No)", from: "service_survey_questions_answer_type"
+    select "Transparencia", from: "Criterio a evaluar"
+    fill_in "Texto", with: "¿ Te gustó el servicio ?"
+    select "Seleccionar de 2 posibles (Sí/No)", from: "Tipo de respuesta"
 
     expect(page).to have_content "Sí"
     expect(page).to have_content "No"
@@ -58,12 +59,13 @@ feature 'As a service admin I can create a new survey' do
 
     check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
+    click_link "Agregar pregunta"
 
-    select "Desempeño", from: "service_survey_questions_criterion"
-    fill_in "service_survey_questions_text", with: "¿ Qué tan bueno te pareció el servicio ?"
-    select "Seleccionar de 5 posibles en un rango", from: "service_survey_questions_answer_type"
+    select "Desempeño", from: "Criterio a evaluar"
+    fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
+    select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
     choose "Muy bueno - Muy malo"
-    fill_in "service_survey_questions_value", with: 20
+    fill_in "Valor %", with: 20
 
     expect(page).to have_content "Muy bueno"
     expect(page).to have_content "Bueno"

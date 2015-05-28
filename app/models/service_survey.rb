@@ -5,7 +5,7 @@ class ServiceSurvey < ActiveRecord::Base
 
   validates_presence_of :phase
 
-  accepts_nested_attributes_for :questions
+  accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
 
   def services_names
     services.map(&:name).join(", ")

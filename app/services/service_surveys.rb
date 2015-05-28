@@ -24,7 +24,7 @@ module ServiceSurveys
       @title = attrs[:title]
       @phase = attrs[:phase]
       @service_ids = attrs[:service_ids] || []
-      @questions_array = Array.wrap(attrs[:questions]) || []
+      @questions_hash = (attrs[:questions_attributes]) || {}
     end
 
     def to_record_params
@@ -32,16 +32,18 @@ module ServiceSurveys
         title: title,
         phase: phase,
         service_ids: service_ids,
-        questions_attributes: questions.map(&:to_record_params)
+        questions_attributes: questions
       }
     end
 
     private
 
-    attr_reader :questions_array, :title, :phase, :service_ids
+    attr_reader :questions_hash, :title, :phase, :service_ids
 
     def questions
-      questions_array.map { |question_params| Question.new(question_params) }
+      questions_hash.each do |key, question_params|
+        questions_hash[key] = Question.new(question_params).to_record_params
+      end
     end
   end
 
@@ -60,7 +62,8 @@ module ServiceSurveys
         text: text,
         answer_type: answer_type,
         answers: answers,
-        value: value
+        value: value,
+        answer_rating_range: answer_rating_range
       }
     end
 

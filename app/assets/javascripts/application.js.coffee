@@ -12,6 +12,7 @@
 #= require bootstrap/tab
 #= require highcharts
 #= require highcharts/modules/exporting
+#= require cocoon
 #= require jquery.tablesorter
 #= require turbolinks
 #= require_tree .

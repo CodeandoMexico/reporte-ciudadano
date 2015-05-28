@@ -359,6 +359,7 @@ es:
           start: "Al inicio"
           middle: "A la mitad"
           end: "Al cierre"
+        add_question: "Agregar pregunta"
     dashboards:
       design:
         header: "Diseño"

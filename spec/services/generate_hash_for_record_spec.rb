@@ -8,6 +8,7 @@ module ServicesSurveys
       question_hash = first_question_hash(params)
       expect(question_hash[:answers]).to eq ["Sí", "No"]
       expect(question_hash[:value]).to eq nil
+      expect(question_hash[:answer_rating_range]).to eq nil
     end
 
     describe 'when the answer type is rating' do
@@ -16,6 +17,7 @@ module ServicesSurveys
         question_hash = first_question_hash(params)
         expect(question_hash[:answers]).to eq ["Muy bueno", "Bueno", "Regular", "Malo", "Muy malo"]
         expect(question_hash[:value]).to eq 10
+        expect(question_hash[:answer_rating_range]).to eq "good"
       end
 
       example do
@@ -23,6 +25,7 @@ module ServicesSurveys
         question_hash = first_question_hash(params)
         expect(question_hash[:answers]).to eq ["Muy satisfecho", "Satisfecho", "Regular", "Poco satisfecho", "Nada satisfecho"]
         expect(question_hash[:value]).to eq 10
+        expect(question_hash[:answer_rating_range]).to eq "satisfied"
       end
     end
 
@@ -31,12 +34,12 @@ module ServicesSurveys
         title: "Un título",
         phase: "Al inicio",
         text: "pregunta ?",
-        questions: [ { "criterion" => "transparency" }.merge(params) ]
+        questions_attributes: { "123" => { "criterion" => "transparency" }.merge(params) }
       }
     end
 
     def first_question_hash(params)
-      ServiceSurveys.generate_hash_for_record(params)[:questions_attributes].first
+      ServiceSurveys.generate_hash_for_record(params)[:questions_attributes]["123"]
     end
   end
 end
