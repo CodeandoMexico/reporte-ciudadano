@@ -3,7 +3,7 @@ class Admins::ServiceSurveysController < ApplicationController
   helper_method :phase_options, :criterion_options, :answer_type_options
 
   def index
-    @service_surveys = ServiceSurvey.all
+    @service_surveys = current_admin.service_surveys
   end
 
   def new

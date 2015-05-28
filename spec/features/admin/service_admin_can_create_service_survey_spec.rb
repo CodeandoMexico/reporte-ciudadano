@@ -65,7 +65,7 @@ feature 'As a service admin I can create a new survey' do
     fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
     select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
     choose "Muy bueno - Muy malo"
-    fill_in "Valor %", with: 20
+    fill_in "Valor %", with: 100
 
     expect(page).to have_content "Muy bueno"
     expect(page).to have_content "Bueno"
@@ -96,7 +96,7 @@ feature 'As a service admin I can create a new survey' do
       fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
       select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
       choose "Muy bueno - Muy malo"
-      fill_in "Valor %", with: 20
+      fill_in "Valor %", with: 100
     end
 
     click_link "Agregar pregunta"
@@ -126,10 +126,17 @@ feature 'As a service admin I can create a new survey' do
 
     select "Desempeño", from: "Criterio a evaluar"
 
+    click_link "Agregar pregunta"
+    within all(".nested-fields")[1] do
+      select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
+      fill_in "Valor %", with: 20
+    end
+
     click_button "Guardar"
 
     expect(page).not_to have_content "La encuesta se ha creado exitosamente."
     expect(page).not_to have_content "1 pregunta"
-    expect(page).to have_content "no puede estar en blanco"
+    expect(page).to have_content "Preguntas con valor deben sumar 100% y actualmente suman: 20.0%"
+    expect(page).to have_content "Etapa de la encuesta no puede estar en blanco"
   end
 end

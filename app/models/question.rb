@@ -5,6 +5,7 @@ class Question < ActiveRecord::Base
   validates_presence_of :answer_type, :text
   validates_presence_of :value, if: :answer_type_rating?
   validates_presence_of :answer_rating_range, if: :answer_type_rating?
+  validates_numericality_of :value, if: :answer_type_rating?
 
   private
 

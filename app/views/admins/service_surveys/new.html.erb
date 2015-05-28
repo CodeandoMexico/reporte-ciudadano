@@ -6,6 +6,11 @@
         <% if @service_survey.errors.any? %>
           <div id="error_explanation">
             <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@service_survey.errors.count, "error") %></h2>
+            <ul class="list-unstyled">
+              <% @service_survey.errors.full_messages.each do |error_message| %>
+                <li class="text-danger"><%= error_message %></li>
+              <% end %>
+            </ul>
           </div>
         <% end %>
 

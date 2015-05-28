@@ -210,6 +210,12 @@ es:
         name: 'nombre'
       comment:
         content: "Contenido"
+      service_survey:
+        questions: "Preguntas"
+        phase: "Etapa de la encuesta"
+      service_survey/questions:
+        text: "Texto de preguntas"
+        answer_type: "Tipo de respuesta de preguntas"
 
   # Ends template file
   admin:
@@ -623,3 +629,6 @@ es:
         third: "Regular"
         fourth: "Poco satisfecho"
         fifth: "Nada satisfecho"
+  service_survey:
+    errors:
+      total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
