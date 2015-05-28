@@ -13,6 +13,7 @@
           <th><%= t(".title") %></th>
           <th><%= t(".services") %></th>
           <th><%= t(".phase") %></th>
+          <th><%= t(".number_of_questions") %></th>
           <th><%= t(".admin") %></th>
         </tr>
       </thead>
@@ -21,6 +22,7 @@
           <tr class="service_survey">
             <td><%= survey.title %></td>
             <td><%= survey.services_names %></td>
+            <td><%= t(".questions_number", count: survey.questions_count) %></td>
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
             <td><%= survey.admin_name %></td>
           </tr>

@@ -5,7 +5,7 @@
     </div>
     <%= f.label :criterion, t('form.labels.criterion'), class: 'col-md-2 text-right' %>
     <div class="col-md-2">
-      <%= f.select :criterion, criterion_options %>
+      <%= f.select :criterion, criterion_options, { prompt: I18n.t("form.options.criterion_select") } %>
     </div>
   </div>
   <div class="row">

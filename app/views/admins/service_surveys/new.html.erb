@@ -33,31 +33,32 @@
         <fieldset>
           <div class="form-group">
             <%= f.label :phase, t('form.labels.phase'), class: 'col-md-3 control-label' %>
-            <%= errors_on_resource_for_field(@service_survey, :phase) %>
             <div class="col-md-5">
-              <ul class="list-unstyled">
+              <ul class="list-unstyled list-inline">
                 <% phase_options.each do |phase| %>
-                  <div class="col-md-4">
-                    <label>
+                  <li>
                       <%= f.radio_button :phase, phase %>
-                      <%= f.label t(".phase_options.#{phase}") %>
-                    </label>
-                  </div>
+                      <%= f.label :phase, t(".phase_options.#{phase}"), value: phase %>
+                  </li>
                 <% end %>
               </ul>
             </div>
+            <%= errors_on_resource_for_field(@service_survey, :phase) %>
           </div>
         </fieldset>
         <div id="questions">
           <%= f.fields_for :questions do |question| %>
             <%= render "question_fields", f: question %>
           <% end %>
-          <div class="links pull-right">
-            <%= link_to_add_association t(".add_question"), f, :questions, class: "btn btn-primary" %>
-          </div>
         </div>
-        <div class="actions col-md-2">
-          <%= f.submit "Guardar", class: 'btn btn-primary' %>
+        <hr>
+        <div class="actions col-md-6">
+          <div class="col-md-6">
+            <%= link_to_add_association t(".add_question"), f, :questions, class: "btn btn-success btn-block", "data-association-insertion-node" => "#questions", "data-association-insertion-method" => "append" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.submit t(".save_survey"), class: 'btn btn-primary btn-block' %>
+          </div>
         </div>
       <% end %>
     </div>

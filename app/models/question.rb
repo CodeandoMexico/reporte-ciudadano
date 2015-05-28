@@ -1,4 +1,14 @@
 class Question < ActiveRecord::Base
   belongs_to :service_survey
   serialize :answers, Array
+
+  validates_presence_of :answer_type, :text
+  validates_presence_of :value, if: :answer_type_rating?
+  validates_presence_of :answer_rating_range, if: :answer_type_rating?
+
+  private
+
+  def answer_type_rating?
+    answer_type == 'rating'
+  end
 end

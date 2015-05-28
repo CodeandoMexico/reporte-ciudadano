@@ -14,4 +14,8 @@ class ServiceSurvey < ActiveRecord::Base
   def admin_name
     admin.name
   end
+
+  def questions_count
+    questions.count
+  end
 end

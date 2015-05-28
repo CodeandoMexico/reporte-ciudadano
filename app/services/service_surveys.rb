@@ -63,7 +63,7 @@ module ServiceSurveys
         answer_type: answer_type,
         answers: answers,
         value: value,
-        answer_rating_range: answer_rating_range
+        answer_rating_range: answer_rating_range_for_answer_type
       }
     end
 
@@ -83,6 +83,12 @@ module ServiceSurveys
         end
       else
         []
+      end
+    end
+
+    def answer_rating_range_for_answer_type
+      if answer_type == "rating"
+        answer_rating_range
       end
     end
   end

@@ -4,7 +4,7 @@ require_relative '../../app/services/service_surveys'
 module ServicesSurveys
   describe 'generate hash for record' do
     it 'when the answer type is binary' do
-      params = survey_params_with_question("answer_type" => "binary")
+      params = survey_params_with_question("answer_type" => "binary", "answer_rating_range" => "good")
       question_hash = first_question_hash(params)
       expect(question_hash[:answers]).to eq ["Sí", "No"]
       expect(question_hash[:value]).to eq nil
