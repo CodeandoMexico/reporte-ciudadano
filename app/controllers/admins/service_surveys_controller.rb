@@ -16,6 +16,7 @@ class Admins::ServiceSurveysController < ApplicationController
     if @service_survey.save
       redirect_to admins_service_surveys_path, notice: t('flash.service_survey.created')
     else
+      @available_services = current_admin.managed_services
       render :new
     end
   end

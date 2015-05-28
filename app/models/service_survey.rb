@@ -3,6 +3,8 @@ class ServiceSurvey < ActiveRecord::Base
   belongs_to :admin
   has_many :questions
 
+  validates_presence_of :phase
+
   accepts_nested_attributes_for :questions
 
   def services_names
