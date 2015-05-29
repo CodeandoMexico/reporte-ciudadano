@@ -21,6 +21,10 @@ class Admins::ServiceSurveysController < ApplicationController
     end
   end
 
+  def show
+    @service_survey = ServiceSurvey.find(params[:id])
+  end
+
   private
 
   def service_survey_record

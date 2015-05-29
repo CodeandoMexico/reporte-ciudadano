@@ -371,6 +371,9 @@ es:
           end: "Al cierre"
         add_question: "Agregar pregunta"
         save_survey: "Guardar encuesta"
+      show:
+        service_survey_for: "Encuesta para evaluar los servicios: %{services}"
+        edit_service_survey: "Editar encuesta"
     dashboards:
       design:
         header: "Diseño"
