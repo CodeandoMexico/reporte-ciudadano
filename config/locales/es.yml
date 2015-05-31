@@ -363,17 +363,19 @@ es:
         questions_number:
           one: "1 pregunta"
           other: "%{count} preguntas"
+        edit: "Editar"
+        preview: "Vista preliminar"
       new:
         new_service_survey: "Nueva encuesta de servicio"
-        phase_options:
-          start: "Al inicio"
-          middle: "A la mitad"
-          end: "Al cierre"
         add_question: "Agregar pregunta"
         save_survey: "Guardar encuesta"
       show:
         service_survey_for: "Encuesta para evaluar los servicios: %{services}"
         edit_service_survey: "Editar encuesta"
+      edit:
+        edit_service_survey: "Editar encuesta de servicio"
+        add_question: "Agregar pregunta"
+        save_survey: "Guardar encuesta"
     dashboards:
       design:
         header: "Diseño"
@@ -589,6 +591,7 @@ es:
       disabled_admin: "Tu cuenta ha sido desactivada, por favor contacta a tu Administrador."
     service_survey:
       created: "La encuesta se ha creado exitosamente."
+      updated: "La encuesta se ha actualizado exitosamente."
   navbar:
     admin:
       design: "Diseño"

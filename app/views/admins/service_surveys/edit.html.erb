@@ -1,8 +1,8 @@
 <div class="page-content inset">
   <div class="row">
     <div class="col-md-12">
-      <h2><%= t('.new_service_survey') %></h2>
-      <%= form_for(@service_survey, url: admins_service_surveys_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
+      <h2><%= t('.edit_service_survey') %></h2>
+      <%= form_for(@service_survey, url: admins_service_survey_path(@service_survey.id), html: { method: :patch, class: 'form-horizontal' }) do |f| %>
         <% if @service_survey.errors.any? %>
           <div id="error_explanation">
             <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@service_survey.errors.count, "error") %></h2>

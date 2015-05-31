@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :service_surveys, only: [:index, :new, :create, :show]
+    resources :service_surveys
     resources :dashboards, only: [:index] do
       collection do
         get 'design'

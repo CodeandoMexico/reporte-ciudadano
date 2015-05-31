@@ -6,7 +6,7 @@
     </div>
   </h2>
 
-  <div class="table-responsive">
+  <div class="table-responsive surveys-table">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -15,6 +15,8 @@
           <th><%= t(".phase") %></th>
           <th><%= t(".number_of_questions") %></th>
           <th><%= t(".admin") %></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +27,8 @@
             <td><%= t(".questions_number", count: survey.questions_count) %></td>
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
             <td><%= survey.admin_name %></td>
+            <td><%= link_to t(".preview"), admins_service_survey_path(survey), class: "btn btn-info" %></td>
+            <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
       </tbody>

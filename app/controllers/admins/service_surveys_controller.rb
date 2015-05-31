@@ -8,7 +8,6 @@ class Admins::ServiceSurveysController < ApplicationController
 
   def new
     @service_survey = ServiceSurvey.new
-    @available_services = current_admin.managed_services
   end
 
   def create
@@ -16,13 +15,25 @@ class Admins::ServiceSurveysController < ApplicationController
     if @service_survey.save
       redirect_to admins_service_surveys_path, notice: t('flash.service_survey.created')
     else
-      @available_services = current_admin.managed_services
       render :new
     end
   end
 
   def show
     @service_survey = ServiceSurvey.find(params[:id])
+  end
+
+  def edit
+    @service_survey = ServiceSurvey.find(params[:id])
+  end
+
+  def update
+    @service_survey = ServiceSurvey.find(params[:id])
+    if @service_survey.update_attributes(service_survey_record)
+      redirect_to admins_service_surveys_path, notice: t('flash.service_survey.updated')
+    else
+      render :edit
+    end
   end
 
   private
