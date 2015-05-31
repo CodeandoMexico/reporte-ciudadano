@@ -29,6 +29,14 @@ module ServicesSurveys
       end
     end
 
+    it 'when the answer type is open' do
+      params = survey_params_with_question("answer_type" => "open", "answer_rating_range" => "good")
+      question_hash = first_question_hash(params)
+      expect(question_hash[:answers]).to eq []
+      expect(question_hash[:value]).to eq nil
+      expect(question_hash[:answer_rating_range]).to eq nil
+    end
+
     def survey_params_with_question(params)
       {
         title: "Un título",

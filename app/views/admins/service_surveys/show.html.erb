@@ -14,14 +14,18 @@
           <%= question.text %>
         </p>
         <hr>
-        <ul class="list-unstyled">
-          <% question.answers.each do |answer| %>
-            <li>
-              <%= radio_button_tag :survey_answer, answer, false %>
-              <%= answer %>
-            </li>
-          <% end %>
-        </ul>
+        <% if question.has_open_answer? %>
+          <%= text_area_tag :survey_answer, nil, rows: 3, class: "form-control" %>
+        <% else %>
+          <ul class="list-unstyled">
+            <% question.answers.each do |answer| %>
+              <li>
+                <%= radio_button_tag :survey_answer, answer, false %>
+                <%= answer %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -1,12 +1,17 @@
 FactoryGirl.define do
   factory :question do
     criterion "transparency"
-    text "Question text"
+    text { Faker::Lorem.words(3).join(" ") }
     answer_type "binary"
 
     trait :binary do
       answer_type "binary"
       answers ["Sí", "No"]
+    end
+
+    trait :open do
+      answer_type "open"
+      answers []
     end
 
     trait :rating do

@@ -635,6 +635,8 @@ es:
         third: "Regular"
         fourth: "Poco satisfecho"
         fifth: "Nada satisfecho"
+    open:
+      text: "Texto introducido por el usuario..."
   service_survey:
     errors:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"

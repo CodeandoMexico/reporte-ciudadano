@@ -79,6 +79,29 @@ feature 'As a service admin I can create a new survey' do
     expect(current_path).to eq admins_service_surveys_path
   end
 
+  scenario 'With questions and open answers', js: true do
+    service = create :service, name: "Mi servicio", service_admin: admin
+
+    visit admins_dashboards_path
+    click_link "Encuestas de servicio"
+    click_link "Crear nueva encuesta"
+
+    check "service_survey_service_ids_#{service.id}"
+    choose 'A la mitad'
+    click_link "Agregar pregunta"
+
+    select "Desempeño", from: "Criterio a evaluar"
+    fill_in "Texto", with: "¿ Qué sugerencias tienes para el servicio ?"
+    select "Respuesta abierta", from: "Tipo de respuesta"
+
+    expect(page).to have_content "Texto introducido por el usuario..."
+
+    click_button "Guardar"
+
+    expect(page).to have_content "La encuesta se ha creado exitosamente."
+    expect(current_path).to eq admins_service_surveys_path
+  end
+
   scenario 'With multiple type of questions', js: true do
     service = create :service, name: "Mi servicio", service_admin: admin
 
