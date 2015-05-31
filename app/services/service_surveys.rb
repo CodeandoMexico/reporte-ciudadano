@@ -54,6 +54,8 @@ module ServiceSurveys
       @answer_type = attrs["answer_type"]
       @answer_rating_range = attrs["answer_rating_range"]
       @value = attrs["value"]
+      @_destroy = attrs["_destroy"]
+      @id = attrs["id"]
     end
 
     def to_record_params
@@ -64,12 +66,12 @@ module ServiceSurveys
         answers: answers,
         value: value,
         answer_rating_range: answer_rating_range_for_answer_type
-      }
+      }.merge(destroy_question_param)
     end
 
     private
 
-    attr_reader :answer_type, :criterion, :text, :answer_rating_range, :value
+    attr_reader :answer_type, :criterion, :text, :answer_rating_range, :value, :_destroy, :id
 
     def answers
       case answer_type
@@ -90,6 +92,14 @@ module ServiceSurveys
       if answer_type == "rating"
         answer_rating_range
       end
+    end
+
+    def destroy_question_param
+      return {} unless _destroy && id
+      {
+        id: id,
+        _destroy: _destroy
+      }
     end
   end
 end

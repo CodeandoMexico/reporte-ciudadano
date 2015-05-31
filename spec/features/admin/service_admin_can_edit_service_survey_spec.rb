@@ -8,7 +8,7 @@ feature 'As a service admin I can edit a survey' do
     sign_in_admin admin
   end
 
-  scenario 'Assigned to a service' do
+  scenario 'Assigned to a service', js: true do
     service = create :service, name: "Mi servicio", service_admin: admin
     another_service = create :service, name: "Mi otro servicio", service_admin: admin
 
@@ -28,14 +28,15 @@ feature 'As a service admin I can edit a survey' do
     expect(questions_count).to eq 1
     click_link "Agregar pregunta"
 
-    select "Desempeño", from: "Criterio a evaluar"
-    fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
-    select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
-    choose "Muy bueno - Muy malo"
-    fill_in "Valor %", with: 100
+    within all(".nested-fields")[1] do
+      select "Desempeño", from: "Criterio a evaluar"
+      fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
+      select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
+      choose "Muy bueno - Muy malo"
+      fill_in "Valor %", with: 100
+    end
 
     click_button "Guardar"
-
     expect(page).to have_content "La encuesta se ha actualizado exitosamente."
     expect(page).to have_content "Mi encuesta editada"
     expect(page).to have_content "2 preguntas"
@@ -45,6 +46,25 @@ feature 'As a service admin I can edit a survey' do
 
     expect(current_path).to eq edit_admins_service_survey_path(survey)
     expect(questions_count).to eq 2
+  end
+
+  scenario 'And can remove questions', js: true do
+    service = create :service, name: "Mi servicio", service_admin: admin
+    another_service = create :service, name: "Mi otro servicio", service_admin: admin
+
+    survey = create :survey_with_binary_question, admin: admin, services: [service], title: "Mi encuesta"
+
+    visit admins_dashboards_path
+    click_link "Encuestas de servicio"
+    within ".surveys-table" do
+      click_link "Editar"
+    end
+
+    expect(questions_count).to eq 1
+    click_link "x"
+    click_button "Guardar"
+
+    expect(page).to have_content "0 preguntas"
   end
 
   def questions_count

@@ -24,8 +24,8 @@
           <tr class="service_survey">
             <td><%= link_to survey.title, admins_service_survey_path(survey) %></td>
             <td><%= survey.services_names %></td>
-            <td><%= t(".questions_number", count: survey.questions_count) %></td>
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
+            <td><%= t(".questions_number", count: survey.questions_count) %></td>
             <td><%= survey.admin_name %></td>
             <td><%= link_to t(".preview"), admins_service_survey_path(survey), class: "btn btn-info" %></td>
             <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
