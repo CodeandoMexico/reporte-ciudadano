@@ -23,7 +23,9 @@ class ServiceSurvey < ActiveRecord::Base
   private
 
   def complete_percentage_for_rating_questions
-    rating_questions = questions.select { |question| question.answer_type == 'rating' }
+    rating_questions = questions
+      .select { |question| question.answer_type == 'rating' }
+      .reject { |question| question._destroy.present? }
     if rating_questions.any? && rating_questions.map(&:value).sum != 100
       errors.add(:questions, I18n.t("service_survey.errors.total_values", count: rating_questions.map(&:value).sum))
     end
