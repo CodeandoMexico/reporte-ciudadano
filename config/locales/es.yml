@@ -376,6 +376,9 @@ es:
         edit_service_survey: "Editar encuesta de servicio"
         add_question: "Agregar pregunta"
         save_survey: "Guardar encuesta"
+      question_fields:
+        enter_answer: "Ingresa la posible respuesta"
+        custom_answer: "Respuesta %{number}:"
     dashboards:
       design:
         header: "Diseño"

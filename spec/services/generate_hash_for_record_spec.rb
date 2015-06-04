@@ -37,6 +37,15 @@ module ServicesSurveys
       expect(question_hash[:answer_rating_range]).to eq nil
     end
 
+    it 'when the answer type is list' do
+      answers = [ "First answer", "Second answer", "", "", ""]
+      params = survey_params_with_question("answer_type" => "list", "value" => 10, "answers" => answers)
+      question_hash = first_question_hash(params)
+      expect(question_hash[:answers]).to eq answers
+      expect(question_hash[:value]).to eq nil
+      expect(question_hash[:answer_rating_range]).to eq nil
+    end
+
     def survey_params_with_question(params)
       {
         title: "Un título",

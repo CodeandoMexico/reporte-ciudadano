@@ -103,4 +103,33 @@
       </p>
     </div>
   </div>
+  <div class="row hidden js-answer-wrapper js-list">
+    <div class="well col-md-6 col-md-offset-2">
+      <% if f.object.answers.any? %>
+        <% f.object.answers.each_with_index do |answer, index| %>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <%= radio_button_tag :answer, index, false, disabled: true %>
+              <strong><%= t(".custom_answer", number: index) %></strong>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :answers, multiple: true, class: "form-control form-inline custom-answer", placeholder: t(".enter_answer"), value: answer %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <% (1..5).each do |index| %>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <%= radio_button_tag :answer, index, false, disabled: true %>
+              <strong><%= t(".custom_answer", number: index) %></strong>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :answers, multiple: true, class: "form-control form-inline custom-answer", placeholder: t(".enter_answer") %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

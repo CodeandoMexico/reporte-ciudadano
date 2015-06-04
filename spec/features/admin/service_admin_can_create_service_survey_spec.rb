@@ -102,6 +102,32 @@ feature 'As a service admin I can create a new survey' do
     expect(current_path).to eq admins_service_surveys_path
   end
 
+  scenario 'With questions and list answers', js: true do
+    service = create :service, name: "Mi servicio", service_admin: admin
+
+    visit admins_dashboards_path
+    click_link "Encuestas de servicio"
+    click_link "Crear nueva encuesta"
+
+    check "service_survey_service_ids_#{service.id}"
+    choose 'A la mitad'
+    click_link "Agregar pregunta"
+
+    select "Desempeño", from: "Criterio a evaluar"
+    fill_in "Texto", with: "¿ Qué esperarías que mejorara del servicio ?"
+    select "Seleccionar de una lista", from: "Tipo de respuesta"
+
+    expect(custom_answers_count).to eq 5
+
+    fill_custom_answer 1,  "Que sea más rápido"
+    fill_custom_answer 2,  "Que sean más amables"
+
+    click_button "Guardar"
+
+    expect(page).to have_content "La encuesta se ha creado exitosamente."
+    expect(current_path).to eq admins_service_surveys_path
+  end
+
   scenario 'With multiple type of questions', js: true do
     service = create :service, name: "Mi servicio", service_admin: admin
 
@@ -161,5 +187,17 @@ feature 'As a service admin I can create a new survey' do
     expect(page).not_to have_content "1 pregunta"
     expect(page).to have_content "Preguntas con valor deben sumar 100% y actualmente suman: 20.0%"
     expect(page).to have_content "Etapa de la encuesta no puede estar en blanco"
+  end
+
+  def custom_answers_count
+    custom_answers.count
+  end
+
+  def custom_answers
+    all(".custom-answer")
+  end
+
+  def fill_custom_answer(index, text)
+    custom_answers[index-1].set text
   end
 end
