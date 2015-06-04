@@ -14,14 +14,15 @@ feature 'As a service admin I can see a survey preview' do
     binary_questions = create_list(:question, 2, :binary)
     rating_questions = create_list(:question, 2, :rating, value: 50.0)
     open_questions = create_list(:question, 1, :open)
+    list_questions = create_list(:question, 1, :list, answers: ["Una respuesta", "Otra respuesta", "", "", ""])
 
-    service_survey = create :service_survey, title: "Mi encuesta", services: [service], questions: binary_questions + rating_questions + open_questions, admin_id: admin.id
+    service_survey = create :service_survey, title: "Mi encuesta", services: [service], questions: binary_questions + rating_questions + open_questions + list_questions, admin_id: admin.id
 
     visit admins_dashboards_path
     click_link "Encuestas de servicio"
 
     expect(page).to have_content "Mi encuesta"
-    expect(page).to have_content "5 preguntas"
+    expect(page).to have_content "6 preguntas"
 
     click_link "Mi encuesta"
 
@@ -34,8 +35,10 @@ feature 'As a service admin I can see a survey preview' do
     expect(page).to have_content "No"
     expect(page).to have_content "Muy bueno"
     expect(page).to have_content "Muy malo"
+    expect(page).to have_content "Una respuesta"
+    expect(page).to have_content "Otra respuesta"
     expect(page).to have_link "Editar encuesta"
-    expect(questions_number).to eq 5
+    expect(questions_number).to eq 6
   end
 
   def questions_number

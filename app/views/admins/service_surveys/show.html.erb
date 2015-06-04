@@ -18,7 +18,7 @@
           <%= text_area_tag :survey_answer, nil, rows: 3, class: "form-control" %>
         <% else %>
           <ul class="list-unstyled">
-            <% question.answers.each do |answer| %>
+            <% question.answers_set.each do |answer| %>
               <li>
                 <%= radio_button_tag :survey_answer, answer, false %>
                 <%= answer %>

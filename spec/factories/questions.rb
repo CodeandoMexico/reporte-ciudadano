@@ -20,5 +20,10 @@ FactoryGirl.define do
       answers ["Muy bueno", "Bueno", "Regular", "Malo", "Muy malo"]
       value 20.0
     end
+
+    trait :list do
+      answer_type "list"
+      answers ["Una", "Dos", "Tres", "Cuatro", "Cinco"]
+    end
   end
 end

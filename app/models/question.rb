@@ -11,6 +11,10 @@ class Question < ActiveRecord::Base
     answer_type == 'open'
   end
 
+  def answers_set
+    answers.reject(&:empty?)
+  end
+
   private
 
   def answer_type_rating?
