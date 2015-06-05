@@ -5,8 +5,12 @@
     </div>
     <%= f.label :criterion, t('form.labels.criterion'), class: 'col-md-2 text-right' %>
     <div class="col-md-2">
-      <%= f.select :criterion, criterion_options, { prompt: I18n.t("form.options.criterion_select") } %>
+      <%= f.select :criterion, criterion_options, { prompt: I18n.t("form.options.criterion_select") }, class: "js-criterion-selection", "data-questions-text-url" => questions_text_admins_service_surveys_path %>
     </div>
+  </div>
+  <div class="row js-answers-list-wrapper">
+    <ul class="unstyled-list js-answers-list">
+    </ul>
   </div>
   <div class="row">
     <%= f.label :text, t('form.labels.text'), class: 'col-md-2 text-right' %>

@@ -189,6 +189,27 @@ feature 'As a service admin I can create a new survey' do
     expect(page).to have_content "Etapa de la encuesta no puede estar en blanco"
   end
 
+  scenario 'and select question text from previous questions box', js: true do
+    questions = create_list(:question, 2, :binary)
+
+    visit new_admins_service_survey_path
+    click_link "Agregar pregunta"
+
+    select "Transparencia", from: "Criterio a evaluar"
+
+    expect(page).to have_content questions.first.text
+    expect(page).to have_content questions.second.text
+
+    select_question_text questions.first
+    expect(page).to have_field "Texto", with: questions.first.text
+
+    select_question_text questions.second
+    expect(page).to have_field "Texto", with: questions.second.text
+  end
+
+  def select_question_text(question)
+  end
+
   def custom_answers_count
     custom_answers.count
   end

@@ -15,7 +15,19 @@ module ServiceSurveys
     ServiceSurvey.new(survey_params).to_record_params
   end
 
+  def self.questions_collection_by_criterion(question_records)
+    collection = {}
+    criterion_options_available.each do |criterion|
+      collection[criterion] = question_records.select { |question| question.criterion == criterion.to_s }.map(&:text).uniq
+    end
+    collection
+  end
+
   private
+
+  def self.criterion_options_available
+    I18n.t("question_criterion_options").keys
+  end
 
   class ServiceSurvey
     include ActiveModel::Model

@@ -36,6 +36,11 @@ class Admins::ServiceSurveysController < ApplicationController
     end
   end
 
+  def questions_text
+    questions = ServiceSurveys.questions_collection_by_criterion(Question.all)
+    render json: { questions: questions }
+  end
+
   private
 
   def service_survey_record
