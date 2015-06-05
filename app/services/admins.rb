@@ -13,6 +13,22 @@ module Admins
     end
   end
 
+  def self.public_servants_for(admin)
+    if admin.is_super_admin?
+      Admin.public_servants_sorted_by_name
+    elsif admin.is_service_admin?
+      Admin.public_servants_by_dependency(admin.dependency)
+    end
+  end
+
+  def self.disabled_public_servants_for(admin)
+    if admin.is_super_admin?
+      Admin.disabled_public_servants_sorted_by_name
+    elsif admin.is_service_admin?
+      Admin.disabled_public_servants_by_dependency(admin.dependency)
+    end
+  end
+
   class Permissions
     def initialize(admin)
       @admin = admin

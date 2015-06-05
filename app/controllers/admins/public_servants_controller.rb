@@ -3,8 +3,8 @@ class Admins::PublicServantsController < ApplicationController
   layout 'admins'
 
   def index
-    @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
-    @disabled_public_servants = Admin.disabled_public_servants_by_dependency(current_admin.dependency)
+    @public_servants = Admins.public_servants_for(current_admin)
+    @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
   end
 
   def new
