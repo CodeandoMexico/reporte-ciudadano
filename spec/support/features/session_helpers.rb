@@ -13,5 +13,4 @@ module SessionHelpers
     fill_in 'user[password]', with: opts[:password] || user.password
     click_button 'Entrar'
   end
-
 end

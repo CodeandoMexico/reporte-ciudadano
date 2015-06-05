@@ -201,6 +201,7 @@ feature 'As a service admin I can create a new survey' do
     expect(page).to have_content questions.second.text
 
     select_question_text questions.first
+    sleep 1.0
     expect(page).to have_field "Texto", with: questions.first.text
 
     select_question_text questions.second
@@ -208,6 +209,7 @@ feature 'As a service admin I can create a new survey' do
   end
 
   def select_question_text(question)
+    find("li", text: question.text).click()
   end
 
   def custom_answers_count

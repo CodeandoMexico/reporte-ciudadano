@@ -8,14 +8,17 @@
       <%= f.select :criterion, criterion_options, { prompt: I18n.t("form.options.criterion_select") }, class: "js-criterion-selection", "data-questions-text-url" => questions_text_admins_service_surveys_path %>
     </div>
   </div>
-  <div class="row js-answers-list-wrapper">
-    <ul class="unstyled-list js-answers-list">
-    </ul>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <small class="js-question-text-instructions"></small>
+      <ul class="list-unstyled questions-list js-answers-list">
+      </ul>
+    </div>
   </div>
   <div class="row">
     <%= f.label :text, t('form.labels.text'), class: 'col-md-2 text-right' %>
     <div class="col-md-5">
-      <%= f.text_field :text, class: "form-control" %>
+      <%= f.text_field :text, class: "form-control js-question-text" %>
     </div>
   </div>
   <div class="row">
