@@ -1,0 +1,30 @@
+<% if @service_surveys.any? %>
+  <div class="table-responsive service-surveys">
+    <table class="table sortable_table table-striped">
+      <thead>
+        <tr>
+          <th><%= t(".title") %></th>
+          <th><%= t(".services") %></th>
+          <th><%= t(".phase") %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_surveys.each do |survey| %>
+          <tr>
+            <td><%= survey.title %></td>
+            <td><%= survey.services_names %></td>
+            <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
+            <td>
+              <% if current_user.present? %>
+                <%= link_to t(".start_survey"), "#", class: "btn btn-info" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p><em><%= t(".no_service_surveys") %></em></p>
+<% end %>

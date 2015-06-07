@@ -8,6 +8,9 @@ class ServiceSurvey < ActiveRecord::Base
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
 
+  scope :open, -> {
+    where(open: true)
+  }
   def services_names
     services.map(&:name).join(", ")
   end

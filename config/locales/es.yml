@@ -468,6 +468,13 @@ es:
       share_it: "Compártelo"
       image: "Imagen"
 
+  service_surveys:
+    index:
+      title: "Título"
+      services: "Servicios"
+      phase: "Etapa"
+      no_service_surveys: "No existen encuestas abiertas para ningún servicio."
+      start_survey: "Iniciar evaluación"
   users:
     registrations:
       edit:
@@ -484,6 +491,7 @@ es:
     sign_out: "Cerrar sesión"
     sign_up: "Registrarme"
     sign_in: "Iniciar sesión"
+    service_surveys: "Evalúa un servicio"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
