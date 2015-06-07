@@ -475,6 +475,15 @@ es:
       phase: "Etapa"
       no_service_surveys: "No existen encuestas abiertas para ningún servicio."
       start_survey: "Iniciar evaluación"
+  answers:
+    new:
+      current_survey: "Estas evaluando %{title}"
+      previous_question: "Pregunta anterior"
+      next_question: "Siguiente pregunta"
+      questions_left:
+        one: "1 Pregunta restante"
+        other: "%{count} Preguntas restantes"
+      finish_survey: "Terminar evaluación"
   users:
     registrations:
       edit:

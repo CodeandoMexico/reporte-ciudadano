@@ -13,6 +13,7 @@
 #= require highcharts
 #= require highcharts/modules/exporting
 #= require cocoon
+#= require transition
 #= require jquery.tablesorter
 #= require turbolinks
 #= require_tree .

@@ -7,6 +7,7 @@ FactoryGirl.define do
     trait :binary do
       answer_type "binary"
       answers ["Sí", "No"]
+      value 20.0
     end
 
     trait :open do

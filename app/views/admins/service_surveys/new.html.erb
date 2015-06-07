@@ -42,8 +42,8 @@
               <ul class="list-unstyled list-inline">
                 <% phase_options.each do |phase| %>
                   <li>
-                      <%= f.radio_button :phase, phase %>
-                      <%= f.label :phase, t("service_survey_phase_options.#{phase}"), value: phase %>
+                    <%= f.radio_button :phase, phase %>
+                    <%= f.label :phase, t("service_survey_phase_options.#{phase}"), value: phase %>
                   </li>
                 <% end %>
               </ul>

@@ -1,0 +1,52 @@
+<%= form_tag(answers_path, method: :post) do %>
+  <div class="pt-wrapper">
+    <h3><%= t('.current_survey', title: @service_survey.title) %></h3>
+    <% @service_survey.questions.each_with_index do |question, index| %>
+      <div class="pt-page pt-page-<%= index + 1 %>">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-2">
+            <% if index > 0 %>
+              <%= link_to t(".previous_question"), "#", class: "pt-trigger", "data-goto" => index, "data-animation" => "1" %>
+            <% end %>
+          </div>
+          <div class="col-md-2 pull-right text-muted">
+            <em><%= t(".questions_left", count: ((@service_survey.questions_count - 1) - index)) %></em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1 text-right">
+            <span class="label label-info">
+              <%= t("question_criterion_options.#{question.criterion}") %>
+            </span>
+          </div>
+          <div class="col-md-9">
+            <p><strong><%= question.text %></strong></p>
+          </div>
+        </div>
+        <div class="row answers-wrapper">
+          <div class="col-md-6 col-md-offset-3 well">
+            <% question.answers.each do |answer| %>
+              <%= hidden_field_tag "answers[#{index}][question_id]", answer.question_id %>
+              <%= hidden_field_tag "answers[#{index}][score]", answer.score %>
+              <ul class="list-unstyled">
+                <li>
+                  <%= radio_button_tag "answer[#{index}][text]", answer.text, false  %>
+                  <%= label_tag "answer[#{index}][text][#{answer.text}]", answer.text %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-5">
+            <% if index != (@service_survey.questions_count - 1) %>
+              <%= link_to t(".next_question"), "#", class: "btn btn-default btn-block pt-trigger", "data-goto" => (index + 2), "data-animation" => "1" %>
+            <% else %>
+              <%= submit_tag t(".finish_survey"), class: "btn btn-success btn-block" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

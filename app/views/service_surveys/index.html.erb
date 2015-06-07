@@ -17,7 +17,7 @@
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
             <td>
               <% if current_user.present? %>
-                <%= link_to t(".start_survey"), "#", class: "btn btn-info" %>
+                <%= link_to t(".start_survey"), new_answer_path(service_survey_id: survey.id), class: "btn btn-info" %>
               <% end %>
             </td>
           </tr>

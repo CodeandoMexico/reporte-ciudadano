@@ -23,6 +23,10 @@ module ServiceSurveys
     collection
   end
 
+  def self.form_for_answers(service_survey_record)
+    ServiceSurveyForm.new(service_survey_record)
+  end
+
   private
 
   def self.criterion_options_available
@@ -120,6 +124,78 @@ module ServiceSurveys
         id: id,
         _destroy: _destroy
       }
+    end
+  end
+
+  class ServiceSurveyForm
+    attr_reader :title, :questions_count
+
+    def initialize(survey_record)
+      @title = survey_record.title
+      @questions_count = survey_record.questions_count
+      @questions_records = survey_record.questions
+    end
+
+    def persisted?
+      false
+    end
+
+    def questions
+      questions_records.map { |question| QuestionForm.new(question) }
+    end
+
+    private
+    attr_reader :questions_records
+  end
+
+  class QuestionForm
+    attr_reader :criterion, :text
+
+    def initialize(question_record)
+      @answers_text = question_record.answers.reject(&:empty?)
+      @value = question_record.value
+      @id = question_record.id
+      @answer_type = question_record.answer_type
+      @criterion = question_record.criterion
+      @text = question_record.text
+    end
+
+    def answers
+      answers_text.map { |text| AnswerForm.new(text: text, question_value: value, question_id: id, question_answer_type: answer_type) }
+    end
+
+    private
+
+    attr_reader :answers_text, :value, :id, :answer_type
+  end
+
+  class AnswerForm
+    attr_reader :text, :question_id
+
+    def initialize(attrs)
+      @text = attrs[:text]
+      @question_value = attrs[:question_value] || 0.0
+      @question_id = attrs[:question_id]
+      @question_answer_type = attrs[:question_answer_type]
+    end
+
+    def score
+      if [:binary, :rating].include? question_answer_type.to_sym
+        question_value * self.send("#{question_answer_type}_score")
+      end
+    end
+
+    private
+
+    attr_reader :question_value, :question_answer_type
+
+    def binary_score
+      { "Sí" => 1.0, "No" => 0.0 }.fetch(text)
+    end
+
+    def rating_score
+      { "Muy satisfecho" => 1.0, "Satisfecho" => 0.75, "Regular" => 0.5, "Poco satisfecho" => 0.25, "Nada satisfecho" => 0.0,
+        "Muy bueno" => 1.0, "Bueno" => 0.75, "Regular" => 0.5, "Malo" => 0.25, "Muy malo" => 0.0 }.fetch(text)
     end
   end
 end
