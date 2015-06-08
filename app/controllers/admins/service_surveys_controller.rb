@@ -41,6 +41,13 @@ class Admins::ServiceSurveysController < ApplicationController
     render json: { questions: questions }
   end
 
+  def change_status
+    @service_survey = ServiceSurvey.find(params[:id])
+    if @service_survey.update_attributes(service_survey_params)
+      redirect_to admins_service_surveys_path, notice: t('flash.service_survey.updated')
+    end
+  end
+
   private
 
   def service_survey_record
@@ -48,7 +55,7 @@ class Admins::ServiceSurveysController < ApplicationController
   end
 
   def service_survey_params
-    params.require(:service_survey).permit(:title, :phase, questions_attributes: [:criterion, :text, :answer_type, :value, :answer_rating_range, :_destroy, :id, answers: []], service_ids: [])
+    params.require(:service_survey).permit(:title, :phase, :open, questions_attributes: [:criterion, :text, :answer_type, :value, :answer_rating_range, :_destroy, :id, answers: []], service_ids: [])
   end
 
   def phase_options

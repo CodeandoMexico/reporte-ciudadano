@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
     resources :service_surveys do
       get :questions_text, on: :collection
+      put :change_status, on: :member
     end
     resources :dashboards, only: [:index] do
       collection do

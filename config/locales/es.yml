@@ -365,6 +365,8 @@ es:
           other: "%{count} preguntas"
         edit: "Editar"
         preview: "Vista preliminar"
+        open: "Abrir encuesta"
+        close: "Cerrar encuesta"
       new:
         new_service_survey: "Nueva encuesta de servicio"
         add_question: "Agregar pregunta"
