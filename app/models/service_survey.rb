@@ -2,6 +2,8 @@ class ServiceSurvey < ActiveRecord::Base
   has_and_belongs_to_many :services, join_table: :services_service_surveys
   belongs_to :admin
   has_many :questions
+  has_many :answers, class: SurveyAnswer, through: :questions, source: :survey_answers
+
 
   validates_presence_of :phase
   validate :complete_percentage_for_rating_questions
@@ -21,6 +23,11 @@ class ServiceSurvey < ActiveRecord::Base
 
   def questions_count
     questions.count
+  end
+
+  def has_been_answered_by?(user)
+    return false if user.blank?
+    answers.any? { |answer| answer.user_id == user.id }
   end
 
   private

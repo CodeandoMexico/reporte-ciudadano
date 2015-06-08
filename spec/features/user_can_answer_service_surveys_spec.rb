@@ -42,10 +42,11 @@ feature 'User can answer service surveys' do
   scenario 'but only once' do
     service = create :service, name: "Actas de nacimiento"
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
-    answer = create :survey_answer, user: user
+    answer = create :survey_answer, user_id: user.id, question_id: survey.questions.first.id
 
     visit service_surveys_path
-    expect(page).to have_content "Encuesta de acta de nacimiento"
+    expect(page).to have_content "Encuesta acta de nacimiento"
+    expect(page).to have_content "Evaluada"
     expect(page).not_to have_link "Iniciar evaluación"
   end
 end

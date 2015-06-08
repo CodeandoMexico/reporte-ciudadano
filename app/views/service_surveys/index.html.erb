@@ -16,8 +16,10 @@
             <td><%= survey.services_names %></td>
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
             <td>
-              <% if current_user.present? %>
+              <% unless survey.has_been_answered_by?(current_user) %>
                 <%= link_to t(".start_survey"), new_answer_path(service_survey_id: survey.id), class: "btn btn-info" %>
+              <% else %>
+                <span class="label label-success"><%= t(".answered") %></span>
               <% end %>
             </td>
           </tr>

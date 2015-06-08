@@ -475,6 +475,7 @@ es:
       phase: "Etapa"
       no_service_surveys: "No existen encuestas abiertas para ningún servicio."
       start_survey: "Iniciar evaluación"
+      answered: "Evaluada"
   answers:
     new:
       current_survey: "Estas evaluando %{title}"

@@ -7,6 +7,7 @@ FactoryGirl.define do
     factory :survey_with_binary_question do
       after(:create) do |survey, evaluator|
         create :question, :binary, service_survey: survey
+        survey.reload
       end
     end
   end
