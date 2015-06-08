@@ -157,10 +157,10 @@ ActiveRecord::Schema.define(version: 20150608002519) do
   create_table "service_surveys", force: :cascade do |t|
     t.string   "title"
     t.string   "phase"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "admin_id"
-    t.boolean  "open"
+    t.boolean  "open",       default: false
   end
 
   add_index "service_surveys", ["admin_id"], name: "index_service_surveys_on_admin_id", using: :btree
