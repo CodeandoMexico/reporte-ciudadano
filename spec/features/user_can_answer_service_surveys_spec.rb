@@ -38,4 +38,14 @@ feature 'User can answer service surveys' do
     expect(current_path).to eq service_surveys_path
     expect(page).to have_content "Gracias por evaluar el servicio."
   end
+
+  scenario 'but only once' do
+    service = create :service, name: "Actas de nacimiento"
+    survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
+    answer = create :survey_answer, user: user
+
+    visit service_surveys_path
+    expect(page).to have_content "Encuesta de acta de nacimiento"
+    expect(page).not_to have_link "Iniciar evaluación"
+  end
 end

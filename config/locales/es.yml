@@ -484,6 +484,8 @@ es:
         one: "1 Pregunta restante"
         other: "%{count} Preguntas restantes"
       finish_survey: "Terminar evaluación"
+    create:
+      answers_created_successfully: "Gracias por evaluar el servicio."
   users:
     registrations:
       edit:

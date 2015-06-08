@@ -27,6 +27,10 @@ module ServiceSurveys
     ServiceSurveyForm.new(service_survey_record)
   end
 
+  def self.generate_answer_records(answer_params, user_id)
+    answer_params.map { |answer| AnswerForm.new(answer.merge(user_id: user_id).symbolize_keys).to_record_params }
+  end
+
   private
 
   def self.criterion_options_available
@@ -166,28 +170,37 @@ module ServiceSurveys
 
     private
 
-    attr_reader :answers_text, :value, :id, :answer_type
+    attr_reader :answers_text, :value, :id, :answer_type, :question_answer_type
   end
 
   class AnswerForm
-    attr_reader :text, :question_id
+    attr_reader :text, :question_id, :question_value, :question_answer_type
 
     def initialize(attrs)
       @text = attrs[:text]
       @question_value = attrs[:question_value] || 0.0
       @question_id = attrs[:question_id]
       @question_answer_type = attrs[:question_answer_type]
+      @user_id = attrs[:user_id] || nil
     end
 
     def score
       if [:binary, :rating].include? question_answer_type.to_sym
-        question_value * self.send("#{question_answer_type}_score")
+        question_value.to_f * self.send("#{question_answer_type}_score")
       end
     end
 
-    private
+    def to_record_params
+      {
+        text: text,
+        question_id: question_id,
+        score: score,
+        user_id: user_id
+      }
+    end
 
-    attr_reader :question_value, :question_answer_type
+    private
+    attr_reader :user_id
 
     def binary_score
       { "Sí" => 1.0, "No" => 0.0 }.fetch(text)
@@ -195,7 +208,7 @@ module ServiceSurveys
 
     def rating_score
       { "Muy satisfecho" => 1.0, "Satisfecho" => 0.75, "Regular" => 0.5, "Poco satisfecho" => 0.25, "Nada satisfecho" => 0.0,
-        "Muy bueno" => 1.0, "Bueno" => 0.75, "Regular" => 0.5, "Malo" => 0.25, "Muy malo" => 0.0 }.fetch(text)
+        "Muy bueno" => 1.0, "Bueno" => 0.75, "Malo" => 0.25, "Muy malo" => 0.0 }.fetch(text)
     end
   end
 end

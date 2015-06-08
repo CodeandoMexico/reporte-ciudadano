@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605235117) do
+ActiveRecord::Schema.define(version: 20150608002519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,18 @@ ActiveRecord::Schema.define(version: 20150605235117) do
     t.boolean  "is_default", default: false
   end
 
+  create_table "survey_answers", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "question_id"
+    t.decimal  "score"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "survey_answers", ["question_id"], name: "index_survey_answers_on_question_id", using: :btree
+  add_index "survey_answers", ["user_id"], name: "index_survey_answers_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "username"
@@ -227,4 +239,6 @@ ActiveRecord::Schema.define(version: 20150605235117) do
 
   add_foreign_key "questions", "service_surveys"
   add_foreign_key "service_surveys", "admins"
+  add_foreign_key "survey_answers", "questions"
+  add_foreign_key "survey_answers", "users"
 end

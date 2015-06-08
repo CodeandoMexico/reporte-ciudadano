@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   belongs_to :service_survey
   serialize :answers, Array
+  has_many :survey_answers
 
   validates :answer_type, inclusion: { in: %w(binary rating open list) }
   validates_presence_of :value, if: :answer_type_rating?

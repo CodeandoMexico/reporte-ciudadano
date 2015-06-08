@@ -5,6 +5,17 @@ class AnswersController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    answers = ServiceSurveys.generate_answer_records(answers_params, current_user.id)
+    answers.each do |answer|
+      answer = SurveyAnswer.new(answer)
+      answer.save
+    end
+    redirect_to service_surveys_path, notice: t('.answers_created_successfully')
+  end
+
+  private
+
+  def answers_params
+    params.require(:answers).values
   end
 end
