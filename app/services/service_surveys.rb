@@ -132,16 +132,13 @@ module ServiceSurveys
   end
 
   class ServiceSurveyForm
-    attr_reader :title, :questions_count
+    attr_reader :title, :questions_count, :id
 
     def initialize(survey_record)
+      @id = survey_record.id
       @title = survey_record.title
       @questions_count = survey_record.questions_count
       @questions_records = survey_record.questions
-    end
-
-    def persisted?
-      false
     end
 
     def questions

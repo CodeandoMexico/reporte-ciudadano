@@ -3,9 +3,10 @@ require_relative '../../app/services/service_surveys'
 
 module ServicesSurveys
   class TestServiceSurvey
-    attr_accessor :title, :questions_count, :questions
+    attr_accessor :title, :questions_count, :questions, :id
 
     def initialize(attrs)
+      @id = attrs[:id]
       @title = attrs[:title]
       @questions = attrs[:questions]
       @questions_count = attrs[:questions_count]
@@ -25,10 +26,10 @@ module ServicesSurveys
   end
 
   describe 'form_for_answers' do
-    it 'should respond to title' do
-      service_survey = TestServiceSurvey.new(title: 'A title')
+    it 'should respond to id' do
+      service_survey = TestServiceSurvey.new(id: 'survey-id')
       form = form_for_answers(service_survey)
-      expect(form.title).to eq "A title"
+      expect(form.id).to eq "survey-id"
     end
 
     it 'should respond to questions count' do

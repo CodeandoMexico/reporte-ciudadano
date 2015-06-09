@@ -37,6 +37,7 @@ feature 'User can answer service surveys' do
 
     expect(current_path).to eq service_surveys_path
     expect(page).to have_content "Gracias por evaluar el servicio."
+    expect_survey_confirmation_email_sent_to user.email
   end
 
   scenario 'but only once' do
@@ -48,5 +49,11 @@ feature 'User can answer service surveys' do
     expect(page).to have_content "Encuesta acta de nacimiento"
     expect(page).to have_content "Evaluada"
     expect(page).not_to have_link "Iniciar evaluación"
+  end
+
+  def expect_survey_confirmation_email_sent_to(email)
+    last_email = ActionMailer::Base.deliveries.last || :no_email_sent
+    expect(last_email.to).to include(email)
+    expect(last_email.subject).to include "Gracias por tu evaluación"
   end
 end

@@ -2,6 +2,7 @@
   <div class="pt-wrapper">
     <h3><%= t('.current_survey', title: @service_survey.title) %></h3>
     <% @service_survey.questions.each_with_index do |question, index| %>
+      <%= hidden_field_tag :service_survey_id, @service_survey.id %>
       <div class="pt-page pt-page-<%= index + 1 %>">
         <div class="row">
           <div class="col-md-2 col-md-offset-2">
