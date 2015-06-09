@@ -99,6 +99,22 @@ module ServicesSurveys
         expect(neutral_answer.text).to eq "Regular"
         expect(neutral_answer.score).to eq 10.0
       end
+
+      example do
+        question = TestQuestionForm.new(answers: ["Custom answer", "Custom answer 2", "", "", ""], value: 20.0, answer_type: "list")
+        service_survey = TestServiceSurvey.new(questions: [ question ])
+        answers = answers_for_first_question(service_survey)
+        expect(answers.size).to eq 2
+        expect(answers.first.text).to eq "Custom answer"
+        expect(answers.first.score).to eq nil
+      end
+
+      example do
+        question = TestQuestionForm.new(answers: [], value: 20.0, answer_type: "open")
+        service_survey = TestServiceSurvey.new(questions: [ question ])
+        answers = answers_for_first_question(service_survey)
+        expect(answers).to be_empty
+      end
     end
 
     def answers_for_first_question(survey)

@@ -25,16 +25,20 @@
         </div>
         <div class="row answers-wrapper">
           <div class="col-md-6 col-md-offset-3 well">
-            <% question.answers.each do |answer| %>
-              <%= hidden_field_tag "answers[#{index}][question_id]", answer.question_id %>
-              <%= hidden_field_tag "answers[#{index}][question_value]", answer.question_value %>
-              <%= hidden_field_tag "answers[#{index}][question_answer_type]", answer.question_answer_type %>
-              <ul class="list-unstyled">
-                <li>
-                  <%= radio_button_tag "answers[#{index}][text]", answer.text, false  %>
-                  <%= label_tag "answers[#{index}][text][#{answer.text}]", answer.text %>
-                </li>
-              </ul>
+            <%= hidden_field_tag "answers[#{index}][question_id]", question.id %>
+            <%= hidden_field_tag "answers[#{index}][question_value]", question.value %>
+            <%= hidden_field_tag "answers[#{index}][question_answer_type]", question.answer_type %>
+            <% if question.has_open_answer? %>
+              <%= text_area_tag "answers[#{index}][text]", nil, rows: 3, class: "form-control" %>
+            <% else %>
+              <% question.answers.each do |answer| %>
+                <ul class="list-unstyled">
+                  <li>
+                    <%= radio_button_tag "answers[#{index}][text]", answer.text, false  %>
+                    <%= label_tag "answers[#{index}][text][#{answer.text}]", answer.text %>
+                  </li>
+                </ul>
+              <% end %>
             <% end %>
           </div>
         </div>

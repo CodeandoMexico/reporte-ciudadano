@@ -73,6 +73,30 @@ module ServicesSurveys
       expect(first_answer).to include(text: "Regular", question_id: "question-id", score: 15.0, user_id: 'user-id')
     end
 
+    it 'should return the open answer hash with no value' do
+      user = double 'user', id: 'user-id'
+      answer_params = {
+        "question_id"=>"question-id",
+        "text"=>"Custom text for answer...",
+        "question_answer_type"=>"open",
+        "question_value"=>"30.0"
+      }
+      first_answer = generate_answer_records([answer_params], "user-id").first
+      expect(first_answer).to include(text: "Custom text for answer...", question_id: "question-id", score: nil, user_id: 'user-id')
+    end
+
+    it 'should return the list answer hash with no value' do
+      user = double 'user', id: 'user-id'
+      answer_params = {
+        "question_id"=>"question-id",
+        "text"=>"Custom answer 1",
+        "question_answer_type"=>"list",
+        "question_value"=>"30.0"
+      }
+      first_answer = generate_answer_records([answer_params], "user-id").first
+      expect(first_answer).to include(text: "Custom answer 1", question_id: "question-id", score: nil, user_id: 'user-id')
+    end
+
     def generate_answer_records(params, user_id)
       ServiceSurveys.generate_answer_records(params, user_id)
     end

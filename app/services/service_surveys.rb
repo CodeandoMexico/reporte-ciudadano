@@ -153,7 +153,7 @@ module ServiceSurveys
   end
 
   class QuestionForm
-    attr_reader :criterion, :text
+    attr_reader :criterion, :text, :id, :value, :answer_type
 
     def initialize(question_record)
       @answers_text = question_record.answers.reject(&:empty?)
@@ -164,13 +164,17 @@ module ServiceSurveys
       @text = question_record.text
     end
 
+    def has_open_answer?
+      answer_type == "open"
+    end
+
     def answers
       answers_text.map { |text| AnswerForm.new(text: text, question_value: value, question_id: id, question_answer_type: answer_type) }
     end
 
     private
 
-    attr_reader :answers_text, :value, :id, :answer_type, :question_answer_type
+    attr_reader :answers_text
   end
 
   class AnswerForm
