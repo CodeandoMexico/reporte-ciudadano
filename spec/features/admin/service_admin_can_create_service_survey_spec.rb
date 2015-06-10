@@ -40,6 +40,7 @@ feature 'As a service admin I can create a new survey' do
     select "Transparencia", from: "Criterio a evaluar"
     fill_in "Texto", with: "¿ Te gustó el servicio ?"
     select "Seleccionar de 2 posibles (Sí/No)", from: "Tipo de respuesta"
+    fill_in "Valor %", with: 100
 
     expect(page).to have_content "Sí"
     expect(page).to have_content "No"
@@ -145,7 +146,7 @@ feature 'As a service admin I can create a new survey' do
       fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
       select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
       choose "Muy bueno - Muy malo"
-      fill_in "Valor %", with: 100
+      fill_in "Valor %", with: 50
     end
 
     click_link "Agregar pregunta"
@@ -154,6 +155,7 @@ feature 'As a service admin I can create a new survey' do
       select "Transparencia", from: "Criterio a evaluar"
       fill_in "Texto", with: "¿ Te gustó el servicio ?"
       select "Seleccionar de 2 posibles (Sí/No)", from: "Tipo de respuesta"
+      fill_in "Valor %", with: 50
     end
 
     click_button "Guardar"

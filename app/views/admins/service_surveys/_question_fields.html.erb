@@ -27,26 +27,28 @@
       <%= f.select :answer_type, answer_type_options, { prompt: I18n.t("form.options.answer_type_select") }, { class: "js-answer-selection" } %>
     </div>
   </div>
-  <div class="row hidden js-answer-wrapper js-binary">
-    <div class="well col-md-6 col-md-offset-2">
-      <p class="text-muted">
-        <%= radio_button_tag :answer, :yes, false, disabled: true %>
-        <em><%= t('answer_type.binary.positive') %></em>
-      </p>
-      <p class="text-muted">
-        <%= radio_button_tag :answer, :no, false, disabled: true %>
-        <em><%= t('answer_type.binary.negative') %></em>
-      </p>
+  <div class="row hidden js-question-value">
+    <%= f.label :value, t('form.labels.value'), class: 'col-md-2 text-right' %>
+    <div class="col-md-2">
+      <%= f.number_field :value, min: 0, max: 100, class: "form-control" %>
+    </div>
+  </div>
+  <br>
+  <div class="hidden js-answer-wrapper js-binary">
+    <div class="row">
+      <div class="well col-md-6 col-md-offset-2">
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :yes, false, disabled: true %>
+          <em><%= t('answer_type.binary.positive') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :no, false, disabled: true %>
+          <em><%= t('answer_type.binary.negative') %></em>
+        </p>
+      </div>
     </div>
   </div>
   <div class="hidden js-answer-wrapper js-rating">
-    <div class="row">
-      <%= f.label :value, t('form.labels.value'), class: 'col-md-2 text-right' %>
-      <div class="col-md-2">
-        <%= f.number_field :value, min: 0, max: 100, class: "form-control" %>
-      </div>
-    </div>
-    <br>
     <div class="row">
       <div class="well col-md-4 col-md-offset-2">
       <label>

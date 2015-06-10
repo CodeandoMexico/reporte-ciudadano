@@ -26,16 +26,17 @@ module ServicesSurveys
   end
 
   describe 'form_for_answers' do
-    it 'should respond to id' do
-      service_survey = TestServiceSurvey.new(id: 'survey-id')
-      form = form_for_answers(service_survey)
-      expect(form.id).to eq "survey-id"
-    end
-
     it 'should respond to questions count' do
       service_survey = TestServiceSurvey.new(questions_count: 5)
       form = form_for_answers(service_survey)
       expect(form.questions_count).to eq 5
+    end
+
+    it 'should respond to id' do
+      service_survey = TestServiceSurvey.new({})
+      service_survey.id = 1
+      form = form_for_answers(service_survey)
+      expect(form.id).to eq 1
     end
 
     it 'should respond to questions' do

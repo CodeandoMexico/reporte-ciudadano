@@ -4,7 +4,6 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :questions
   has_many :answers, class: SurveyAnswer, through: :questions, source: :survey_answers
 
-
   validates_presence_of :phase
   validate :complete_percentage_for_rating_questions
 
@@ -33,11 +32,11 @@ class ServiceSurvey < ActiveRecord::Base
   private
 
   def complete_percentage_for_rating_questions
-    rating_questions = questions
-      .select { |question| question.answer_type == 'rating' }
+    value_questions = questions
+      .select { |question| ['rating', 'binary'].include? question.answer_type }
       .reject { |question| question._destroy.present? }
-    if rating_questions.any? && rating_questions.map(&:value).sum != 100
-      errors.add(:questions, I18n.t("service_survey.errors.total_values", count: rating_questions.map(&:value).sum))
+    if value_questions.any? && value_questions.map(&:value).sum != 100
+      errors.add(:questions, I18n.t("service_survey.errors.total_values", count: value_questions.map(&:value).sum))
     end
   end
 end

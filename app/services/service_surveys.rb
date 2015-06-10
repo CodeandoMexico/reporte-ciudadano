@@ -112,8 +112,9 @@ module ServiceSurveys
     end
 
     def value_for_answer_type
-      return nil if answer_type != "rating"
-      value
+      if ["rating", "binary"].include? answer_type
+        value
+      end
     end
 
     def answer_rating_range_for_answer_type
@@ -132,7 +133,7 @@ module ServiceSurveys
   end
 
   class ServiceSurveyForm
-    attr_reader :title, :questions_count, :id
+    attr_reader :id, :title, :questions_count
 
     def initialize(survey_record)
       @id = survey_record.id
