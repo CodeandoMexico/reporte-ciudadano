@@ -3,12 +3,14 @@ $questions = {}
 $(document).on 'ready page:load', ->
   $.each $('.js-answer-selection'), ->
     answerType = $(this).val()
+    if answerType == 'binary' || answerType == 'rating'
+      $(this).parent().closest(".js-question").find(".js-question-value").removeClass('hidden')
     $(this).parent().closest(".js-question").find(".js-" + answerType).removeClass("hidden")
 
 $(document).on 'change', '.js-answer-selection', ->
   answerType = $(this).val()
   if answerType == 'binary' || answerType == 'rating'
-    $(".js-question-value").removeClass('hidden')
+    $(this).parent().closest(".js-question").find(".js-question-value").removeClass('hidden')
   $(this).parent().closest(".js-question").find(".js-answer-wrapper").addClass("hidden")
   $(this).parent().closest(".js-question").find(".js-" + answerType).removeClass("hidden")
 
