@@ -7,26 +7,25 @@ feature 'User can answer service surveys' do
     sign_in_user user
   end
 
-  scenario 'with binary questions' do
+  scenario 'with binary questions', js: true do
     service = create :service, name: "Actas de nacimiento"
-    first_question = create :question, :binary, text: "¿Te pareció bueno el servicio?", value: 50
-    second_question = create :question, :binary, text: "¿Se te brindó atención rápido?", value: 50
+    second_question = create :question, :binary, text: "¿Te pareció bueno el servicio?", value: 50
+    first_question = create :question, :binary, text: "¿Se te brindó atención rápido?", value: 50
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [first_question, second_question])
 
     visit service_surveys_path
     click_link "Iniciar evaluación"
 
-    within all(".pt-page").first do
+    within (".pt-page-current") do
       expect(current_path).to eq new_answer_path
       expect(page).to have_content "1 Pregunta restante"
       expect(page).to have_content "¿Te pareció bueno el servicio?"
-      expect(page).not_to have_content "¿Se te brindó atención rápido?"
 
       choose "Sí"
       click_link "Siguiente pregunta"
     end
 
-    within all(".pt-page")[1] do
+    within (".pt-page-current") do
       expect(page).to have_content "0 Preguntas restantes"
       expect(page).not_to have_content "¿Te pareció bueno el servicio?"
       expect(page).to have_content "¿Se te brindó atención rápido?"
