@@ -11,8 +11,8 @@ feature 'As a service admin I can see a survey preview' do
   scenario 'from surveys index page' do
     service = create :service, name: "Mi servicio", service_admin: admin
 
-    binary_questions = create_list(:question, 2, :binary)
-    rating_questions = create_list(:question, 2, :rating, value: 50.0)
+    binary_questions = create_list(:question, 2, :binary, value: 10.0)
+    rating_questions = create_list(:question, 2, :rating, value: 40.0)
     open_questions = create_list(:question, 1, :open)
     list_questions = create_list(:question, 1, :list, answers: ["Una respuesta", "Otra respuesta", "", "", ""])
 
