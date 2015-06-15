@@ -9,10 +9,7 @@ $(document).on 'ready page:load', ->
 
 $(document).on 'change', '.js-answer-selection', ->
   answerType = $(this).val()
-  if answerType == 'binary' || answerType == 'rating'
-    $(this).parent().closest(".js-question").find(".js-question-value").removeClass('hidden')
-  $(this).parent().closest(".js-question").find(".js-answer-wrapper").addClass("hidden")
-  $(this).parent().closest(".js-question").find(".js-" + answerType).removeClass("hidden")
+  showAnswerType(this, answerType)
 
 $(document).on 'change', '.js-criterion-selection', ->
   url = $(this).data('questions-text-url')
@@ -28,8 +25,14 @@ $(document).on 'click', '.js-question-item', ->
   element = $(this).parent().closest(".js-question").find(".js-question-text")
 
   $(element).val(questionText)
-  $(".js-answer-selection option[value='" + answerType + "']").attr('selected', 'selected')
+  $(element).parent().closest(".js-question").find(".js-answer-selection option[value='" + answerType + "']").attr('selected', 'selected')
+  showAnswerType(this, answerType)
 
+showAnswerType = (element, answerType) ->
+  if answerType == 'binary' || answerType == 'rating'
+    $(element).parent().closest(".js-question").find(".js-question-value").removeClass('hidden')
+  $(element).parent().closest(".js-question").find(".js-answer-wrapper").addClass("hidden")
+  $(element).parent().closest(".js-question").find(".js-" + answerType).removeClass("hidden")
 
 showQuestionsList = (element) ->
   criterion = $(element).val()
