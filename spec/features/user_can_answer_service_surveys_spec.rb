@@ -42,25 +42,19 @@ feature 'User can answer service surveys' do
   scenario 'and answer another survey' do
     service = create :service, name: "Actas de nacimiento"
     question = create :question, :binary, text: "¿Te pareció bueno el servicio?", value: 100
-    other_question = create :question, :binary, text: "¿Te trataron bien?", value: 100
-
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [question])
-    other_survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento 2", phase: "middle", open: true, questions: [other_question])
 
     visit new_answer_path(service_survey_id: survey.id)
 
     within all(".pt-page").first do
       expect(page).to have_button "Terminar evaluación"
-      expect(page).to have_button "Iniciar siguiente evaluación"
       expect(page).to have_content "¿Te pareció bueno el servicio?"
       choose "Sí"
-      click_button "Iniciar siguiente evaluación"
     end
 
+    click_button "Terminar evaluación"
     expect_survey_confirmation_email_sent_to user.email
-    expect(current_path).to eq new_answer_path
     expect(page).to have_content "Gracias por evaluar el servicio."
-    expect(page).to have_content "¿Te trataron bien?"
   end
 
   scenario 'but only once' do
