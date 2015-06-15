@@ -24,23 +24,27 @@ $(document).on 'change', '.js-criterion-selection', ->
 
 $(document).on 'click', '.js-question-item', ->
   questionText = $(this).text()
+  answerType = $(this).data("answer")
   element = $(this).parent().closest(".js-question").find(".js-question-text")
+
   $(element).val(questionText)
+  $(".js-answer-selection option[value='" + answerType + "']").attr('selected', 'selected')
+
 
 showQuestionsList = (element) ->
   criterion = $(element).val()
-  criterion_label = $("option:selected", element).text()
+  criterionLabel = $("option:selected", element).text()
   list = $(element).parent().closest(".js-question").find(".js-answers-list")
-  instruction_element = $(element).parent().closest(".js-question").find(".js-question-text-instructions")
+  instructionsElement = $(element).parent().closest(".js-question").find(".js-question-text-instructions")
 
   if $questions[criterion].length > 0
-    $(instruction_element).html("<em>Puedes elegir una pregunta de <strong>" + criterion_label + "</strong> de encuestas anteriores:</em>")
+    $(instructionsElement).html("<em>Puedes elegir una pregunta de <strong>" + criterionLabel + "</strong> de encuestas anteriores:</em>")
   else
-    $(instruction_element).html("<em>No hay preguntas anteriores para <strong>" + criterion_label + "</strong>.</em>")
+    $(instructionsElement).html("<em>No hay preguntas anteriores para <strong>" + criterionLabel + "</strong>.</em>")
 
   $(list).html('')
-  $.each $questions[criterion], (index, text) ->
-    $(list).append("<li class='js-question-item'>" + text + "</li>")
+  $.each $questions[criterion], (index, question) ->
+    $(list).append("<li class='js-question-item' data-answer='" + question["answer_type"] + "'>" + question['text'] + "</li>")
 
 getQuestionsCollection = (url, element) ->
   $.ajax

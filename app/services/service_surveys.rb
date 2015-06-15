@@ -18,7 +18,10 @@ module ServiceSurveys
   def self.questions_collection_by_criterion(question_records)
     collection = {}
     criterion_options_available.each do |criterion|
-      collection[criterion] = question_records.select { |question| question.criterion == criterion.to_s }.map(&:text).uniq
+      collection[criterion] = question_records
+        .select { |question| question.criterion == criterion.to_s }
+        .map { |question| { text: question.text, answer_type: question.answer_type } }
+        .uniq
     end
     collection
   end

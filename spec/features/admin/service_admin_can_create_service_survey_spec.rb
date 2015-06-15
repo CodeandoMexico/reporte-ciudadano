@@ -191,7 +191,7 @@ feature 'As a service admin I can create a new survey' do
     expect(page).to have_content "Etapa de la encuesta no puede estar en blanco"
   end
 
-  scenario 'and select question text from previous questions box', js: true do
+  scenario 'and select question text and answer type from previous questions box', js: true do
     questions = create_list(:question, 2, :binary)
 
     visit new_admins_service_survey_path
