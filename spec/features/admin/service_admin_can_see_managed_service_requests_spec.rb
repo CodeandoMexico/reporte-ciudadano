@@ -16,7 +16,7 @@ feature 'As a service admin I can see managed service requests' do
     visit admins_dashboards_path
 
     within "#sidebar-wrapper" do
-      click_link "Reportes"
+      click_link "Quejas o sugerencias"
       click_link "Primer servicio"
     end
 
@@ -24,7 +24,7 @@ feature 'As a service admin I can see managed service requests' do
     expect(services_request_count).to eq 2
 
     within "#sidebar-wrapper" do
-      click_link "Reportes"
+      click_link "Quejas o sugerencias"
       click_link "Segundo servicio"
     end
 
@@ -36,7 +36,7 @@ feature 'As a service admin I can see managed service requests' do
     visit admins_dashboards_path
 
     within "#sidebar-wrapper" do
-      click_link "Reportes"
+      click_link "Quejas o sugerencias"
     end
 
     expect(page).to have_content "No tiene servicios asignados"

@@ -1,5 +1,6 @@
 class ServiceRequestsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
+  helper_method :service_cis_options, :service_cis_label
 
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
@@ -50,6 +51,14 @@ class ServiceRequestsController < ApplicationController
 
   private
 
+  def service_cis_options
+    Services.service_cis_options
+  end
+
+  def service_cis_label(cis_id)
+    Services.service_cis_label(cis_id)
+  end
+
   def notify_public_servants
     public_servants = @service_request.public_servants
     public_servants.each do |public_servant|
@@ -59,7 +68,7 @@ class ServiceRequestsController < ApplicationController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :lat, :lng).tap do |whitelisted|
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
     end
   end

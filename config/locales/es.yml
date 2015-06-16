@@ -231,8 +231,8 @@ es:
       sidebar:
         dashboard: "Panel de administración"
         summary: "Resumen"
-        requests: "Reportes"
-        config_requests: "Personalizar reportes"
+        requests: "Quejas o sugerencias"
+        config_requests: "Personalizar quejas o sugerencias"
         design: "Diseño"
         api: "API"
         edit_profile: "Editar perfil"
@@ -295,7 +295,7 @@ es:
         additional_fields: "Campos adicionales"
         votes: "Votos"
         created_at: "Fecha de creación"
-        service_requests_for: "Reportes de %{service}"
+        service_requests_for: "Quejas o sugerencias de %{service}"
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de servicios"
@@ -378,20 +378,21 @@ es:
     service_requests:
       edit:
         address: "Dirección: %{address}"
+        cis: "Centro de atención: %{cis}"
         time_ago: "Hace %{created_at}"
         status: "Estatus: %{status}"
         user_id: "ID del usuario: %{id}"
-        update_service_request: "Actualizar reporte"
+        update_service_request: "Actualizar queja o sugerencia"
         user_info: "Datos del usuario"
         votes: "Votos"
       index:
-        header: "Todos los reportes"
-        new_service_request: "Crear nuevo reporte"
+        header: "Todas las quejas o sugerencias"
+        new_service_request: "Crear nueva queja o sugerencia"
         id: "Folio"
         created_at: "Fecha de creación"
         votes: "Votos"
       new:
-        header: "Crear nuevo reporte"
+        header: "Crear nueva queja o sugerencia"
       form:
         media: "Imagen"
         service: "Servicio"
@@ -407,12 +408,12 @@ es:
         generate_key: "Generar llave"
 
   dashboards:
-    total_requests: "Total de reportes"
-    open_requests: "Reportes abiertos"
-    closed_requests: "Reportes resueltos"
+    total_requests: "Total de quejas o sugerencias"
+    open_requests: "Quejas o sugerencias abiertas"
+    closed_requests: "Quejas o sugerencias resueltas"
     recent_requests: "Solicitudes recientes"
-    requests_by_service_chart: "Reportes por tipo de servicio"
-    requests_map: "Mapa de reportes"
+    requests_by_service_chart: "Quejas o sugerencias por tipo de servicio"
+    requests_map: "Mapa de quejas o sugerencias"
 
   comments:
     comment:
@@ -420,12 +421,12 @@ es:
 
   service_requests:
     new:
-      header: "Crear nuevo reporte"
+      header: "Crear nueva queja o sugerencia"
     form:
       anonymise: "Ocultar identidad"
       prompt_service: 'Tipo de servicio'
       address_placeholder: 'Ej. Av Revolucion 2342, 64830 Monterrey, Nuevo León, México'
-      description_placeholder: 'Por favor proporcione detalles particulares sobre el reporte y la ubicación para facilitar su atención.'
+      description_placeholder: 'Por favor proporcione detalles particulares sobre la queja o sugerencia y la ubicación para facilitar su atención.'
       map_help: 'Este marcador es aproximado. En caso de estar fuera de lugar ubícalo manualmente.'
     show:
       votes: "Votos"
@@ -442,8 +443,8 @@ es:
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
-    service_requests: "Reportes"
-    new_service_request: "Realizar reporte"
+    service_requests: "Quejas o sugerencias"
+    new_service_request: "Realizar queja o sugerencia"
     edit_profile: "Editar perfil"
     sign_out: "Cerrar sesión"
     sign_up: "Registrarme"
@@ -520,11 +521,11 @@ es:
 
   flash:
     dashboards:
-      requests_not_found: 'No se encontraron reportes.'
+      requests_not_found: 'No se encontraron quejas o sugerencias.'
     service_requests:
-      created: "El reporte fue creado correctamente"
-      updated: "El reporte fue actualizado correctamente"
-      destroyed: "El reporte fue eliminado correctamente"
+      created: "Queja o sugerencia creada correctamente"
+      updated: "Queja o sugerencia actualizada correctamente"
+      destroyed: "Queja o sugerencia eliminada correctamente"
       try_again: "Hubo problemas, intenta de nuevo."
     service:
       created: 'Servicio creado correctamente.'

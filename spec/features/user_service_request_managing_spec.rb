@@ -97,7 +97,6 @@ feature 'Managing service requests' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
-        set_location_as(lat: "12.12", lng: "12.13")
         select service.name, from: 'service_request[service_id]'
         click_button  'Guardar'
       end
@@ -122,11 +121,6 @@ feature 'Managing service requests' do
       expect(current_url).to eq service_request_url(service_request)
       expect(page).to have_content(comment_content)
       expect(page).to have_xpath("//img[@src=\"/uploads/comment/image/1/comment_avatar.png\"]")
-    end
-
-    def set_location_as(lat:, lng:)
-      find("#lat").set(lat)
-      find("#lng").set(lng)
     end
 
     def expect_service_request_email_sent_to(email)
