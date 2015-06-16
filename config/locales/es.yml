@@ -210,6 +210,12 @@ es:
         name: 'nombre'
       comment:
         content: "Contenido"
+      service_survey:
+        questions: "Preguntas"
+        phase: "Etapa de la encuesta"
+      service_survey/questions:
+        text: "Texto de preguntas"
+        answer_type: "Tipo de respuesta de preguntas"
 
   # Ends template file
   admin:
@@ -242,6 +248,7 @@ es:
         services: "Servicios"
         no_requests: "No tiene servicios asignados"
         change_password: "Cambiar contraseña"
+        service_surveys: "Encuestas de servicio"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -344,6 +351,36 @@ es:
       assign_services:
         assign_services: "Asignar servicios"
         assign: "Asignar"
+    service_surveys:
+      index:
+        service_surveys: "Encuestas de servicio"
+        new_service_survey: "Crear nueva encuesta"
+        title: "Título"
+        phase: "Etapa"
+        services: "Servicios"
+        admin: "Administrador de servicio"
+        number_of_questions: "Número de preguntas"
+        questions_number:
+          one: "1 pregunta"
+          other: "%{count} preguntas"
+        edit: "Editar"
+        preview: "Vista preliminar"
+        open: "Abrir encuesta"
+        close: "Cerrar encuesta"
+      new:
+        new_service_survey: "Nueva encuesta de servicio"
+        add_question: "Agregar pregunta"
+        save_survey: "Guardar encuesta"
+      show:
+        service_survey_for: "Encuesta para evaluar los servicios: %{services}"
+        edit_service_survey: "Editar encuesta"
+      edit:
+        edit_service_survey: "Editar encuesta de servicio"
+        add_question: "Agregar pregunta"
+        save_survey: "Guardar encuesta"
+      question_fields:
+        enter_answer: "Ingresa la posible respuesta"
+        custom_answer: "Respuesta %{number}:"
     dashboards:
       design:
         header: "Diseño"
@@ -433,6 +470,25 @@ es:
       share_it: "Compártelo"
       image: "Imagen"
 
+  service_surveys:
+    index:
+      title: "Título"
+      services: "Servicios"
+      phase: "Etapa"
+      no_service_surveys: "No existen encuestas abiertas para ningún servicio."
+      start_survey: "Iniciar evaluación"
+      answered: "Evaluada"
+  answers:
+    new:
+      current_survey: "Estas evaluando %{title}"
+      previous_question: "Pregunta anterior"
+      next_question: "Siguiente pregunta"
+      questions_left:
+        one: "1 Pregunta restante"
+        other: "%{count} Preguntas restantes"
+      finish_survey: "Terminar evaluación"
+    create:
+      answers_created_successfully: "Gracias por evaluar el servicio."
   users:
     registrations:
       edit:
@@ -449,6 +505,7 @@ es:
     sign_out: "Cerrar sesión"
     sign_up: "Registrarme"
     sign_in: "Iniciar sesión"
+    service_surveys: "Evalúa un servicio"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
@@ -482,6 +539,12 @@ es:
       service_type: "Tipo de servicio"
       cis: "Centros de atención"
       admin_id: "Administrador de servicio"
+      services: "Servicios"
+      phase: "Etapa de la encuesta"
+      criterion: "Criterio a evaluar"
+      text: "Texto"
+      answer_type: "Tipo de respuesta"
+      value: "Valor %"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
@@ -494,7 +557,8 @@ es:
       service_type_select: "Selecciona tipo de servicio"
       cis_select: "Selecciona Centro de atención"
       admin_select: "Selecciona Administrador de servicio"
-
+      answer_type_select: "Selecciona un tipo de respuesta"
+      criterion_select: "Selecciona criterio a evaluar en la pregunta"
   search_form:
     from_date: "De la fecha"
     to_date: "A la fecha"
@@ -550,6 +614,9 @@ es:
       disabled: "El servidor público se ha desactivado exitosamente."
       enabled: "El servidor público se ha activado exitosamente."
       disabled_admin: "Tu cuenta ha sido desactivada, por favor contacta a tu Administrador."
+    service_survey:
+      created: "La encuesta se ha creado exitosamente."
+      updated: "La encuesta se ha actualizado exitosamente."
   navbar:
     admin:
       design: "Diseño"
@@ -558,5 +625,43 @@ es:
     service: "Servicio"
     step: "Trámite"
     support_program: "Programa de Apoyo"
+  service_survey_phase_options:
+    start: "Al inicio"
+    middle: "A la mitad"
+    end: "Al cierre"
+  question_criterion_options:
+    transparency: "Transparencia"
+    performance: "Desempeño"
+    quality_service: "Calidad de servicio"
+    accessibility: "Accesibilidad"
+    infrastructure: "Infraestructura"
+  question_answer_type_options:
+    binary: "Seleccionar de 2 posibles (Sí/No)"
+    rating: "Seleccionar de 5 posibles en un rango"
+    list: "Seleccionar de una lista"
+    open: "Respuesta abierta"
 
-
+  answer_type:
+    binary:
+      positive: "Sí"
+      negative: "No"
+    rating:
+      good_answers: "Muy bueno - Muy malo"
+      satisfied_answers: "Muy satisfecho - Nada satisfecho"
+      good:
+        first: "Muy bueno"
+        second: "Bueno"
+        third: "Regular"
+        fourth: "Malo"
+        fifth: "Muy malo"
+      satisfied:
+        first: "Muy satisfecho"
+        second: "Satisfecho"
+        third: "Regular"
+        fourth: "Poco satisfecho"
+        fifth: "Nada satisfecho"
+    open:
+      text: "Texto introducido por el usuario..."
+  service_survey:
+    errors:
+      total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"

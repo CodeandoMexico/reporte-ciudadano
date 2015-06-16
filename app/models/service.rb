@@ -8,6 +8,7 @@ class Service < ActiveRecord::Base
   has_many :messages
   belongs_to :service_admin, class: Admin, foreign_key: :service_admin_id
   has_and_belongs_to_many :admins
+  has_and_belongs_to_many :service_surveys, join_table: :services_service_surveys
 
   accepts_nested_attributes_for :service_fields, allow_destroy: true
   accepts_nested_attributes_for :messages, allow_destroy: true, reject_if: lambda { |attr| attr[:content].blank? }
