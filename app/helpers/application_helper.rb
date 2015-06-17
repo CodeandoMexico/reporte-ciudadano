@@ -4,17 +4,6 @@ module ApplicationHelper
     "/auth/#{provider.to_s}"
   end
 
-  def data_position
-    if Rails.env.development?
-      position = Geocoder.search("131.178.128.39").first
-    else
-      position = request.location
-    end
-    lng = position ? position.longitude : "17.065593"
-    lat = position ? position.latitude : "-96.724253"
-    { "data-longitude" => lng, "data-latitude" => lat }
-  end
-
   def timeago(time, options = {})
     options[:class] ||= "timeago"
     content_tag(:abbr, time.to_s, options.merge(:title => time.getutc.iso8601)) if time
@@ -43,7 +32,7 @@ module ApplicationHelper
 
   def errors_on_resource_for_field(resource, field)
     unless resource.errors[field].empty?
-      content_tag :div, resource.errors[field].join(', ').to_s, class: 'errors-form'
+      content_tag :div, resource.errors[field].join(', ').to_s, class: 'errors-form col-md-3'
     end
   end
 
