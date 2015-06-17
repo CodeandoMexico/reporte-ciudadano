@@ -8,6 +8,10 @@ class Question < ActiveRecord::Base
   validates_presence_of :answer_rating_range, if: :answer_type_rating?
   validates_numericality_of :value, if: :answer_type_rating?
 
+  scope :rating_questions, ->{
+    where(answer_type: 'rating')
+  }
+
   def has_open_answer?
     answer_type == 'open'
   end
