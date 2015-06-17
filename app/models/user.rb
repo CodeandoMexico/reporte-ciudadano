@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   has_many :service_requests, as: :requester
   has_many :comments, as: :commentable
+  has_many :survey_answers
 
   acts_as_voter
 

@@ -1,0 +1,15 @@
+.questions-list {
+  background: #ffffff;
+  max-height: 90px;
+  overflow: scroll;
+
+  li {
+    border-bottom: 1px dotted #cccccc;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background: #cccccc;
+    color: #ffffff;
+  }
+}

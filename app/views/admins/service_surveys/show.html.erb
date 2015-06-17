@@ -1,0 +1,32 @@
+<div class="page-content inset">
+  <div class="row">
+    <div class="col-md-12">
+      <h3><%= t('.service_survey_for', services: @service_survey.services_names) %></h3>
+      <%= link_to t(".edit_service_survey"), edit_admins_service_survey_path(@service_survey), class: "btn btn-primary pull-left" %>
+    </div>
+  </div>
+
+  <% @service_survey.questions.each_with_index do |question, index| %>
+    <div class="row question">
+      <div class="col-md-8 col-md-offset-2 well">
+        <p>
+          <strong><%= index + 1 %>:</strong>
+          <%= question.text %>
+        </p>
+        <hr>
+        <% if question.has_open_answer? %>
+          <%= text_area_tag :survey_answer, nil, rows: 3, class: "form-control" %>
+        <% else %>
+          <ul class="list-unstyled">
+            <% question.answers_set.each do |answer| %>
+              <li>
+                <%= radio_button_tag :survey_answer, answer, false %>
+                <%= answer %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

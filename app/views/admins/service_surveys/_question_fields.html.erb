@@ -1,0 +1,144 @@
+<div class="well nested-fields js-question">
+  <div class="row">
+    <div class="col-md-1 pull-right text-right">
+      <%= link_to_remove_association "x", f, class: "btn btn-danger btn-sm" %>
+    </div>
+    <%= f.label :criterion, t('form.labels.criterion'), class: 'col-md-2 text-right' %>
+    <div class="col-md-2">
+      <%= f.select :criterion, criterion_options, { prompt: I18n.t("form.options.criterion_select") }, class: "js-criterion-selection", "data-questions-text-url" => questions_text_admins_service_surveys_path %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <small class="js-question-text-instructions"></small>
+      <ul class="list-unstyled questions-list js-answers-list">
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.label :text, t('form.labels.text'), class: 'col-md-2 text-right' %>
+    <div class="col-md-5">
+      <%= f.text_field :text, class: "form-control js-question-text" %>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.label :answer_type, t('form.labels.answer_type'), class: 'col-md-2 text-right' %>
+    <div class="col-md-2">
+      <%= f.select :answer_type, answer_type_options, { prompt: I18n.t("form.options.answer_type_select") }, { class: "js-answer-selection" } %>
+    </div>
+  </div>
+  <div class="row hidden js-question-value">
+    <%= f.label :value, t('form.labels.value'), class: 'col-md-2 text-right' %>
+    <div class="col-md-2">
+      <%= f.number_field :value, min: 0, max: 100, class: "form-control" %>
+    </div>
+  </div>
+  <br>
+  <div class="hidden js-answer-wrapper js-binary">
+    <div class="row">
+      <div class="well col-md-6 col-md-offset-2">
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :yes, false, disabled: true %>
+          <em><%= t('answer_type.binary.positive') %></em>
+        </p>
+        <p class="text-muted">
+          <%= radio_button_tag :answer, :no, false, disabled: true %>
+          <em><%= t('answer_type.binary.negative') %></em>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="hidden js-answer-wrapper js-rating">
+    <div class="row">
+      <div class="well col-md-4 col-md-offset-2">
+      <label>
+        <%= f.radio_button :answer_rating_range, :good, checked: true %>
+        <%= f.label :answer_rating_range_good, t('answer_type.rating.good_answers') %>
+      </label>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :first, false, disabled: true %>
+        <em><%= t('answer_type.rating.good.first') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :second, false, disabled: true %>
+        <em><%= t('answer_type.rating.good.second') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :third, false, disabled: true %>
+        <em><%= t('answer_type.rating.good.third') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :fourth, false, disabled: true %>
+        <em><%= t('answer_type.rating.good.fourth') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :fifth, false, disabled: true %>
+        <em><%= t('answer_type.rating.good.fifth') %></em>
+      </p>
+      </div>
+      <div class="well col-md-4">
+      <label>
+        <%= f.radio_button :answer_rating_range, :satisfied %>
+        <%= f.label :answer_rating_range_satisfied, t('answer_type.rating.satisfied_answers') %>
+      </label>
+
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :first, false, disabled: true %>
+        <em><%= t('answer_type.rating.satisfied.first') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :second, false, disabled: true %>
+        <em><%= t('answer_type.rating.satisfied.second') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :third, false, disabled: true %>
+        <em><%= t('answer_type.rating.satisfied.third') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :fourth, false, disabled: true %>
+        <em><%= t('answer_type.rating.satisfied.fourth') %></em>
+      </p>
+      <p class="text-muted">
+        <%= radio_button_tag :answer, :fifth, false, disabled: true %>
+        <em><%= t('answer_type.rating.satisfied.fifth') %></em>
+      </p>
+      </div>
+    </div>
+  </div>
+  <div class="row hidden js-answer-wrapper js-open">
+    <div class="well col-md-6 col-md-offset-2">
+      <p class="text-muted">
+        <em><%= t('answer_type.open.text') %></em>
+      </p>
+    </div>
+  </div>
+  <div class="row hidden js-answer-wrapper js-list">
+    <div class="well col-md-6 col-md-offset-2">
+      <% if f.object.answers.any? %>
+        <% f.object.answers.each_with_index do |answer, index| %>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <%= radio_button_tag :answer, index, false, disabled: true %>
+              <strong><%= t(".custom_answer", number: index) %></strong>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :answers, multiple: true, class: "form-control form-inline custom-answer", placeholder: t(".enter_answer"), value: answer %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <% (1..5).each do |index| %>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <%= radio_button_tag :answer, index, false, disabled: true %>
+              <strong><%= t(".custom_answer", number: index) %></strong>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :answers, multiple: true, class: "form-control form-inline custom-answer", placeholder: t(".enter_answer") %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
