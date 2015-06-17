@@ -12,6 +12,14 @@ class ServiceSurvey < ActiveRecord::Base
   scope :open, -> {
     where(open: true)
   }
+
+  def rating_answers
+    self.answers.where(
+        :question_id =>
+          Question.rating_questions
+    )
+  end
+
   def services_names
     services.map(&:name).join(", ")
   end
