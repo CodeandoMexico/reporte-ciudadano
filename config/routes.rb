@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   root :to => 'pages#index'
 
+  get "/reports/:id", controller: 'service_reports', action: :show
+
   namespace :admins do
     resources :services do
       resources :messages, only: :index
