@@ -1,0 +1,44 @@
+- content_for :head do
+
+  :javascript
+    $(document).ready(function(){
+      $(function () {
+        $('#chart').highcharts({
+          chart: {
+            type: 'pie',
+            options3d: {
+              enabled: true,
+              alpha: 45
+            }
+          },
+          title: {
+              text: "#{t('service_report.general_survey.title')}"
+           },
+           subtitle: {
+            text: "#{t('service_report.general_survey.subtitle')}"
+           },
+          plotOptions: {
+            pie: {
+              innerSize: 100,
+              depth: 45
+            }
+          },
+          series: [{
+            name: 'Delivered amount',
+            data: [
+              ['Positivo', #{@report[:survey][:positive]}],
+              ['Negativo', #{@report[:survey][:negative]}]
+            ]
+          }]
+        });
+      });
+    });
+
+
+%div.container
+  %div.col-sm-12.col-md-12
+    %h1
+      = t('service_report.show.title') + ": " + @report[:title]
+    %h4
+      General
+    %div#chart.col-sm-12.col-md-6
