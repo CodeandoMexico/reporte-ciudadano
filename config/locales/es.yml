@@ -665,3 +665,11 @@ es:
   service_survey:
     errors:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
+  #Reports
+  service_report:
+    show:
+      title: Reporte de
+    general_survey:
+      title: General
+      subtitle: Satisfacción General del Servicio
+
