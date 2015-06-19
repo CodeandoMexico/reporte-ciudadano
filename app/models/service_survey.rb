@@ -3,6 +3,7 @@ class ServiceSurvey < ActiveRecord::Base
   belongs_to :admin
   has_many :questions
   has_many :answers, class: SurveyAnswer, through: :questions, source: :survey_answers
+  has_many :service_survey_reports, class: ServiceSurveyReport
 
   validates_presence_of :phase
   validate :complete_percentage_for_rating_questions
