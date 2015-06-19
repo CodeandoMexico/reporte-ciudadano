@@ -1,8 +1,23 @@
-class ServiceReport < ActiveRecord::Base
+class ServiceSurveyReport < ActiveRecord::Base
+  belongs_to :service_survey
+
+  before_create :get_results_for_survey
+
+  def get_results_for_survey(id)
+    positive_overall_perception = self.report(id)[:survey_results][:positive]
+    negative_overall_perception = self.report(id)[:survey_results][:negative]
+
+  end
+
+  private
 
   def self.report(id)
      survey_results = effectiveness_survey(id)
      {}.merge(survey_results)
+  end
+
+  def self.people_who_participated_in_survey(id)
+
   end
 
   def self.effectiveness_survey(id)
