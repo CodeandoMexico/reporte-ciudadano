@@ -192,26 +192,27 @@ feature 'As a service admin I can create a new survey' do
   end
 
   scenario 'and select question text and answer type from previous questions box', js: true do
-    questions = create_list(:question, 2, :binary)
+    first_question = create :question, :binary, text: "Text for question?"
+    second_question = create :question, :open, text: "Text for question?"
 
     visit new_admins_service_survey_path
     click_link "Agregar pregunta"
 
     select "Transparencia", from: "Criterio a evaluar"
 
-    expect(page).to have_content questions.first.text
-    expect(page).to have_content questions.second.text
+    expect(page).to have_content "Text for question?, (Respuesta Sí/No)"
+    expect(page).to have_content "Text for question?, (Respuesta abierta)"
 
-    select_question_text questions.first
+    select_question_text "Text for question?, (Respuesta Sí/No)"
     sleep 1.0
-    expect(page).to have_field "Texto", with: questions.first.text
+    expect(page).to have_field "Texto", with: "Text for question?"
 
-    select_question_text questions.second
-    expect(page).to have_field "Texto", with: questions.second.text
+    select_question_text "Text for question?, (Respuesta abierta)"
+    expect(page).to have_field "Texto", with: "Text for question?"
   end
 
-  def select_question_text(question)
-    find("li", text: question.text).click()
+  def select_question_text(text)
+    find("li", text: text).click()
   end
 
   def custom_answers_count

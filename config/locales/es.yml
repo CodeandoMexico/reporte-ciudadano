@@ -640,6 +640,11 @@ es:
     rating: "Seleccionar de 5 posibles en un rango"
     list: "Seleccionar de una lista"
     open: "Respuesta abierta"
+  question_selected_answer:
+    binary: "Respuesta Sí/No"
+    rating: "Respuesta rango"
+    list: "Respuesta personalizada"
+    open: "Respuesta abierta"
 
   answer_type:
     binary:

@@ -37,7 +37,7 @@ class Admins::ServiceSurveysController < ApplicationController
   end
 
   def questions_text
-    questions = ServiceSurveys.questions_collection_by_criterion(Question.all)
+    questions = ServiceSurveys.questions_collection_by_criterion(Question.all, translator: I18n.method(:t))
     render json: { questions: questions }
   end
 
