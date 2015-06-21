@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525002630) do
+ActiveRecord::Schema.define(version: 20150608002519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,20 @@ ActiveRecord::Schema.define(version: 20150525002630) do
   add_index "messages", ["service_id"], name: "index_messages_on_service_id", using: :btree
   add_index "messages", ["status_id"], name: "index_messages_on_status_id", using: :btree
 
+  create_table "questions", force: :cascade do |t|
+    t.decimal  "value"
+    t.string   "criterion"
+    t.text     "text"
+    t.string   "answer_type"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.text     "answers"
+    t.integer  "service_survey_id"
+    t.string   "answer_rating_range"
+  end
+
+  add_index "questions", ["service_survey_id"], name: "index_questions_on_service_survey_id", using: :btree
+
   create_table "service_fields", force: :cascade do |t|
     t.string   "name"
     t.integer  "service_id"
@@ -140,6 +154,17 @@ ActiveRecord::Schema.define(version: 20150525002630) do
   add_index "service_requests", ["service_id"], name: "index_service_requests_on_service_id", using: :btree
   add_index "service_requests", ["status_id"], name: "index_service_requests_on_status_id", using: :btree
 
+  create_table "service_surveys", force: :cascade do |t|
+    t.string   "title"
+    t.string   "phase"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "admin_id"
+    t.boolean  "open",       default: false
+  end
+
+  add_index "service_surveys", ["admin_id"], name: "index_service_surveys_on_admin_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -153,12 +178,29 @@ ActiveRecord::Schema.define(version: 20150525002630) do
 
   add_index "services", ["service_admin_id"], name: "index_services_on_service_admin_id", using: :btree
 
+  create_table "services_service_surveys", force: :cascade do |t|
+    t.integer "service_id",        null: false
+    t.integer "service_survey_id", null: false
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_default", default: false
   end
+
+  create_table "survey_answers", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "question_id"
+    t.decimal  "score"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "survey_answers", ["question_id"], name: "index_survey_answers_on_question_id", using: :btree
+  add_index "survey_answers", ["user_id"], name: "index_survey_answers_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -195,4 +237,8 @@ ActiveRecord::Schema.define(version: 20150525002630) do
   add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
+  add_foreign_key "questions", "service_surveys"
+  add_foreign_key "service_surveys", "admins"
+  add_foreign_key "survey_answers", "questions"
+  add_foreign_key "survey_answers", "users"
 end

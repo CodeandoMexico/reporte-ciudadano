@@ -1,0 +1,49 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('.service_surveys') %>
+    <div class="btn-group pull-right">
+      <%= link_to t('.new_service_survey'), new_admins_service_survey_path, class: 'btn btn-primary' %>
+    </div>
+  </h2>
+
+  <div class="table-responsive surveys-table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t(".title") %></th>
+          <th><%= t(".services") %></th>
+          <th><%= t(".phase") %></th>
+          <th><%= t(".number_of_questions") %></th>
+          <th><%= t(".admin") %></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_surveys.each do |survey| %>
+          <tr class="service_survey">
+            <td><%= link_to survey.title, admins_service_survey_path(survey) %></td>
+            <td><%= survey.services_names %></td>
+            <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
+            <td><%= t(".questions_number", count: survey.questions_count) %></td>
+            <td><%= survey.admin_name %></td>
+            <td><%= link_to t(".preview"), admins_service_survey_path(survey), class: "btn btn-info" %></td>
+            <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
+            <td>
+              <%= form_for(survey, url: change_status_admins_service_survey_path(survey.id), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+                <% if survey.open? %>
+                  <%= f.hidden_field :open, value: 0 %>
+                  <%= f.submit t(".close"), class: "btn btn-danger" %>
+                <% else %>
+                  <%= f.hidden_field :open, value: 1 %>
+                  <%= f.submit t(".open"), class: "btn btn-success" %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

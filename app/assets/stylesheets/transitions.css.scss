@@ -1,0 +1,16 @@
+.pt-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+}
+
+.pt-page {
+  visibility: hidden;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+
+  &.pt-page-current {
+    visibility: visible !important;
+  }
+}

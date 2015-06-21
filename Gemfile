@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 ruby '2.1.5'
 
@@ -29,6 +29,8 @@ gem 'ransack'
 gem 'figaro'
 gem 'active_model_serializers'
 gem 'coveralls', require: false
+gem 'cocoon'
+gem 'jquery-turbolinks'
 
 # Async backgroun job handling
 gem 'sidekiq'
