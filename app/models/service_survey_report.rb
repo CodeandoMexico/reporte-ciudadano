@@ -1,8 +1,13 @@
 class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
+  validates :answers_exist, presence: true
   before_create :get_results_for_survey
 
   private
+
+  def answers_exist
+    rating_and_binary_answers(self.service_survey_id)
+  end
 
   def get_results_for_survey
     self.positive_overall_perception = report(self.service_survey_id)[:survey][:positive]
