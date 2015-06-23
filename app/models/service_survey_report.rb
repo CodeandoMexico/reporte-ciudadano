@@ -2,6 +2,8 @@ class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
   before_create :get_results_for_survey
 
+  private
+
   def get_results_for_survey
     self.positive_overall_perception = report(self.service_survey_id)[:survey][:positive]
     self.negative_overall_perception = report(self.service_survey_id)[:survey][:negative]
