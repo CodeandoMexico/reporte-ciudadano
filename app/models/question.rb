@@ -12,13 +12,6 @@ class Question < ActiveRecord::Base
     where(answer_type: ['rating','binary'])
   }
 
-  scope :rating_questions, ->{
-    where(answer_type: 'rating')
-  }
-  scope :binary_questions, ->{
-    where(answer_type: 'binary')
-  }
-
   def has_open_answer?
     answer_type == 'open'
   end
