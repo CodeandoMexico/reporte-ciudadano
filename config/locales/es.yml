@@ -669,6 +669,7 @@ es:
   service_report:
     show:
       title: Reporte de
+      people_who_participated: ciudadanos han participado.
     general_survey:
       title: General
       subtitle: Satisfacción General del Servicio
