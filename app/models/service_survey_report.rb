@@ -10,9 +10,13 @@ class ServiceSurveyReport < ActiveRecord::Base
   end
 
   def get_results_for_survey
-    self.positive_overall_perception = report(self.service_survey_id)[:survey][:positive]
-    self.negative_overall_perception = report(self.service_survey_id)[:survey][:negative]
-    self.people_who_participated = report(self.service_survey_id)[:people_count]
+    survey_report = report(self.service_survey_id)
+    survey = get_service_survey(self.service_survey_id)
+    self.positive_overall_perception = survey_report[:survey][:positive]
+    self.negative_overall_perception = survey_report[:survey][:negative]
+    self.people_who_participated = survey_report[:people_count]
+    self.phase = survey.phase
+    self.title = survey.title
   end
 
   def report(service_survey_id)
