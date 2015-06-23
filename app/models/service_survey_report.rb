@@ -16,19 +16,21 @@ class ServiceSurveyReport < ActiveRecord::Base
   end
 
   def effectiveness_survey(service_survey_id)
-    {:survey => {:positive =>"#{overall_effectiveness(service_survey_id)}",
-                 :negative => "#{ 100 - overall_effectiveness(service_survey_id)}"},
+    people_count = rating_and_binary_answers(service_survey_id).select(:user_id).distinct.count
+    positive_perception = (overall_effectiveness(service_survey_id)/people_count).to_i
+    {:survey => {:positive => positive_perception,
+                 :negative => "#{ 100 - positive_perception}"},
      :title => ServiceSurvey.find(service_survey_id).title,
-     :people_count => get_service_survey(service_survey_id).answers.select(:user_id).distinct.count
+     :people_count => people_count
     }
   end
 
   def overall_effectiveness(service_survey_id)
-    rating_answers(service_survey_id).map(&:score).sum.to_i
+    rating_and_binary_answers(service_survey_id).map(&:score).sum.to_i
   end
 
-  def rating_answers(service_survey_id)
-    get_service_survey(service_survey_id).rating_answers
+  def rating_and_binary_answers(service_survey_id)
+    get_service_survey(service_survey_id).rating_and_binary_answers
   end
 
   def get_service_survey(service_survey_id)
