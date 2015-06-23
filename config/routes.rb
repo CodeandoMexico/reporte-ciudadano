@@ -84,7 +84,7 @@ Rails.application.routes.draw do
   end
   resources :service_surveys, only: [:index, :show]
   resources :answers, only: [:new, :index, :create]
-  resources :cis_evaluations
+  resources :cis_evaluations, only:  [:index, :show]
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do

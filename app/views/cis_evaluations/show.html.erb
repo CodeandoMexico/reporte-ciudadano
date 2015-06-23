@@ -1,0 +1,31 @@
+<h3>
+  <%= link_to cis_evaluations_path do %>
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  <% end %>
+  <%= t(".cis_evaluation_for", name: @cis.name) %>
+</h3>
+<hr>
+<div class="row evaluation-overview">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="well well-md text-center evaluation-overview-participants">
+          <h3><%= @cis.survey_participants_count %></h3>
+          <small><em><%= t(".survey_participants_count") %></em></small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="well well-md text-center evaluation-overview-services">
+          <h3><%= @cis.evaluated_services_count %></h3>
+          <small><em><%= t(".evaluated_services_count") %></em></small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="well well-md text-center evaluation-overview-public-servants">
+          <h3><%= @cis.evaluated_public_servants_count %></h3>
+          <small><em><%= t(".evaluated_public_servants_count") %></em></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

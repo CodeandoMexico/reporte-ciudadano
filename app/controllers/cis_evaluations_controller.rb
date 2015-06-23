@@ -6,6 +6,10 @@ class CisEvaluationsController < ApplicationController
     @cis = Evaluations.cis_with_results(available_cis, Service.all)
   end
 
+  def show
+    @cis = Evaluations.cis_evaluation_for(cis, Service.all)
+  end
+
   private
 
   def authorize_observer
@@ -16,5 +20,9 @@ class CisEvaluationsController < ApplicationController
 
   def available_cis
     Services.service_cis
+  end
+
+  def cis
+    available_cis.select { |cis| cis[:id].to_s ==  params[:id] }.first
   end
 end

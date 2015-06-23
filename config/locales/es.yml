@@ -497,6 +497,11 @@ es:
       survey_participants_count: "Ciudadanos han participado"
       see_results: "Ver resultados"
       cis_evaluations: "Evaluaciones por Centro de atención"
+    show:
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      cis_evaluation_for: "Evaluación del Centro de atención %{name}"
   users:
     registrations:
       edit:

@@ -3,14 +3,13 @@ require 'spec_helper'
 feature 'Observer can see cis evaluation results' do
   let(:observer) { create(:user, :observer) }
 
-  background do
-    sign_in_user observer
-  end
-
   scenario 'from dashboard' do
-    service = create :service, name: "Actas de nacimiento"
+    service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
+    service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
     given_survey_has_answers survey
+
+    sign_in_user observer
 
     expect(current_path).to eq cis_evaluations_path
     expect(page).to have_content "Centro 1"
@@ -22,8 +21,19 @@ feature 'Observer can see cis evaluation results' do
       expect(page).to have_link "Ver resultados"
       click_link "Ver resultados"
     end
-    save_and_open_page
+
     expect(current_path).to eq cis_evaluation_path(id: 1)
+    within '.evaluation-overview-participants' do
+      expect(page).to have_content 1
+    end
+
+    within '.evaluation-overview-services' do
+      expect(page).to have_content 2
+    end
+
+    within '.evaluation-overview-public-servants' do
+      expect(page).to have_content 2
+    end
   end
 
   def given_survey_has_answers(survey)

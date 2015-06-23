@@ -3,6 +3,10 @@ module Evaluations
     cis_array.map { |cis| Cis.new(cis, services_records: services_records) }
   end
 
+  def self.cis_evaluation_for(cis, services_records)
+    Cis.new(cis, services_records: services_records)
+  end
+
   private
 
   class Cis
