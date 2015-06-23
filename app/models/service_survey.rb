@@ -14,10 +14,10 @@ class ServiceSurvey < ActiveRecord::Base
     where(open: true)
   }
 
-  def rating_answers
+  def rating_and_binary_answers
     self.answers.where(
         :question_id =>
-          Question.rating_questions
+          Question.rating_and_binary_questions
     )
   end
 
