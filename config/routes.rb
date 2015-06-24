@@ -84,6 +84,7 @@ Rails.application.routes.draw do
   end
   resources :service_surveys, only: [:index, :show]
   resources :answers, only: [:new, :index, :create]
+  resources :evaluations, only:  [:index]
   resources :cis_evaluations, only:  [:index, :show]
 
   namespace :api, defaults: { format: 'json' } do

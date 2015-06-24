@@ -36,6 +36,26 @@ feature 'Observer can see cis evaluation results' do
     end
   end
 
+  scenario 'with services results' do
+    service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
+    other_service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
+    survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
+    given_survey_has_answers survey
+
+    sign_in_user observer
+    visit cis_evaluation_path(id: 1)
+
+    within '.evaluation-services' do
+      expect(page).to have_content "Transparencia"
+      expect(page).to have_content "Desempeño"
+      expect(page).to have_content "Calidad de servicio"
+      expect(page).to have_content "Accesibilidad"
+      expect(page).to have_content "Infraestructura"
+      expect(page).to have_content service.name
+      expect(page).to have_content other_service.name
+    end
+  end
+
   def given_survey_has_answers(survey)
     survey.questions.each do |question|
       user = create :user

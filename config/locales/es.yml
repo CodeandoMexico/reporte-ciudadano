@@ -502,6 +502,7 @@ es:
       evaluated_public_servants_count: "Servidores públicos evaluados"
       survey_participants_count: "Ciudadanos han participado"
       cis_evaluation_for: "Evaluación del Centro de atención %{name}"
+      by_services: "Por servicios"
   users:
     registrations:
       edit:

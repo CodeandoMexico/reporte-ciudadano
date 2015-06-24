@@ -30,12 +30,14 @@ module Evaluations
       survey_participants_ids.count
     end
 
+    def services
+      services_records
+        .select { |service| Services.is_assigned_to_cis?(service, id)}
+        .map { |service| ServiceEvaluation.new(service) }
+    end
+
     private
     attr_reader :services_records
-
-    def services
-      services_records.select { |service| Services.is_assigned_to_cis?(service, id)}
-    end
 
     def service_surveys
       services.map(&:service_surveys).flatten
@@ -47,6 +49,12 @@ module Evaluations
         .flatten
         .map(&:user_id)
         .uniq
+    end
+  end
+
+  class ServiceEvaluation < SimpleDelegator
+    def overall_evaluation_for(criterion)
+      #pending
     end
   end
 end

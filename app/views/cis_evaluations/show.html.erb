@@ -6,7 +6,7 @@
 </h3>
 <hr>
 <div class="row evaluation-overview">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-10 col-md-offset-1">
     <div class="row">
       <div class="col-md-4">
         <div class="well well-md text-center evaluation-overview-participants">
@@ -27,5 +27,37 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row evaluation-services">
+  <div class="col-md-10 col-md-offset-1">
+    <h4><%= t(".by_services") %></h4>
+  </div>
+  <div class="col-md-10 col-md-offset-1 table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= t("question_criterion_options.transparency") %></th>
+          <th><%= t("question_criterion_options.performance") %></th>
+          <th><%= t("question_criterion_options.quality_service") %></th>
+          <th><%= t("question_criterion_options.accessibility") %></th>
+          <th><%= t("question_criterion_options.infrastructure") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cis.services.each do |service| %>
+          <tr>
+            <td><%= service.name %></td>
+            <td><%= service.overall_evaluation_for(:transparency) %></td>
+            <td><%= service.overall_evaluation_for(:performance) %></td>
+            <td><%= service.overall_evaluation_for(:quality_service) %></td>
+            <td><%= service.overall_evaluation_for(:accessibility) %></td>
+            <td><%= service.overall_evaluation_for(:infrastructure) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
