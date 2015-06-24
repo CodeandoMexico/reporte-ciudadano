@@ -5,13 +5,13 @@ feature 'Observer can see cis evaluation results' do
 
   scenario 'from dashboard' do
     service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
-    service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
+    other_service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
     given_survey_has_answers survey
 
     sign_in_user observer
+    expect(current_path).to eq evaluations_path
 
-    expect(current_path).to eq cis_evaluations_path
     expect(page).to have_content "Centro 1"
     expect(page).to have_content "Centro 2"
     expect(page).to have_content "Centro 3"

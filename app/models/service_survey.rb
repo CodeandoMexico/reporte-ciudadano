@@ -29,6 +29,14 @@ class ServiceSurvey < ActiveRecord::Base
     answers.any? { |answer| answer.user_id == user.id }
   end
 
+  def status
+    if open?
+      :open
+    else
+      :close
+    end
+  end
+
   private
 
   def complete_percentage_for_rating_questions

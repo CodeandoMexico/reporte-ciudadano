@@ -489,6 +489,19 @@ es:
       finish_survey: "Terminar evaluación"
     create:
       answers_created_successfully: "Gracias por evaluar el servicio."
+  evaluations:
+    index:
+      service_evaluations: "Evaluaciones por servicio"
+      name: "Nombre de servicio"
+      cis: "Centros de atención"
+      service_surveys: "Encuestas"
+      answered_surveys: "Encuestas contestadas"
+      cis_name: "Centro de atención - %{name}"
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      see_results: "Ver resultados"
+      cis_evaluations: "Evaluaciones por Centro de atención"
   cis_evaluations:
     index:
       cis: "Centro de atención - %{name}"
