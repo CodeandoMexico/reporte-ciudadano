@@ -516,6 +516,7 @@ es:
       survey_participants_count: "Ciudadanos han participado"
       cis_evaluation_for: "Evaluación del Centro de atención %{name}"
       by_services: "Por servicios"
+      no_services: "El centro de atención no cuenta con servicios asignados."
   users:
     registrations:
       edit:
