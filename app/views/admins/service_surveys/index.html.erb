@@ -28,6 +28,25 @@
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
             <td><%= t(".questions_number", count: survey.questions_count) %></td>
             <td><%= survey.admin_name %></td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <%= t('service_report.name') %>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <%= form_for(@service_survey_report, url: {controller: 'service_survey_reports',:action => 'create'}, html: { method: :post, class: 'form-horizontal', id: 'new-report' }) do |f| %>
+                      <%= f.hidden_field :service_survey_id, value: survey.id %>
+                      <%= f.submit t('service_report.new'), class: 'hidden' %>
+                  <% end %>
+
+                  <li><%= link_to t('service_report.new'), "#", :onclick => "$('#new-report').submit()" %></li>
+                  <li><%= link_to t('service_report.go_to_index'), service_survey_reports_path(service_survey_id: survey.id) %></li>
+                </ul>
+              </div>
+
+
+            </td>
             <td><%= link_to t(".preview"), admins_service_survey_path(survey), class: "btn btn-info" %></td>
             <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
             <td>
