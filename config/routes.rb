@@ -22,9 +22,10 @@ Rails.application.routes.draw do
 
   root :to => 'pages#index'
 
-  get "/reports/:id", controller: 'service_reports', action: :show
+  resources :service_survey_reports, only: [:new, :create, :show, :index]
 
   namespace :admins do
+    resources :service_survey_reports, only: [:new, :create, :show, :index]
     resources :services do
       resources :messages, only: :index
     end
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
     resources :service_surveys do
       get :questions_text, on: :collection
       put :change_status, on: :member
+
     end
     resources :dashboards, only: [:index] do
       collection do
