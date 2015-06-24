@@ -667,6 +667,7 @@ es:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
   #Reports
   service_report:
+    no_reports: No hay respuestas para generar reporte
     name: Reportes
     new: Crear Reporte
     go_to_index: Ver reportes
