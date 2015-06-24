@@ -676,6 +676,7 @@ es:
       title: Reporte de
       people_who_participated: ciudadanos han participado.
       return_to_index: Ver todos los reportes
+      service_survey_phase: Parte del proceso evaluada
     general_survey:
       title: General
       subtitle: Satisfacción General del Servicio

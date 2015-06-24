@@ -12,6 +12,9 @@
     %div.col-sm-12.col-md-6
       %p.text-right
         = link_to t('service_report.show.return_to_index'), service_survey_reports_url,{class:"btn btn-default"}
+      %h4.text-right
+        %span.glyphicon.glyphicon-time{"aria-hidden"=> "true"}
+        = t('service_report.show.service_survey_phase')+ ": "+t("service_survey_phase_options.#{@service_surveys_report.phase}")
 
 .row
   %div.container
