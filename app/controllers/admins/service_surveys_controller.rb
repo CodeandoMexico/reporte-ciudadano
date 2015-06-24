@@ -4,6 +4,7 @@ class Admins::ServiceSurveysController < ApplicationController
 
   def index
     @service_surveys = current_admin.service_surveys
+    @service_survey_report = ServiceSurveyReport.new
   end
 
   def new
