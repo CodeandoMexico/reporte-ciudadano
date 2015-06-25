@@ -668,6 +668,7 @@ es:
   #Reports
   service_report:
     no_reports: No hay respuestas para generar reporte
+    created: El reporte ha sido generado
     name: Reportes
     new: Crear Reporte
     go_to_index: Ver reportes
