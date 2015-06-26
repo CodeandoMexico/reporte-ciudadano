@@ -1,3 +1,4 @@
+$grey-kpi: #e6e6e6;
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
@@ -106,6 +107,23 @@
   width: 80%;
   height: 20em;;
   margin-left: 10%; 
+}
+
+/***************************************************
+**  KPIS
+***************************************************/
+.panel-gray {
+     background-color: $grey-kpi !important;
+     padding: 15px 15px 15px 15px;
+     margin: 15px 15px 25px;
+}
+.panel-gray .panel-heading {
+  border-color: $grey-kpi;
+  color: #000;
+  background-color: $grey-kpi;
+}
+.panel-gray a {
+  color: $grey-kpi;
 }
 /***************************************************
 **  HOME REPORT STATS

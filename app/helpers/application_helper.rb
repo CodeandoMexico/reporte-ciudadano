@@ -44,4 +44,14 @@ def embed_video(youtube_url)
     youtube_id = youtube_url.split("=").last
     content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}", class: "video")
   end
+
+  def pretty_kpi_data(value, message)
+      kpi_panel = {
+          panel: 'panel-gray',
+          awesome_icons_class: '#',
+          path: '#',
+          value: value,
+          message: message
+      }
+  end
 end
