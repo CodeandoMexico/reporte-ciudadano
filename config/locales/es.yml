@@ -558,5 +558,8 @@ es:
     service: "Servicio"
     step: "Trámite"
     support_program: "Programa de Apoyo"
+  pages:
+    index:
+      video_explication: Esta aplicación te permite evaluar los Trámites, Servicios y Programas de Apoyo del Estado de Puebla. Además, puedes levantar y dar seguimiento a las Quejas y Sugerencias sobre el Servicio que resolviendo para dar mejorar el servicio día con día.
 
 

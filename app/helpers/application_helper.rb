@@ -39,4 +39,9 @@ module ApplicationHelper
   def i18n_admin_sidebar(option)
     t("admins.shared.sidebar.#{option}")
   end
+
+def embed_video(youtube_url)
+    youtube_id = youtube_url.split("=").last
+    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}", class: "video")
+  end
 end
