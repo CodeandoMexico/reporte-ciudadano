@@ -29,6 +29,14 @@ module Admins
     end
   end
 
+  def self.services_for(admin)
+    if admin.is_super_admin?
+      Service.all
+    elsif admin.is_service_admin?
+      admin.managed_services
+    end
+  end
+
   class Permissions
     def initialize(admin)
       @admin = admin

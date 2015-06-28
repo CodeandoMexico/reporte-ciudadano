@@ -48,7 +48,7 @@ class Admins::PublicServantsController < ApplicationController
 
   def assign_services
     @public_servant = Admin.find(params[:id])
-    @available_services = current_admin.managed_services
+    @available_services = Admins.services_for(current_admin)
   end
 
   private
