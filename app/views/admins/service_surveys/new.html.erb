@@ -1,0 +1,71 @@
+<div class="page-content inset">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><%= t('.new_service_survey') %></h2>
+      <%= form_for(@service_survey, url: admins_service_surveys_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
+        <% if @service_survey.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@service_survey.errors.count, "error") %></h2>
+            <ul class="list-unstyled">
+              <% @service_survey.errors.full_messages.each do |error_message| %>
+                <li class="text-danger"><%= error_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <fieldset>
+          <div class="form-group">
+            <%= f.label :title, t('form.labels.title'), class: 'col-md-3 control-label' %>
+            <div class="col-md-5">
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="form-group">
+            <%= f.label :services, t('form.labels.services'), class: 'col-md-3 control-label' %>
+            <div class="col-md-5">
+              <% current_admin.managed_services.each do |service| %>
+                <div class="checkbox">
+                  <%= f.check_box :service_ids,  { multiple: true }, service.id, nil %>
+                  <%= f.label :service_ids, service.name, value: service.id %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="form-group">
+            <%= f.label :phase, t('form.labels.phase'), class: 'col-md-3 control-label' %>
+            <div class="col-md-5">
+              <ul class="list-unstyled list-inline">
+                <% phase_options.each do |phase| %>
+                  <li>
+                    <%= f.radio_button :phase, phase %>
+                    <%= f.label :phase, t("service_survey_phase_options.#{phase}"), value: phase %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <%= errors_on_resource_for_field(@service_survey, :phase) %>
+          </div>
+        </fieldset>
+        <div id="questions">
+          <%= f.fields_for :questions do |question| %>
+            <%= render "question_fields", f: question %>
+          <% end %>
+        </div>
+        <hr>
+        <div class="actions col-md-6">
+          <div class="col-md-6">
+            <%= link_to_add_association t(".add_question"), f, :questions, class: "btn btn-success btn-block", "data-association-insertion-node" => "#questions", "data-association-insertion-method" => "append" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.submit t(".save_survey"), class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

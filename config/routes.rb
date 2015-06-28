@@ -40,6 +40,11 @@ Rails.application.routes.draw do
         get 'dashboard'
       end
     end
+
+    resources :service_surveys do
+      get :questions_text, on: :collection
+      put :change_status, on: :member
+    end
     resources :dashboards, only: [:index] do
       collection do
         get 'design'
@@ -77,6 +82,9 @@ Rails.application.routes.draw do
       get 'load_service_fields'
     end
   end
+
+  resources :service_surveys, only: [:index, :show]
+  resources :answers, only: [ :new, :index, :create ]
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
