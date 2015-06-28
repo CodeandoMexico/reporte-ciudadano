@@ -698,3 +698,20 @@ es:
   service_survey:
     errors:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
+  #Reports
+  service_report:
+    no_reports: No hay respuestas para generar reporte
+    created: El reporte ha sido generado
+    name: Reportes
+    new: Crear Reporte
+    go_to_index: Ver reportes
+    show_report: Ver reporte
+    show:
+      title: Reporte de
+      people_who_participated: ciudadanos han participado.
+      return_to_index: Ver todos los reportes
+      service_survey_phase: Parte del proceso evaluada
+    general_survey:
+      title: General
+      subtitle: Satisfacción General del Servicio
+
