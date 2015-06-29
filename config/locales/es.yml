@@ -682,7 +682,7 @@ es:
         creation_date: Fecha de creación
         go_to_report: "Ir al reporte %{id}"
     show:
-      title: Reporte de
+      title: Reporte de %{title}
       people_who_participated: ciudadanos han participado.
       return_to_index: Ver todos los reportes
       service_survey_phase: Parte del proceso evaluada

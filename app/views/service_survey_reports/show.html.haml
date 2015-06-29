@@ -2,7 +2,7 @@
   %div.container
     %div.col-sm-12.col-md-6
       %h1
-        = t('service_report.show.title') + ": " + @service_surveys_report.title
+        = t('service_report.show.title', title: @service_surveys_report.title)
       %h4
         %span.glyphicon.glyphicon-user{"aria-hidden"=> "true"}
         = @service_surveys_report.people_who_participated.to_s + " " + t('service_report.show.people_who_participated')
