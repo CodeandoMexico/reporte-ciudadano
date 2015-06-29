@@ -36,6 +36,10 @@ module Evaluations
         .map { |service| ServiceEvaluation.new(service) }
     end
 
+    def service_surveys_reports
+      service_surveys.map(&:service_survey_reports).flatten
+    end
+
     private
     attr_reader :services_records
 

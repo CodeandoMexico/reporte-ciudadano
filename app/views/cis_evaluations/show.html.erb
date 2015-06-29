@@ -30,6 +30,14 @@
   </div>
 </div>
 
+<div class="row evaluation-overall">
+  <div class="well well-md col-md-4 js-overall-chart"
+  data-title="<%= @cis_report.title %>"
+  data-positive="<%= @cis_report.positive_overall %>"
+  data-negative="<%= @cis_report.negative_overall %>">
+  </div>
+</div>
+
 <div class="row evaluation-services">
   <div class="col-md-10 col-md-offset-1">
     <h4><%= t(".by_services") %></h4>

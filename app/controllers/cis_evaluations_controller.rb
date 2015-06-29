@@ -8,6 +8,11 @@ class CisEvaluationsController < ApplicationController
 
   def show
     @cis = Evaluations.cis_evaluation_for(cis, Service.all)
+    @cis_report = Reports.cis_report_for(
+      cis,
+      cis_report_store: CisReport,
+      survey_reports: @cis.service_surveys_reports,
+      translator: I18n.method(:t))
   end
 
   private

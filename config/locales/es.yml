@@ -698,6 +698,8 @@ es:
   service_survey:
     errors:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
+  cis_reports:
+    title: "Satisfacción general de servicios"
   #Reports
   service_report:
     no_reports: No hay respuestas para generar reporte
