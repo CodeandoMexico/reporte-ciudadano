@@ -7,13 +7,13 @@
         %span.icon-bar
       = link_to t('public_nav_bar.name'), root_path, class: 'navbar-brand'
     .navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to t('public_nav_bar.summary'), root_path, class: "pages index"
-        %li
-          = link_to t('public_nav_bar.service_requests'), service_requests_path, class: "reports index"
-        %li
-          = button_to t('public_nav_bar.new_service_request'), new_service_request_path, method: :get, class: "reports new btn btn-primary navbar-btn"
+      / %ul.nav.navbar-nav
+      /   %li
+      /     = link_to t('public_nav_bar.summary'), root_path, class: "pages index"
+      /   %li
+      /     = link_to t('public_nav_bar.service_requests'), service_requests_path, class: "reports index"
+      /   %li
+      /     = button_to t('public_nav_bar.new_service_request'), new_service_request_path, method: :get, class: "reports new btn btn-primary navbar-btn"
       %ul.nav.navbar-nav.navbar-right
         - if current_user
           %li.dropdown

@@ -414,6 +414,9 @@ es:
     recent_requests: "Solicitudes recientes"
     requests_by_service_chart: "Quejas o sugerencias por tipo de servicio"
     requests_map: "Mapa de quejas o sugerencias"
+    total_cities: Ciudadanos que han participado.
+    total_procedures_services: Trámites, servicios o programas de apoyo
+    total_evaluations: Servidores públicos evaluados
 
   comments:
     comment:
@@ -561,5 +564,6 @@ es:
   pages:
     index:
       video_explication: Esta aplicación te permite evaluar los Trámites, Servicios y Programas de Apoyo del Estado de Puebla. Además, puedes levantar y dar seguimiento a las Quejas y Sugerencias sobre el Servicio que resolviendo para dar mejorar el servicio día con día.
-
-
+      participa: "!Participa¡"
+      queja_sugerencia: Realizar una queja o sugerencia
+      evalua_tramite: Evalúa un trámite
