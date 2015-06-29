@@ -673,6 +673,13 @@ es:
     new: Crear Reporte
     go_to_index: Ver reportes
     show_report: Ver reporte
+    index:
+      existent_reports: Reportes Existentes
+      table:
+        name: Nombre
+        phase: Fase
+        link: Vínculo
+        creation_date: Fecha de creación
     show:
       title: Reporte de
       people_who_participated: ciudadanos han participado.

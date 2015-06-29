@@ -2,20 +2,20 @@
   %div.col-sm-12.col-md-12
     %h1
     %h4
-      Reportes Existentes
+      =t('service_report.index.existent_reports')
     %div.row.container.col-md-12
       .table-responsive.surveys-table
         %table.table.table-striped
           %thead
             %tr
               %th
-                Nombre
+                =t('service_report.index.table.name')
               %th
-                Fase
+                =t('service_report.index.table.phase')
               %th
-                Link
+                =t('service_report.index.table.link')
               %th
-                Fecha de Creación
+                =t('service_report.index.table.creation_date')
 
           %tbody
             - @service_surveys_report.each do |report|
