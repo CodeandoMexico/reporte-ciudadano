@@ -1,4 +1,4 @@
-.row.col-md-6.col-md-offset-3.padding-video
+.row.col-md-6.col-md-offset-3.padding-video.padding-top
   =embed_video(@url_video)
 .row.col-md-6.col-md-offset-3
   =t('.video_explication')
@@ -12,7 +12,7 @@
 
 .col-md-12.text-center  
   .col-md-6.padding-top
-    =link_to t(".queja_sugerencia"), root_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
+    =link_to t(".queja_sugerencia"), service_requests_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
   .col-md-6.padding-top
     =link_to t(".evalua_tramite"), root_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
 

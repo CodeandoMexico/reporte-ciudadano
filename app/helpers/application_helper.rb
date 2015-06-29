@@ -32,7 +32,7 @@ module ApplicationHelper
 
   def errors_on_resource_for_field(resource, field)
     unless resource.errors[field].empty?
-      content_tag :div, resource.errors[field].join(', ').to_s, class: 'errors-form'
+      content_tag :div, resource.errors[field].join(', ').to_s, class: 'errors-form col-md-3'
     end
   end
 
