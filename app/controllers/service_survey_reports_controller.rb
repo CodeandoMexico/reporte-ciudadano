@@ -2,7 +2,6 @@ class ServiceSurveyReportsController < ApplicationController
 
   def index
     @service_surveys_report = ServiceSurveyReport.all
-    @surveys = ServiceSurvey.all
   end
 
   def new
