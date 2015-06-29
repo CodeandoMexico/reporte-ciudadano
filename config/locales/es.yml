@@ -670,7 +670,7 @@ es:
     no_reports: "No hay respuestas para generar reporte"
     created: "El reporte ha sido generado"
     name: "Reportes"
-    new: "Crear Reporte"
+    new: "Generar Reporte"
     go_to_index: "Ver reportes"
     show_report: "Ver reporte"
     index:
