@@ -680,6 +680,7 @@ es:
         phase: Fase
         link: Vínculo
         creation_date: Fecha de creación
+        go_to_report: "Ir al reporte %{id}"
     show:
       title: Reporte de
       people_who_participated: ciudadanos han participado.

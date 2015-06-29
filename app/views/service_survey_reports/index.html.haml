@@ -25,6 +25,6 @@
                 %td
                   = report.phase
                 %td
-                  = link_to  "Ir al reporte #{report.id}",service_survey_report_path(report.id)
+                  = link_to  t("service_report.index.table.go_to_report", id: report.id),service_survey_report_path(report.id)
                 %td
                   = report.created_at.to_date
