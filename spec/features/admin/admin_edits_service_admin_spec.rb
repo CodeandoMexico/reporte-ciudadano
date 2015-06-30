@@ -21,14 +21,14 @@ feature 'As an admin I can edit a service admin' do
 
     fill_in "admin[name]", with: "New name"
     select "Dependencia 2", from: "admin[dependency]"
-    select "Unidad administrativa 2", from: "admin[administrative_unit]"
+    select administrative_unit, from: "admin[administrative_unit]"
     check "admin_services_ids_#{services.first.id}"
     click_button "Actualizar"
 
     expect(page).to have_content "El administrador de servicios se ha actualizado exitosamente"
     expect(page).to have_content "New name"
     expect(page).to have_content "Dependencia 2"
-    expect(page).to have_content "Unidad administrativa 2"
+    expect(page).to have_content administrative_unit
 
     click_edit_link_for first_service_admin
     expect(service_checkbox(services.first)).to be_checked

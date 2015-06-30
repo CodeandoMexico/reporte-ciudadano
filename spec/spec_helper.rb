@@ -19,6 +19,9 @@ module HelperMethods
     I18n.t(*args)
   end
 
+  def administrative_unit
+    Services.service_administrative_unit_options.first
+  end
 end
 
 RSpec.configure do |config|
