@@ -1,4 +1,5 @@
 $blue-background: #133150;
+$blue-line: #005195;
 #wrapper {
   &.is-logged-in {
     padding-left: 250px;
@@ -101,6 +102,8 @@ $blue-background: #133150;
     margin-left: 20px;
     line-height: 65px;
     display: inline-block;
+    color: $blue-line !important;
+    font-family:  "Helvetica Neue Light" !important;
   }
 }
 

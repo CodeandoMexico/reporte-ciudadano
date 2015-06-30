@@ -15,7 +15,7 @@
       /     = link_to t('public_nav_bar.service_requests'), new_service_request_path, class: "reports index"
       /   %li
       /     = button_to t('public_nav_bar.new_service_request'), new_service_request_path, method: :get, class: "reports new btn btn-primary navbar-btn"
-      %ul.nav.navbar-nav.navbar-right
+      %ul.nav.navbar-nav.navbar-right.padding-top
         - if current_user
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
