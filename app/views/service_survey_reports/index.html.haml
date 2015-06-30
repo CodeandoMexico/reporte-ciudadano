@@ -2,20 +2,20 @@
   %div.col-sm-12.col-md-12
     %h1
     %h4
-      Reportes Existentes
+      =t('service_report.index.existent_reports')
     %div.row.container.col-md-12
       .table-responsive.surveys-table
         %table.table.table-striped
           %thead
             %tr
               %th
-                Nombre
+                =t('service_report.index.table.name')
               %th
-                Fase
+                =t('service_report.index.table.phase')
               %th
-                Link
+                =t('service_report.index.table.link')
               %th
-                Fecha de Creación
+                =t('service_report.index.table.creation_date')
 
           %tbody
             - @service_surveys_report.each do |report|
@@ -23,8 +23,8 @@
                 %td
                   = report.title
                 %td
-                  = report.phase
+                  = t("service_survey_phase_options.#{report.phase}")
                 %td
-                  = link_to  "Ir al reporte #{report.id}",service_survey_report_path(report.id)
+                  = link_to  t("service_report.index.table.go_to_report", id: report.id),service_survey_report_path(report.id)
                 %td
                   = report.created_at.to_date
