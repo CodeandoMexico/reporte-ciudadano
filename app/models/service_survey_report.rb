@@ -3,6 +3,14 @@ class ServiceSurveyReport < ActiveRecord::Base
   validates :answers_exist, presence: true
   before_create :get_results_for_survey
 
+  def service_survey_title
+    service_survey.title
+  end
+
+  def service_survey_phase
+    service_survey.phase
+  end
+
   private
 
   def answers_exist
@@ -14,9 +22,8 @@ class ServiceSurveyReport < ActiveRecord::Base
     survey = get_service_survey(self.service_survey_id)
     self.positive_overall_perception = survey_report[:survey][:positive]
     self.negative_overall_perception = survey_report[:survey][:negative]
+    self.service_id = survey.id
     self.people_who_participated = survey_report[:people_count]
-    self.phase = survey.phase
-    self.title = survey.title
   end
 
   def report(service_survey_id)
