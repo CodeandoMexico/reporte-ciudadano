@@ -1,6 +1,6 @@
 <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
-    <li class="sidebar-brand">
+   <li class="sidebar-brand">
       <%= link_to i18n_admin_sidebar('.dashboard'), admins_dashboards_path %>
     </li>
     <li>
@@ -25,7 +25,7 @@
       <%#= current_admin.email %>
     </li>
     <li>
-      <%= link_to edit_admins_registration_path(current_admin) do %>
+      <%#= link_to edit_admins_registration_path(current_admin) do %>
         <i class="glyphicon glyphicon-cog"></i>
         <%#= i18n_admin_sidebar('.edit_profile') %>
       <% #end %>

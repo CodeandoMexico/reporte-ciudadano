@@ -631,7 +631,7 @@ es:
   pages:
     index:
       video_explication: Esta aplicación te permite evaluar los Trámites, Servicios y Programas de Apoyo del Estado de Puebla. Además, puedes levantar y dar seguimiento a las Quejas y Sugerencias sobre el Servicio que resolviendo para dar mejorar el servicio día con día.
-      participa: "!Participa¡"
+      participa: "¡Participa!"
       queja_sugerencia: Realizar una queja o sugerencia
       evalua_tramite: Evalúa un trámite
   service_survey_phase_options:
