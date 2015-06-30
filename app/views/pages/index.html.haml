@@ -1,66 +1,46 @@
+.row.col-md-6.col-md-offset-3.padding-video
+  =embed_video(@url_video)
+.row.col-md-6.col-md-offset-3
+  =t('.video_explication')
 .row.reports-stats{data: { total: ServiceRequest.count } }
-  .col-md-4.col-sm-4.col-xs-4.reports-stats-block
-    = @all_service_requests
-    %h3.reports-stats-name= t('dashboards.total_requests')
-  .col-md-4.col-sm-4.col-xs-4.reports-stats-block.mid
-    = @open_service_requests
-    %h3.reports-stats-name= t('dashboards.open_requests')
-  .col-md-4.col-sm-4.col-xs-4.reports-stats-block
-    = @closed_service_requests
-    %h3.reports-stats-name= t('dashboards.closed_requests')
+  = render "kpis/kpi", kpi: pretty_kpi_data(@all_service_requests,t('dashboards.total_cities'))
+  = render "kpis/kpi", kpi: pretty_kpi_data(@open_service_requests,t('dashboards.total_procedures_services'))
+  = render "kpis/kpi", kpi: pretty_kpi_data(@closed_service_requests,t('dashboards.total_evaluations'))
 
-.row.blk-summary.l-margin-l-bottom
-  .container
-    %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
-    #reports-chart{ data: { chart_data: @chart_data, status_data: @status_data, }}
+.h1.row.col-md-6.col-md-offset-3.text-center.padding-top
+  =t(".participa")
+.col-md-12.text-center  
+  .col-md-6.padding-top
+    =link_to t(".queja_sugerencia"), service_requests_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
+  .col-md-6.padding-top
+    =link_to t(".evalua_tramite"), service_surveys_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
 
+/ .row.l-margin-l-bottom
+/   .container
+/     %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
+/     #reports-chart{ data: { chart_data: @chart_data, status_data: @status_data, }}
 
-.row.blk-summary.l-margin-l-bottom
-  .container
-    %h2.blk-summary-title= t('dashboards.requests_map')
-
-    = form_tag markers_for_gmap_service_requests_path, method: :get, class: 'filters form-inline', remote: true do
-      .form-group.form-group-separator
-        = text_field_tag 'service_request_id', params[:service_request_id], placeholder: t('search_form.id'), class: 'form-control'
-      .form-group
-        = submit_tag t('search'), class: "btn btn-primary js-ajax-sender", data: { processing_label: t('searching'), stealth_label: t('search') }
-
-    .map{data_position}
-      #reports-map
-
-    = form_tag markers_for_gmap_service_requests_path, method: :get, class: "filters form-inline", remote: true do
-      .form-group
-        = text_field_tag 'start_date', params[:start_date], placeholder: t('search_form.from_date'), class: 'datepicker form-control col-lg-6'
-      .form-group.form-group-separator
-        = text_field_tag 'end_date', params[:end_date], placeholder: t('search_form.to_date'), class: 'datepicker form-control col-lg-6'
-      .form-group.form-group-separator
-        = select_tag('status', options_from_collection_for_select(Status.all, :name, :name, params[:status]), prompt: t('search_form.status'), class: 'form-control')
-      .form-group.form-group-separator
-        = select_tag('service_code', options_from_collection_for_select(Service.all, :id, :name, params[:service_code]), prompt: t('search_form.service'), class: 'form-control')
-      .form-group
-        = submit_tag t('search'), class: "btn btn-primary js-ajax-sender", data: { processing_label: t('searching'), stealth_label: t('search') }
-
-.row.blk-summary.l-margin-l-bottom
-  .container
-    %h2.blk-summary-title= t('dashboards.recent_requests')
-    - unless @service_requests.empty?
-      - @service_requests.each do |service_request|
-        .recent-report-sum{id: "service_request_#{service_request.id}", data: { lat: service_request.lat, lng: service_request.lng, description: service_request_info_window(service_request) } }
-          .row
-            .col-md-2.recent-report-sum-date.l-margin-s-bottom
-              = timeago(service_request.created_at)
-            .col-md-8.recent-report-sum-info.l-margin-s-bottom
-              %h3.recent-report-title
-                = link_to service_request.service.name, service_request_url(service_request), class: "title"
-              %span.recent-report-address= " - #{service_request.address}" if service_request.address
-              %p= service_request.description
-            .col-md-2.text-center.l-margin-s-bottom
-              .recent-report-counter.js-votes_count
-                = service_request.votes_for
-              .js-vote_status
-                = vote_link_for(service_request)
-    - else
-      .row.service_request
+/ .row.blk-summary.l-margin-l-bottom
+/   .container
+/     %h2.blk-summary-title= t('dashboards.recent_requests')
+/     - unless @service_requests.empty?
+/       - @service_requests.each do |service_request|
+/         .recent-report-sum{id: "service_request_#{service_request.id}", data: { description: service_request_info_window(service_request) } }
+/           .row
+/             .col-md-2.recent-report-sum-date.l-margin-s-bottom
+/               = timeago(service_request.created_at)
+/             .col-md-8.recent-report-sum-info.l-margin-s-bottom
+/               %h3.recent-report-title
+/                 = link_to service_request.service.name, service_request_url(service_request), class: "title"
+/               %span.recent-report-address= " - #{service_request.address}" if service_request.address
+/               %p= service_request.description
+/             .col-md-2.text-center.l-margin-s-bottom
+/               .recent-report-counter.js-votes_count
+/                 = service_request.votes_for
+/               .js-vote_status
+/                 = vote_link_for(service_request)
+/     - else
+/       .row.service_request
 
 
-= paginate @service_requests
+/ = paginate @service_requests

@@ -5,16 +5,17 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to t('public_nav_bar.name'), root_path, class: 'navbar-brand'
+      = link_to root_path, class: 'navbar-brand' do
+        = image_tag 'puebla-logo.png', class: "navbar-logo"
     .navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to t('public_nav_bar.summary'), root_path, class: "pages index"
-        %li
-          = link_to t('public_nav_bar.service_requests'), service_requests_path, class: "reports index"
-        %li
-          = button_to t('public_nav_bar.new_service_request'), new_service_request_path, method: :get, class: "reports new btn btn-primary navbar-btn"
-      %ul.nav.navbar-nav.navbar-right
+      / %ul.nav.navbar-nav
+      /   %li
+      /     = link_to t('public_nav_bar.summary'),service_surveys_path, class: "pages index"
+      /   %li
+      /     = link_to t('public_nav_bar.service_requests'), new_service_request_path, class: "reports index"
+      /   %li
+      /     = button_to t('public_nav_bar.new_service_request'), new_service_request_path, method: :get, class: "reports new btn btn-primary navbar-btn"
+      %ul.nav.navbar-nav.navbar-right.padding-top
         - if current_user
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
