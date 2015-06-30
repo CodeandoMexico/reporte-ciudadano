@@ -20,7 +20,15 @@ module HelperMethods
   end
 
   def administrative_unit
-    Services.service_administrative_unit_options.first
+    Services.service_administrative_unit_options.last
+  end
+
+  def dependency
+    Services.service_dependency_options.last
+  end
+
+  def cis
+    Services.service_cis_options.last[:label]
   end
 end
 
