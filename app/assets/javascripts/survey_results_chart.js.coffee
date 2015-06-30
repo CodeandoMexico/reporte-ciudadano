@@ -1,23 +1,32 @@
 $(document).on 'ready page:load', ->
-  $.each $('.js-overall-chart'), ->
-    positive = $(this).data('positive')
-    negative = $(this).data('negative')
+  $('.js-overall-chart').each ->
+    positive = parseFloat($(this).data('positive'))
+    negative = parseFloat($(this).data('negative'))
     title = $(this).data('title')
 
-    $(this).highcharts
-      chart:
-        type: "pie"
-        options3d:
-          enabled: true
-          alpha: 45
-      title:
-        text: title
-      plotOptions:
-        pie:
-          innerSize: 100
-          depth: 45
-      series:
-        [
-          name: title
-          data: [[ "Percepción positiva", positive], ["Percepción negativa", negative]]
-        ]
+    if positive == 0 && negative == 0
+      $(this).html("<b>Satisfacción general de servicios</b><p><em>No hay suficiente datos para crear el reporte.</em></p>")
+    else
+      $(this).highcharts
+        chart:
+          type: "pie"
+          options3d:
+            enabled: true
+            alpha: 45
+        title:
+          text: title
+        plotOptions:
+          pie:
+            innerSize: 25
+            depth: 100
+            dataLabels:
+              distance: 5
+        point:
+          showInLegend: true
+        tooltip:
+          pointFormat: '<b>{point.y}%</b>'
+        series:
+          [
+            name: title,
+            data: [[ "Percepción positiva", positive], ["Percepción negativa", negative]]
+          ]

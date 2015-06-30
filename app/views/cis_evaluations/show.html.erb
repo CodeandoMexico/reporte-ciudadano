@@ -31,10 +31,12 @@
 </div>
 
 <div class="row evaluation-overall">
-  <div class="well well-md col-md-4 js-overall-chart"
-  data-title="<%= @cis_report.title %>"
-  data-positive="<%= @cis_report.positive_overall %>"
-  data-negative="<%= @cis_report.negative_overall %>">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well well-md col-md-5 js-overall-chart"
+    data-title="<%= @cis_report.title %>"
+    data-positive="<%= @cis_report.positive_overall_perception %>"
+    data-negative="<%= @cis_report.negative_overall_perception %>">
+    </div>
   </div>
 </div>
 
