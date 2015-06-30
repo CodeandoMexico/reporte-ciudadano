@@ -8,7 +8,7 @@
         = @service_surveys_report.people_who_participated.to_s + " " + t('service_report.show.people_who_participated')
       %h4
         %span.glyphicon.glyphicon-calendar{"aria-hidden"=> "true"}
-        = "Abierta hace: " + distance_of_time_in_words(DateTime.now, @service_surveys_report.updated_at)
+        =t('service_report.show.created_time_ago', time_ago: distance_of_time_in_words(DateTime.now, @service_surveys_report.updated_at))
     %div.col-sm-12.col-md-6
       %p.text-right
         = link_to t('service_report.show.return_to_index'), service_survey_reports_url,{class:"btn btn-default"}
