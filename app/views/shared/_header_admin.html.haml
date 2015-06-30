@@ -9,12 +9,12 @@
               %b.caret
             %ul.dropdown-menu
               %li
-                = link_to  edit_user_registration_path do
+                = link_to  edit_admins_registration_path(current_admin) do
                   %i.icon-cog
                   = t('public_nav_bar.edit_profile')
               %li.divider
               %li
-                = link_to destroy_user_session_path, method: :delete do
+                = link_to destroy_admin_session_path, method: :delete do
                   %i.icon-off
                   = t('public_nav_bar.sign_out')             
     .col-md-12
