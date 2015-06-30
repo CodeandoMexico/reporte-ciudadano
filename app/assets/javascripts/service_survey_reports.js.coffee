@@ -1,10 +1,10 @@
 $(document).on 'ready page:load', ->
-$ ->
-    positive = Number($("#chartPerception").data('positive'))
-    negative = Number($("#chartPerception").data('negative'))
-    title = $("#chartPerception").data('title')
-    subtitle = $("#chartPerception").data('subtitle')
-    $("#chartPerception").highcharts
+  $("#chartPerception").each ->
+    positive = Number($(this).data('positive'))
+    negative = Number($(this).data('negative'))
+    title = $(this).data('title')
+    subtitle = $(this).data('subtitle')
+    $(this).highcharts
       chart:
         type: "pie"
         options3d:
