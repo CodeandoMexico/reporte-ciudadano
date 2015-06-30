@@ -1,4 +1,6 @@
 $grey-kpi: #e6e6e6;
+$grey-navbar: #f7f7f7;
+$blue-line: #005195;
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
@@ -139,6 +141,9 @@ $grey-kpi: #e6e6e6;
 .margin_right{
   margin-right: 10%; 
 }
+.margin-bottom{
+  margin-right: 10%; 
+}
 /***************************************************
 **  sizes
 ***************************************************/
@@ -149,6 +154,30 @@ $grey-kpi: #e6e6e6;
   width: 50%;
 }
 
+.font-titles{
+  color: #133150;
+  font-size: 23px;
+  font-family:  "Helvetica Neue Light" !important;
+}
+/***************************************************
+**  NAVBAR
+***************************************************/
+.navbar-up{
+  height: 30px !important;
+  background-color: $grey-navbar;
+  border-bottom: 1px solid #ccc;
+}
+.navbar-default-admin {
+  background-color: #fff;
+  border-color: #e7e7e7;
+  font-family:  "Helvetica Neue Light" !important;
+  border-bottom: 4px solid $blue-line;
+  border-top: 4px solid $blue-line;
+}
+ul
+{
+    list-style-type: none;
+}
 /***************************************************
 **  HOME REPORT STATS
 ***************************************************/

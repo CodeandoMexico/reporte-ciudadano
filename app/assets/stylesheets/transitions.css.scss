@@ -17,20 +17,51 @@
 
 
 @media (min-width: 768px) {
-  /* line 205, /Users/mikesaurio/.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.0.0.0/vendor/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-nav {
     float: left;
     margin: 0;
   }
-  /* line 243, /Users/mikesaurio/.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.0.0.0/vendor/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-nav > li {
     float: left;
   }
-  /* line 245, /Users/mikesaurio/.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.0.0.0/vendor/assets/stylesheets/bootstrap/_navbar.scss */
   .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     color: #333 !important;
   font-size: 14px !important;
   }
+}
+
+/***************************************************
+**  CONTEINER para navbar admin
+***************************************************/
+.containerer {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.containerer:before, .containerer:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.containerer:after {
+  clear: both;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.row:before, .row:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.row:after {
+  clear: both;
 }

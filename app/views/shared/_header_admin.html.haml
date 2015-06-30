@@ -1,14 +1,7 @@
 .navbar.navbar-default-admin.navbar-default
-  .container
-    .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to root_path, class: 'navbar-brand' do
-        = image_tag 'puebla-logo.png', class: "navbar-logo"
-    .navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right
+  .containerer
+    .col-md-12.navbar-up.margin-bottom
+      %ul.navbar-nav.navbar-right
         - if current_admin
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -23,4 +16,15 @@
               %li
                 = link_to destroy_user_session_path, method: :delete do
                   %i.icon-off
-                  = t('public_nav_bar.sign_out')
+                  = t('public_nav_bar.sign_out')             
+    .col-md-12
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to root_path, class: 'navbar-brand' do
+          = image_tag 'puebla-logo.png', class: "navbar-logo"
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav.navbar-right.text-right.padding-top
+          = link_to i18n_admin_sidebar('.dashboard'), admins_dashboards_path, :class=>'font-titles'
