@@ -107,6 +107,13 @@ $blue-line: #005195;
   }
 }
 
+.page-content {
+  h2 {
+    color: $blue-line !important;
+    font-family:  "Helvetica Neue Light" !important;
+  }
+}
+
 #menu-toggle {
   display: none;
 }
