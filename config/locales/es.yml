@@ -517,6 +517,7 @@ es:
       cis_evaluation_for: "Evaluación del Centro de atención %{name}"
       by_services: "Por servicios"
       no_services: "El centro de atención no cuenta con servicios asignados."
+      by_area: "Por áreas"
   users:
     registrations:
       edit:

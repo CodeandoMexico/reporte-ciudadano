@@ -63,6 +63,14 @@ module Reports
       @title = attrs[:title]
       @positive_overall_perception = attrs[:report].positive_overall_perception
       @negative_overall_perception = attrs[:report].negative_overall_perception
+      @overall_by_areas = attrs[:report].overall_areas
     end
+
+    def overall_areas
+      [[:transparency, 55.0]]
+    end
+
+    private
+    attr_reader :overall_by_areas
   end
 end

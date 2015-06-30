@@ -15,14 +15,16 @@ module Reports
   end
 
   class TestCisReport
-    attr_accessor :positive_overall_perception, :negative_overall_perception, :people_who_participated, :created_at
+    attr_accessor :positive_overall_perception, :negative_overall_perception,
+      :people_who_participated, :created_at, :overall_areas
 
     def initialize(attrs)
       @positive_overall_perception = attrs[:positive_overall_perception]
       @negative_overall_perception = attrs[:negative_overall_perception]
-      @people_who_participated = attrs[:people_who_participated]
       @created_at = attrs[:created_at]
+      @overall_areas = attrs[:overall_areas]
     end
+
   end
 
   describe 'cis report for' do
@@ -68,6 +70,27 @@ module Reports
         expect(report.positive_overall_perception).to eq 30.0
         expect(report.negative_overall_perception).to eq 70.0
       end
+    end
+
+    describe 'should respond to areas overall' do
+      it 'should respond with label for area: transparency and positive percentage' do
+        cis_report = cis_report_with_areas(transparency: 55.0)
+        allow(CisStore).to receive(:last_report_for).with(1).and_return cis_report
+
+        report = report_for(@cis, cis_report_store: CisStore)
+        expect(report.overall_areas).to include [:transparency, 55.0]
+      end
+    end
+
+    def cis_report_with_areas(attrs)
+      params = {
+        positive_overall_perception: 50.0,
+        negative_overall_perception: 50.0,
+        respondents_count: 10,
+        created_at: 1.day.ago,
+        overall_areas: attrs
+      }
+      TestCisReport.new(params.merge(attrs))
     end
 
     def report_for(cis, survey_reports: :not_used, cis_report_store: :not_used)
