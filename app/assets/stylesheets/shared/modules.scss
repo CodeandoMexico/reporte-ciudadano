@@ -162,8 +162,9 @@ $grey-kpi: #e6e6e6;
     font-weight: bold;
 
     &.mid {
-      border-left: 1px solid #DDD;
-      border-right: 1px solid #DDD;
+      border-left: 1px solid #CCC;
+      border-right: 1px solid #CCC;
+      margin-bottom: 20px;
     }
 
     .reports-stats-name {

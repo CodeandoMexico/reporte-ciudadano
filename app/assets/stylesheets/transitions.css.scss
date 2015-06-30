@@ -14,3 +14,23 @@
     visibility: visible !important;
   }
 }
+
+
+@media (min-width: 768px) {
+  /* line 205, /Users/mikesaurio/.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.0.0.0/vendor/assets/stylesheets/bootstrap/_navbar.scss */
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  /* line 243, /Users/mikesaurio/.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.0.0.0/vendor/assets/stylesheets/bootstrap/_navbar.scss */
+  .navbar-nav > li {
+    float: left;
+  }
+  /* line 245, /Users/mikesaurio/.rvm/gems/ruby-2.2.0/gems/bootstrap-sass-3.0.0.0/vendor/assets/stylesheets/bootstrap/_navbar.scss */
+  .navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #333 !important;
+  font-size: 14px !important;
+  }
+}
