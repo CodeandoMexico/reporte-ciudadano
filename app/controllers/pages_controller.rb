@@ -9,4 +9,6 @@ class PagesController < ApplicationController
     flash.now[:notice] = "No se encontraron solicitudes de servicio." if @service_requests.empty?
     @url_video = 'https://www.youtube.com/watch?v=yL_xuDvrTCE'
   end
+
+
 end
