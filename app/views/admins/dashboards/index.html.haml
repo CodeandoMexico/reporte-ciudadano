@@ -2,7 +2,7 @@
   %a#menu-toggle.btn.btn-default{href: "#"}
     %i.icon-reorder
 
-  %h1= t('.header')
+  %h2= t('.header')
 
 .page-content.inset
   .row.reports-stats{data: { total: ServiceRequest.count } }
@@ -20,7 +20,7 @@
     .container
       %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
       #reports-chart{ data: { chart_data: @chart_data, status_data: @status_data }}
-
+      
   .row.blk-summary.l-margin-l-bottom.recent-reports
     .container
       %h2.blk-summary-title= t('dashboards.recent_requests')

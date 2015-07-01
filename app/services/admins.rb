@@ -37,6 +37,14 @@ module Admins
     end
   end
 
+  def self.surveys_for(admin)
+    if admin.is_super_admin?
+      ServiceSurvey.all
+    elsif admin.is_service_admin?
+      admin.service_surveys
+    end
+  end
+
   class Permissions
     def initialize(admin)
       @admin = admin
