@@ -1,7 +1,7 @@
 class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
   validates :answers_exist, presence: true
-  before_create :get_results_for_survey
+  before_create :set_results_for_report
 
   def service_survey_title
     service_survey.title
@@ -17,7 +17,7 @@ class ServiceSurveyReport < ActiveRecord::Base
     rating_and_binary_answers(self.service_survey_id)
   end
 
-  def get_results_for_survey
+  def set_results_for_report
     survey_report = report(self.service_survey_id)
     survey = get_service_survey(self.service_survey_id)
     self.positive_overall_perception = survey_report[:survey][:positive]
