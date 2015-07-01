@@ -26,7 +26,7 @@
           <div class="form-group">
             <%= f.label :services, t('form.labels.services'), class: 'col-md-3 control-label' %>
             <div class="col-md-5">
-              <% current_admin.managed_services.each do |service| %>
+              <% services_for(current_admin).each do |service| %>
                 <div class="checkbox">
                   <%= f.check_box :service_ids,  { multiple: true }, service.id, nil %>
                   <%= f.label :service_ids, service.name, value: service.id %>
