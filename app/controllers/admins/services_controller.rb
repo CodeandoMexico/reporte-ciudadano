@@ -56,7 +56,7 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def is_assigned_to_cis?(service, cis)
-    Services.is_assigned_to_cis?(service, cis)
+    Services.is_assigned_to_cis?(service, cis[:id])
   end
 
   def authorize_admin

@@ -4,7 +4,8 @@ class Admins::ServiceSurveysController < ApplicationController
   before_action :set_title
   
   def index
-    @service_surveys = Admins.surveys_for(current_admin)
+    @service_surveys = current_admin.service_surveys
+    @service_survey_report = ServiceSurveyReport.new
   end
 
   def new
@@ -38,7 +39,7 @@ class Admins::ServiceSurveysController < ApplicationController
   end
 
   def questions_text
-    questions = ServiceSurveys.questions_collection_by_criterion(Question.all)
+    questions = ServiceSurveys.questions_collection_by_criterion(Question.all, translator: I18n.method(:t))
     render json: { questions: questions }
   end
 

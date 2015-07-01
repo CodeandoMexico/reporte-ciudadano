@@ -20,7 +20,7 @@ $(document).on 'change', '.js-criterion-selection', ->
     showQuestionsList(this)
 
 $(document).on 'click', '.js-question-item', ->
-  questionText = $(this).text()
+  questionText = $(this).data("text")
   answerType = $(this).data("answer")
   element = $(this).parent().closest(".js-question").find(".js-question-text")
 
@@ -47,7 +47,7 @@ showQuestionsList = (element) ->
 
   $(list).html('')
   $.each $questions[criterion], (index, question) ->
-    $(list).append("<li class='js-question-item' data-answer='" + question["answer_type"] + "'>" + question['text'] + "</li>")
+    $(list).append("<li class='js-question-item' data-answer='" + question["answer_type"] + "'" + "data-text='" + question['text'] + "'>" + question['text'] + ', (' + question['selected_answer'] + ")</li>")
 
 getQuestionsCollection = (url, element) ->
   $.ajax
