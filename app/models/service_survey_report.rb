@@ -2,6 +2,8 @@ class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
   validates :answers_exist, presence: true
   before_create :set_results_for_report
+  serialize :areas_results, Hash
+
 
   def service_survey_title
     service_survey.title
@@ -24,6 +26,7 @@ class ServiceSurveyReport < ActiveRecord::Base
     self.negative_overall_perception = survey_report[:survey][:negative]
     self.service_id = survey.id
     self.people_who_participated = survey_report[:people_count]
+    self.areas_results = survey_report[:overall_areas]
   end
 
   def report(service_survey_id)
