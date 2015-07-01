@@ -10,6 +10,6 @@ class PagesController < ApplicationController
     @services_count = Service.count
     @active_citizen_count = SurveyAnswer.select(:user_id).uniq.count
     @public_servant_assessed_count = 0
-    @url_video = 'https://www.youtube.com/watch?v=yL_xuDvrTCE'
+    @url_video = 'https://www.youtube.com/watch?v=uFLWkxsUFr8'
   end
 end
