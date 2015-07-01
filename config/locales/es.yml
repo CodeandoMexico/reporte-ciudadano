@@ -230,7 +230,7 @@ es:
         columns:
           name: 'Tipo'
           extras: 'Campos adicionales'
-        title: 'Servicios'
+        title: 'Trámites'
 
   admins:
     shared:
@@ -243,10 +243,10 @@ es:
         api: "API"
         edit_profile: "Editar perfil"
         sign_out: "Cerrar sesión"
-        service_admins: "Administradores de servicios"
-        public_servants: "Servidores Públicos"
-        services: "Servicios"
-        no_requests: "No tiene servicios asignados"
+        service_admins: "Administradores de trámites"
+        public_servants: "Servidores públicos"
+        services: "Trámites"
+        no_requests: "No tiene trámites asignados"
         change_password: "Cambiar contraseña"
         service_surveys: "Encuestas de servicio"
     sessions:
@@ -272,9 +272,9 @@ es:
     services:
       index:
         header: "Personalizar solicitudes de servicio"
-        page-description: "Personaliza el tipo de servicios y status con las cuales las solicitudes de servicio serán creados. Los usuarios
-                          seleccionarán las servicios al crear la solicitud de servicio."
-        services: "Servicios"
+        page-description: "Personaliza el tipo de trámites y status con las cuales las solicitudes de servicio serán creados. Los usuarios
+                          seleccionarán las trámites al crear la solicitud de trámites."
+        services: "Trámites"
         statuses: "Estatus actuales"
         new_service: "Nuevo servicio"
         new_status: "Nuevo estatus"
@@ -305,8 +305,8 @@ es:
         service_requests_for: "Quejas o sugerencias de %{service}"
     service_admins:
       new:
-        new_service_admin: "Nuevo administrador de servicios"
-        services_to_assign: "Asignar servicios"
+        new_service_admin: "Nuevo administrador de trámites"
+        services_to_assign: "Asignar trámites"
       index:
         id: '#'
         name: "Nombre completo"
@@ -315,13 +315,13 @@ es:
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
         charge: "Cargo"
-        service_admins: "Administradores de servicios"
+        service_admins: "Administradores de trámites"
         new_service_admin: "Agregar administrador"
         edit: "Editar"
       edit:
-        edit_service_admin: "Editar administrador de servicios"
+        edit_service_admin: "Editar administrador de trámites"
         update: "Actualizar"
-        services_to_assign: "Asignar servicios"
+        services_to_assign: "Asignar trámites"
     public_servants:
       index:
         id: '#'
@@ -331,15 +331,15 @@ es:
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
         charge: "Cargo"
-        public_servants: "Servidores Públicos"
+        public_servants: "Servidores públicos"
         new_public_servant: "Agregar servidor público"
         edit: "Editar"
         disable: "Desactivar"
         disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
         enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
-        assign_services: "Asignar servicios"
+        assign_services: "Asignar trámites"
         assign: "Asignar"
-        services: "Servicios"
+        services: "Trámites"
         enabled: "Activos"
         disabled: "Inactivos"
         enable: "Activar"
@@ -349,7 +349,7 @@ es:
         edit_public_servant: "Editar servidor público"
         update: "Actualizar"
       assign_services:
-        assign_services: "Asignar servicios"
+        assign_services: "Asignar trámites"
         assign: "Asignar"
     service_surveys:
       index:
@@ -357,7 +357,7 @@ es:
         new_service_survey: "Crear nueva encuesta"
         title: "Título"
         phase: "Etapa"
-        services: "Servicios"
+        services: "Trámites"
         admin: "Administrador de servicio"
         number_of_questions: "Número de preguntas"
         questions_number:
@@ -372,7 +372,7 @@ es:
         add_question: "Agregar pregunta"
         save_survey: "Guardar encuesta"
       show:
-        service_survey_for: "Encuesta para evaluar los servicios: %{services}"
+        service_survey_for: "Encuesta para evaluar los trámites: %{services}"
         edit_service_survey: "Editar encuesta"
       edit:
         edit_service_survey: "Editar encuesta de servicio"
@@ -392,7 +392,7 @@ es:
       index:
         header: "Resumen de actividad"
       services:
-        managed_services: "Servicios administrados"
+        managed_services: "Trámites administrados"
         name: "Nombre"
         service_type: "Tipo"
         dependency: "Dependencia"
@@ -449,7 +449,7 @@ es:
     open_requests: "Quejas o sugerencias abiertas"
     closed_requests: "Quejas o sugerencias resueltas"
     recent_requests: "Solicitudes recientes"
-    requests_by_service_chart: "Quejas o sugerencias por tipo de servicio"
+    requests_by_service_chart: "Quejas o sugerencias por tipo de trámite"
     requests_map: "Mapa de quejas o sugerencias"
     total_cities: Ciudadanos que han participado.
     total_procedures_services: Trámites, servicios o programas de apoyo
@@ -464,7 +464,7 @@ es:
       header: "Crear nueva queja o sugerencia"
     form:
       anonymise: "Ocultar identidad"
-      prompt_service: 'Tipo de servicio'
+      prompt_service: 'Tipo de trámite'
       address_placeholder: 'Ej. Av Revolucion 2342, 64830 Monterrey, Nuevo León, México'
       description_placeholder: 'Por favor proporcione detalles particulares sobre la queja o sugerencia y la ubicación para facilitar su atención.'
       map_help: 'Este marcador es aproximado. En caso de estar fuera de lugar ubícalo manualmente.'
@@ -476,9 +476,9 @@ es:
   service_surveys:
     index:
       title: "Título"
-      services: "Servicios"
+      services: "Trámites"
       phase: "Etapa"
-      no_service_surveys: "No existen encuestas abiertas para ningún servicio."
+      no_service_surveys: "No existen encuestas abiertas para ningún trámite."
       start_survey: "Iniciar evaluación"
       answered: "Evaluada"
   answers:
@@ -529,7 +529,7 @@ es:
       title: "Título"
       address: "Dirección"
       description: "Descripción"
-      service: "Servicio"
+      service: "Trámites"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -542,7 +542,7 @@ es:
       service_type: "Tipo de servicio"
       cis: "Centros de atención"
       admin_id: "Administrador de servicio"
-      services: "Servicios"
+      services: "Trámites"
       phase: "Etapa de la encuesta"
       criterion: "Criterio a evaluar"
       text: "Texto"
@@ -566,7 +566,7 @@ es:
     from_date: "De la fecha"
     to_date: "A la fecha"
     status: "Cualquier estatus"
-    service: "Todos los servicios"
+    service: "Todos los trámites"
     id: "No. Folio"
 
   comments_form:
@@ -609,8 +609,8 @@ es:
       updated: 'Logo actualizado correctamente.'
       destroyed: 'Logo ha sigo eliminado.'
     service_admin:
-      created: "El administrador de servicios se ha registrado exitosamente."
-      updated: "El administrador de servicios se ha actualizado exitosamente."
+      created: "El administrador de trámites se ha registrado exitosamente."
+      updated: "El administrador de trámites se ha actualizado exitosamente."
     public_servant:
       created: "El servidor público se ha registrado exitosamente."
       updated: "El servidor público se ha actualizado exitosamente."
@@ -632,8 +632,8 @@ es:
     index:
       video_explication: Esta aplicación te permite evaluar los Trámites, Servicios y Programas de Apoyo del Estado de Puebla. Además, puedes levantar y dar seguimiento a las Quejas y Sugerencias sobre el Servicio que resolviendo para dar mejorar el servicio día con día.
       participa: "¡Participa!"
-      queja_sugerencia: Realiza una queja o sugerencia
-      evalua_tramite: Evalúa trámite
+      queja_sugerencia: Realiza Queja o Sugerencia
+      evalua_tramite: Evalúa Trámite
   service_survey_phase_options:
     start: "Al inicio"
     middle: "A la mitad"

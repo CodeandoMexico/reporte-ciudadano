@@ -1,5 +1,6 @@
 class Admins::ServicesController < Admins::AdminController
   before_action :authorize_admin, only: :show
+  before_action :set_title
   helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?
 
   def index
@@ -49,6 +50,10 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   private
+
+  def set_title
+    @title_page = I18n.t('admins.services.index.header')
+  end
 
   def is_assigned_to_cis?(service, cis)
     Services.is_assigned_to_cis?(service, cis)
