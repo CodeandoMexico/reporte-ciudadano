@@ -12,7 +12,4 @@ class PagesController < ApplicationController
     @public_servant_assessed_count = 0
     @url_video = 'https://www.youtube.com/watch?v=yL_xuDvrTCE'
   end
-
-  #encuesta survey_answers con id_user unicos
-  #servicios: services count
 end

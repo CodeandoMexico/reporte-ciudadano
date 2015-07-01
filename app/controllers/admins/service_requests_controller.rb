@@ -1,6 +1,7 @@
 class Admins::ServiceRequestsController < Admins::AdminController
   before_action :authorize_admin, only: :edit
   helper_method :service_cis_options, :service_cis_label
+  before_action :set_title
 
   def index
     @search = service_requests_for_search.search(params[:q])
@@ -46,6 +47,10 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   private
+  def set_title
+    @title_page = I18n.t('admins.service_requests.index.header')
+  end
+
   def service_cis_label(cis_id)
     Services.service_cis_label(cis_id)
   end
