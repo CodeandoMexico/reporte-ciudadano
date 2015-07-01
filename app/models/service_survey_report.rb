@@ -28,17 +28,45 @@ class ServiceSurveyReport < ActiveRecord::Base
 
   def report(service_survey_id)
      survey_results = effectiveness_survey(service_survey_id)
-     {}.merge(survey_results)
+     overall_areas = effectiveness_by_criterion(service_survey_id)
+     {}.merge(survey_results).merge(:overall_areas => overall_areas)
   end
 
   def effectiveness_survey(service_survey_id)
-    people_count = rating_and_binary_answers(service_survey_id).select(:user_id).distinct.count
+    people_count = people_count(service_survey_id)
     positive_perception = (overall_effectiveness(service_survey_id)/people_count).to_i
     {:survey => {:positive => positive_perception,
                  :negative => "#{ 100 - positive_perception}"},
      :title => ServiceSurvey.find(service_survey_id).title,
      :people_count => people_count
     }
+  end
+
+  def people_count(service_survey_id)
+    rating_and_binary_answers(service_survey_id).select(:user_id).distinct.count
+  end
+
+  def effectiveness_by_criterion(service_survey_id)
+    criteria = ServiceSurveys.criterion_options_available
+    answers = rating_and_binary_answers(service_survey_id).includes(:question).map{|b| [b.question.criterion, b.score]}
+    results = {}
+    people_count = people_count(service_survey_id)
+
+    criteria.each do |c|
+      answers_list = answers.clone
+      results[c] = total_by_area(answers_list, c, 0) / people_count
+    end
+    results
+  end
+
+  def total_by_area(answers_list, key, acc)
+    return acc if answers_list.empty?
+    next_key, next_key_value = answers_list.shift
+    if next_key.to_sym == key
+      total_by_area(answers_list, key, acc + next_key_value)
+    else
+      total_by_area(answers_list, key, acc)
+    end
   end
 
   def overall_effectiveness(service_survey_id)
