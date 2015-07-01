@@ -4,6 +4,6 @@ module EvaluationsHelper
   end
 
   def label_for(overall)
-    content_tag(:span, t(".question_criterion_options.#{overall[0]}"))
+    content_tag(:span, t("question_criterion_options.#{overall[0]}"))
   end
 end

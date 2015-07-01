@@ -1,13 +1,21 @@
 require 'spec_helper'
 require_relative '../../app/services/reports'
+require_relative '../../app/services/service_surveys'
 
 module Reports
   class TestSurveyReport
-    attr_accessor :positive_overall_perception, :people_who_participated
+    attr_accessor :positive_overall_perception, :people_who_participated, :overall_areas
 
     def initialize(attrs)
-      @positive_overall_perception = attrs[:positive_overall_perception]
-      @people_who_participated = attrs[:people_who_participated]
+      @positive_overall_perception = attrs[:positive_overall_perception] || 50.0
+      @people_who_participated = attrs[:people_who_participated] || 5
+      @overall_areas = attrs[:overall_areas] || overall_areas_empty
+    end
+
+    def overall_areas_empty
+      ServiceSurveys.criterion_options_available.map do |area|
+        [area, 0.0]
+      end.to_h
     end
   end
 
@@ -24,7 +32,6 @@ module Reports
       @created_at = attrs[:created_at]
       @overall_areas = attrs[:overall_areas]
     end
-
   end
 
   describe 'cis report for' do
@@ -44,7 +51,7 @@ module Reports
 
     describe 'should respond to positive and negative overall' do
       example do
-        cis_report = TestCisReport.new(positive_overall_perception: 40.0, negative_overall_perception: 60.0, respondents_count: 12)
+        cis_report = TestCisReport.new(positive_overall_perception: 40.0, negative_overall_perception: 60.0, respondents_count: 12, overall_areas: overall_areas_empty)
         allow(CisStore).to receive(:last_report_for).with(1).and_return nil
         allow(CisStore).to receive(:create!).with(record_params(cis_id: 1, positive_overall_perception: 40.0, negative_overall_perception: 60.0, respondents_count: 12)).and_return cis_report
 
@@ -57,29 +64,44 @@ module Reports
         expect(report.positive_overall_perception).to eq 40.0
         expect(report.negative_overall_perception).to eq 60.0
       end
-
-      example do
-        cis_report = TestCisReport.new(positive_overall_perception: 30.0, negative_overall_perception: 70.0, respondents_count: 10)
-        allow(CisStore).to receive(:last_report_for).with(1).and_return nil
-        allow(CisStore).to receive(:create!).with(record_params(cis_id: 1, positive_overall_perception: 30.0, negative_overall_perception: 70.0, respondents_count: 10)).and_return cis_report
-        survey_reports = [
-          TestSurveyReport.new(positive_overall_perception: nil, people_who_participated: 0),
-          TestSurveyReport.new(positive_overall_perception: 30.0, people_who_participated: 10)
-        ]
-        report = report_for(@cis, survey_reports: survey_reports, cis_report_store: CisStore)
-        expect(report.positive_overall_perception).to eq 30.0
-        expect(report.negative_overall_perception).to eq 70.0
-      end
     end
 
     describe 'should respond to areas overall' do
-      it 'should respond with label for area: transparency and positive percentage' do
-        cis_report = cis_report_with_areas(transparency: 55.0)
-        allow(CisStore).to receive(:last_report_for).with(1).and_return cis_report
+      ServiceSurveys.criterion_options_available.each do |area|
+        it "should respond with label for area: #{area} and positive percentage" do
+          cis_report = cis_report_with_areas(area => 55.0)
+          allow(CisStore).to receive(:last_report_for).with(1).and_return cis_report
 
-        report = report_for(@cis, cis_report_store: CisStore)
-        expect(report.overall_areas).to include [:transparency, 55.0]
+          report = report_for(@cis, cis_report_store: CisStore)
+          expect(report.overall_areas).to include [area, 55.0]
+        end
+
+        it "should generate overall areas with #{area} when no report exist" do
+          cis_report = cis_report_with_areas(area => 40.0)
+          allow(CisStore).to receive(:last_report_for).with(1).and_return nil
+          allow(CisStore).to receive(:create!).with(
+            record_params(
+              cis_id: 1,
+              positive_overall_perception: 50.0,
+              negative_overall_perception: 50.0,
+              respondents_count: 10,
+              overall_areas: overall_areas_empty.merge(area => 40.0)
+            )
+          ).and_return cis_report
+          survey_reports = [
+            TestSurveyReport.new(overall_areas: overall_areas_empty.merge(area => 55.0)),
+            TestSurveyReport.new(overall_areas: overall_areas_empty.merge(area => 25.0))
+          ]
+          report = report_for(@cis, survey_reports: survey_reports, cis_report_store: CisStore)
+          expect(report.overall_areas).to include [area, 40.0]
+        end
       end
+    end
+
+    def overall_areas_empty
+      ServiceSurveys.criterion_options_available.map do |area|
+        [area, 0.0]
+      end.to_h
     end
 
     def cis_report_with_areas(attrs)
@@ -88,7 +110,7 @@ module Reports
         negative_overall_perception: 50.0,
         respondents_count: 10,
         created_at: 1.day.ago,
-        overall_areas: attrs
+        overall_areas: overall_areas_empty.merge(attrs)
       }
       TestCisReport.new(params.merge(attrs))
     end
@@ -102,7 +124,8 @@ module Reports
         cis_id: attrs[:cis_id],
         positive_overall_perception: attrs[:positive_overall_perception],
         negative_overall_perception: attrs[:negative_overall_perception],
-        respondents_count: attrs[:respondents_count]
+        respondents_count: attrs[:respondents_count],
+        overall_areas: attrs[:overall_areas] || overall_areas_empty
       }
     end
   end

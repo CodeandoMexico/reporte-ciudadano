@@ -20,7 +20,6 @@ module Reports
     def initialize(attrs)
       @cis_id = attrs[:cis_data][:id]
       @survey_reports = attrs[:survey_reports]
-      @report = attrs[:report] || :no_report
     end
 
     def positive_overall_perception
@@ -33,12 +32,30 @@ module Reports
       100.0 - positive_overall_perception
     end
 
+    def overall_areas
+      overall_areas_hash = overall_areas_empty
+      return overall_areas_hash if survey_reports_to_quantify.empty?
+
+      overall_areas_hash.each do |key, value|
+        overall_areas_hash[key] = total_by_area(survey_reports.map(&:overall_areas), key, value) / survey_reports.count
+      end
+
+      overall_areas_hash
+    end
+
+    def total_by_area(areas_hash_array, key, acc)
+      return acc if areas_hash_array.empty?
+      next_value = areas_hash_array.shift[key]
+      total_by_area(areas_hash_array, key, acc + next_value)
+    end
+
     def to_record_params
       {
         cis_id: cis_id,
         positive_overall_perception: positive_overall_perception,
         negative_overall_perception: negative_overall_perception,
-        respondents_count: respondents_count
+        respondents_count: respondents_count,
+        overall_areas: overall_areas
       }
     end
 
@@ -54,6 +71,12 @@ module Reports
         .map(&:positive_overall_perception)
         .select(&:present?)
     end
+
+    def overall_areas_empty
+      ServiceSurveys.criterion_options_available.map do |area|
+        [area, 0.0]
+      end.to_h
+    end
   end
 
   class CisReportView
@@ -67,7 +90,7 @@ module Reports
     end
 
     def overall_areas
-      [[:transparency, 55.0]]
+      overall_by_areas.to_a
     end
 
     private
