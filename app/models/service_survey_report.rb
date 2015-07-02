@@ -51,7 +51,7 @@ class ServiceSurveyReport < ActiveRecord::Base
 
   def effectiveness_by_criterion(service_survey_id)
     criteria = ServiceSurveys.criterion_options_available
-    answers = rating_and_binary_answers(service_survey_id).includes(:question).map{|b| [b.question.criterion, b.score]}
+    answers = rating_and_binary_answers(service_survey_id).includes(:question).map{|b| [b.question.criterion, b.score/b.question.value.to_f*100 ]}
     results = {}
     people_count = people_count(service_survey_id)
 
