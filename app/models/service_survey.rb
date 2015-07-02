@@ -24,6 +24,10 @@ class ServiceSurvey < ActiveRecord::Base
     questions.count
   end
 
+  def sorted_questions
+    questions.order(id: :asc)
+  end
+
   def has_been_answered_by?(user)
     return false if user.blank?
     answers.any? { |answer| answer.user_id == user.id }
