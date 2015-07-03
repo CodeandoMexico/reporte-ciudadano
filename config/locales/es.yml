@@ -675,6 +675,7 @@ es:
     show_report: "Ver reporte"
     index:
       existent_reports: "Reportes Existentes"
+      total: "Número de reportes: %{number_of_reports}"
       table:
         name: "Nombre"
         phase: "Fase"
