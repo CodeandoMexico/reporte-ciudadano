@@ -60,4 +60,8 @@ class Service < ActiveRecord::Base
       .map { |cis_hash| cis_hash[:name] }
       .join(", ")
   end
+
+  def last_survey_reports
+    service_surveys.map(&:last_report).reject(&:blank?)
+  end
 end

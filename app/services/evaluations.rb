@@ -58,7 +58,16 @@ module Evaluations
 
   class ServiceEvaluation < SimpleDelegator
     def overall_evaluation_for(criterion)
-      100
+      return 0.0 if last_survey_reports.empty?
+      total_by_area(last_survey_reports.map(&:areas_results), criterion, 0.0) / last_survey_reports.size
+    end
+
+    private
+
+    def total_by_area(areas_hash_array, key, acc)
+      return acc if areas_hash_array.empty?
+      next_value = areas_hash_array.shift[key]
+      total_by_area(areas_hash_array, key, acc + next_value)
     end
   end
 end

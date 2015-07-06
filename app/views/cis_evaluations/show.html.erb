@@ -75,41 +75,15 @@
           <% @cis.services.each do |service| %>
             <tr>
               <td><%= service.name %></td>
-              <td>
-                <div class="progress">
-                  <div class="progress-bar" style="width: <%= service.overall_evaluation_for(:transparency) %>%;">
-                    <%= service.overall_evaluation_for(:transparency) %>%
+              <% criterions.each do |criterion| %>
+                <td>
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
+                      <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 2) %>%
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success" style="width: 60%;">
-                    60%
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-warning" style="width: 50%;">
-                    50%
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-danger" style="width: 50%;">
-                    50%
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-info" style="width: 50%;">
-                    50%
-                  </div>
-                </div>
-              </td>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

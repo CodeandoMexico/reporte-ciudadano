@@ -4,12 +4,13 @@ require_relative '../../app/services/services'
 
 module Evaluations
   class TestService
-    attr_accessor :cis, :admins, :service_surveys
+    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports
 
     def initialize(attrs)
       @cis = attrs[:cis] || []
       @admins = attrs[:admins] || []
       @service_surveys = attrs[:service_surveys] || []
+      @last_survey_reports = attrs[:last_survey_reports] || []
     end
   end
 
@@ -26,6 +27,14 @@ module Evaluations
 
     def initialize(attrs)
       @user_id = attrs[:user_id]
+    end
+  end
+
+  class TestReport
+    attr_accessor :areas_results
+
+    def initialize(attrs)
+      @areas_results = attrs[:areas_results]
     end
   end
 
@@ -93,6 +102,41 @@ module Evaluations
         first_cis = first_cis_with_results(cis, services: services)
         expect(first_cis.survey_participants_count).to eq 1
       end
+    end
+
+    describe 'services overall evaluation' do
+      [ :transparency, :performance, :quality_of_service, :accesibility, :infrastructure ].each do |criterion|
+        it "returns the evaluation for a service in a given criterion: #{criterion}" do
+          survey_reports = [TestReport.new(areas_results: areas_results(60.0)), TestReport.new(areas_results: areas_results(50.0))]
+          services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
+          first_cis = first_cis_with_results(cis, services: services)
+          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 55.0
+        end
+
+        it "returns the evaluation for a service in a given criterion: #{criterion}" do
+          survey_reports = [TestReport.new(areas_results: areas_results(0.0)), TestReport.new(areas_results: areas_results(0.0))]
+          services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
+          first_cis = first_cis_with_results(cis, services: services)
+          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
+        end
+
+        it "returns 0.0 if no reports are given: #{criterion}" do
+          survey_reports = []
+          services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
+          first_cis = first_cis_with_results(cis, services: services)
+          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
+        end
+      end
+    end
+
+    def areas_results(percentage)
+      {
+        transparency: percentage,
+        performance: percentage,
+        quality_of_service: percentage,
+        accesibility: percentage,
+        infrastructure: percentage
+      }
     end
 
     def cis_with_results(cis, services: [])
