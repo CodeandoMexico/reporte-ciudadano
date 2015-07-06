@@ -15,10 +15,10 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
-    
 
     unless params[:pagetime].blank?
         id_service = params[:pagetime][:service]
+
         unless Service.where(id: id_service).last.nil?
           @admins_services = Service.where(id: id_service).last.admins
         end

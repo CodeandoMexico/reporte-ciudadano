@@ -1,4 +1,5 @@
-$('.request_service_description').addClass("hide");
+	$('.request_service_description').addClass("hide");
+	$('.request_service_id').addClass("hide");
 <%unless @admins_services.nil?%>
 	$('.request_service_id').removeClass("hide");
 	$('#service_request_public_servant_id').empty();
@@ -25,5 +26,8 @@ $('.request_service_description').addClass("hide");
 <%unless @who.nil?%>
 	<%if @who == "0"%>
 		$('.request_service_description').removeClass("hide");
+		$('.request_service_id').removeClass("hide");
+	<%else%>
+		$('.request_service_id').removeClass("hide");
 	<%end%>
 <%end%>
