@@ -37,7 +37,7 @@ module Reports
       return overall_areas_hash if survey_reports_to_quantify.empty?
 
       overall_areas_hash.each do |key, value|
-        overall_areas_hash[key] = total_by_area(survey_reports.map(&:overall_areas), key, value) / survey_reports.count
+        overall_areas_hash[key] = total_by_area(survey_reports.map(&:areas_results), key, value) / survey_reports.count
       end
 
       overall_areas_hash

@@ -4,12 +4,12 @@ require_relative '../../app/services/service_surveys'
 
 module Reports
   class TestSurveyReport
-    attr_accessor :positive_overall_perception, :people_who_participated, :overall_areas
+    attr_accessor :positive_overall_perception, :people_who_participated, :areas_results
 
     def initialize(attrs)
       @positive_overall_perception = attrs[:positive_overall_perception] || 50.0
       @people_who_participated = attrs[:people_who_participated] || 5
-      @overall_areas = attrs[:overall_areas] || overall_areas_empty
+      @areas_results = attrs[:areas_results] || overall_areas_empty
     end
 
     def overall_areas_empty
@@ -89,8 +89,8 @@ module Reports
             )
           ).and_return cis_report
           survey_reports = [
-            TestSurveyReport.new(overall_areas: overall_areas_empty.merge(area => 55.0)),
-            TestSurveyReport.new(overall_areas: overall_areas_empty.merge(area => 25.0))
+            TestSurveyReport.new(areas_results: overall_areas_empty.merge(area => 55.0)),
+            TestSurveyReport.new(areas_results: overall_areas_empty.merge(area => 25.0))
           ]
           report = report_for(@cis, survey_reports: survey_reports, cis_report_store: CisStore)
           expect(report.overall_areas).to include [area, 40.0]
