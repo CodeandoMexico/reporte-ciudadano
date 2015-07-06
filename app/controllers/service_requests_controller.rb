@@ -14,11 +14,11 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
+    @public_servant  = Service.all
   end
 
   def create
     @service_request = current_user.service_requests.build(service_request_params)
-
     if @service_request.save
       notify_public_servants
       redirect_to root_path, flash: { success: 'La solicitud fue creada satisfactoriamente' }

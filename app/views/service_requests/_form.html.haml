@@ -8,20 +8,29 @@
   = render @service_request.service.service_fields if @service_request.service?
 
 .form-group
+  = f.label :cis, t('form.labels.cis'), class: 'col-md-2 control-label'
+  .col-md-10
+    %ul.list-unstyled
+      - service_cis_options.each_with_index do |cis, index|
+        %li
+          %label
+            - if index == 0
+              = f.radio_button :cis, cis[:id], :checked => true
+            - else
+              = f.radio_button :cis, cis[:id], :checked => false
+            = cis[:label]
+
+.form-group
+  = f.label :cis, t('form.labels.who'), class: 'col-md-2 control-label'
+  .col-md-10
+    = f.select :service_id, @public_servant.collect {|p| [ p.service_admin.name,  p.service_admin.id] }, { prompt: t('.prompt_who') }, { class: 'js-load_service_fields form-control' }
+
+
+.form-group
   = f.label :description, t('form.labels.description'), class: 'col-md-2 control-label'
   .col-md-10
     = f.text_area :description, class: 'form-control', rows: '5', placeholder: t('.description_placeholder')
     = errors_on_resource_for_field(@service_request, :description)
-
-.form-group
-  = f.label :cis, t('form.labels.cis'), class: 'col-md-2 control-label'
-  .col-md-10
-    %ul.list-unstyled
-      - service_cis_options.each do |cis|
-        %li
-          %label
-            = f.radio_button :cis, cis[:id]
-            = cis[:label]
 
 .form-group
   = f.label :media, t('form.labels.image'), class: 'col-md-2 control-label'
@@ -32,3 +41,10 @@
 .form-group
   .col-md-offset-2.col-md-10
     = f.submit t('save'), class: "btn btn-primary"
+
+
+:javascript
+
+window.onload = function() {
+  yourFunction(param1, param2);
+};
