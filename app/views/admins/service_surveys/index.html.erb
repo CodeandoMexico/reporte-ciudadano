@@ -22,7 +22,7 @@
       </thead>
       <tbody>
         <% @service_surveys.each do |survey| %>
-          <tr class="service_survey">
+          <tr class="service-survey">
             <td><%= link_to survey.title, admins_service_survey_path(survey) %></td>
             <td><%= survey.services_names %></td>
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>

@@ -37,13 +37,13 @@ feature 'As an admin I can manage service requests' do
 
     fill_in 'service_request[address]', with: 'An address #111'
     fill_in 'service_request[description]', with: 'Request description'
-    choose "Centro 2 - Calle 2 Colonia 2 CP 22222"
+    choose cis
     click_button t('save')
 
     expect_service_request_email_sent_to public_servant.email
     expect(page).to have_content t('flash.service_requests.created')
     expect(page).to have_content 'Request description'
-    expect(page).to have_content 'Centro 2 - Calle 2 Colonia 2 CP 22222'
+    expect(page).to have_content cis
   end
 
   scenario 'I can see the service extra fields when creating a request', js: true do
