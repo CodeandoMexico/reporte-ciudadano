@@ -1,10 +1,10 @@
 class Admins::ServiceSurveysController < ApplicationController
   layout 'admins'
-  helper_method :phase_options, :criterion_options, :answer_type_options
   before_action :set_title
-  
+  helper_method :phase_options, :criterion_options, :answer_type_options, :services_for
+
   def index
-    @service_surveys = current_admin.service_surveys
+    @service_surveys = Admins.surveys_for(current_admin)
     @service_survey_report = ServiceSurveyReport.new
   end
 
@@ -73,5 +73,9 @@ class Admins::ServiceSurveysController < ApplicationController
 
   def answer_type_options
     ServiceSurveys.answer_type_options
+  end
+
+  def services_for(admin)
+    Admins.services_for(admin)
   end
 end

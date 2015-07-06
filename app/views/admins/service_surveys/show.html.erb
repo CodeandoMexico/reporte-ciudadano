@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <% @service_survey.questions.each_with_index do |question, index| %>
+  <% @service_survey.sorted_questions.each_with_index do |question, index| %>
     <div class="row question">
       <div class="col-md-8 col-md-offset-2 well">
         <p>

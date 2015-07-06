@@ -451,9 +451,9 @@ es:
     recent_requests: "Solicitudes recientes"
     requests_by_service_chart: "Quejas o sugerencias por tipo de trámite"
     requests_map: "Mapa de quejas o sugerencias"
-    total_cities: Ciudadanos que han participado.
-    total_procedures_services: Trámites, servicios o programas de apoyo
-    total_evaluations: Servidores públicos evaluados
+    total_cities: "Ciudadanos que han participado."
+    total_procedures_services: "Trámites, servicios o programas de apoyo"
+    total_evaluations: "Servidores públicos evaluados"
 
   comments:
     comment:
@@ -719,6 +719,7 @@ es:
     show_report: "Ver reporte"
     index:
       existent_reports: "Reportes Existentes"
+      total: "Número de reportes: %{number_of_reports}"
       table:
         name: "Nombre"
         phase: "Fase"
@@ -730,6 +731,7 @@ es:
       people_who_participated: "ciudadanos han participado."
       return_to_index: "Ver todos los reportes"
       service_survey_phase: "Parte del proceso evaluada"
+      created_time_ago: "Creado hace: %{time_ago}"
     general_survey:
       title: "General"
       subtitle: "Satisfacción General del Servicio"
