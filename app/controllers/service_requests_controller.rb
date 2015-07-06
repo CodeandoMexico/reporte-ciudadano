@@ -21,15 +21,8 @@ class ServiceRequestsController < ApplicationController
         id_service = params[:pagetime][:service]
         unless Service.where(id: id_service).last.nil?
           @admins_services = Service.where(id: id_service).last.admins
-
-          
         end
-        
-
-          @who = params[:pagetime][:who]
-          puts '++++++++++++++++++++'
-          puts @who
-
+        @who = params[:pagetime][:who]
         respond_to do |format|
           format.js
         end

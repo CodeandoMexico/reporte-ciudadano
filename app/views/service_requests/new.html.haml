@@ -30,7 +30,7 @@
         .col-md-10
           = f.select :public_servant_id, @public_servant.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' ,:onchange=>"changeWho()"}
 
-      .form-group.request_service_description
+      .form-group.request_service_description.hide
         = f.label :public_servant_description, t('form.labels.description'), class: 'col-md-2 control-label'
         .col-md-10
           = f.text_field :public_servant_description, class: 'form-control', rows: '5', placeholder: t('service_requests.form.description_placeholder')
@@ -71,7 +71,7 @@
   }
 
   function changeWho(){
-    var e = document.getElementById("service_request_service_id");
+    var e = document.getElementById("service_request_public_servant_id");
     window.public_server = e.value;
     window.url_ = window.location.href;
     $.ajax({
