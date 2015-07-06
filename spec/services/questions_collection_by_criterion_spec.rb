@@ -17,22 +17,22 @@ module ServicesSurveys
       questions_records = [
         (double 'question', text: "¿Question?", criterion: "transparency", answer_type: "binary"),
         (double 'question', text: "¿Question?", criterion: "transparency", answer_type: "binary"),
-        (double 'question', text: "¿Question?", criterion: "performance", answer_type: "binary"),
-        (double 'question', text: "¿Question?", criterion: "quality_service", answer_type: "binary"),
+        (double 'question', text: "¿Question?", criterion: "performance", answer_type: "open"),
+        (double 'question', text: "¿Question?", criterion: "quality_service", answer_type: "list"),
         (double 'question', text: "¿Question?", criterion: "infrastructure", answer_type: "binary"),
-        (double 'question', text: "¿Question?", criterion: "accessibility", answer_type: "binary")
+        (double 'question', text: "¿Question?", criterion: "accessibility", answer_type: "rating")
       ]
       expect(questions_collection(questions_records)).to eq(
-        transparency: [{ text: "¿Question?", answer_type: 'binary'}],
-        performance: [{ text: "¿Question?", answer_type: 'binary'}],
-        accessibility: [{ text: "¿Question?", answer_type: 'binary'}],
-        infrastructure: [{ text: "¿Question?", answer_type: 'binary'}],
-        quality_service: [{ text: "¿Question?", answer_type: 'binary'}]
+        transparency: [{ text: "¿Question?", answer_type: 'binary', selected_answer: 'Respuesta Sí/No'}],
+        performance: [{ text: "¿Question?", answer_type: 'open', selected_answer: 'Respuesta abierta'}],
+        accessibility: [{ text: "¿Question?", answer_type: 'rating', selected_answer: 'Respuesta rango'}],
+        infrastructure: [{ text: "¿Question?", answer_type: 'binary', selected_answer: 'Respuesta Sí/No'}],
+        quality_service: [{ text: "¿Question?", answer_type: 'list', selected_answer: 'Respuesta personalizada'}]
       )
     end
 
     def questions_collection(records)
-      ServiceSurveys.questions_collection_by_criterion(records)
+      ServiceSurveys.questions_collection_by_criterion(records, translator: I18n.method(:t))
     end
   end
 end

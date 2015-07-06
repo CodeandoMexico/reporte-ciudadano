@@ -15,12 +15,13 @@ module ServiceSurveys
     ServiceSurvey.new(survey_params).to_record_params
   end
 
-  def self.questions_collection_by_criterion(question_records)
+  def self.questions_collection_by_criterion(question_records, translator:)
     collection = {}
     criterion_options_available.each do |criterion|
       collection[criterion] = question_records
         .select { |question| question.criterion == criterion.to_s }
-        .map { |question| { text: question.text, answer_type: question.answer_type } }
+        .map { |question| { text: question.text, answer_type: question.answer_type, selected_answer: translator.call("question_selected_answer.#{question.answer_type}") } }
+        .uniq
     end
     collection
   end

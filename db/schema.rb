@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608002519) do
+ActiveRecord::Schema.define(version: 20150701171220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(version: 20150608002519) do
   end
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
+
+  create_table "cis_reports", force: :cascade do |t|
+    t.integer  "cis_id"
+    t.decimal  "positive_overall_perception"
+    t.decimal  "negative_overall_perception"
+    t.integer  "respondents_count"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "overall_areas"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",            default: ""
@@ -154,6 +164,20 @@ ActiveRecord::Schema.define(version: 20150608002519) do
   add_index "service_requests", ["service_id"], name: "index_service_requests_on_service_id", using: :btree
   add_index "service_requests", ["status_id"], name: "index_service_requests_on_status_id", using: :btree
 
+  create_table "service_survey_reports", force: :cascade do |t|
+    t.integer  "service_survey_id"
+    t.float    "positive_overall_perception", default: 0.0, null: false
+    t.float    "negative_overall_perception", default: 0.0, null: false
+    t.integer  "people_who_participated",     default: 0,   null: false
+    t.string   "phase",                                     null: false
+    t.string   "title",                                     null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.text     "areas_results"
+  end
+
+  add_index "service_survey_reports", ["service_survey_id"], name: "index_service_survey_reports_on_service_survey_id", using: :btree
+
   create_table "service_surveys", force: :cascade do |t|
     t.string   "title"
     t.string   "phase"
@@ -218,6 +242,7 @@ ActiveRecord::Schema.define(version: 20150608002519) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_observer"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

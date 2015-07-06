@@ -3,6 +3,7 @@ class ServiceSurvey < ActiveRecord::Base
   belongs_to :admin
   has_many :questions
   has_many :answers, class: SurveyAnswer, through: :questions, source: :survey_answers
+  has_many :reports, class: ServiceSurveyReport
 
   validates_presence_of :phase
   validate :complete_percentage_for_rating_questions
@@ -12,6 +13,14 @@ class ServiceSurvey < ActiveRecord::Base
   scope :open, -> {
     where(open: true)
   }
+
+  def rating_and_binary_answers
+    self.answers.where(
+        :question_id =>
+          Question.rating_and_binary_questions
+    )
+  end
+
   def services_names
     services.map(&:name).join(", ")
   end
