@@ -451,9 +451,9 @@ es:
     recent_requests: "Solicitudes recientes"
     requests_by_service_chart: "Quejas o sugerencias por tipo de servicio"
     requests_map: "Mapa de quejas o sugerencias"
-    total_cities: Ciudadanos que han participado.
-    total_procedures_services: Trámites, servicios o programas de apoyo
-    total_evaluations: Servidores públicos evaluados
+    total_cities: "Ciudadanos que han participado."
+    total_procedures_services: "Trámites, servicios o programas de apoyo"
+    total_evaluations: "Servidores públicos evaluados"
 
   comments:
     comment:
@@ -704,5 +704,3 @@ es:
     general_survey:
       title: "General"
       subtitle: "Satisfacción General del Servicio"
-
->>>>>>> b50eba4ccc1074d868778a4a278fbe3c9e0cc212

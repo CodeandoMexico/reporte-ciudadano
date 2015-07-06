@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 20150701171220) do
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
+  create_table "cis_reports", force: :cascade do |t|
+    t.integer  "cis_id"
+    t.decimal  "positive_overall_perception"
+    t.decimal  "negative_overall_perception"
+    t.integer  "respondents_count"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "overall_areas"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text     "content",            default: ""
     t.integer  "service_request_id"
@@ -159,7 +169,8 @@ ActiveRecord::Schema.define(version: 20150701171220) do
     t.float    "positive_overall_perception", default: 0.0, null: false
     t.float    "negative_overall_perception", default: 0.0, null: false
     t.integer  "people_who_participated",     default: 0,   null: false
-    t.integer  "service_id",                                null: false
+    t.string   "phase",                                     null: false
+    t.string   "title",                                     null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "areas_results"
@@ -231,6 +242,7 @@ ActiveRecord::Schema.define(version: 20150701171220) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_observer"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
