@@ -7,6 +7,7 @@
     %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}&sensor=false")
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
+    = yield :head
   %body{:class => "#{controller_name} #{action_name}"}
 
     #fb-root
