@@ -14,7 +14,7 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
-    @public_servant  = Service.all
+    @public_servant  = Service.find(6).admins
   end
 
   def create

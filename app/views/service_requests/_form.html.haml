@@ -23,7 +23,7 @@
 .form-group
   = f.label :cis, t('form.labels.who'), class: 'col-md-2 control-label'
   .col-md-10
-    = f.select :service_id, @public_servant.collect {|p| [ p.service_admin.name,  p.service_admin.id] }, { prompt: t('.prompt_who') }, { class: 'js-load_service_fields form-control' }
+    = f.select :service_id, @public_servant.collect {|p| [ p.name,  p.id] }, { prompt: t('.prompt_who') }, { class: 'js-load_service_fields form-control' }
 
 
 .form-group
