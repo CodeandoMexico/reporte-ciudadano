@@ -50,6 +50,10 @@ class ServiceSurvey < ActiveRecord::Base
     end
   end
 
+  def last_report
+    reports.order(created_at: :asc).last
+  end
+
   private
 
   def complete_percentage_for_rating_questions

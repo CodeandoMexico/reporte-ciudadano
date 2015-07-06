@@ -30,6 +30,10 @@ module HelperMethods
   def cis
     Services.service_cis_options.last[:label]
   end
+
+  def cis_name
+    Services.service_cis.last[:name]
+  end
 end
 
 RSpec.configure do |config|

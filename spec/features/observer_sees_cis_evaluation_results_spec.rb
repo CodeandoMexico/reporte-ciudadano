@@ -8,14 +8,12 @@ feature 'Observer can see cis evaluation results' do
     other_service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
     given_survey_has_answers survey
+    given_survey_report_exists_for survey
 
     sign_in_user observer
     expect(current_path).to eq evaluations_path
 
-    expect(page).to have_content "Centro 1"
-    expect(page).to have_content "Centro 2"
-    expect(page).to have_content "Centro 3"
-    expect(page).to have_content "Centro 4"
+    expect(page).to have_content cis_name
 
     within first('.cis') do
       expect(page).to have_link "Ver resultados"
@@ -41,6 +39,7 @@ feature 'Observer can see cis evaluation results' do
     other_service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
     given_survey_has_answers survey
+    given_survey_report_exists_for survey
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
@@ -54,6 +53,10 @@ feature 'Observer can see cis evaluation results' do
       expect(page).to have_content service.name
       expect(page).to have_content other_service.name
     end
+  end
+
+  def given_survey_report_exists_for(survey)
+    ServiceSurveyReport.create!(service_survey_id: survey.id)
   end
 
   def given_survey_has_answers(survey)
