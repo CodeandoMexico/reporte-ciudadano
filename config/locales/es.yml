@@ -678,6 +678,7 @@ es:
   service_survey:
     errors:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
+      presence_of_value: "con valor deben contener un porcentaje de valor mayor a 0%"
   #Reports
   service_report:
     no_reports: "No hay respuestas para generar reporte"
