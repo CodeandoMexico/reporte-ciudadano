@@ -16,6 +16,7 @@
       - elsif admin_signed_in?
         = render "admins/shared/super_admin_sidebar"
 
+      = render "shared/header_admin"
       #page-content-wrapper
         .container
           - flash.each do |name, msg|

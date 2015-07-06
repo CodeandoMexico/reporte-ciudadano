@@ -146,7 +146,9 @@ module ServiceSurveys
     end
 
     def questions
-      questions_records.map { |question| QuestionForm.new(question) }
+      questions_records
+        .map { |question| QuestionForm.new(question) }
+        .sort_by(&:id)
     end
 
     private
