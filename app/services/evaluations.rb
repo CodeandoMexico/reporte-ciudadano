@@ -37,7 +37,7 @@ module Evaluations
     end
 
     def service_surveys_reports
-      service_surveys.map(&:last_report).flatten
+      service_surveys.map(&:last_report).flatten.reject(&:blank?)
     end
 
     private

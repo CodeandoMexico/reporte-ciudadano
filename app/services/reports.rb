@@ -3,7 +3,7 @@ module Reports
     last_report = cis_report_store.last_report_for(cis[:id])
 
     if last_report.blank? || last_report.created_at < 3.days.ago
-      generator = CisReportGenerator.new(cis_data: cis, survey_reports: survey_reports, )
+      generator = CisReportGenerator.new(cis_data: cis, survey_reports: survey_reports)
       last_report = cis_report_store.create!(generator.to_record_params)
     end
 
@@ -19,7 +19,7 @@ module Reports
   class CisReportGenerator
     def initialize(attrs)
       @cis_id = attrs[:cis_data][:id]
-      @survey_reports = attrs[:survey_reports]
+      @survey_reports = attrs[:survey_reports] || []
     end
 
     def positive_overall_perception
