@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
     end
     service_survey = ServiceSurvey.find(params[:service_survey_id])
     UserMailer.confirm_service_survey_answer(service_survey, current_user).deliver
-    redirect_to service_survey_path(service_survey), notice: t('.answers_created_successfully')
+    redirect_to service_survey_report_path(:service_survey_id => service_survey.id), notice: t('.answers_created_successfully')
   end
 
   private
