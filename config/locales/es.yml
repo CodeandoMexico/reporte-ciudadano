@@ -540,6 +540,10 @@ es:
     sign_up: "Registrarme"
     sign_in: "Iniciar sesión"
     service_surveys: "Evalúa un servicio"
+    home: "Inicio"
+    requests: "Quejas y sujerencias"
+    evaluate_a_submission: "Evalúa trámite" 
+
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
