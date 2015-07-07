@@ -6,7 +6,7 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :reports, class: ServiceSurveyReport
 
   validates_presence_of :phase
-  validate :complete_percentage_for_rating_questions
+  validate :value_for_rating_questions
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
 
@@ -52,10 +52,21 @@ class ServiceSurvey < ActiveRecord::Base
 
   private
 
-  def complete_percentage_for_rating_questions
-    value_questions = questions
+  def value_for_rating_questions
+    if value_questions.any? && (value_questions.map(&:value).include?(0.0) || value_questions.map(&:value).any?(&:blank?))
+      errors.add(:questions, I18n.t("service_survey.errors.presence_of_value"))
+    else
+      complete_percentage_for_rating_questions
+    end
+  end
+
+  def value_questions
+    questions
       .select { |question| ['rating', 'binary'].include? question.answer_type }
       .reject { |question| question._destroy.present? }
+  end
+
+  def complete_percentage_for_rating_questions
     if value_questions.any? && value_questions.map(&:value).sum != 100
       errors.add(:questions, I18n.t("service_survey.errors.total_values", count: value_questions.map(&:value).sum))
     end
