@@ -1,4 +1,5 @@
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
+
 es:
   date:
     abbr_day_names:
@@ -540,7 +541,7 @@ es:
     sign_in: "Iniciar sesión"
     service_surveys: "Evalúa un servicio"
     home: "Inicio"
-    requests: "Quejas y sujerencias
+    requests: "Quejas y sujerencias"
     evaluate_a_submission: "Evalúa trámite" 
 
 

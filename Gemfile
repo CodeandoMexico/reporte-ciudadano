@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'rails', '4.2.0'
 
@@ -73,7 +73,7 @@ end
 gem 'sass-rails',   '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'haml-rails'
-gem 'compass-rails'
+gem 'compass-rails', github: 'Compass/compass-rails'
 gem "modular-scale", "~> 1.0.6"
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 gem 'uglifier', '>= 1.3.0'
