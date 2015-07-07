@@ -1,0 +1,40 @@
+<h3><%= t('.cis_evaluations') %></h3>
+<% @cis.each do |cis| %>
+  <div class="row">
+    <div clasS="col-md-10 col-md-offset-1">
+      <div class="panel panel-info cis">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= t(".cis", name: cis.name) %></h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="well well-sm text-center">
+                <h3><%= cis.survey_participants_count %></h3>
+                <small><em><%= t(".survey_participants_count") %></em></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="well well-sm text-center">
+                <h3><%= cis.evaluated_services_count %></h3>
+                <small><em><%= t(".evaluated_services_count") %></em></small>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="well well-sm text-center">
+                <h3><%= cis.evaluated_public_servants_count %></h3>
+                <small><em><%= t(".evaluated_public_servants_count") %></em></small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <%= link_to cis_evaluation_path(cis.id), class: "col-md-2 pull-right" do %>
+              <%= t(".see_results") %>
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

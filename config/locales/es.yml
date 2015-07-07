@@ -492,6 +492,35 @@ es:
       finish_survey: "Terminar evaluación"
     create:
       answers_created_successfully: "Gracias por evaluar el servicio."
+  evaluations:
+    index:
+      service_evaluations: "Evaluaciones por servicio"
+      name: "Nombre de servicio"
+      cis: "Centros de atención"
+      service_surveys: "Encuestas"
+      answered_surveys: "Encuestas contestadas"
+      cis_name: "Centro de atención - %{name}"
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      see_results: "Ver resultados"
+      cis_evaluations: "Evaluaciones por Centro de atención"
+  cis_evaluations:
+    index:
+      cis: "Centro de atención - %{name}"
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      see_results: "Ver resultados"
+      cis_evaluations: "Evaluaciones por Centro de atención"
+    show:
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      cis_evaluation_for: "Evaluación del Centro de atención %{name}"
+      by_services: "Por servicios"
+      no_services: "El centro de atención no cuenta con servicios asignados."
+      by_area: "Por áreas"
   users:
     registrations:
       edit:
@@ -679,6 +708,8 @@ es:
     errors:
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
       presence_of_value: "con valor deben contener un porcentaje de valor mayor a 0%"
+  cis_reports:
+    title: "Satisfacción general de servicios"
   #Reports
   service_report:
     no_reports: "No hay respuestas para generar reporte"

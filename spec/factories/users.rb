@@ -14,5 +14,8 @@ FactoryGirl.define do
       password_confirmation nil
     end
 
+    trait :observer do
+      is_observer true
+    end
   end
 end

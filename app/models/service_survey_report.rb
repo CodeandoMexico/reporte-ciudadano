@@ -24,7 +24,7 @@ class ServiceSurveyReport < ActiveRecord::Base
     survey = get_service_survey(self.service_survey_id)
     self.positive_overall_perception = survey_report[:survey][:positive]
     self.negative_overall_perception = survey_report[:survey][:negative]
-    self.service_id = survey.id
+    self.service_survey_id = survey.id
     self.people_who_participated = survey_report[:people_count]
     self.areas_results = survey_report[:overall_areas]
   end
