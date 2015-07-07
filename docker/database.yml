@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: utf-8
+  pool: 5
+  timeout: 5000
+  username: postgres
+  password:
+  host: db
+
+development:
+  <<: *default
+  database: reporte_ciudadano_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: reporte_ciudadano_test
+
+production:
+  <<: *default
+  database: reporte_ciudadano_production
