@@ -4,13 +4,14 @@ require_relative '../../app/services/services'
 
 module Evaluations
   class TestService
-    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports
+    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports, :id
 
     def initialize(attrs)
       @cis = attrs[:cis] || []
       @admins = attrs[:admins] || []
       @service_surveys = attrs[:service_surveys] || []
       @last_survey_reports = attrs[:last_survey_reports] || []
+      @id = attrs[:id]
     end
   end
 
@@ -31,10 +32,11 @@ module Evaluations
   end
 
   class TestReport
-    attr_accessor :areas_results
+    attr_accessor :areas_results, :positive_overall_perception
 
     def initialize(attrs)
       @areas_results = attrs[:areas_results]
+      @positive_overall_perception = attrs[:positive_overall_perception]
     end
   end
 
@@ -127,6 +129,18 @@ module Evaluations
           expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
         end
       end
+    end
+
+    it 'returns the best and worst evaluated service' do
+      best_survey_reports = [TestReport.new(positive_overall_perception: 90.0), TestReport.new(positive_overall_perception: 80.0)]
+      worst_survey_reports = [TestReport.new(positive_overall_perception: 20.0), TestReport.new(positive_overall_perception: 10.0)]
+      services = [TestService.new(id: 'best-service', cis: ["1"], last_survey_reports: best_survey_reports), TestService.new(id: 'worst-service', cis: ["1"], last_survey_reports: worst_survey_reports)]
+      first_cis = first_cis_with_results(cis, services: services)
+
+      expect(first_cis.best_evaluated_service.id).to eq 'best-service'
+      expect(first_cis.worst_evaluated_service.id).to eq 'worst-service'
+      expect(first_cis.best_evaluated_service.positive_overall_perception).to eq 85.0
+      expect(first_cis.worst_evaluated_service.positive_overall_perception).to eq 15.0
     end
 
     def areas_results(percentage)

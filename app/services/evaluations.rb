@@ -40,6 +40,14 @@ module Evaluations
       service_surveys.map(&:last_report).flatten.reject(&:blank?)
     end
 
+    def best_evaluated_service
+      services.max_by(&:positive_overall_perception)
+    end
+
+    def worst_evaluated_service
+      services.min_by(&:positive_overall_perception)
+    end
+
     private
     attr_reader :services_records
 
@@ -60,6 +68,11 @@ module Evaluations
     def overall_evaluation_for(criterion)
       return 0.0 if last_survey_reports.empty?
       total_by_area(last_survey_reports.map(&:areas_results), criterion, 0.0) / last_survey_reports.size
+    end
+
+    def positive_overall_perception
+      return 0.0 if last_survey_reports.empty?
+      last_survey_reports.map(&:positive_overall_perception).sum / last_survey_reports.size
     end
 
     private

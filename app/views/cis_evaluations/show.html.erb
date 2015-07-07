@@ -54,6 +54,52 @@
   </div>
 </div>
 
+<div class="row services-evaluation">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well well-md col-md-5">
+      <h3><%= t(".best_evaluated_service") %></h3>
+      <h4 class="text-center"><%= @cis.best_evaluated_service.name %></h4>
+      <ul class="list-unstyled">
+        <li>
+          <span><%= t('.general') %></span>
+          <div class="progress">
+            <%= overall_progress(@cis.best_evaluated_service.positive_overall_perception) %>
+          </div>
+        </li>
+        <% criterions.each do |criterion| %>
+          <li>
+            <%= label_for([criterion, @cis.best_evaluated_service.overall_evaluation_for(criterion)]) %>
+            <div class="progress">
+              <%= overall_progress_by_criterion([criterion, @cis.best_evaluated_service.overall_evaluation_for(criterion)]) %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="well well-md col-md-5">
+      <h3><%= t(".worst_evaluated_service") %></h3>
+      <h4 class="text-center"><%= @cis.worst_evaluated_service.name %></h4>
+      <ul class="list-unstyled">
+        <li>
+          <span><%= t('.general') %></span>
+          <div class="progress">
+            <%= overall_progress(@cis.worst_evaluated_service.positive_overall_perception) %>
+          </div>
+        </li>
+        <% criterions.each do |criterion| %>
+          <li>
+            <%= label_for([criterion, @cis.worst_evaluated_service.overall_evaluation_for(criterion)]) %>
+            <div class="progress">
+              <%= overall_progress_by_criterion([criterion, @cis.worst_evaluated_service.overall_evaluation_for(criterion)]) %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="row evaluation-services">
   <div class="col-md-10 col-md-offset-1">
     <h4><%= t(".by_services") %></h4>
@@ -64,11 +110,9 @@
         <thead>
           <tr>
             <th></th>
-            <th><%= t("question_criterion_options.transparency") %></th>
-            <th><%= t("question_criterion_options.performance") %></th>
-            <th><%= t("question_criterion_options.quality_service") %></th>
-            <th><%= t("question_criterion_options.accessibility") %></th>
-            <th><%= t("question_criterion_options.infrastructure") %></th>
+            <% criterions.each do |criterion| %>
+              <th><%= t("question_criterion_options.#{criterion}") %></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
