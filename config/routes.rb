@@ -22,6 +22,10 @@ Rails.application.routes.draw do
 
   root :to => 'pages#index'
 
+  resource :service_survey_report do
+    get 'service_survey_report/:service_survey_id' => 'service_survey_reports#show'
+  end
+
   resources :service_survey_reports, only: [:new, :create, :show, :index]
 
   namespace :admins do
