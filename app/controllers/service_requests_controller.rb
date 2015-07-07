@@ -15,7 +15,7 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
-    
+
     service_public_servants
 
   end

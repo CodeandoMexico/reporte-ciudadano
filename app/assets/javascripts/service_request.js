@@ -1,10 +1,9 @@
 function changeLine(){
     var e = document.getElementById("service_request_service_id");
     window.service = e.value;
-    window.url = window.location.href;
     $.ajax({
            type:'GET', 
-           url: window.url,
+           url: '#{service_public_servants_service_requests_path}',
            success: function(){
            },
           error: function(){
@@ -17,10 +16,9 @@ function changeLine(){
   function changeWho(){
     var e = document.getElementById("service_request_public_servant_id");
     window.public_server = e.value;
-    window.url_ = window.location.href;
     $.ajax({
            type:'GET', 
-           url: window.url,
+           url: '#{service_public_servants_service_requests_path}',
            success: function(){
            },
           error: function(){
