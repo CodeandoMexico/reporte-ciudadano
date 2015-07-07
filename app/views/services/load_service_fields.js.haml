@@ -1,1 +1,2 @@
-$('#service_fields_container').html("#{j render @service_fields}");
+-unless @service_fields.nil?
+	$('#service_fields_container').html("#{j render @service_fields}");
