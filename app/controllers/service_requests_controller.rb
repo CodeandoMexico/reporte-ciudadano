@@ -1,12 +1,14 @@
 class ServiceRequestsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
-  before_action :create_array, only: [:new]
+  before_action :create_array
   helper_method :service_cis_options, :service_cis_label
 
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
     @service_requests = @search.result.page(params[:page])
     flash.now[:notice] = "No se encontraron solicitudes de servicio." if @service_requests.empty?
+
+
   end
 
   def new
@@ -15,10 +17,9 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
-
+  #validacions ajax
     unless params[:pagetime].blank?
         id_service = params[:pagetime][:service]
-
         unless Service.where(id: id_service).last.nil?
           @admins_services = Service.where(id: id_service).last.admins
         end
@@ -82,7 +83,7 @@ class ServiceRequestsController < ApplicationController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis,:public_servant_id, :public_servant_description).tap do |whitelisted|
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id, :public_servant_description).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
     end
   end
@@ -90,6 +91,6 @@ class ServiceRequestsController < ApplicationController
   def create_array
       @array_line=[]
       @array_id=[]
-      @public_servant  = Service.find(Service.last).admins
+      @public_servant_admins  = Service.find(Service.last).admins
   end
 end

@@ -462,6 +462,7 @@ es:
   service_requests:
     new:
       header: "Crear nueva queja o sugerencia"
+      rules: "* obligatorios"
     form:
       anonymise: "Ocultar identidad"
       prompt_service: 'Tipo de trámite'
@@ -558,8 +559,8 @@ es:
       email: "Correo electrónico"
       title: "Título"
       address: "Dirección"
-      description: "Descripción"
-      service: "Trámites"
+      description: "Descripción*"
+      service: "Trámites*"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -570,7 +571,7 @@ es:
       administrative_unit: "Unidad administrativa"
       charge: "Cargo"
       service_type: "Tipo de servicio"
-      cis: "Centros de atención"
+      cis: "Centros de atención*"
       admin_id: "Administrador de servicio"
       services: "Trámites"
       phase: "Etapa de la encuesta"
@@ -578,13 +579,15 @@ es:
       text: "Texto"
       answer_type: "Tipo de respuesta"
       value: "Valor %"
-      who: ¿Quién te atendió? 
+      who: "¿Quién te atendió?*" 
+      description_public_servant: "Describe al funcionario"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
       current_password: "contraseña actual"
       new_password: "Nueva contraseña"
       confirm_password: "Confirmar nueva contraseña"
+      description_public_servant_placeholder: "Escribe una descripción breve de como era el funcionario que te atendió"
     errors:
       prohibited: "%{number_of_errors} evitó que la operación se realizara."
     options:
