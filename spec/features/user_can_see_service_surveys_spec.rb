@@ -11,7 +11,7 @@ feature 'User can see service surveys' do
     service = create :service, name: "Actas de nacimiento"
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
 
-    click_link "Evalúa un servicio"
+    click_link "Evalúa trámite"
 
     expect(current_path).to eq service_surveys_path
     within '.service-surveys' do

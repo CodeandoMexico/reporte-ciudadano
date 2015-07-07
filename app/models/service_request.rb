@@ -5,7 +5,7 @@ class ServiceRequest < ActiveRecord::Base
 
   attr_accessor :message
 
-  validates :service_id, :description, :address, presence: true
+  validates :service_id, :description, presence: true
   validate :service_extra_fields
 
   before_validation :assign_default_status, on: :create

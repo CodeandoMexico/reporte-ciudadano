@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Registration integration' do
 
-  let(:admin) { create(:admin, password: "password", password_confirmation: "password") }
+  let(:admin) { create(:admin, name: "Super admin", password: "password", password_confirmation: "password") }
 
   background do
     sign_in_admin admin
@@ -25,6 +25,7 @@ feature 'Registration integration' do
   end
 
   scenario 'As an admin I can change my password', js: true do
+    click_link "Super admin"
     click_link "Editar perfil"
 
     fill_in 'admin[current_password]', with: 'password'

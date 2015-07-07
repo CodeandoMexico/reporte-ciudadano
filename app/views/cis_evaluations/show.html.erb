@@ -1,0 +1,125 @@
+<h3>
+  <%= link_to evaluations_path do %>
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  <% end %>
+  <%= t(".cis_evaluation_for", name: @cis.name) %>
+</h3>
+<hr>
+<div class="row evaluation-overview">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="well well-md text-center evaluation-overview-participants">
+          <h3><%= @cis.survey_participants_count %></h3>
+          <small><em><%= t(".survey_participants_count") %></em></small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="well well-md text-center evaluation-overview-services">
+          <h3><%= @cis.evaluated_services_count %></h3>
+          <small><em><%= t(".evaluated_services_count") %></em></small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="well well-md text-center evaluation-overview-public-servants">
+          <h3><%= @cis.evaluated_public_servants_count %></h3>
+          <small><em><%= t(".evaluated_public_servants_count") %></em></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row evaluation-overall">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well well-md col-md-5 js-overall-chart evaluation-overall-chart"
+    data-title="<%= @cis_report.title %>"
+    data-positive="<%= @cis_report.positive_overall_perception %>"
+    data-negative="<%= @cis_report.negative_overall_perception %>">
+    </div>
+    <div class="col-md-2"></div>
+    <div class="well well-md col-md-5 evaluation-overall-areas">
+      <h3><%= t(".by_area") %></h3>
+      <ul class="list-unstyled">
+        <% @cis_report.overall_areas.each do |overall| %>
+          <li>
+            <%= label_for(overall) %>
+            <div class="progress">
+              <%= overall_progress_by_criterion(overall) %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row evaluation-services">
+  <div class="col-md-10 col-md-offset-1">
+    <h4><%= t(".by_services") %></h4>
+  </div>
+  <div class="col-md-10 col-md-offset-1 table-responsive">
+    <% if @cis.services.any? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= t("question_criterion_options.transparency") %></th>
+            <th><%= t("question_criterion_options.performance") %></th>
+            <th><%= t("question_criterion_options.quality_service") %></th>
+            <th><%= t("question_criterion_options.accessibility") %></th>
+            <th><%= t("question_criterion_options.infrastructure") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cis.services.each do |service| %>
+            <tr>
+              <td><%= service.name %></td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar" style="width: <%= service.overall_evaluation_for(:transparency) %>%;">
+                    <%= service.overall_evaluation_for(:transparency) %>%
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" style="width: 60%;">
+                    60%
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-warning" style="width: 50%;">
+                    50%
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-danger" style="width: 50%;">
+                    50%
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info" style="width: 50%;">
+                    50%
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="well well-md">
+        <p>
+          <%= t(".no_services")%>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
