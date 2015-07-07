@@ -10,7 +10,7 @@
     .navbar-collapse.collapse.pagination-right
       - if current_user
         %ul.nav.navbar-nav.padding-top
-          - unless current_page?(:controller => 'pages', :action => 'index')
+          - unless current_page?(root_path)
             %li
               = link_to "#{t('public_nav_bar.home')}",root_path, class: "pages index"
           %li
