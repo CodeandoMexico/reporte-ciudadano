@@ -6,9 +6,7 @@ class ServiceRequestsController < ApplicationController
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
     @service_requests = @search.result.page(params[:page])
-    flash.now[:notice] = "No se encontraron solicitudes de servicio." if @service_requests.empty?
-
-
+    flash.now[:notice] = I18n.t("flash.service_requests.empty") if @service_requests.empty?
   end
 
   def new
@@ -17,18 +15,8 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
-  #validacions ajax
-    unless params[:pagetime].blank?
-        id_service = params[:pagetime][:service]
-        unless Service.where(id: id_service).last.nil?
-          @admins_services = Service.where(id: id_service).last.admins
-        end
-        @who = params[:pagetime][:who]
-        respond_to do |format|
-          format.js
-        end
-    end
 
+    service_public_servants
 
   end
 
@@ -36,9 +24,9 @@ class ServiceRequestsController < ApplicationController
     @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
       notify_public_servants
-      redirect_to root_path, flash: { success: 'La solicitud fue creada satisfactoriamente' }
+      redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
-      flash[:notice] = "Hubo problemas, intenta de nuevo"
+      flash[:notice] = I18n.t("flash.service_requests.error")
       render :new
     end
   end
@@ -65,6 +53,18 @@ class ServiceRequestsController < ApplicationController
   end
 
   private
+  def service_public_servants
+     unless params[:pagetime].blank?
+        id_service = params[:pagetime][:service]
+        unless Service.where(id: id_service).last.nil?
+          @admins_services = Service.where(id: id_service).last.admins
+        end
+        @who = params[:pagetime][:who]
+        respond_to do |format|
+          format.js
+        end
+    end
+  end
 
   def service_cis_options
     Services.service_cis_options

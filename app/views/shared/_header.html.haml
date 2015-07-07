@@ -12,11 +12,11 @@
         %ul.nav.navbar-nav.padding-top
           - unless current_page?(root_path)
             %li
-              = link_to "#{t('public_nav_bar.home')}",root_path, class: "pages index"
+              = link_to t('public_nav_bar.home'),root_path, class: "pages index"
           %li
-            = link_to "#{t('public_nav_bar.requests')}", service_requests_path, class: "reports index"
+            = link_to t('public_nav_bar.requests'), service_requests_path, class: "reports index"
           %li
-            = link_to "#{t('public_nav_bar.evaluate_a_submission')}",service_surveys_path, class: "pages index"
+            = link_to t('public_nav_bar.evaluate_a_submission'),service_surveys_path, class: "pages index"
       %ul.nav.navbar-nav.navbar-right.padding-top
         - if current_user
           %li.dropdown.pipe-left

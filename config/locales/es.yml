@@ -541,7 +541,7 @@ es:
     sign_in: "Iniciar sesión"
     service_surveys: "Evalúa un servicio"
     home: "Inicio"
-    requests: "Quejas y sujerencias
+    requests: "Quejas y sujerencias"
     evaluate_a_submission: "Evalúa trámite" 
 
 
@@ -632,6 +632,9 @@ es:
       updated: "Queja o sugerencia actualizada correctamente"
       destroyed: "Queja o sugerencia eliminada correctamente"
       try_again: "Hubo problemas, intenta de nuevo."
+      empty: "No se encontraron solicitudes de servicio."
+      success: 'La solicitud fue creada satisfactoriamente'
+      error: "Hubo problemas, intenta de nuevo"
     service:
       created: 'Servicio creado correctamente.'
       updated: 'Servicio actualizado correctamente.'

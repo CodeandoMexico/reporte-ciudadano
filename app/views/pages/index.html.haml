@@ -1,7 +1,7 @@
 .row.col-md-6.col-md-offset-3.padding-video
-  =embed_video(@url_video)
+  = embed_video(@url_video)
 .row.col-md-6.col-md-offset-3
-  =t('.video_explication')
+  = t('.video_explication')
 .row.reports-stats{data: { total: ServiceRequest.count } }
   = render "kpis/kpi", kpi: pretty_kpi_data(@active_citizen_count,t('dashboards.total_cities'))
   = render "kpis/kpi", kpi: pretty_kpi_data(@services_count,t('dashboards.total_procedures_services'))
