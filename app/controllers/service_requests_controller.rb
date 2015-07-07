@@ -6,9 +6,7 @@ class ServiceRequestsController < ApplicationController
   def index
     @search = ServiceRequest.unscoped.search(params[:q])
     @service_requests = @search.result.page(params[:page])
-    flash.now[:notice] = "No se encontraron solicitudes de servicio." if @service_requests.empty?
-
-
+    flash.now[:notice] = I18n.t("flash.service_requests.empty") if @service_requests.empty?
   end
 
   def new
@@ -36,9 +34,9 @@ class ServiceRequestsController < ApplicationController
     @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
       notify_public_servants
-      redirect_to root_path, flash: { success: 'La solicitud fue creada satisfactoriamente' }
+      redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
-      flash[:notice] = "Hubo problemas, intenta de nuevo"
+      flash[:notice] = I18n.t("flash.service_requests.error")
       render :new
     end
   end
