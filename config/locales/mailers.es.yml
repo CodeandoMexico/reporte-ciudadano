@@ -4,3 +4,4 @@ es:
       status_change_notification: 'Cambio de estatus en reporte'
       send_account_invitation: "Bienvenido a %{app_name}"
       notify_new_request: "Nuevo reporte de servicio"
+      confirm_service_survey_answer: "Gracias por tu evaluación"

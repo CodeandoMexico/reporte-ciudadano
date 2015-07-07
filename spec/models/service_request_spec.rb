@@ -8,14 +8,10 @@ describe ServiceRequest do
     it { should validate_presence_of(:service_id) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:address) }
-    it { should validate_presence_of(:lat) }
-    it { should validate_presence_of(:lng) }
   end
   context 'attributes' do
     it { should respond_to :anonymous }
     it { should respond_to :description }
-    it { should respond_to :lat }
-    it { should respond_to :lng }
     it { should respond_to :service_fields }
     it { should respond_to :address }
     it { should respond_to :message }

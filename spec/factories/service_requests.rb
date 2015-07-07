@@ -7,7 +7,5 @@ FactoryGirl.define do
     association :requester, factory: :user
     address     { Faker::Lorem.words(3) }
     description { Faker::Lorem.paragraph(2) }
-    lat         { '123'}
-    lng         { '1233' }
   end
 end

@@ -1,3 +1,6 @@
+$grey-kpi: #e6e6e6;
+$grey-navbar: #f7f7f7;
+$blue-line: #005195;
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
@@ -9,7 +12,7 @@
 
 .field_with_errors {
   @extend .has-error;
-  @extend .form-group;
+  color: $state-danger-text;
 }
 
 #error_explanation {
@@ -99,8 +102,92 @@
     margin-right: 24px;
   }
 }
+/***************************************************
+**  HOME Video
+***************************************************/
+.video{
+  width: 80%;
+  height: 20em;;
+  margin-left: 10%; 
+}
 
+/***************************************************
+**  KPIS
+***************************************************/
+.panel-gray {
+     background-color: $grey-kpi !important;
+     padding: 15px 15px 15px 15px;
+     margin: 15px 15px 25px;
+}
+.panel-gray .panel-heading {
+  border-color: $grey-kpi;
+  color: #000;
+  background-color: $grey-kpi;
+}
+.panel-gray a {
+  color: $grey-kpi;
+}
 
+/***************************************************
+**  Paddings AND Margins
+***************************************************/
+.padding-top{
+  padding-top: 2em;
+}
+
+.margin_left{
+  margin-left: 10%; 
+}
+.margin_right{
+  margin-right: 10%; 
+}
+.margin-bottom{
+  margin-right: 10%; 
+}
+/***************************************************
+**  sizes
+***************************************************/
+.match_parent{
+  width: 100%;
+}
+.half_content{
+  width: 50%;
+}
+
+.font-titles{
+  color: #133150;
+  font-size: 23px;
+  font-family:  "Helvetica Neue" !important;
+}
+.font-title-h1{
+  color: $blue-line !important;
+  font-family:  "Helvetica Neue Light" !important;
+}
+/***************************************************
+**  NAVBAR
+***************************************************/
+.navbar-up{
+  height: 30px !important;
+  background-color: $grey-navbar;
+  border-bottom: 1px solid #ccc;
+}
+.navbar-default-admin {
+  background-color: #fff;
+  border-color: #e7e7e7;
+  font-family:  "Helvetica Neue Light" !important;
+  border-bottom: 4px solid $blue-line;
+  border-top: 4px solid $blue-line;
+}
+ul
+{
+    list-style-type: none;
+}
+.navbar-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 /***************************************************
 **  HOME REPORT STATS
 ***************************************************/
@@ -114,8 +201,9 @@
     font-weight: bold;
 
     &.mid {
-      border-left: 1px solid #DDD;
-      border-right: 1px solid #DDD;
+      border-left: 1px solid #CCC;
+      border-right: 1px solid #CCC;
+      margin-bottom: 20px;
     }
 
     .reports-stats-name {

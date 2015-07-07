@@ -3,8 +3,8 @@ class Admins::PublicServantsController < ApplicationController
   layout 'admins'
 
   def index
-    @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
-    @disabled_public_servants = Admin.disabled_public_servants_by_dependency(current_admin.dependency)
+    @public_servants = Admins.public_servants_for(current_admin)
+    @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
   end
 
   def new
@@ -48,13 +48,18 @@ class Admins::PublicServantsController < ApplicationController
 
   def assign_services
     @public_servant = Admin.find(params[:id])
-    @available_services = current_admin.managed_services
+    @available_services = Admins.services_for(current_admin)
   end
 
   private
 
   def public_servant_params
-    services = Service.where(id: params[:admin][:services_ids])
+    if params[:admin].present?
+      services = Service.where(id: params[:admin][:services_ids])
+    else
+      services = []
+    end
+
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)

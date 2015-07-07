@@ -9,15 +9,15 @@ feature 'Admins access' do
   scenario 'Super admin access' do
     sign_in_admin super_admin
 
+    expect(page).to have_content "Panel de administración"
     within ".sidebar-nav" do
-      expect(page).to have_content "Panel de administración"
       expect(page).to have_link "Resumen"
-      expect(page).to have_link "Reportes"
+      expect(page).to have_link "Quejas o sugerencias"
       expect(page).to have_link "Servicios"
       expect(page).to have_link "Administradores de servicios"
       expect(page).to have_link "Diseño"
       expect(page).to have_link "API"
-      expect(page).to have_link "Personalizar reportes"
+      expect(page).to have_link "Personalizar quejas o sugerencias"
       expect(page).to have_link "Servidores Públicos"
     end
   end
@@ -25,15 +25,15 @@ feature 'Admins access' do
   scenario 'Service admin access' do
     sign_in_admin service_admin
 
+    expect(page).to have_content "Panel de administración"
     within ".sidebar-nav" do
-      expect(page).to have_content "Panel de administración"
       expect(page).not_to have_link "Resumen"
       expect(page).not_to have_link "Administradores de servicios"
       expect(page).not_to have_link "Diseño"
       expect(page).not_to have_link "API"
-      expect(page).not_to have_link "Personalizar reportes"
+      expect(page).not_to have_link "Personalizar quejas o sugerencias"
 
-      expect(page).to have_link "Reportes"
+      expect(page).to have_link "Quejas o sugerencias"
       expect(page).to have_link "Servicios"
       expect(page).to have_link "Servidores Públicos"
     end
@@ -43,17 +43,17 @@ feature 'Admins access' do
     sign_in_admin public_servant
     expect(current_path).to eq admins_service_requests_path
 
+    expect(page).to have_content "Panel de administración"
     within ".sidebar-nav" do
-      expect(page).to have_content "Panel de administración"
       expect(page).not_to have_link "Resumen"
       expect(page).not_to have_link "Administradores de servicios"
       expect(page).not_to have_link "Diseño"
       expect(page).not_to have_link "API"
-      expect(page).not_to have_link "Personalizar reportes"
+      expect(page).not_to have_link "Personalizar quejas o sugerencias"
       expect(page).not_to have_link "Servicios"
       expect(page).not_to have_link "Servidores Públicos"
 
-      expect(page).to have_link "Reportes"
+      expect(page).to have_link "Quejas o sugerencias"
     end
   end
 end
