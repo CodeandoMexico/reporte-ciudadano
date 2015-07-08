@@ -42,6 +42,18 @@ class ServiceSurvey < ActiveRecord::Base
     answers.any? { |answer| answer.user_id == user.id }
   end
 
+  def status
+    if open?
+      :open
+    else
+      :close
+    end
+  end
+
+  def last_report
+    reports.order(created_at: :asc).last
+  end
+
   private
 
   def value_for_rating_questions
