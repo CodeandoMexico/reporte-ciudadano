@@ -44,4 +44,20 @@ class Service < ActiveRecord::Base
   def self.for_service_admin(admin)
     where("service_admin_id IS NULL OR service_admin_id = #{admin.id}")
   end
+
+  def service_surveys_count
+    service_surveys.count
+  end
+
+  def answered_surveys
+    service_surveys.select { |survey| survey.answers.any? }.count
+  end
+
+  def cis_names
+    Services
+      .service_cis
+      .select { |cis_hash| cis.include?(cis_hash[:id].to_s) }
+      .map { |cis_hash| cis_hash[:name] }
+      .join(", ")
+  end
 end

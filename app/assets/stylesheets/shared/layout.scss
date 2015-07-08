@@ -22,6 +22,12 @@
   margin-top: 0px;
 }
 
+.pipe-left{
+    display: inline;
+    padding: 0 10px;
+    border-left: solid 1px black;
+}
+
 #wrap {
   min-height: 100%;
   height: auto !important;
@@ -46,6 +52,10 @@ img.navbar-logo {
 
 .navbar-nav {
   padding: 5px;
+}
+
+.pagination-right {
+  float: right;
 }
 
 #footer {

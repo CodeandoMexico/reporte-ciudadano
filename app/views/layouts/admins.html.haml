@@ -22,4 +22,5 @@
           - flash.each do |name, msg|
             = content_tag :div, :class => "alert #{flash_class(name)}" do
               = msg
-          = yield
+          .padding-top
+            = yield

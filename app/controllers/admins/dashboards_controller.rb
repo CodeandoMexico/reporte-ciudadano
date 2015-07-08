@@ -13,6 +13,7 @@ class Admins::DashboardsController < Admins::AdminController
     @chart_data = chart_data.to_json
     @status_data = Status.select(:name, :id).to_json
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
+    @title_page = I18n.t('.admins.dashboards.index.header')
   end
 
   def services
@@ -21,6 +22,7 @@ class Admins::DashboardsController < Admins::AdminController
     else
       @services = current_admin.managed_services
     end
+     @title_page = I18n.t('.admins.dashboards.services.managed_services')
   end
 
   private
