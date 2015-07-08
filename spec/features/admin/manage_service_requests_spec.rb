@@ -33,6 +33,7 @@ feature 'As an admin I can manage service requests' do
     first_service = create :service, name: 'my srv'
     public_servant = create :admin, :public_servant, services: [first_service]
     visit new_admins_service_request_path
+    save_and_open_page
     select first_service.name, from: 'service_request[service_id]'
 
     fill_in 'service_request[address]', with: 'An address #111'

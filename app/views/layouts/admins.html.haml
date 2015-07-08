@@ -6,7 +6,6 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
     = javascript_include_tag "application"
-    %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}")
   %body
     #wrapper{class: ("is-logged-in" if admin_signed_in?) }
       - if admin_signed_in? && current_admin.is_service_admin?

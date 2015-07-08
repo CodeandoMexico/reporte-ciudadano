@@ -456,7 +456,7 @@ GEM
       tilt (~> 1.1)
     sassy-math (1.5.1)
       compass (>= 0.11)
-    selenium-webdriver (2.46.2)
+    selenium-webdriver (2.45.0)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)

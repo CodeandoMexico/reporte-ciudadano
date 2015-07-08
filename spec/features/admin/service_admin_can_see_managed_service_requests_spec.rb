@@ -39,7 +39,7 @@ feature 'As a service admin I can see managed service requests' do
       click_link "Quejas o sugerencias"
     end
 
-    expect(page).to have_content "No tiene servicios asignados"
+    expect(page).to have_content "No tiene trámites asignados"
   end
 
   def given_service_has_info(service, info)
