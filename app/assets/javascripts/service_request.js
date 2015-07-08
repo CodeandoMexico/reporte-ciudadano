@@ -31,9 +31,12 @@ function changeLine(){
 
   function validate_requirements(){  
     var e = document.getElementById("service_request_service_id");
-    if(document.getElementById("service_request_description").value!= "" && e.value != ""){
-     document.getElementById("save_form").disabled = false;
-    }else{
-    document.getElementById("save_form").disabled = true;
+    if (typeof(e) != 'undefined' && e != null)
+    {
+      if(document.getElementById("service_request_description").value!= "" && e.value != ""){
+        document.getElementById("save_form").disabled = false;
+      }else{
+        document.getElementById("save_form").disabled = true;
+      }
     }
   }
