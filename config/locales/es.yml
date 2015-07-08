@@ -272,8 +272,8 @@ es:
     services:
       index:
         header: "Personalizar solicitudes de servicio"
-        page-description: "Personaliza el tipo de servicios y status con las cuales las solicitudes de servicio serán creados. Los usuarios
-                          seleccionarán las servicios al crear la solicitud de servicio."
+        page-description: "Personaliza el tipo de Servicios y estatus con los cuales las quejas y sugerencias serán creadas.
+                          Los ciudadanos seleccionarán los Servicios para generar sus Quejas y Sugerencias."
         services: "Servicios"
         statuses: "Estatus actuales"
         new_service: "Nuevo servicio"
@@ -291,7 +291,7 @@ es:
         remove_message: "Borrar mensaje"
         add_message: "Agregar mensaje"
         add_service_field: "Agregar campo adicional"
-        messages_title: 'Mensajes para estatuses'
+        messages_title: 'Mensajes para cambios en estatus'
         service_fields_title: 'Campos adicionales'
         remove_service_field: 'Borrar campo adicional'
         save: "Guardar"
@@ -535,7 +535,7 @@ es:
       password: "Contraseña"
       password_confirmation: "Confirmar contraseña"
       current_password: "Contraseña actual"
-      record_number: "Número de registro"
+      record_number: "Número de Expediente"
       dependency: "Dependencia"
       administrative_unit: "Unidad administrativa"
       charge: "Cargo"
