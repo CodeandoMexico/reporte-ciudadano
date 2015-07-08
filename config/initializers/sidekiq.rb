@@ -1,7 +1,7 @@
 if Rails.env.production?
   Sidekiq.configure_server do |config|
     if ENV['REDIS_PORT_6379_TCP_ADDR'] and ENV['REDIS_PORT_6379_TCP_PORT']
-      config.redis = { url: "redis://#{ENV['REDIS_PORT_5432_TCP_ADDR']}:#{ENV['REDIS_PORT_5432_TCP_PORT']}/0", namespace: 'Tyresearch' }
+      config.redis = { url: "redis://#{ENV['REDIS_PORT_6379_TCP_ADDR']}:#{ENV['REDIS_PORT_6379_TCP_PORT']}/0", size: 3 }
     else
       config.redis = { url: ENV["REDISCLOUD_URL"], size: 3 }
     end
