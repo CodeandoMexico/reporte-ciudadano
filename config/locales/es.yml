@@ -272,8 +272,7 @@ es:
     services:
       index:
         header: "Personalizar solicitudes de servicio"
-        page-description: "Personaliza el tipo de Servicios y estatus con los cuales las quejas y sugerencias serán creadas.
-                          Los ciudadanos seleccionarán los Servicios para generar sus Quejas y Sugerencias."
+        page-description: "En este sitio usted podrá evaluar la atención que se le brinda en los Trámites, Servicios y Programas de Apoyo del Gobierno del Estado de Puebla. Además, podrá levantar y dar seguimiento a las Quejas y Sugerencias que usted desee presentar. Lo anterior con el fin de mejorar la atención y el servicio."
         services: "Trámites"
         statuses: "Estatus actuales"
         new_service: "Nuevo servicio"
