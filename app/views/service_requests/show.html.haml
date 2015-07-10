@@ -20,7 +20,7 @@
         .activity.description
           = image_tag @service_request.service_requester[:avatar_url], class: "avatar"
           %p= @service_request.description
-          %p.name= @service_request.service_requester[:name]
+          %p.name= @service_request.service_requester[:name] 
           .date
             %i.icon-time
             = @service_request.created_at.strftime("%d/%m/%Y")
