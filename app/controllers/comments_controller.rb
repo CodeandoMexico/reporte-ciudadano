@@ -8,10 +8,11 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = "Tu comentario ha sido publicado"
       redirect_to after_comment_path
-
-      @service_request = ServiceRequest.find(@comment.service_request_id)
+       unless user_signed_in?
+        @service_request = ServiceRequest.find(@comment.service_request_id)
         user_id = User.find(@service_request.requester_id)
-      UserMailer.notify_comment_request(user_id , @comment.id).deliver_later
+        UserMailer.notify_comment_request(user_id , @comment.id).deliver_later
+      end
       
     else
       flash[:error] = @comment.errors.full_messages
