@@ -13,5 +13,11 @@ class UserMailer < ActionMailer::Base
     @service_survey = service_survey
     mail(subject: I18n.t('mailer.subject.confirm_service_survey_answer'), to: @user.email)
   end
+
+  def notify_comment_request(id_user, id_comment)
+    @comment = Comment.find(id_comment)
+    @user = User.find(id_user)
+    mail(subject: I18n.t('mailer.subject.status_change_notification'), to: @user.email)
+  end
 end
 

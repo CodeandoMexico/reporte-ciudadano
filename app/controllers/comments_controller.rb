@@ -8,10 +8,14 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = "Tu comentario ha sido publicado"
       redirect_to after_comment_path
+      UserMailer.notify_comment_request(current_user.id, @comment.id).deliver_later
+      
     else
       flash[:error] = @comment.errors.full_messages
       redirect_to :back
     end
+
+
   end
 
   def destroy
