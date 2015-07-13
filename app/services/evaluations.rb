@@ -41,11 +41,15 @@ module Evaluations
     end
 
     def best_evaluated_service
-      services.max_by(&:positive_overall_perception)
+      services
+        .select { |service| service.positive_overall_perception.present? }
+        .max_by(&:positive_overall_perception)
     end
 
     def worst_evaluated_service
-      services.min_by(&:positive_overall_perception)
+      services
+        .select { |service| service.positive_overall_perception.present? }
+        .min_by(&:positive_overall_perception)
     end
 
     private
@@ -71,7 +75,7 @@ module Evaluations
     end
 
     def positive_overall_perception
-      return 0.0 if last_survey_reports.empty?
+      return nil if last_survey_reports.empty?
       last_survey_reports.map(&:positive_overall_perception).sum / last_survey_reports.size
     end
 

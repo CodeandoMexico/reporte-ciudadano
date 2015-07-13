@@ -134,7 +134,10 @@ module Evaluations
     it 'returns the best and worst evaluated service' do
       best_survey_reports = [TestReport.new(positive_overall_perception: 90.0), TestReport.new(positive_overall_perception: 80.0)]
       worst_survey_reports = [TestReport.new(positive_overall_perception: 20.0), TestReport.new(positive_overall_perception: 10.0)]
-      services = [TestService.new(id: 'best-service', cis: ["1"], last_survey_reports: best_survey_reports), TestService.new(id: 'worst-service', cis: ["1"], last_survey_reports: worst_survey_reports)]
+      services = [
+        TestService.new(id: 'best-service', cis: ["1"], last_survey_reports: best_survey_reports),
+        TestService.new(id: 'worst-service', cis: ["1"], last_survey_reports: worst_survey_reports),
+        TestService.new(id: 'service-not-evaluated', cis: ["1"], last_survey_reports: [])]
       first_cis = first_cis_with_results(cis, services: services)
 
       expect(first_cis.best_evaluated_service.id).to eq 'best-service'
