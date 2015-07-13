@@ -676,6 +676,7 @@ es:
     quality_service: "Calidad de servicio"
     accessibility: "Accesibilidad"
     infrastructure: "Infraestructura"
+    public_servant: "Servidor público"
   question_answer_type_options:
     binary: "Seleccionar de 2 posibles (Sí/No)"
     rating: "Seleccionar de 5 posibles en un rango"
