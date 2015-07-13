@@ -7,10 +7,10 @@
   = render "kpis/kpi", kpi: pretty_kpi_data(@services_count,t('dashboards.total_procedures_services'))
   = render "kpis/kpi", kpi: pretty_kpi_data(@public_servant_assessed_count,t('dashboards.total_evaluations'))
 
-.h1.row.col-md-6.col-md-offset-3.text-center.padding-top
+.h1.row.col-md-6.col-md-offset-3.text-center.padding-top.font-titles-bold
   =t(".join")
 .col-md-12.text-center  
   .col-md-6.padding-top
-    =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
+    =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary navbar-btn half_content font-button'
   .col-md-6.padding-top
-    =link_to t(".evaluate_a _submission"), service_surveys_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
+    =link_to t(".evaluate_a _submission"), service_surveys_path, :class=> 'reports new btn btn-primary navbar-btn half_content font-button'
