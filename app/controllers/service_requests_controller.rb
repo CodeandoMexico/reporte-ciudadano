@@ -91,6 +91,6 @@ class ServiceRequestsController < ApplicationController
   def create_array
       @array_line=[]
       @array_id=[]
-      @public_servant_admins  = Service.find(Service.last).admins
+      @public_servant_admins  = Service.find(Service.last).admins#valor dummy que se llena en tiempo de ejecución
   end
 end

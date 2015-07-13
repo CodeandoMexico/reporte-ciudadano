@@ -28,6 +28,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
     @service_request = ServiceRequest.find params[:id]
     @messages = @service_request.service.messages.with_status(@service_request.status_id)
     @comments = @service_request.comments.order("comments.created_at ASC")
+    @admins_services = Service.where(id: @service_request.service.id).last.admins
   end
 
   def update
