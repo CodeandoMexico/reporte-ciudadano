@@ -521,6 +521,9 @@ es:
       by_services: "Por servicios"
       no_services: "El centro de atención no cuenta con servicios asignados."
       by_area: "Por áreas"
+      best_evaluated_service: "Servicio mejor evaluado"
+      worst_evaluated_service: "Servicio peor evaluado"
+      general: "Evaluación general"
   users:
     registrations:
       edit:
