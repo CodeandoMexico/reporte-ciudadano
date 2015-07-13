@@ -8,7 +8,12 @@
         %p= @service_request.address
         %p= service_cis_label(@service_request.cis)
         %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
-
+        %p
+          Servidor público: 
+          -unless Admin.where(id: @service_request.public_servant_id).empty?
+            = Admin.find(@service_request.public_servant_id).name
+          -else
+            Desconocido
       .stream
         .activity.start
           = t('form.labels.status')
