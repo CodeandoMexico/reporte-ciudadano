@@ -34,11 +34,11 @@ module ServiceSurveys
     answer_params.map { |answer| AnswerForm.new(answer.merge(user_id: user_id).symbolize_keys).to_record_params }
   end
 
-  private
-
   def self.criterion_options_available
     I18n.t("question_criterion_options").keys
   end
+
+  private
 
   class ServiceSurvey
     include ActiveModel::Model

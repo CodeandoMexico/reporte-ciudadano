@@ -4,7 +4,6 @@
     %title Reporte Ciudadano
     = stylesheet_link_tag    current_theme, :media => "all", 'data-turbolinks-track' => true
     = javascript_include_tag "application", 'data-turbolinks-track' => true
-    %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}&sensor=false")
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
     = yield :head

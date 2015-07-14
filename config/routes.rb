@@ -3,7 +3,7 @@ require 'api_constraints'
 Rails.application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admins/sessions', passwords: 'admins/passwords' }
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions', omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
   devise_scope :user do
     get 'users/finish_registration', to: 'users/registrations#finish_registration'
   end
@@ -86,9 +86,10 @@ Rails.application.routes.draw do
       get 'load_service_fields'
     end
   end
-
   resources :service_surveys, only: [:index, :show]
-  resources :answers, only: [ :new, :index, :create ]
+  resources :answers, only: [:new, :index, :create]
+  resources :evaluations, only:  [:index]
+  resources :cis_evaluations, only:  [:index, :show]
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
