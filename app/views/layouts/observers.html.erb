@@ -7,11 +7,13 @@
   <body class='<%= "#{controller_name} #{action_name}" %>'>
     <div id="wrap">
       <%= render "shared/observer_header" %>
-      <div class="container">
+      <div class="container ">
         <% flash.each do |name, msg| %>
+        <div class="padding-top">
           <%= content_tag :div, class: "alert #{flash_class(name)}" do %>
             <%= msg %>
           <% end %>
+          </div>
         <% end %>
         <div class="padding-top">
           <%= yield %>
