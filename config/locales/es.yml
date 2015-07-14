@@ -564,6 +564,10 @@ es:
       address: "Dirección"
       description: "Descripción*"
       service: "Trámites*"
+      admin:
+        service: "Trámites"
+        who: "¿Quién lo atendió?"
+        status: "Estatus"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
