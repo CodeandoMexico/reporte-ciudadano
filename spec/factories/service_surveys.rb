@@ -16,8 +16,9 @@ FactoryGirl.define do
           questions_count 1
         end
         after(:create) do |survey, evaluator|
-          create_list(:question, evaluator.questions_count, service_survey: survey).each do |q|
-            create_list(:survey_answer_binary,  evaluator.answers_count, question: q)
+          create_list(:question, evaluator.questions_count, :binary, service_survey: survey).each do |q|
+            create_list(:survey_answer_binary,  evaluator.answers_count, question: q,
+                        user: FactoryGirl.create(:user))
           end
         end
       end
