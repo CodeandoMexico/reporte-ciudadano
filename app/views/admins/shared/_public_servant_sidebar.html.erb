@@ -3,6 +3,9 @@
    <li class="sidebar-brand">
     </li>
     <li>
+      <%= link_to i18n_admin_sidebar('.reports_public_servants'), admins_service_requests_path %>
+    </li>
+    <li>
       <%= link_to "#service_requests_menu", id: "collapse_service_requests", "data-toggle" => "collapse" do %>
         <%= i18n_admin_sidebar('.requests') %>
         <span class="caret"></span>

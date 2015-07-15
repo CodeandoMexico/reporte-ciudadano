@@ -238,6 +238,7 @@ es:
         dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Quejas o sugerencias"
+        reports_public_servants: "Mis Reportes"
         config_requests: "Personalizar quejas o sugerencias"
         design: "Diseño"
         api: "API"
