@@ -14,9 +14,30 @@ class CisEvaluationsController < ApplicationController
       cis_report_store: CisReport,
       survey_reports: @cis.service_surveys_reports,
       translator: I18n.method(:t))
+    @services = sorted_services(@cis.services)
+    @next_possible_direction = toggle_sort_direction
+    @sorted_by = params[:sort_by]
   end
 
   private
+
+  def sorted_services(services)
+    return services unless params[:sort_by].present?
+    sorted = services.sort_by do |service|
+      service.overall_evaluation_for(params[:sort_by].to_sym)
+    end
+
+    if params[:direction] == 'asc'
+      sorted
+    else
+      sorted.reverse
+    end
+  end
+
+  def toggle_sort_direction
+    return :desc if params[:direction] == "asc"
+    :asc
+  end
 
   def criterions
     ServiceSurveys.criterion_options_available

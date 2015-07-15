@@ -6,6 +6,7 @@ class Service < ActiveRecord::Base
 
   has_many :service_fields
   has_many :messages
+  has_many :service_reports
   belongs_to :service_admin, class: Admin, foreign_key: :service_admin_id
   has_and_belongs_to_many :admins
   has_and_belongs_to_many :service_surveys, join_table: :services_service_surveys
@@ -63,5 +64,9 @@ class Service < ActiveRecord::Base
 
   def last_survey_reports
     service_surveys.map(&:last_report).reject(&:blank?)
+  end
+
+  def last_report
+    service_reports.order(created_at: :asc).last
   end
 end

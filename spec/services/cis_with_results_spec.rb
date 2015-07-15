@@ -40,6 +40,9 @@ module Evaluations
     end
   end
 
+  class ServiceReport
+  end
+
   describe 'cis with results' do
     attr_reader :cis
 
@@ -109,6 +112,7 @@ module Evaluations
     describe 'services overall evaluation' do
       [ :transparency, :performance, :quality_of_service, :accesibility, :infrastructure ].each do |criterion|
         it "returns the evaluation for a service in a given criterion: #{criterion}" do
+          ServiceEvaluation.any_instance.stub(:report).and_return(nil)
           survey_reports = [TestReport.new(areas_results: areas_results(60.0)), TestReport.new(areas_results: areas_results(50.0))]
           services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
           first_cis = first_cis_with_results(cis, services: services)
@@ -116,6 +120,7 @@ module Evaluations
         end
 
         it "returns the evaluation for a service in a given criterion: #{criterion}" do
+          ServiceEvaluation.any_instance.stub(:report).and_return(nil)
           survey_reports = [TestReport.new(areas_results: areas_results(0.0)), TestReport.new(areas_results: areas_results(0.0))]
           services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
           first_cis = first_cis_with_results(cis, services: services)
@@ -123,6 +128,7 @@ module Evaluations
         end
 
         it "returns 0.0 if no reports are given: #{criterion}" do
+          ServiceEvaluation.any_instance.stub(:report).and_return(nil)
           survey_reports = []
           services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
           first_cis = first_cis_with_results(cis, services: services)
@@ -132,6 +138,7 @@ module Evaluations
     end
 
     it 'returns the best and worst evaluated service' do
+      ServiceEvaluation.any_instance.stub(:report).and_return(nil)
       best_survey_reports = [TestReport.new(positive_overall_perception: 90.0), TestReport.new(positive_overall_perception: 80.0)]
       worst_survey_reports = [TestReport.new(positive_overall_perception: 20.0), TestReport.new(positive_overall_perception: 10.0)]
       services = [

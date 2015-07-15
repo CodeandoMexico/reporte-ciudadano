@@ -3,6 +3,6 @@ FactoryGirl.define do
     text "MyString"
     question nil
     score "9.99"
-    user nil
+    association :user, factory: :user
   end
 end
