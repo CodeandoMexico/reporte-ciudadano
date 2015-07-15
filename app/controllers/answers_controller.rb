@@ -12,9 +12,9 @@ class AnswersController < ApplicationController
       answer = SurveyAnswer.new(answer)
       answer.save
     end
-    service_survey = ServiceSurvey.find(params[:service_survey_id])
-    UserMailer.confirm_service_survey_answer(service_survey, current_user).deliver
-    redirect_to get_report_redirect(service_survey), notice: t('.answers_created_successfully')
+    @service_survey = ServiceSurvey.find(params[:service_survey_id])
+    UserMailer.confirm_service_survey_answer(@service_survey, current_user).deliver
+    redirect_to service_survey_reports_path(redirect_params), notice: t('.answers_created_successfully')
   end
 
   private
@@ -23,11 +23,11 @@ class AnswersController < ApplicationController
     params.require(:answers).values
   end
 
-  def get_report_redirect(service_survey)
-    if service_survey.reports.count > 1
-      service_survey_report_path(:id => service_survey.reports.last.id)
+  def redirect_params
+    if @service_survey.reports.any?
+      { id: @service_survey.reports.last.id }
     else
-      service_survey_reports_path(:service_survey_id => service_survey.id)
+      { service_survey_id: @service_survey.id }
     end
   end
 end

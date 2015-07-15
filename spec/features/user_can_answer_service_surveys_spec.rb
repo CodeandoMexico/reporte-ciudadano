@@ -34,7 +34,7 @@ feature 'User can answer service surveys' do
       click_button "Terminar evaluación"
     end
 
-    expect(current_url).to include service_survey_reports_path(:service_survey_id => survey.id)
+    expect(current_url).to include service_survey_reports_path(service_survey_id: survey.id)
     expect(page).to have_content "Gracias por evaluar el servicio."
     expect_survey_confirmation_email_sent_to user.email
   end
