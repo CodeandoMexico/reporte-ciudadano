@@ -5,6 +5,12 @@
 
   %fieldset
     .form-group
+      -if @service.homoclave
+        = f.label :homoclave, class: 'col-lg-2 control-label'
+        .col-lg-8.control-label-left
+          =@service.homoclave
+  %fieldset
+    .form-group
       = f.label :name, t('form.labels.name'), class: 'col-lg-2 control-label'
       .col-lg-8
         = f.text_field :name, class: 'form-control'

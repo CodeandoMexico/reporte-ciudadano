@@ -19,8 +19,9 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def create
+    time = Time.new
     @service = Service.new(service_params)
-
+    @service.homoclave = "#{type_of_service(@service.service_type.to_s)}#{@service.dependency.to_s[0]}#{@service.administrative_unit.to_s[0] }#{time.strftime("%Y%m%d")}"
     if @service.save
       redirect_to admins_services_path, notice: I18n.t('flash.service.created')
     else
@@ -30,7 +31,6 @@ class Admins::ServicesController < Admins::AdminController
 
   def update
     @service = Service.find(params[:id])
-
     if @service.update_attributes(service_params)
       redirect_to admins_services_path, notice: I18n.t('flash.service.updated')
     else
@@ -89,4 +89,16 @@ class Admins::ServicesController < Admins::AdminController
   def service_params
     params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
   end
+
+  def type_of_service(type)
+    if type == "support_program"
+      return 'PA'
+    elsif type == "service"
+      return 'T'
+    elsif type == "step"
+      return 'S'
+    end
+    return 'F'
+  end
+
 end
