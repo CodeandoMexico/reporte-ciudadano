@@ -13,15 +13,34 @@ FactoryGirl.define do
       factory :survey_with_binary_question_and_answers do
         transient do
           answers_count 5
-          questions_count 1
+          questions_count 5
         end
         after(:create) do |survey, evaluator|
           create_list(:question, evaluator.questions_count, :binary, service_survey: survey).each do |q|
-            create_list(:survey_answer_binary,  evaluator.answers_count, question: q,
+            create_list(:survey_answer_binary_yes,  evaluator.answers_count, question: q,
                         user: FactoryGirl.create(:user))
           end
         end
       end
+
+      factory :survey_with_binary_rating_questions_and_answers do
+        transient do
+          answers_count 10
+          questions_count 10
+        end
+        after(:create) do |survey, evaluator|
+          create_list(:question, evaluator.questions_count/2, :binary, service_survey: survey, value: 100/evaluator.questions_count).each do |q|
+            create_list(:survey_answer_binary_yes,  evaluator.answers_count, question: q,
+                        user: FactoryGirl.create(:user))
+          end
+
+          create_list(:question, evaluator.questions_count/2, :rating, service_survey: survey, value: 100/evaluator.questions_count).each do |q|
+            create_list(:survey_answer_rating_100,  evaluator.answers_count, question: q,
+                        user: FactoryGirl.create(:user))
+          end
+        end
+      end
+
     end
   end
 end
