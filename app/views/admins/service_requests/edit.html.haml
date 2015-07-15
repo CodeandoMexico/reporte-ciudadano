@@ -68,14 +68,19 @@
             = f.object.errors.messages unless f.object.errors.empty?
             .form-group
               = f.label :public_servant_id, t('form.labels.admin.who')
-              - if @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0
-                = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' }
-                Descipción:
-                = @service_request.public_servant_description
+              -unless Admin.find(current_admin.id).is_public_servant
+                - if @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0
+                  = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' }
+                  Descipción:
+                  = @service_request.public_servant_description
+                -else
+                  Desconocido
               -else
-                = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
-
-
+                -unless Admin.find(current_admin.id).is_public_servant
+                  = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
+                -else
+                  = Admin.find(@service_request.public_servant_id).name
+              
             .form-group
               = f.label :service_id, t('form.labels.admin.service')
               = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
