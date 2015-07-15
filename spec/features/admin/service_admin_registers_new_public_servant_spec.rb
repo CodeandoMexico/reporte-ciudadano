@@ -12,7 +12,7 @@ feature 'As a service admin I can create new public servant' do
     other_public_servant = create :admin, :public_servant
 
     visit admins_dashboards_path
-    click_link "Servidores Públicos"
+    click_link "Servidores públicos"
 
     expect(page).to have_content public_servants.first.name
     expect(page).not_to have_content other_public_servant.name
@@ -26,7 +26,7 @@ feature 'As a service admin I can create new public servant' do
     other_public_servant = create :admin, :public_servant
 
     visit admins_dashboards_path
-    click_link "Servidores Públicos"
+    click_link "Servidores públicos"
 
     expect(page).to have_content public_servants.first.name
     expect(page).to have_content other_public_servant.name

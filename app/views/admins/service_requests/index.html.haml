@@ -2,11 +2,11 @@
   %h2= t('.header')
 
 .page-content.inset
-  -unless Admin.find(current_admin.id).is_public_servant
+  -#unless Admin.find(current_admin.id).is_public_servant
     .btn-group.admin-actions
-      = link_to new_admins_service_request_path, class: 'btn btn-primary' do
+      =# link_to new_admins_service_request_path, class: 'btn btn-primary' do
         %i.glyphicon.glyphicon-plus-sign
-        = t('.new_service_request')
+        =# t('.new_service_request')
 
 
   = search_form_for @search, url: admins_service_requests_path, method: :get, class: "filters form-inline" do |f|

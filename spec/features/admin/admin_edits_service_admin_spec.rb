@@ -25,7 +25,7 @@ feature 'As an admin I can edit a service admin' do
     check "admin_services_ids_#{services.first.id}"
     click_button "Actualizar"
 
-    expect(page).to have_content "El administrador de servicios se ha actualizado exitosamente"
+    expect(page).to have_content "El administrador de trámites se ha actualizado exitosamente"
     expect(page).to have_content "New name"
     expect(page).to have_content dependency
     expect(page).to have_content administrative_unit
