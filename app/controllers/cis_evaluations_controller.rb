@@ -1,5 +1,6 @@
 class CisEvaluationsController < ApplicationController
   layout 'observers'
+  helper_method :criterions
   before_action :authorize_observer
 
   def index
@@ -16,6 +17,10 @@ class CisEvaluationsController < ApplicationController
   end
 
   private
+
+  def criterions
+    ServiceSurveys.criterion_options_available
+  end
 
   def authorize_observer
     unless current_user.is_observer?

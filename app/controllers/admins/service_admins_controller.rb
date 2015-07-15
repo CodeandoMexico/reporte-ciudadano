@@ -10,7 +10,7 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def create
-    @admin = Admin.new(service_admin_params)
+    @admin = Admin.new(service_admin_params.merge(password: password, password_confirmation: password))
     if @admin.save
       AdminMailer.send_service_admin_account(admin: @admin).deliver
       redirect_to admins_service_admins_path, notice: t('flash.service_admin.created')
@@ -55,7 +55,7 @@ class Admins::ServiceAdminsController < ApplicationController
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(managed_services: services, password: password, password_confirmation: password, is_service_admin: true)
+      .merge(managed_services: services, is_service_admin: true)
   end
 
   def password

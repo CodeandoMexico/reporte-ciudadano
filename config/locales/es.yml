@@ -522,6 +522,9 @@ es:
       by_services: "Por servicios"
       no_services: "El centro de atención no cuenta con servicios asignados."
       by_area: "Por áreas"
+      best_evaluated_service: "Servicio mejor evaluado"
+      worst_evaluated_service: "Servicio peor evaluado"
+      general: "Evaluación general"
   users:
     registrations:
       edit:
@@ -690,6 +693,7 @@ es:
     quality_service: "Calidad de servicio"
     accessibility: "Accesibilidad"
     infrastructure: "Infraestructura"
+    public_servant: "Servidor público"
   question_answer_type_options:
     binary: "Seleccionar de 2 posibles (Sí/No)"
     rating: "Seleccionar de 5 posibles en un rango"

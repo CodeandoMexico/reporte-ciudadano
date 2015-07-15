@@ -13,7 +13,7 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def create
-    @admin = Admin.new(public_servant_params)
+    @admin = Admin.new(public_servant_params.merge(password: password, password_confirmation: password))
     if @admin.save
       AdminMailer.send_public_servant_account(admin: @admin).deliver
       redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
@@ -68,7 +68,7 @@ class Admins::PublicServantsController < ApplicationController
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(services: services, password: password, password_confirmation: password, is_public_servant: true)
+      .merge(services: services, is_public_servant: true)
   end
 
   def password

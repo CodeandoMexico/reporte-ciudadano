@@ -14,7 +14,6 @@ feature 'As a super admin I can manage service surveys' do
 
     visit admins_dashboards_path
     click_link "Encuestas de servicio"
-    save_and_open_page
     expect(surveys_count).to eq 2
     expect(current_path).to eq admins_service_surveys_path
 

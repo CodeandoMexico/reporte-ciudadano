@@ -173,8 +173,6 @@ ActiveRecord::Schema.define(version: 20150714230622) do
     t.float    "positive_overall_perception", default: 0.0, null: false
     t.float    "negative_overall_perception", default: 0.0, null: false
     t.integer  "people_who_participated",     default: 0,   null: false
-    t.string   "phase",                                     null: false
-    t.string   "title",                                     null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "areas_results"
