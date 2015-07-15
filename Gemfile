@@ -36,7 +36,7 @@ gem 'jquery-turbolinks'
 gem 'sidekiq'
 
 group :test do
-  gem 'ffaker'
+  gem 'faker'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
