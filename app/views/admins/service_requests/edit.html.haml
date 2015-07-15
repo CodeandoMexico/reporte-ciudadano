@@ -73,7 +73,7 @@
                 Descipción:
                 = @service_request.public_servant_description
               -else
-                = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id) }, { class: 'js-load_service_fields form-control' }
+                = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
 
 
             .form-group
