@@ -15,23 +15,31 @@ class ServiceSurveyReportsController < ApplicationController
   end
 
   def show
-    @service_surveys_report = ServiceSurveyReport.find(params[:id])
+    @service_surveys_report = set_reports_for_show
   end
 
   private
 
   def service_survey_report_params
-    params.permit(:service_survey_id, :service_survey_report, :page)
+    params.permit(:id, :service_survey_id, :service_survey_report, :page)
   end
 
   def set_reports_for_index
     if service_survey_report_params.has_key?(:service_survey_id)
-      @service_surveys = ServiceSurveyReport
-                         .where(service_survey_id: service_survey_report_params[:service_survey_id])
+     ServiceSurveyReport.where(service_survey_id: service_survey_report_params[:service_survey_id])
                          .order(created_at: :desc)
                          .page(service_survey_report_params[:page]).per(25)
     else
-      @service_surveys = ServiceSurveyReport.all.order(created_at: :desc).page(params[:page]).per(25)
+     ServiceSurveyReport.all.order(created_at: :desc).page(params[:page]).per(25)
     end
   end
+
+  def set_reports_for_show
+    if service_survey_report_params.has_key?(:service_survey_id)
+      ServiceSurveyReport.where(service_survey_id: service_survey_report_params[:service_survey_id]).last
+    else
+      ServiceSurveyReport.find(service_survey_report_params[:id])
+    end
+  end
+
 end
