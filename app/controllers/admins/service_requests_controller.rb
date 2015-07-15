@@ -18,6 +18,10 @@ class Admins::ServiceRequestsController < Admins::AdminController
     if @service_request.save
       notify_public_servants
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.created') }
+      #enviar correo al servidor publico
+      unless @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0 || Admin.find(current_admin.id).is_public_servant
+        AdminMailer.send_public_servant_update_request(admin: Admin.find(@service_request.public_servant_id)).deliver
+      end
     else
       flash[:notice] = t('flash.service_requests.try_again')
       render :new
@@ -36,6 +40,10 @@ class Admins::ServiceRequestsController < Admins::AdminController
     if @service_request.update_attributes(service_request_params)
       @service_request.comments.create content: params[:message], commentable: current_admin if params[:message].present?
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
+        #enviar correo al servidor publico
+      unless @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0 || Admin.find(current_admin.id).is_public_servant
+        AdminMailer.send_public_servant_update_request(admin: Admin.find(@service_request.public_servant_id)).deliver
+      end
     else
      render :edit
     end
