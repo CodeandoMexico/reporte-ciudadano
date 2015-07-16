@@ -1,4 +1,6 @@
 site "http://community.opscode.com/api/v1"
 
 cookbook "git"
-cookbook 'docker', '~> 0.40.0'
+cookbook 'docker', '~> 0.40.3'
+cookbook 'git', '~> 4.2.2'
+
