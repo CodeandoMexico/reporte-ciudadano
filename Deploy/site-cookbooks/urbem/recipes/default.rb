@@ -46,33 +46,38 @@ docker_service 'default' do
   action [:create, :start]
 end
 
-# Up dbs
-docker_container "data" do
-  image "postgresql:9.4"
-  container_name "data_directory"
-  action :run
-  volume "/var/lib/postgresql/data"
+docker_image "postgres" do
+  tag "9.4"
+end
+
+docker_image "redis" do
+  tag "2"
+end
+
+docker_image "civicadigital/backup" do
+  tag "latest"
 end
 
 docker_container "postgres" do
-  image "postgres:9.4"
+  image "postgres"
+  tag "9.4"
   container_name "postgres"
-  env "POSTGRES_PASSWORD=#{creds[:postgres][:password]}"
-  volumes_from "data_directory"
-  action :run
+  detach true
+  env "POSTGRES_PASSWORD=#{list_creds["postgres"]["password"]}"
 end
 
 docker_container "redis" do
-  image "redis:2"
+  image "redis"
+  tag "2"
   container_name "redis"
-  action :run
+  detach true
 end
 
 docker_container "urbem_up" do
   action :start
   only_if do
     begin
-      Docker::Conteiner.get("urbem")
+      Docker::Conteiner.get("urbem-puebla")
       true
     rescue
       nil
