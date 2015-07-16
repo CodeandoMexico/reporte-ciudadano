@@ -34,13 +34,6 @@ feature 'As a public servant I can see every service request from assigned servi
     expect(services_request_count).to eq 0
   end
 
-    expect(current_path).to eq edit_admins_service_request_path(service)
-    expect(page).to have_content "Votos"
-    expect(page).to have_content "Actualizar queja o sugerencia"
-
-    visit edit_admins_service_request_path(other_service)
-    expect(current_path).to eq admins_service_requests_path
-  end
 
   def given_services_assigned_to(admin, services)
     admin.services = services
