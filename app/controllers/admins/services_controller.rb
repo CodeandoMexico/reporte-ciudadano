@@ -4,7 +4,7 @@ class Admins::ServicesController < Admins::AdminController
   helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?
 
   def index
-    @services = Service.all
+    @services = Service.order(:name)
     @statuses = Status.all
   end
 
@@ -49,6 +49,19 @@ class Admins::ServicesController < Admins::AdminController
     @service_requests = @service.service_requests
   end
 
+    def disable_service
+    @service = Service.find(params[:id])
+    @service.update_attributes(status: "inactivo")
+    redirect_to admins_services_path, notice: t('flash.service.disabled')
+  end
+
+  def enable_service
+    @service = Service.find(params[:id])
+    @service.update_attributes(status: "activo")
+    redirect_to admins_services_path, notice: t('flash.service.enabled')
+  end
+
+
   private
 
   def set_title
@@ -87,7 +100,7 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def service_params
-    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
+    params.require(:service).permit(:status, :name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
   end
 
   def type_of_service(type)

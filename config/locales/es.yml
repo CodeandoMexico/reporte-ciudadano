@@ -282,6 +282,12 @@ es:
         geographical_area: "Área geográfica de los reportes"
         geographical_area_description: "Modifica el zoom del mapa para definir la zona donde se pueden crear reportes"
         save_restriction: "Guardar restricción"
+        enable: 'Habilitar'
+        disable: 'Deshabilitar'
+        enabled: 'Habilitados'
+        disabled: 'Deshabilitados'
+        disable_service_confirm: "¿Estás seguro de desactivar el servicio?"
+        enable_service_confirm: "¿Estás seguro de activar el servicio?"
       new:
         header: 'Nuevo servicio'
       edit:
@@ -648,6 +654,8 @@ es:
       created: 'Servicio creado correctamente.'
       updated: 'Servicio actualizado correctamente.'
       destroyed: 'Servicio ha sido eliminado.'
+      disabled: 'Trámite desactivado correctamente'
+      enabled: 'Trámite activado correctamente'
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
