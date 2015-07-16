@@ -95,20 +95,22 @@ end
 git "/var/urbem" do
   revision "master"
   repository "https://github.com/civica-digital/urbem-puebla.git"
-  notifies :build, "docker_image[urbem-puebla]", :immediately
+  revision 'docker-support'
+  notifies :run, "docker_container[commit_db]", :immediately
   action :sync
 end
 
-docker_container "commit db" do
-  action :nothing
+docker_container "commit_db" do
   image "civicadigital/backup"
-  container_name "backup_db"
-  env ["AWS_KEY=#{creds[:aws][:aws_key]}",
-       "AWS_SECRET=#{creds[:aws][:aws_secret]}",
-       "S3_BUCKET=#{creds[:aws][:s3_bucket_backup_name]}"]
-  link "postgres"
+  env ["AWS_KEY=#{creds['aws']['aws_key']}",
+       "AWS_SECRET=#{creds['aws']['aws_secret']}",
+       "S3_BUCKET=#{creds['aws']['s3_bucket_backup_name']}"]
+  link ["postgres:postgres", "redis:redis"]
   remove_automatically true
-  notifies :run,  "docker_image[urbem-puebla]", :immediately
+  command ""
+  container_name "backup_db"
+  action :nothing
+  notifies :build,  "docker_image[urbem-puebla]", :immediately
 end
 
 docker_image 'urbem-puebla' do
@@ -118,10 +120,13 @@ docker_image 'urbem-puebla' do
   notifies :run, 'docker_container[urbem_create]', :immediately
 end
 
-docker_image 'urbem_create' do
-  image "urbem-puebla:test"
-  command "rake db:create"
-  link ["postgres", "redis"]
+
+docker_container 'urbem_create' do
+  image "urbem-puebla"
+  entrypoint "rake"
+  command "db:create"
+  container_name "create_dbs"
+  link ["postgres:postgres", "redis:redis"]
   remove_automatically true
   env list_creds
   action :nothing
@@ -129,26 +134,34 @@ docker_image 'urbem_create' do
 end
 
 docker_container 'urbem_migrate' do
-  image "urbem-puebla:latest"
-  command "rake db:migrate"
-  link ["postgres-test", "redis-test"]
+  image "urbem-puebla"
+  entrypoint "rake"
+  command "db:migrate"
+  link ["postgres:postgres", "redis:redis"]
+  container_name "migrate_dbs"
   remove_automatically true
   env  list_creds
   action :nothing
-  notifies :redeploy, "docker_container[urbem]", :inmediatly
+  notifies :redeploy, "docker_container[urbem]", :immediately
 end
 
 docker_container "urbem" do
-  image "urbem-puebla:latest"
+  image "urbem-puebla"
   container_name "urbem"
-  link ["postgres", "redis"]
+  link ["postgres:postgres", "redis:redis"]
   env  list_creds
-  notifies :redeploy, "docker_container[sidekiq]", :inmediatly
+  detach true
+  port ['80:80', "443:443"]
+  notifies :redeploy, "docker_container[sidekiq]", :immediately
+  action :run
 end
 
 docker_container "sidekiq" do
-  image "urbem-puebla:test"
+  image "urbem-puebla"
   container_name "sidekiq"
-  link ["postgres", "redis"]
+  link ["postgres:postgres", "redis:redis"]
   env list_creds
+  detach true
+  entrypoint "sidekiq"
+  action :run
 end
