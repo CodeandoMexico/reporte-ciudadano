@@ -37,7 +37,7 @@
             Eliminar
     %tbody
       - @service_requests.each do |service_request|
-        - if current_user.to_s == service_request.service_requester[:name].to_s || current_admin
+        - if User.find(current_user.id).name.to_s == service_request.service_requester[:name].to_s || current_admin
           %tr
             %td= link_to service_request.id, service_request
             %td= l service_request.created_at, format: :short

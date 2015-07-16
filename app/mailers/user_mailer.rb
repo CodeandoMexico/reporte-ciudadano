@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
   def notify_comment_request(id_user, id_comment)
     @comment = Comment.find(id_comment)
     @user = User.find(id_user)
-    mail(subject: I18n.t('mailer.subject.status_change_notification'), to: @user.email)
+    mail(subject: I18n.t('mailer.subject.comment_change_notification'), to: @user.email)
   end
 end
 

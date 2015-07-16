@@ -5,4 +5,5 @@ es:
       send_account_invitation: "Bienvenido a %{app_name}"
       notify_new_request: "Nuevo reporte de servicio"
       confirm_service_survey_answer: "Gracias por tu evaluación"
-      send_request_new: "Nuevo trámite asignado"
+      send_request_new: "Se ha asignado una nueva Queja o Sugerencia con tu nombre"
+      comment_change_notification: "Se han hecho comentarios a tu Queja o Sugerencia"
