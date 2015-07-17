@@ -24,6 +24,9 @@ FactoryGirl.define do
       end
     end
 
+    #Las pruebas de las encuestas tienen como base 10 preguntas
+    #pues los valores de las respuestas
+    # están ajustados a 10 preguntas.
     factory :survey_with_binary_rating_questions_and_answers do
       transient do
         answers_count 10
@@ -49,6 +52,10 @@ FactoryGirl.define do
         end
       end
     end
+
+    #Las pruebas de las encuestas tienen como base 10 preguntas
+    #pues los valores de las respuestas
+    # están ajustados a 10 preguntas.
 
     factory :survey_with_rating_questions_and_answers do
       transient do
