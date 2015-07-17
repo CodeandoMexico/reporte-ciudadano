@@ -4,11 +4,14 @@ class CisEvaluationsController < ApplicationController
   before_action :authorize_observer
 
   def index
-    @cis = Evaluations.cis_with_results(available_cis, Service.all)
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).find_each
+    @cis = Evaluations.cis_with_results(available_cis, services_records)
   end
 
   def show
-    @cis = Evaluations.cis_evaluation_for(cis, Service.all)
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).find_each
+
+    @cis = Evaluations.cis_evaluation_for(cis, services_records)
     @cis_report = Reports.current_cis_report_for(
       cis,
       cis_report_store: CisReport,
