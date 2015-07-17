@@ -22,25 +22,51 @@ FactoryGirl.define do
           end
         end
       end
+    end
 
-      factory :survey_with_binary_rating_questions_and_answers do
-        transient do
-          answers_count 10
-          questions_count 10
-        end
-        after(:create) do |survey, evaluator|
-          create_list(:question, evaluator.questions_count/2, :binary, service_survey: survey, value: 100/evaluator.questions_count).each do |q|
-            create_list(:survey_answer_binary_yes,  evaluator.answers_count, question: q,
-                        user: FactoryGirl.create(:user))
+    factory :survey_with_binary_rating_questions_and_answers do
+      transient do
+        answers_count 10
+        questions_count 10
+      end
+      after(:create) do |survey, evaluator|
+
+        users = create_list(:user, evaluator.answers_count)
+
+        create_list(:question, evaluator.questions_count/2, :binary, service_survey: survey,
+                    value: 100/evaluator.questions_count).each do |q|
+          evaluator.answers_count.times do |i|
+            create(:survey_answer_binary_yes, question: q,
+                   user: users[i] )
           end
-
-          create_list(:question, evaluator.questions_count/2, :rating, service_survey: survey, value: 100/evaluator.questions_count).each do |q|
-            create_list(:survey_answer_rating_100,  evaluator.answers_count, question: q,
-                        user: FactoryGirl.create(:user))
+        end
+        create_list(:question, evaluator.questions_count/2, :rating, service_survey: survey,
+                    value: 100/evaluator.questions_count).each do |q|
+          evaluator.answers_count.times do |i|
+            create(:survey_answer_rating_100, question: q,
+                   user: users[i]  )
           end
         end
       end
+    end
 
+    factory :survey_with_rating_questions_and_answers do
+      transient do
+        answers_count 10
+        questions_count 10
+      end
+      after(:create) do |survey, evaluator|
+
+        users = create_list(:user, evaluator.answers_count)
+
+        create_list(:question, evaluator.questions_count, :rating, service_survey: survey,
+                    value: 100/evaluator.questions_count).each do |q|
+          evaluator.answers_count.times do |i|
+            create(:survey_answer_rating_75, question: q,
+                   user: users[i]  )
+          end
+        end
+      end
     end
   end
 end
