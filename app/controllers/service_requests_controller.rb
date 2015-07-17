@@ -1,6 +1,6 @@
 class ServiceRequestsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
-  before_action :create_array
+  before_action :create_array, only: [:create, :new]
   helper_method :service_cis_options, :service_cis_label
 
   def index
@@ -15,9 +15,7 @@ class ServiceRequestsController < ApplicationController
     else
       @service_request = ServiceRequest.new
     end
-
     service_public_servants
-
   end
 
   def create
@@ -54,15 +52,15 @@ class ServiceRequestsController < ApplicationController
 
   private
   def service_public_servants
-     unless params[:pagetime].blank?
-        id_service = params[:pagetime][:service]
-        unless Service.where(id: id_service).last.nil?
-          @admins_services = Service.where(id: id_service).last.admins
-        end
-        @who = params[:pagetime][:who]
-        respond_to do |format|
-          format.js
-        end
+    unless params[:pagetime].blank?
+      service =  Service.find(params[:pagetime][:service])
+      unless service.blank?
+        @admins_services = service.admins
+      end
+      @who = params[:pagetime][:who]
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
@@ -89,8 +87,8 @@ class ServiceRequestsController < ApplicationController
   end
 
   def create_array
-      @array_line=[]
-      @array_id=[]
-      @public_servant_admins  = Service.find(Service.last).admins#valor dummy que se llena en tiempo de ejecución
+    @array_line=[]
+    @array_id=[]
+    @public_servant_admins  = Service.last.admins
   end
 end
