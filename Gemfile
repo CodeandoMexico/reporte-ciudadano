@@ -35,6 +35,9 @@ gem 'jquery-turbolinks'
 # Async backgroun job handling
 gem 'sidekiq'
 
+gem 'chosen-rails' #autocompletar
+gem 'bootstrap-switch-rails', '~> 3.0.0'
+
 group :test do
   gem 'ffaker'
   gem 'database_cleaner'
