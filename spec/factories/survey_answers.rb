@@ -24,25 +24,25 @@ FactoryGirl.define do
     factory :survey_answer_rating_0, traits: [:zero_percent]
 
     trait :hundred_percent do
-      score 1
+      score 10.0
     end
     trait :seventy_five_percent do
-      score 0.75
+      score 7.50
     end
     trait :fifty_percent do
-      score 0.5
+      score 5.00
     end
     trait :twenty_five_percent do
-      score 0.25
+      score 2.50
     end
     trait :zero_percent do
-      score 0
+      score 0.0
     end
     trait :no_answer do
-      score 0
+      score 0.0
     end
     trait :yes_answer do
-      score 1
+      score 10.0
     end
 
   end
