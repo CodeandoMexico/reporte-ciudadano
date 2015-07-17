@@ -8,8 +8,10 @@ $(document).on 'ready page:load', ->
     $(this).parent().closest(".js-question").find(".js-" + answerType).removeClass("hidden")
 
 $(document).on 'change', '.js-answer-selection', ->
+  question_element = $(this).parent().closest(".js-question")
   answerType = $(this).val()
-  showAnswerType(this, answerType)
+  resetValue(question_element)
+  showAnswerType(question_element, answerType)
 
 $(document).on 'change', '.js-criterion-selection', ->
   url = $(this).data('questions-text-url')
@@ -30,9 +32,9 @@ $(document).on 'click', '.js-question-item', ->
 
 showAnswerType = (element, answerType) ->
   if answerType == 'binary' || answerType == 'rating'
-    $(element).parent().closest(".js-question").find(".js-question-value").removeClass('hidden')
-  $(element).parent().closest(".js-question").find(".js-answer-wrapper").addClass("hidden")
-  $(element).parent().closest(".js-question").find(".js-" + answerType).removeClass("hidden")
+    $(element).find(".js-question-value").removeClass('hidden')
+  $(element).find(".js-answer-wrapper").addClass("hidden")
+  $(element).find(".js-" + answerType).removeClass("hidden")
 
 showQuestionsList = (element) ->
   criterion = $(element).val()
@@ -48,6 +50,10 @@ showQuestionsList = (element) ->
   $(list).html('')
   $.each $questions[criterion], (index, question) ->
     $(list).append("<li class='js-question-item' data-answer='" + question["answer_type"] + "'" + "data-text='" + question['text'] + "'>" + question['text'] + ', (' + question['selected_answer'] + ")</li>")
+
+resetValue = (element) ->
+  $(element).find(".js-question-value").addClass('hidden')
+  $(element).find(".js-question-value input").val("")
 
 getQuestionsCollection = (url, element) ->
   $.ajax
