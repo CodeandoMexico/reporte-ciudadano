@@ -37,10 +37,11 @@ function changeLine(){
 
   function validate_requirements(){  
     var e = document.getElementById("service_request_service_id");
+    var f = document.getElementById("service_request_cis");
     var d = document.getElementById("service_request_description");
-    if (typeof(e) != 'undefined' && e != null && typeof(d) != 'undefined' && d != null)
+    if (typeof(e) != 'undefined' && e != null && typeof(d) != 'undefined' && d != null  && typeof(f) != 'undefined' && f != null)
     {
-      if(d.value!= "" && e.value != ""){
+      if(d.value!= "" && e.value != "" && f.value != ""){
         document.getElementById("save_form").disabled = false;
       }else{
         document.getElementById("save_form").disabled = true;

@@ -53,7 +53,9 @@ class ServiceRequestsController < ApplicationController
   private
   def service_public_servants
     unless params[:pagetime].blank?
-      service =  Service.find(params[:pagetime][:service])
+        unless params[:pagetime][:service].blank?
+          service =  Service.find(params[:pagetime][:service])
+        end
       unless service.blank?
         @admins_services = service.admins
       end

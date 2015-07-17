@@ -472,6 +472,7 @@ es:
     form:
       anonymise: "Ocultar identidad"
       prompt_service: 'Tipo de trámite'
+      prompt_center: 'Centro de atención'
       prompt_who: 'No recuerdo'
       address_placeholder: 'Ej. Av Revolucion 2342, 64830 Monterrey, Nuevo León, México'
       description_placeholder: 'Por favor proporcione detalles particulares sobre la queja o sugerencia y la ubicación para facilitar su atención.'
@@ -504,7 +505,7 @@ es:
     index:
       service_evaluations: "Evaluaciones por servicio"
       name: "Nombre de servicio"
-      cis: "Centros de atención"
+      cis: "Nombre del Centro"
       service_surveys: "Encuestas"
       answered_surveys: "Encuestas contestadas"
       cis_name: "Centro de atención - %{name}"
