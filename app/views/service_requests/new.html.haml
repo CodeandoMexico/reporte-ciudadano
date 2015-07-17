@@ -7,7 +7,7 @@
       .form-group
         = f.label :service_id, t('form.labels.service'), class: 'col-md-2 control-label font-title-table'
         .col-md-10
-          = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { prompt: t('service_requests.form.prompt_service') }, { class: 'js-load_service_fields form-control' ,:onchange=>"changeLine()"}
+          = f.select :service_id, Service.where(status: 'activo').collect {|p| [ p.name, p.id ] }, { prompt: t('service_requests.form.prompt_service') }, { class: 'js-load_service_fields form-control' ,:onchange=>"changeLine()"}
           = errors_on_resource_for_field(@service_request, :service_id)
 
       %div#service_fields_container

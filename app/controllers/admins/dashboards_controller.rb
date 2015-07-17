@@ -18,7 +18,7 @@ class Admins::DashboardsController < Admins::AdminController
 
   def services
     if current_admin.is_super_admin?
-      @services = Service.all
+      @services = Service.where(status: 'activo')
     else
       @services = current_admin.managed_services
     end

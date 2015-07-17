@@ -15,7 +15,7 @@
     .form-group.form-group-separator
       = f.text_field :date_lteq, placeholder: t('search_form.to_date'), class: 'datepicker form-control col-lg-6'
     .form-group.form-group-separator
-      = f.collection_select :service_id_eq, Service.all, :id, :name, { include_blank: t('form.labels.service') }, class: 'form-control'
+      = f.collection_select :service_id_eq, Service.where(status: 'activo'), :id, :name, { include_blank: t('form.labels.service') }, class: 'form-control'
     .form-group.form-group-separator
       = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: t('form.labels.status') }, class: 'form-control'
     .form-group
