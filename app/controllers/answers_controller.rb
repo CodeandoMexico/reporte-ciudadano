@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
+  before_action :authorize_user_to_answer, only: [:create, :new]
 
   def new
     service_survey = ServiceSurvey.find(params[:service_survey_id])
@@ -28,6 +29,14 @@ class AnswersController < ApplicationController
       { id: @service_survey.reports.last.id }
     else
       { service_survey_id: @service_survey.id }
+    end
+  end
+
+  def authorize_user_to_answer
+    service_survey = ServiceSurvey.find(params[:service_survey_id])
+
+    if service_survey.has_been_answered_by?(current_user)
+      redirect_to service_surveys_path, notice: t('.answers_already_sent')
     end
   end
 end
