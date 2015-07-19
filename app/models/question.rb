@@ -12,6 +12,8 @@ class Question < ActiveRecord::Base
     where(answer_type: ['rating','binary'])
   }
 
+  default_scope { order(id: :asc) }
+
   def has_open_answer?
     answer_type == 'open'
   end
