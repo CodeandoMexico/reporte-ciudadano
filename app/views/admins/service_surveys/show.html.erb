@@ -12,6 +12,11 @@
         <p>
           <strong><%= index + 1 %>:</strong>
           <%= question.text %>
+          <% if question.optional? %>
+            <span class="label label-success"><%= t(".optional") %></span>
+          <% else %>
+            <span class="label label-warning"><%= t(".required") %></span>
+          <% end %>
         </p>
         <hr>
         <% if question.has_open_answer? %>

@@ -211,6 +211,49 @@ feature 'As a service admin I can create a new survey' do
     expect(page).to have_field "Texto", with: "Text for question?"
   end
 
+  scenario 'with optional questions', js: true do
+    service = create :service, name: "Mi servicio", service_admin: admin
+
+    visit new_admins_service_survey_path
+
+    fill_in "service_survey_title", with: "La encuesta de mi servicio"
+    check "service_survey_service_ids_#{service.id}"
+    choose 'A la mitad'
+    click_link "Agregar pregunta"
+
+    within first(".nested-fields") do
+      select "Desempeño", from: "Criterio a evaluar"
+      fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
+      select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
+      choose "Muy bueno - Muy malo"
+      fill_in "Valor %", with: 50
+      check "Pregunta opcional"
+    end
+
+    click_link "Agregar pregunta"
+
+    within all(".nested-fields")[1] do
+      select "Transparencia", from: "Criterio a evaluar"
+      fill_in "Texto", with: "¿ Te gustó el servicio ?"
+      select "Seleccionar de 2 posibles (Sí/No)", from: "Tipo de respuesta"
+      fill_in "Valor %", with: 50
+    end
+
+    click_button "Guardar"
+
+    expect(page).to have_content "La encuesta se ha creado exitosamente."
+    click_link "La encuesta de mi servicio"
+
+    within first(".question") do
+      expect(page).to have_content "Opcional"
+    end
+
+    within all(".question")[1] do
+      expect(page).not_to have_content "Opcional"
+      expect(page).to have_content "Requerida"
+    end
+  end
+
   def select_question_text(text)
     find("li", text: text).click()
   end
