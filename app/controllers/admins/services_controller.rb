@@ -60,8 +60,11 @@ class Admins::ServicesController < Admins::AdminController
 
   def enable_service
     @service = Service.find(params[:id])
-    @service.update_attributes(status: "activo")
-    redirect_to admins_services_path, notice: t('flash.service.enabled')
+    if @service.update_attributes(status: "activo")
+      redirect_to admins_services_path, notice: t('flash.service.enabled')
+    else
+      redirect_to admins_services_path, notice: t('flash.service.could_not_be_enabled')
+    end
   end
 
 

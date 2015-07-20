@@ -662,6 +662,7 @@ es:
       disabled: 'Trámite desactivado correctamente'
       enabled: 'Trámite activado correctamente'
       could_not_be_disabled: 'Trámite no pudo ser desactivado'
+      could_not_be_enabled: 'Trámite no pudo ser activado'
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
