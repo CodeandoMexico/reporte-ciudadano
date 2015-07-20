@@ -1,34 +1,45 @@
-.row
-  %div.container
-    %div.col-sm-12.col-md-6
-      %h1
-        = t('service_report.show.title', title: @service_surveys_report.service_survey_title)
-      %h4
-        %span.glyphicon.glyphicon-user{"aria-hidden"=> "true"}
-        = @service_surveys_report.people_who_participated.to_s + " " + t('service_report.show.people_who_participated')
-      %h4
-        %span.glyphicon.glyphicon-calendar{"aria-hidden"=> "true"}
-        =t('service_report.show.created_time_ago', time_ago: distance_of_time_in_words(DateTime.now, @service_surveys_report.updated_at))
-    %div.col-sm-12.col-md-6
-      %p.text-right
-        = link_to t('service_report.show.return_to_index'), service_survey_reports_url,{class:"btn btn-default"}
-      %h4.text-right
-        %span.glyphicon.glyphicon-time{"aria-hidden"=> "true"}
-        = t('service_report.show.service_survey_phase')+ ": "+t("service_survey_phase_options.#{@service_surveys_report.service_survey_phase}")
+- if @service_surveys_report.nil?
+  .row
+    %div.container
+      %div.col-sm-12.col-md-12
+        %h3.text-center
+          = t('service_report.show.no_report')
+        %p.text-center
+          = link_to t('service_report.show.return_to_index'), service_survey_reports_url,{class:"btn btn-default"}
 
-.row
-  %div.container
-    %div#chartPerception.col-sm-12.col-md-6{"data-positive" => @service_surveys_report.positive_overall_perception,
-        "data-negative" => @service_surveys_report.negative_overall_perception,
-        "data-title" => "#{t('service_report.general_survey.title')}",
-        "data-subtitle" => "#{t('service_report.general_survey.subtitle')}"}
 
-    %div.row.container.col-md-6.col-sm-12
-      - @service_surveys_report.areas_results.each do |criterion|
-        %h5
-          = t("question_criterion_options.#{criterion[0].to_s}")
-        .progress
-          .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0",
-            "aria-valuenow" => "#{criterion[1].to_s + "%"}", :role => "progressbar",
-             :style => "width: #{criterion[1].to_s + "%"}"}
-            %span.sr-only criterion[1].to_s
+- else
+  .row
+    %div.container
+      %div.col-sm-12.col-md-6
+        %h1
+          = t('service_report.show.title', title: @service_surveys_report.service_survey_title)
+        %h4
+          %span.glyphicon.glyphicon-user{"aria-hidden"=> "true"}
+          = @service_surveys_report.people_who_participated.to_s + " " + t('service_report.show.people_who_participated')
+        %h4
+          %span.glyphicon.glyphicon-calendar{"aria-hidden"=> "true"}
+          =t('service_report.show.created_time_ago', time_ago: distance_of_time_in_words(DateTime.now, @service_surveys_report.updated_at))
+      %div.col-sm-12.col-md-6
+        %p.text-right
+          = link_to t('service_report.show.return_to_index'), service_survey_reports_url,{class:"btn btn-default"}
+        %h4.text-right
+          %span.glyphicon.glyphicon-time{"aria-hidden"=> "true"}
+          = t('service_report.show.service_survey_phase')+ ": "+t("service_survey_phase_options.#{@service_surveys_report.service_survey_phase}")
+
+  .row
+    %div.container
+      %div#chartPerception.col-sm-12.col-md-6{"data-positive" => @service_surveys_report.positive_overall_perception,
+          "data-negative" => @service_surveys_report.negative_overall_perception,
+          "data-title" => "#{t('service_report.general_survey.title')}",
+          "data-subtitle" => "#{t('service_report.general_survey.subtitle')}"}
+
+      %div.row.container.col-md-6.col-sm-12
+        - @service_surveys_report.areas_results.each do |criterion|
+          %h5
+            = t("question_criterion_options.#{criterion[0].to_s}")
+          .progress
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0",
+              "aria-valuenow" => "#{criterion[1].to_s + "%"}", :role => "progressbar",
+               :style => "width: #{criterion[1].to_s + "%"}"}
+              %span.sr-only criterion[1].to_s

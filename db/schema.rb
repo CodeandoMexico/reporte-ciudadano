@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706042915) do
+ActiveRecord::Schema.define(version: 20150715180302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,19 +145,33 @@ ActiveRecord::Schema.define(version: 20150706042915) do
     t.datetime "updated_at"
   end
 
+  create_table "service_reports", force: :cascade do |t|
+    t.decimal  "positive_overall_perception"
+    t.decimal  "negative_overall_perception"
+    t.integer  "respondents_count"
+    t.text     "overall_areas"
+    t.integer  "service_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "service_reports", ["service_id"], name: "index_service_reports_on_service_id", using: :btree
+
   create_table "service_requests", force: :cascade do |t|
-    t.text     "description",    default: ""
-    t.boolean  "anonymous",      default: false
-    t.text     "service_fields", default: "{}"
-    t.text     "address",        default: ""
+    t.text     "description",                default: ""
+    t.boolean  "anonymous",                  default: false
+    t.text     "service_fields",             default: "{}"
+    t.text     "address",                    default: ""
     t.string   "media"
     t.integer  "service_id"
-    t.integer  "requester_id",                   null: false
-    t.string   "requester_type",                 null: false
+    t.integer  "requester_id",                               null: false
+    t.string   "requester_type",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status_id"
     t.string   "cis"
+    t.integer  "public_servant_id"
+    t.text     "public_servant_description"
   end
 
   add_index "service_requests", ["requester_id", "requester_type"], name: "index_service_requests_on_requester_id_and_requester_type", using: :btree
@@ -196,6 +210,7 @@ ActiveRecord::Schema.define(version: 20150706042915) do
     t.string   "administrative_unit"
     t.text     "cis"
     t.integer  "service_admin_id"
+    t.integer  "service_surveys_count", default: 0
   end
 
   add_index "services", ["service_admin_id"], name: "index_services_on_service_admin_id", using: :btree
@@ -261,6 +276,7 @@ ActiveRecord::Schema.define(version: 20150706042915) do
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
   add_foreign_key "questions", "service_surveys"
+  add_foreign_key "service_reports", "services"
   add_foreign_key "service_surveys", "admins"
   add_foreign_key "survey_answers", "questions"
   add_foreign_key "survey_answers", "users"

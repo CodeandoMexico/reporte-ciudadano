@@ -34,7 +34,7 @@ feature 'User can answer service surveys' do
       click_button "Terminar evaluación"
     end
 
-    expect(current_path).to eq service_survey_path(survey)
+    expect(current_url).to include service_survey_reports_path(service_survey_id: survey.id)
     expect(page).to have_content "Gracias por evaluar el servicio."
     expect_survey_confirmation_email_sent_to user.email
   end
@@ -66,6 +66,10 @@ feature 'User can answer service surveys' do
     expect(page).to have_content "Encuesta acta de nacimiento"
     expect(page).to have_content "Evaluada"
     expect(page).not_to have_link "Iniciar evaluación"
+
+    visit new_answer_path(service_survey_id: survey.id)
+    expect(current_path).to eq service_surveys_path
+    expect(page).to have_content "Ya has evaluado la encuesta seleccionada."
   end
 
   def expect_survey_confirmation_email_sent_to(email)

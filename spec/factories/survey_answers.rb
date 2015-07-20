@@ -3,7 +3,7 @@ FactoryGirl.define do
     text "MyString"
     question nil
     score "9.99"
-    user nil
+    association :user, factory: :user
     factory :survey_answer_binary do
       score nil
       user nil
@@ -44,6 +44,5 @@ FactoryGirl.define do
     trait :yes_answer do
       score 10.0
     end
-
   end
 end
