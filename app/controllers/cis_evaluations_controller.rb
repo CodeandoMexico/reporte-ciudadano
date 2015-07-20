@@ -4,13 +4,12 @@ class CisEvaluationsController < ApplicationController
   before_action :authorize_observer
 
   def index
-
-    @cis = Evaluations.cis_with_results(available_cis, Service.where(status: 'activo'))
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
+    @cis = Evaluations.cis_with_results(available_cis, services_records)
   end
 
-
   def show
-    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).where(status: 'activo'))
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
     @cis = Evaluations.cis_evaluation_for(cis, services_records)
     @cis_report = Reports.current_cis_report_for(
       cis,
