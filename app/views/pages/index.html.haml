@@ -14,33 +14,3 @@
     =link_to t(".queja_sugerencia"), service_requests_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
   .col-md-6.padding-top
     =link_to t(".evalua_tramite"), service_surveys_path, :class=> 'reports new btn btn-primary navbar-btn half_content'
-
-/ .row.l-margin-l-bottom
-/   .container
-/     %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
-/     #reports-chart{ data: { chart_data: @chart_data, status_data: @status_data, }}
-
-/ .row.blk-summary.l-margin-l-bottom
-/   .container
-/     %h2.blk-summary-title= t('dashboards.recent_requests')
-/     - unless @service_requests.empty?
-/       - @service_requests.each do |service_request|
-/         .recent-report-sum{id: "service_request_#{service_request.id}", data: { description: service_request_info_window(service_request) } }
-/           .row
-/             .col-md-2.recent-report-sum-date.l-margin-s-bottom
-/               = timeago(service_request.created_at)
-/             .col-md-8.recent-report-sum-info.l-margin-s-bottom
-/               %h3.recent-report-title
-/                 = link_to service_request.service.name, service_request_url(service_request), class: "title"
-/               %span.recent-report-address= " - #{service_request.address}" if service_request.address
-/               %p= service_request.description
-/             .col-md-2.text-center.l-margin-s-bottom
-/               .recent-report-counter.js-votes_count
-/                 = service_request.votes_for
-/               .js-vote_status
-/                 = vote_link_for(service_request)
-/     - else
-/       .row.service_request
-
-
-/ = paginate @service_requests
