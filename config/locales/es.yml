@@ -738,6 +738,11 @@ es:
       service_survey_phase: "Parte del proceso evaluada"
       created_time_ago: "Creado hace: %{time_ago}"
       no_report: "Aún no hay reportes sobre este servicio"
+      question_analysis: "Análisis por pregunta"
+      question_value: "Valor total de la pregunta: %{value}%"
+      question_criterion: "Criterio de la pregunta: %{criterion}"
+      question_type: "Tipo de pregunta: %{type}"
+
     general_survey:
       title: "General"
       subtitle: "Satisfacción General del Servicio"
