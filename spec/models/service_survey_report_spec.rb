@@ -63,15 +63,15 @@ describe ServiceSurveyReport do
   context 'report with 75% overall results and only answers in transparency' do
     let(:service_survey_report) { create(:valid_service_survey_report_75) }
 
-    it 'is report with 100% #positive_overall_perception' do
+    it 'is report with 175% #positive_overall_perception' do
       service_survey_report.reload
       expect(service_survey_report.positive_overall_perception).to eq 75.0
     end
-    it 'is  a report with 0% #negative_overall_perception' do
+    it 'is  a report with 25% #negative_overall_perception' do
       service_survey_report.reload
       expect(service_survey_report.negative_overall_perception).to eq 25.0
     end
-    it 'is a report with 100% transparency in  #areas_results[:transparency]' do
+    it 'is a report with 75% transparency in  #areas_results[:transparency]' do
       service_survey_report.reload
       expect(service_survey_report.areas_results[:transparency]).to eq 75.0
     end
