@@ -7,7 +7,6 @@
         %p.text-center
           = link_to t('service_report.show.return_to_index'), service_survey_reports_url,{class:"btn btn-default"}
 
-
 - else
   .row
     %div.container
@@ -38,8 +37,29 @@
         - @service_surveys_report.areas_results.each do |criterion|
           %h5
             = t("question_criterion_options.#{criterion[0].to_s}")
-          .progress
-            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0",
-              "aria-valuenow" => "#{criterion[1].to_s + "%"}", :role => "progressbar",
-               :style => "width: #{criterion[1].to_s + "%"}"}
-              %span.sr-only criterion[1].to_s
+          = progress_bar criterion[1].to_s
+  .row
+    %div.container.padding-top
+      %div.col-sm-12.col-md-12
+        %h1
+          =  t('service_report.show.question_analysis')
+        %hr
+        - previous_criterion = ""
+        - @service_surveys_report.total_by_question[:questions].each do |p|
+          -unless p.criterion.to_s.eql? previous_criterion.to_s
+            %h2
+              %span.glyphicon.glyphicon-check{:aria_hidden => "true"}
+              =t("question_criterion_options.#{p.criterion}")
+
+          %div.row.padding-top.col-sm-12.col-md-12
+            %h3
+              = p.text
+            %p.col-sm-12.col-md-6
+              = t('service_report.show.question_value', value: "%.2f" % p.value)
+              %br
+              = t('service_report.show.question_criterion', criterion: t("question_criterion_options.#{p.criterion}"))
+              %br
+              = t('service_report.show.question_type', type: t("question_answer_type_options.#{p.answer_type}"))
+              -if p.value >0
+                = progress_bar @service_surveys_report.total_by_question[:scores][p.id]/ p.value * 100
+            - previous_criterion = p.criterion
