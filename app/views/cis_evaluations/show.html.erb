@@ -127,7 +127,7 @@
               <% criterions.each do |criterion| %>
                 <td>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-info" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
+                    <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
                       <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 2) %>%
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 module EvaluationsHelper
   def overall_progress_by_criterion(overall)
-    content_tag :div, "#{sprintf '%.2f', overall[1]}%", class: "progress-bar progress-bar-info", style: "width: #{overall[1]}"
+    content_tag :div, "#{sprintf '%.2f', overall[1]}%", class: "progress-bar progress-bar-#{class_range_for(overall[1])}", style: "width: #{overall[1]}"
   end
 
   def label_for(overall)
@@ -8,7 +8,7 @@ module EvaluationsHelper
   end
 
   def overall_progress(overall)
-    content_tag :div, "#{sprintf '%.2f', overall}%", class: "progress-bar progress-bar-success", style: "width: #{overall}"
+    content_tag :div, "#{sprintf '%.2f', overall}%", class: "progress-bar progress-bar-#{class_range_for(overall)}", style: "width: #{overall}"
   end
 
   def sorted_icon(direction, criterion, sorted_by)
@@ -16,6 +16,16 @@ module EvaluationsHelper
       content_tag :span, "", class: "glyphicon glyphicon-chevron-up"
     elsif direction == :desc && criterion.to_s == sorted_by
       content_tag :span, "", class: "glyphicon glyphicon-chevron-down"
+    end
+  end
+
+  def class_range_for(percentage)
+    if percentage.between?(0.0, 69.0)
+      "danger"
+    elsif percentage.between?(70.0, 84.0)
+      "warning"
+    elsif percentage.between?(85.0, 100.0)
+      "success"
     end
   end
 end
