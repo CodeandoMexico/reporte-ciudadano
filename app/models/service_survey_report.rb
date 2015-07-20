@@ -13,6 +13,12 @@ class ServiceSurveyReport < ActiveRecord::Base
     service_survey.phase
   end
 
+  def total_by_question
+    questions_avg_score = rating_and_binary_answers(self.service_survey_id).group('question_id').average('score')
+    questions = rating_and_binary_questions(self.service_survey_id).order(:criterion)
+    {}.merge(:scores => questions_avg_score).merge(:questions => questions)
+  end
+
   private
 
   def answers_exist
@@ -50,7 +56,7 @@ class ServiceSurveyReport < ActiveRecord::Base
   end
 
   def effectiveness_by_criterion(service_survey_id)
-    criteria = ServiceSurveys.criterion_options_available
+    criteria = available_criteria
     answers = rating_and_binary_answers(service_survey_id).includes(:question).inject([]) do |result, survey_answer|
       result << [survey_answer.question.criterion, survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
       result
@@ -81,8 +87,24 @@ class ServiceSurveyReport < ActiveRecord::Base
     end
   end
 
+  def available_criteria
+    ServiceSurveys.criterion_options_available
+  end
+
+  def question_answer_list(service_survey_id)
+    answers = rating_and_binary_answers(service_survey_id).includes(:question).inject([]) do |result, survey_answer|
+      result << [:criterion => survey_answer.question.criterion,:question_id => survey_answer.question.id,
+                 :score => survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
+      result
+    end
+  end
+
   def overall_effectiveness(service_survey_id)
     rating_and_binary_answers(service_survey_id).map(&:score).sum.to_i
+  end
+
+  def rating_and_binary_questions(service_survey_id)
+    get_service_survey(service_survey_id).questions.where(answer_type: ['rating','binary'])
   end
 
   def rating_and_binary_answers(service_survey_id)
