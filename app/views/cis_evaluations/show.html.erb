@@ -111,12 +111,17 @@
           <tr>
             <th></th>
             <% criterions.each do |criterion| %>
-              <th><%= t("question_criterion_options.#{criterion}") %></th>
+              <th>
+                <%= link_to cis_evaluation_path(id: @cis.id, sort_by: criterion, direction: @next_possible_direction) do %>
+                  <%= sorted_icon(@next_possible_direction, criterion, @sorted_by) %>
+                  <span><%= t("question_criterion_options.#{criterion}") %></span>
+                <% end %>
+              </th>
             <% end %>
           </tr>
         </thead>
         <tbody>
-          <% @cis.services.each do |service| %>
+          <% @services.each do |service| %>
             <tr>
               <td><%= service.name %></td>
               <% criterions.each do |criterion| %>

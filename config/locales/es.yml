@@ -492,6 +492,7 @@ es:
       answered: "Evaluada"
   answers:
     new:
+      answers_already_sent: "Ya has evaluado la encuesta seleccionada."
       current_survey: "Estas evaluando %{title}"
       previous_question: "Pregunta anterior"
       next_question: "Siguiente pregunta"

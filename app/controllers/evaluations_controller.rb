@@ -3,8 +3,10 @@ class EvaluationsController < ApplicationController
   before_action :authorize_observer
 
   def index
-    @services = Service.where(status: 'activo').page(params[:page]).per(10)
-    @cis = Evaluations.cis_with_results(available_cis, Service.where(status: 'activo'))
+    services_records = Service.includes(:service_surveys, :answers).where(status: 'activo')
+    @services = services_records.page(params[:page]).per(10)
+    @cis = Evaluations.cis_with_results(available_cis, services_records)
+
   end
 
   private

@@ -15,16 +15,23 @@
             <td><%= survey.title %></td>
             <td><%= survey.services_names %></td>
             <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
-            <td>
-              <% if current_user %>
-                <% unless survey.has_been_answered_by?(current_user) %>
+            <% if current_user %>
+              <% unless survey.has_been_answered_by?(current_user) %>
+                <td></td>
+                <td>
                   <%= link_to t(".start_survey"), new_answer_path(service_survey_id: survey.id), class: "btn btn-info" %>
-                <% else %>
+                </td >
+              <% else %>
+                <td>
                   <span class="label label-success"><%= t(".answered") %></span>
+                </td >
+                <td>
                   <%= link_to t('service_report.show_report'), service_survey_reports_path(service_survey_id: survey.id), class: "btn btn-success" %>
-                <% end %>
+                </td >
               <% end %>
-            </td>
+            <% end %>
+            <td></td>
+            <td></td>
           </tr>
         <% end %>
       </tbody>
