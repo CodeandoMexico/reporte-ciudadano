@@ -18,7 +18,7 @@ module Evaluations
       @services_records = services_records || []
       @services = services_evaluations
       @service_surveys = services.map(&:service_surveys).flatten
-      @service_surveys_reports = service_surveys.map(&:last_report).flatten.reject(&:blank?)
+      #@service_surveys_reports = service_surveys.map(&:last_report).flatten.reject(&:blank?)
     end
 
     def evaluated_services_count
@@ -64,6 +64,13 @@ module Evaluations
   end
 
   class ServiceEvaluation < SimpleDelegator
+    attr_reader :report
+
+    def initialize(record)
+      super(record)
+      @report = get_service_report
+    end
+
     def overall_evaluation_for(criterion)
       return report.overall_areas[criterion] if report.present?
       return 0.0 if last_survey_reports.empty?
@@ -76,12 +83,12 @@ module Evaluations
       last_survey_reports.map(&:positive_overall_perception).sum / last_survey_reports.size
     end
 
-    def report
-      Reports.current_service_report_for(self,
+    private
+
+    def get_service_report
+      @report = Reports.current_service_report_for(self,
       services_report_store: ServiceReport)
     end
-
-    private
 
     def total_by_area(areas_hash_array, key, acc)
       return acc if areas_hash_array.empty?

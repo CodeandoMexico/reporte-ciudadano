@@ -542,6 +542,7 @@ es:
     sign_up: "Registrarme"
     sign_in: "Iniciar sesión"
     service_surveys: "Evalúa un servicio"
+    evaluations: "Evaluaciones"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
