@@ -616,6 +616,9 @@ es:
       admin_select: "Selecciona Administrador de servicio"
       answer_type_select: "Selecciona un tipo de respuesta"
       criterion_select: "Selecciona criterio a evaluar en la pregunta"
+      service_type_dependency: "Selecciona la dependencia"
+      service_type_administrative: "Selecciona el centro de atención"
+      service_type_service_admin: "Selecciona al administrador"
   search_form:
     from_date: "De la fecha"
     to_date: "A la fecha"
