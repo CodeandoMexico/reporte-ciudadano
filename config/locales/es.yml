@@ -580,6 +580,7 @@ es:
         service: "Trámites"
         who: "¿Quién lo atendió?"
         status: "Estatus"
+        description: "Descripción"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"

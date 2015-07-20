@@ -21,7 +21,7 @@ class Admins::ServicesController < Admins::AdminController
   def create
     time = Time.new
     @service = Service.new(service_params)
-    @service.homoclave = = Services.generate_homoclave_for(@service)
+    @service.homoclave = Services.generate_homoclave_for(@service)
     if @service.save
       redirect_to admins_services_path, notice: I18n.t('flash.service.created')
     else
