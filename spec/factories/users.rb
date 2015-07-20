@@ -17,5 +17,8 @@ FactoryGirl.define do
     trait :observer do
       is_observer true
     end
+    trait :with_id do
+      id nil
+    end
   end
 end

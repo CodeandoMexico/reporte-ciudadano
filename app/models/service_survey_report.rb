@@ -52,16 +52,16 @@ class ServiceSurveyReport < ActiveRecord::Base
   def effectiveness_by_criterion(service_survey_id)
     criteria = ServiceSurveys.criterion_options_available
     answers = rating_and_binary_answers(service_survey_id).includes(:question).inject([]) do |result, survey_answer|
-      result << [survey_answer.question.criterion, survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
-      result
-    end
+              result << [survey_answer.question.criterion, survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
+              result
+            end
     results = {}
     people_count = people_count(service_survey_id)
     criteria.each do |c|
       answers_list = answers.clone
       total_by_criterion = total_by_area(answers_list, c, {:count =>0, :acc=>0})
       if people_count * total_by_criterion[:count] > 0
-        results[c] = total_by_criterion[:acc] / (people_count * total_by_criterion[:count])
+        results[c] = total_by_criterion[:acc] / (total_by_criterion[:count])
       else
         results[c] = 0
       end
