@@ -91,14 +91,6 @@ class ServiceSurveyReport < ActiveRecord::Base
     ServiceSurveys.criterion_options_available
   end
 
-  def question_answer_list(service_survey_id)
-    answers = rating_and_binary_answers(service_survey_id).includes(:question).inject([]) do |result, survey_answer|
-      result << [:criterion => survey_answer.question.criterion,:question_id => survey_answer.question.id,
-                 :score => survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
-      result
-    end
-  end
-
   def overall_effectiveness(service_survey_id)
     rating_and_binary_answers(service_survey_id).map(&:score).sum.to_i
   end
