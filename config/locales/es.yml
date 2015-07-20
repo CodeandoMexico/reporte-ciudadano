@@ -661,6 +661,7 @@ es:
       destroyed: 'Servicio ha sido eliminado.'
       disabled: 'Trámite desactivado correctamente'
       enabled: 'Trámite activado correctamente'
+      could_not_be_disabled: 'Trámite no pudo ser desactivado'
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'

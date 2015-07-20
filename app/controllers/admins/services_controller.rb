@@ -51,8 +51,11 @@ class Admins::ServicesController < Admins::AdminController
 
     def disable_service
     @service = Service.find(params[:id])
-    @service.update_attributes(status: "inactivo")
-    redirect_to admins_services_path, notice: t('flash.service.disabled')
+    if @service.update_attributes(status: "inactivo")
+      redirect_to admins_services_path, notice: t('flash.service.disabled')
+    else
+      redirect_to admins_services_path, notice: t('flash.service.could_not_be_disabled')
+    end
   end
 
   def enable_service
