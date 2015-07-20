@@ -102,7 +102,7 @@ module Evaluations
     describe 'surveys participants count' do
       example do
         answer = TestAnswer.new(user_id: 'user-id')
-        surveys = double 'survey', answers: [answer]
+        surveys = double 'survey', answers: [answer], last_report: nil
         services = [TestService.new(cis: ["1"], service_surveys: [surveys])]
         first_cis = first_cis_with_results(cis, services: services)
         expect(first_cis.survey_participants_count).to eq 1

@@ -10,12 +10,15 @@ module Evaluations
   private
 
   class Cis
-    attr_reader :name, :id
+    attr_reader :name, :id, :services, :service_surveys, :service_surveys_reports
 
     def initialize(attrs, services_records:)
       @id = attrs[:id]
       @name = attrs[:name]
       @services_records = services_records || []
+      @services = services_evaluations
+      @service_surveys = services.map(&:service_surveys).flatten
+      @service_surveys_reports = service_surveys.map(&:last_report).flatten.reject(&:blank?)
     end
 
     def evaluated_services_count
@@ -28,16 +31,6 @@ module Evaluations
 
     def survey_participants_count
       survey_participants_ids.count
-    end
-
-    def services
-      services_records
-        .select { |service| Services.is_assigned_to_cis?(service, id)}
-        .map { |service| ServiceEvaluation.new(service) }
-    end
-
-    def service_surveys_reports
-      service_surveys.map(&:last_report).flatten.reject(&:blank?)
     end
 
     def best_evaluated_service
@@ -55,16 +48,18 @@ module Evaluations
     private
     attr_reader :services_records
 
-    def service_surveys
-      services.map(&:service_surveys).flatten
-    end
-
     def survey_participants_ids
       service_surveys
         .map(&:answers)
         .flatten
         .map(&:user_id)
         .uniq
+    end
+
+    def services_evaluations
+      services_records
+        .select { |service| Services.is_assigned_to_cis?(service, id)}
+        .map { |service| ServiceEvaluation.new(service) }
     end
   end
 
