@@ -49,7 +49,7 @@ feature 'Admins see dashboard' do
   end
 
   scenario 'as public servant' do
-    first_service_request = create :service_requests
+    first_service_request = create :service_request
     second_service_request = create :service_request, service: first_service_request.service
     third_service_request =  create :service_request
 
