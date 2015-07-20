@@ -112,7 +112,6 @@ $kpi-border: #cccccc;
   height: 20em;;
   margin-left: 10%; 
 }
-
 /***************************************************
 **  KPIS
 ***************************************************/
@@ -129,13 +128,11 @@ $kpi-border: #cccccc;
 .panel-gray a {
   color: $grey-kpi;
 }
-
 .number-kpi{
   color: $text-grey-kpi;
   font-size: 50px;
   font-family:  "Helvetica Neue Bold", sans-serif;
 }
-
 .text-kpi{
   color: $text-grey-kpi;
   font-size: 14px;

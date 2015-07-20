@@ -45,7 +45,7 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def show
-    @service = Service.where(id: params[:id]).last
+    @service = Service.find(params[:id])
     @service_requests = @service.service_requests
   end
 
