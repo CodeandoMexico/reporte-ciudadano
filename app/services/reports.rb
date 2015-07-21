@@ -1,11 +1,11 @@
 module Reports
   def self.current_cis_report_for(cis, cis_report_store:, survey_reports:, translator:)
-    last_report = cis_report_store.last_report_for(cis[:id])
-
-    if last_report.blank? || last_report.created_at < 3.days.ago
-      generator = CisReportGenerator.new(cis_data: cis, survey_reports: survey_reports)
-      last_report = cis_report_store.create!(generator.to_record_params)
-    end
+    last_report = build_report(
+      cis_report_store.last_report_for(cis[:id]),
+      survey_reports,
+      cis_report_store,
+      cis_id: cis[:id]
+    )
 
     CisReportView.new(
       title: translator.call("cis_reports.title"),
@@ -14,11 +14,21 @@ module Reports
       report: last_report)
   end
 
+  def self.current_service_report_for(service, services_report_store:)
+    build_report(service.last_report, service.last_survey_reports, services_report_store, service_id: service.id)
+  end
+
   private
 
-  class CisReportGenerator
+  def self.build_report(last_report, survey_reports, report_store, params)
+    return last_report if (last_report.present? && last_report.created_at > 3.days.ago)
+
+    generator = ReportGenerator.new(survey_reports: survey_reports)
+    report_store.create!(generator.to_record_params.merge(params))
+  end
+
+  class ReportGenerator
     def initialize(attrs)
-      @cis_id = attrs[:cis_data][:id]
       @survey_reports = attrs[:survey_reports] || []
     end
 
@@ -51,7 +61,6 @@ module Reports
 
     def to_record_params
       {
-        cis_id: cis_id,
         positive_overall_perception: positive_overall_perception,
         negative_overall_perception: negative_overall_perception,
         respondents_count: respondents_count,

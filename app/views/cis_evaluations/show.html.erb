@@ -111,18 +111,23 @@
           <tr>
             <th></th>
             <% criterions.each do |criterion| %>
-              <th><%= t("question_criterion_options.#{criterion}") %></th>
+              <th>
+                <%= link_to cis_evaluation_path(id: @cis.id, sort_by: criterion, direction: @next_possible_direction) do %>
+                  <%= sorted_icon(@next_possible_direction, criterion, @sorted_by) %>
+                  <span><%= t("question_criterion_options.#{criterion}") %></span>
+                <% end %>
+              </th>
             <% end %>
           </tr>
         </thead>
         <tbody>
-          <% @cis.services.each do |service| %>
+          <% @services.each do |service| %>
             <tr>
               <td><%= service.name %></td>
               <% criterions.each do |criterion| %>
                 <td>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-info" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
+                    <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
                       <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 2) %>%
                     </div>
                   </div>
