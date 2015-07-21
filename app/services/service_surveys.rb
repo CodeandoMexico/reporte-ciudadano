@@ -80,12 +80,14 @@ module ServiceSurveys
       @_destroy = attrs["_destroy"]
       @id = attrs["id"]
       @custom_answers = attrs["answers"] || []
+      @optional = attrs["optional"] || "0"
     end
 
     def to_record_params
       {
         criterion: criterion,
         text: text,
+        optional: optional,
         answer_type: answer_type,
         answers: answers,
         value: value_for_answer_type,
@@ -95,7 +97,7 @@ module ServiceSurveys
 
     private
 
-    attr_reader :answer_type, :criterion, :text, :answer_rating_range, :value, :_destroy, :id, :custom_answers
+    attr_reader :answer_type, :criterion, :text, :answer_rating_range, :value, :_destroy, :id, :custom_answers, :optional
 
     def answers
       case answer_type
@@ -156,7 +158,7 @@ module ServiceSurveys
   end
 
   class QuestionForm
-    attr_reader :criterion, :text, :id, :value, :answer_type
+    attr_reader :criterion, :text, :id, :value, :answer_type, :optional
 
     def initialize(question_record)
       @answers_text = question_record.answers.reject(&:empty?)
@@ -165,6 +167,11 @@ module ServiceSurveys
       @answer_type = question_record.answer_type
       @criterion = question_record.criterion
       @text = question_record.text
+      @optional = question_record.optional
+    end
+
+    def required?
+      ! optional
     end
 
     def has_open_answer?
@@ -199,7 +206,7 @@ module ServiceSurveys
 
     def to_record_params
       {
-        text: text,
+        text: selected_text,
         question_id: question_id,
         score: score,
         user_id: user_id
@@ -209,13 +216,22 @@ module ServiceSurveys
     private
     attr_reader :user_id
 
+    def selected_text
+      return default_text if text.blank?
+      text
+    end
+
+    def default_text
+      "No seleccionó opción"
+    end
+
     def binary_score
-      { "Sí" => 1.0, "No" => 0.0 }.fetch(text)
+      { "Sí" => 1.0, "No" => 0.0 }.fetch(text, 0.0)
     end
 
     def rating_score
       { "Muy satisfecho" => 1.0, "Satisfecho" => 0.75, "Regular" => 0.5, "Poco satisfecho" => 0.25, "Nada satisfecho" => 0.0,
-        "Muy bueno" => 1.0, "Bueno" => 0.75, "Malo" => 0.25, "Muy malo" => 0.0 }.fetch(text)
+        "Muy bueno" => 1.0, "Bueno" => 0.75, "Malo" => 0.25, "Muy malo" => 0.0 }.fetch(text, 0.0)
     end
   end
 end

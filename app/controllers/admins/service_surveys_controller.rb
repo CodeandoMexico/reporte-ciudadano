@@ -60,7 +60,7 @@ class Admins::ServiceSurveysController < ApplicationController
   end
 
   def service_survey_params
-    params.require(:service_survey).permit(:title, :phase, :open, questions_attributes: [:criterion, :text, :answer_type, :value, :answer_rating_range, :_destroy, :id, answers: []], service_ids: [])
+    params.require(:service_survey).permit(:title, :phase, :open, questions_attributes: [:criterion, :text, :answer_type, :value, :answer_rating_range, :optional, :_destroy, :id, answers: []], service_ids: [])
   end
 
   def phase_options

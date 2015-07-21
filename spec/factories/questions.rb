@@ -3,6 +3,7 @@ FactoryGirl.define do
     criterion "transparency"
     text { FFaker::Lorem.words(3).join(" ") }
     answer_type "binary"
+    optional true
 
     trait :binary do
       answer_type "binary"
