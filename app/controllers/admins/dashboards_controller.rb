@@ -18,7 +18,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-    @services = Admins.services_for(current_admin)
+    @services = Admins.services_for(current_admin).active
     unless params[:q].nil? || params[:q][:dependency].empty?
       @services = @services.where(dependency: params[:q][:dependency] )
     end
