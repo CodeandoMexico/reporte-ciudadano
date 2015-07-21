@@ -218,8 +218,6 @@ ActiveRecord::Schema.define(version: 20150719042448) do
     t.text     "homoclave"
     t.text     "status",                default: "activo"
     t.integer  "service_surveys_count", default: 0
-    t.text     "homoclave"
-    t.text     "status",                default: "activo"
   end
 
   add_index "services", ["service_admin_id"], name: "index_services_on_service_admin_id", using: :btree

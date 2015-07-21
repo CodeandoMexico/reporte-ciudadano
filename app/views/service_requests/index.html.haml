@@ -37,14 +37,14 @@
             Eliminar
     %tbody
       - @service_requests.each do |service_request|
-        %tr
-          %td= link_to service_request.id, service_request
-          %td= l service_request.created_at, format: :short
-          %td= link_to service_request.service.name, service_request
-          %td= truncate service_request.description
-          %td= service_request.status
-          %td= service_request.votes_for
-          - if admin_signed_in?
-            %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
-
+        - if current_user.to_s == service_request.service_requester[:name].to_s || current_admin
+          %tr
+            %td= link_to service_request.id, service_request
+            %td= l service_request.created_at, format: :short
+            %td= link_to service_request.service_name, service_request_path(service_request)
+            %td= truncate service_request.description
+            %td= service_request.status
+            %td= service_request.votes_for
+            - if admin_signed_in?
+              %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
 = paginate @service_requests
