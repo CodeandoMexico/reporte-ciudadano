@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-2 col-md-offset-2">
             <% if index > 0 %>
-              <%= link_to t(".previous_question"), "#", class: "pt-trigger", "data-goto" => index, "data-animation" => "1" %>
+              <%= link_to t(".previous_question"), "#", class: "pt-trigger", "data-goto" => index, "data-animation" => "2" %>
             <% end %>
           </div>
           <div class="col-md-2 pull-right text-muted">
@@ -22,6 +22,10 @@
           </div>
           <div class="col-md-9">
             <p><strong><%= question.text %></strong></p>
+            <% if question.required? %>
+              <span class="glyphicon glyphicon-warning-sign text-warning"></span>
+              <small class="text-muted"><em><%= t(".need_to_answer_message") %></em></small>
+            <% end %>
           </div>
         </div>
         <div class="row answers-wrapper">
@@ -30,12 +34,12 @@
             <%= hidden_field_tag "answers[#{index}][question_value]", question.value %>
             <%= hidden_field_tag "answers[#{index}][question_answer_type]", question.answer_type %>
             <% if question.has_open_answer? %>
-              <%= text_area_tag "answers[#{index}][text]", nil, rows: 3, class: "form-control" %>
+              <%= text_area_tag "answers[#{index}][text]", nil, rows: 3, class: "form-control js-answer" %>
             <% else %>
               <% question.answers.each do |answer| %>
                 <ul class="list-unstyled">
                   <li>
-                    <%= radio_button_tag "answers[#{index}][text]", answer.text, false  %>
+                    <%= radio_button_tag "answers[#{index}][text]", answer.text, false, class: "js-answer" %>
                     <%= label_tag "answers[#{index}][text][#{answer.text}]", answer.text %>
                   </li>
                 </ul>
@@ -43,12 +47,12 @@
             <% end %>
           </div>
         </div>
-        <div class="row">
+        <div class="row button-wrapper">
           <div class="col-md-2 col-md-offset-5">
             <% if index != (@service_survey.questions_count - 1) %>
-              <%= link_to t(".next_question"), "#", class: "btn btn-default btn-block pt-trigger", "data-goto" => (index + 2), "data-animation" => "1" %>
+              <%= link_to t(".next_question"), "#", class: "btn btn-default btn-block pt-trigger js-button", "data-goto" => (index + 2), "data-animation" => "1", disabled: question.required? %>
             <% else %>
-              <%= submit_tag t(".finish_survey"), class: "btn btn-success btn-block" %>
+              <%= submit_tag t(".finish_survey"), class: "btn btn-success btn-block js-button", disabled: question.required? %>
             <% end %>
           </div>
         </div>

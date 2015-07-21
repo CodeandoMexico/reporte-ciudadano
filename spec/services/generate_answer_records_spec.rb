@@ -13,7 +13,7 @@ module ServicesSurveys
   end
 
   class TestQuestionForm
-    attr_accessor :answers, :id, :answer_type, :value, :criterion, :text, :answer_rating_range
+    attr_accessor :answers, :id, :answer_type, :value, :criterion, :text, :answer_rating_range, :optional
 
     def initialize(attrs)
       @answers = attrs[:answers] || []
@@ -21,6 +21,7 @@ module ServicesSurveys
       @answer_type = attrs[:answer_type] || "open"
       @value = attrs[:value]
       @answer_rating_range = attrs[:answer_rating_range]
+      @optional = attrs[:optional] || false
     end
   end
 
@@ -71,6 +72,18 @@ module ServicesSurveys
       }
       first_answer = generate_answer_records([answer_params], "user-id").first
       expect(first_answer).to include(text: "Regular", question_id: "question-id", score: 15.0, user_id: 'user-id')
+    end
+
+    it 'should return the rating answers hash with value even if no answer selected' do
+      user = double 'user', id: 'user-id'
+      answer_params = {
+        "question_id"=>"question-id",
+        "text"=>"",
+        "question_answer_type"=>"rating",
+        "question_value"=>"30.0"
+      }
+      first_answer = generate_answer_records([answer_params], "user-id").first
+      expect(first_answer).to include(text: "No seleccionó opción", question_id: "question-id", score: 0.0, user_id: 'user-id')
     end
 
     it 'should return the open answer hash with no value' do

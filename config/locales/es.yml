@@ -374,6 +374,8 @@ es:
       show:
         service_survey_for: "Encuesta para evaluar los servicios: %{services}"
         edit_service_survey: "Editar encuesta"
+        optional: "Opcional"
+        required: "Requerida"
       edit:
         edit_service_survey: "Editar encuesta de servicio"
         add_question: "Agregar pregunta"
@@ -491,6 +493,7 @@ es:
         one: "1 Pregunta restante"
         other: "%{count} Preguntas restantes"
       finish_survey: "Terminar evaluación"
+      need_to_answer_message: "Necesitas responder esta pregunta para continuar."
     create:
       answers_created_successfully: "Gracias por evaluar el servicio."
   evaluations:
@@ -581,6 +584,7 @@ es:
       text: "Texto"
       answer_type: "Tipo de respuesta"
       value: "Valor %"
+      optional: "Pregunta opcional"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"

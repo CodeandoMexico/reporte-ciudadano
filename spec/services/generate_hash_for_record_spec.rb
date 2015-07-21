@@ -46,11 +46,32 @@ module ServicesSurveys
       expect(question_hash[:answer_rating_range]).to eq nil
     end
 
+    it 'when the answer is optional for that question' do
+      params = survey_params_with_question("answer_type" => "list", "value" => 0, "answers" => [], "optional" => "1")
+      question_hash = first_question_hash(params)
+      expect(question_hash[:optional]).to eq "1"
+    end
+
+    it 'should respond to title' do
+      service_survey_params = {
+        title: "My title"
+      }
+      service_survey_record = ServiceSurveys.generate_hash_for_record(service_survey_params)
+      expect(service_survey_record).to include(title: "My title")
+    end
+
+    it 'should respond to phase' do
+      service_survey_params = {
+        phase: "start"
+      }
+      service_survey_record = ServiceSurveys.generate_hash_for_record(service_survey_params)
+      expect(service_survey_record).to include(phase: "start")
+    end
+
     def survey_params_with_question(params)
       {
         title: "Un título",
         phase: "Al inicio",
-        text: "pregunta ?",
         questions_attributes: { "123" => { "criterion" => "transparency" }.merge(params) }
       }
     end

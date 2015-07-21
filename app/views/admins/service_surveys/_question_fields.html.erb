@@ -22,6 +22,12 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-md-5 col-md-offset-2">
+      <%= f.check_box :optional %>
+      <%= f.label :optional, t('form.labels.optional') %>
+    </div>
+  </div>
+  <div class="row">
     <%= f.label :answer_type, t('form.labels.answer_type'), class: 'col-md-2 text-right' %>
     <div class="col-md-2">
       <%= f.select :answer_type, answer_type_options, { prompt: I18n.t("form.options.answer_type_select") }, { class: "js-answer-selection" } %>

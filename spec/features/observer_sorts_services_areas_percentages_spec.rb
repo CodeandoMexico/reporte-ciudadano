@@ -15,18 +15,19 @@ feature 'Observer sorts services areas percentages' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
+    sleep 1.5
 
     within '.evaluation-services' do
       expect(service_row 1).to have_content "Actas de nacimiento"
       expect(service_row 2).to have_content "Licencias"
 
       click_link "Transparencia"
-      sleep 1.0
+      sleep 1.5
       expect(service_row 1).to have_content "Licencias"
       expect(service_row 2).to have_content "Actas de nacimiento"
 
       click_link "Transparencia"
-      sleep 1.0
+      sleep 1.5
       expect(service_row 1).to have_content "Actas de nacimiento"
       expect(service_row 2).to have_content "Licencias"
     end
