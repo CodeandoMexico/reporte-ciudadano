@@ -7,6 +7,8 @@ module Reports
       cis_id: cis[:id]
     )
 
+    return unless last_report.present?
+
     CisReportView.new(
       title: translator.call("cis_reports.title"),
       cis_data: cis,
@@ -22,6 +24,7 @@ module Reports
 
   def self.build_report(last_report, survey_reports, report_store, params)
     return last_report if (last_report.present? && last_report.created_at > 3.days.ago)
+    return if survey_reports.blank?
 
     generator = ReportGenerator.new(survey_reports: survey_reports)
     report_store.create!(generator.to_record_params.merge(params))
@@ -30,6 +33,7 @@ module Reports
   class ReportGenerator
     def initialize(attrs)
       @survey_reports = attrs[:survey_reports] || []
+      @survey_reports_to_quantify = quantify_survey_reports
     end
 
     def positive_overall_perception
@@ -73,9 +77,9 @@ module Reports
     end
 
     private
-    attr_reader :survey_reports, :cis_id
+    attr_reader :survey_reports, :cis_id, :survey_reports_to_quantify
 
-    def survey_reports_to_quantify
+    def quantify_survey_reports
       survey_reports
         .map(&:positive_overall_perception)
         .select(&:present?)
