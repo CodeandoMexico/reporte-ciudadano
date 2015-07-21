@@ -94,7 +94,7 @@ module Evaluations
 
     def overall_evaluation_for(criterion)
       return report.overall_areas[criterion] if report.present?
-      return 0.0 if last_survey_reports.empty?
+      return nil if last_survey_reports.empty?
       total_by_area(last_survey_reports.map(&:areas_results), criterion, 0.0) / last_survey_reports.size
     end
 

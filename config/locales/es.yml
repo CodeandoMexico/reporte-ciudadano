@@ -528,6 +528,7 @@ es:
       worst_public_servants_service: "Servicio con Servidores Públicos peor evaluado"
       no_evaluated_services: "Ningún servicio ha sido evaluado o no tiene encuestas respondidas."
       general: "Evaluación general"
+      no_report_data: "No hay datos en reportes de encuestas para generar el reporte."
   users:
     registrations:
       edit:
