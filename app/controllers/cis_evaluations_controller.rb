@@ -26,8 +26,9 @@ class CisEvaluationsController < ApplicationController
 
   def sorted_services(services)
     return services unless params[:sort_by].present?
+
     sorted = services.sort_by do |service|
-      service.overall_evaluation_for(params[:sort_by].to_sym)
+      [service.overall_evaluation_for(params[:sort_by].to_sym) ? 1 : 0, service.overall_evaluation_for(params[:sort_by].to_sym)]
     end
 
     if params[:direction] == 'asc'
