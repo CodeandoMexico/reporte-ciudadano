@@ -9,11 +9,11 @@
         %p= service_cis_label(@service_request.cis)
         %p= "Hace #{time_ago_in_words(@service_request.created_at)}"
         %p
-          Servidor público: 
-          -unless Admin.where(id: @service_request.public_servant_id).empty?
-            = Admin.find(@service_request.public_servant_id).name
+          = t(".public_servant")
+          -if @public_servants.present?
+            = @public_servants.name
           -else
-            Desconocido
+            = t(".unknown")
       .stream
         .activity.start
           = t('form.labels.status')

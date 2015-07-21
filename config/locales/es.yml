@@ -481,7 +481,8 @@ es:
       votes: "Votos"
       share_it: "Compártelo"
       image: "Imagen"
-
+      public_servant: "Servidor público"
+      unknown: "Desconocido"
   service_surveys:
     index:
       title: "Título"
