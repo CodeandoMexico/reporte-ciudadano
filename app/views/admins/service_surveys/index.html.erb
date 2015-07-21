@@ -1,9 +1,11 @@
 <div class="page-content inset">
   <h2>
     <%= t('.service_surveys') %>
+    <%unless current_admin.is_public_servant?%>
     <div class="btn-group pull-right">
       <%= link_to t('.new_service_survey'), new_admins_service_survey_path, class: 'btn btn-primary' %>
     </div>
+    <%end%>
   </h2>
 
   <div class="table-responsive surveys-table">
@@ -48,18 +50,22 @@
 
             </td>
             <td><%= link_to t(".preview"), admins_service_survey_path(survey), class: "btn btn-info" %></td>
-            <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
-            <td>
-              <%= form_for(survey, url: change_status_admins_service_survey_path(survey.id), html: { method: :put, class: 'form-horizontal' }) do |f| %>
-                <% if survey.open? %>
-                  <%= f.hidden_field :open, value: 0 %>
-                  <%= f.submit t(".close"), class: "btn btn-danger" %>
-                <% else %>
-                  <%= f.hidden_field :open, value: 1 %>
-                  <%= f.submit t(".open"), class: "btn btn-success" %>
+            <%unless current_admin.is_public_servant?%>
+              <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
+              <td>
+                <%= form_for(survey, url: change_status_admins_service_survey_path(survey.id), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+                  <% if survey.open? %>
+                    <%= f.hidden_field :open, value: 0 %>
+                    <%= f.submit t(".close"), class: "btn btn-danger" %>
+                  <% else %>
+                    <%= f.hidden_field :open, value: 1 %>
+                    <%= f.submit t(".open"), class: "btn btn-success" %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </td>
+              </td>
+              <%else%>
+              
+            <%end%>
           </tr>
         <% end %>
       </tbody>
