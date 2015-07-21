@@ -39,7 +39,9 @@
       data-negative="<%= @cis_report.negative_overall_perception %>">
       </div>
     <% else %>
-      <p><em><%= t(".no_report_data") %></em></p>
+      <div class="well well-md col-md-5">
+        <p><em><%= t(".no_report_data") %></em></p>
+      </div>
     <% end %>
     <div class="col-md-2"></div>
     <div class="well well-md col-md-5 evaluation-overall-areas">
@@ -124,7 +126,7 @@
         <h4 class="text-center"><%= @cis.best_public_servants_service.name %></h4>
         <div class="well well-sm">
           <h1 class="text-center">
-            <%= "#{@cis.best_public_servants_service.overall_evaluation_for(:public_servant)}%" %>
+            <%= number_with_precision @cis.best_public_servants_service.overall_evaluation_for(:public_servant), precision: 0 %>%
           </h1>
         </div>
       <% else %>
@@ -138,7 +140,7 @@
         <h4 class="text-center"><%= @cis.worst_public_servants_service.name %></h4>
         <div class="well well-sm">
           <h1 class="text-center">
-            <%= "#{@cis.worst_public_servants_service.overall_evaluation_for(:public_servant)}%" %>
+            <%= number_with_precision @cis.worst_public_servants_service.overall_evaluation_for(:public_servant), precision: 0 %>%
           </h1>
         </div>
       <% else %>
@@ -176,8 +178,8 @@
                 <td>
                   <% if service.overall_evaluation_for(criterion).present? %>
                     <div class="progress">
-                      <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
-                        <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 2) %>%
+                      <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%; color: black">
+                        <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 0) %>%
                       </div>
                     </div>
                   <% else %>
