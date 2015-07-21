@@ -58,12 +58,25 @@ docker_image "civicadigital/backup" do
   tag "latest"
 end
 
+docker_image "gliderlabs/logspout" do
+  tag "latest"
+end
+
+docker_container "logs" do
+  image "gliderlabs/logspout"
+  tag "latest"
+  container_name "logs"
+  detach true
+  volume ["/var/run/docker.sock:/tmp/docker.sock"]
+  port "127.0.0.1:8000:80"
+end
+
 docker_container "postgres" do
   image "postgres"
   tag "9.4"
   container_name "postgres"
   detach true
-  env "POSTGRES_PASSWORD=#{list_creds["postgres"]["password"]}"
+  env "POSTGRES_PASSWORD=#{creds['postgres']['password']}"
 end
 
 docker_container "redis" do
