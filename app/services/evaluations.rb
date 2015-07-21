@@ -18,7 +18,6 @@ module Evaluations
       @services_records = services_records || []
       @services = services_evaluations
       @service_surveys = services.map(&:service_surveys).flatten
-      #@service_surveys_reports = service_surveys.map(&:last_report).flatten.reject(&:blank?)
     end
 
     def evaluated_services_count
@@ -43,6 +42,28 @@ module Evaluations
       services
         .select { |service| service.positive_overall_perception.present? }
         .min_by(&:positive_overall_perception)
+    end
+
+    def best_public_servants_service
+      services
+        .select { |service| service.overall_evaluation_for(:public_servant).present? }
+        .max_by { |service| service.overall_evaluation_for(:public_servant) }
+    end
+
+    def worst_public_servants_service
+      services
+        .select { |service| service.overall_evaluation_for(:public_servant).present? }
+        .min_by { |service| service.overall_evaluation_for(:public_servant) }
+    end
+
+    def has_public_servants_service?(category)
+      service = self.send("#{category}_public_servants_service")
+      service && service.report.present?
+    end
+
+    def has_evaluated_services?(category)
+      service = self.send("#{category}_evaluated_service")
+      service && service.report.present?
     end
 
     private

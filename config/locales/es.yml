@@ -524,6 +524,9 @@ es:
       by_area: "Por áreas"
       best_evaluated_service: "Servicio mejor evaluado"
       worst_evaluated_service: "Servicio peor evaluado"
+      best_public_servants_service: "Servicio con Servidores Públicos mejor evaluado"
+      worst_public_servants_service: "Servicio con Servidores Públicos peor evaluado"
+      no_evaluated_services: "Ningún servicio ha sido evaluado o no tiene encuestas respondidas."
       general: "Evaluación general"
   users:
     registrations:

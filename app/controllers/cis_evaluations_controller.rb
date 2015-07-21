@@ -15,7 +15,7 @@ class CisEvaluationsController < ApplicationController
     @cis_report = Reports.current_cis_report_for(
       cis,
       cis_report_store: CisReport,
-      survey_reports: @cis.service_surveys_reports,
+      survey_reports: @cis.services.map(&:last_survey_reports).flatten,
       translator: I18n.method(:t))
     @services = sorted_services(@cis.services)
     @next_possible_direction = toggle_sort_direction
