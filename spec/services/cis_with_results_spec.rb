@@ -4,7 +4,7 @@ require_relative '../../app/services/services'
 
 module Evaluations
   class TestService
-    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports, :id, :last_report
+    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports, :id, :last_report, :questions
 
     def initialize(attrs)
       @cis = attrs[:cis] || []
@@ -13,6 +13,7 @@ module Evaluations
       @last_survey_reports = attrs[:last_survey_reports] || []
       @id = attrs[:id]
       @last_report = attrs[:last_report]
+      @questions = attrs[:questions] || []
     end
   end
 
@@ -29,6 +30,14 @@ module Evaluations
 
     def initialize(attrs)
       @user_id = attrs[:user_id]
+    end
+  end
+
+  class TestQuestion
+    attr_accessor :criterion
+
+    def initialize(attrs)
+      @criterion = attrs[:criterion]
     end
   end
 
@@ -128,11 +137,11 @@ module Evaluations
           expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
         end
 
-        it "returns 0.0 if no reports are given: #{criterion}" do
+        it "returns nil if no reports are given: #{criterion}" do
           survey_reports = []
           services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
           first_cis = first_cis_with_results(cis, services: services)
-          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
+          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq nil
         end
       end
     end
@@ -154,9 +163,10 @@ module Evaluations
     it 'returns the best and worst evaluated service with public servants questions' do
       last_report_best = TestReport.new(overall_areas: { public_servant: 90.0 })
       last_report_worst = TestReport.new(overall_areas: { public_servant: 10.0 })
+      question = TestQuestion.new(criterion: :public_servant)
       services = [
-        TestService.new(id: 'best-service', cis: ["1"], last_report: last_report_best),
-        TestService.new(id: 'worst-service', cis: ["1"], last_report: last_report_worst)]
+        TestService.new(id: 'best-service', cis: ["1"], last_report: last_report_best, questions: [question]),
+        TestService.new(id: 'worst-service', cis: ["1"], last_report: last_report_worst, questions: [question])]
       first_cis = first_cis_with_results(cis, services: services)
 
       expect(first_cis.best_public_servants_service.id).to eq 'best-service'

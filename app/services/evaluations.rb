@@ -46,13 +46,15 @@ module Evaluations
 
     def best_public_servants_service
       services
-        .select { |service| service.overall_evaluation_for(:public_servant).present? }
+        .select { |service| service.overall_evaluation_for(:public_servant).present? &&
+          service.public_servant_evaluated? }
         .max_by { |service| service.overall_evaluation_for(:public_servant) }
     end
 
     def worst_public_servants_service
       services
-        .select { |service| service.overall_evaluation_for(:public_servant).present? }
+        .select { |service| service.overall_evaluation_for(:public_servant).present? &&
+          service.public_servant_evaluated? }
         .min_by { |service| service.overall_evaluation_for(:public_servant) }
     end
 
@@ -102,6 +104,10 @@ module Evaluations
       return report.positive_overall_perception if report.present?
       return nil if last_survey_reports.empty?
       last_survey_reports.map(&:positive_overall_perception).sum / last_survey_reports.size
+    end
+
+    def public_servant_evaluated?
+      questions.any? { |question| question.criterion.to_sym == :public_servant }
     end
 
     private

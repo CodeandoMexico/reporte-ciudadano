@@ -86,6 +86,8 @@ feature 'Observer can see cis evaluation results' do
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
     other_survey = create(:survey_with_binary_question, services: [other_service], title: "Encuesta Licencias", phase: "start", open: true)
 
+    given_questions_criterion_is :public_servant, survey
+    given_questions_criterion_is :public_servant, other_survey
     given_survey_has_answers(survey, 1.0)
     given_survey_has_answers(other_survey, 0.0)
     survey_report = given_survey_report_exists_for survey
@@ -142,6 +144,10 @@ feature 'Observer can see cis evaluation results' do
 
   def given_survey_report_exists_for(survey)
     ServiceSurveyReport.create!(service_survey_id: survey.id)
+  end
+
+  def given_questions_criterion_is(criterion, survey)
+    survey.questions.update_all(criterion: criterion)
   end
 
   def given_survey_has_answers(survey, answer_value)
