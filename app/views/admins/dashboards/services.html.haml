@@ -3,7 +3,7 @@
 
   = search_form_for @search, url: services_admins_dashboards_path, method: :get, class: "filters form-inline" do |f|
     .form-group.form-group-separator
-      = f.collection_select :dependency, @search_service.select(:dependency).uniq, :dependency, :dependency, {:include_blank => t('form.labels.dependency')}, class: 'form-control'
+      = f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'form-control'
     .form-group
       = button_tag class: "submit btn btn-default" do
         %i.glyphicon.glyphicon-search

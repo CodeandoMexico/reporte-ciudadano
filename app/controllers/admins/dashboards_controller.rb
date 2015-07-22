@@ -1,6 +1,7 @@
 class Admins::DashboardsController < Admins::AdminController
   before_action :authorize_admin, only: :index
-  before_filter :set_search
+  before_action :set_search
+  helper_method :dependency_options
 
   def design
     @logos = Logo.by_position
@@ -17,21 +18,10 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-    if current_admin.is_super_admin? 
-        unless params[:q].nil? || params[:q][:dependency].empty?
-            @services = Service.where(dependency: params[:q][:dependency] )
-        else
-          @services = Service.all
-        end
-    else 
-       unless params[:q].nil? || params[:q][:dependency].empty?
-            @services = current_admin.managed_services.where(dependency: params[:q][:dependency] )
-        else
-         @services = current_admin.managed_services
-        end
+    @services = Admins.services_for(current_admin)
+    unless params[:q].nil? || params[:q][:dependency].empty?
+      @services = @services.where(dependency: params[:q][:dependency] )
     end
-    
-     @search_service = Service.all
   end
 
   private
@@ -48,6 +38,10 @@ class Admins::DashboardsController < Admins::AdminController
 
   def set_search
     @search = Service.search(params[:q])
+  end
+
+  def dependency_options
+    Services.service_dependency_options
   end
 
   def chart_data
