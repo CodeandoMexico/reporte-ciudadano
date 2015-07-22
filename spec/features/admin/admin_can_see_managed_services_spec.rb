@@ -11,7 +11,7 @@ feature 'As a super admin I can see every service' do
   scenario 'I can see the dashboard with all services' do
     services = create_list(:service, 2)
     visit admins_dashboards_path
-    click_link "Trámites"
+    click_link "Servicios"
 
     expect(page).to have_content services.first.name
     expect(page).to have_content services.last.name
