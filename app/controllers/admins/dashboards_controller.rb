@@ -17,7 +17,8 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-    if current_admin.is_super_admin?
+    if current_admin.is_super_admin? || current_admin.is_service_admin?
+      @services = Service.all
         unless params[:q].nil? || params[:q][:dependency].empty?
             @services = Service.where(dependency: params[:q][:dependency] )
         else
