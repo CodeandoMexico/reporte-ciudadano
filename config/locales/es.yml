@@ -355,6 +355,7 @@ es:
       index:
         service_surveys: "Encuestas de servicio"
         new_service_survey: "Crear nueva encuesta"
+        send_survey: "Enviar encuesta"
         title: "Título"
         phase: "Etapa"
         services: "Servicios"
@@ -367,6 +368,10 @@ es:
         preview: "Vista preliminar"
         open: "Abrir encuesta"
         close: "Cerrar encuesta"
+        instructions_send: 'Coloca los correos de quienes quieres enviar la encuesta separados por ";"'
+        send: "Enviar"
+        add_user: "Enviar encuesta"
+        cancel: "Cancelar"
       new:
         new_service_survey: "Nueva encuesta de servicio"
         add_question: "Agregar pregunta"
@@ -539,7 +544,15 @@ es:
         edit_profile: "Editar perfil"
         cancel_my_account: "Cancelar mi cuenta"
         unhappy: "¿Estás insatisfecho?"
-
+    sessions:
+      new:
+        signin: 'Regístrate'
+        facebook: "Facebook"
+        twtter: "Twitter"
+        mail: "Correo"
+        password: "Contraseña"
+        rememberme: "Recuérdame"
+        enter: "Entar"
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
@@ -663,6 +676,8 @@ es:
     service_survey:
       created: "La encuesta se ha creado exitosamente."
       updated: "La encuesta se ha actualizado exitosamente."
+      emailsend: "Correos enviados"
+      noemailsend: "Correos no enviados"
   navbar:
     admin:
       design: "Diseño"

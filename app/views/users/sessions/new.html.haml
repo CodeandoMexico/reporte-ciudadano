@@ -3,19 +3,19 @@
   .other-logins.clearfix.l-margin-m-bottom
     %p.other-logins-registration
       ¿No tienes cuenta?
-      = link_to 'Regístrate', new_user_registration_path
+      = link_to t('.signin'), new_user_registration_path
     %div.social-sign-in
       = link_to user_omniauth_authorize_path(:facebook), class: 'social-signup social-signup-fb l-margin-s-right' do
         %span.i-facebook.rc-icon
-        %span.social-signup-text Facebook
+        %span.social-signup-text=t('.facebook')
       = link_to user_omniauth_authorize_path(:twitter), class: 'social-signup social-signup-tt' do
         %span.i-twitter.rc-icon
-        %span.social-signup-text Twitter
-  = f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: 'Email'
-  = f.password_field :password, placeholder: 'Password', class: 'form-control bottom-field'
+        %span.social-signup-text=t('.twtter')
+  = f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: t('.mail')
+  = f.password_field :password, placeholder: t('.password'), class: 'form-control bottom-field'
   - if devise_mapping.rememberable?
     %div
       = f.label :remember_me do
         = f.check_box :remember_me
-        Remember me
-  .actions= f.submit "Entrar", class: 'btn btn-lg btn-primary btn-block'
+        =t('.rememberme')
+  .actions= f.submit t('.enter'), class: 'btn btn-lg btn-primary btn-block'
