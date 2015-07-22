@@ -32,15 +32,22 @@
 
 <div class="row evaluation-overall">
   <div class="col-md-10 col-md-offset-1">
-    <div class="well well-md col-md-5 js-overall-chart evaluation-overall-chart"
-    data-title="<%= @cis_report.title %>"
-    data-positive="<%= @cis_report.positive_overall_perception %>"
-    data-negative="<%= @cis_report.negative_overall_perception %>">
-    </div>
+    <% if @cis_report.present? %>
+      <div class="well well-md col-md-5 js-overall-chart evaluation-overall-chart"
+      data-title="<%= @cis_report.title %>"
+      data-positive="<%= @cis_report.positive_overall_perception %>"
+      data-negative="<%= @cis_report.negative_overall_perception %>">
+      </div>
+    <% else %>
+      <div class="well well-md col-md-5">
+        <p><em><%= t(".no_report_data") %></em></p>
+      </div>
+    <% end %>
     <div class="col-md-2"></div>
     <div class="well well-md col-md-5 evaluation-overall-areas">
       <h3><%= t(".by_area") %></h3>
       <ul class="list-unstyled">
+      <% if @cis_report.present? %>
         <% @cis_report.overall_areas.each do |overall| %>
           <li>
             <%= label_for(overall) %>
@@ -49,6 +56,9 @@
             </div>
           </li>
         <% end %>
+      <% else %>
+        <p><em><%= t(".no_report_data") %></em></p>
+      <% end %>
       </ul>
     </div>
   </div>
@@ -56,46 +66,86 @@
 
 <div class="row services-evaluation">
   <div class="col-md-10 col-md-offset-1">
-    <div class="well well-md col-md-5">
+    <div class="well well-md col-md-5 best-service">
       <h3><%= t(".best_evaluated_service") %></h3>
-      <h4 class="text-center"><%= @cis.best_evaluated_service.name %></h4>
-      <ul class="list-unstyled">
-        <li>
-          <span><%= t('.general') %></span>
-          <div class="progress">
-            <%= overall_progress(@cis.best_evaluated_service.positive_overall_perception) %>
-          </div>
-        </li>
-        <% criterions.each do |criterion| %>
+      <% if @cis.has_evaluated_services?(:best) %>
+        <h4 class="text-center"><%= @cis.best_evaluated_service.name %></h4>
+        <ul class="list-unstyled">
           <li>
-            <%= label_for([criterion, @cis.best_evaluated_service.overall_evaluation_for(criterion)]) %>
+            <span><%= t('.general') %></span>
             <div class="progress">
-              <%= overall_progress_by_criterion([criterion, @cis.best_evaluated_service.overall_evaluation_for(criterion)]) %>
+              <%= overall_progress(@cis.best_evaluated_service.positive_overall_perception) %>
             </div>
           </li>
-        <% end %>
-      </ul>
+          <% criterions.each do |criterion| %>
+            <li>
+              <%= label_for([criterion, @cis.best_evaluated_service.overall_evaluation_for(criterion)]) %>
+              <div class="progress">
+                <%= overall_progress_by_criterion([criterion, @cis.best_evaluated_service.overall_evaluation_for(criterion)]) %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p><em><%= t(".no_evaluated_services") %></em></p>
+      <% end %>
     </div>
     <div class="col-md-2"></div>
-    <div class="well well-md col-md-5">
+    <div class="well well-md col-md-5 worst-service">
       <h3><%= t(".worst_evaluated_service") %></h3>
-      <h4 class="text-center"><%= @cis.worst_evaluated_service.name %></h4>
-      <ul class="list-unstyled">
-        <li>
-          <span><%= t('.general') %></span>
-          <div class="progress">
-            <%= overall_progress(@cis.worst_evaluated_service.positive_overall_perception) %>
-          </div>
-        </li>
-        <% criterions.each do |criterion| %>
+      <% if @cis.has_evaluated_services?(:worst) %>
+        <h4 class="text-center"><%= @cis.worst_evaluated_service.name %></h4>
+        <ul class="list-unstyled">
           <li>
-            <%= label_for([criterion, @cis.worst_evaluated_service.overall_evaluation_for(criterion)]) %>
+            <span><%= t('.general') %></span>
             <div class="progress">
-              <%= overall_progress_by_criterion([criterion, @cis.worst_evaluated_service.overall_evaluation_for(criterion)]) %>
+              <%= overall_progress(@cis.worst_evaluated_service.positive_overall_perception) %>
             </div>
           </li>
-        <% end %>
-      </ul>
+          <% criterions.each do |criterion| %>
+            <li>
+              <%= label_for([criterion, @cis.worst_evaluated_service.overall_evaluation_for(criterion)]) %>
+              <div class="progress">
+                <%= overall_progress_by_criterion([criterion, @cis.worst_evaluated_service.overall_evaluation_for(criterion)]) %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p><em><%= t(".no_evaluated_services") %></em></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row public-servants-evaluation">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well well-md col-md-5 best-public-servants">
+      <h3 class="text-center"><%= t(".best_public_servants_service") %></h3>
+      <% if @cis.has_public_servants_service?(:best) %>
+        <h4 class="text-center"><%= @cis.best_public_servants_service.name %></h4>
+        <div class="well well-sm">
+          <h1 class="text-center">
+            <%= number_with_precision @cis.best_public_servants_service.overall_evaluation_for(:public_servant), precision: 0 %>%
+          </h1>
+        </div>
+      <% else %>
+        <p><em><%= t(".no_evaluated_services") %></em></p>
+      <% end %>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="well well-md col-md-5 worst-public-servants">
+      <h3 class="text-center"><%= t(".worst_public_servants_service") %></h3>
+      <% if @cis.has_public_servants_service?(:best) %>
+        <h4 class="text-center"><%= @cis.worst_public_servants_service.name %></h4>
+        <div class="well well-sm">
+          <h1 class="text-center">
+            <%= number_with_precision @cis.worst_public_servants_service.overall_evaluation_for(:public_servant), precision: 0 %>%
+          </h1>
+        </div>
+      <% else %>
+        <p><em><%= t(".no_evaluated_services") %></em></p>
+      <% end %>
     </div>
   </div>
 </div>
@@ -126,11 +176,15 @@
               <td><%= service.name %></td>
               <% criterions.each do |criterion| %>
                 <td>
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%;">
-                      <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 2) %>%
+                  <% if service.overall_evaluation_for(criterion).present? %>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%; color: black">
+                        <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 0) %>%
+                      </div>
                     </div>
-                  </div>
+                  <% else %>
+                    <small class="text-muted"><em><%= t(".not_evaluated") %></em></small>
+                  <% end %>
                 </td>
               <% end %>
             </tr>

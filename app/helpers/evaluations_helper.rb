@@ -1,6 +1,6 @@
 module EvaluationsHelper
   def overall_progress_by_criterion(overall)
-    content_tag :div, "#{sprintf '%.2f', overall[1]}%", class: "progress-bar progress-bar-#{class_range_for(overall[1])}", style: "width: #{overall[1]}"
+    content_tag :div, "#{sprintf '%.f', overall[1]}%", class: "progress-bar progress-bar-#{class_range_for(overall[1])}", style: "width: #{overall[1]}%; color: black"
   end
 
   def label_for(overall)
@@ -8,7 +8,7 @@ module EvaluationsHelper
   end
 
   def overall_progress(overall)
-    content_tag :div, "#{sprintf '%.2f', overall}%", class: "progress-bar progress-bar-#{class_range_for(overall)}", style: "width: #{overall}"
+    content_tag :div, "#{sprintf '%.f', overall}%", class: "progress-bar progress-bar-#{class_range_for(overall)}", style: "width: #{overall}%; color: black"
   end
 
   def sorted_icon(direction, criterion, sorted_by)
