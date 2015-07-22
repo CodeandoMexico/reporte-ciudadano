@@ -12,8 +12,11 @@ class Admins::ServiceSurveyReportsController < ApplicationController
 
   private
 
+  def generate_services_and_cis_reports
+    ReportsWorker.perform_async(self.service_survey_id)
+  end
+
   def service_survey_report_params
     params.require(:service_survey_report).permit(:service_survey_id)
   end
-
 end
