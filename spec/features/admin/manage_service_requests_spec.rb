@@ -47,7 +47,7 @@ feature 'As an admin I can manage service requests' do
     click_link service_request.service.name
 
     expect(current_path).to eq edit_admins_service_request_path(service_request)
-    #expect(page).to have_content service_request.requester.name
+    expect(page).to have_content service_request.requester.name
     expect(page).to have_content service_request.requester.email
     expect(page).to have_content service_request.requester.id
   end
