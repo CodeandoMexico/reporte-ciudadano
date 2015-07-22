@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-md-12">
       <h3><%= t('.service_survey_for', services: @service_survey.services_names) %></h3>
+      <%unless current_admin.is_public_servant?%>
       <%= link_to t(".edit_service_survey"), edit_admins_service_survey_path(@service_survey), class: "btn btn-primary pull-left" %>
+      <%end%>
     </div>
   </div>
 

@@ -51,7 +51,7 @@ class Admins::ServiceSurveysController < ApplicationController
 
   def invitation_user_mail
     unless params[:get][:body].empty?
-      send_survey_user(params[:get][:body], admins_service_survey_url(params[:id].keys.first.to_s))
+      send_survey_user(params[:get][:body], "#{new_answer_url}?service_survey_id=#{params[:id].keys.first.to_s}")
       redirect_to admins_service_surveys_path, notice: t('flash.service_survey.emailsend')
     else
       redirect_to admins_service_surveys_path, notice: t('flash.service_survey.noemailsend')
