@@ -13,6 +13,7 @@
         </div>
       </div>
     </div>
+    <%unless current_admin.is_public_servant%>
     <div class="form-group">
       <%= f.label :avatar, t('form.labels.profile_picture') %>
       <div class="row">
@@ -22,6 +23,7 @@
         </div>
       </div>
     </div>
+    <%end%>
     <div class="form-group">
       <%= f.label :email, t('form.labels.email') %>
       <div class="row">
