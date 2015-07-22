@@ -33,3 +33,5 @@ $(document).on 'ready page:load', ->
   $('.js-tabs a').on "click", (e)->
     e.preventDefault()
     $(this).tab('show')
+
+  $(".js-tooltip").tooltip()
