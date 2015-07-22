@@ -533,6 +533,8 @@ es:
       general: "Evaluación general"
       not_evaluated: "Sin evaluar"
       no_report_data: "No hay datos en reportes de encuestas para generar el reporte."
+      see_answers: "Ver respuestas"
+      see_service_answers: "Ver respuestas de servicio"
   users:
     registrations:
       edit:
