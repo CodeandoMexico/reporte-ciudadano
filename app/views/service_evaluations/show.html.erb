@@ -32,9 +32,9 @@
           </tr>
         </thead>
         <tbody>
-          <% @service_survey.respondents.each do |user| %>
+          <% @respondents.each do |user| %>
             <tr>
-              <td class="text-left"><%= user.name %></td>
+              <td class="text-left"><%= user.name || user.email %></td>
               <% @service_survey.questions.each do |question| %>
                 <td class="text-left"><%= question.survey_answer_by_user(user.id).text %></td>
               <% end %>
@@ -42,6 +42,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @respondents, params: {service_survey_id: @service_survey.id } %>
     </div>
   </div>
 <% else %>
