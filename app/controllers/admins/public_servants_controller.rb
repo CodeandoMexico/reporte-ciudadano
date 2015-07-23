@@ -72,7 +72,7 @@ class Admins::PublicServantsController < ApplicationController
 
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :surname, :second_surname)
       .merge(services: services, is_public_servant: true)
   end
 
