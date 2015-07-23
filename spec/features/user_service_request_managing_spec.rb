@@ -95,7 +95,6 @@ feature 'Managing service requests' do
       visit new_service_request_path
       within '#new_service_request' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
-        fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
         select service.name, from: 'service_request[service_id]'
         click_button  'Guardar'
@@ -104,11 +103,6 @@ feature 'Managing service requests' do
       expect_service_request_email_sent_to public_servant.email
     end
 
-    scenario 'can vote on an service request', js: true do
-      visit service_request_path(service_request)
-      page.find("a[href='/requests/#{service_request.id}/vote']").click
-      expect(page).to have_content('Votaste')
-    end
 
     scenario 'can comment on a service request'  do
       comment_content = 'This is my comment'
