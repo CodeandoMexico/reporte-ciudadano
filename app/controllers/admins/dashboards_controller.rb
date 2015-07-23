@@ -1,7 +1,7 @@
 class Admins::DashboardsController < Admins::AdminController
   before_action :authorize_admin, only: :index
   before_action :set_search
-  helper_method :dependency_options
+  helper_method :dependency_options, :administrative_unit_options, :cis_options
 
   def design
     @logos = Logo.by_position
@@ -15,13 +15,41 @@ class Admins::DashboardsController < Admins::AdminController
     @chart_data = chart_data.to_json
     @status_data = Status.select(:name, :id).to_json
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
+    @title_page = I18n.t('.admins.dashboards.index.header')
   end
 
   def services
-    @services = Admins.services_for(current_admin)
-    unless params[:q].nil? || params[:q][:dependency].empty?
-      @services = @services.where(dependency: params[:q][:dependency] )
-    end
+    #search_service_paramas
+      unless params[:q].nil? 
+            unless params[:q][:dependency].empty?
+              dependency_param = params[:q][:dependency]
+            end
+            unless params[:q][:administrative_unit].empty?
+              administrative_unit_param = params[:q][:administrative_unit]
+            end
+            unless params[:q][:cis].empty?
+              cis_param = params[:q][:cis]
+            end
+      end
+
+      if current_admin.is_super_admin?
+        @services = Service.all#active
+        unless params[:q].nil? 
+          @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?
+          @services =   @services.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
+          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{cis_param}%") unless cis_param.nil?
+        end
+      else
+        @services = current_admin.managed_services.all#active
+          unless params[:q].nil?
+            @services = @services.where(dependency: params[:q][:dependency] ) unless dependency_param.nil?
+            @services = @services.where(administrative_unit: params[:q][:administrative_unit] ) unless administrative_unit_param.nil?
+            @services = @services.where("cis ILIKE ANY ( array[?] )", "%#{cis_param}%") unless cis_param.nil?            
+          end
+      end
+
+     @title_page = I18n.t('.admins.dashboards.services.managed_services')
+     @search_service = Service.all
   end
 
   private
@@ -44,6 +72,14 @@ class Admins::DashboardsController < Admins::AdminController
     Services.service_dependency_options
   end
 
+  def administrative_unit_options
+    Services.service_administrative_unit_options
+  end
+
+  def cis_options
+    Services.service_cis_options
+  end
+
   def chart_data
     return Service.chart_data if current_admin.is_super_admin?
 
@@ -51,4 +87,5 @@ class Admins::DashboardsController < Admins::AdminController
       Service.chart_data(service_admin_id: current_admin.id)
     end
   end
+
 end
