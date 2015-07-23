@@ -19,35 +19,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-    #search_service_paramas
-      unless params[:q].nil? 
-            unless params[:q][:dependency].empty?
-              dependency_param = params[:q][:dependency]
-            end
-            unless params[:q][:administrative_unit].empty?
-              administrative_unit_param = params[:q][:administrative_unit]
-            end
-            unless params[:q][:cis].empty?
-              cis_param = params[:q][:cis]
-            end
-      end
-
-      if current_admin.is_super_admin?
-        @services = Service.all#active
-        unless params[:q].nil? 
-          @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?
-          @services =   @services.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
-          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{cis_param}%") unless cis_param.nil?
-        end
-      else
-        @services = current_admin.managed_services.all#active
-          unless params[:q].nil?
-            @services = @services.where(dependency: params[:q][:dependency] ) unless dependency_param.nil?
-            @services = @services.where(administrative_unit: params[:q][:administrative_unit] ) unless administrative_unit_param.nil?
-            @services = @services.where("cis ILIKE ANY ( array[?] )", "%#{cis_param}%") unless cis_param.nil?            
-          end
-      end
-
+      search_service_paramas
      @title_page = I18n.t('.admins.dashboards.services.managed_services')
      @search_service = Service.all
   end
@@ -85,6 +57,26 @@ class Admins::DashboardsController < Admins::AdminController
 
     if current_admin.is_service_admin?
       Service.chart_data(service_admin_id: current_admin.id)
+    end
+  end
+
+  def search_service_paramas
+    @services = Service.all#active
+    unless params[:q].nil? 
+      if current_admin.is_super_admin?
+        unless params[:q].nil? 
+          @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+          @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
+        end
+      else
+        @services = current_admin.managed_services.all#active
+          unless params[:q].nil?
+          @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+          @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?           
+          end
+      end  
     end
   end
 
