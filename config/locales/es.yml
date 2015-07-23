@@ -552,7 +552,7 @@ es:
         mail: "Correo"
         password: "Contraseña"
         rememberme: "Recuérdame"
-        enter: "Entar"
+        enter: "Entrar"
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
