@@ -117,7 +117,6 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def load_services
-        #search_service_paramas
       @public_servants = Admins.public_servants_for(current_admin)
       @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
 
