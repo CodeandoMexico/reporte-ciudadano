@@ -112,28 +112,17 @@ class Admins::PublicServantsController < ApplicationController
 
   def load_services
         #search_service_paramas
-      unless params[:q].nil? 
-            unless params[:q][:dependency].empty?
-              dependency_param = params[:q][:dependency]
-            end
-            unless params[:q][:administrative_unit].empty?
-              administrative_unit_param = params[:q][:administrative_unit]
-            end
-            unless params[:q][:name].empty?
-              name_param = params[:q][:name]
-            end
-      end
       @public_servants = Admins.public_servants_for(current_admin)
       @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
 
         unless params[:q].nil? 
-          @public_servants =  @public_servants.where(name:  name_param ) unless name_param.nil?
-          @public_servants =  @public_servants.where(dependency: dependency_param ) unless dependency_param.nil?
-          @public_servants =   @public_servants.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
+          @public_servants =  @public_servants.where(name:  params[:q][:name] ) unless params[:q][:name].blank?
+          @public_servants =  @public_servants.where(dependency: params[:q][:dependency]) unless params[:q][:dependency].blank?
+          @public_servants =   @public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
 
-          @disabled_public_servants =  @disabled_public_servants.where(name:  name_param ) unless name_param.nil?
-          @disabled_public_servants =  @disabled_public_servants.where(dependency: dependency_param ) unless dependency_param.nil?
-          @disabled_public_servants =   @disabled_public_servants.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
+          @disabled_public_servants =  @disabled_public_servants.where(name:   params[:q][:name] ) unless params[:q][:name].blank?
+          @disabled_public_servants =  @disabled_public_servants.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+          @disabled_public_servants =   @disabled_public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
         end
 
   end

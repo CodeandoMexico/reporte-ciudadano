@@ -92,27 +92,14 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def load_services
         #search_service_paramas
-      unless params[:q].nil? 
-            unless params[:q][:dependency].empty?
-              dependency_param = params[:q][:dependency]
-            end
-            unless params[:q][:administrative_unit].empty?
-              administrative_unit_param = params[:q][:administrative_unit]
-            end
-            unless params[:q][:name].empty?
-              name_param = params[:q][:name]
-            end
-            unless params[:q][:record_number].empty?
-              record_number_param = params[:q][:record_number]
-            end
-      end
-      @services = Admin.service_admins_sorted_by_name
+      @services = Admin.service_admins_sorted_by_name      
         unless params[:q].nil? 
-          @services =  @services.where(name:  name_param ) unless name_param.nil?
-          @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?
-          @services =   @services.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
-          @services =  @services.where(record_number:  record_number_param ) unless record_number_param.nil?
+          @services =  @services.where(name:  params[:q][:name] ) unless params[:q][:name].blank?
+          @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+          @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+          @services =  @services.where(record_number:   params[:q][:record_number] ) unless  params[:q][:record_number].blank?
         end
+        
         @service_admins = @services.page(params[:page]).per(25)
   end
 end
