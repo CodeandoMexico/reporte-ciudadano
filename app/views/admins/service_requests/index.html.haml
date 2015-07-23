@@ -3,15 +3,15 @@
 
 .page-content.inset
   = search_form_for @search, url: admins_service_requests_path, method: :get, class: "filters form-inline" do |f|
-    .form-group
+    .form-group.col-lg-3
       = f.text_field :date_gteq, placeholder: t('search_form.from_date'), class: 'datepicker form-control'
-    .form-group.form-group-separator
+    .form-group.form-group-separator.col-lg-3
       = f.text_field :date_lteq, placeholder: t('search_form.to_date'), class: 'datepicker form-control'
-    .form-group.form-group-separator
+    .form-group.form-group-separator.col-lg-3
       = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: t('form.labels.admin.service') }, class: 'chosen-select col-lg-6'
-    .form-group.form-group-separator
+    .form-group.form-group-separator.col-lg-3
       = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: t('form.labels.status') }, class: 'chosen-select col-lg-6'
-    .form-group
+    .form-group.col-lg-12
       = button_tag class: "submit btn btn-default" do
         %i.glyphicon.glyphicon-search
         = t('search')
