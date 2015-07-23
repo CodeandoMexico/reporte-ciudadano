@@ -55,15 +55,6 @@
             .image.tight
               = image_tag @service_request.media_url(:comment)
 
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title
-            = t('.votes')
-        .panel-body
-          .profile-report-count.js-votes_count
-            = @service_request.votes_for
-          .js-vote_status.text-center
-            = vote_link_for(@service_request)
 
       .panel.panel-default
         .panel-heading
