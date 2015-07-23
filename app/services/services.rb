@@ -11,6 +11,10 @@ module Services
     load_values(:administrative_units).fetch("administrative_units").values
   end
 
+  def self.service_name_options
+    Service.pluck(:name)
+  end
+
   def self.service_cis_options
     load_values(:cis).map do |cis|
       { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }

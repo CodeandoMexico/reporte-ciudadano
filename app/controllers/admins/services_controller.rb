@@ -1,9 +1,9 @@
 class Admins::ServicesController < Admins::AdminController
   before_action :authorize_admin, only: :show
-  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?
-
+  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?,:service_name_options
+  before_action :set_search
   def index
-    @services = Service.all
+    load_services
     @statuses = Status.all
   end
 
@@ -48,6 +48,10 @@ class Admins::ServicesController < Admins::AdminController
     @service_requests = @service.service_requests
   end
 
+  def set_search
+    @search = Service.search(params[:q])
+  end
+
   private
 
   def is_assigned_to_cis?(service, cis)
@@ -79,6 +83,37 @@ class Admins::ServicesController < Admins::AdminController
 
   def service_cis_options
     Services.service_cis_options
+  end
+  
+  def service_name_options
+    Services.service_name_options
+  end
+
+  def load_services
+        #search_service_paramas
+      unless params[:q].nil? 
+            unless params[:q][:dependency].empty?
+              dependency_param = params[:q][:dependency]
+            end
+            unless params[:q][:administrative_unit].empty?
+              administrative_unit_param = params[:q][:administrative_unit]
+            end
+            unless params[:q][:cis].empty?
+              cis_param = params[:q][:cis]
+            end
+            unless params[:q][:name].empty?
+              name_param = params[:q][:name]
+            end
+      end
+
+        @services = Service.all#active
+        unless params[:q].nil? 
+          @services =  @services.where(name:  name_param ) unless name_param.nil?
+          @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?
+          @services =   @services.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
+          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{cis_param}%") unless cis_param.nil?
+        end
+
   end
 
   def service_params
