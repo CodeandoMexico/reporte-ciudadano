@@ -1,10 +1,10 @@
 class Admins::PublicServantsController < ApplicationController
-  helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?
+  helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?,:service_cis_options,:public_servants_name_options,:record_number_options
+    before_action :set_search
   layout 'admins'
 
   def index
-    @public_servants = Admins.public_servants_for(current_admin)
-    @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
+        load_services
   end
 
   def new
@@ -51,6 +51,10 @@ class Admins::PublicServantsController < ApplicationController
     @available_services = Admins.services_for(current_admin)
   end
 
+   def set_search
+    @search = Service.search(params[:q])
+  end
+
   private
 
   def public_servant_params
@@ -84,5 +88,53 @@ class Admins::PublicServantsController < ApplicationController
 
   def is_assigned_to_public_servant?(service, public_servant)
     Services.is_assigned_to_public_servant?(service, public_servant)
+  end
+
+ def dependency_options
+    Services.service_dependency_options
+  end
+
+  def administrative_unit_options
+    Services.service_administrative_unit_options
+  end
+
+  def service_cis_options
+    Services.service_cis_options
+  end
+  
+  def public_servants_name_options
+    Services.public_servants_name_options(current_admin)
+  end
+
+  def record_number_options
+    Services.record_number_options
+  end
+
+  def load_services
+        #search_service_paramas
+      unless params[:q].nil? 
+            unless params[:q][:dependency].empty?
+              dependency_param = params[:q][:dependency]
+            end
+            unless params[:q][:administrative_unit].empty?
+              administrative_unit_param = params[:q][:administrative_unit]
+            end
+            unless params[:q][:name].empty?
+              name_param = params[:q][:name]
+            end
+      end
+      @public_servants = Admins.public_servants_for(current_admin)
+      @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
+
+        unless params[:q].nil? 
+          @public_servants =  @public_servants.where(name:  name_param ) unless name_param.nil?
+          @public_servants =  @public_servants.where(dependency: dependency_param ) unless dependency_param.nil?
+          @public_servants =   @public_servants.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
+
+          @disabled_public_servants =  @disabled_public_servants.where(name:  name_param ) unless name_param.nil?
+          @disabled_public_servants =  @disabled_public_servants.where(dependency: dependency_param ) unless dependency_param.nil?
+          @disabled_public_servants =   @disabled_public_servants.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
+        end
+
   end
 end

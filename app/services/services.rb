@@ -46,6 +46,10 @@ module Services
     Admin.service_admins_sorted_by_name.pluck(:record_number)
   end
 
+  def self.public_servants_name_options(admin)
+    Admins.public_servants_for(admin).pluck(:name)
+  end
+
   private
 
   def self.load_values(object)
