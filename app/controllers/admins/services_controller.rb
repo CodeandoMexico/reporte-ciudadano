@@ -114,7 +114,6 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def load_services
-        #search_service_paramas
       unless params[:q].nil? 
             unless params[:q][:dependency].empty?
               dependency_param = params[:q][:dependency]
@@ -130,7 +129,7 @@ class Admins::ServicesController < Admins::AdminController
             end
       end
 
-        @services = Service.active
+        @services = Service.all
         unless params[:q].nil? 
           @services =  @services.where(name:  name_param ) unless name_param.nil?
           @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?

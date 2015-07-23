@@ -15,13 +15,13 @@
   %h2= t('.services')
   = search_form_for @search, url: admins_services_path, method: :get, class: "filters form-inline" do |f|
     .form-group.col-md-6
-      = f.select :name, service_name_options, { prompt: t('admin.service.show.columns.name') }, class: 'form-control'
+      = f.select :name, service_name_options, { prompt: t('admin.service.show.columns.name') }, class: 'chosen-select'
     .form-group.col-md-6
-      = f.select :dependency, service_dependency_options, { prompt: t('form.labels.dependency') }, class: 'form-control'
+      = f.select :dependency, service_dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'
     .form-group.col-md-6
-      = f.select :administrative_unit, service_administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') }, class: 'form-control'
+      = f.select :administrative_unit, service_administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') }, class: 'chosen-select'
     .form-group.col-md-6
-      = f.select :cis, service_cis_options.collect {|p| [Services.service_cis_options[p[:id]-1][:label], p[:id]] }, { prompt: t('form.labels.cis') }, class: 'form-control'
+      = f.select :cis, service_cis_options.collect {|p| [Services.service_cis_options[p[:id]-1][:label], p[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'
 
     .form-group.col-md-12
       = button_tag class: "submit btn btn-default" do
@@ -91,3 +91,8 @@
         %td
           = link_to edit_admins_status_path(status), class: 'btn btn-default' do
             %span.glyphicon.glyphicon-wrench
+
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

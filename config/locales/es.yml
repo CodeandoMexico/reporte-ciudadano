@@ -590,6 +590,7 @@ es:
         who: "¿Quién lo atendió?"
         status: "Estatus"
         description: "Descripción"
+        cis: "Centro de atención"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
