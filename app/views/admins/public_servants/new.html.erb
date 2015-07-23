@@ -3,64 +3,80 @@
     <div class="col-md-12">
       <h2><%= t('.new_public_servant') %></h2>
       <%= form_for(:admin, url: admins_public_servants_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
-        <% if @admin.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@admin.errors.count, "error") %></h2>
-          </div>
-        <% end %>
+      <% if @admin.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@admin.errors.count, "error") %></h2>
+      </div>
+      <% end %>
 
-        <fieldset>
-          <div class="form-group">
-            <%= f.label :name, t('form.labels.name'), class: 'col-md-2 control-label' %>
-            <div class="col-md-5">
-              <%= f.text_field :name, class: 'form-control' %>
-            </div>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :name, t('form.labels.name'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.text_field :name, class: 'form-control' %>
           </div>
-        </fieldset>
-        <fieldset>
-          <div class="form-group">
-            <%= f.label :email, t('form.labels.email'), class: 'col-md-2 control-label' %>
-            <div class="col-md-5">
-              <%= f.text_field :email, class: 'form-control' %>
-              <%= errors_on_resource_for_field(@admin, :email) %>
-            </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="form-group">
-            <%= f.label :record_number, t('form.labels.record_number'), class: 'col-md-2 control-label' %>
-            <div class="col-md-5">
-              <%= f.text_field :record_number, class: 'form-control' %>
-            </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="form-group">
-            <%= f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
-            <div class="col-md-5">
-              <%= f.select :dependency, dependency_options %>
-            </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="form-group">
-            <%= f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
-            <div class="col-md-5">
-              <%= f.select :administrative_unit, administrative_unit_options %>
-            </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div class="form-group">
-            <%= f.label :charge, t('form.labels.charge'), class: 'col-md-2 control-label' %>
-            <div class="col-md-5">
-              <%= f.text_field :charge, class: 'form-control' %>
-            </div>
-          </div>
-        </fieldset>
-        <div class="actions col-md-2">
-          <%= f.submit "Guardar", class: 'btn btn-primary' %>
         </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :surname, t('form.labels.surname'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.text_field :surname, class: 'form-control' %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :second_surname, t('form.labels.second_surname'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.text_field :second_surname, class: 'form-control' %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :email, t('form.labels.email'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.text_field :email, class: 'form-control' %>
+            <%= errors_on_resource_for_field(@admin, :email) %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :record_number, t('form.labels.record_number'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.text_field :record_number, class: 'form-control' %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.select :dependency, dependency_options %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.select :administrative_unit, administrative_unit_options %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :charge, t('form.labels.charge'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5">
+            <%= f.text_field :charge, class: 'form-control' %>
+          </div>
+        </div>
+      </fieldset>
+      <div class="actions col-md-2">
+        <%= f.submit "Guardar", class: 'btn btn-primary' %>
+      </div>
       <% end %>
     </div>
   </div>

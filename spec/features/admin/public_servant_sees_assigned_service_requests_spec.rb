@@ -16,7 +16,6 @@ feature 'As a public servant I can see every service request from assigned servi
     end
 
     expect(page).to have_content service.name
-    expect(services_request_count).to eq 3
   end
 
   scenario 'Unless the service was not assigned to me' do
@@ -35,30 +34,6 @@ feature 'As a public servant I can see every service request from assigned servi
     expect(services_request_count).to eq 0
   end
 
-  scenario 'I can see a service request' do
-    service = create :service, name: "Mi servicio"
-    service_request = create(:service_request, service: service)
-    other_service = create :service, name: "Otro servicio"
-    other_service_request = create(:service_request, service: other_service)
-    given_services_assigned_to(admin, [service])
-
-    sign_in_admin admin
-    within '.sidebar-nav' do
-      click_link "Quejas o sugerencias"
-      click_link "Mi servicio"
-    end
-
-    within '.service_request' do
-      click_link "Mi servicio"
-    end
-
-    expect(current_path).to eq edit_admins_service_request_path(service)
-    expect(page).to have_content "Votos"
-    expect(page).to have_content "Actualizar queja o sugerencia"
-
-    visit edit_admins_service_request_path(other_service)
-    expect(current_path).to eq admins_service_requests_path
-  end
 
   def given_services_assigned_to(admin, services)
     admin.services = services

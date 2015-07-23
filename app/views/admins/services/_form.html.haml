@@ -5,6 +5,12 @@
 
   %fieldset
     .form-group
+      -if @service.homoclave
+        = f.label :homoclave, class: 'col-lg-2 control-label'
+        .col-lg-8.control-label-left
+          =@service.homoclave
+  %fieldset
+    .form-group
       = f.label :name, t('form.labels.name'), class: 'col-lg-2 control-label'
       .col-lg-8
         = f.text_field :name, class: 'form-control'
@@ -13,30 +19,27 @@
     .form-group
       = f.label :service_type, t('form.labels.service_type'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.select :service_type, service_type_options, prompt: I18n.t("form.options.service_type_select")
+        = f.select :service_type, service_type_options,{ prompt: I18n.t("form.options.service_type_select")},{ class: 'chosen-select'}
   %fieldset
     .form-group
       = f.label :dependency, t('form.labels.dependency'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.select :dependency, service_dependency_options
+        = f.select :dependency, service_dependency_options,{ prompt: I18n.t("form.options.service_type_dependency")}, { class: 'chosen-select'}
   %fieldset
     .form-group
       = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.select :administrative_unit, service_administrative_unit_options
+        = f.select :administrative_unit, service_administrative_unit_options,{ prompt: I18n.t("form.options.service_type_administrative")},{ class: 'chosen-select'}
   %fieldset
     .form-group
-      = f.label :cis, t('form.labels.cis'), class: 'col-lg-2 control-label'
-      .col-lg-8
-        - service_cis_options.each do |cis|
-          .checkbox
-            = f.check_box :cis, { multiple: true, checked: is_assigned_to_cis?(@service, cis) }, cis[:id], nil
-            = f.label :cis, cis[:label], value: cis[:id]
+      = f.label :cis, t('form.labels.cis'), class: 'col-md-2 control-label font-title-table'
+      .col-md-10
+        = f.select :cis, service_cis_options.collect {|p| [Services.service_cis_options[p[:id]-1][:label], p[:id]] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()",:multiple=>true}
   %fieldset
     .form-group
       = f.label :service_admin_id, t('form.labels.admin_id'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.collection_select :service_admin_id, @available_admins, :id, :name
+        = f.collection_select :service_admin_id, @available_admins, :id, :name,{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
   %fieldset
     %legend
       = t '.service_fields_title'
@@ -75,3 +78,7 @@
     .col-lg-8
       = f.submit t('.save'), class: 'btn btn-primary'
       = link_to t('.cancel'), admins_services_path, class: 'btn btn-default'
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

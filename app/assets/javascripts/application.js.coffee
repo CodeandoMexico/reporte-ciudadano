@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery.turbolinks
+#= require jquery-ui
 #= require jquery_ujs
 #= require jquery_nested_form
 #= require jquery-ui/datepicker
@@ -15,6 +16,8 @@
 #= require highcharts/modules/exporting
 #= require cocoon
 #= require transition
+#= require chosen-jquery
 #= require jquery.tablesorter
 #= require turbolinks
+#= require_tree ./public
 #= require_tree .

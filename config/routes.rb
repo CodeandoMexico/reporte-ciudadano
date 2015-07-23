@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :service_survey_reports, only: [:new, :create, :show, :index]
     resources :services do
+      collection do
+      get 'disable_service'
+      get 'enable_service'
+    end
       resources :messages, only: :index
     end
     resources :statuses, except: [:destroy]

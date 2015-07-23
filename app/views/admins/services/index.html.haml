@@ -13,22 +13,57 @@
 
 
   %h2= t('.services')
+.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      = link_to t(".enabled"), "#enabled", :data => {:toggle => "tab"} 
+    %li
+      = link_to t(".disabled"), "#disabled", :data => {:toggle => "tab"}
 
-  %table.table.table-hover
-    %tr
-      %th= t('admin.service.show.columns.name')
-      %th= t('admin.service.show.columns.extras')
-      %th
-    - @services.each do |service|
-      %tr
-        %td= link_to service.name, edit_admins_service_path(service)
-        %td= service.service_fields_names
-        %td
-          .btn-group
-            = link_to edit_admins_service_path(service), class: 'btn btn-default' do
-              %span.glyphicon.glyphicon-wrench
-            = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
-              %span.glyphicon.glyphicon-trash
+    .tab-content
+      .tab-pane.active{:id=>"enabled"}
+        .table-responsive
+          %table.table.table-hover
+            %tr
+              %th= t('admin.service.show.columns.name')
+              %th= t('admin.service.show.columns.extras')
+              %th
+            - @services.each do |service|
+              - if service.status == 'activo'
+                %tr
+                  %td= link_to service.name, edit_admins_service_path(service)
+                  %td= service.service_fields_names
+                  %td
+                    .btn-group
+                      = link_to edit_admins_service_path(service), class: 'btn btn-default' do
+                        %span.glyphicon.glyphicon-wrench
+                      = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
+                        %span.glyphicon.glyphicon-trash
+                      = link_to t(".disable"), disable_service_admins_services_path(id: "#{service.id}"), class: "btn btn-danger", :data => {:confirm => t(".disable_service_confirm")}
+
+      .tab-pane{:id=>"disabled"}
+        .table-responsive
+          %table.table.table-hover
+            %tr
+              %th= t('admin.service.show.columns.name')
+              %th= t('admin.service.show.columns.extras')
+              %th
+            - @services.each do |service|
+              - if service.status != 'activo'
+                %tr
+                  %td= link_to service.name, edit_admins_service_path(service)
+                  %td= service.service_fields_names
+                  %td
+                    .btn-group
+                      = link_to edit_admins_service_path(service), class: 'btn btn-default' do
+                        %span.glyphicon.glyphicon-wrench
+                      = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
+                        %span.glyphicon.glyphicon-trash
+                      = link_to t(".enable"), enable_service_admins_services_path(id: "#{service.id}"), class: "btn btn-success", :data => {:confirm => t(".enable_service_confirm")}
+
+
+
+
 
   %h2= t('.statuses')
   %table.table.table-hover

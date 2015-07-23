@@ -4,7 +4,7 @@
   .form-group.form-group-separator
     = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
   .form-group.form-group-separator
-    = f.collection_select :service_id_eq, Service.all, :id, :name, { include_blank: 'Servicio' }, class: 'form-control'
+    = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: 'Servicio' }, class: 'form-control'
   .form-group.form-group-separator
     = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
   .form-group
@@ -13,7 +13,7 @@
 .table-responsive
   %table.table.sortable_table.table-striped
     %thead
-      %tr
+      %tr.font-title-table
         %th
           Identificador
           %i.icon-chevron-down
@@ -37,14 +37,15 @@
             Eliminar
     %tbody
       - @service_requests.each do |service_request|
-        %tr
-          %td= link_to service_request.id, service_request
-          %td= l service_request.created_at, format: :short
-          %td= link_to service_request.service.name, service_request
-          %td= truncate service_request.description
-          %td= service_request.status
-          %td= service_request.votes_for
-          - if admin_signed_in?
-            %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
+        - if current_user.to_s == service_request.service_requester[:name].to_s || current_admin
+          %tr
+            %td= link_to service_request.id, service_request
+            %td= l service_request.created_at, format: :short
+            %td= link_to service_request.service_name, service_request_path(service_request)
+            %td= truncate service_request.description
+            %td= service_request.status
+            %td= service_request.votes_for
+            - if admin_signed_in?
+              %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
 
 = paginate @service_requests
