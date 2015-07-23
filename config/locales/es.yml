@@ -537,7 +537,12 @@ es:
       by_area: "Por áreas"
       best_evaluated_service: "Servicio mejor evaluado"
       worst_evaluated_service: "Servicio peor evaluado"
+      best_public_servants_service: "Servicio con Servidores Públicos mejor evaluado"
+      worst_public_servants_service: "Servicio con Servidores Públicos peor evaluado"
+      no_evaluated_services: "Ningún servicio ha sido evaluado o no tiene encuestas respondidas."
       general: "Evaluación general"
+      not_evaluated: "Sin evaluar"
+      no_report_data: "No hay datos en reportes de encuestas para generar el reporte."
   users:
     registrations:
       edit:
@@ -558,7 +563,7 @@ es:
     home: "Inicio"
     requests: "Quejas y sugerencias"
     evaluate_a_submission: "Evalúa trámite" 
-
+    evaluations: "Evaluaciones"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'

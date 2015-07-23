@@ -4,7 +4,6 @@ class ServiceSurveyReport < ActiveRecord::Base
   before_create :set_results_for_report
   serialize :areas_results, Hash
 
-
   def service_survey_title
     service_survey.title
   end

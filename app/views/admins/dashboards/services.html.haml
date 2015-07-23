@@ -1,6 +1,14 @@
 .page-content.inset
   %h2= t('.managed_services')
 
+  = search_form_for @search, url: services_admins_dashboards_path, method: :get, class: "filters form-inline" do |f|
+    .form-group.form-group-separator
+      = f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'form-control'
+    .form-group
+      = button_tag class: "submit btn btn-default" do
+        %i.glyphicon.glyphicon-search
+        = t('search')
+
   %table.table.table-hover
     %tr
       %th= t('.name')
