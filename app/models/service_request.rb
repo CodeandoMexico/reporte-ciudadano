@@ -1,11 +1,8 @@
 #encoding: utf-8
 class ServiceRequest < ActiveRecord::Base
-  #attr_accessible :anonymous, :service_id, :description, :lat, :lng,
-   #               :service_fields, :media, :status_id, :address, :title
-
   attr_accessor :message
 
-  validates :service_id, :description, :address, presence: true
+  validates :service_id, :description, presence: true
   validate :service_extra_fields
 
   before_validation :assign_default_status, on: :create
@@ -93,6 +90,18 @@ class ServiceRequest < ActiveRecord::Base
     else
       { avatar_url: self.requester.avatar_url, name: self.requester.name }
     end
+  end
+
+  def requester_name
+    if anonymous?
+      'Anónimo'
+    else
+      requester.name
+    end
+  end
+
+  def service_name
+    service.name
   end
 
   def date

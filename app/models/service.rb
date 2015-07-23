@@ -19,6 +19,8 @@ class Service < ActiveRecord::Base
 
   serialize :cis, Array
 
+  scope :active, ->{ where(status: "activo") }
+
   def service_fields_names
     self.service_fields.map(&:name).join(', ')
   end

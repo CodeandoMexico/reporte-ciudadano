@@ -1,8 +1,9 @@
 class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
   before_action :set_services, only: [:new, :create]
+  before_action :set_title
   helper_method :dependency_options, :administrative_unit_options,:service_cis_options,:service_cis_options,:service_admins_name_options,:record_number_options
-    before_action :set_search
+  before_action :set_search
   layout 'admins'
 
   def new
@@ -44,6 +45,9 @@ class Admins::ServiceAdminsController < ApplicationController
 
 
   private
+  def set_title
+    @title_page = I18n.t('admins.service_admins.index.service_admins')
+  end
 
   def verify_super_admin_access
     @permissions = Admins.permissions_for_admin(current_admin)

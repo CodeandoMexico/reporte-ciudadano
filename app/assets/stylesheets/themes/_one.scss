@@ -19,8 +19,8 @@ $background-color: #F7F7F7;
 // Brand colors
 // -------------------------
 
-$brand-primary:         #428bca;
-$brand-success:         #5cb85c;
+$brand-primary:         #009ABC;
+$brand-success:         #8CC63F;
 $brand-warning:         #f0ad4e;
 $brand-danger:          #d9534f;
 $brand-info:            #5bc0de;
@@ -111,7 +111,7 @@ $btn-default-border:             #ccc;
 
 $btn-primary-color:              #fff;
 $btn-primary-bg:                 $brand-primary;
-$btn-primary-border:             darken($btn-primary-bg, 5%);
+$btn-primary-border:             darken(#067F9C, 1px);
 
 $btn-success-color:              #fff;
 $btn-success-bg:                 $brand-success;

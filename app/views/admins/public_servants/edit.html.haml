@@ -13,6 +13,14 @@
             = f.label :name, t('form.labels.name'), class: 'col-md-2 control-label'
             .col-md-5
               = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :surname, t('form.labels.surname'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :surname, class: 'form-control'
+          .form-group
+            = f.label :second_surname, t('form.labels.second_surname'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :second_surname, class: 'form-control'
         %fieldset
           .form-group
             = f.label :record_number, t('form.labels.record_number'), class: 'col-md-2 control-label'

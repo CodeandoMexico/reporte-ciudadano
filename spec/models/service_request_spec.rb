@@ -7,7 +7,6 @@ describe ServiceRequest do
     end
     it { should validate_presence_of(:service_id) }
     it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:address) }
   end
   context 'attributes' do
     it { should respond_to :anonymous }

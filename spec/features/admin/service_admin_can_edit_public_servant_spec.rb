@@ -13,7 +13,7 @@ feature 'As a service admin I can edit a public servant' do
     first_public_servant = public_servants.first
 
     visit admins_dashboards_path
-    click_link "Servidores Públicos"
+    click_link "Servidores públicos"
     click_edit_link_for first_public_servant
 
     expect(find_field('admin[name]').value).to eq first_public_servant.name

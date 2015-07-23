@@ -13,7 +13,6 @@
 
 
   %h2= t('.services')
-
   = search_form_for @search, url: admins_services_path, method: :get, class: "filters form-inline" do |f|
     .form-group.col-md-6
       = f.select :name, service_name_options, { prompt: t('admin.service.show.columns.name') }, class: 'form-control'
@@ -28,22 +27,58 @@
       = button_tag class: "submit btn btn-default" do
         %i.glyphicon.glyphicon-search
         = t('search')
+        
+.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      = link_to t(".enabled"), "#enabled", :data => {:toggle => "tab"} 
+    %li
+      = link_to t(".disabled"), "#disabled", :data => {:toggle => "tab"}
 
-  %table.table.table-hover
-    %tr
-      %th= t('admin.service.show.columns.name')
-      %th= t('admin.service.show.columns.extras')
-      %th
-    - @services.each do |service|
-      %tr
-        %td= link_to service.name, edit_admins_service_path(service)
-        %td= service.service_fields_names
-        %td
-          .btn-group
-            = link_to edit_admins_service_path(service), class: 'btn btn-default' do
-              %span.glyphicon.glyphicon-wrench
-            = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
-              %span.glyphicon.glyphicon-trash
+    .tab-content
+      .tab-pane.active{:id=>"enabled"}
+        .table-responsive
+          %table.table.table-hover
+            %tr
+              %th= t('admin.service.show.columns.name')
+              %th= t('admin.service.show.columns.extras')
+              %th
+            - @services.each do |service|
+              - if service.status == 'activo'
+                %tr
+                  %td= link_to service.name, edit_admins_service_path(service)
+                  %td= service.service_fields_names
+                  %td
+                    .btn-group
+                      = link_to edit_admins_service_path(service), class: 'btn btn-default' do
+                        %span.glyphicon.glyphicon-wrench
+                      = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
+                        %span.glyphicon.glyphicon-trash
+                      = link_to t(".disable"), disable_service_admins_services_path(id: "#{service.id}"), class: "btn btn-danger", :data => {:confirm => t(".disable_service_confirm")}
+
+      .tab-pane{:id=>"disabled"}
+        .table-responsive
+          %table.table.table-hover
+            %tr
+              %th= t('admin.service.show.columns.name')
+              %th= t('admin.service.show.columns.extras')
+              %th
+            - @services.each do |service|
+              - if service.status != 'activo'
+                %tr
+                  %td= link_to service.name, edit_admins_service_path(service)
+                  %td= service.service_fields_names
+                  %td
+                    .btn-group
+                      = link_to edit_admins_service_path(service), class: 'btn btn-default' do
+                        %span.glyphicon.glyphicon-wrench
+                      = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
+                        %span.glyphicon.glyphicon-trash
+                      = link_to t(".enable"), enable_service_admins_services_path(id: "#{service.id}"), class: "btn btn-success", :data => {:confirm => t(".enable_service_confirm")}
+
+
+
+
 
   %h2= t('.statuses')
   %table.table.table-hover
@@ -56,11 +91,3 @@
         %td
           = link_to edit_admins_status_path(status), class: 'btn btn-default' do
             %span.glyphicon.glyphicon-wrench
-
-  %h2= t('.geographical_area')
-  %blockquote
-    = t('.geographical_area_description')
-
-  #bounding-box-map.l-margin-s-bottom{"data-map-constraints" => current_map_constrainsts}
-  = button_tag t('.save_restriction'), class: 'btn btn-primary js-save-map js-ajax-button', data: {url:map_constraints_admins_application_settings_path(format: :json)}
-  = saving_spinner

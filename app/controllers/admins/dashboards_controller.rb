@@ -19,7 +19,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
-      search_service_paramas
+      search_service_params
      @title_page = I18n.t('.admins.dashboards.services.managed_services')
      @search_service = Service.all
   end
@@ -60,8 +60,8 @@ class Admins::DashboardsController < Admins::AdminController
     end
   end
 
-  def search_service_paramas
-    @services = Service.all#active
+  def search_service_params
+    @services = Service.active
     unless params[:q].nil? 
       if current_admin.is_super_admin?
         unless params[:q].nil? 
@@ -70,7 +70,7 @@ class Admins::DashboardsController < Admins::AdminController
           @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
         end
       else
-        @services = current_admin.managed_services.all#active
+        @services = current_admin.managed_services.active
           unless params[:q].nil?
           @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
           @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?

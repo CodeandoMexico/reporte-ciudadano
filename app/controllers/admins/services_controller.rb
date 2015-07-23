@@ -1,7 +1,9 @@
 class Admins::ServicesController < Admins::AdminController
   before_action :authorize_admin, only: :show
+  before_action :set_title
   helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?,:service_name_options
   before_action :set_search
+
   def index
     load_services
     @statuses = Status.all
@@ -18,8 +20,9 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def create
+    time = Time.new
     @service = Service.new(service_params)
-
+    @service.homoclave = Services.generate_homoclave_for(@service)
     if @service.save
       redirect_to admins_services_path, notice: I18n.t('flash.service.created')
     else
@@ -29,7 +32,6 @@ class Admins::ServicesController < Admins::AdminController
 
   def update
     @service = Service.find(params[:id])
-
     if @service.update_attributes(service_params)
       redirect_to admins_services_path, notice: I18n.t('flash.service.updated')
     else
@@ -52,7 +54,29 @@ class Admins::ServicesController < Admins::AdminController
     @search = Service.search(params[:q])
   end
 
+    def disable_service
+    @service = Service.find(params[:id])
+    if @service.update_attributes(status: "inactivo")
+      redirect_to admins_services_path, notice: t('flash.service.disabled')
+    else
+      redirect_to admins_services_path, notice: t('flash.service.could_not_be_disabled')
+    end
+  end
+
+  def enable_service
+    @service = Service.find(params[:id])
+    if @service.update_attributes(status: "activo")
+      redirect_to admins_services_path, notice: t('flash.service.enabled')
+    else
+      redirect_to admins_services_path, notice: t('flash.service.could_not_be_enabled')
+    end
+  end
+
   private
+
+  def set_title
+    @title_page = I18n.t('admins.services.index.header')
+  end
 
   def is_assigned_to_cis?(service, cis)
     Services.is_assigned_to_cis?(service, cis[:id])
@@ -106,7 +130,7 @@ class Admins::ServicesController < Admins::AdminController
             end
       end
 
-        @services = Service.all#active
+        @services = Service.active
         unless params[:q].nil? 
           @services =  @services.where(name:  name_param ) unless name_param.nil?
           @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?
@@ -117,6 +141,6 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def service_params
-    params.require(:service).permit(:name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
+    params.require(:service).permit(:status, :name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
   end
 end
