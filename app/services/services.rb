@@ -38,6 +38,14 @@ module Services
     service.cis.include? cis_id.to_s
   end
 
+  def self.service_admins_name_options
+    Admin.service_admins_sorted_by_name.pluck(:name)
+  end
+
+  def self.record_number_options
+    Admin.service_admins_sorted_by_name.pluck(:record_number)
+  end
+
   private
 
   def self.load_values(object)
