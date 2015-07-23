@@ -10,13 +10,13 @@
 
 <%= search_form_for @search, url: admins_public_servants_path, method: :get, class: "filters form-inline" do |f|%>
   <div class="form-group col-md-4">
-    <%= f.select :name, public_servants_name_options, { prompt: t('.name') }, class: 'form-control'%>
+    <%= f.select :name, public_servants_name_options, { prompt: t('.name') }, class: 'chosen-select'%>
   </div>
   <div class="form-group col-md-4">
-    <%= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'form-control'%>
+    <%= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'%>
   </div>
   <div class="form-group col-md-4">
-   <%= f.select :administrative_unit, administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') },class: 'form-control'%>
+   <%= f.select :administrative_unit, administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') },class: 'chosen-select'%>
     </div>
   <div class="form-group col-md-12">
     <%= button_tag class: "submit btn btn-default" do %>
@@ -126,3 +126,7 @@
     </table>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>
