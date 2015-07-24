@@ -168,6 +168,7 @@
                 <% end %>
               </th>
             <% end %>
+            <th><%= t(".see_answers") %></th>
           </tr>
         </thead>
         <tbody>
@@ -187,6 +188,12 @@
                   <% end %>
                 </td>
               <% end %>
+              <td>
+                <%= link_to service_evaluation_path(service), class: "btn btn-primary" do %>
+                  <span class="glyphicon glyphicon-tasks"></span>
+                  <span class="sr-only"><%= t(".see_service_answers") %></span>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

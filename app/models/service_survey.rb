@@ -4,6 +4,7 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :questions
   has_many :answers, class: SurveyAnswer, through: :questions, source: :survey_answers
   has_many :reports, class: ServiceSurveyReport
+  has_many :users, through: :answers, source: :user
 
   validates_presence_of :phase
   validate :value_for_rating_questions
@@ -52,6 +53,10 @@ class ServiceSurvey < ActiveRecord::Base
 
   def last_report
     reports.order(created_at: :asc).last
+  end
+
+  def respondents
+    users.uniq
   end
 
   private

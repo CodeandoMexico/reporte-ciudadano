@@ -1,6 +1,7 @@
 class EvaluationsController < ApplicationController
   layout 'observers'
   helper_method :service_cis_options, :service_name_options, :cis_options, :dependency_options
+  before_action :authenticate_user!
   before_action :authorize_observer
   before_action :set_search
 
