@@ -33,7 +33,7 @@ feature 'As a service admin I can create new public servant' do
     expect(public_servants_count).to eq 4
   end
 
-  scenario 'I can create a new public servant with valid data' do
+  scenario 'I can create a new public servant with valid data but i cant see if he doesnt  my dependency' do
     sign_in_admin admin
 
     services = create_list(:service, 2)
@@ -41,12 +41,12 @@ feature 'As a service admin I can create new public servant' do
 
     visit admins_public_servants_path
     click_link "Agregar servidor público"
-
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
     expect(page).not_to have_content "Dependencia 2"
-    select "Dependencia 1", from: "admin[dependency]"
+    option = first('#admin_dependency').text
+    select option, from: 'admin[dependency]'
     select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Servidor"
 
@@ -54,7 +54,7 @@ feature 'As a service admin I can create new public servant' do
 
     expect(page).to have_content "El servidor público se ha registrado exitosamente."
     expect(current_path).to eq admins_public_servants_path
-    expect(page).to have_content "María Gómez"
+    expect(page).not_to have_content "María Gómez"
     expect_mail_sent_to "maria@mail.com"
   end
 
@@ -66,5 +66,11 @@ feature 'As a service admin I can create new public servant' do
 
   def public_servants_count
     all(:css, ".public_servant").size
+  end
+
+def select_first_option
+  second_option_xpath = "//*[@id=admin_dependency'']/option[1]"
+  second_option = find(:xpath, second_option_xpath).text
+  select(second_option, :from => id)
   end
 end

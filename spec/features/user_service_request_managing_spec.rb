@@ -71,6 +71,7 @@ feature 'Managing service requests' do
         select service_requests.first.status.name, from: 'q[status_id_eq]'
         click_button 'Buscar'
       end
+      save_and_open_page
       expect(page).to have_content service_requests.first.description.truncate(30)
       expect(page).to have_content service_requests[1].description.truncate(30)
       expect(page).to have_content service_requests.last.description.truncate(30)

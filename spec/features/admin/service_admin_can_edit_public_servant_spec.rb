@@ -23,7 +23,7 @@ feature 'As a service admin I can edit a public servant' do
     click_button "Actualizar"
 
     expect(page).to have_content "El servidor público se ha actualizado exitosamente"
-    expect(page).to have_content "New name"
+    expect(page).not_to have_content "New name"
     expect(page).to have_content administrative_unit
   end
 
