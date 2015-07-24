@@ -1,5 +1,5 @@
 class ServiceRequestsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new, :index, :show]
   before_action :create_array, only: [:create, :new]
   helper_method :service_cis_options, :service_cis_label
 
