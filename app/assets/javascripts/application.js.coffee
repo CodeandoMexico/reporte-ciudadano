@@ -8,6 +8,7 @@
 #= require jquery.timeago
 #= require jquery-timeago/locales/jquery.timeago.es
 #= require jquery-fileupload/basic
+#= require bootstrap/tooltip
 #= require bootstrap/dropdown
 #= require bootstrap/collapse
 #= require bootstrap/modal

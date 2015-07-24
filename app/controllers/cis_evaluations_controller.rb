@@ -1,6 +1,7 @@
 class CisEvaluationsController < ApplicationController
   layout 'observers'
   helper_method :criterions
+  before_action :authenticate_user!
   before_action :authorize_observer
 
   def index

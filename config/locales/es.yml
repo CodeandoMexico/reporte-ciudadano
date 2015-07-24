@@ -543,6 +543,14 @@ es:
       general: "Evaluación general"
       not_evaluated: "Sin evaluar"
       no_report_data: "No hay datos en reportes de encuestas para generar el reporte."
+      see_answers: "Ver respuestas"
+      see_service_answers: "Ver respuestas de servicio"
+  service_evaluations:
+    show:
+      service_evaluation: "Evaluaciones de %{name}"
+      service_survey_answers: "Respuestas de encuesta %{survey}"
+      see_other_survey_answers: "Ver respuestas de otras encuestas"
+      no_answers: "Ningún usuario ha respondido esta encuesta."
   users:
     registrations:
       edit:
