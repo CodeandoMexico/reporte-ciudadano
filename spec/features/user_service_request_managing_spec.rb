@@ -13,11 +13,6 @@ feature 'Managing service requests' do
       expect(current_url).to eq new_user_session_url
     end
 
-    scenario 'can go see a service request' do
-      visit service_request_path(service_request)
-      expect(page).to have_content(service_request.service.name)
-    end
-
   end
 
   context 'when logged in user' do
