@@ -50,6 +50,16 @@ class Admins::ServiceSurveysController < ApplicationController
     end
   end
 
+  def invitation_user_mail
+    unless params[:get][:body].empty?
+      send_survey_user(params[:get][:body], "#{new_answer_url}?service_survey_id=#{params[:id].keys.first.to_s}")
+      redirect_to admins_service_surveys_path, notice: t('flash.service_survey.emailsend')
+    else
+      redirect_to admins_service_surveys_path, notice: t('flash.service_survey.noemailsend')
+    end
+     
+  end
+
   private
   def set_title
     @title_page = I18n.t('admins.service_surveys.index.service_surveys')
@@ -78,4 +88,10 @@ class Admins::ServiceSurveysController < ApplicationController
   def services_for(admin)
     Admins.services_for(admin)
   end
+  def send_survey_user(mails, link)
+    mailsplit = params[:get][:body].gsub(/\s+/, "").split(";")
+      mailsplit.each do |mail |
+      UserMailer.notify_user_new_surveys(mail,link).deliver
+      end
+    end
 end

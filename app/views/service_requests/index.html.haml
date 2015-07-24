@@ -43,5 +43,4 @@
             %td= service_request.status
             - if admin_signed_in?
               %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
-
 = paginate @service_requests

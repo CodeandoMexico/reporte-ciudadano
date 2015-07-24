@@ -215,8 +215,6 @@ ActiveRecord::Schema.define(version: 20150719042448) do
     t.string   "administrative_unit"
     t.text     "cis"
     t.integer  "service_admin_id"
-    t.text     "homoclave"
-    t.text     "status",                default: "activo"
     t.integer  "service_surveys_count", default: 0
     t.text     "homoclave"
     t.text     "status",                default: "activo"

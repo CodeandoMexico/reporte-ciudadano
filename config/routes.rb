@@ -49,6 +49,9 @@ Rails.application.routes.draw do
     end
 
     resources :service_surveys do
+      collection do
+          post 'invitation_user_mail'
+      end
       get :questions_text, on: :collection
       put :change_status, on: :member
 
