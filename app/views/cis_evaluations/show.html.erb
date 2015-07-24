@@ -1,11 +1,16 @@
-<h3>
-  <%= link_to evaluations_path do %>
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  <% end %>
-  <%= t(".cis_evaluation_for", name: @cis.name) %>
-</h3>
-<hr>
-<div class="row evaluation-overview">
+<div class="navbar navbar-default navbar-fixed-top padding-top-observer">
+  <hr>
+  <div class="container">
+    <h3>
+      <%= link_to evaluations_path do %>
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      <% end %>
+      <%= t(".cis_evaluation_for", name: @cis.name) %>
+    </h3>
+  </div>
+</div>
+
+<div class="row evaluation-overview padding-top-observer">
   <div class="col-md-10 col-md-offset-1">
     <div class="row">
       <div class="col-md-4">
