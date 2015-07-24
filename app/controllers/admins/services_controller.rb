@@ -114,27 +114,13 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def load_services
-      unless params[:q].nil? 
-            unless params[:q][:dependency].empty?
-              dependency_param = params[:q][:dependency]
-            end
-            unless params[:q][:administrative_unit].empty?
-              administrative_unit_param = params[:q][:administrative_unit]
-            end
-            unless params[:q][:cis].empty?
-              cis_param = params[:q][:cis]
-            end
-            unless params[:q][:name].empty?
-              name_param = params[:q][:name]
-            end
-      end
-
+    
         @services = Service.all
         unless params[:q].nil? 
-          @services =  @services.where(name:  name_param ) unless name_param.nil?
-          @services =  @services.where(dependency: dependency_param ) unless dependency_param.nil?
-          @services =   @services.where(administrative_unit: administrative_unit_param ) unless administrative_unit_param.nil?
-          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{cis_param}%") unless cis_param.nil?
+          @services =  @services.where(name:  params[:q][:name] ) unless params[:q][:name].blank?
+          @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+          @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+          @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
         end
 
   end
