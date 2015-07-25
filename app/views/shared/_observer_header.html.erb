@@ -41,7 +41,7 @@
         <% end %>
       </ul>
     </div>
-    <%unless @cis.respond_to?('each')%>
+    <% if @cis_report.present? %>
       <div >
         <h3>
           <%= link_to evaluations_path do %>
