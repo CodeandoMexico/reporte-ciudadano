@@ -1,5 +1,4 @@
 class EvaluationsController < ApplicationController
-  layout 'observers'
   before_action :authenticate_user!
   before_action :authorize_observer
 
