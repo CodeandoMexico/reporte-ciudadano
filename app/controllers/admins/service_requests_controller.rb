@@ -1,6 +1,7 @@
 class Admins::ServiceRequestsController < Admins::AdminController
   before_action :authorize_admin, only: :edit
   helper_method :service_cis_options, :service_cis_label
+  before_action :set_title
 
   def index
     @search = service_requests_for_search.search(params[:q])
@@ -17,6 +18,10 @@ class Admins::ServiceRequestsController < Admins::AdminController
     if @service_request.save
       notify_public_servants
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.created') }
+      #enviar correo al servidor publico
+      unless @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0 || Admin.find(current_admin.id).is_public_servant
+        AdminMailer.send_public_servant_update_request(admin: Admin.find(@service_request.public_servant_id)).deliver
+      end
     else
       flash[:notice] = t('flash.service_requests.try_again')
       render :new
@@ -27,6 +32,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
     @service_request = ServiceRequest.find params[:id]
     @messages = @service_request.service.messages.with_status(@service_request.status_id)
     @comments = @service_request.comments.order("comments.created_at ASC")
+    @admins_services = Service.where(id: @service_request.service.id).last.admins
   end
 
   def update
@@ -34,6 +40,10 @@ class Admins::ServiceRequestsController < Admins::AdminController
     if @service_request.update_attributes(service_request_params)
       @service_request.comments.create content: params[:message], commentable: current_admin if params[:message].present?
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
+        #enviar correo al servidor publico
+      unless @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0 || Admin.find(current_admin.id).is_public_servant
+        AdminMailer.send_public_servant_update_request(admin: Admin.find(@service_request.public_servant_id)).deliver
+      end
     else
      render :edit
     end
@@ -46,6 +56,10 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   private
+  def set_title
+    @title_page = I18n.t('admins.service_requests.index.header')
+  end
+
   def service_cis_label(cis_id)
     Services.service_cis_label(cis_id)
   end
@@ -75,7 +89,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis).tap do |whitelisted|
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
     end
   end

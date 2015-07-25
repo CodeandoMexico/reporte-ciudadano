@@ -30,7 +30,8 @@ c = Service.create(
   cis: ['1', '2'],
   administrative_unit: "Unidad administrativa 1",
   service_type: :step,
-  admins: [public_servant_1]
+  admins: [public_servant_1],
+  status: 'activo'
 )
 r = {
   service_id: c.id,
@@ -46,7 +47,8 @@ c = Service.create(
   cis: ['3'],
   administrative_unit: "Unidad administrativa 2",
   service_type: :service,
-  admins: [public_servant_2]
+  admins: [public_servant_2],
+  status: 'activo'
 )
 
 r = {
@@ -63,7 +65,8 @@ c = Service.create(
   cis: ['2', '3'],
   administrative_unit: "Unidad administrativa 3",
   service_type: :support_program,
-  admins: [public_servant_3]
+  admins: [public_servant_3],
+  status: 'activo'
 )
 
 r = {

@@ -2,8 +2,8 @@
   = content_tag :div, class: "panel #{kpi[:panel]}" do
     .panel-heading
       .row
-        .col-xs-12.text-right
-          = content_tag :div, kpi[:value], class: 'h3 text-center'
-          %br
-          = content_tag :div, kpi[:message], class: 'reports-stats-name text-center'
+        .col-xs-4
+          = content_tag :div, kpi[:value], class: 'text-center number-kpi'
+        .col-xs-6.padding-top-kpi
+          = content_tag :div, kpi[:message], class: 'text-center text-kpi'
               

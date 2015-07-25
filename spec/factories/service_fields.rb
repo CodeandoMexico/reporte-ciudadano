@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :service_field do
-    name { Faker::Lorem.word }
-
+    name { FFaker::Lorem.word }
   end
 end

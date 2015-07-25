@@ -95,12 +95,10 @@ feature 'Managing service requests' do
       visit new_service_request_path
       within '#new_service_request' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
-        fill_in 'service_request[address]', with: '123 Governor Dr, San Diego, CA 92122'
         fill_in 'service_request[description]', with: 'No water'
         select service.name, from: 'service_request[service_id]'
         click_button  'Guardar'
       end
-      expect(page).to have_content '123 Governor Dr, San Diego, CA 92122'
       expect_service_request_email_sent_to public_servant.email
     end
 

@@ -34,6 +34,10 @@ module Services
     service.cis.include? cis_id.to_s
   end
 
+    def self.generate_homoclave_for(service)
+    "#{type_of_service(service.service_type.to_s)}#{service.dependency.to_s[0]}#{service.administrative_unit.to_s[0] }#{time.strftime("%Y%m%d")}"
+    end
+
   private
 
   def self.load_values(object)
@@ -42,5 +46,16 @@ module Services
 
   def self.path_to(object)
     File.expand_path("#{object}.yml", File.dirname(__FILE__))
+  end
+  
+  def type_of_service(type)
+    if type == "support_program"
+      return 'PA'
+    elsif type == "service"
+      return 'T'
+    elsif type == "step"
+      return 'S'
+    end
+    return 'F'
   end
 end

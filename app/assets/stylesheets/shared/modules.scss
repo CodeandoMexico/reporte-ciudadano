@@ -1,6 +1,8 @@
-$grey-kpi: #e6e6e6;
+$grey-kpi: #f2f2f2;
 $grey-navbar: #f7f7f7;
 $blue-line: #005195;
+$text-grey-kpi: #333333;
+$kpi-border: #cccccc;
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
@@ -110,14 +112,13 @@ $blue-line: #005195;
   height: 20em;;
   margin-left: 10%; 
 }
-
 /***************************************************
 **  KPIS
 ***************************************************/
 .panel-gray {
-     background-color: $grey-kpi !important;
-     padding: 15px 15px 15px 15px;
+     background-color: $grey-kpi, sans-serif;
      margin: 15px 15px 25px;
+     border: 1px solid $kpi-border;
 }
 .panel-gray .panel-heading {
   border-color: $grey-kpi;
@@ -127,6 +128,20 @@ $blue-line: #005195;
 .panel-gray a {
   color: $grey-kpi;
 }
+.number-kpi{
+  color: $text-grey-kpi;
+  font-size: 50px;
+  font-family:  "Helvetica Neue Bold", sans-serif;
+}
+.text-kpi{
+  color: $text-grey-kpi;
+  font-size: 14px;
+  font-family:  "Helvetica Neue Light", sans-serif;
+}
+.padding-top-kpi{
+  padding-top: 10px;
+}
+
 /***************************************************
 **  Footer
 ***************************************************/
@@ -140,6 +155,10 @@ $blue-line: #005195;
 ***************************************************/
 .padding-top{
   padding-top: 2em;
+}
+
+.padding-top-observer{
+  padding-top: 1em;
 }
 
 .margin_left{
@@ -164,11 +183,34 @@ $blue-line: #005195;
 .font-titles{
   color: #133150;
   font-size: 23px;
-  font-family:  "Helvetica Neue" !important;
+  font-family:  "Helvetica Neue", sans-serif;
+}
+
+.font-titles-bold{
+  color: $blue-line;
+  font-size: 35px;
+  font-family:  " Helvetica Neue Bold", sans-serif;
 }
 .font-title-h1{
   color: $blue-line !important;
-  font-family:  "Helvetica Neue Light" !important;
+  font-family:  "Helvetica Neue Light", sans-serif;
+}
+.font-title-table{
+  color: $blue-line !important;
+}
+.font-title-section{
+  color: $blue-line !important;
+  font-size: 30px;
+  font-family:  "Helvetica Neue Light", sans-serif;
+}
+.font-button{
+  color: #ffffff !important;
+  font-size: 19px  !important;
+  font-family:  "Helvetica Neue Regular", sans-serif;
+}
+.control-label-left {
+  text-align: left;
+  padding-top: 5px;
 }
 /***************************************************
 **  NAVBAR
@@ -181,7 +223,7 @@ $blue-line: #005195;
 .navbar-default-admin {
   background-color: #fff;
   border-color: #e7e7e7;
-  font-family:  "Helvetica Neue Light" !important;
+  font-family:  "Helvetica Neue Light", sans-serif;
   border-bottom: 4px solid $blue-line;
   border-top: 4px solid $blue-line;
 }
@@ -194,6 +236,13 @@ ul
   margin-bottom: 20px;
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.title-observer{
+  margin-top: 54px;
+  padding-top: 15px;
+  background-color: #f8f8f8;
+  width: 80% !important;
 }
 /***************************************************
 **  HOME REPORT STATS
@@ -229,6 +278,8 @@ ul
   .blk-summary-title {
     border-top: 1px solid #DDDDDD;
     padding-top: 30px;
+     color: $blue-line !important;
+    font-family: "Helvetica Neue Light", sans-serif;
   }
 }
 

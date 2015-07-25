@@ -5,7 +5,7 @@ FactoryGirl.define do
     service
     status
     association :requester, factory: :user
-    address     { Faker::Lorem.words(3) }
-    description { Faker::Lorem.paragraph(2) }
+    address     { FFaker::Lorem.words(3) }
+    description { FFaker::Lorem.paragraph(2) }
   end
 end

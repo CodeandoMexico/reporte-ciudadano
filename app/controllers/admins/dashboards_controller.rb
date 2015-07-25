@@ -15,13 +15,16 @@ class Admins::DashboardsController < Admins::AdminController
     @chart_data = chart_data.to_json
     @status_data = Status.select(:name, :id).to_json
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
+    @title_page = I18n.t('.admins.dashboards.index.header')
   end
 
   def services
-    @services = Admins.services_for(current_admin)
-    unless params[:q].nil? || params[:q][:dependency].empty?
-      @services = @services.where(dependency: params[:q][:dependency] )
+    if current_admin.is_super_admin?
+      @services = Service.where(status: 'activo')
+    else
+      @services = current_admin.managed_services
     end
+     @title_page = I18n.t('.admins.dashboards.services.managed_services')
   end
 
   private

@@ -22,6 +22,10 @@ class Question < ActiveRecord::Base
     answers.reject(&:empty?)
   end
 
+  def survey_answer_by_user(user_id)
+    survey_answers.where(user_id: user_id).first
+  end
+
   private
 
   def answer_type_rating?

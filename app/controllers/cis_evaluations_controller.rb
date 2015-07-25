@@ -1,15 +1,16 @@
 class CisEvaluationsController < ApplicationController
   layout 'observers'
   helper_method :criterions
+  before_action :authenticate_user!
   before_action :authorize_observer
 
   def index
-    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).for_cis(cis[:id])
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).for_cis(cis[:id]).active
     @cis = Evaluations.cis_with_results(available_cis, services_records)
   end
 
   def show
-    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).for_cis(cis[:id])
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).for_cis(cis[:id]).active
 
     @cis = Evaluations.cis_evaluation_for(cis, services_records)
     @cis_report = Reports.current_cis_report_for(

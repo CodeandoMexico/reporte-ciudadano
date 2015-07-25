@@ -24,6 +24,16 @@ FactoryGirl.define do
       end
     end
 
+    factory :survey_with_multiple_questions do
+      after(:create) do |survey, evaluator|
+        create :question, :binary, value: 50.0, service_survey: survey
+        create :question, :rating, value: 50.0, service_survey: survey
+        create :question, :list, service_survey: survey
+        create :question, :open, service_survey: survey
+        survey.reload
+      end
+    end
+
     #Las pruebas de las encuestas tienen como base 10 preguntas
     #pues los valores de las respuestas
     # están ajustados a 10 preguntas.
