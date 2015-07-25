@@ -12,6 +12,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def after_sign_in_path_for(resource)
+    return evaluations_path if current_user.is_observer?
+    root_path
+  end
+
   def destroy
     session[:user_id] = nil
     redirect_to root_path, flash: { notice: 'Has salido exitosamente del sistema' }
