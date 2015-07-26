@@ -19,6 +19,11 @@ class Service < ActiveRecord::Base
 
   serialize :cis, Array
 
+  scope :with_open_surveys, ->{
+    joins(:service_surveys)
+      .where('service_surveys.open = ?', true)
+  }
+
   def service_fields_names
     self.service_fields.map(&:name).join(', ')
   end
