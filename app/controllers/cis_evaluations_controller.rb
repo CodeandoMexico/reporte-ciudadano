@@ -3,6 +3,8 @@ class CisEvaluationsController < ApplicationController
   helper_method :criterions
   before_action :authenticate_user!
   before_action :authorize_observer
+    before_action :set_search
+    helper_method :service_cis_options, :service_name_options
 
   def index
     services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
@@ -10,6 +12,8 @@ class CisEvaluationsController < ApplicationController
   end
 
   def show
+    load_services
+
     services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
     @cis = Evaluations.cis_evaluation_for(cis, services_records)
     @cis_report = Reports.current_cis_report_for(
@@ -17,9 +21,18 @@ class CisEvaluationsController < ApplicationController
       cis_report_store: CisReport,
       survey_reports: @cis.services.map(&:last_survey_reports).flatten,
       translator: I18n.method(:t))
-    @services = sorted_services(@cis.services)
-    @next_possible_direction = toggle_sort_direction
-    @sorted_by = params[:sort_by]
+      @services = sorted_services(@cis.services)
+      @next_possible_direction = toggle_sort_direction
+      @sorted_by = params[:sort_by]
+  end
+
+  def set_search
+    @search = Service.search(params[:q])
+  end
+
+  
+  def service_name_options
+   @services
   end
 
   private
@@ -59,5 +72,13 @@ class CisEvaluationsController < ApplicationController
 
   def cis
     available_cis.select { |cis| cis[:id].to_s ==  params[:id] }.first
+  end
+
+    def load_services
+        unless params[:q].nil? 
+          @id_name  =   params[:q][:name] unless params[:q][:name].blank?
+          puts '********'
+          puts @id_name
+        end
   end
 end

@@ -147,6 +147,20 @@
   <div class="col-md-10 col-md-offset-1">
     <h4><%= t(".by_services") %></h4>
   </div>
+</div>
+  <%= search_form_for @search, url: cis_evaluation_path(@cis.id), method: :get, class: "filters form-inline" do |f|%>
+  <div class="form-group col-md-6">
+    <%= f.select :name, service_name_options.collect{|p| p.name }, { prompt: t('form.labels.name') }, class: 'chosen-select'%>
+  </div>
+  <div class="form-group col-md-12">
+    <%= button_tag class: "submit btn btn-default" do %>
+     <div class="i glyphicon glyphicon-search">
+      <%= t('search')%>
+    </div>
+    <%end%>
+  </div>
+  <%end%>
+
   <div class="col-md-10 col-md-offset-1 table-responsive">
     <% if @cis.services.any? %>
       <table class="table table-striped">
@@ -166,6 +180,7 @@
         </thead>
         <tbody>
           <% @services.each do |service| %>
+          <%if  @id_name.blank? || (@id_name.include? service.name) %>
             <tr>
               <td><%= service.name %></td>
               <% criterions.each do |criterion| %>
@@ -188,6 +203,7 @@
                 <% end %>
               </td>
             </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
@@ -200,3 +216,7 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>
