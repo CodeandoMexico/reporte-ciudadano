@@ -22,7 +22,8 @@ class UserMailer < ActionMailer::Base
 
   def notify_user_new_surveys(mail, liga)
     @liga = liga
-    mail(subject: I18n.t('mailer.subject.new_survey'), to: mail)
+    @mail = mail
+    mail(subject: I18n.t('mailer.subject.new_survey'), to: @mail)
   end
 end
 
