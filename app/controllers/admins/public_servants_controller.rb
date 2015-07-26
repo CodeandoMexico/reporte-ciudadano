@@ -1,10 +1,11 @@
 class Admins::PublicServantsController < ApplicationController
   helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?
+  before_action :set_title
   layout 'admins'
 
   def index
-    @public_servants = Admin.public_servants_by_dependency(current_admin.dependency)
-    @disabled_public_servants = Admin.disabled_public_servants_by_dependency(current_admin.dependency)
+    @public_servants = Admins.public_servants_for(current_admin)
+    @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
   end
 
   def new
@@ -12,7 +13,7 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def create
-    @admin = Admin.new(public_servant_params)
+    @admin = Admin.new(public_servant_params.merge(password: password, password_confirmation: password))
     if @admin.save
       AdminMailer.send_public_servant_account(admin: @admin).deliver
       redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
@@ -48,17 +49,26 @@ class Admins::PublicServantsController < ApplicationController
 
   def assign_services
     @public_servant = Admin.find(params[:id])
-    @available_services = current_admin.managed_services
+    @available_services = Admins.services_for(current_admin)
   end
 
   private
 
+  def set_title
+    @title_page = I18n.t('admins.public_servants.index.public_servants')
+  end
+
   def public_servant_params
-    services = Service.where(id: params[:admin][:services_ids])
+    if params[:admin].present?
+      services = Service.where(id: params[:admin][:services_ids])
+    else
+      services = []
+    end
+
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(services: services, password: password, password_confirmation: password, is_public_servant: true)
+      .merge(services: services, is_public_servant: true)
   end
 
   def password

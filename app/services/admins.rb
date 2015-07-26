@@ -13,6 +13,38 @@ module Admins
     end
   end
 
+  def self.public_servants_for(admin)
+    if admin.is_super_admin?
+      Admin.public_servants_sorted_by_name
+    elsif admin.is_service_admin?
+      Admin.public_servants_by_dependency(admin.dependency)
+    end
+  end
+
+  def self.disabled_public_servants_for(admin)
+    if admin.is_super_admin?
+      Admin.disabled_public_servants_sorted_by_name
+    elsif admin.is_service_admin?
+      Admin.disabled_public_servants_by_dependency(admin.dependency)
+    end
+  end
+
+  def self.services_for(admin)
+    if admin.is_super_admin?
+      Service.all
+    elsif admin.is_service_admin?
+      admin.managed_services
+    end
+  end
+
+  def self.surveys_for(admin)
+    if admin.is_super_admin?
+      ServiceSurvey.all
+    elsif admin.is_service_admin?
+      admin.service_surveys
+    end
+  end
+
   class Permissions
     def initialize(admin)
       @admin = admin

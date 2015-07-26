@@ -1,0 +1,54 @@
+.pt-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+}
+
+.pt-page {
+  visibility: hidden;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+
+  &.pt-page-current {
+    visibility: visible !important;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav > li {
+    float: left;
+  }
+  .navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #333 !important;
+  font-size: 14px !important;
+  }
+}
+
+/***************************************************
+**  CONTEINER para navbar admin
+***************************************************/
+.containerer {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.containerer:before, .containerer:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.containerer:after {
+  clear: both;
+}
+

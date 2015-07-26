@@ -1,7 +1,52 @@
 .page-header.l-page-header-no-margin
-  %h1= t('.header')
-
+  .font-title-section= t('.header')
+  %p= t('.rules')
 .row
   .col-md-12
     = form_for @service_request, html: {class: "form-horizontal", role: 'form'} do |f|
-      = render 'form', f: f
+      .form-group
+        = f.label :service_id, t('form.labels.service'), class: 'col-md-2 control-label font-title-table'
+        .col-md-10
+          = f.select :service_id, Service.where(status: 'activo').collect {|p| [ p.name, p.id ] }, { prompt: t('service_requests.form.prompt_service') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"changeLine()"}
+          = errors_on_resource_for_field(@service_request, :service_id)
+
+      %div#service_fields_container
+        = render @service_request.service.service_fields if @service_request.service?
+
+      .form-group
+        = f.label :cis, t('form.labels.cis'), class: 'col-md-2 control-label font-title-table'
+        .col-md-10
+          = f.select :cis, service_cis_options.collect {|p| [Services.service_cis_options[p[:id]-1][:label], p[:id]] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()"}
+          = errors_on_resource_for_field(@service_request, :cis)
+
+      .form-group.request_service_id.hide
+        = f.label :public_servant_id, t('form.labels.who'), class: 'col-md-2 control-label font-title-table'
+        .col-md-10
+          = f.select :public_servant_id, @public_servant_admins.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' ,:onchange=>"changeWho()"}
+
+      .form-group.request_service_description.hide
+        = f.label :public_servant_description, t('form.labels.description_public_servant'), class: 'col-md-2 control-label font-title-table'
+        .col-md-10
+          = f.text_field :public_servant_description, class: 'form-control', rows: '5', placeholder: t('form.placeholders.description_public_servant_placeholder')
+          = errors_on_resource_for_field(@service_request, :public_servant_description)
+          
+      .form-group
+        = f.label :description, t('form.labels.description'), class: 'col-md-2 control-label font-title-table'
+        .col-md-10
+          = f.text_area :description, class: 'form-control', rows: '5', placeholder: t('service_requests.form.description_placeholder'), :onchange=>"validate_requirements()"
+          = errors_on_resource_for_field(@service_request, :description)
+
+      .form-group
+        = f.label :media, t('form.labels.image'), class: 'col-md-2 control-label font-title-table'
+        .col-md-10
+          = f.file_field :media, class: 'js-image-preview'
+          .image_preview
+
+      .form-group
+        .col-md-offset-2.col-md-10
+          = f.submit t('save'), class: "btn btn-primary", id: "save_form"
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+  

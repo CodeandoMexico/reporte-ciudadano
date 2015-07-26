@@ -1,5 +1,7 @@
 class Admins::DashboardsController < Admins::AdminController
   before_action :authorize_admin, only: :index
+  before_action :set_search
+  helper_method :dependency_options
 
   def design
     @logos = Logo.by_position
@@ -13,14 +15,16 @@ class Admins::DashboardsController < Admins::AdminController
     @chart_data = chart_data.to_json
     @status_data = Status.select(:name, :id).to_json
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
+    @title_page = I18n.t('.admins.dashboards.index.header')
   end
 
   def services
     if current_admin.is_super_admin?
-      @services = Service.all
+      @services = Service.where(status: 'activo')
     else
       @services = current_admin.managed_services
     end
+     @title_page = I18n.t('.admins.dashboards.services.managed_services')
   end
 
   private
@@ -33,6 +37,14 @@ class Admins::DashboardsController < Admins::AdminController
 
   def admin_requests
     @requests ||= Admins.service_requests_for(current_admin, params)
+  end
+
+  def set_search
+    @search = Service.search(params[:q])
+  end
+
+  def dependency_options
+    Services.service_dependency_options
   end
 
   def chart_data

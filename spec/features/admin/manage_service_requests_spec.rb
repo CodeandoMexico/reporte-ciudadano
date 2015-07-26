@@ -9,7 +9,7 @@ feature 'As an admin I can manage service requests' do
     sign_in_admin admin
   end
 
-  scenario 'I can see a the service requests index list' do
+  scenario 'I can see the service requests index list' do
     service_requests = create_list(:service_request, 3)
     within '.sidebar-nav' do
       click_link t('admins.shared.sidebar.requests')
@@ -29,28 +29,13 @@ feature 'As an admin I can manage service requests' do
     expect(page).to have_content service_request.status
   end
 
-  scenario 'I can create a service request' do
-    first_service = create :service, name: 'my srv'
-    public_servant = create :admin, :public_servant, services: [first_service]
-    visit new_admins_service_request_path
-    select first_service.name, from: 'service_request[service_id]'
-
-    fill_in 'service_request[address]', with: 'An address #111'
-    set_location_as(lat: "12.12", lng: "12.13")
-    fill_in 'service_request[description]', with: 'Request description'
-    click_button t('save')
-
-    expect_service_request_email_sent_to public_servant.email
-    expect(page).to have_content t('flash.service_requests.created')
-  end
-
   scenario 'I can see the service extra fields when creating a request', js: true do
     services = create_list(:service, 2)
     first_service = services.first
 
     given_service_with_extra_fields(first_service)
     visit new_admins_service_request_path
-
+    #save_and_open_page
     select first_service.name, from: 'service_request[service_id]'
 
     expect(page).to have_content "Field one"
@@ -126,11 +111,6 @@ feature 'As an admin I can manage service requests' do
     visit edit_admins_service_request_path(service_request)
     page.find("a[href='#{comment_path(comment)}']").click
     expect(page).not_to have_content comment.content
-  end
-
-  def set_location_as(lat:, lng:)
-    find("#lat").set(lat)
-    find("#lng").set(lng)
   end
 
   def given_service_with_extra_fields(service)

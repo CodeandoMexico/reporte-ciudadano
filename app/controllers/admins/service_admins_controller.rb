@@ -1,6 +1,7 @@
 class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
   before_action :set_services, only: [:new, :create]
+  before_action :set_title
   helper_method :dependency_options, :administrative_unit_options
   layout 'admins'
 
@@ -9,7 +10,7 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def create
-    @admin = Admin.new(service_admin_params)
+    @admin = Admin.new(service_admin_params.merge(password: password, password_confirmation: password))
     if @admin.save
       AdminMailer.send_service_admin_account(admin: @admin).deliver
       redirect_to admins_service_admins_path, notice: t('flash.service_admin.created')
@@ -38,6 +39,9 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   private
+  def set_title
+    @title_page = I18n.t('admins.service_admins.index.service_admins')
+  end
 
   def verify_super_admin_access
     @permissions = Admins.permissions_for_admin(current_admin)
@@ -51,7 +55,7 @@ class Admins::ServiceAdminsController < ApplicationController
     params
       .require(:admin)
       .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
-      .merge(managed_services: services, password: password, password_confirmation: password, is_service_admin: true)
+      .merge(managed_services: services, is_service_admin: true)
   end
 
   def password
