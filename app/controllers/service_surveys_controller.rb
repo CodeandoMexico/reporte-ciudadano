@@ -1,6 +1,6 @@
 class ServiceSurveysController < ApplicationController
 
   def index
-    @service_surveys = ServiceSurvey.open.page(params[:page]).per(20)
+    @services = Service.with_open_surveys.uniq(:id).page(params[:page]).per(20)
   end
 end
