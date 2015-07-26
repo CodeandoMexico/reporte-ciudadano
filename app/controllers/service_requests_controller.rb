@@ -21,7 +21,7 @@ class ServiceRequestsController < ApplicationController
   def create
     @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
-      notify_public_servants
+      notify_public_servants(@service_request)
       redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
       flash[:notice] = I18n.t("flash.service_requests.error")
@@ -75,11 +75,8 @@ class ServiceRequestsController < ApplicationController
     Services.service_cis_label(cis_id)
   end
 
-  def notify_public_servants
-    public_servants = @service_request.public_servants
-    public_servants.each do |public_servant|
-      AdminMailer.notify_new_request(admin: public_servant, service_request: @service_request).deliver
-    end
+  def notify_public_servants(public_servant)
+      AdminMailer.notify_new_request(admin: Admin.find(public_servant.public_servant_id), service_request: @service_request).deliver
   end
 
   def service_request_params
