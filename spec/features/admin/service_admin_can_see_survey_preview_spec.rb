@@ -30,7 +30,7 @@ feature 'As a service admin I can see a survey preview' do
       expect(page).to have_content question.text
     end
 
-    expect(page).to have_content "Encuesta para evaluar los servicios: #{service.name}"
+    expect(page).to have_content "Encuesta para evaluar los trámites: #{service.name}"
     expect(page).to have_content "Sí"
     expect(page).to have_content "No"
     expect(page).to have_content "Muy bueno"

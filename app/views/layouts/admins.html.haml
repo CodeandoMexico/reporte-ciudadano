@@ -6,7 +6,6 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
     = javascript_include_tag "application"
-    %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}")
   %body
     #wrapper{class: ("is-logged-in" if admin_signed_in?) }
       - if admin_signed_in? && current_admin.is_service_admin?
@@ -20,6 +19,8 @@
       #page-content-wrapper
         .container
           - flash.each do |name, msg|
-            = content_tag :div, :class => "alert #{flash_class(name)}" do
-              = msg
-          = yield
+            .padding-top
+              = content_tag :div, :class => "alert #{flash_class(name)}" do
+                = msg
+          .padding-top
+            = yield

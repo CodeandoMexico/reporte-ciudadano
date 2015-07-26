@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :service_survey_reports, only: [:new, :create, :show, :index]
     resources :services do
+      collection do
+      get 'disable_service'
+      get 'enable_service'
+    end
       resources :messages, only: :index
     end
     resources :statuses, except: [:destroy]
@@ -88,8 +92,9 @@ Rails.application.routes.draw do
   end
   resources :service_surveys, only: [:index, :show]
   resources :answers, only: [:new, :index, :create]
-  resources :evaluations, only:  [:index]
-  resources :cis_evaluations, only:  [:index, :show]
+  resources :evaluations, only: [:index]
+  resources :cis_evaluations, only: [:index, :show]
+  resources :service_evaluations, only: :show
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do

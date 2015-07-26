@@ -1,7 +1,6 @@
 <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
    <li class="sidebar-brand">
-      <%#= link_to i18n_admin_sidebar('.dashboard'), admins_dashboards_path %>
     </li> 
     <li>
       <%= link_to i18n_admin_sidebar('.summary'), admins_dashboards_path %>
@@ -25,30 +24,8 @@
       <%= link_to i18n_admin_sidebar('.public_servants'), admins_public_servants_path %>
     </li>
     <li>
-      <%= link_to i18n_admin_sidebar('.design'), design_admins_dashboards_path %>
-    </li>
-    <li>
       <%= link_to i18n_admin_sidebar('.api'), admins_api_keys_path %>
     </li>
-    
-    <!-- 
-    <hr>
-    <li class="admin-email">
-      <i class="glyphicon glyphicon-user"></i>
-      <%#= current_admin.email %>
-    </li>
-    <li>
-      <%#= link_to edit_admins_registration_path(current_admin) do %>
-        <i class="glyphicon glyphicon-cog"></i>
-        <%#= i18n_admin_sidebar('.edit_profile') %>
-      <%# end %>
-    </li>
-    <li>
-      <%#= link_to destroy_admin_session_path, method: :delete do %>
-        <i class="glyphicon glyphicon-off"></i>
-        <%= i18n_admin_sidebar('sign_out') %>
-      <%# end %>
-    </li> -->
   </ul>
 </div>
 

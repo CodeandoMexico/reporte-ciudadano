@@ -1,5 +1,5 @@
 .content-header
-  %h1
+  %h2
     = "##{@service_request.id}"
     = @service_request.service.name
 
@@ -13,6 +13,7 @@
             = t('.cis', cis: service_cis_label(@service_request.cis))
           %p
             = t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
+            
 
         .stream
           .activity.start
@@ -65,12 +66,23 @@
           %h4= t('.update_service_request')
           = form_for [:admins, @service_request] do |f|
             = f.object.errors.messages unless f.object.errors.empty?
-
             .form-group
-              = f.label :service_id, t('form.labels.service')
+              = f.label :public_servant_id, t('form.labels.admin.who')
+              - if @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0
+                = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' }
+                = t('form.labels.admin.description')
+                = @service_request.public_servant_description
+              -else
+                -unless current_admin.is_public_servant?
+                  = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
+                -else
+                  = Admin.find(@service_request.public_servant_id).name
+              
+            .form-group
+              = f.label :service_id, t('form.labels.admin.service')
               = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
             .form-group
-              = f.label :status_id, t('form.labels.status')
+              = f.label :status_id, t('form.labels.admin.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm', data: {service_id: @service_request.service_id} }
             .form-group#service_request_message
               - if @messages

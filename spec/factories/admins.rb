@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :admin do
-    email { Faker::Internet.free_email }
+    email { FFaker::Internet.free_email }
     password "iamthewalrus"
     password_confirmation "iamthewalrus"
-    name { Faker::NameMX.full_name }
+    name { FFaker::NameMX.full_name }
     authentication_token { SecureRandom.hex(64) }
     is_service_admin false
     is_public_servant false

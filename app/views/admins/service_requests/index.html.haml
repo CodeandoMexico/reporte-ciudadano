@@ -2,20 +2,13 @@
   %h2= t('.header')
 
 .page-content.inset
-
-  .btn-group.admin-actions
-    = link_to new_admins_service_request_path, class: 'btn btn-primary' do
-      %i.glyphicon.glyphicon-plus-sign
-      = t('.new_service_request')
-
-
   = search_form_for @search, url: admins_service_requests_path, method: :get, class: "filters form-inline" do |f|
     .form-group
       = f.text_field :date_gteq, placeholder: t('search_form.from_date'), class: 'datepicker form-control col-lg-6'
     .form-group.form-group-separator
       = f.text_field :date_lteq, placeholder: t('search_form.to_date'), class: 'datepicker form-control col-lg-6'
     .form-group.form-group-separator
-      = f.collection_select :service_id_eq, Service.all, :id, :name, { include_blank: t('form.labels.service') }, class: 'form-control'
+      = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: t('form.labels.service') }, class: 'form-control'
     .form-group.form-group-separator
       = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: t('form.labels.status') }, class: 'form-control'
     .form-group
@@ -50,13 +43,14 @@
             = t('crud.delete')
       %tbody
         - @service_requests.each do |service_request|
-          %tr
-            %td= link_to service_request.id, edit_admins_service_request_path(service_request)
-            %td= l service_request.created_at, format: :short
-            %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
-            %td= truncate service_request.address, length: 45
-            %td= service_request.status
-            %td= service_request.votes_for
-            %td= link_to t('crud.delete'), admins_service_request_path(service_request), method: :delete
+          -if current_admin.id ==  service_request.public_servant_id || !Admin.find(current_admin.id).is_public_servant
+            %tr
+              %td= link_to service_request.id, edit_admins_service_request_path(service_request)
+              %td= l service_request.created_at, format: :short
+              %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
+              %td= truncate service_request.address, length: 45
+              %td= service_request.status
+              %td= service_request.votes_for
+              %td= link_to t('crud.delete'), admins_service_request_path(service_request), method: :delete
 
   = paginate @service_requests

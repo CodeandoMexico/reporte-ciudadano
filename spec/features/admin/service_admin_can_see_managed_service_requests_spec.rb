@@ -8,7 +8,7 @@ feature 'As a service admin I can see managed service requests' do
     sign_in_admin admin
   end
 
-  scenario 'I can see the dashboard with every service request' do
+  scenario 'I cant see the dashboard with every service request' do
     managed_services = create_list(:service, 2, service_admin_id: admin.id)
     given_service_has_info(managed_services.first, name: "Primer servicio", requests: 2)
     given_service_has_info(managed_services.last, name: "Segundo servicio", requests: 3)
@@ -21,7 +21,7 @@ feature 'As a service admin I can see managed service requests' do
     end
 
     expect(page).to have_content "Primer servicio"
-    expect(services_request_count).to eq 2
+    expect(services_request_count).to eq 0
 
     within "#sidebar-wrapper" do
       click_link "Quejas o sugerencias"
@@ -29,7 +29,7 @@ feature 'As a service admin I can see managed service requests' do
     end
 
     expect(page).to have_content "Segundo servicio"
-    expect(services_request_count).to eq 3
+    expect(services_request_count).to eq 0
   end
 
   scenario 'Unless I have no services assigned' do
@@ -39,7 +39,7 @@ feature 'As a service admin I can see managed service requests' do
       click_link "Quejas o sugerencias"
     end
 
-    expect(page).to have_content "No tiene servicios asignados"
+    expect(page).to have_content "No tiene trámites asignados"
   end
 
   def given_service_has_info(service, info)

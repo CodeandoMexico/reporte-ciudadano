@@ -28,16 +28,18 @@ feature 'As a service admin I can edit a survey' do
     expect(questions_count).to eq 1
     click_link "Agregar pregunta"
 
-    within all(".nested-fields")[0] do
-      fill_in "Valor %", with: 20.0
-    end
-
     within all(".nested-fields")[1] do
       select "Desempeño", from: "Criterio a evaluar"
       fill_in "Texto", with: "¿ Qué tan bueno te pareció el servicio ?"
       select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
       choose "Muy bueno - Muy malo"
       fill_in "Valor %", with: 80
+    end
+
+
+    within first(".nested-fields") do
+      select "Seleccionar de 5 posibles en un rango", from: "Tipo de respuesta"
+      fill_in "Valor %", with: 20
     end
 
     click_button "Guardar"

@@ -1,5 +1,6 @@
 class Admins::PublicServantsController < ApplicationController
   helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?
+  before_action :set_title
   layout 'admins'
 
   def index
@@ -52,6 +53,10 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   private
+
+  def set_title
+    @title_page = I18n.t('admins.public_servants.index.public_servants')
+  end
 
   def public_servant_params
     if params[:admin].present?

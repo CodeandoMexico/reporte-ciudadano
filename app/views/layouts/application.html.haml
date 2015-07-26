@@ -20,14 +20,17 @@
       }(document, 'script', 'facebook-jssdk'));
 
     #wrap
-
-      = render "shared/header"
+      - if current_user && current_user.is_observer?
+        = render "shared/observer_header"
+      - else
+        = render "shared/header"
 
       .container
         - flash.each do |name, msg|
-          = content_tag :div, :class => "alert #{flash_class(name)}" do
-            = msg
-        .padding-top    
+          .padding-top
+            = content_tag :div, :class => "alert #{flash_class(name)}" do
+              = msg
+        .padding-top
           = yield
 
     = render "shared/footer"

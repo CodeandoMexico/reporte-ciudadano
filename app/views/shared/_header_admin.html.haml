@@ -28,4 +28,5 @@
       .navbar-collapse.collapse
         %ul.nav.navbar-nav.navbar-right.text-right.padding-top
           - if current_admin
-            = link_to i18n_admin_sidebar('.dashboard'), admins_dashboards_path, :class=>'font-titles'
+            .font-titles
+              = @title_page
