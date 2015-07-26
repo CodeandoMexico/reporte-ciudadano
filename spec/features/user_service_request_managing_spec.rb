@@ -6,15 +6,6 @@ feature 'Managing service requests' do
   let(:user) { create(:user) }
   let(:service_request) { create(:service_request, requester: user) }
 
-  context 'when not logged in user' do
-
-    scenario 'get redirected to sign in page after trying to go to create a new service request' do
-      visit new_service_request_path
-      expect(current_url).to eq new_user_session_url
-    end
-
-  end
-
   context 'when logged in user' do
 
     background do

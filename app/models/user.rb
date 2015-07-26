@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :survey_answers
 
+  validates :name, presence: true
+
   acts_as_voter
 
   def self.find_or_build_with_omniauth(omniauth)
