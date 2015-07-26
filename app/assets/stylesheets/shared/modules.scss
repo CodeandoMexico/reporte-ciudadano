@@ -569,3 +569,12 @@ span.address {
 #bounding-box-map {
   height: 320px;
 }
+
+/**************
+** Tables
+***************/
+.no-border-rows{
+  tbody > tr > td{
+    border: none;
+  }
+}
