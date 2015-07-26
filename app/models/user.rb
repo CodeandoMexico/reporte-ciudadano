@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :survey_answers
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   acts_as_voter
 
