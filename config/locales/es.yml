@@ -228,7 +228,7 @@ es:
         title: 'Nuevo servicio'
       show:
         columns:
-          name: 'Tipo'
+          name: 'Nombre'
           extras: 'Campos adicionales'
         title: 'Trámites'
 
