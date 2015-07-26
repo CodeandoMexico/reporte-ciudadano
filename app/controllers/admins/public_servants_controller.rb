@@ -54,7 +54,7 @@ class Admins::PublicServantsController < ApplicationController
   end
 
    def set_search
-    @search = Service.search(params[:q])
+    @search = Admin.search(params[:q])
   end
 
   private
@@ -119,15 +119,17 @@ class Admins::PublicServantsController < ApplicationController
   def load_services
       @public_servants = Admins.public_servants_for(current_admin)
       @disabled_public_servants = Admins.disabled_public_servants_for(current_admin)
-
+      @public_servants_record_number = @public_servants.pluck(:record_number)
         unless params[:q].nil? 
           @public_servants =  @public_servants.where(name:  params[:q][:name] ) unless params[:q][:name].blank?
           @public_servants =  @public_servants.where(dependency: params[:q][:dependency]) unless params[:q][:dependency].blank?
           @public_servants =   @public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+          @public_servants =  @public_servants.where(record_number:  params[:q][:record_number] ) unless params[:q][:record_number].blank?
 
           @disabled_public_servants =  @disabled_public_servants.where(name:   params[:q][:name] ) unless params[:q][:name].blank?
           @disabled_public_servants =  @disabled_public_servants.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
           @disabled_public_servants =   @disabled_public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+          @disabled_public_servants =  @disabled_public_servants.where(record_number:  params[:q][:record_number] ) unless params[:q][:record_number].blank?
         end
 
   end
