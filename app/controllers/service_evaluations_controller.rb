@@ -7,7 +7,12 @@ class ServiceEvaluationsController < ApplicationController
     @service = Service.includes(:service_surveys, :questions, :answers).find(params[:id])
     requested_survey = @service.service_surveys.find_by_id(params[:service_survey_id])
     @service_survey = requested_survey || @service.service_surveys.last
-    @respondents = Kaminari.paginate_array(@service_survey.respondents).page(params[:page]).per(20)
+
+    if @service_survey.present?
+      @respondents = Kaminari.paginate_array(@service_survey.respondents).page(params[:page]).per(20)
+    else
+      @respondents = []
+    end
   end
 
   def export_csv

@@ -556,6 +556,7 @@ es:
       ignore_answers: Ignorar
       ignored: "Ignoradas"
       export_csv: "Exportar CSV"
+      no_service_surveys_for_service: "El servicio no tiene encuestas asignadas"
   users:
     registrations:
       edit:
