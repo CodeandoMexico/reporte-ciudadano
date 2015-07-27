@@ -79,7 +79,7 @@
                        <%= form_tag(invitation_user_mail_admins_service_surveys_path, method: "post") do %>
                           <%= t('.instructions_send')%>
                           <%= text_area(:get, :body, class: 'match_parent margin-top')%>
-                          <%= submit_tag t(".send"), class: 'btn btn-info margin-top', :name => "id[#{survey.id}"%>
+                          <%= submit_tag t(".send"), class: 'btn btn-info margin-top', :name => "id[#{survey.id}]"%>
                         <% end %>
                     </div>
                     <div class="modal-footer">
