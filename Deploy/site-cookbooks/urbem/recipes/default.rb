@@ -62,6 +62,10 @@ docker_image "gliderlabs/logspout" do
   tag "latest"
 end
 
+docker_image "phusion/passenger-ruby22" do
+  tag "latest"
+end
+
 docker_container "logs" do
   image "gliderlabs/logspout"
   tag "latest"
