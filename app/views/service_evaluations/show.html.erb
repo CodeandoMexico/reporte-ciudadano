@@ -31,7 +31,7 @@
               <th class="text-left"><%= t(".user") %></th>
               <% @service_survey.questions.each do |question| %>
                 <th class="text-left">
-                  <span class="js-tooltip" data-toggle="tooltip" data-placement="top" title="<%= question.text %>"><%= question.text.truncate(18) %></span>
+                  <span class="js-tooltip" data-toggle="tooltip" data-placement="bottom" title="<%= question.text %>"><%= question.text.truncate(18) %></span>
                 </th>
               <% end %>
               <th><%= t(".ignore") %></th>
