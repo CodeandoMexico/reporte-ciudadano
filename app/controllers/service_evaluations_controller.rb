@@ -10,9 +10,19 @@ class ServiceEvaluationsController < ApplicationController
     @respondents = Kaminari.paginate_array(@service_survey.respondents).page(params[:page]).per(20)
   end
 
+  def export_csv
+    service_survey = ServiceSurvey.find(params[:service_survey_id])
+    csv_file, csv_filename = csv_summary_answers(service_survey)
+    send_data csv_file, filename: csv_filename
+  end
+
   private
 
   def can_ignore_answers?(admin)
     admin && (admin.is_super_admin? || admin.is_service_admin?)
+  end
+
+  def csv_summary_answers(service_survey)
+    Evaluations.csv_summary_answers(service_survey)
   end
 end

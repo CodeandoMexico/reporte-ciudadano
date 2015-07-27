@@ -16,6 +16,10 @@
       </ul>
     </div>
   </div>
+  <div class="col-md-5">
+    <%= link_to t(".export_csv"), export_csv_service_evaluation_path(@service, service_survey_id: @service_survey), class: "btn btn-primary pull-right" %>
+  </div>
+  <div class="col-md-1"></div>
 </div>
 <% if @service_survey.answers.any? %>
   <div class="row">
