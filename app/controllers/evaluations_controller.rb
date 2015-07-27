@@ -14,7 +14,7 @@ class EvaluationsController < ApplicationController
   end
   
   def service_name_options
-   @services.pluck(:name)
+   @services.uniq.pluck(:name)
   end
 
   def dependency_options
