@@ -182,7 +182,7 @@
                 </td>
               <% end %>
               <td>
-                <%= link_to service_evaluation_path(service), class: "btn btn-primary" do %>
+                <%= link_to service_evaluation_path(service), class: "btn btn-primary", disabled: service.has_not_been_evaluated? do %>
                   <span class="glyphicon glyphicon-tasks"></span>
                   <span class="sr-only"><%= t(".see_service_answers") %></span>
                 <% end %>
