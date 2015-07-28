@@ -1,6 +1,6 @@
 class CisEvaluationsController < ApplicationController
   helper_method :criterions
-  before_action :authenticate_user!
+  before_action :authenticate_user_or_admin!
   before_action :authorize_observer
 
   def index
@@ -45,12 +45,6 @@ class CisEvaluationsController < ApplicationController
 
   def criterions
     ServiceSurveys.criterion_options_available
-  end
-
-  def authorize_observer
-    unless current_user.is_observer?
-      redirect_to root_path
-    end
   end
 
   def available_cis

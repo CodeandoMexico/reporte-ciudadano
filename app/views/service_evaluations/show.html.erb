@@ -29,6 +29,7 @@
                 <span class="js-tooltip" data-toggle="tooltip" data-placement="top" title="<%= question.text %>"><%= question.text.truncate(18) %></span>
               </th>
             <% end %>
+            <th><%= t(".ignore") %></th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +39,13 @@
               <% @service_survey.questions.each do |question| %>
                 <td class="text-left"><%= question.survey_answer_by_user(user.id).text %></td>
               <% end %>
+              <td>
+                <% if @service_survey.answers_are_being_ignored_for(user.id) %>
+                  <em class="text-muted"><%= t(".ignored") %></em>
+                <% elsif can_ignore_answers?(current_admin) %>
+                  <%= link_to t(".ignore_answers"), ignore_answers_admins_service_survey_path(@service_survey, user_id: user.id, service_id: @service.id), class: "btn btn-primary", id: "ignore_user_answers_#{user.id}" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

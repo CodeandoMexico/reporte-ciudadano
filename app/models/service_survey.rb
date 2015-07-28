@@ -16,7 +16,7 @@ class ServiceSurvey < ActiveRecord::Base
   }
 
   def rating_and_binary_answers
-    self.answers.where(
+    self.answers.validated.where(
         :question_id =>
           Question.rating_and_binary_questions
     )
@@ -41,6 +41,14 @@ class ServiceSurvey < ActiveRecord::Base
   def has_been_answered_by?(user)
     return false if user.blank?
     answers.any? { |answer| answer.user_id == user.id }
+  end
+
+  def answers_by(user_id)
+    answers.where(user_id: user_id)
+  end
+
+  def answers_are_being_ignored_for(user_id)
+    answers_by(user_id).all?(&:ignored)
   end
 
   def status
