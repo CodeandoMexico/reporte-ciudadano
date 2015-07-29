@@ -1,7 +1,11 @@
 class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
+  has_many :services, through: :service_survey
+
   validates :answers_exist, presence: true
+
   before_create :set_results_for_report
+
   serialize :areas_results, Hash
 
   def service_survey_title
@@ -91,5 +95,4 @@ class ServiceSurveyReport < ActiveRecord::Base
   def get_service_survey(service_survey_id)
     ServiceSurvey.find(service_survey_id)
   end
-
 end

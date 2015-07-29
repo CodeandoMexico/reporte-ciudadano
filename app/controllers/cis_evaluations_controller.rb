@@ -1,13 +1,13 @@
 class CisEvaluationsController < ApplicationController
   layout 'observers'
   helper_method :criterions
-  before_action :authenticate_user!
+  before_action :authenticate_user_or_admin!
   before_action :authorize_observer
     before_action :set_search
     helper_method :service_cis_options, :service_name_options
 
   def index
-    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).for_cis(cis[:id]).active
     @cis = Evaluations.cis_with_results(available_cis, services_records)
   end
 
@@ -18,7 +18,7 @@ class CisEvaluationsController < ApplicationController
       @cis_report = Reports.current_cis_report_for(
       cis,
       cis_report_store: CisReport,
-      survey_reports: @cis.services.map(&:last_survey_reports).flatten,
+      survey_reports: @cis.services.map(&:last_survey_reports).flatten.uniq,
       translator: I18n.method(:t))
       @services = sorted_services(@cis.services)
       @next_possible_direction = toggle_sort_direction
@@ -63,12 +63,6 @@ class CisEvaluationsController < ApplicationController
 
   def criterions
     ServiceSurveys.criterion_options_available
-  end
-
-  def authorize_observer
-    unless current_user.is_observer?
-      redirect_to root_path
-    end
   end
 
   def available_cis

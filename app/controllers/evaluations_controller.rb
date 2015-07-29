@@ -1,9 +1,10 @@
 class EvaluationsController < ApplicationController
+
   layout 'observers'
   helper_method :service_cis_options, :service_name_options, :cis_options, :dependency_options
-  before_action :authenticate_user!
   before_action :authorize_observer
   before_action :set_search
+  before_action :authenticate_user_or_admin!
 
   def index
     load_services
@@ -16,6 +17,7 @@ class EvaluationsController < ApplicationController
   def service_name_options
    @services.uniq.pluck(:name)
   end
+
 
   def dependency_options
    Services.service_dependency_options

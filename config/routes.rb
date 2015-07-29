@@ -54,8 +54,9 @@ Rails.application.routes.draw do
       end
       get :questions_text, on: :collection
       put :change_status, on: :member
-
+      get :ignore_answers, on: :member
     end
+
     resources :dashboards, only: [:index] do
       collection do
         get 'design'
@@ -94,7 +95,9 @@ Rails.application.routes.draw do
     end
   end
   resources :service_surveys, only: [:index, :show]
-  resources :answers, only: [:new, :index, :create]
+  resources :answers, only: [:new, :index, :create] do
+
+  end
   resources :evaluations, only: [:index]
   resources :cis_evaluations, only: [:index, :show]
   resources :service_evaluations, only: :show

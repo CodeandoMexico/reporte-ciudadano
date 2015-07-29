@@ -556,6 +556,9 @@ es:
       service_survey_answers: "Respuestas de encuesta %{survey}"
       see_other_survey_answers: "Ver respuestas de otras encuestas"
       no_answers: "Ningún usuario ha respondido esta encuesta."
+      ignore: "¿Ignorar?"
+      ignore_answers: Ignorar
+      ignored: "Ignoradas"
   users:
     registrations:
       edit:
@@ -583,7 +586,7 @@ es:
     service_surveys: "Evalúa un servicio"
     home: "Inicio"
     requests: "Quejas y sugerencias"
-    evaluate_a_submission: "Evalúa trámite" 
+    evaluate_a_submission: "Evalúa trámite"
     evaluations: "Evaluaciones"
 
   # Global words. Commonly used thru the platform
@@ -630,7 +633,7 @@ es:
       text: "Texto"
       answer_type: "Tipo de respuesta"
       value: "Valor %"
-      who: "¿Quién te atendió?*" 
+      who: "¿Quién te atendió?*"
       second_surname: "Segundo apellido:"
       surname: "Primer apellido:"
       description_public_servant: "Describe al funcionario"
@@ -720,6 +723,7 @@ es:
       updated: "La encuesta se ha actualizado exitosamente."
       emailsend: "Correos enviados"
       noemailsend: "Correos no enviados"
+      answers_ignored: "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
   navbar:
     admin:
       design: "Diseño"

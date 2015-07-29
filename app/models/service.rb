@@ -51,6 +51,10 @@ class Service < ActiveRecord::Base
     where("service_admin_id IS NULL OR service_admin_id = #{admin.id}")
   end
 
+  def self.for_cis(cis_id)
+    where("cis LIKE '%?%'", cis_id.to_i)
+  end
+
   def answered_surveys
     service_surveys.select { |survey| survey.answers.any? }.count
   end
