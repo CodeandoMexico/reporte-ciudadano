@@ -13,6 +13,16 @@ class CisEvaluationsController < ApplicationController
 
   def show
     load_services
+      services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
+      @cis = Evaluations.cis_evaluation_for(cis, services_records)
+      @cis_report = Reports.current_cis_report_for(
+      cis,
+      cis_report_store: CisReport,
+      survey_reports: @cis.services.map(&:last_survey_reports).flatten,
+      translator: I18n.method(:t))
+      @services = sorted_services(@cis.services)
+      @next_possible_direction = toggle_sort_direction
+      @sorted_by = params[:sort_by]
 
     
   end
@@ -70,21 +80,9 @@ class CisEvaluationsController < ApplicationController
   end
 
     def load_services
-      services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
-      @cis = Evaluations.cis_evaluation_for(cis, services_records)
         unless params[:q].nil? 
-          @id_name  =   params[:q][:name] unless params[:q][:name].blank?
+          @id_name  =  params[:q][:name]  unless params[:q][:name].blank?
           #@cis  =   @cis.merge(:administrative_unit => params[:q][:administrative_unit]) unless params[:q][:administrative_unit].blank?
         end
-        
-      @cis_report = Reports.current_cis_report_for(
-      cis,
-      cis_report_store: CisReport,
-      survey_reports: @cis.services.map(&:last_survey_reports).flatten,
-      translator: I18n.method(:t))
-      @services = sorted_services(@cis.services)
-      @next_possible_direction = toggle_sort_direction
-      @sorted_by = params[:sort_by]
-
   end
 end
