@@ -4,8 +4,8 @@ class ServiceRequestsController < ApplicationController
   helper_method :service_cis_options, :service_cis_label
 
   def index
-    @search = ServiceRequest.unscoped.search(params[:q])
-    @service_requests = @search.result.page(params[:page])
+      @search = ServiceRequest.search(search_query_string)
+      @service_requests = @search.result.page(params[:page])
     flash.now[:notice] = I18n.t("flash.service_requests.empty") if @service_requests.empty?
   end
 
@@ -52,6 +52,14 @@ class ServiceRequestsController < ApplicationController
   end
 
   private
+   def search_query_string 
+      unless params[:q] .blank?
+        params[:q].merge(:service_requester => current_user.email)
+      else
+        {:service_requester => current_user.email}
+      end
+   end
+  
   def service_public_servants
     unless params[:pagetime].blank?
         unless params[:pagetime][:service].blank?
@@ -76,7 +84,10 @@ class ServiceRequestsController < ApplicationController
   end
 
   def notify_public_servants(public_servant)
+    unless public_servant.public_servant_id ==0 || public_servant.public_servant_id.nil?
       AdminMailer.notify_new_request(admin: Admin.find(public_servant.public_servant_id), service_request: @service_request).deliver
+    end
+
   end
 
   def service_request_params
