@@ -16,7 +16,7 @@ feature 'As a service admin I can create a new survey' do
     click_link "Crear nueva encuesta"
 
     fill_in "service_survey_title", with: "La encuesta de mi servicio"
-    check "service_survey_service_ids_#{service.id}"
+    select service.name, from: "Trámites"
     choose 'A la mitad'
     click_button "Guardar"
 
@@ -33,7 +33,6 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
-    check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -58,7 +57,6 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
-    check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -87,7 +85,6 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
-    check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -110,7 +107,6 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
-    check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -136,7 +132,6 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
-    check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
 
     click_link "Agregar pregunta"
@@ -172,7 +167,6 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
-    check "service_survey_service_ids_#{service.id}"
     click_link "Agregar pregunta"
 
     select "Desempeño", from: "Criterio a evaluar"
@@ -217,7 +211,6 @@ feature 'As a service admin I can create a new survey' do
     visit new_admins_service_survey_path
 
     fill_in "service_survey_title", with: "La encuesta de mi servicio"
-    check "service_survey_service_ids_#{service.id}"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 

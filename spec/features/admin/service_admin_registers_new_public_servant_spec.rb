@@ -54,7 +54,7 @@ feature 'As a service admin I can create new public servant' do
 
     expect(page).to have_content "El servidor público se ha registrado exitosamente."
     expect(current_path).to eq admins_public_servants_path
-    expect(page).not_to have_content "María Gómez"
+    expect(page).to have_content "María Gómez"
     expect_mail_sent_to "maria@mail.com"
   end
 
