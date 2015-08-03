@@ -152,9 +152,6 @@
     <div class="form-group col-md-6">
       <%= f.select :name, service_name_options, { prompt: t('form.labels.name') }, class: 'chosen-select'%>
     </div>
-      <div class="form-group col-md-6">
-      <%= f.select :administrative_unit, service_administrative_unit, { prompt: t('form.labels.administrative_unit') }, class: 'chosen-select'%>
-    </div>
     <div class="form-group col-md-12">
       <%= button_tag class: "submit btn btn-default" do %>
        <div class="i glyphicon glyphicon-search">
@@ -207,17 +204,23 @@
                   </td>
                 </tr>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <div class="well well-md">
-          <p>
-            <%= t(".no_services")%>
-          </p>
-        </div>
-      <% end %>
-    </div>
+              <td>
+                <%= link_to service_evaluation_path(service), class: "btn btn-primary", disabled: service.has_not_been_evaluated? do %>
+                  <span class="glyphicon glyphicon-tasks"></span>
+                  <span class="sr-only"><%= t(".see_service_answers") %></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="well well-md">
+        <p>
+          <%= t(".no_services")%>
+        </p>
+      </div>
+    <% end %>
   </div>
   <script type="text/javascript">
     $(document).ready(loadChosen);

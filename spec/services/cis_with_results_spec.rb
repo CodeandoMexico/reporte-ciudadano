@@ -26,18 +26,26 @@ module Evaluations
   end
 
   class TestAnswer
-    attr_accessor :user_id
+    attr_accessor :user_id, :text, :ignored
 
     def initialize(attrs)
       @user_id = attrs[:user_id]
+      @text = attrs[:text]
+      @ignored = attrs[:ignored] || false
     end
   end
 
   class TestQuestion
-    attr_accessor :criterion
+    attr_accessor :criterion, :text, :answers
 
     def initialize(attrs)
       @criterion = attrs[:criterion]
+      @text = attrs[:text]
+      @answers = attrs[:answers] || []
+    end
+
+    def survey_answer_by_user(user_id)
+      answers.select { |answer| answer.user_id == user_id }.first
     end
   end
 

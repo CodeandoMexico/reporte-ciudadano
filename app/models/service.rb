@@ -59,6 +59,10 @@ class Service < ActiveRecord::Base
     service_surveys.select { |survey| survey.answers.any? }.count
   end
 
+  def has_not_been_evaluated?
+    answered_surveys.zero?
+  end
+
   def cis_names
     Services
       .service_cis

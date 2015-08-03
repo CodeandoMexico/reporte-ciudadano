@@ -7,6 +7,10 @@ module Evaluations
     Cis.new(cis, services_records: services_records)
   end
 
+  def self.csv_summary_answers(service_survey)
+    SurveyReportFile.new(service_survey).to_csv
+  end
+
   private
 
   class Cis

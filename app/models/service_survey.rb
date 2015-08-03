@@ -48,7 +48,7 @@ class ServiceSurvey < ActiveRecord::Base
   end
 
   def answers_are_being_ignored_for(user_id)
-    answers_by(user_id).all?(&:ignored)
+    answers_by(user_id).any?(&:ignored)
   end
 
   def status
