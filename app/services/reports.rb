@@ -20,8 +20,6 @@ module Reports
     build_report(service.last_report, service.last_survey_reports, services_report_store, service_id: service.id)
   end
 
-  private
-
   def self.build_report(last_report, survey_reports, report_store, params)
     return last_report if (last_report.present? && last_report.created_at > 3.days.ago)
     return if survey_reports.blank?
@@ -29,6 +27,8 @@ module Reports
     generator = ReportGenerator.new(survey_reports: survey_reports)
     report_store.create!(generator.to_record_params.merge(params))
   end
+
+  private
 
   class ReportGenerator
     def initialize(attrs)
