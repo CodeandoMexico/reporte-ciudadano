@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'As a service admin I can create new public servant' do
 
-  let(:admin) { create(:admin, :service_admin, dependency: "Dependencia 1") }
+  let(:admin) { create(:admin, :service_admin, dependency: "Secretaría General de Gobierno") }
   let(:super_admin) { create(:admin) }
 
   scenario 'I can see a list of public servants in my dependency' do
@@ -41,12 +41,13 @@ feature 'As a service admin I can create new public servant' do
 
     visit admins_public_servants_path
     click_link "Agregar servidor público"
+        save_and_open_page
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
     expect(page).not_to have_content "Dependencia 2"
     option = first('#admin_dependency').text
-    select option, from: 'admin[dependency]'
+    select option, from: 'admin_dependency'
     select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Servidor"
 
@@ -54,7 +55,7 @@ feature 'As a service admin I can create new public servant' do
 
     expect(page).to have_content "El servidor público se ha registrado exitosamente."
     expect(current_path).to eq admins_public_servants_path
-    expect(page).not_to have_content "María Gómez"
+    expect(page).to have_content "María Gómez"
     expect_mail_sent_to "maria@mail.com"
   end
 

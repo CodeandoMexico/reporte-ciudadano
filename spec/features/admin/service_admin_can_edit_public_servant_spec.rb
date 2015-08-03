@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'As a service admin I can edit a public servant' do
 
-  let(:admin) { create(:admin, :service_admin, dependency: "Dependencia 1") }
+  let(:admin) { create(:admin, :service_admin, dependency: "Secretaría General de Gobierno") }
 
   background do
     sign_in_admin admin
@@ -23,7 +23,7 @@ feature 'As a service admin I can edit a public servant' do
     click_button "Actualizar"
 
     expect(page).to have_content "El servidor público se ha actualizado exitosamente"
-    expect(page).not_to have_content "New name"
+    expect(page).to have_content "New name"
     expect(page).to have_content administrative_unit
   end
 
