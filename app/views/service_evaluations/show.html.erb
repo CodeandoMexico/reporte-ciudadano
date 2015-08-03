@@ -47,8 +47,12 @@
                 <td>
                   <% if @service_survey.answers_are_being_ignored_for(user.id) %>
                     <em class="text-muted"><%= t(".ignored") %></em>
+                    <% if can_ignore_answers?(current_admin) %>
+                      <br>
+                      <%= link_to t(".enable_answers"), ignore_answers_admins_service_survey_path(@service_survey, user_id: user.id, service_id: @service.id, ignored: false), class: "btn btn-primary btn-xs", id: "enable_user_answers_#{user.id}" %>
+                    <% end %>
                   <% elsif can_ignore_answers?(current_admin) %>
-                    <%= link_to t(".ignore_answers"), ignore_answers_admins_service_survey_path(@service_survey, user_id: user.id, service_id: @service.id), class: "btn btn-primary", id: "ignore_user_answers_#{user.id}" %>
+                    <%= link_to t(".ignore_answers"), ignore_answers_admins_service_survey_path(@service_survey, user_id: user.id, service_id: @service.id, ignored: true), class: "btn btn-primary btn-xs", id: "ignore_user_answers_#{user.id}" %>
                   <% end %>
                 </td>
               </tr>
