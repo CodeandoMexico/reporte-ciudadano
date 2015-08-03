@@ -38,12 +38,10 @@ module Admins
   end
 
   def self.surveys_for(admin)
-    if admin.is_super_admin?
+    if admin.is_super_admin? || admin.is_public_servant?
       ServiceSurvey.all
     elsif admin.is_service_admin?
       admin.service_surveys
-      elsif admin.is_public_servant?
-      ServiceSurvey.all
     end
   end
 
