@@ -204,17 +204,23 @@
                 </td>
               </tr>
               <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <div class="well well-md">
-          <p>
-            <%= t(".no_services")%>
-          </p>
-        </div>
-      <% end %>
-    </div>
+              <td>
+                <%= link_to service_evaluation_path(service), class: "btn btn-primary", disabled: service.has_not_been_evaluated? do %>
+                  <span class="glyphicon glyphicon-tasks"></span>
+                  <span class="sr-only"><%= t(".see_service_answers") %></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="well well-md">
+        <p>
+          <%= t(".no_services")%>
+        </p>
+      </div>
+    <% end %>
   </div>
   <script type="text/javascript">
     $(document).ready(loadChosen);

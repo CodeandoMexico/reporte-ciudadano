@@ -100,7 +100,9 @@ Rails.application.routes.draw do
   end
   resources :evaluations, only: [:index]
   resources :cis_evaluations, only: [:index, :show]
-  resources :service_evaluations, only: :show
+  resources :service_evaluations, only: :show do
+    get :export_csv, on: :member
+  end
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
