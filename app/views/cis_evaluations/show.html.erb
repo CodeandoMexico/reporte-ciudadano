@@ -152,9 +152,6 @@
     <div class="form-group col-md-6">
       <%= f.select :name, service_name_options.collect{|p| p.name }, { prompt: t('form.labels.name') }, class: 'chosen-select'%>
     </div>
-      <div class="form-group col-md-6">
-      <%= f.select :administrative_unit, service_name_options.collect{|p| p.administrative_unit }, { prompt: t('form.labels.administrative_unit') }, class: 'chosen-select'%>
-    </div>
     <div class="form-group col-md-12">
       <%= button_tag class: "submit btn btn-default" do %>
        <div class="i glyphicon glyphicon-search">

@@ -76,7 +76,6 @@ class CisEvaluationsController < ApplicationController
     def load_services
         unless params[:q].nil? 
           @id_name  =  params[:q][:name]  unless params[:q][:name].blank?
-          #@cis  =   @cis.merge(:administrative_unit => params[:q][:administrative_unit]) unless params[:q][:administrative_unit].blank?
         end
   end
 end
