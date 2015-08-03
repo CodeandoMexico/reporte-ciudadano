@@ -557,6 +557,7 @@ es:
       ignored: "Ignoradas"
       export_csv: "Exportar CSV"
       no_service_surveys_for_service: "El servicio no tiene encuestas asignadas"
+      enable_answers: "Habilitar"
   users:
     registrations:
       edit:
@@ -710,7 +711,9 @@ es:
     service_survey:
       created: "La encuesta se ha creado exitosamente."
       updated: "La encuesta se ha actualizado exitosamente."
-      answers_ignored: "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
+      answers_ignored:
+        "true": "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
+        "false": "Las respuestas del usuario han sido habilitadas en la generación de nuevos reportes."
   navbar:
     admin:
       design: "Diseño"

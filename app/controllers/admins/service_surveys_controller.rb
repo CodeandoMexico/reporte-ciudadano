@@ -55,8 +55,8 @@ class Admins::ServiceSurveysController < ApplicationController
     @service_survey = ServiceSurvey.find(params[:id])
 
     answers_to_ignore = @service_survey.answers_by(params[:user_id])
-    answers_to_ignore.update_all(ignored: true)
-    redirect_to service_evaluation_path(@service, service_survey_id: @service_survey.id), notice:  t('flash.service_survey.answers_ignored')
+    answers_to_ignore.update_all(ignored: params[:ignored])
+    redirect_to service_evaluation_path(@service, service_survey_id: @service_survey.id), notice:  t("flash.service_survey.answers_ignored.#{params[:ignored]}")
   end
 
   private
