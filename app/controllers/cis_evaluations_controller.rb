@@ -1,10 +1,9 @@
 class CisEvaluationsController < ApplicationController
   layout 'observers'
-  helper_method :criterions
   before_action :authenticate_user_or_admin!
   before_action :authorize_observer
-    before_action :set_search
-    helper_method :service_cis_options, :service_name_options
+  before_action :set_search, only: :show
+  helper_method :criterions, :service_cis_options, :service_name_options, :service_administrative_unit
 
   def index
     services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).for_cis(cis[:id]).active
@@ -12,35 +11,32 @@ class CisEvaluationsController < ApplicationController
   end
 
   def show
-    load_services
-      services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
-      @cis = Evaluations.cis_evaluation_for(cis, services_records)
-      @cis_report = Reports.current_cis_report_for(
+    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
+    @cis = Evaluations.cis_evaluation_for(cis, services_records)
+    @cis_report = Reports.current_cis_report_for(
       cis,
       cis_report_store: CisReport,
       survey_reports: @cis.services.map(&:last_survey_reports).flatten.uniq,
       translator: I18n.method(:t))
-      @services = sorted_services(@cis.services)
-      @next_possible_direction = toggle_sort_direction
-      @sorted_by = params[:sort_by]
-
-    
+    @services = sorted_services(@cis.services)
+    @next_possible_direction = toggle_sort_direction
+    @sorted_by = params[:sort_by]
+    search_service
   end
+
+  private
 
   def set_search
     @search = Service.search(params[:q])
   end
 
-  
   def service_name_options
-   @services
+    @services.collect{|p| p.name }
   end
 
-    def service_administrative_unit
-   @services
+  def service_administrative_unit
+    @services.collect{|p| p.administrative_unit }.uniq
   end
-
-  private
 
   def sorted_services(services)
     return services unless params[:sort_by].present?
@@ -73,10 +69,9 @@ class CisEvaluationsController < ApplicationController
     available_cis.select { |cis| cis[:id].to_s ==  params[:id] }.first
   end
 
-    def load_services
-        unless params[:q].nil? 
-          @id_name  =  params[:q][:name]  unless params[:q][:name].blank?
-          #@cis  =   @cis.merge(:administrative_unit => params[:q][:administrative_unit]) unless params[:q][:administrative_unit].blank?
-        end
+  def search_service
+    if params[:q].present?
+      @id_name = params[:q][:name] unless params[:q][:name].blank?
+    end
   end
 end
