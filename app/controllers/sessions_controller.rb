@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
     if auth.authenticated?
       sign_in_and_redirect(auth.user.id, request.env['omniauth.origin'])
     else
-      if  
       redirect_to root_path, flash: { notice: 'Ha ocurrido un problema con tu acceso.' }
     end
   end
