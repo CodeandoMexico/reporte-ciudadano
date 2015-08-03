@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+    layout 'landing'
   def index
     @services_count = Service.count
     @active_citizen_count = SurveyAnswer.pluck(:user_id).uniq.count
