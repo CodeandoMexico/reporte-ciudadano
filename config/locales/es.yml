@@ -547,6 +547,7 @@ es:
       see_service_answers: "Ver respuestas de servicio"
   service_evaluations:
     show:
+      user: "Usuario"
       service_evaluation: "Evaluaciones de %{name}"
       service_survey_answers: "Respuestas de encuesta %{survey}"
       see_other_survey_answers: "Ver respuestas de otras encuestas"
@@ -554,6 +555,8 @@ es:
       ignore: "¿Ignorar?"
       ignore_answers: Ignorar
       ignored: "Ignoradas"
+      export_csv: "Exportar CSV"
+      no_service_surveys_for_service: "El servicio no tiene encuestas asignadas"
   users:
     registrations:
       edit:

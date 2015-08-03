@@ -1,65 +1,75 @@
 <h3><%= t('.service_evaluation', name: @service.name) %></h3>
-<h4 class="text-muted"><%= t('.service_survey_answers', survey: @service_survey.title) %></h4>
-<div class="row filter-surveys">
-  <div class="col-md-5 col-md-offset-1">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        <%= t(".see_other_survey_answers") %>
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <% @service.service_surveys.each do |survey| %>
-          <li>
-            <%= link_to survey.title, service_evaluation_path(@service, service_survey_id: survey.id) %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
-<% if @service_survey.answers.any? %>
-  <div class="row">
-    <div class="table-responsive col-md-10 col-md-offset-1">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th class="text-left"><%= t(".user") %></th>
-            <% @service_survey.questions.each do |question| %>
-              <th class="text-left">
-                <span class="js-tooltip" data-toggle="tooltip" data-placement="top" title="<%= question.text %>"><%= question.text.truncate(18) %></span>
-              </th>
-            <% end %>
-            <th><%= t(".ignore") %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @respondents.each do |user| %>
-            <tr>
-              <td class="text-left"><%= user.name || user.email %></td>
-              <% @service_survey.questions.each do |question| %>
-                <td class="text-left"><%= question.survey_answer_by_user(user.id).text %></td>
-              <% end %>
-              <td>
-                <% if @service_survey.answers_are_being_ignored_for(user.id) %>
-                  <em class="text-muted"><%= t(".ignored") %></em>
-                <% elsif can_ignore_answers?(current_admin) %>
-                  <%= link_to t(".ignore_answers"), ignore_answers_admins_service_survey_path(@service_survey, user_id: user.id, service_id: @service.id), class: "btn btn-primary btn-xs", id: "ignore_user_answers_#{user.id}" %>
-                <% end %>
-              </td>
-            </tr>
+<% if @service_survey.present? %>
+  <h4 class="text-muted"><%= t('.service_survey_answers', survey: @service_survey.title) %></h4>
+  <div class="row filter-surveys">
+    <div class="col-md-5 col-md-offset-1">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <%= t(".see_other_survey_answers") %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <% @service.service_surveys.each do |survey| %>
+            <li>
+              <%= link_to survey.title, service_evaluation_path(@service, service_survey_id: survey.id) %>
+            </li>
           <% end %>
-        </tbody>
-      </table>
-      <%= paginate @respondents, params: {service_survey_id: @service_survey.id } %>
-    </div>
-  </div>
-<% else %>
-  <hr>
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="well well-sm text-muted">
-        <em><%= t(".no_answers") %></em>
+        </ul>
       </div>
     </div>
+    <div class="col-md-5">
+      <%= link_to t(".export_csv"), export_csv_service_evaluation_path(@service, service_survey_id: @service_survey), class: "btn btn-primary pull-right", disabled: @service_survey.answers.empty? %>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <% if @service_survey.answers.any? %>
+    <div class="row">
+      <div class="table-responsive col-md-10 col-md-offset-1">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-left"><%= t(".user") %></th>
+              <% @service_survey.questions.each do |question| %>
+                <th class="text-left">
+                  <span class="js-tooltip" data-toggle="tooltip" data-placement="bottom" title="<%= question.text %>"><%= question.text.truncate(18) %></span>
+                </th>
+              <% end %>
+              <th><%= t(".ignore") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @respondents.each do |user| %>
+              <tr>
+                <td class="text-left"><%= user.name || user.email %></td>
+                <% @service_survey.questions.each do |question| %>
+                  <td class="text-left"><%= question.survey_answer_by_user(user.id).text %></td>
+                <% end %>
+                <td>
+                  <% if @service_survey.answers_are_being_ignored_for(user.id) %>
+                    <em class="text-muted"><%= t(".ignored") %></em>
+                  <% elsif can_ignore_answers?(current_admin) %>
+                    <%= link_to t(".ignore_answers"), ignore_answers_admins_service_survey_path(@service_survey, user_id: user.id, service_id: @service.id), class: "btn btn-primary", id: "ignore_user_answers_#{user.id}" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @respondents, params: {service_survey_id: @service_survey.id } %>
+      </div>
+    </div>
+  <% else %>
+    <hr>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="well well-sm text-muted">
+          <em><%= t(".no_answers") %></em>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="well well-lg">
+    <p><em><%= t(".no_service_surveys_for_service") %></em></p>
   </div>
 <% end %>
