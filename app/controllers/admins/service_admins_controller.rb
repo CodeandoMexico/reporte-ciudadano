@@ -2,8 +2,8 @@ class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
   before_action :set_services, only: [:new, :create]
   before_action :set_title
-  helper_method :dependency_options, :administrative_unit_options,:service_cis_options,:service_cis_options,:service_admins_name_options,:record_number_options
-  before_action :set_search
+  helper_method :dependency_options, :administrative_unit_options,:service_cis_options, :service_admins_name_options, :record_number_options
+  before_action :set_search, only: :index
   layout 'admins'
 
   def new
@@ -21,7 +21,8 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def index
-    load_services
+    @service_admins = Admin.service_admins_sorted_by_name
+    search_service_admins
   end
 
   def edit
@@ -83,7 +84,7 @@ class Admins::ServiceAdminsController < ApplicationController
   def service_cis_options
     Services.service_cis_options
   end
-  
+
   def service_admins_name_options
     Services.service_admins_name_options
   end
@@ -92,18 +93,13 @@ class Admins::ServiceAdminsController < ApplicationController
     Services.record_number_options
   end
 
-
-
-  def load_services
-        #search_service_paramas
-      @services = Admin.service_admins_sorted_by_name      
-        unless params[:q].nil? 
-          @services =  @services.where(name:  params[:q][:name] ) unless params[:q][:name].blank?
-          @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
-          @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
-          @services =  @services.where(record_number:   params[:q][:record_number] ) unless  params[:q][:record_number].blank?
-        end
-        
-        @service_admins = @services.page(params[:page]).per(25)
+  def search_service_admins
+    if params[:q].present?
+      @service_admins = @service_admins.where(name: params[:q][:name] ) unless params[:q][:name].blank?
+      @service_admins = @service_admins.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+      @service_admins = @service_admins.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+      @service_admins = @service_admins.where(record_number: params[:q][:record_number] ) unless  params[:q][:record_number].blank?
+    end
+    @service_admins = @service_admins.page(params[:page]).per(25)
   end
 end

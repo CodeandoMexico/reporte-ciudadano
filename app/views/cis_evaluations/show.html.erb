@@ -150,7 +150,7 @@
   </div>
     <%= search_form_for @search, url: cis_evaluation_path(@cis.id), method: :get, class: "filters form-inline" do |f|%>
     <div class="form-group col-md-6">
-      <%= f.select :name, service_name_options.collect{|p| p.name }, { prompt: t('form.labels.name') }, class: 'chosen-select'%>
+      <%= f.select :name, service_name_options, { prompt: t('form.labels.name') }, class: 'chosen-select'%>
     </div>
     <div class="form-group col-md-12">
       <%= button_tag class: "submit btn btn-default" do %>
@@ -180,29 +180,29 @@
           </thead>
           <tbody>
             <% @services.each do |service| %>
-            <%if  @id_name.blank? || (@id_name.include? service.name) %>
-              <tr>
-                <td><%= service.name %></td>
-                <% criterions.each do |criterion| %>
-                  <td>
-                    <% if service.overall_evaluation_for(criterion).present? %>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%; color: black">
-                          <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 0) %>%
+              <% if @id_name.blank? || (@id_name.include? service.name) %>
+                <tr>
+                  <td><%= service.name %></td>
+                  <% criterions.each do |criterion| %>
+                    <td>
+                      <% if service.overall_evaluation_for(criterion).present? %>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-<%= class_range_for(service.overall_evaluation_for(criterion))%>" style="width: <%= service.overall_evaluation_for(criterion) %>%; color: black">
+                            <%= number_with_precision(service.overall_evaluation_for(criterion), precision: 0) %>%
+                          </div>
                         </div>
-                      </div>
-                    <% else %>
-                      <small class="text-muted"><em><%= t(".not_evaluated") %></em></small>
+                      <% else %>
+                        <small class="text-muted"><em><%= t(".not_evaluated") %></em></small>
+                      <% end %>
+                    </td>
+                  <% end %>
+                  <td>
+                    <%= link_to service_evaluation_path(service), class: "btn btn-primary" do %>
+                      <span class="glyphicon glyphicon-tasks"></span>
+                      <span class="sr-only"><%= t(".see_service_answers") %></span>
                     <% end %>
                   </td>
-                <% end %>
-                <td>
-                  <%= link_to service_evaluation_path(service), class: "btn btn-primary" do %>
-                    <span class="glyphicon glyphicon-tasks"></span>
-                    <span class="sr-only"><%= t(".see_service_answers") %></span>
-                  <% end %>
-                </td>
-              </tr>
+                </tr>
               <% end %>
               <td>
                 <%= link_to service_evaluation_path(service), class: "btn btn-primary", disabled: service.has_not_been_evaluated? do %>

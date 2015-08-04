@@ -50,10 +50,10 @@ module Services
     Admins.public_servants_for(admin).pluck(:name)
   end
 
-    def self.generate_homoclave_for(service)
+  def self.generate_homoclave_for(service)
     time = Time.new
     "#{type_of_service(service.service_type.to_s)}#{service.dependency.to_s[0]}#{service.administrative_unit.to_s[0] }#{time.strftime("%Y%m%d%H%M%S")}"
-    end
+  end
 
   private
 
@@ -66,13 +66,8 @@ module Services
   end
 
   def self.type_of_service(type)
-    if type == "support_program"
-      return 'PA'
-    elsif type == "service"
-      return 'T'
-    elsif type == "step"
-      return 'S'
-    end
-    return 'F'
+    {
+      support_program: "PA", service: "S", step: "T"
+    }.fetch(type.to_sym, "F")
   end
 end
