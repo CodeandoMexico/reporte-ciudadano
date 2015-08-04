@@ -18,6 +18,7 @@ feature 'Observer can see cis evaluation results' do
     within first('.cis') do
       expect(page).to have_link "Ver resultados"
       click_link "Ver resultados"
+      sleep 1.0
     end
 
     expect(current_path).to eq cis_evaluation_path(id: 1)

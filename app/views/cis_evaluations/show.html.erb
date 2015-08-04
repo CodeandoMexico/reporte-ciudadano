@@ -143,12 +143,7 @@
     </div>
   </div>
 
-  <div class="row evaluation-services">
-    <div class="col-md-10 col-md-offset-1">
-      <h4><%= t(".by_services") %></h4>
-    </div>
-  </div>
-    <%= search_form_for @search, url: cis_evaluation_path(@cis.id), method: :get, class: "filters form-inline" do |f|%>
+  <%= search_form_for @search, url: cis_evaluation_path(@cis.id), method: :get, class: "filters form-inline" do |f|%>
     <div class="form-group col-md-6">
       <%= f.select :name, service_name_options, { prompt: t('form.labels.name') }, class: 'chosen-select'%>
     </div>
@@ -159,8 +154,12 @@
       </div>
       <%end%>
     </div>
-    <%end%>
+  <%end%>
 
+  <div class="row evaluation-services">
+    <div class="col-md-10 col-md-offset-1">
+      <h4><%= t(".by_services") %></h4>
+    </div>
     <div class="col-md-10 col-md-offset-1 table-responsive">
       <% if @cis.services.any? %>
         <table class="table table-striped">
@@ -197,31 +196,26 @@
                     </td>
                   <% end %>
                   <td>
-                    <%= link_to service_evaluation_path(service), class: "btn btn-primary" do %>
+                    <%= link_to service_evaluation_path(service), class: "btn btn-primary", disabled: service.has_not_been_evaluated? do %>
                       <span class="glyphicon glyphicon-tasks"></span>
                       <span class="sr-only"><%= t(".see_service_answers") %></span>
                     <% end %>
                   </td>
                 </tr>
               <% end %>
-              <td>
-                <%= link_to service_evaluation_path(service), class: "btn btn-primary", disabled: service.has_not_been_evaluated? do %>
-                  <span class="glyphicon glyphicon-tasks"></span>
-                  <span class="sr-only"><%= t(".see_service_answers") %></span>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <div class="well well-md">
-        <p>
-          <%= t(".no_services")%>
-        </p>
-      </div>
-    <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="well well-md">
+          <p>
+            <%= t(".no_services")%>
+          </p>
+        </div>
+      <% end %>
+    </div>
   </div>
+
   <script type="text/javascript">
     $(document).ready(loadChosen);
     $(document).on('page:load', loadChosen);

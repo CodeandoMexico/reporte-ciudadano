@@ -19,7 +19,10 @@ feature 'Observer sees service evaluation' do
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
 
-    click_link "Ver respuestas de servicio"
+    within service_row(1) do
+      click_link "Ver respuestas de servicio"
+    end
+
     expect(page).to have_content "Actas de nacimiento"
     expect(page).to have_content "Encuesta acta de nacimiento"
     expect(page).to have_content user.name
@@ -62,5 +65,9 @@ feature 'Observer sees service evaluation' do
 
   def given_survey_report_exists_for(survey)
     ServiceSurveyReport.create!(service_survey_id: survey.id)
+  end
+
+  def service_row(row)
+    all("tbody tr")[row - 1]
   end
 end
