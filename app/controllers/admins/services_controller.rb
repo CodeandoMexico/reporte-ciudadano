@@ -1,10 +1,12 @@
 class Admins::ServicesController < Admins::AdminController
   before_action :authorize_admin, only: :show
   before_action :set_title
-  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?
+  before_action :set_search, only: :index
+  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?,:service_name_options
 
   def index
-    @services = Service.order(:name)
+    @services = Service.all
+    search_services
     @statuses = Status.all
   end
 
@@ -49,6 +51,10 @@ class Admins::ServicesController < Admins::AdminController
     @service_requests = @service.service_requests
   end
 
+  def set_search
+    @search = Service.search(params[:q])
+  end
+
     def disable_service
     @service = Service.find(params[:id])
     if @service.update_attributes(status: "inactivo")
@@ -66,7 +72,6 @@ class Admins::ServicesController < Admins::AdminController
       redirect_to admins_services_path, notice: t('flash.service.could_not_be_enabled')
     end
   end
-
 
   private
 
@@ -103,6 +108,19 @@ class Admins::ServicesController < Admins::AdminController
 
   def service_cis_options
     Services.service_cis_options
+  end
+
+  def service_name_options
+    Services.service_name_options
+  end
+
+  def search_services
+    if params[:q].present?
+      @services = @services.where(name:  params[:q][:name]) unless params[:q][:name].blank?
+      @services = @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+      @services = @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+      @services = @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
+    end
   end
 
   def service_params

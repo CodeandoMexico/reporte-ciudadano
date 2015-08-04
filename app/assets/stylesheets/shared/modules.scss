@@ -113,6 +113,12 @@ $kpi-border: #cccccc;
   margin-left: 10%; 
 }
 /***************************************************
+**  datepicker
+***************************************************/
+.ui-datepicker{
+    background-color: #fff;
+}
+/***************************************************
 **  KPIS
 ***************************************************/
 .panel-gray {
@@ -156,11 +162,12 @@ $kpi-border: #cccccc;
 .padding-top{
   padding-top: 2em;
 }
-
+.margin-top{
+  margin-top: 2em;
+ } 
 .padding-top-observer{
   padding-top: 1em;
 }
-
 .margin_left{
   margin-left: 10%; 
 }
@@ -211,6 +218,26 @@ $kpi-border: #cccccc;
 .control-label-left {
   text-align: left;
   padding-top: 5px;
+}
+
+.chosen-container-single .chosen-single {
+  /* position: relative; */
+  display: block;
+  overflow: hidden;
+  padding: 0 8px 0 8px;
+  height: 33px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #ffffff), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+  background: linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+  background-clip: padding-box;
+  box-shadow: 0 0 3px white inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+  color: #444;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 24px;
 }
 /***************************************************
 **  NAVBAR
@@ -288,7 +315,7 @@ ul
 **  FILTERS
 ***************************************************/
 .filters {
-  @include clearfix;
+ /* @include clearfix;*/
   background: #FAFAFA;
   border: 1px solid #e0e0e0;
 

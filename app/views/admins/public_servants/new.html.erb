@@ -54,7 +54,7 @@
         <div class="form-group">
           <%= f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
           <div class="col-md-5">
-            <%= f.select :dependency, dependency_options %>
+            <%= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') },class: 'chosen-select'%>
           </div>
         </div>
       </fieldset>
@@ -62,7 +62,7 @@
         <div class="form-group">
           <%= f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
           <div class="col-md-5">
-            <%= f.select :administrative_unit, administrative_unit_options %>
+            <%= f.select :administrative_unit, administrative_unit_options, { prompt: t('form.labels.administrative_unit') },class: 'chosen-select'  %>
           </div>
         </div>
       </fieldset>
@@ -81,3 +81,7 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>

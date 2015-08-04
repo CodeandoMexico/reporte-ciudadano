@@ -228,7 +228,7 @@ es:
         title: 'Nuevo servicio'
       show:
         columns:
-          name: 'Tipo'
+          name: 'Nombre'
           extras: 'Campos adicionales'
         title: 'Trámites'
 
@@ -361,6 +361,7 @@ es:
       index:
         service_surveys: "Encuestas de servicio"
         new_service_survey: "Crear nueva encuesta"
+        send_survey: "Enviar encuesta"
         title: "Título"
         phase: "Etapa"
         services: "Trámites"
@@ -373,6 +374,10 @@ es:
         preview: "Vista preliminar"
         open: "Abrir encuesta"
         close: "Cerrar encuesta"
+        instructions_send: 'Coloca los correos de quienes quieres enviar la encuesta separados por ";"'
+        send: "Enviar"
+        add_user: "Enviar encuesta"
+        cancel: "Cancelar"
       new:
         new_service_survey: "Nueva encuesta de servicio"
         add_question: "Agregar pregunta"
@@ -564,7 +569,15 @@ es:
         edit_profile: "Editar perfil"
         cancel_my_account: "Cancelar mi cuenta"
         unhappy: "¿Estás insatisfecho?"
-
+    sessions:
+      new:
+        signin: 'Regístrate'
+        facebook: "Facebook"
+        twtter: "Twitter"
+        mail: "Correo"
+        password: "Contraseña"
+        rememberme: "Recuérdame"
+        enter: "Entrar"
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
@@ -605,6 +618,7 @@ es:
         who: "¿Quién lo atendió?"
         status: "Estatus"
         description: "Descripción"
+        cis: "Centro de atención"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -711,6 +725,9 @@ es:
     service_survey:
       created: "La encuesta se ha creado exitosamente."
       updated: "La encuesta se ha actualizado exitosamente."
+      emailsend: "Correos enviados"
+      noemailsend: "Correos no enviados"
+      answers_ignored: "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
       answers_ignored:
         "true": "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
         "false": "Las respuestas del usuario han sido habilitadas en la generación de nuevos reportes."
