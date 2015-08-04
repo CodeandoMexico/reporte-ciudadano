@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'As a service admin I can create new public servant' do
 
-  let(:admin) { create(:admin, :service_admin, dependency: "Dependencia 1") }
+  let(:admin) { create(:admin, :service_admin, dependency: "Secretaría General de Gobierno") }
   let(:super_admin) { create(:admin) }
 
   scenario 'I can see a list of public servants in my dependency' do
@@ -45,8 +45,7 @@ feature 'As a service admin I can create new public servant' do
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
     expect(page).not_to have_content "Dependencia 2"
-    option = first('#admin_dependency').text
-    select option, from: 'admin[dependency]'
+    select "Secretaría General de Gobierno", from: 'admin[dependency]'
     select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Servidor"
 

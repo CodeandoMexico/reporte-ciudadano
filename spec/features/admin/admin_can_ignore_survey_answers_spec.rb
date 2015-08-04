@@ -2,7 +2,6 @@ require 'spec_helper'
 
 feature 'Admin can ignore survey answers' do
   let(:admin) { create(:admin) }
-  let(:service_admin) { create(:admin, :service_admin) }
 
   scenario 'from service evaluations' do
     user = create :user
@@ -26,10 +25,18 @@ feature 'Admin can ignore survey answers' do
     click_ignore_answers_for ignored_user
     expect(page).to have_content "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
     expect(page).to have_content "Ignoradas"
+
+    click_enable_answers_for ignored_user
+    expect(page).not_to have_content "Ignoradas"
+    expect(page).to have_content "Las respuestas del usuario han sido habilitadas en la generación de nuevos reportes."
   end
 
   def click_ignore_answers_for(user)
     find("#ignore_user_answers_#{user.id}").click
+  end
+
+  def click_enable_answers_for(user)
+    find("#enable_user_answers_#{user.id}").click
   end
 
   def given_survey_has_answers_for(survey, answers_data)
