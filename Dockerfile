@@ -20,5 +20,6 @@ RUN bundle install
 RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
 RUN chown -R app:app /home/app/urbem
+RUN ln -sf /proc/self/fd /dev/
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
