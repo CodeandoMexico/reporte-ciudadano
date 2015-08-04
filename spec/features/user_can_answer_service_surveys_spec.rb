@@ -14,6 +14,7 @@ feature 'User can answer service surveys' do
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [first_question, second_question])
 
     visit service_surveys_path
+    select "Encuesta acta de nacimiento", from: "service_survey_selector"
     click_link "Iniciar evaluación"
 
     within (".pt-page-current") do
@@ -79,6 +80,7 @@ feature 'User can answer service surveys' do
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [first_question, second_question])
 
     visit service_surveys_path
+    select "Encuesta acta de nacimiento", from: "service_survey_selector"
     click_link "Iniciar evaluación"
 
     within (".pt-page-current") do

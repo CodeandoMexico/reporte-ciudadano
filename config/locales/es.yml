@@ -494,6 +494,7 @@ es:
     index:
       title: "Título"
       services: "Trámites"
+      surveys: "Encuestas y su etapa"
       phase: "Etapa"
       no_service_surveys: "No existen encuestas abiertas para ningún trámite."
       start_survey: "Iniciar evaluación"
