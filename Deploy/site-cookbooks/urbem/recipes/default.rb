@@ -59,20 +59,27 @@ docker_image "civicadigital/backup" do
 end
 
 docker_image "gliderlabs/logspout" do
-  tag "latest"
+  tag "v2"
 end
 
 docker_image "phusion/passenger-ruby22" do
   tag "latest"
 end
 
+directory '/var/log/urbem' do
+ owner 'root'
+ group 'root'
+ mode '0755'
+ action :create
+end
+
 docker_container "logs" do
   image "gliderlabs/logspout"
-  tag "latest"
+  tag "v2"
   container_name "logs"
   detach true
-  volume ["/var/run/docker.sock:/tmp/docker.sock"]
-  port "127.0.0.1:8000:80"
+  volume ["/var/run/docker.sock:/tmp/docker.sock", "/var/log/urbem:/mnt/routes"]
+  port "127.0.0.1:8000:8000"
 end
 
 docker_container "postgres" do
