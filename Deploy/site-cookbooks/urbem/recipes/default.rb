@@ -106,9 +106,8 @@ directory "/var/urbem/" do
 end
 
 git "/var/urbem" do
-  revision "master"
+  revision node["urbem"]["branch"]
   repository "https://github.com/civica-digital/urbem-puebla.git"
-  revision 'docker-support'
   notifies :run, "docker_container[commit_db]", :immediately
   action :sync
 end
