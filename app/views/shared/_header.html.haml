@@ -5,8 +5,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to root_path, class: 'navbar-brand' do
-        = image_tag 'puebla-logo.png', class: "navbar-logo"
+      %row
+        .col-md-12 
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag 'image_navbar.png', class: "navbar-logo"
     .navbar-collapse.collapse.pagination-right
       - if current_user
         %ul.nav.navbar-nav.padding-top
