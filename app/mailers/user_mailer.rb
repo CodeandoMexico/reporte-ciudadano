@@ -19,5 +19,11 @@ class UserMailer < ActionMailer::Base
     @user = User.find(id_user)
     mail(subject: I18n.t('mailer.subject.comment_change_notification'), to: @user.email)
   end
+
+  def notify_user_new_surveys(mail, link)
+    @link = link
+    @mail = mail
+    mail(subject: I18n.t('mailer.subject.new_survey'), to: @mail)
+  end
 end
 

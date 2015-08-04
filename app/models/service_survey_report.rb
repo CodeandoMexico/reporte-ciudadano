@@ -1,7 +1,11 @@
 class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
+  has_many :services, through: :service_survey
+
   validates :answers_exist, presence: true
+
   before_create :set_results_for_report
+
   serialize :areas_results, Hash
 
   def service_survey_title
@@ -10,6 +14,12 @@ class ServiceSurveyReport < ActiveRecord::Base
 
   def service_survey_phase
     service_survey.phase
+  end
+
+  def total_by_question
+    questions_avg_score = rating_and_binary_answers(self.service_survey_id).group('question_id').average('score')
+    questions = rating_and_binary_questions(self.service_survey_id).order(:criterion)
+    {}.merge(:scores => questions_avg_score).merge(:questions => questions)
   end
 
   private
@@ -49,7 +59,7 @@ class ServiceSurveyReport < ActiveRecord::Base
   end
 
   def effectiveness_by_criterion(service_survey_id)
-    criteria = ServiceSurveys.criterion_options_available
+    criteria = available_criteria
     answers = rating_and_binary_answers(service_survey_id).includes(:question).inject([]) do |result, survey_answer|
               result << [survey_answer.question.criterion, survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
               result
@@ -80,8 +90,16 @@ class ServiceSurveyReport < ActiveRecord::Base
     end
   end
 
+  def available_criteria
+    ServiceSurveys.criterion_options_available
+  end
+
   def overall_effectiveness(service_survey_id)
     rating_and_binary_answers(service_survey_id).map(&:score).sum.to_i
+  end
+
+  def rating_and_binary_questions(service_survey_id)
+    get_service_survey(service_survey_id).questions.where(answer_type: ['rating','binary'])
   end
 
   def rating_and_binary_answers(service_survey_id)
@@ -91,5 +109,4 @@ class ServiceSurveyReport < ActiveRecord::Base
   def get_service_survey(service_survey_id)
     ServiceSurvey.find(service_survey_id)
   end
-
 end

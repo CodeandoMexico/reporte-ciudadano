@@ -1,10 +1,10 @@
 class ServiceRequestsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new, :index, :show]
   before_action :create_array, only: [:create, :new]
   helper_method :service_cis_options, :service_cis_label
 
   def index
-    @search = ServiceRequest.unscoped.search(params[:q])
+    @search = ServiceRequest.search(search_query_string)
     @service_requests = @search.result.page(params[:page])
     flash.now[:notice] = I18n.t("flash.service_requests.empty") if @service_requests.empty?
   end
@@ -21,7 +21,7 @@ class ServiceRequestsController < ApplicationController
   def create
     @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
-      notify_public_servants
+      notify_public_servants(@service_request)
       redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
       flash[:notice] = I18n.t("flash.service_requests.error")
@@ -52,6 +52,14 @@ class ServiceRequestsController < ApplicationController
   end
 
   private
+   def search_query_string
+    unless params[:q] .blank?
+      params[:q].merge(:service_requester => current_user.email)
+    else
+      {:service_requester => current_user.email}
+    end
+   end
+
   def service_public_servants
     unless params[:pagetime].blank?
         unless params[:pagetime][:service].blank?
@@ -75,10 +83,9 @@ class ServiceRequestsController < ApplicationController
     Services.service_cis_label(cis_id)
   end
 
-  def notify_public_servants
-    public_servants = @service_request.public_servants
-    public_servants.each do |public_servant|
-      AdminMailer.notify_new_request(admin: public_servant, service_request: @service_request).deliver
+  def notify_public_servants(service_request)
+    if service_request.public_servant_id.present? && !service_request.public_servant_id.zero?
+      AdminMailer.notify_new_request(admin: Admin.find(service_request.public_servant_id), service_request: service_request).deliver
     end
   end
 

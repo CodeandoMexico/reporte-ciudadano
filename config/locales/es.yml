@@ -228,7 +228,7 @@ es:
         title: 'Nuevo servicio'
       show:
         columns:
-          name: 'Tipo'
+          name: 'Nombre'
           extras: 'Campos adicionales'
         title: 'Trámites'
 
@@ -361,6 +361,7 @@ es:
       index:
         service_surveys: "Encuestas de servicio"
         new_service_survey: "Crear nueva encuesta"
+        send_survey: "Enviar encuesta"
         title: "Título"
         phase: "Etapa"
         services: "Trámites"
@@ -373,6 +374,10 @@ es:
         preview: "Vista preliminar"
         open: "Abrir encuesta"
         close: "Cerrar encuesta"
+        instructions_send: 'Coloca los correos de quienes quieres enviar la encuesta separados por ";"'
+        send: "Enviar"
+        add_user: "Enviar encuesta"
+        cancel: "Cancelar"
       new:
         new_service_survey: "Nueva encuesta de servicio"
         add_question: "Agregar pregunta"
@@ -549,17 +554,32 @@ es:
       see_service_answers: "Ver respuestas de servicio"
   service_evaluations:
     show:
+      user: "Usuario"
       service_evaluation: "Evaluaciones de %{name}"
       service_survey_answers: "Respuestas de encuesta %{survey}"
       see_other_survey_answers: "Ver respuestas de otras encuestas"
       no_answers: "Ningún usuario ha respondido esta encuesta."
+      ignore: "¿Ignorar?"
+      ignore_answers: Ignorar
+      ignored: "Ignoradas"
+      export_csv: "Exportar CSV"
+      no_service_surveys_for_service: "El servicio no tiene encuestas asignadas"
+      enable_answers: "Habilitar"
   users:
     registrations:
       edit:
         edit_profile: "Editar perfil"
         cancel_my_account: "Cancelar mi cuenta"
         unhappy: "¿Estás insatisfecho?"
-
+    sessions:
+      new:
+        signin: 'Regístrate'
+        facebook: "Facebook"
+        twtter: "Twitter"
+        mail: "Correo"
+        password: "Contraseña"
+        rememberme: "Recuérdame"
+        enter: "Entrar"
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
@@ -572,7 +592,7 @@ es:
     service_surveys: "Evalúa un servicio"
     home: "Inicio"
     requests: "Quejas y sugerencias"
-    evaluate_a_submission: "Evalúa trámite" 
+    evaluate_a_submission: "Evalúa trámite"
     evaluations: "Evaluaciones"
 
   # Global words. Commonly used thru the platform
@@ -600,6 +620,7 @@ es:
         who: "¿Quién lo atendió?"
         status: "Estatus"
         description: "Descripción"
+        cis: "Centro de atención"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -618,7 +639,7 @@ es:
       text: "Texto"
       answer_type: "Tipo de respuesta"
       value: "Valor %"
-      who: "¿Quién te atendió?*" 
+      who: "¿Quién te atendió?*"
       second_surname: "Segundo apellido:"
       surname: "Primer apellido:"
       description_public_servant: "Describe al funcionario"
@@ -706,6 +727,12 @@ es:
     service_survey:
       created: "La encuesta se ha creado exitosamente."
       updated: "La encuesta se ha actualizado exitosamente."
+      emailsend: "Correos enviados"
+      noemailsend: "Correos no enviados"
+      answers_ignored: "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
+      answers_ignored:
+        "true": "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
+        "false": "Las respuestas del usuario han sido habilitadas en la generación de nuevos reportes."
   navbar:
     admin:
       design: "Diseño"
@@ -792,6 +819,11 @@ es:
       service_survey_phase: "Parte del proceso evaluada"
       created_time_ago: "Creado hace: %{time_ago}"
       no_report: "Aún no hay reportes sobre este servicio"
+      question_analysis: "Análisis por pregunta"
+      question_value: "Valor total de la pregunta: %{value}%"
+      question_criterion: "Criterio de la pregunta: %{criterion}"
+      question_type: "Tipo de pregunta: %{type}"
+
     general_survey:
       title: "General"
       subtitle: "Satisfacción General del Servicio"

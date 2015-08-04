@@ -4,6 +4,7 @@ FactoryGirl.define do
     question nil
     score "9.99"
     association :user, factory: :user
+    ignored false
     factory :survey_answer_binary do
       score nil
       user nil

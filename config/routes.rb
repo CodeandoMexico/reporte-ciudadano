@@ -49,10 +49,14 @@ Rails.application.routes.draw do
     end
 
     resources :service_surveys do
+      collection do
+          post 'invitation_user_mail'
+      end
       get :questions_text, on: :collection
       put :change_status, on: :member
-
+      get :ignore_answers, on: :member
     end
+
     resources :dashboards, only: [:index] do
       collection do
         get 'design'
@@ -91,10 +95,14 @@ Rails.application.routes.draw do
     end
   end
   resources :service_surveys, only: [:index, :show]
-  resources :answers, only: [:new, :index, :create]
+  resources :answers, only: [:new, :index, :create] do
+
+  end
   resources :evaluations, only: [:index]
   resources :cis_evaluations, only: [:index, :show]
-  resources :service_evaluations, only: :show
+  resources :service_evaluations, only: :show do
+    get :export_csv, on: :member
+  end
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do

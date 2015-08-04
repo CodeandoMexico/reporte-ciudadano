@@ -22,16 +22,12 @@
             </div>
           </div>
         </fieldset>
+
         <fieldset>
           <div class="form-group">
             <%= f.label :services, t('form.labels.services'), class: 'col-md-3 control-label' %>
             <div class="col-md-5">
-              <% services_for(current_admin).each do |service| %>
-                <div class="checkbox">
-                  <%= f.check_box :service_ids,  { multiple: true }, service.id, nil %>
-                  <%= f.label :service_ids, service.name, value: service.id %>
-                </div>
-              <% end %>
+              <%= f.select :services, services_for(current_admin).collect {|p| [p.name, p.id] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()",:multiple=>true}%>  
             </div>
           </div>
         </fieldset>
@@ -69,3 +65,8 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>

@@ -2,7 +2,8 @@ class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
   before_action :set_services, only: [:new, :create]
   before_action :set_title
-  helper_method :dependency_options, :administrative_unit_options
+  helper_method :dependency_options, :administrative_unit_options,:service_cis_options, :service_admins_name_options, :record_number_options
+  before_action :set_search, only: :index
   layout 'admins'
 
   def new
@@ -20,7 +21,8 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def index
-    @service_admins = Admin.service_admins_sorted_by_name.page(params[:page]).per(25)
+    @service_admins = Admin.service_admins_sorted_by_name
+    search_service_admins
   end
 
   def edit
@@ -37,6 +39,11 @@ class Admins::ServiceAdminsController < ApplicationController
       render :edit
     end
   end
+
+  def set_search
+    @search = Admin.search(params[:q])
+  end
+
 
   private
   def set_title
@@ -72,5 +79,27 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def administrative_unit_options
     Services.service_administrative_unit_options
+  end
+
+  def service_cis_options
+    Services.service_cis_options
+  end
+
+  def service_admins_name_options
+    Services.service_admins_name_options
+  end
+
+  def record_number_options
+    Services.record_number_options
+  end
+
+  def search_service_admins
+    if params[:q].present?
+      @service_admins = @service_admins.where(name: params[:q][:name] ) unless params[:q][:name].blank?
+      @service_admins = @service_admins.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+      @service_admins = @service_admins.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+      @service_admins = @service_admins.where(record_number: params[:q][:record_number] ) unless  params[:q][:record_number].blank?
+    end
+    @service_admins = @service_admins.page(params[:page]).per(25)
   end
 end
