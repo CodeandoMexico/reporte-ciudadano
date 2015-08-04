@@ -90,17 +90,6 @@ docker_container "redis" do
   detach true
 end
 
-docker_container "urbem_up" do
-  action :start
-  only_if do
-    begin
-      Docker::Conteiner.get("urbem-puebla")
-      true
-    rescue
-      nil
-    end
-  end
-end
 
 directory "/var/urbem/" do
   owner "root"
@@ -117,6 +106,7 @@ git "/var/urbem" do
   action :sync
 end
 
+
 docker_container "commit_db" do
   image "civicadigital/backup"
   env ["AWS_KEY=#{creds['aws']['aws_key']}",
@@ -126,6 +116,7 @@ docker_container "commit_db" do
   remove_automatically true
   command ""
   container_name "backup_db"
+  ignore_failure true
   action :nothing
   notifies :build,  "docker_image[urbem-puebla]", :immediately
 end
@@ -133,10 +124,14 @@ end
 docker_image 'urbem-puebla' do
   tag 'latest'
   source "/var/urbem"
-  action :nothing
+  begin
+     Docker::Image.get("urbem-puebla")
+     action :nothing
+  rescue
+     action :build
+  end
   notifies :run, 'docker_container[urbem_create]', :immediately
 end
-
 
 docker_container 'urbem_create' do
   image "urbem-puebla"
@@ -158,6 +153,18 @@ docker_container 'urbem_migrate' do
   container_name "migrate_dbs"
   remove_automatically true
   env  list_creds
+  action :nothing
+  notifies :run, "docker_container[urbem_seed]", :immediately
+end
+
+docker_container 'urbem_seed' do
+  image "urbem-puebla"
+  entrypoint "rake"
+  command "db:seed"
+  link ["postgres:postgres", "redis:redis"]
+  container_name "seed_dbs"
+  remove_automatically true
+  env list_creds
   action :nothing
   notifies :redeploy, "docker_container[urbem]", :immediately
 end
