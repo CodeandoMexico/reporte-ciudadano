@@ -27,7 +27,7 @@
           <div class="form-group">
             <%= f.label :services, t('form.labels.services'), class: 'col-md-3 control-label' %>
             <div class="col-md-5">
-              <%= f.select :services, services_for(current_admin).collect {|p| [p.name, p.id] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()",:multiple=>true}%>  
+              <%= f.select :service_ids, services_for(current_admin).collect {|p| [p.name, p.id] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select',:multiple=>true}%>  
             </div>
           </div>
         </fieldset>
