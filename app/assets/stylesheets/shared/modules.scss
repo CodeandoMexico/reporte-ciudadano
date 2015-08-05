@@ -280,6 +280,16 @@ ul
   background-color: #f8f8f8;
   width: 80% !important;
 }
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #004987;
+  white-space: nowrap;
+}
 /***************************************************
 **  HOME REPORT STATS
 ***************************************************/
