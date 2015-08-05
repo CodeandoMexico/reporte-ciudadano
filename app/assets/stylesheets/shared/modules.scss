@@ -1,8 +1,9 @@
 $grey-kpi: #f2f2f2;
 $grey-navbar: #f7f7f7;
 $blue-line: #005195;
-$text-grey-kpi: #333333;
-$kpi-border: #cccccc;
+$text-grey-kpi: #ffffff;
+$kpi-border: #575756;
+$blue-back: #00417C;
 /***************************************************
 **  COMMON ELEMENTS
 ***************************************************/
@@ -104,13 +105,44 @@ $kpi-border: #cccccc;
     margin-right: 24px;
   }
 }
+
+/***************************************************
+**  Landing
+***************************************************/
+#landing {
+    display: table;
+    position: bottom;
+    width: 100%;
+    height: 100%;
+    background: url(image_path('bg.png'))  no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
 /***************************************************
 **  HOME Video
 ***************************************************/
 .video{
   width: 80%;
-  height: 20em;;
+  height: 28em;;
   margin-left: 10%; 
+}
+.video-text{
+  /*background: rgba(0, 74, 135, .4);*/
+  padding-top: 2em;
+  padding-bottom: 1em;
+  color: #ffffff;
+  font-size: 17px;
+  font-family:  "Helvetica Neue Bold", sans-serif;
+}
+
+.join-text{
+  /*background: rgba(0, 74, 135, .4);*/
+  padding: 2em;
+  border-radius: 15px;
+  color: #ffffff;
+  margin-bottom: 2em;
 }
 /***************************************************
 **  datepicker
@@ -122,18 +154,20 @@ $kpi-border: #cccccc;
 **  KPIS
 ***************************************************/
 .panel-gray {
-     background-color: $grey-kpi, sans-serif;
-     margin: 15px 15px 25px;
-     border: 1px solid $kpi-border;
+      background: rgba(0, 74, 135, .2);
+     margin: 5px 15px 25px;
+     border-radius: 10px;
+     overflow:hidden;
+
 }
 .panel-gray .panel-heading {
-  border-color: $grey-kpi;
   color: #000;
-  background-color: $grey-kpi;
+  background: rgba(0, 74, 135, .2);
 }
 .panel-gray a {
-  color: $grey-kpi;
+  color: rgba(0, 74, 135, .2);
 }
+
 .number-kpi{
   color: $text-grey-kpi;
   font-size: 50px;
@@ -144,8 +178,10 @@ $kpi-border: #cccccc;
   font-size: 14px;
   font-family:  "Helvetica Neue Light", sans-serif;
 }
+
 .padding-top-kpi{
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /***************************************************
@@ -153,7 +189,7 @@ $kpi-border: #cccccc;
 ***************************************************/
 .footer-size {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 50px;
 }
 
 /***************************************************
@@ -270,6 +306,16 @@ ul
   padding-top: 15px;
   background-color: #f8f8f8;
   width: 80% !important;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #004987;
+  white-space: nowrap;
 }
 /***************************************************
 **  HOME REPORT STATS
