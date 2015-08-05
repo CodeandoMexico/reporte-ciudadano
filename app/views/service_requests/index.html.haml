@@ -1,14 +1,14 @@
 = search_form_for @search, method: :get, class: "filters form-inline" do |f|
-  .form-group
+  .form-group.col-md-3
     = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
-  .form-group.form-group-separator
+  .form-group.form-group-separator.col-md-3
     = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
-  .form-group.form-group-separator
-    = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: 'Servicio' }, class: 'form-control'
-  .form-group.form-group-separator
-    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'form-control'
-  .form-group
-    = submit_tag 'Buscar', class: "submit btn btn-primary btn-large btn-block"
+  .form-group.form-group-separator.col-md-3
+    = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: 'Servicio' }, class: 'chosen-select'
+  .form-group.form-group-separator.col-md-3
+    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'chosen-select'
+  .form-group.col-md-12
+    = submit_tag 'Buscar', class: "btn btn-primary"
 
 .table-responsive
   %table.table.sortable_table.table-striped
@@ -29,23 +29,22 @@
         %th
           Estatus
           %i.icon-chevron-down
-        %th
-          Votos
-          %i.icon-chevron-down
         - if admin_signed_in?
           %th
             Eliminar
     %tbody
       - @service_requests.each do |service_request|
-        - if current_user.to_s == service_request.service_requester[:name].to_s || current_admin
+        - if current_user.email.to_s == service_request.service_requester[:email].to_s || current_admin
           %tr
             %td= link_to service_request.id, service_request
             %td= l service_request.created_at, format: :short
             %td= link_to service_request.service_name, service_request_path(service_request)
             %td= truncate service_request.description
             %td= service_request.status
-            %td= service_request.votes_for
             - if admin_signed_in?
               %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
-
 = paginate @service_requests
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

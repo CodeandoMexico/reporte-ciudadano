@@ -1,7 +1,9 @@
-<p>Hola <b><%= @user.name || @user.email %></b>, </p>
+<p>Estimado(a) <b><%= @user.name || @user.email %></b>, </p>
 
-<p>Tu reporte con folio <b>#<%= @service_request.id %></b> ha cambiado de estatus <%= @previous_status.name %> a <%= @service_request.status.name %></p>
+<p>En seguimiento a su reporte con folio <b>#<%= @service_request.id %></b> cambiado de <%= @previous_status.name %> a <%= @service_request.status.name %></p>
 
-<p>Puedes ver más sobre este reporte y el mensaje dejado por el administrador ingresando a la siguiente página: <%= link_to nil, service_request_url(@service_request) %></p>
+<p>Para ver los detalles sobre este cambio consulte el mensaje dejado por el Servidor Público, ingresando a la siguiente liga: <%= link_to nil, service_request_url(@service_request) %></p>
 
-<p>Saludos</p>
+<p>Encuestas de Satisfacción
+Gobierno del Estado de Puebla.
+</p>

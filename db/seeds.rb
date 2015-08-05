@@ -20,7 +20,11 @@ public_servant_1 = Admin.create(name: "Servidor público 1", email: "publicserva
 public_servant_2 = Admin.create(name: "Servidor público 2", email: "publicservant2@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 2', is_public_servant: true, active: true)
 public_servant_3 = Admin.create(name: "Servidor público 3", email: "publicservant3@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 3', is_public_servant: true, active: true)
 
+
+
 user = User.create(name: "Juan Villanueva", email: 'juan@juan.com', password: "userpassword", password_confirmation: "userpassword")
+
+user = User.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
 
 status = Status.first
 

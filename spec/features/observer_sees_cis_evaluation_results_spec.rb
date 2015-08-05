@@ -18,6 +18,7 @@ feature 'Observer can see cis evaluation results' do
     within first('.cis') do
       expect(page).to have_link "Ver resultados"
       click_link "Ver resultados"
+      sleep 1.0
     end
 
     expect(current_path).to eq cis_evaluation_path(id: 1)
@@ -43,6 +44,7 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
+    sleep 1.0
 
     within '.evaluation-services' do
       expect(page).to have_content "Transparencia"
@@ -69,6 +71,7 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
+    sleep 1.0
 
     within '.best-service' do
       expect(page).to have_content "Actas de nacimiento"
@@ -98,6 +101,7 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
+    sleep 1.0
 
     within '.best-public-servants' do
       expect(page).not_to have_content "Actas de nacimiento"
@@ -115,6 +119,7 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
+    sleep 1.0
 
     within '.evaluation-overall' do
       expect(page).to have_content "No hay datos en reportes de encuestas para generar el reporte."

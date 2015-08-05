@@ -57,10 +57,6 @@
             .image.tight
               = image_tag @service_request.media_url
 
-        .row.well
-          %h4= t('.votes')
-          .profile-report-count
-            = @service_request.votes_for
 
         .row.well
           %h4= t('.update_service_request')

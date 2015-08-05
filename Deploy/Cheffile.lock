@@ -1,0 +1,23 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    build-essential (2.2.3)
+    chef_handler (1.2.0)
+    dmg (2.2.2)
+    docker (0.40.3)
+    git (4.2.2)
+      build-essential (>= 0.0.0)
+      dmg (>= 0.0.0)
+      windows (>= 0.0.0)
+      yum-epel (>= 0.0.0)
+    windows (1.37.0)
+      chef_handler (>= 0.0.0)
+    yum (3.6.1)
+    yum-epel (0.6.2)
+      yum (~> 3.2)
+
+DEPENDENCIES
+  docker (~> 0.40.3)
+  git (>= 0)
+  git (~> 4.2.2)
+

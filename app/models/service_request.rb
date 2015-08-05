@@ -86,9 +86,9 @@ class ServiceRequest < ActiveRecord::Base
 
   def service_requester
     if self.anonymous?
-      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' }
+      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' , email: 'Anónimo'}
     else
-      { avatar_url: self.requester.avatar_url, name: self.requester.name }
+      { avatar_url: self.requester.avatar_url, name: self.requester.name,  email: self.requester.email }
     end
   end
 
