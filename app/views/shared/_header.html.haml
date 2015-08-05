@@ -7,8 +7,8 @@
         %span.icon-bar
       %row
         .col-md-12 
-          = link_to root_path, class: 'navbar-brand' do
-            = image_tag 'image_navbar.png', class: "navbar-logo"
+          = link_to root_path, class: 'navbar-brand navbar-logo-full' do
+            = image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"
     .navbar-collapse.collapse.pagination-right
       - if current_user
         %ul.nav.navbar-nav.padding-top

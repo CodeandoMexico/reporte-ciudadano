@@ -46,8 +46,12 @@
   padding: 15px;
 }
 
+navbar-logo-full {
+  width: 260px !important;
+}
+
 img.navbar-logo {
-  width: 260px;
+  width: 160px;
 }
 
 .navbar-nav {
@@ -62,7 +66,6 @@ img.navbar-logo {
   height: 100px;
   background-color: #303030;
   color: #FFF;
-
   .footer-logo {
     margin: 0 auto;
   }
