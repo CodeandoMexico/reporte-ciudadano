@@ -15,12 +15,12 @@
             <tr>
               <td><%= service.name %></td>
               <td>
-                <%= select_tag("service_survey_selector",
+                <%= select_tag("cis_selector",
                                options_for_select(
 				                               service.cis.map{|a| [Services.service_cis
 								                                                    .select{|cis_hash| cis_hash[:id].to_i == a.to_i}
 								                                                    .map{|cis_hash| cis_hash[:name]}.join(""), a]}),
-                               {include_blank: true}) %>
+                               {include_blank: true, class: "js-select-cis", class:"js-select-cis js-selector-service-#{service.id}", "data-serviceid" => "#{service.id}"}) %>
               </td>
               <td>
                 <%= select_tag("service_survey_selector",
@@ -29,33 +29,34 @@
 				                               .where(open: true)
 				                               .order(phase: 'desc')
 				                               .map{|a| [t("service_survey_phase_options.#{a.phase}")+" - #{a.title} ", a.id ]}),
-                               {include_blank: true, class:"js-select-survey", "data-serviceid" => "#{service.id}"}) %>
+                               {include_blank: true, class:"js-select-survey js-selector-service-#{service.id}", "data-serviceid" => "#{service.id}"}) %>
               </td>
               <td>
 		            <table class="inside no-border-rows">
 		              <tbody>
 
+				            <% service.cis.each do |cis|%>
 						            <% service.service_surveys.each do |survey|%>
-
 						              <% if current_user %>
 						                  <% unless survey.has_been_answered_by?(current_user) %>
-		                          <tr class="<%= "js-survey-#{survey.id} js-service-#{service.id} hidden" %>">
+		                          <tr class="<%= "js-survey-#{survey.id} js-service-#{service.id} js-cis-#{cis} hidden" %>">
 						                      <td>
-						                        <%= link_to t(".start_survey"), new_answer_path(service_survey_id: survey.id), class: "btn btn-info" %>
+						                        <%= link_to t(".start_survey"), new_answer_path(service_survey_id: survey.id, cis_id: cis), class: "btn btn-info" %>
 						                      </td >
 		                          </tr>
 						                  <% else %>
-		                          <tr class="<%= "js-survey-#{survey.id} js-service-#{service.id} hidden" %>">
+		                          <tr class="<%= "js-survey-#{survey.id} js-service-#{service.id}  js-cis-#{cis} hidden" %>">
 						                      <td>
 						                        <span class="label label-success"><%= t(".answered") %></span>
 						                      </td >
 						                      <td>
-						                        <%= link_to t('service_report.show_report'), service_survey_reports_path(service_survey_id: survey.id), class: "btn btn-success" %>
+						                        <%= link_to t('service_report.show_report'), service_survey_reports_path(service_survey_id: survey.id, cis_id: cis), class: "btn btn-success js-target-survey-link" %>
 						                      </td >
 		                          </tr>
 						                  <% end %>
 						              <% end %>
 						            <% end %>
+				            <% end %>
 		                </tr>
 				          </tbody>
 		            </table>
