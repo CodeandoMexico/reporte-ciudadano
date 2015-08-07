@@ -17,7 +17,9 @@ class ServiceSurveyReport < ActiveRecord::Base
   end
 
   def total_by_question
-    questions_avg_score = rating_and_binary_answers(self.service_survey_id).group('question_id').average('score')
+    questions_avg_score = rating_and_binary_answers(self.service_survey_id)
+        .group('questions.id')
+        .average('survey_answers.score')
     questions = rating_and_binary_questions(self.service_survey_id).order(:criterion)
     {}.merge(:scores => questions_avg_score).merge(:questions => questions)
   end
