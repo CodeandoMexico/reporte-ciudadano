@@ -7,40 +7,12 @@
 # AGPL License
 #
 
+Chef::Resource::DockerContainer.send(:include, Creds::Helper)
+
 chef_gem 'docker-api'
 require 'docker'
 
 include_recipe 'git'
-
-if node["key_file"]
-  secret = Chef::EncryptedDataBagItem.load_secrets("#{node["key_file"]["path"]}")
-  creds = Chef::EncryptedDataBagItem.load("urbem", "keys", secret)
-else
-  creds = data_bag_item('keys', 'secret')
-end
-
-list_creds = [
-  "MAILER_FROM=#{creds['email']}",
-  "FACEBOOK_SECRET=#{creds['facebook']['secret']}",
-  "FACEBOOK_KEY=#{creds['facebook']['key']}",
-  "TWITTER_KEY=#{creds['twitter']['key']}",
-  "TWITTER_SECRET=#{creds['twitter']['secret']}",
-  "TWITTER_OAUTH_TOKEN=#{creds['twitter']['oauth_token']}",
-  "TWITTER_OAUTH_TOKEN_SECRET=#{creds['twitter']['oauth_token_secret']}",
-  "SENDGRID_USERNAME=#{creds['sendgrid']['username']}",
-  "SENDGRID_PASSWORD=#{creds['sendgrid']['password']}",
-  "COVERALLS_TOKEN=#{creds['coverall_token']}",
-  "SECRET_KEY_BASE=#{creds['rails']['secret_key_base']}",
-  "RAILS_ENV=#{creds['rails']['env']}",
-  "PASSENGER_APP_ENV=#{creds['rails']['env']}",
-  "POSTGRES_PASSWORD=#{creds['postgres']['password']}",
-  "S3_BUCKET=#{creds['aws']['s3_bucket_name']}",
-  "AWS_SECRET=#{creds['aws']['aws_secret']}",
-  "AWS_KEY=#{creds['aws']['aws_key']}"
-]
-
-list_creds.push "APP_NAME=#{if creds['app_name'] then  creds['app_name'] else "urbem" end}"
-list_creds.push "HOST=#{if creds['host'] then  creds['host'] else "urbem:80" end}"
 
 # Up the docker service
 docker_service 'default' do
@@ -94,7 +66,7 @@ docker_container "postgres" do
   tag "9.4"
   container_name "postgres"
   detach true
-  env "POSTGRES_PASSWORD=#{creds['postgres']['password']}"
+  env "POSTGRES_PASSWORD=#{postgres_pwd}"
   cmd_timeout 600
 end
 
@@ -124,9 +96,10 @@ end
 
 docker_container "commit_db" do
   image "civicadigital/backup"
-  env ["AWS_KEY=#{creds['aws']['aws_key']}",
-       "AWS_SECRET=#{creds['aws']['aws_secret']}",
-       "S3_BUCKET=#{creds['aws']['s3_bucket_backup_name']}"]
+  env list_creds
+  #["AWS_KEY=#{creds['aws']['aws_key']}",
+  #     "AWS_SECRET=#{creds['aws']['aws_secret']}",
+  #     "S3_BUCKET=#{creds['aws']['s3_bucket_backup_name']}"]
   link ["postgres:postgres", "redis:redis"]
   remove_automatically true
   command ""
@@ -172,20 +145,7 @@ docker_container 'urbem_migrate' do
   remove_automatically true
   env  list_creds
   action :nothing
-  notifies :run, "docker_container[urbem_seed]", :immediately
-  cmd_timeout 1000
-end
-
-docker_container 'urbem_seed' do
-  image "urbem-puebla"
-  entrypoint "rake"
-  command "db:seed"
-  link ["postgres:postgres", "redis:redis"]
-  container_name "seed_dbs"
-  remove_automatically true
-  env list_creds
-  action :nothing
-  notifies :redeploy, "docker_container[urbem]", :immediately
+  notifies :run, "docker_container[urbem]", :immediately
   cmd_timeout 1000
 end
 
