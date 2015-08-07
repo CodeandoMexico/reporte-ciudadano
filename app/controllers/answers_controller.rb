@@ -18,7 +18,7 @@ class AnswersController < ApplicationController
     end
     @service_survey = ServiceSurvey.find(params[:service_survey_id])
     UserMailer.confirm_service_survey_answer(@service_survey, current_user).deliver
-    redirect_to service_survey_reports_path(redirect_params), notice: t('.answers_created_successfully')
+    redirect_to redirect_after_answers, notice: t('.answers_created_successfully')
   end
 
   private
@@ -27,11 +27,11 @@ class AnswersController < ApplicationController
     params.require(:answers).values
   end
 
-  def redirect_params
+  def redirect_after_answers
     if @service_survey.reports.any?
-      { id: @service_survey.reports.last.id }
+      service_survey_report_path({ id: @service_survey.reports.last.id })
     else
-      { service_survey_id: @service_survey.id }
+      service_survey_reports_path( {service_survey_id: @service_survey.id })
     end
   end
 
