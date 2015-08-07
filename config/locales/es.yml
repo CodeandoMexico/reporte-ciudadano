@@ -805,8 +805,9 @@ es:
     index:
       existent_reports: "Reportes Existentes"
       total: "Número de reportes: %{number_of_reports}"
-      thanks_for_answering: "Gracias por contestar la encuesta."
-      no_report: "Aún no hay reportes estadísticos sobre esta encuesta"
+      thanks_for_answering: "Gracias por contestar a las preguntas."
+      no_report: "Aún no hay reportes estadísticos sobre esta encuesta."
+      return_to_root_path: "Regresa a la página principal"
       table:
         name: "Nombre"
         phase: "Fase"
