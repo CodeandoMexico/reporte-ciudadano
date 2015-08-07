@@ -163,7 +163,7 @@ docker_container 'urbem_migrate' do
   remove_automatically true
   env  list_creds
   action :nothing
-  notifies :run, "docker_container[urbem_seed]", :immediately
+  notifies :redeploy, "docker_container[urbem]", :immediately
 end
 
 docker_container 'urbem_seed' do
