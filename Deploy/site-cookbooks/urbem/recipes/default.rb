@@ -41,6 +41,9 @@ list_creds = [
   "AWS_KEY=#{creds['aws']['aws_key']}"
 ]
 
+list_creds.push "APP_NAME=#{if creds['app_name'] then  creds['app_name'] else "urbem" end}" 
+list_creds.push "HOST=#{if creds['host'] then  creds['host'] else "urbem:80" end}"
+
 # Up the docker service
 docker_service 'default' do
   action [:create, :start]
