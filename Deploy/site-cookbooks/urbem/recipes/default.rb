@@ -19,8 +19,6 @@ else
   creds = data_bag_item('keys', 'secret')
 end
 
-
-
 list_creds = [
   "MAILER_FROM=#{creds['email']}",
   "FACEBOOK_SECRET=#{creds['facebook']['secret']}",
@@ -41,6 +39,9 @@ list_creds = [
   "AWS_KEY=#{creds['aws']['aws_key']}"
 ]
 
+list_creds.push "APP_NAME=#{if creds['app_name'] then  creds['app_name'] else "urbem" end}"
+list_creds.push "HOST=#{if creds['host'] then  creds['host'] else "urbem:80" end}"
+
 # Up the docker service
 docker_service 'default' do
   action [:create, :start]
@@ -48,22 +49,27 @@ end
 
 docker_image "postgres" do
   tag "9.4"
+  cmd_timeout 1800
 end
 
 docker_image "redis" do
   tag "2"
+  cmd_timeout 1800
 end
 
 docker_image "civicadigital/backup" do
   tag "latest"
+  cmd_timeout 1800
 end
 
 docker_image "gliderlabs/logspout" do
   tag "v2"
+  cmd_timeout 1800
 end
 
 docker_image "phusion/passenger-ruby22" do
   tag "latest"
+  cmd_timeout 1800
 end
 
 directory '/var/log/urbem' do
@@ -80,6 +86,7 @@ docker_container "logs" do
   detach true
   volume ["/var/run/docker.sock:/tmp/docker.sock", "/var/log/urbem:/mnt/routes"]
   port "127.0.0.1:8000:8000"
+  cmd_timeout 600
 end
 
 docker_container "postgres" do
@@ -88,6 +95,7 @@ docker_container "postgres" do
   container_name "postgres"
   detach true
   env "POSTGRES_PASSWORD=#{creds['postgres']['password']}"
+  cmd_timeout 600
 end
 
 docker_container "redis" do
@@ -95,6 +103,7 @@ docker_container "redis" do
   tag "2"
   container_name "redis"
   detach true
+  cmd_timeout 600
 end
 
 
@@ -125,6 +134,7 @@ docker_container "commit_db" do
   ignore_failure true
   action :nothing
   notifies :build,  "docker_image[urbem-puebla]", :immediately
+  cmd_timeout 600
 end
 
 docker_image 'urbem-puebla' do
@@ -137,6 +147,7 @@ docker_image 'urbem-puebla' do
      action :build
   end
   notifies :run, 'docker_container[urbem_create]', :immediately
+  cmd_timeout 2400
 end
 
 docker_container 'urbem_create' do
@@ -149,6 +160,7 @@ docker_container 'urbem_create' do
   env list_creds
   action :nothing
   notifies :run, "docker_container[urbem_migrate]", :immediately
+  cmd_timeout 1000
 end
 
 docker_container 'urbem_migrate' do
@@ -161,6 +173,7 @@ docker_container 'urbem_migrate' do
   env  list_creds
   action :nothing
   notifies :run, "docker_container[urbem_seed]", :immediately
+  cmd_timeout 1000
 end
 
 docker_container 'urbem_seed' do
@@ -173,6 +186,7 @@ docker_container 'urbem_seed' do
   env list_creds
   action :nothing
   notifies :redeploy, "docker_container[urbem]", :immediately
+  cmd_timeout 1000
 end
 
 docker_container "urbem" do
@@ -184,6 +198,7 @@ docker_container "urbem" do
   port ['80:80', "443:443"]
   notifies :redeploy, "docker_container[sidekiq]", :immediately
   action :run
+  cmd_timeout 600
 end
 
 docker_container "sidekiq" do
@@ -194,4 +209,5 @@ docker_container "sidekiq" do
   detach true
   entrypoint "sidekiq"
   action :run
+  cmd_timeout 600
 end
