@@ -1,0 +1,34 @@
+# docker-compose build
+# docker-compose run urbem rake db:create
+# docker-compose run urbem rake db:migrate
+# docker-compose run urbem rake db:seed
+# docker-compose -d up
+
+postgres:
+  image: postgres:9.4
+
+redis:
+  image: redis:2
+
+urbem:
+  build: .
+  ports:
+    - "8081:80"
+  links:
+    - redis
+    - postgres
+  env_file: ./keys.env
+  environment:
+    PASSENGER_APP_ENV: production
+
+worker:
+  image: urbempuebla_urbem
+  links:
+    - redis
+    - postgres
+  env_file: ./keys.env
+  volumes_from:
+    - urbem
+  environment:
+    RAILS_ENV: production
+  command: bundle exec sidekiq
