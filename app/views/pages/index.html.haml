@@ -1,4 +1,4 @@
-.row.col-md-10.col-md-offset-1.padding-video
+.row.col-md-10.col-md-offset-1.padding-video.video
   = embed_video(@url_video)
 .row.col-md-10.col-md-offset-1.video-text
   .p
@@ -8,8 +8,8 @@
   = render "kpis/kpi", kpi: pretty_kpi_data(@services_count,t('dashboards.total_procedures_services'))
   = render "kpis/kpi", kpi: pretty_kpi_data(@public_servant_assessed_count,t('dashboards.total_evaluations'))
 
-.div.col-md-8.col-md-offset-2.join-text
-  .h1.col-md-12.text-center
+.div.col-md-8.col-md-offset-2
+  .h1.col-md-12.text-center.join-text
     =t(".join")
   .col-md-12.text-center
     .row  

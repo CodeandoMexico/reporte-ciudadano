@@ -9,11 +9,9 @@
       <%= render "shared/observer_header" %>
       <div class="container ">
         <% flash.each do |name, msg| %>
-        <div class="padding-top">
-          <%= content_tag :div, class: "alert #{flash_class(name)}" do %>
+          <%= content_tag :div, class: "alert #{flash_class(name)} padding-top" do %>
             <%= msg %>
           <% end %>
-          </div>
         <% end %>
         <div class="padding-top">
           <%= yield %>
