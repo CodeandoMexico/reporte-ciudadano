@@ -42,7 +42,7 @@
       - @service_admins.each do |service_admin|
         %tr.service_admin
           %td= service_admin.id
-          %td= service_admin.name
+          %td= "#{service_admin.name} #{service_admin.surname} #{service_admin.second_surname}"
           %td= service_admin.email
           %td= service_admin.record_number
           %td= service_admin.dependency
