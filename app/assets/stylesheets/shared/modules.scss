@@ -156,7 +156,7 @@ $blue-back: #00417C;
 **  KPIS
 ***************************************************/
 .panel-gray {
-      background: rgba(0, 74, 135, .2);
+      background: rgba(255, 255, 255, .2);
      margin: 5px 15px 25px;
      border-radius: 10px;
      overflow:hidden;
@@ -164,10 +164,10 @@ $blue-back: #00417C;
 }
 .panel-gray .panel-heading {
   color: #000;
-  background: rgba(0, 74, 135, .2);
+  background: rgba(255, 255, 255, .2);
 }
 .panel-gray a {
-  color: rgba(0, 74, 135, .2);
+  color: rgba(255, 255, 255, .2);
 }
 
 .number-kpi{
@@ -191,6 +191,12 @@ $blue-back: #00417C;
 ***************************************************/
 .padding-top{
   padding-top: 1.4em;
+}
+.padding-top-container{
+  padding-top: 4em;
+}
+.padding-top-footer{
+  padding-top: 40px;
 }
 .margin-top{
   margin-top: 2em;
@@ -280,7 +286,7 @@ $blue-back: #00417C;
 .navbar-default-admin {
   background-color: #fff;
   border-color: #e7e7e7;
-  font-family:  "Helvetica Neue Light", sans-serif;
+  font-family:  "Helvetica Neue bold", sans-serif;
   border-bottom: 4px solid $blue-line;
   border-top: 4px solid $blue-line;
 }
@@ -308,6 +314,7 @@ ul
   clear: both;
   font-weight: normal;
   line-height: 1.428571429;
+  font-family:  "Helvetica Neue Bold", sans-serif;
   color: #004987;
   white-space: nowrap;
 }
