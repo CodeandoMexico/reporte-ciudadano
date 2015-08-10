@@ -496,7 +496,7 @@ es:
       services: "Trámites"
       surveys: "Encuestas y su etapa"
       phase: "Etapa"
-      cis: "CIS"
+      cis: "Centro de Atención"
       no_service_surveys: "No existen encuestas abiertas para ningún trámite."
       start_survey: "Iniciar evaluación"
       answered: "Evaluada"
