@@ -34,7 +34,7 @@
     .form-group
       = f.label :cis, t('form.labels.cis'), class: 'col-md-2 control-label font-title-table'
       .col-md-10
-        = f.select :cis, service_cis_options.collect {|p| [Services.service_cis_options[p[:id]-1][:label], p[:id]] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()",:multiple=>true}
+        = f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()",:multiple=>true}
   %fieldset
     .form-group
       = f.label :service_admin_id, t('form.labels.admin_id'), class: 'col-lg-2 control-label'
