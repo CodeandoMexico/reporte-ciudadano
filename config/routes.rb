@@ -10,27 +10,29 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  resources :requests, as: :service_requests, controller: :service_requests do
+  resources :quejas_y_sujerencias, as: :service_requests, controller: :service_requests  do
     collection do
       get 'filter'
       get 'markers_for_gmap'
     end
+   
     member do
       post :vote
     end
+
   end
 
   root :to => 'pages#index'
 
   resources :service_survey_reports, only: [:new, :create, :show, :index]
 
-  namespace :admins do
+  namespace  :administradores, as: :admins, module: :admins , controller: :admin do
     resources :service_survey_reports, only: [:new, :create, :show, :index]
     resources :services do
       collection do
-      get 'disable_service'
-      get 'enable_service'
-    end
+        get 'disable_service'
+        get 'enable_service'
+      end
       resources :messages, only: :index
     end
     resources :statuses, except: [:destroy]
@@ -48,19 +50,19 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :service_surveys do
+    resources  :service_surveys do
       collection do
-          post 'invitation_user_mail'
+        post 'invitation_user_mail'
       end
       get :questions_text, on: :collection
       put :change_status, on: :member
       get :ignore_answers, on: :member
     end
 
-    resources :dashboards, only: [:index] do
+    resources  :panel, as: :dashboards, only: [:index] ,controller: :dashboards do
       collection do
         get 'design'
-        get 'services'
+        get "services"
       end
     end
 
@@ -78,6 +80,7 @@ Rails.application.routes.draw do
     end
 
     resources :service_admins
+
     resources :public_servants do
       get :disable, on: :member
       get :enable, on: :member
@@ -89,17 +92,18 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   delete "signout", to: 'sessions#destroy'
 
-  resources :services, only: [] do
+  resources :servicios, as: :services, only: [] do
     collection do
       get 'load_service_fields'
     end
+
   end
-  resources :service_surveys, only: [:index, :show]
+  resources  :evalua_tramites, as: :service_surveys, only: [:index, :show] , controller: :service_surveys
   resources :answers, only: [:new, :index, :create] do
 
   end
-  resources :evaluations, only: [:index]
-  resources :cis_evaluations, only: [:index, :show]
+  resources  :evaluaciones, as: :evaluations, only: [:index], controller: :evaluations
+  resources :evaluaciones_centros_de_atencion, as: :cis_evaluations, only: [:index, :show] , controller: :cis_evaluations
   resources :service_evaluations, only: :show do
     get :export_csv, on: :member
   end
