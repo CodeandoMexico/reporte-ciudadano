@@ -2,8 +2,8 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
 
-  devise_for :admins, controllers: { sessions: 'admins/sessions', passwords: 'admins/passwords' }
-  devise_for :users, controllers: { sessions: 'users/sessions', omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
+  devise_for :admins, :path_names => { :sign_in => "inicio_sesion", :sign_out => "salir", :sign_up => "registro" },  controllers: { sessions: 'admins/sessions', passwords: 'admins/passwords' }
+  devise_for :users, :path_names => { :sign_in => "inicio_sesion", :sign_out => "salir", :sign_up => "registro" }, controllers: { sessions: 'users/sessions', omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
   devise_scope :user do
     get 'users/finish_registration', to: 'users/registrations#finish_registration'
   end
@@ -24,24 +24,24 @@ Rails.application.routes.draw do
 
   root :to => 'pages#index'
 
-  resources :service_survey_reports, only: [:new, :create, :show, :index]
+  resources :reportes_estadisticos, as: :service_survey_reports, only: [:new, :create, :show, :index], controller: :service_survey_reports
 
   namespace  :administradores, as: :admins, module: :admins , controller: :admin do
     resources :service_survey_reports, only: [:new, :create, :show, :index]
-    resources :services do
+    resources :solicitudes_de_servicio, as: :services , controller: :services , :path_names => { :new => "nuevo", :edit => "editar" } do
       collection do
         get 'disable_service'
         get 'enable_service'
       end
       resources :messages, only: :index
     end
-    resources :statuses, except: [:destroy]
-    resources :registrations, only: [:edit, :update] do
+    resources :estatus, as: :statuses, except: [:destroy], controller: :statuses , :path_names => { :new => "nuevo", :edit => "editar" } 
+    resources :registro, as: :registrations, only: [:edit, :update] , :path_names => { :new => "nuevo", :edit => "editar" } , controller: :registrations do
       get :set_password, on: :member
       put :update_password, on: :member
     end
-    resources :api_keys, only: [:create, :index]
-    resources :requests, as: :service_requests, controller: :service_requests, except: [:show]  do
+    resources :credencial_de_autentificacion, as: :api_keys, only: [:create, :index], controller: :api_keys
+    resources :quejas_o_sujerencias , as: :service_requests, controller: :service_requests, except: [:show]  do
       member do
         put 'update_status'
       end
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources  :service_surveys do
+    resources  :encuestas_de_servicio, as: :service_surveys, controller: :service_surveys , :path_names => { :new => "nuevo", :edit => "editar" } do
       collection do
         post 'invitation_user_mail'
       end
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     resources  :panel, as: :dashboards, only: [:index] ,controller: :dashboards do
       collection do
         get 'design'
-        get "services"
+        get "services" , :path => "servicios"
       end
     end
 
@@ -79,12 +79,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :service_admins
+    resources :administrador_de_tramites, as: :service_admins, controller: :service_admins , :path_names => { :new => "nuevo", :edit => "editar" }
 
-    resources :public_servants do
+    resources :servidores_publicos, as: :public_servants, controller: :public_servants  , :path_names => { :new => "nuevo", :edit => "editar" } do
       get :disable, on: :member
       get :enable, on: :member
-      get :assign_services, on: :member
+      get  :assign_services, :path => "asignar_tramite", on: :member
     end
   end
 
@@ -99,7 +99,7 @@ Rails.application.routes.draw do
 
   end
   resources  :evalua_tramites, as: :service_surveys, only: [:index, :show] , controller: :service_surveys
-  resources :answers, only: [:new, :index, :create] do
+  resources :encuestas, as: :answers, only: [:new, :index, :create] , :path_names => { :new => "nuevo"}, controller: :answers do
 
   end
   resources  :evaluaciones, as: :evaluations, only: [:index], controller: :evaluations
@@ -113,5 +113,4 @@ Rails.application.routes.draw do
       resources :requests, as: :service_requests, controller: :service_requests, only: [:show, :index]
     end
   end
-
 end
