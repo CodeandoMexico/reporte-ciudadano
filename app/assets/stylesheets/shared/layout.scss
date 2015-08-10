@@ -64,11 +64,11 @@ img.navbar-logo {
 
 #footer {
   height: 100px;
-  background-color: #303030;
   color: #FFF;
   .footer-logo {
-    margin: 0 auto;
+    margin: 0 auto; 
   }
+  background: url(image_path('footer.png')) center fixed; 
 }
 
 .table-responsive {

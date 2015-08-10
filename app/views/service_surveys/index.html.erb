@@ -20,7 +20,7 @@
 				                               .where(open: true)
 				                               .order(phase: 'desc')
 				                               .map{|a| [t("service_survey_phase_options.#{a.phase}")+" - #{a.title} ", a.id ]}),
-                               {include_blank: true, class:"js-select-survey", "data-serviceid" => "#{service.id}"}) %>
+                               {include_blank: true, class:"js-select-survey  chosen-select", "data-serviceid" => "#{service.id}"}) %>
               </td>
               <td>
 		            <table class="inside no-border-rows">
@@ -59,3 +59,8 @@
 <% else %>
     <p><em><%= t(".no_service_surveys") %></em></p>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>
