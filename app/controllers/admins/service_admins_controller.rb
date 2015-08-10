@@ -61,7 +61,7 @@ class Admins::ServiceAdminsController < ApplicationController
     services = Service.where(id: params[:admin].delete(:services_ids))
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge,:second_surname,:surname)
       .merge(managed_services: services, is_service_admin: true)
   end
 
