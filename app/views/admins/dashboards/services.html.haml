@@ -7,7 +7,7 @@
     .form-group.col-md-4
       = f.select :administrative_unit, administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') }, class: 'chosen-select'
     .form-group.col-md-4
-      = f.select :cis, cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('.cis') }, class: 'chosen-select'
+      = f.select :cis, cis_options.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('.cis') }, class: 'chosen-select'
 
 
     .form-group.col-md-12

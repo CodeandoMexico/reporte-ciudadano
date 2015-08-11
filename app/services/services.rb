@@ -4,11 +4,12 @@ module Services
   end
 
   def self.service_dependency_options
-    load_values(:dependencies).fetch("dependencies").values
+     t1 = Time.now
+    a = load_values(:dependencies).fetch("dependencies").values
   end
 
   def self.service_administrative_unit_options
-    load_values(:administrative_units).fetch("administrative_units").values
+   load_values(:administrative_units).fetch("administrative_units").values
   end
 
   def self.service_name_options
@@ -58,7 +59,11 @@ module Services
   private
 
   def self.load_values(object)
-    File.open(path_to(object)) { |file| YAML.load(file.read) }
+   File.open(path_to(object)) { |file|  
+
+    YAML.load(file.read) 
+
+     }
   end
 
   def self.path_to(object)

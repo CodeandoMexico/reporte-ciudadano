@@ -16,7 +16,7 @@ feature 'As a service admin I can create a new survey' do
     click_link "Crear nueva encuesta"
 
     fill_in "service_survey_title", with: "La encuesta de mi servicio"
-    select service.name, from: "Trámites"
+    select service.name, from: "service_survey_service_ids"
     choose 'A la mitad'
     click_button "Guardar"
 

@@ -1,3 +1,8 @@
+.col-md-12
+  .row  
+    .col-md-4.col-md-offset-8
+      =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary navbar-btn match_parent font-button'
+
 = search_form_for @search, method: :get, class: "filters form-inline" do |f|
   .form-group.col-md-3
     = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
@@ -8,7 +13,7 @@
   .form-group.form-group-separator.col-md-3
     = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'chosen-select'
   .form-group.col-md-12
-    = submit_tag 'Buscar', class: "btn btn-primary"
+    = submit_tag t('.search'), class: "btn btn-primary"
 
 .table-responsive
   %table.table.sortable_table.table-striped
@@ -42,7 +47,7 @@
             %td= truncate service_request.description
             %td= service_request.status
             - if admin_signed_in?
-              %td= link_to 'Eliminar', admins_service_request_path(service_request), method: :delete
+              %td= link_to t('.delete'), admins_service_request_path(service_request), method: :delete
 = paginate @service_requests
 
 :javascript
