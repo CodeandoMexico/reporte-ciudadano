@@ -27,10 +27,8 @@
 
       .container
         - flash.each do |name, msg|
-          .padding-top
-            = content_tag :div, :class => "alert #{flash_class(name)}" do
-              = msg
-        .padding-top
+          = content_tag :div, :class => "alert #{flash_class(name)} padding-top" do
+            = msg
+        .padding-top-container
           = yield
-
     = render "shared/footer"

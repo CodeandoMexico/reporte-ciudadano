@@ -31,7 +31,7 @@ module Admins
 
   def self.services_for(admin)
     if admin.is_super_admin?
-      Service.all
+      Service.active
     elsif admin.is_service_admin?
       admin.managed_services
     end
