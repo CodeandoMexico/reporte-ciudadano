@@ -19,6 +19,7 @@ feature 'As a service admin I can edit a public servant' do
     expect(find_field('admin[name]').value).to eq first_public_servant.name
 
     fill_in "admin[name]", with: "New name"
+    save_and_open_page
     select administrative_unit, from: "admin[administrative_unit]"
     click_button "Actualizar"
 
