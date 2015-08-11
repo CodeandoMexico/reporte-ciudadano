@@ -473,6 +473,10 @@ es:
       destroy: "Eliminar"
 
   service_requests:
+    index: 
+      complaints_or_suggestions: "Realiza Queja o Sugerencia"
+      search: "Buscar"
+      delete: "Eliminar"
     new:
       header: "Crear nueva queja o sugerencia"
       rules: "* obligatorios"
