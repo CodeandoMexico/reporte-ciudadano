@@ -41,6 +41,9 @@ list_creds = [
   "AWS_KEY=#{creds['aws']['aws_key']}"
 ]
 
+list_creds.push "APP_NAME=#{if creds['app_name'] then  creds['app_name'] else "urbem" end}" 
+list_creds.push "HOST=#{if creds['host'] then  creds['host'] else "urbem:80" end}"
+
 # Up the docker service
 docker_service 'default' do
   action [:create, :start]
@@ -160,7 +163,7 @@ docker_container 'urbem_migrate' do
   remove_automatically true
   env  list_creds
   action :nothing
-  notifies :run, "docker_container[urbem_seed]", :immediately
+  notifies :redeploy, "docker_container[urbem]", :immediately
 end
 
 docker_container 'urbem_seed' do
