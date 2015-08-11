@@ -3,7 +3,7 @@ require 'api_constraints'
 Rails.application.routes.draw do
 
   devise_for :admins, controllers: { sessions: 'admins/sessions', passwords: 'admins/passwords' }
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions', omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
   devise_scope :user do
     get 'users/finish_registration', to: 'users/registrations#finish_registration'
   end
@@ -22,8 +22,15 @@ Rails.application.routes.draw do
 
   root :to => 'pages#index'
 
+  resources :service_survey_reports, only: [:new, :create, :show, :index]
+
   namespace :admins do
+    resources :service_survey_reports, only: [:new, :create, :show, :index]
     resources :services do
+      collection do
+      get 'disable_service'
+      get 'enable_service'
+    end
       resources :messages, only: :index
     end
     resources :statuses, except: [:destroy]
@@ -40,6 +47,16 @@ Rails.application.routes.draw do
         get 'dashboard'
       end
     end
+
+    resources :service_surveys do
+      collection do
+          post 'invitation_user_mail'
+      end
+      get :questions_text, on: :collection
+      put :change_status, on: :member
+      get :ignore_answers, on: :member
+    end
+
     resources :dashboards, only: [:index] do
       collection do
         get 'design'
@@ -76,6 +93,15 @@ Rails.application.routes.draw do
     collection do
       get 'load_service_fields'
     end
+  end
+  resources :service_surveys, only: [:index, :show]
+  resources :answers, only: [:new, :index, :create] do
+
+  end
+  resources :evaluations, only: [:index]
+  resources :cis_evaluations, only: [:index, :show]
+  resources :service_evaluations, only: :show do
+    get :export_csv, on: :member
   end
 
   namespace :api, defaults: { format: 'json' } do

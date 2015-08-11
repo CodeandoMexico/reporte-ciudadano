@@ -1,5 +1,140 @@
 administrative_units:
-  1: "Unidad administrativa 1"
-  2: "Unidad administrativa 2"
-  3: "Unidad administrativa 3"
-  4: "Unidad administrativa 4"
+  1: Dirección del Archivo General del Estado
+  2: Dirección de Legalización y Apostilla
+  3: Dirección de Notarias
+  4: 'Dirección de Sanciones '
+  5: Dirección del Archivo de Notarias
+  6: 'Dirección del Periódico Oficial del Estado '
+  7: Dirección General de Promoción Participativa
+  8: Dirección General de Protección Civil
+  9: Dirección de la Tenencia de la Tierra
+  10: Dirección General de Defensoría Pública
+  11: Dirección General del Registro del Estado Civil de las Personas
+  12: Consejo Estatal de Población
+  13: 'Dirección General de Seguridad Privada '
+  14: 'Dirección de Ingresos '
+  15: Dirección de Fiscalización
+  16: 'Dirección de Recaudación '
+  17: 'Dirección de Asuntos Fiscales Litigiosos '
+  18: 'Instituto Registral y Catastral del Estado de Puebla '
+  19: Subsecretaría de Auditoría a Gasto Corriente
+  20: Dirección de Sistemas para el Control de la Gestión
+  21: Coordinación General Jurídica
+  22: Dirección de Atención a Quejas y Denuncias
+  23: Dirección de Comercio Exterior y Centro PYMEXPORTA
+  24: Dirección General de Servicio Estatal de Empleo
+  25: Dirección de Vinculación Comercial
+  26: Dirección General de Asuntos Legales
+  27: Dirección General de Competitividad, Trabajo y Previsión Social
+  28: Junta Local de Conciliación y Arbitraje
+  29: Dirección de Comercio Interior
+  30: Dirección de Promoción
+  31: Dirección General de Gestión, Promoción y Evaluación de Fondos
+  32: Procuraduría de la Defensa del Trabajo
+  33: Dirección de Desarrollo de Empresas Turísticas
+  34: Dirección de Asuntos Jurídicos
+  35: Dirección de Atención y Servicios al Turista
+  36: Dirección de Relaciones Públicas.
+  37: 'Subsecretaría de Administración de Obra e Inversiones '
+  38: Dirección General Jurídica
+  39: 'Dirección de Conservación '
+  40: 'Dirección de Proyectos '
+  41: 'Dirección General de Comunicaciones '
+  42: 'Dirección de Administración de Obra '
+  43: Dirección de Administración de Concesiones y Permisos
+  44: Dirección de Licencias y Capacitación
+  45: Dirección de Operación del Transporte
+  46: 'Servicios de Salud del Estado de Puebla '
+  47: Dirección General de Educación Superior
+  48: 'Dirección de Becas y Apoyos para la Promoción Académica.  '
+  49: Dirección de Educación Superior
+  50: Dirección de Centros Escolares y Escuelas Particulares
+  51: Dirección General de Planeación y Programación Presupuestales.
+  52: Dirección de Bachilleratos Estatales y Preparatoria Abierta
+  53: Dirección de Asuntos Jurídicos.
+  54: Dirección de Control y Gestíón Escolar
+  55: Dirección de Educación Preescolar
+  56: Dirección de Educación Primaria
+  57: Dirección de Educación Secundaria
+  58: Dirección de Formación de Docentes
+  59: Dirección General de Desarrollo Educativo
+  60: Dirección General de Operación Escolar
+  61: Dirección de Ampliación de la Cobertura a Zonas Marginadas
+  62: 'Dirección de Recursos Humanos. '
+  63: Dirección de Nuevas Tecnologías
+  64: 'Instituto Poblano de la Juventud '
+  65: Instituto Poblano de Cultura Física y Deporte
+  66: Oficina del C. Secretario
+  67: 'Dirección General Administrativa. '
+  68: Dirección de Investigación de robo de vehículos
+  69: Dirección General de Protección a víctimas del delito y servicios a la comunidad
+  70: Dirección General de Servicios Periciales
+  71: 'Fiscalía General Metropolitana '
+  72: Dirección  General  de  Derechos  Humanos  y  Asuntos  Indígenas
+  73: Oficina del C. Procurador
+  74: Supervisión General para la Protección de Derechos Humanos
+  75: Visitaduría General
+  76: Comisión Estatal de Desarrollo Integral de los Pueblos Indígenas
+  77: Dirección de Vinculación y Desarrollo Microregional
+  78: Dirección de Desarrollo de Capacidades
+  79: Dirección de Vivienda
+  80: Subsecretaría de Vivienda y Programas Urbanos
+  81: Dirección General de Centros de Reinserción Social
+  82: 'Dirección de Vialidad '
+  83: Dirección del Heroico Cuerpo de Bomberos
+  84: Dirección del Centro de Reinsercion Social del Estado de Puebla
+  85: Dirección del Centro de Reinserción Social de Ciudad Serdán
+  86: Dirección General de Vinculación Prevención del Delito y Relaciones Públicas.
+  87: Dirección de Desarrollo de Capacidades y Aseguramiento
+  88: Dirección de Ganadería y Acuacultura
+  89: Dirección de Gestión Ambiental
+  90: Dirección de Calidad del Aire y Cambio Climático
+  91: Dirección de Ordenamiento Territorial y Desarrollo Urbano
+  92: Dirección de Agricultura
+  93: Direccion de Seguridad Alimentaria
+  94: Coordinación General de Agronegocios
+  95: Dirección de Desarrollo Forestal
+  96: Dirección General Jurídica
+  97: Dirección de Parques Urbanos
+  98: 'Convenciones y Parques '
+  99: 'Comité Administrador Poblano para la Construcción de Espacios Educativos '
+  100: 'Consejo de Ciencia y Tecnología '
+  101: 'Corporación Auxiliar de policía y Protección Ciudadana '
+  102: 'Instituto de Capacitación para el Trabajo '
+  103: 'Instituto Estatal de Educación para Adultos    '
+  104: 'Instituto Poblano de las Mujeres '
+  105: Instituto de Seguridad y Servicios Sociales de los Trabajadores al Servicio de los Poderes del Estado de Puebla
+  106: 'Puebla Comunicaciones  '
+  107: Sistema Estatal para el Desarrollo Integral de la Familia
+  108: Coordinación Estatal de Asuntos Internacionales y de Apoyo a Migrantes Poblanos
+  109: 'Consejo Estatal para la Cultura y las Artes '
+  110: Colegio de Bachilleres del Estado de Puebla
+  111: Colegio de Educación Profesional Técnica del Estado de Puebla
+  112: Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla
+  113: Instituto Tecnológico Superior de Acatlán de Osorio
+  114: Instituto Tecnológico Superior de Atlixco
+  115: Instituto Tecnológico Superior de Ciudad Serdán
+  116: Instituto Tecnológico Superior de Huauchinango
+  117: Instituto Tecnológico de la Sierra Norte
+  118: Tecnológico Superior de Libres
+  119: 'Instituto Tecnológico Superior de San Martín Texmelucan '
+  120: 'Instituto Tecnológico Superior de Tepeaca '
+  121: 'Instituto Tecnológico Superior de Tepexi de Rodriguez '
+  122: 'Instituto Tecnológico Superior de Teziutlán '
+  123: 'Instituto Tecnológico Superior de Zacapoaxtla '
+  124: 'Instituto Tecnológico Superior de la Sierra Negra de Ajalpan '
+  125: 'Universidad del Desarrollo del Estado de Puebla '
+  126: 'Universidad Politécnica de Puebla '
+  127: 'Universidad Tecnológica de Huejotzingo '
+  128: 'Universidad Tecnológica de Izúcar de Matamoros '
+  129: 'Universidad Tecnológica de Puebla '
+  130: 'Universidad Tecnológica de Tecamachalco '
+  131: 'Universidad Tecnológica de Xicotepec de Juárez '
+  132: 'Universidad Tecnológica de Oriental '
+  133: 'Universidad Tecnológica de Tehuacán '
+  134: Universidad Intercultural del Estado de Puebla
+  135: 'Instituto Tecnológico Superior de Venustiano Carranza '
+  136: 'Universidad Politécnica de Amozoc '
+  137: 'Universidad Interserrana del Estado de Puebla  hilchotla '
+  138: 'Universidad Interserrana del Estado de Puebla  huacatlán '
+  139: 'Universidad Politécnica Metropolitana de Puebla '

@@ -1,7 +1,21 @@
 .page-content.inset
   %h2= t('.managed_services')
 
-  %table.table.table-hover
+  = search_form_for @search, url: services_admins_dashboards_path, method: :get, class: "filters form-inline" do |f|
+    .form-group.col-md-4
+      = f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'
+    .form-group.col-md-4
+      = f.select :administrative_unit, administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') }, class: 'chosen-select'
+    .form-group.col-md-4
+      = f.select :cis, cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('.cis') }, class: 'chosen-select'
+
+
+    .form-group.col-md-12
+      = button_tag class: "submit btn btn-default" do
+        %i.glyphicon.glyphicon-search
+        = t('search')
+
+  %table.table.table-hover.padding-top
     %tr
       %th= t('.name')
       %th= t('.service_type')
@@ -16,4 +30,8 @@
             = t(".service_type_options.#{service.service_type}")
         %td= service.dependency
         %td= service.administrative_unit
-        %td= service.cis
+        %td= service.cis_names
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

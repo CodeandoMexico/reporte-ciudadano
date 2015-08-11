@@ -1,0 +1,100 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('.service_surveys') %>
+    <%unless current_admin.is_public_servant?%>
+    <div class="btn-group pull-right">
+      <%= link_to t('.new_service_survey'), new_admins_service_survey_path, class: 'btn btn-primary' %>
+    </div>
+    <%end%>
+  </h2>
+
+  <div class="table-responsive surveys-table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t(".title") %></th>
+          <th><%= t(".services") %></th>
+          <th><%= t(".phase") %></th>
+          <th><%= t(".number_of_questions") %></th>
+          <th><%= t(".admin") %></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_surveys.each_with_index do |survey, index| %>
+          <tr class="service-survey">
+            <td><%= link_to survey.title, admins_service_survey_path(survey) %></td>
+            <td><%= survey.services_names %></td>
+            <td><%= t("service_survey_phase_options.#{survey.phase}") %></td>
+            <td><%= t(".questions_number", count: survey.questions_count) %></td>
+            <td><%= survey.admin_name %></td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <%= t('service_report.name') %>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <%= form_for(@service_survey_report, url: {controller: 'service_survey_reports',:action => 'create'}, html: { method: :post, class: 'form-horizontal', id: "new-report-#{survey.id}" }) do |f| %>
+                      <%= f.hidden_field :service_survey_id, value: survey.id %>
+                      <%= f.submit t('service_report.new'), class: 'hidden' %>
+                  <% end %>
+
+                  <li><%= link_to t('service_report.new'), "#", class: "js-generate-report", "data-submit" => "#new-report-#{survey.id}" %></li>
+                  <li><%= link_to t('service_report.go_to_index'), service_survey_reports_path(service_survey_id: survey.id) %></li>
+                </ul>
+              </div>
+
+
+            </td>
+            <td><%= link_to t(".preview"), admins_service_survey_path(survey), class: "btn btn-info" %></td>
+            <%unless current_admin.is_public_servant?%>
+              <td><%= link_to t(".edit"), edit_admins_service_survey_path(survey), class: "btn btn-primary" %></td>
+              <td>
+                <%= form_for(survey, url: change_status_admins_service_survey_path(survey.id), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+                  <% if survey.open? %>
+                    <%= f.hidden_field :open, value: 0 %>
+                    <%= f.submit t(".close"), class: "btn btn-danger" %>
+                  <% else %>
+                    <%= f.hidden_field :open, value: 1 %>
+                    <%= f.submit t(".open"), class: "btn btn-success" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <%else%>
+              <td>
+                <%= link_to "#{t('.send_survey')}", "#myModal#{index}", :data => {:toggle => "modal", :href => admins_service_survey_path(survey)},  :class=> "openModal btn btn-info"%>
+              </td>
+              <!-- Modal -->
+              <div class="modal fade" id=<%="myModal#{index}"%> tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel"><%=t('.add_user')%></h4>
+                    </div>
+                    <div class="modal-body">
+                       <%= form_tag(invitation_user_mail_admins_service_surveys_path, method: "post") do %>
+                          <%= t('.instructions_send')%>
+                          <%= text_area(:get, :body, class: 'match_parent margin-top')%>
+                          <%= submit_tag t(".send"), class: 'btn btn-info margin-top', :name => "id[#{survey.id}]"%>
+                        <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal"><%=t('.cancel')%></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--TERMINA modal-->
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

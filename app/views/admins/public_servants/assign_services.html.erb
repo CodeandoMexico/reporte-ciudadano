@@ -1,8 +1,9 @@
 <div class="page-content inset">
   <h3><%= t(".assign_services") %></h3>
-  <%= form_for(:admin, url: admins_public_servant_path(@public_servant.id), html: { method: :patch, class: "form-horizontal" }) do |f| %>
+  <%= form_for(@public_servant, url: admins_public_servant_path(@public_servant.id), html: { method: :patch, class: "form-horizontal" }) do |f| %>
     <div class="form-group">
       <% @available_services.each do |service| %>
+        <%= f.hidden_field :id %>
         <div class="checkbox">
           <%= f.check_box :services_ids,  { multiple: true, checked: is_assigned_to_public_servant?(service, @public_servant) }, service.id, nil %>
           <%= f.label :services_ids, service.name, value: service.id %>

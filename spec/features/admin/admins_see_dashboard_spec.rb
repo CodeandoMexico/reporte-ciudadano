@@ -59,13 +59,10 @@ feature 'Admins see dashboard' do
     expect(current_path).to eq admins_service_requests_path
 
     within '.sortable_table' do
-      expect(page).to have_content first_service_request.service.name
-      expect(page).to have_content second_service_request.service.name
+      expect(page).not_to have_content first_service_request.service.name
+      expect(page).not_to have_content second_service_request.service.name
       expect(page).not_to have_content third_service_request.service.name
     end
-
-    click_link 'Panel de administración'
-    expect(current_path).to eq admins_service_requests_path
   end
 
   def given_admin_manages(service, admin)

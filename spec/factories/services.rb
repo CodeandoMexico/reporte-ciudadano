@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :service do
     sequence(:name) { |n| "Service # #{n}" }
+    status "activo"
 
     factory :invalid_service do
       name nil

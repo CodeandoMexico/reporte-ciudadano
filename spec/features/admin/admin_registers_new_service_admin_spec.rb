@@ -28,14 +28,14 @@ feature 'As an admin I can create new service admins' do
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
-    select "Dependencia 1", from: "admin[dependency]"
-    select "Unidad administrativa 2", from: "admin[administrative_unit]"
+    select dependency, from: "admin[dependency]"
+    select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Director"
     check "admin_services_ids_2"
 
     click_button "Guardar"
 
-    expect(page).to have_content "El administrador de servicios se ha registrado exitosamente."
+    expect(page).to have_content "El administrador de trámites se ha registrado exitosamente."
     expect(current_path).to eq admins_service_admins_path
     expect(page).to have_content "María Gómez"
     expect_mail_sent_to "maria@mail.com"

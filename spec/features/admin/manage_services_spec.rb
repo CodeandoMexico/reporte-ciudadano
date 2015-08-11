@@ -19,13 +19,11 @@ feature 'As an admin I can manage requests services' do
 
     visit admins_services_path
     click_link 'Nuevo servicio'
-
     fill_in 'service[name]', with: 'Servicio nuevo'
     select "Trámite", from: "service[service_type]"
-    select "Dependencia 2", from: "service[dependency]"
-    select "Unidad administrativa 2", from: "service[administrative_unit]"
-    check "service_cis_1"
-    check "service_cis_2"
+    select dependency, from: "service[dependency]"
+    select administrative_unit, from: "service[administrative_unit]"
+    select cis, from: "service_cis"
     select service_admin.name, from: "service[service_admin_id]"
 
     click_button 'Guardar'
@@ -33,10 +31,9 @@ feature 'As an admin I can manage requests services' do
 
     visit edit_admins_service_path(Service.last)
     expect(page).to have_content "Trámite"
-    expect(page).to have_content "Dependencia 2"
-    expect(page).to have_content "Unidad administrativa 2"
-    expect(cis("service_cis_1")).to be_checked
-    expect(cis("service_cis_2")).to be_checked
+    expect(page).to have_content dependency
+    expect(page).to have_content administrative_unit
+    expect(page).to have_content cis
     expect(page).to have_content service_admin.name
   end
 
@@ -80,10 +77,6 @@ feature 'As an admin I can manage requests services' do
     click_button 'Guardar'
 
     expect(page).to have_content t('flash.service.created')
-  end
-
-  def cis(cis)
-    find("##{cis}")
   end
 
   def destroy_link
