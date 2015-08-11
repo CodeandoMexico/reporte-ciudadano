@@ -63,10 +63,11 @@ img.navbar-logo {
 }
 
 #footer{
-  height: 98px;
+  height: 35px;
   color: #FFF;
   padding-bottom: 0;
-  background: url(image_path('footer.png')) left bottom fixed;
+  background: url(image_path('footer.png')) left bottom;
+  background-size: contain;
 }
 
 .table-responsive {
