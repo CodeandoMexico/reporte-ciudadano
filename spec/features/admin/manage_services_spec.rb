@@ -61,24 +61,6 @@ feature 'As an admin I can manage requests services' do
     expect(page).to have_content service.name
   end
 
-  scenario 'I can create a new service with status message', js: true do
-    create(:status, name: 'Abierto')
-
-    visit admins_services_path
-    click_link 'Nuevo servicio'
-    fill_in 'service[name]', with: 'Servicio nuevo'
-
-    click_link 'Agregar mensaje'
-    within first('.add-message .fields') do
-      fill_in 'Mensaje', with: 'Mensaje para status abierto'
-      select 'Abierto', from: 'Estatus'
-    end
-
-    click_button 'Guardar'
-
-    expect(page).to have_content t('flash.service.created')
-  end
-
   def destroy_link
     find("#destroy-btn")
   end
