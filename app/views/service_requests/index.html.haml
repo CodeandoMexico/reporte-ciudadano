@@ -1,7 +1,6 @@
-.col-md-12
-  .row  
-    .col-md-4.col-md-offset-8
-      =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary navbar-btn match_parent font-button'
+.row  
+  .col-md-4.col-md-offset-8.padding-bottom
+    =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary font-button-small right'
 
 = search_form_for @search, method: :get, class: "filters form-inline" do |f|
   .form-group.col-md-3

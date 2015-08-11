@@ -212,6 +212,13 @@ $blue-back: #00417C;
 .margin-bottom{
   margin-right: 10%; 
 }
+.padding-bottom{
+  padding-bottom: 2em; 
+}
+.right{
+  float: right;
+}
+
 /***************************************************
 **  sizes
 ***************************************************/
@@ -249,6 +256,10 @@ $blue-back: #00417C;
   color: #ffffff !important;
   font-size: 19px  !important;
   font-family:  "Helvetica Neue Regular", sans-serif;
+}
+
+.font-button-small {
+  font-family: "Helvetica Neue Regular", sans-serif;
 }
 .control-label-left {
   text-align: left;
