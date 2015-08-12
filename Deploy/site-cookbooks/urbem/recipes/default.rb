@@ -145,7 +145,7 @@ docker_container 'urbem_migrate' do
   remove_automatically true
   env  list_creds
   action :nothing
-  notifies :run, "docker_container[urbem]", :immediately
+  notifies :redeploy, "docker_container[urbem]", :immediately
   cmd_timeout 1000
 end
 
