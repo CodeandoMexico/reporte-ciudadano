@@ -477,6 +477,10 @@ es:
       complaints_or_suggestions: "Realiza Queja o Sugerencia"
       search: "Buscar"
       delete: "Eliminar"
+      service: "Todos los servicios"
+      status: "Todos los estatus"
+      start_date: "De la fecha"
+      end_date: "A la fecha"
     new:
       header: "Crear nueva queja o sugerencia"
       rules: "* obligatorios"
