@@ -39,7 +39,7 @@
     .form-group
       = f.label :service_admin_id, t('form.labels.admin_id'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.collection_select :service_admin_id, @available_admins, :id, :name,{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
+        = f.select :service_admin_id, @available_admins.collect{|opt| [ "#{opt.name} #{opt.surname} #{opt.second_surname}", opt.id]},{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
 
 
   %hr
