@@ -473,6 +473,10 @@ es:
       destroy: "Eliminar"
 
   service_requests:
+    index: 
+      complaints_or_suggestions: "Realiza Queja o Sugerencia"
+      search: "Buscar"
+      delete: "Eliminar"
     new:
       header: "Crear nueva queja o sugerencia"
       rules: "* obligatorios"
@@ -806,6 +810,9 @@ es:
     index:
       existent_reports: "Reportes Existentes"
       total: "Número de reportes: %{number_of_reports}"
+      thanks_for_answering: "Gracias por contestar a las preguntas."
+      no_report: "Aún no hay reportes estadísticos sobre esta encuesta."
+      return_to_root_path: "Regresa a la página principal"
       table:
         name: "Nombre"
         phase: "Fase"
@@ -818,7 +825,7 @@ es:
       return_to_index: "Ver todos los reportes"
       service_survey_phase: "Parte del proceso evaluada"
       created_time_ago: "Creado hace: %{time_ago}"
-      no_report: "Aún no hay reportes sobre este servicio"
+      no_report: Aún no hay reportes sobre las encuestas de este servicio.
       question_analysis: "Análisis por pregunta"
       question_value: "Valor total de la pregunta: %{value}%"
       question_criterion: "Criterio de la pregunta: %{criterion}"

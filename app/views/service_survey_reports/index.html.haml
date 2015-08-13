@@ -32,5 +32,10 @@
                   = report.created_at.to_date
     = paginate(@service_surveys_reports)
   - else
-    %h1
-      = "No hay reportes existentes"
+    %h1.text-center
+      = t('service_report.index.thanks_for_answering')
+      %br
+      = t('service_report.index.no_report')
+    %p.text-center
+      %br
+      = link_to(t('service_report.index.return_to_root_path'), root_path, class: "btn btn-lg btn-primary")
