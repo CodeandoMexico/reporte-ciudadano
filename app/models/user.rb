@@ -79,8 +79,12 @@ class User < ActiveRecord::Base
 
     def fetch_image_from_omniauth(omniauth)
       case omniauth[:provider]
-        when 'facebook' then "https://graph.facebook.com/#{omniauth[:uid]}/picture?type=large" if omniauth.is_a?(Hash)
-        when 'facebook' then "https://graph.facebook.com/#{omniauth.uid}/picture?type=large" unless omniauth.is_a?(Hash)
+        when 'facebook' then 
+          if omniauth.is_a?(Hash)
+            "https://graph.facebook.com/#{omniauth[:uid]}/picture?type=large" 
+          else
+            "https://graph.facebook.com/#{omniauth.uid}/picture?type=large"
+          end
         when 'twitter' then omniauth[:info][:image]
       end
     end
