@@ -38,7 +38,7 @@
 				            <% service.cis.each do |cis|%>
 						            <% service.service_surveys.each do |survey|%>
 						              <% if current_user %>
-						                  <% unless survey.has_been_answered_by?(current_user) %>
+						                  <% unless survey.has_been_answered_by?(current_user,cis) %>
 		                          <tr class="<%= "js-survey-#{survey.id} js-service-#{service.id} js-cis-#{cis} hidden" %>">
 						                      <td>
 						                        <%= link_to t(".start_survey"), new_answer_path(service_survey_id: survey.id, cis_id: cis), class: "btn btn-info" %>
