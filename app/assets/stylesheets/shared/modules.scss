@@ -123,16 +123,11 @@ $blue-back: #00417C;
 /***************************************************
 **  HOME Video
 ***************************************************/
-.video{
-  width: 80%;
-  height: 28em;;
-  margin-left: 10%; 
-}
 
 .video-text{
   padding-top: 2em;
   padding-bottom: 1em;
-   text-align: center;
+  text-align: center;
   color: #ffffff;
   font-family:  "Helvetica Neue Bold", sans-serif;
   font-size: 17px;
@@ -146,6 +141,13 @@ $blue-back: #00417C;
   color: #ffffff;
   font-weight: bold;
 }
+
+.hight-video{
+  width: 80%;
+  height: 20vw;
+  margin-left: 18%; 
+}
+
 /***************************************************
 **  datepicker
 ***************************************************/

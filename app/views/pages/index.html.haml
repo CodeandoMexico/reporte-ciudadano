@@ -1,5 +1,6 @@
 .row.col-md-10.col-md-offset-1.padding-video
-  = embed_video(@url_video)
+  %div{:class=>"embed-responsive embed-responsive-16by9 hight-video"}
+    %iframe{:class=>"embed-responsive-item", :allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "100%", :src => "#{embed_video(@url_video)}", :title => "YouTube video player", :width => "80%",:style =>"background-size: cover;",:webkitallowfullscreen=> "true", :mozallowfullscreen=> "true",:style=>"background-size : cover"}
 .row.col-md-10.col-md-offset-1.video-text
   .p
     = t('.video_explication')
