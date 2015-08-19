@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726232438) do
+ActiveRecord::Schema.define(version: 20150812160759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20150726232438) do
     t.boolean  "anonymous",                  default: false
     t.text     "service_fields",             default: "{}"
     t.text     "address",                    default: ""
+    t.string   "title",                      default: ""
     t.string   "media"
     t.integer  "service_id"
     t.integer  "requester_id",                               null: false
@@ -175,6 +176,7 @@ ActiveRecord::Schema.define(version: 20150726232438) do
     t.string   "cis"
     t.integer  "public_servant_id"
     t.text     "public_servant_description"
+    t.integer  "user_id"
   end
 
   add_index "service_requests", ["requester_id", "requester_type"], name: "index_service_requests_on_requester_id_and_requester_type", using: :btree
@@ -186,6 +188,7 @@ ActiveRecord::Schema.define(version: 20150726232438) do
     t.float    "positive_overall_perception", default: 0.0, null: false
     t.float    "negative_overall_perception", default: 0.0, null: false
     t.integer  "people_who_participated",     default: 0,   null: false
+    t.integer  "service_id",                                null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "areas_results"

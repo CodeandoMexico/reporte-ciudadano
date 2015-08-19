@@ -4,7 +4,7 @@ class ServiceRequestsController < ApplicationController
   helper_method :service_cis_options, :service_cis_label
 
   def index
-    @search = ServiceRequest.search(search_query_string)
+    @search = ServiceRequest.where(user_id: current_user).search()
     @service_requests = @search.result.page(params[:page])
     flash.now[:notice] = I18n.t("flash.service_requests.empty") if @service_requests.empty?
   end
@@ -20,6 +20,7 @@ class ServiceRequestsController < ApplicationController
 
   def create
     @service_request = current_user.service_requests.build(service_request_params)
+    @service_request.user_id = current_user.id
     if @service_request.save
       notify_public_servants(@service_request)
       redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
@@ -52,14 +53,6 @@ class ServiceRequestsController < ApplicationController
   end
 
   private
-   def search_query_string
-    unless params[:q] .blank?
-      params[:q].merge(:service_requester => current_user.email)
-    else
-      {:service_requester => current_user.email}
-    end
-   end
-
   def service_public_servants
     unless params[:pagetime].blank?
         unless params[:pagetime][:service].blank?
@@ -91,7 +84,7 @@ class ServiceRequestsController < ApplicationController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id, :public_servant_description, :homoclave).tap do |whitelisted|
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id, :public_servant_description, :homoclave,:user_id).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
     end
   end

@@ -1,17 +1,16 @@
-.col-md-12
-  .row  
-    .col-md-4.col-md-offset-8
-      =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary navbar-btn match_parent font-button'
+.row  
+  .col-md-4.col-md-offset-8.padding-bottom
+    =link_to t(".complaints_or_suggestions"), new_service_request_path, :class=> 'reports new btn btn-primary font-button-small right'
 
 = search_form_for @search, method: :get, class: "filters form-inline" do |f|
   .form-group.col-md-3
-    = f.text_field :date_gteq, placeholder: "De la fecha", class: 'datepicker form-control col-lg-6'
+    = f.text_field :date_gteq, placeholder: t('.start_date'), class: 'datepicker form-control col-lg-6'
   .form-group.form-group-separator.col-md-3
-    = f.text_field :date_lteq, placeholder: "A la fecha", class: 'datepicker form-control col-lg-6'
+    = f.text_field :date_lteq, placeholder: t('.end_date'), class: 'datepicker form-control col-lg-6'
   .form-group.form-group-separator.col-md-3
-    = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: 'Servicio' }, class: 'chosen-select'
+    = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: t('.service') }, class: 'chosen-select'
   .form-group.form-group-separator.col-md-3
-    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: 'Estatus' }, class: 'chosen-select'
+    = f.collection_select :status_id_eq, Status.all, :id, :name, { include_blank: t('.status') }, class: 'chosen-select'
   .form-group.col-md-12
     = submit_tag t('.search'), class: "btn btn-primary"
 
@@ -39,15 +38,14 @@
             Eliminar
     %tbody
       - @service_requests.each do |service_request|
-        - if current_user.email.to_s == service_request.service_requester[:email].to_s || current_admin
-          %tr
-            %td= link_to service_request.id, service_request
-            %td= l service_request.created_at, format: :short
-            %td= link_to service_request.service_name, service_request_path(service_request)
-            %td= truncate service_request.description
-            %td= service_request.status
-            - if admin_signed_in?
-              %td= link_to t('.delete'), admins_service_request_path(service_request), method: :delete
+        %tr
+          %td= link_to service_request.id, service_request
+          %td= l service_request.created_at, format: :short
+          %td= link_to service_request.service_name, service_request_path(service_request)
+          %td= truncate service_request.description
+          %td= service_request.status
+          - if admin_signed_in?
+            %td= link_to t('.delete'), admins_service_request_path(service_request), method: :delete
 = paginate @service_requests
 
 :javascript
