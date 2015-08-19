@@ -75,21 +75,6 @@ feature 'As an admin I can manage service requests' do
     expect(page).to have_content services.last.name
   end
 
-  scenario 'I can update the message of a service request', js: true do
-    message = create(:message, service: service_request.service, status: service_request.status)
-    visit edit_admins_service_request_path(service_request)
-    within '.edit_service_request' do
-      select message.status.name, from: 'service_request[status_id]'
-      choose "message"
-    end
-    click_button 'Actualizar'
-
-    within '.stream' do
-      # Message content should be posted as a comment on the service request
-      expect(page).to have_content message.content
-    end
-  end
-
   scenario 'I can delete a service request' do
     visit admins_service_requests_path
     page.find("a[href='#{admins_service_request_path(service_request)}']").click
