@@ -761,6 +761,7 @@ es:
     middle: "A la mitad"
     end: "Al cierre"
   question_criterion_options:
+    blank: "Sin criterio específico"
     transparency: "Transparencia"
     performance: "Desempeño"
     quality_service: "Calidad de servicio"
