@@ -12,7 +12,7 @@ feature 'Managing service requests' do
       sign_in_user user
     end
 
-    scenario 'can create a new service request successfully' do
+    scenario 'can create a new service request successfully', js: true do
       service = create(:service)
       public_servant = create(:admin, :public_servant, services: [service])
 
@@ -20,7 +20,8 @@ feature 'Managing service requests' do
       within '#new_service_request' do
         attach_file 'service_request[media]', File.join(Rails.root, '/spec/support/features/images/avatar.png')
         fill_in 'service_request[description]', with: 'No water'
-        select service.name, from: 'service_request[service_id]'
+        select_from_chosen_by_css service.name, from: '#service_request_service_id'
+        select_from_chosen_by_css Services.service_cis.last[:name], from: '#service_request_cis'
         click_button  'Guardar'
       end
       expect_service_request_email_sent_to public_servant.email
