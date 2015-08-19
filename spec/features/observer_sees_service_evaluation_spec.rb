@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'Observer sees service evaluation' do
   let(:observer) { create(:user, :observer) }
 
-  scenario 'from cis results with every answer' do
+  scenario 'from cis results with every answer', js: true  do
     user = create :user
     other_user = create :user
     service = create :service, name: "Actas de nacimiento", cis: ["1"], admins: [create(:admin, :public_servant)]
@@ -18,11 +18,13 @@ feature 'Observer sees service evaluation' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
+    sleep 2.5
 
     within service_row(1) do
       click_link "Ver respuestas de servicio"
     end
 
+    sleep 3
     expect(page).to have_content "Actas de nacimiento"
     expect(page).to have_content "Encuesta acta de nacimiento"
     expect(page).to have_content user.name
@@ -37,7 +39,9 @@ feature 'Observer sees service evaluation' do
     end
 
     click_button "Ver respuestas de otras encuestas"
+    sleep 3
     click_link "Obtención de acta de nacimiento"
+    sleep 3
 
     expect(page).to have_content "Actas de nacimiento"
     expect(page).to have_content "Obtención de acta de nacimiento"
