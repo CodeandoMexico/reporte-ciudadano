@@ -242,6 +242,7 @@ es:
         config_requests: "Personalizar quejas o sugerencias"
         design: "Diseño"
         api: "API"
+        evaluations: "Evaluaciones"
         edit_profile: "Editar perfil"
         sign_out: "Cerrar sesión"
         service_admins: "Administradores de trámites"
@@ -601,6 +602,7 @@ es:
     requests: "Quejas y sugerencias"
     evaluate_a_submission: "Evalúa trámite"
     evaluations: "Evaluaciones"
+    panel: "Panel"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'

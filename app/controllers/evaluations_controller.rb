@@ -14,7 +14,7 @@ class EvaluationsController < ApplicationController
 
   private
   def authorize_observer
-    unless current_user.is_observer?
+    unless current_admin || current_user.is_observer?
       redirect_to root_path
     end
   end
