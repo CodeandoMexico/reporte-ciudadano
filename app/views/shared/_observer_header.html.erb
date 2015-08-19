@@ -67,7 +67,7 @@
         <% end %>
       </ul>
     </div>
-    <%unless @cis.kind_of?(Array) %>
+    <%unless @cis.nil? || @cis.kind_of?(Array) %>
       <div >
         <h3>
           <div class="text-one-line">
