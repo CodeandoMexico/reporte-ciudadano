@@ -1,8 +1,8 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top margin-observer">
   <div class="container">
     <div class="navbar-header">
       <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag 'puebla-logo.png', class: "navbar-logo" %>
+        <%= image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"%>
       <% end %>
     </div>
     <div class="navbar-collapse collapse">
@@ -67,13 +67,15 @@
         <% end %>
       </ul>
     </div>
-    <% if @cis_report.present? %>
+    <%unless @cis.nil? || @cis.kind_of?(Array) %>
       <div >
         <h3>
+          <div class="text-one-line">
           <%= link_to evaluations_path do %>
             <span class="glyphicon glyphicon-chevron-left"></span>
           <% end %>
           <%= t("cis_evaluations.show.cis_evaluation_for", name: @cis.name) %>
+        </div>
         </h3>
       </div>
     <%end%>
