@@ -4,11 +4,16 @@ module Services
   end
 
   def self.service_dependency_options
-    load_values(:dependencies).fetch("dependencies").values
+     t1 = Time.now
+    a = load_values(:dependencies).fetch("dependencies").values
   end
 
   def self.service_administrative_unit_options
-    load_values(:administrative_units).fetch("administrative_units").values
+   load_values(:administrative_units).fetch("administrative_units").values
+  end
+
+  def self.service_name_options
+    Service.pluck(:name)
   end
 
   def self.service_cis_options
@@ -34,13 +39,40 @@ module Services
     service.cis.include? cis_id.to_s
   end
 
+  def self.service_admins_name_options
+    Admin.service_admins_sorted_by_name.pluck(:name)
+  end
+
+  def self.record_number_options
+    Admin.service_admins_sorted_by_name.pluck(:record_number)
+  end
+
+  def self.public_servants_name_options(admin)
+    Admins.public_servants_for(admin).pluck(:name)
+  end
+
+  def self.generate_homoclave_for(service)
+    time = Time.new
+    "#{type_of_service(service.service_type.to_s)}#{service.dependency.to_s[0]}#{service.administrative_unit.to_s[0] }#{time.strftime("%Y%m%d%H%M%S")}"
+  end
+
   private
 
   def self.load_values(object)
-    File.open(path_to(object)) { |file| YAML.load(file.read) }
+   File.open(path_to(object)) { |file|  
+
+    YAML.load(file.read) 
+
+     }
   end
 
   def self.path_to(object)
     File.expand_path("#{object}.yml", File.dirname(__FILE__))
+  end
+
+  def self.type_of_service(type)
+    {
+      support_program: "PA", service: "S", step: "T"
+    }.fetch(type.to_sym, "F")
   end
 end

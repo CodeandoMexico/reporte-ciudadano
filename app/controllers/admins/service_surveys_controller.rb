@@ -1,5 +1,6 @@
 class Admins::ServiceSurveysController < ApplicationController
   layout 'admins'
+  before_action :set_title
   helper_method :phase_options, :criterion_options, :answer_type_options, :services_for
 
   def index
@@ -49,14 +50,35 @@ class Admins::ServiceSurveysController < ApplicationController
     end
   end
 
+  def invitation_user_mail
+    unless params[:get][:body].empty?
+      send_survey_user(params[:get][:body], "#{new_answer_url}?service_survey_id=#{params[:id].keys.first.to_s}")
+      redirect_to admins_service_surveys_path, notice: t('flash.service_survey.emailsend')
+    else
+      redirect_to admins_service_surveys_path, notice: t('flash.service_survey.noemailsend')
+    end
+  end
+     
+  def ignore_answers
+    @service = Service.find(params[:service_id])
+    @service_survey = ServiceSurvey.find(params[:id])
+
+    answers_to_ignore = @service_survey.answers_by(params[:user_id])
+    answers_to_ignore.update_all(ignored: params[:ignored])
+    redirect_to service_evaluation_path(@service, service_survey_id: @service_survey.id), notice:  t("flash.service_survey.answers_ignored.#{params[:ignored]}")
+  end
+
   private
+  def set_title
+    @title_page = I18n.t('admins.service_surveys.index.service_surveys')
+  end
 
   def service_survey_record
     ServiceSurveys.generate_hash_for_record(service_survey_params.symbolize_keys)
   end
 
   def service_survey_params
-    params.require(:service_survey).permit(:title, :phase, :open, questions_attributes: [:criterion, :text, :answer_type, :value, :answer_rating_range, :_destroy, :id, answers: []], service_ids: [])
+    params.require(:service_survey).permit(:title, :phase, :open, questions_attributes: [:criterion, :text, :answer_type, :value, :answer_rating_range, :optional, :_destroy, :id, answers: []], service_ids: [])
   end
 
   def phase_options
@@ -74,4 +96,10 @@ class Admins::ServiceSurveysController < ApplicationController
   def services_for(admin)
     Admins.services_for(admin)
   end
+  def send_survey_user(mails, link)
+    mailsplit = params[:get][:body].gsub(/\s+/, "").split(";")
+      mailsplit.each do |mail |
+      UserMailer.notify_user_new_surveys(mail,link).deliver
+      end
+    end
 end

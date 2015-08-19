@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-md-12">
       <h3><%= t('.service_survey_for', services: @service_survey.services_names) %></h3>
+      <%unless current_admin.is_public_servant?%>
       <%= link_to t(".edit_service_survey"), edit_admins_service_survey_path(@service_survey), class: "btn btn-primary pull-left" %>
+      <%end%>
     </div>
   </div>
 
@@ -12,6 +14,11 @@
         <p>
           <strong><%= index + 1 %>:</strong>
           <%= question.text %>
+          <% if question.optional? %>
+            <span class="label label-success"><%= t(".optional") %></span>
+          <% else %>
+            <span class="label label-warning"><%= t(".required") %></span>
+          <% end %>
         </p>
         <hr>
         <% if question.has_open_answer? %>

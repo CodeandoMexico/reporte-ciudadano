@@ -40,9 +40,9 @@ module ApplicationHelper
     t("admins.shared.sidebar.#{option}")
   end
 
-def embed_video(youtube_url)
-    youtube_id = youtube_url.split("=").last
-    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}", class: "video")
+def embed_video(vimeo_url)
+      vimeo_id = vimeo_url.split("=").last
+      return "//player.vimeo.com/video/#{vimeo_id}"
   end
 
   def pretty_kpi_data(value, message)

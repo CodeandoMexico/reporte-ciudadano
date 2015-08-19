@@ -1,3 +1,5 @@
+<p>Estimado(a), <strong><%= @admin.name %></strong>.</p>
+
 <p>Se ha creado un nuevo reporte de servicio para <%= @service.name %>:</p>
 
 <% unless @service_request.anonymous %>
@@ -9,3 +11,12 @@
 <p><%= @service_request.description %></p>
 <p><%= @service_request.created_at %></p>
 <%= link_to "Ir al perfil de reporte", edit_admins_service_request_url(@service_request) %>
+
+
+<p>
+Gracias por tu colaboración.
+Encuestas de Satisfacción
+Gobierno del Estado de Puebla.
+</p>
+
+

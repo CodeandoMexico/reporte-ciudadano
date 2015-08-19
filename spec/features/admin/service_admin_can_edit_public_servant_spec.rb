@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'As a service admin I can edit a public servant' do
 
-  let(:admin) { create(:admin, :service_admin, dependency: "Dependencia 1") }
+  let(:admin) { create(:admin, :service_admin, dependency: dependency) }
 
   background do
     sign_in_admin admin
@@ -13,7 +13,7 @@ feature 'As a service admin I can edit a public servant' do
     first_public_servant = public_servants.first
 
     visit admins_dashboards_path
-    click_link "Servidores Públicos"
+    click_link "Servidores públicos"
     click_edit_link_for first_public_servant
 
     expect(find_field('admin[name]').value).to eq first_public_servant.name

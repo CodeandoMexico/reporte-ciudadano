@@ -7,7 +7,6 @@ describe ServiceRequest do
     end
     it { should validate_presence_of(:service_id) }
     it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:address) }
   end
   context 'attributes' do
     it { should respond_to :anonymous }
@@ -95,13 +94,13 @@ describe ServiceRequest do
     end
 
     it '#service_requester returns a hash with the avatar_url and name from the service_requester' do
-      service_requester = {avatar_url: service_request.requester.avatar_url, name: service_request.requester.name}
+      service_requester = {avatar_url: service_request.requester.avatar_url, name: service_request.requester.name, email: service_request.requester.email }
       expect(service_request.service_requester).to eq(service_requester)
     end
 
     it '#service_requester returns a hash with an anonymous user when no user detected' do
       anonymous_service_request = create(:service_request, anonymous: true)
-      service_requester = {avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo'}
+      service_requester = {avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo', email: "Anónimo"}
       expect(anonymous_service_request.service_requester).to eq(service_requester)
     end
 

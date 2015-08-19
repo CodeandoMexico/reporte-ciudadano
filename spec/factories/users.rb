@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :user do
-    email { Faker::Internet.free_email }
+    email { FFaker::Internet.free_email }
     password "iamthewalrus"
     password_confirmation "iamthewalrus"
-    name { Faker::NameMX.full_name }
-    username { Faker::Internet.user_name }
+    name { FFaker::NameMX.full_name }
+    username { FFaker::Internet.user_name }
 
     factory :invalid_user do
       email nil
@@ -16,6 +16,9 @@ FactoryGirl.define do
 
     trait :observer do
       is_observer true
+    end
+    trait :with_id do
+      id nil
     end
   end
 end

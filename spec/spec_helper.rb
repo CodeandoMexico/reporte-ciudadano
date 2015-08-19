@@ -56,3 +56,4 @@ RSpec.configure do |config|
   config.include SessionHelpers, type: :feature
 end
 OmniAuth.config.test_mode = true
+Capybara.default_wait_time = 10

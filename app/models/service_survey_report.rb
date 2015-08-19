@@ -1,9 +1,12 @@
 class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
-  validates :answers_exist, presence: true
-  before_create :set_results_for_report
-  serialize :areas_results, Hash
+  has_many :services, through: :service_survey
 
+  validates :answers_exist, presence: true
+
+  before_create :set_results_for_report
+
+  serialize :areas_results, Hash
 
   def service_survey_title
     service_survey.title
@@ -11,6 +14,14 @@ class ServiceSurveyReport < ActiveRecord::Base
 
   def service_survey_phase
     service_survey.phase
+  end
+
+  def total_by_question
+    questions_avg_score = rating_and_binary_answers(self.service_survey_id)
+        .group('questions.id')
+        .average('survey_answers.score')
+    questions = rating_and_binary_questions(self.service_survey_id).order(:criterion)
+    {}.merge(:scores => questions_avg_score).merge(:questions => questions)
   end
 
   private
@@ -50,30 +61,47 @@ class ServiceSurveyReport < ActiveRecord::Base
   end
 
   def effectiveness_by_criterion(service_survey_id)
-    criteria = ServiceSurveys.criterion_options_available
-    answers = rating_and_binary_answers(service_survey_id).includes(:question).map{|b| [b.question.criterion, b.score/b.question.value.to_f*100 ]}
+    criteria = available_criteria
+    answers = rating_and_binary_answers(service_survey_id).includes(:question).inject([]) do |result, survey_answer|
+              result << [survey_answer.question.criterion, survey_answer.score/survey_answer.question.value.to_f*100 ] if survey_answer.question.value > 0
+              result
+            end
     results = {}
     people_count = people_count(service_survey_id)
-
     criteria.each do |c|
       answers_list = answers.clone
-      results[c] = total_by_area(answers_list, c, 0) / people_count
+      total_by_criterion = total_by_area(answers_list, c, {:count =>0, :acc=>0})
+      if people_count * total_by_criterion[:count] > 0
+        results[c] = total_by_criterion[:acc] / (total_by_criterion[:count])
+      else
+        results[c] = 0
+      end
     end
     results
   end
 
-  def total_by_area(answers_list, key, acc)
-    return acc if answers_list.empty?
+  def total_by_area(answers_list, key, result)
+    return result if answers_list.empty?
     next_key, next_key_value = answers_list.shift
     if next_key.to_sym == key
-      total_by_area(answers_list, key, acc + next_key_value)
+      result[:count] += 1
+      result[:acc] += next_key_value
+      total_by_area(answers_list, key, result)
     else
-      total_by_area(answers_list, key, acc)
+      total_by_area(answers_list, key, result)
     end
+  end
+
+  def available_criteria
+    ServiceSurveys.criterion_options_available
   end
 
   def overall_effectiveness(service_survey_id)
     rating_and_binary_answers(service_survey_id).map(&:score).sum.to_i
+  end
+
+  def rating_and_binary_questions(service_survey_id)
+    get_service_survey(service_survey_id).questions.where(answer_type: ['rating','binary'])
   end
 
   def rating_and_binary_answers(service_survey_id)
@@ -83,5 +111,4 @@ class ServiceSurveyReport < ActiveRecord::Base
   def get_service_survey(service_survey_id)
     ServiceSurvey.find(service_survey_id)
   end
-
 end

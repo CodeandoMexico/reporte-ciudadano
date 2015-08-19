@@ -4,13 +4,16 @@ require_relative '../../app/services/services'
 
 module Evaluations
   class TestService
-    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports
+    attr_accessor :cis, :admins, :service_surveys, :last_survey_reports, :id, :last_report, :questions
 
     def initialize(attrs)
       @cis = attrs[:cis] || []
       @admins = attrs[:admins] || []
       @service_surveys = attrs[:service_surveys] || []
       @last_survey_reports = attrs[:last_survey_reports] || []
+      @id = attrs[:id]
+      @last_report = attrs[:last_report]
+      @questions = attrs[:questions] || []
     end
   end
 
@@ -23,19 +26,41 @@ module Evaluations
   end
 
   class TestAnswer
-    attr_accessor :user_id
+    attr_accessor :user_id, :text, :ignored
 
     def initialize(attrs)
       @user_id = attrs[:user_id]
+      @text = attrs[:text]
+      @ignored = attrs[:ignored] || false
+    end
+  end
+
+  class TestQuestion
+    attr_accessor :criterion, :text, :answers
+
+    def initialize(attrs)
+      @criterion = attrs[:criterion]
+      @text = attrs[:text]
+      @answers = attrs[:answers] || []
+    end
+
+    def survey_answer_by_user(user_id)
+      answers.select { |answer| answer.user_id == user_id }.first
     end
   end
 
   class TestReport
-    attr_accessor :areas_results
+    attr_accessor :areas_results, :positive_overall_perception, :created_at, :overall_areas
 
     def initialize(attrs)
       @areas_results = attrs[:areas_results]
+      @positive_overall_perception = attrs[:positive_overall_perception]
+      @created_at = Time.now
+      @overall_areas = attrs[:overall_areas]
     end
+  end
+
+  class ServiceReport
   end
 
   describe 'cis with results' do
@@ -97,7 +122,7 @@ module Evaluations
     describe 'surveys participants count' do
       example do
         answer = TestAnswer.new(user_id: 'user-id')
-        surveys = double 'survey', answers: [answer]
+        surveys = double 'survey', answers: [answer], last_report: nil
         services = [TestService.new(cis: ["1"], service_surveys: [surveys])]
         first_cis = first_cis_with_results(cis, services: services)
         expect(first_cis.survey_participants_count).to eq 1
@@ -105,37 +130,67 @@ module Evaluations
     end
 
     describe 'services overall evaluation' do
-      [ :transparency, :performance, :quality_of_service, :accesibility, :infrastructure ].each do |criterion|
+      [ :transparency, :performance, :quality_of_service, :accesibility, :infrastructure, :public_servant ].each do |criterion|
         it "returns the evaluation for a service in a given criterion: #{criterion}" do
-          survey_reports = [TestReport.new(areas_results: areas_results(60.0)), TestReport.new(areas_results: areas_results(50.0))]
-          services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
+          report = TestReport.new(overall_areas: overall_areas(55.0))
+          services = [TestService.new(cis: ["1"], last_report: report)]
           first_cis = first_cis_with_results(cis, services: services)
           expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 55.0
         end
 
         it "returns the evaluation for a service in a given criterion: #{criterion}" do
-          survey_reports = [TestReport.new(areas_results: areas_results(0.0)), TestReport.new(areas_results: areas_results(0.0))]
-          services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
+          report = TestReport.new(overall_areas: overall_areas(0.0))
+          services = [TestService.new(cis: ["1"], last_report: report)]
           first_cis = first_cis_with_results(cis, services: services)
           expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
         end
 
-        it "returns 0.0 if no reports are given: #{criterion}" do
+        it "returns nil if no reports are given: #{criterion}" do
           survey_reports = []
           services = [TestService.new(cis: ["1"], last_survey_reports: survey_reports)]
           first_cis = first_cis_with_results(cis, services: services)
-          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq 0.0
+          expect(first_cis.services.first.overall_evaluation_for(criterion)).to eq nil
         end
       end
     end
 
-    def areas_results(percentage)
+    it 'returns the best and worst evaluated service' do
+      last_report_best = TestReport.new(positive_overall_perception: 85.0)
+      last_report_worst = TestReport.new(positive_overall_perception: 15.0)
+      services = [
+        TestService.new(id: 'best-service', cis: ["1"], last_report: last_report_best),
+        TestService.new(id: 'worst-service', cis: ["1"], last_report: last_report_worst)]
+      first_cis = first_cis_with_results(cis, services: services)
+
+      expect(first_cis.best_evaluated_service.id).to eq 'best-service'
+      expect(first_cis.worst_evaluated_service.id).to eq 'worst-service'
+      expect(first_cis.best_evaluated_service.positive_overall_perception).to eq 85.0
+      expect(first_cis.worst_evaluated_service.positive_overall_perception).to eq 15.0
+    end
+
+    it 'returns the best and worst evaluated service with public servants questions' do
+      last_report_best = TestReport.new(overall_areas: { public_servant: 90.0 })
+      last_report_worst = TestReport.new(overall_areas: { public_servant: 10.0 })
+      question = TestQuestion.new(criterion: :public_servant)
+      services = [
+        TestService.new(id: 'best-service', cis: ["1"], last_report: last_report_best, questions: [question]),
+        TestService.new(id: 'worst-service', cis: ["1"], last_report: last_report_worst, questions: [question])]
+      first_cis = first_cis_with_results(cis, services: services)
+
+      expect(first_cis.best_public_servants_service.id).to eq 'best-service'
+      expect(first_cis.worst_public_servants_service.id).to eq 'worst-service'
+      expect(first_cis.best_public_servants_service.overall_evaluation_for(:public_servant)).to eq 90.0
+      expect(first_cis.worst_public_servants_service.overall_evaluation_for(:public_servant)).to eq 10.0
+    end
+
+    def overall_areas(percentage)
       {
         transparency: percentage,
         performance: percentage,
         quality_of_service: percentage,
         accesibility: percentage,
-        infrastructure: percentage
+        infrastructure: percentage,
+        public_servant: percentage
       }
     end
 

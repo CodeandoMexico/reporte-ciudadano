@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :service_survey
   serialize :answers, Array
   has_many :survey_answers
+  has_many :services, through: :service_survey, source: :services
 
   validates :answer_type, inclusion: { in: %w(binary rating open list) }
   validates_presence_of :value, if: :answer_type_rating?
@@ -12,12 +13,22 @@ class Question < ActiveRecord::Base
     where(answer_type: ['rating','binary'])
   }
 
+  scope :with_public_servant_type, -> {
+    where(criterion: "public_servant")
+  }
+
+  default_scope { order(id: :asc) }
+
   def has_open_answer?
     answer_type == 'open'
   end
 
   def answers_set
     answers.reject(&:empty?)
+  end
+
+  def survey_answer_by_user(user_id)
+    survey_answers.where(user_id: user_id).first
   end
 
   private

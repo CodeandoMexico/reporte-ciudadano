@@ -20,7 +20,11 @@ public_servant_1 = Admin.create(name: "Servidor público 1", email: "publicserva
 public_servant_2 = Admin.create(name: "Servidor público 2", email: "publicservant2@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 2', is_public_servant: true, active: true)
 public_servant_3 = Admin.create(name: "Servidor público 3", email: "publicservant3@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 3', is_public_servant: true, active: true)
 
+
+
 user = User.create(name: "Juan Villanueva", email: 'juan@juan.com', password: "userpassword", password_confirmation: "userpassword")
+
+user = User.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
 
 status = Status.first
 
@@ -30,7 +34,8 @@ c = Service.create(
   cis: ['1', '2'],
   administrative_unit: "Unidad administrativa 1",
   service_type: :step,
-  admins: [public_servant_1]
+  admins: [public_servant_1],
+  status: 'activo'
 )
 r = {
   service_id: c.id,
@@ -46,7 +51,8 @@ c = Service.create(
   cis: ['3'],
   administrative_unit: "Unidad administrativa 2",
   service_type: :service,
-  admins: [public_servant_2]
+  admins: [public_servant_2],
+  status: 'activo'
 )
 
 r = {
@@ -63,7 +69,8 @@ c = Service.create(
   cis: ['2', '3'],
   administrative_unit: "Unidad administrativa 3",
   service_type: :support_program,
-  admins: [public_servant_3]
+  admins: [public_servant_3],
+  status: 'activo'
 )
 
 r = {

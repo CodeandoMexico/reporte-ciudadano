@@ -5,6 +5,12 @@
 
   %fieldset
     .form-group
+      -if @service.homoclave
+        = f.label :homoclave, class: 'col-lg-2 control-label'
+        .col-lg-8.control-label-left
+          =@service.homoclave
+  %fieldset
+    .form-group
       = f.label :name, t('form.labels.name'), class: 'col-lg-2 control-label'
       .col-lg-8
         = f.text_field :name, class: 'form-control'
@@ -13,61 +19,27 @@
     .form-group
       = f.label :service_type, t('form.labels.service_type'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.select :service_type, service_type_options, prompt: I18n.t("form.options.service_type_select")
+        = f.select :service_type, service_type_options,{ prompt: I18n.t("form.options.service_type_select")},{ class: 'chosen-select'}
   %fieldset
     .form-group
       = f.label :dependency, t('form.labels.dependency'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.select :dependency, service_dependency_options
+        = f.select :dependency, service_dependency_options,{ prompt: I18n.t("form.options.service_type_dependency")}, { class: 'chosen-select'}
   %fieldset
     .form-group
       = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.select :administrative_unit, service_administrative_unit_options
+        = f.select :administrative_unit, service_administrative_unit_options,{ prompt: I18n.t("form.options.service_type_administrative")},{ class: 'chosen-select'}
   %fieldset
     .form-group
-      = f.label :cis, t('form.labels.cis'), class: 'col-lg-2 control-label'
-      .col-lg-8
-        - service_cis_options.each do |cis|
-          .checkbox
-            = f.check_box :cis, { multiple: true, checked: is_assigned_to_cis?(@service, cis) }, cis[:id], nil
-            = f.label :cis, cis[:label], value: cis[:id]
+      = f.label :cis, t('form.labels.admin.cis'), class: 'col-md-2 control-label'
+      .col-md-8
+        = f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select' ,:onchange=>"validate_requirements()",:multiple=>true}
   %fieldset
     .form-group
       = f.label :service_admin_id, t('form.labels.admin_id'), class: 'col-lg-2 control-label'
       .col-lg-8
-        = f.collection_select :service_admin_id, @available_admins, :id, :name
-  %fieldset
-    %legend
-      = t '.service_fields_title'
-    = f.fields_for :service_fields do |service_field_form|
-      .well
-        .form-group
-          = service_field_form.label :content, t('.name'), class: 'col-lg-2 control-label'
-          .col-lg-10
-            = service_field_form.text_field :name, class: 'form-control'
-        = service_field_form.link_to_remove t('.remove_service_field'), class: 'btn btn-xs btn-danger'
-
-    .add-message
-      = f.link_to_add t('.add_service_field'), :service_fields, class: "btn btn-sm btn-default"
-
-  %fieldset
-    %legend
-      = t '.messages_title'
-    = f.fields_for :messages do |message_form|
-      .well
-        .form-group
-          = message_form.label :content, t('form.labels.message'), class: 'col-lg-2 control-label'
-          .col-lg-10
-            = message_form.text_area :content, rows: '3', class: 'form-control'
-        .form-group
-          = message_form.label :status_id, t('.which_status'), class: 'col-lg-2 control-label'
-          .col-lg-10
-            = message_form.collection_select :status_id, Status.all, :id, :name, class: 'form-control'
-        = message_form.link_to_remove t('.remove_message'), class: 'btn btn-xs btn-danger'
-
-    .add-message
-      = f.link_to_add t('.add_message'), :messages, class: "btn btn-sm btn-default"
+        = f.select :service_admin_id, @available_admins.collect{|opt| [ "#{opt.name} #{opt.surname} #{opt.second_surname}", opt.id]},{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
 
 
   %hr
@@ -75,3 +47,7 @@
     .col-lg-8
       = f.submit t('.save'), class: 'btn btn-primary'
       = link_to t('.cancel'), admins_services_path, class: 'btn btn-default'
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

@@ -1,4 +1,22 @@
 <h3><%= t('.service_evaluations') %></h3>
+
+<%= search_form_for @search, url: evaluations_path, method: :get, class: "filters form-inline" do |f|%>
+  <div class="form-group col-md-4">
+    <%= f.select :name, service_name_options, { prompt: t('.name') }, class: 'chosen-select'%>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'%>
+  </div>
+  <div class="form-group col-md-12">
+    <%= button_tag class: "submit btn btn-default" do %>
+     <div class="i glyphicon glyphicon-search">
+      <%= t('search')%>
+    </div>
+    <%end%>
+  </div>
+  <%end%>
+
+
 <div class="row">
   <div class="table-responsive col-md-10 col-md-offset-1">
     <table class="table table-striped">
@@ -26,7 +44,21 @@
 </div>
 
 <h3><%= t('.cis_evaluations') %></h3>
+<%= search_form_for @search, url: evaluations_path, method: :get, class: "filters form-inline" do |f|%>
+  <div class="form-group col-md-4">
+    <%= f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'%>
+  </div>
+  <div class="form-group col-md-12">
+    <%= button_tag class: "submit btn btn-default" do %>
+     <div class="i glyphicon glyphicon-search">
+      <%= t('search')%>
+    </div>
+    <%end%>
+  </div>
+  <%end%>
+
 <% @cis.each do |cis| %>
+<%if  @id_cis.blank? || (Services.service_cis_options[@id_cis.to_i - 1][:label].include? cis.name) %>
   <div class="row">
     <div clasS="col-md-10 col-md-offset-1">
       <div class="panel panel-info cis">
@@ -64,4 +96,10 @@
       </div>
     </div>
   </div>
+  <% end %>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>

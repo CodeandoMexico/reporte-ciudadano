@@ -14,6 +14,7 @@ class Admin < ActiveRecord::Base
   has_one :api_key
   has_and_belongs_to_many :services
   has_many :assigned_service_requests, through: :services, source: :service_requests
+  has_many :related_surveys, class: ServiceSurvey, through: :services, source: :service_surveys
 
   mount_uploader :avatar, AvatarUploader
 

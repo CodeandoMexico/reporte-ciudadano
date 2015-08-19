@@ -14,8 +14,8 @@ feature 'As a service admin I can assign a public servant to a service' do
     other_unassigned_service = create :service, name: "Tubería rota", service_admin_id: admin.id
 
     visit admins_dashboards_path
-    click_link "Servidores Públicos"
-    click_link "Asignar servicios"
+    click_link "Servidores públicos"
+    click_link "Asignar trámites"
 
     expect(page).to have_content unassigned_service.name
     expect(page).to have_content other_unassigned_service.name
@@ -26,7 +26,7 @@ feature 'As a service admin I can assign a public servant to a service' do
     expect(page).to have_content "Fuga"
     expect(current_path).to eq admins_public_servants_path
 
-    click_link "Asignar servicios"
+    click_link "Asignar trámites"
 
     expect(checkbox(unassigned_service)).to be_checked
     expect(checkbox(other_unassigned_service)).not_to be_checked
@@ -37,8 +37,8 @@ feature 'As a service admin I can assign a public servant to a service' do
     assigned_service = create :service, name: "Fuga", service_admin_id: admin.id, admins: [public_servant]
 
     visit admins_dashboards_path
-    click_link "Servidores Públicos"
-    click_link "Asignar servicios"
+    click_link "Servidores públicos"
+    click_link "Asignar trámites"
 
     uncheck "admin_services_ids_#{assigned_service.id}"
     click_button "Asignar"
@@ -48,7 +48,7 @@ feature 'As a service admin I can assign a public servant to a service' do
       expect(current_path).to eq admins_public_servants_path
     end
 
-    click_link "Asignar servicios"
+    click_link "Asignar trámites"
     expect(checkbox(assigned_service)).not_to be_checked
   end
 
