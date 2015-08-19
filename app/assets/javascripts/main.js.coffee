@@ -10,15 +10,15 @@ $(document).on 'ready page:load', ->
     $tabs.removeClass 'active'
     $(@).addClass 'active'
 
-  $('#service_request_status_id').change ->
-    status_id = $(@).val()
-    service_id = $(@).data('service-id')
-    $.ajax(
-      url: "/admins/services/#{service_id}/messages"
-      data:
-        status_id: status_id
-      type: 'GET'
-    )
+#  $('#service_request_status_id').change ->
+#    status_id = $(@).val()
+#    service_id = $(@).data('service-id')
+#    $.ajax(
+#      url: "/admins/services/#{service_id}/messages"
+#      data:
+#        status_id: status_id
+#      type: 'GET'
+#    )
 
   $(window).resize ->
     $("#main_width").html $(window).width()

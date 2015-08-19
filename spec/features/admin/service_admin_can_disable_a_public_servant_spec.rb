@@ -21,7 +21,7 @@ feature 'As a service admin I can disable a public servant' do
     expect(page).to have_content first_public_servant.name
 
     click_link "Activos"
-    expect(page).not_to have_content first_public_servant.name
+    expect(find('.tab-content>.tab-pane#enabled')).not_to have_content first_public_servant.name
   end
 
   scenario 'I can enable a disabled public servant', js: true do
@@ -37,7 +37,7 @@ feature 'As a service admin I can disable a public servant' do
     expect(page).to have_content public_servant.name
 
     click_link "Inactivos"
-    expect(page).not_to have_content public_servant.name
+    expect(find('.tab-content>.tab-pane#disabled')).not_to have_content public_servant.name
   end
 
   def click_disable_link_for(public_servant)

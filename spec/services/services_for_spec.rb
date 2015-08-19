@@ -11,9 +11,9 @@ module Admins
   end
 
   describe 'services for' do
-    it 'returns all services when is super admin' do
+    it 'returns all active services when is super admin' do
       admin = double 'admin', is_service_admin?: false, is_super_admin?: true
-      expect(Service).to receive(:all)
+      expect(Service).to receive(:active)
       services_for(admin)
     end
 
