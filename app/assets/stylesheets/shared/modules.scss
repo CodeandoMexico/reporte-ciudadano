@@ -225,6 +225,9 @@ $blue-back: #00417C;
 .right{
   float: right;
 }
+.padding-top-observer{
+   padding-top: 2.9em;
+}
 
 /***************************************************
 **  sizes
@@ -334,6 +337,14 @@ ul
   color: #004987;
   white-space: nowrap;
 }
+
+.text-one-line{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; // This is where the magic happens
+  }
+
 /***************************************************
 **  HOME REPORT STATS
 ***************************************************/
