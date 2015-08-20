@@ -151,7 +151,7 @@ feature 'Observer can see cis evaluation results' do
   end
 
   def given_survey_report_exists_for(survey)
-    ServiceSurveyReport.create!(service_survey_id: survey.id)
+    ServiceSurveyReport.create!(service_survey_id: survey.id, service_id: survey.services.last.id)
   end
 
   def given_questions_criterion_is(criterion, survey)

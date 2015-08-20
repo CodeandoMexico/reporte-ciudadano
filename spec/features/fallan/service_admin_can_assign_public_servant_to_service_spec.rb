@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'As a service admin I can assign a public servant to a service' do
+feature 'As a service admin I can assign a public servant to a service', js:true do
 
   let(:admin) { create(:admin, :service_admin) }
 
@@ -20,7 +20,7 @@ feature 'As a service admin I can assign a public servant to a service' do
     expect(page).to have_content unassigned_service.name
     expect(page).to have_content other_unassigned_service.name
 
-    check "admin_services_ids_#{unassigned_service.id}"
+    select_from_chosen_by_css unassigned_service.name, from: "#admin_services_ids_chosen"
     click_button "Asignar"
 
     expect(page).to have_content "Fuga"
@@ -28,8 +28,8 @@ feature 'As a service admin I can assign a public servant to a service' do
 
     click_link "Asignar trámites"
 
-    expect(checkbox(unassigned_service)).to be_checked
-    expect(checkbox(other_unassigned_service)).not_to be_checked
+    expect(selection_in_select_for(unassigned_service)).to be_selected
+    expect(selection_in_select_for(other_unassigned_service)).not_to be_selected
   end
 
   scenario 'I can remove service assignation for a public servant' do
@@ -40,7 +40,7 @@ feature 'As a service admin I can assign a public servant to a service' do
     click_link "Servidores públicos"
     click_link "Asignar trámites"
 
-    uncheck "admin_services_ids_#{assigned_service.id}"
+    # uncheck "admin_services_ids_#{assigned_service.id}"
     click_button "Asignar"
 
     within first(".public_servant") do
@@ -49,10 +49,13 @@ feature 'As a service admin I can assign a public servant to a service' do
     end
 
     click_link "Asignar trámites"
-    expect(checkbox(assigned_service)).not_to be_checked
+    expect(selection_in_select_for(assigned_service)).not_to be_selected
   end
 
   def checkbox(service)
     find("#admin_services_ids_#{service.id}")
+  end
+  def selection_in_select_for(service)
+    find("#service_survey_service_ids").find(:xpath, "option[@value=#{service.id}]")
   end
 end
