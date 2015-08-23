@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
     @admin = admin
     @service = service_request.service
     @service_request = service_request
-    mail to: @user.email, subject: I18n.t('mailer.subject.notify_new_request')
+    mail to: @user.email, subject: I18n.t('mailer.subject.notify_new_request_user')
   end
 end
 

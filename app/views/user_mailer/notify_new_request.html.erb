@@ -1,18 +1,12 @@
-<p>Estimado(a), <strong><%= @user.name || @user.email %></strong>.</p>
+<p>Saludos, <strong><%= @user.name || @user.email %></strong>.</p>
 
-<p>Gracias por crear un nuevo reporte de servicio para <%= @service.name %>:</p>
+<p>Se ha creado una nueva Queja o Sugerencia para <%= @service.name %>:</p>
 
 <p><%= @service_request.description %></p>
 <p><%= @service_request.created_at %></p>
 
-<p>Se dará el seguimiento y lo mantendremos informado.</p>
-
 <%= link_to "Ir al reporte",  service_requests_url %>
 
 <p>
-Gracias por tu colaboración.
-Encuestas de Satisfacción
-Gobierno del Estado de Puebla.
+Gracias.
 </p>
-
-
