@@ -19,6 +19,6 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def service_survey_report_params
-    params.require(:service_survey_report).permit(:service_survey_id)
+    params.require(:service_survey_report).permit(:service_survey_id, :service_id)
   end
 end
