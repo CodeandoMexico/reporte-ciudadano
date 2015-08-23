@@ -9,8 +9,8 @@ class Admins::DashboardsController < Admins::AdminController
 
   def index
     @service_requests = admin_requests.page(params[:page])
-    @open_service_requests = admin_requests.select(&:open?).count
-    @closed_service_requests =  admin_requests.select(&:closed?).count
+    @open_service_requests = admin_requests.where(status_id: Status.where(name: 'Abierto').last).count#select(&:open?).count
+    @closed_service_requests =  admin_requests.where(status_id: Status.where(name: 'Cerrado').last).count#.select(&:closed?).count
     @all_service_requests = admin_requests.count
     @chart_data = chart_data.to_json
     @status_data = Status.select(:name, :id).to_json
