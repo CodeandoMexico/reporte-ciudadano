@@ -8,6 +8,8 @@ class ServiceSurvey < ActiveRecord::Base
 
     validates_presence_of :phase, :message =>"no puede estar vacio"
    validates_presence_of :title, :message =>"no puede estar vacio"
+   validates_presence_of :service_ids , :message =>"no puede estar vacio"
+
   validate :value_for_rating_questions
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true

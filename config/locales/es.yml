@@ -851,6 +851,8 @@ es:
     attributes:
       service_survey:
         title: "Titulo"
+        service_ids: "Trámites"
         questions: "La respuesta"
+        phase: "Frase"
       questions:
         answer_type: "Tipo de respuesta"
