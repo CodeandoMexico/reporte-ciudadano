@@ -79,14 +79,21 @@ docker_container "redis" do
 end
 
 
-directory "/var/urbem/" do
+directory "/www" do
+  owner "root"
+  group "root"
+  mode "755"
+  action :create
+end
+
+directory "/www/sitios/" do
   owner "root"
   group "root"
   mode  "755"
   action :create
 end
 
-git "/var/urbem" do
+git "/www/sitios/EvaluatuTramite" do
   revision node["urbem"]["branch"]
   repository "https://github.com/civica-digital/urbem-puebla.git"
   notifies :run, "docker_container[commit_db]", :immediately
@@ -112,7 +119,7 @@ end
 
 docker_image 'urbem-puebla' do
   tag 'latest'
-  source "/var/urbem"
+  source "/www/sitios/EvaluatuTramite"
   begin
      Docker::Image.get("urbem-puebla")
      action :nothing
