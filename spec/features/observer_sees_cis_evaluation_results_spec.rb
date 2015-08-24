@@ -1,9 +1,8 @@
 require 'spec_helper'
-
-feature 'Observer can see cis evaluation results' do
+feature 'Observer can see cis evaluation results', :js => true do
   let(:observer) { create(:user, :observer) }
 
-  scenario 'from dashboard', :js => true do
+  scenario 'from dashboard' do
     service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
     other_service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
@@ -98,7 +97,6 @@ feature 'Observer can see cis evaluation results' do
     given_survey_has_answers(other_survey, 0.0)
     survey_report = given_survey_report_exists_for survey
     other_survey_report = given_survey_report_exists_for other_survey
-
     given_report_has_public_servants_evaluation survey_report, 60.0
     given_report_has_public_servants_evaluation other_survey_report, 80.0
 
