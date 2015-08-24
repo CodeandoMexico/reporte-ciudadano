@@ -7,8 +7,8 @@
           <div id="error_explanation">
             <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@service_survey.errors.count, "error") %></h2>
             <ul class="list-unstyled">
-              <% @service_survey.errors.full_messages.each do |error_message| %>
-                <li class="text-danger"><%= error_message %></li>
+              <% @service_survey.errors.messages.each do |error_message| %>
+                <li class="text-danger"><%= error_message.last.last.html_safe %></li>
               <% end %>
             </ul>
           </div>

@@ -6,7 +6,8 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :reports, class: ServiceSurveyReport
   has_many :users, through: :answers, source: :user
 
-  validates_presence_of :phase
+    validates_presence_of :phase, :message =>"no puede estar vacio"
+   validates_presence_of :title, :message =>"no puede estar vacio"
   validate :value_for_rating_questions
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true

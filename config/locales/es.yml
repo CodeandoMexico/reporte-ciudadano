@@ -800,7 +800,7 @@ es:
     open:
       text: "Texto introducido por el usuario..."
   service_survey:
-    errors:
+    errors: 
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
       presence_of_value: "con valor deben contener un porcentaje de valor mayor a 0%"
   cis_reports:
@@ -845,3 +845,12 @@ es:
     not_found: "Lo sentimos pero la Ruta ingresada no existe"
     title_server_error: "Falla inesperada"
     server_error: "Lo sentimos pero hubo una falla inseperada. Estamos trabajando en reparar esto."
+  activerecord:
+    models: 
+      service_survey: "Encuesta"
+    attributes:
+      service_survey:
+        title: "Titulo"
+        questions: "La respuesta"
+      questions:
+        answer_type: "Tipo de respuesta"
