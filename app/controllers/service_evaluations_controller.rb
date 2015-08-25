@@ -1,7 +1,8 @@
 class ServiceEvaluationsController < ApplicationController
-  before_action :authenticate_user_or_admin!
+  #before_action :authenticate_user_or_admin!
   before_action :authorize_observer
   helper_method :can_ignore_answers?
+   layout 'observers'
 
   def show
     @service = Service.includes(:service_surveys, :questions, :answers).find(params[:id])

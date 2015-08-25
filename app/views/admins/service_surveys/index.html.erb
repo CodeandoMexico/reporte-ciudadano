@@ -39,7 +39,9 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <%= form_for(@service_survey_report, url: {controller: 'service_survey_reports',:action => 'create'}, html: { method: :post, class: 'form-horizontal', id: "new-report-#{survey.id}" }) do |f| %>
                       <%= f.hidden_field :service_survey_id, value: survey.id %>
-                      <%= f.hidden_field :service_id, value: survey.services.last.id  %>
+                      <%unless survey.services.last.nil?%>
+                        <%= f.hidden_field :service_id, value: survey.services.last.id  %>
+                      <%end%>
                       <%= f.submit t('service_report.new'), class: 'hidden' %>
                   <% end %>
 
