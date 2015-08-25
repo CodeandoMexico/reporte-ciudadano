@@ -25,5 +25,13 @@ class UserMailer < ActionMailer::Base
     @mail = mail
     mail(subject: I18n.t('mailer.subject.new_survey'), to: @mail)
   end
+
+    def notify_new_request(admin:, service_request:)
+    @user = service_request.requester
+    @admin = admin
+    @service = service_request.service
+    @service_request = service_request
+    mail to: @user.email, subject: I18n.t('mailer.subject.notify_new_request_user')
+  end
 end
 
