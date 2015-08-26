@@ -17,7 +17,14 @@ class Service < ActiveRecord::Base
   accepts_nested_attributes_for :service_fields, allow_destroy: true
   accepts_nested_attributes_for :messages, allow_destroy: true, reject_if: lambda { |attr| attr[:content].blank? }
 
-  serialize :cis, Array
+    serialize :cis, Array
+
+    validates_presence_of :name, :message =>"Nombre no puede estar vacio ni tener caracteres especiales"
+    validates_presence_of :service_type, :message =>"Tipo de servicio no puede estar vacio"
+    validates_presence_of :dependency, :message =>"Dependencia no puede estar vacio"
+    validates_presence_of :administrative_unit, :message =>"Unidad administrativa no puede estar vacio"
+    validates_presence_of :cis, :message =>"Cis no puede estar vacio"
+    validates_presence_of :service_admin_id, :message =>"Administador del servicio no puede estar vacio"
 
   scope :with_open_surveys, ->{
     joins(:service_surveys)
