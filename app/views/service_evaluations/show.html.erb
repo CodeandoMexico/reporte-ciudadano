@@ -31,7 +31,7 @@
             <%end%>
             <%= f.submit t('service_report.new'), class: 'hidden' %>
           <% end %>
-          <%= link_to t('service_report.new'), "#", class: "js-generate-report btn btn-primary pull-right", "data-submit" => "#new-report-#{@service_survey.id}" %>
+          <%= link_to t('service_report.new'), "#", class: "js-generate-report btn btn-primary pull-right", "data-submit" => "#new-report-#{@service_survey.id}", disabled: @service_survey.answers.empty?  %>
         </div>
       </div>
     </div>
