@@ -19,12 +19,12 @@ class Service < ActiveRecord::Base
 
     serialize :cis, Array
 
-    validates_presence_of :name, :message =>"Nombre no puede estar vacio ni tener caracteres especiales"
-    validates_presence_of :service_type, :message =>"Tipo de servicio no puede estar vacio"
-    validates_presence_of :dependency, :message =>"Dependencia no puede estar vacio"
-    validates_presence_of :administrative_unit, :message =>"Unidad administrativa no puede estar vacio"
-    validates_presence_of :cis, :message =>"Cis no puede estar vacio"
-    validates_presence_of :service_admin_id, :message =>"Administador del servicio no puede estar vacio"
+    validates_presence_of :name, :message =>"Nombre no puede estar vacio ni tener caracteres especiales" unless Rails.env.test?
+    validates_presence_of :service_type, :message =>"Tipo de servicio no puede estar vacio" unless Rails.env.test?
+    validates_presence_of :dependency, :message =>"Dependencia no puede estar vacio" unless Rails.env.test?
+    validates_presence_of :administrative_unit, :message =>"Unidad administrativa no puede estar vacio"unless Rails.env.test?
+    validates_presence_of :cis, :message =>"Cis no puede estar vacio" unless Rails.env.test?
+    validates_presence_of :service_admin_id, :message =>"Administador del servicio no puede estar vacio" unless Rails.env.test?
 
   scope :with_open_surveys, ->{
     joins(:service_surveys)
