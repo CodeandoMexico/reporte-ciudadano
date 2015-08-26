@@ -165,7 +165,6 @@ ActiveRecord::Schema.define(version: 20150812160759) do
     t.boolean  "anonymous",                  default: false
     t.text     "service_fields",             default: "{}"
     t.text     "address",                    default: ""
-    t.string   "title",                      default: ""
     t.string   "media"
     t.integer  "service_id"
     t.integer  "requester_id",                               null: false

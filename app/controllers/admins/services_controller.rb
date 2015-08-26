@@ -3,28 +3,29 @@ class Admins::ServicesController < Admins::AdminController
   before_action :set_title
   before_action :set_search, only: :index
   helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?,:service_name_options
+  before_action :set_admin
 
   def index
     @services = Service.all
     search_services
     @statuses = Status.all
+    
   end
 
   def new
     @service = Service.new
-    @available_admins = Admin.service_admins
   end
 
   def edit
     @service = Service.find(params[:id])
-    @available_admins = Admin.service_admins
   end
 
   def create
     time = Time.new
     @service = Service.new(service_params)
-    @service.homoclave = Services.generate_homoclave_for(@service)
     if @service.save
+      @service.homoclave = Services.generate_homoclave_for(@service)
+      @service.save
       redirect_to admins_services_path, notice: I18n.t('flash.service.created')
     else
       render action: "new"
@@ -121,6 +122,10 @@ class Admins::ServicesController < Admins::AdminController
       @services = @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @services = @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
     end
+  end
+
+  def set_admin
+    @available_admins = Admin.service_admins
   end
 
   def service_params

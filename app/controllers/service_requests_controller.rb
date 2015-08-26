@@ -23,6 +23,7 @@ class ServiceRequestsController < ApplicationController
     @service_request.user_id = current_user.id
     if @service_request.save
       notify_public_servants(@service_request)
+      notify_user(@service_request)
       redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
       flash[:notice] = I18n.t("flash.service_requests.error")
@@ -79,6 +80,12 @@ class ServiceRequestsController < ApplicationController
   def notify_public_servants(service_request)
     if service_request.public_servant_id.present? && !service_request.public_servant_id.zero?
       AdminMailer.notify_new_request(admin: Admin.find(service_request.public_servant_id), service_request: service_request).deliver
+    end
+  end
+
+    def notify_user(service_request)
+    if service_request.public_servant_id.present? && !service_request.public_servant_id.zero?
+      UserMailer.notify_new_request(admin: Admin.find(service_request.public_servant_id), service_request: service_request).deliver
     end
   end
 

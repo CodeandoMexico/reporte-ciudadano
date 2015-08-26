@@ -104,7 +104,7 @@ Rails.application.routes.draw do
   end
   resources  :evaluaciones, as: :evaluations, only: [:index], controller: :evaluations
   resources :evaluaciones_centros_de_atencion, as: :cis_evaluations, only: [:index, :show] , controller: :cis_evaluations
-  resources :service_evaluations, only: :show do
+  resources :evaluacion_de_servicio, as: :service_evaluations, controller: :service_evaluations do
     get :export_csv, on: :member
   end
 
