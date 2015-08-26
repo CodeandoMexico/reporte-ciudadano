@@ -2,8 +2,6 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   layout 'admins'
 
   def create
-
-    puts 'HOLAAAAAA'
     @service_survey_report = ServiceSurveyReport.new(service_survey_report_params)
 
     if @service_survey_report.save
