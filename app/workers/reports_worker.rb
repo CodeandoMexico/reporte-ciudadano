@@ -1,6 +1,5 @@
 class ReportsWorker
   include Sidekiq::Worker
-  
   def perform(survey_id)
     survey = ServiceSurvey.find(survey_id)
     services = survey.services
