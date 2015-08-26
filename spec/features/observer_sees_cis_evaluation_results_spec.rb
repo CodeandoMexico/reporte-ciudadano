@@ -1,6 +1,5 @@
 require 'spec_helper'
-
-feature 'Observer can see cis evaluation results' do
+feature 'Observer can see cis evaluation results', :js => true do
   let(:observer) { create(:user, :observer) }
 
   scenario 'from dashboard' do
@@ -8,12 +7,15 @@ feature 'Observer can see cis evaluation results' do
     other_service = create :service, name: "Licencias", cis: ["1"], admins: create_list(:admin, 2, :public_servant)
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
     given_survey_has_answers survey, 1.0
+    sleep 2.0
     given_survey_report_exists_for survey
+    sleep 2.0
 
     sign_in_user observer
     expect(current_path).to eq evaluations_path
 
     expect(page).to have_content cis_name
+    sleep 3.0
 
     within first('.cis') do
       expect(page).to have_link "Ver resultados"
@@ -44,9 +46,9 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
-    sleep 1.0
+    sleep 3
 
-    within '.evaluation-services' do
+    within('.evaluation-services') do
       expect(page).to have_content "Transparencia"
       expect(page).to have_content "Desempeño"
       expect(page).to have_content "Calidad de servicio"
@@ -71,7 +73,7 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
-    sleep 1.0
+    sleep 3
 
     within '.best-service' do
       expect(page).to have_content "Actas de nacimiento"
@@ -95,13 +97,12 @@ feature 'Observer can see cis evaluation results' do
     given_survey_has_answers(other_survey, 0.0)
     survey_report = given_survey_report_exists_for survey
     other_survey_report = given_survey_report_exists_for other_survey
-
     given_report_has_public_servants_evaluation survey_report, 60.0
     given_report_has_public_servants_evaluation other_survey_report, 80.0
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
-    sleep 1.0
+    sleep 3
 
     within '.best-public-servants' do
       expect(page).not_to have_content "Actas de nacimiento"
@@ -119,7 +120,7 @@ feature 'Observer can see cis evaluation results' do
 
     sign_in_user observer
     visit cis_evaluation_path(id: 1)
-    sleep 1.0
+    sleep 3
 
     within '.evaluation-overall' do
       expect(page).to have_content "No hay datos en reportes de encuestas para generar el reporte."
@@ -148,7 +149,7 @@ feature 'Observer can see cis evaluation results' do
   end
 
   def given_survey_report_exists_for(survey)
-    ServiceSurveyReport.create!(service_survey_id: survey.id)
+    ServiceSurveyReport.create!(service_survey_id: survey.id, service_id: survey.services.last.id)
   end
 
   def given_questions_criterion_is(criterion, survey)

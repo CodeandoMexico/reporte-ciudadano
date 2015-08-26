@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  resources :quejas_y_sujerencias, as: :service_requests, controller: :service_requests  do
+  resources :quejas_y_sugerencias, as: :service_requests, controller: :service_requests  , :path_names => { :new => "nuevo"}do
     collection do
       get 'filter'
       get 'markers_for_gmap'
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       put :update_password, on: :member
     end
     resources :credencial_de_autentificacion, as: :api_keys, only: [:create, :index], controller: :api_keys
-    resources :quejas_o_sujerencias , as: :service_requests, controller: :service_requests, except: [:show]  do
+    resources :quejas_o_sugerencias , as: :service_requests, controller: :service_requests, except: [:show]  do
       member do
         put 'update_status'
       end
@@ -92,7 +92,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   delete "signout", to: 'sessions#destroy'
 
-  resources :servicios, as: :services, only: [] do
+  resources :servicios, as: :services, only: [], controller: :services do
     collection do
       get 'load_service_fields'
     end
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
   end
   resources  :evaluaciones, as: :evaluations, only: [:index], controller: :evaluations
   resources :evaluaciones_centros_de_atencion, as: :cis_evaluations, only: [:index, :show] , controller: :cis_evaluations
-  resources :service_evaluations, only: :show do
+  resources :evaluacion_de_servicio, as: :service_evaluations, controller: :service_evaluations do
     get :export_csv, on: :member
   end
 
@@ -113,4 +113,10 @@ Rails.application.routes.draw do
       resources :requests, as: :service_requests, controller: :service_requests, only: [:show, :index]
     end
   end
+if Rails.env.production?  
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+end
+  
 end

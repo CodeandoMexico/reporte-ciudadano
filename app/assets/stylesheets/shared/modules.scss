@@ -125,14 +125,14 @@ $blue-back: #00417C;
 ***************************************************/
 .video{
   width: 80%;
-  height: 28em;;
+  height: 28em;
   margin-left: 10%; 
 }
 
 .video-text{
   padding-top: 2em;
   padding-bottom: 1em;
-   text-align: center;
+  text-align: center;
   color: #ffffff;
   font-family:  "Helvetica Neue Bold", sans-serif;
   font-size: 17px;
@@ -146,6 +146,13 @@ $blue-back: #00417C;
   color: #ffffff;
   font-weight: bold;
 }
+
+.hight-video{
+  width: 80%;
+  height: 20vw;
+  margin-left: 18%; 
+}
+
 /***************************************************
 **  datepicker
 ***************************************************/
@@ -212,6 +219,16 @@ $blue-back: #00417C;
 .margin-bottom{
   margin-right: 10%; 
 }
+.padding-bottom{
+  padding-bottom: 2em; 
+}
+.right{
+  float: right;
+}
+.padding-top-observer{
+   padding-top: 2.9em;
+}
+
 /***************************************************
 **  sizes
 ***************************************************/
@@ -249,6 +266,10 @@ $blue-back: #00417C;
   color: #ffffff !important;
   font-size: 19px  !important;
   font-family:  "Helvetica Neue Regular", sans-serif;
+}
+
+.font-button-small {
+  font-family: "Helvetica Neue Regular", sans-serif;
 }
 .control-label-left {
   text-align: left;
@@ -316,6 +337,14 @@ ul
   color: #004987;
   white-space: nowrap;
 }
+
+.text-one-line{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; // This is where the magic happens
+  }
+
 /***************************************************
 **  HOME REPORT STATS
 ***************************************************/

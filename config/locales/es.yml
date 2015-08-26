@@ -242,6 +242,7 @@ es:
         config_requests: "Personalizar quejas o sugerencias"
         design: "Diseño"
         api: "API"
+        evaluations: "Evaluaciones"
         edit_profile: "Editar perfil"
         sign_out: "Cerrar sesión"
         service_admins: "Administradores de trámites"
@@ -477,6 +478,10 @@ es:
       complaints_or_suggestions: "Realiza Queja o Sugerencia"
       search: "Buscar"
       delete: "Eliminar"
+      service: "Todos los servicios"
+      status: "Todos los estatus"
+      start_date: "De la fecha"
+      end_date: "A la fecha"
     new:
       header: "Crear nueva queja o sugerencia"
       rules: "* obligatorios"
@@ -598,6 +603,7 @@ es:
     requests: "Quejas y sugerencias"
     evaluate_a_submission: "Evalúa trámite"
     evaluations: "Evaluaciones"
+    panel: "Panel"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
@@ -756,6 +762,7 @@ es:
     middle: "A la mitad"
     end: "Al cierre"
   question_criterion_options:
+    blank: "Sin criterio específico"
     transparency: "Transparencia"
     performance: "Desempeño"
     quality_service: "Calidad de servicio"
@@ -794,7 +801,7 @@ es:
     open:
       text: "Texto introducido por el usuario..."
   service_survey:
-    errors:
+    errors: 
       total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
       presence_of_value: "con valor deben contener un porcentaje de valor mayor a 0%"
   cis_reports:
@@ -834,3 +841,21 @@ es:
     general_survey:
       title: "General"
       subtitle: "Satisfacción General del Servicio"
+  error:
+    title_not_found: "Ruta no encontrada"
+    not_found: "Lo sentimos pero la Ruta ingresada no existe"
+    title_server_error: "Falla inesperada"
+    server_error: "Lo sentimos pero hubo una falla inseperada. Estamos trabajando en reparar esto."
+  titles:
+    page_title: Evalúa Tu Trámite
+  activerecord:
+    models: 
+      service_survey: "Encuesta"
+    attributes:
+      service_survey:
+        title: "Titulo"
+        service_ids: "Trámites"
+        questions: "La respuesta"
+        phase: "Frase"
+      questions:
+        answer_type: "Tipo de respuesta"

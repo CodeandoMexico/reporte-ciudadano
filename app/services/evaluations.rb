@@ -118,7 +118,7 @@ module Evaluations
 
     def get_service_report
       @report = Reports.current_service_report_for(self,
-      services_report_store: ServiceReport)
+      services_report_store: ::ServiceReport)
     end
 
     def total_by_area(areas_hash_array, key, acc)

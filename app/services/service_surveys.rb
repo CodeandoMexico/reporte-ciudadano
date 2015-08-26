@@ -72,7 +72,7 @@ module ServiceSurveys
 
   class Question
     def initialize(attrs)
-      @criterion = attrs["criterion"]
+      @criterion = attrs["criterion"].presence || "blank"
       @text = attrs["text"]
       @answer_type = attrs["answer_type"]
       @answer_rating_range = attrs["answer_rating_range"]

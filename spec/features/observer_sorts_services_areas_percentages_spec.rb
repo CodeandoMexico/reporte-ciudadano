@@ -13,10 +13,12 @@ feature 'Observer sorts services areas percentages' do
     given_questions_has_answers 4, other_survey.questions, score: 0.5
     given_survey_report_exists_for survey
     given_survey_report_exists_for other_survey
+    sleep 6
 
     sign_in_user observer
+    sleep 2
     visit cis_evaluation_path(id: 1)
-    sleep 1.5
+    sleep 3.5
 
     within '.evaluation-services' do
       expect(service_row 1).to have_content "Actas de nacimiento"
@@ -24,13 +26,13 @@ feature 'Observer sorts services areas percentages' do
       expect(service_row 3).to have_content "No evaluado"
 
       click_link "Transparencia"
-      sleep 1.5
+      sleep 3.5
       expect(service_row 1).to have_content "No evaluado"
       expect(service_row 2).to have_content "Licencias"
       expect(service_row 3).to have_content "Actas de nacimiento"
 
       click_link "Transparencia"
-      sleep 1.5
+      sleep 3.5
       expect(service_row 1).to have_content "Actas de nacimiento"
       expect(service_row 2).to have_content "Licencias"
       expect(service_row 3).to have_content "No evaluado"
@@ -42,7 +44,9 @@ feature 'Observer sorts services areas percentages' do
   end
 
   def given_survey_report_exists_for(survey)
-    ServiceSurveyReport.create!(service_survey_id: survey.id)
+    survey.services.each do |a|
+      ServiceSurveyReport.create!(service_survey_id: survey.id, service_id: a.id)
+    end
   end
 
   def given_questions_has_answers(answers_count, questions, score: 1)

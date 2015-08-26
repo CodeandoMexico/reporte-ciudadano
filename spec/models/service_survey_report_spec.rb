@@ -3,9 +3,10 @@ require 'spec_helper'
 describe ServiceSurveyReport do
   context 'factories' do
     it 'has a valid factories' do
-      expect(create(:valid_service_survey_report)).to be_valid
-      expect(create(:valid_service_survey_report_100)).to be_valid
-      expect(create(:valid_service_survey_report_75)).to be_valid
+      service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
+      expect(create(:valid_service_survey_report, service_id: service.id)).to be_valid
+      expect(create(:valid_service_survey_report_100, service_id: service.id)).to be_valid
+      expect(create(:valid_service_survey_report_75, service_id: service.id)).to be_valid
     end
     it 'has an invalid factory' do
       expect(build(:invalid_service_survey_report)).to_not be_valid
@@ -25,7 +26,11 @@ describe ServiceSurveyReport do
   end
 
   context 'report with 100% overall results and only answers in transparency' do
-    let(:service_survey_report) { create(:valid_service_survey_report_100) }
+
+    let(:service_survey_report) {
+      service100 = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
+      create(:valid_service_survey_report_100, service_id: service100.id)
+    }
 
     it 'is report with 100% #positive_overall_perception' do
       service_survey_report.reload
@@ -61,7 +66,10 @@ describe ServiceSurveyReport do
     end
   end
   context 'report with 75% overall results and only answers in transparency' do
-    let(:service_survey_report) { create(:valid_service_survey_report_75) }
+    let(:service_survey_report) {
+      service75 = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
+      create(:valid_service_survey_report_75, service_id: service75.id)
+    }
 
     it 'is report with 175% #positive_overall_perception' do
       service_survey_report.reload

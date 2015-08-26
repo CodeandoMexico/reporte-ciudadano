@@ -80,8 +80,5 @@
             .form-group
               = f.label :status_id, t('form.labels.admin.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm', data: {service_id: @service_request.service_id} }
-            .form-group#service_request_message
-              - if @messages
-                = render 'admins/messages/message_options', messages: @messages
 
             = f.submit t('update'), class: 'btn btn-primary'

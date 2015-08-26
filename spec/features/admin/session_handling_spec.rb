@@ -19,7 +19,7 @@ feature 'Admin session handling' do
 
   scenario 'signs out and is redirected to the root page' do
     sign_in_admin admin
-    page.find('a[href="/admins/sign_out"]').click
+    page.find("a[href=\"#{destroy_admin_session_path}\"]").click
     expect(page).to have_content 'Iniciar sesión'
     expect(current_url).to eq root_url
   end

@@ -29,7 +29,8 @@ module ServicesSurveys
         accessibility: [{ text: "¿Question?", answer_type: 'rating', selected_answer: 'Respuesta rango'}],
         infrastructure: [{ text: "¿Question?", answer_type: 'binary', selected_answer: 'Respuesta Sí/No'}],
         quality_service: [{ text: "¿Question?", answer_type: 'list', selected_answer: 'Respuesta personalizada'}],
-        public_servant: [{ text: "¿Question?", answer_type: 'binary', selected_answer: 'Respuesta Sí/No'}]
+        public_servant: [{ text: "¿Question?", answer_type: 'binary', selected_answer: 'Respuesta Sí/No'}],
+        blank: []
       )
     end
 

@@ -29,18 +29,20 @@ feature 'As an admin I can manage service requests' do
     expect(page).to have_content service_request.status
   end
 
-  scenario 'I can see the service extra fields when creating a request', js: true do
-    services = create_list(:service, 2)
-    first_service = services.first
-
-    given_service_with_extra_fields(first_service)
-    visit new_admins_service_request_path
-    #save_and_open_page
-    select first_service.name, from: 'service_request[service_id]'
-
-    expect(page).to have_content "Field one"
-    expect(page).to have_content "Field two"
-  end
+  # TODO: Revisar este test, puede ser borrado por ser parte de código legada que ya no se utiliza.
+  #
+  # scenario 'I can see the service extra fields when creating a request', js: true do
+  #   services = create_list(:service, 2)
+  #   first_service = services.first
+  #
+  #   given_service_with_extra_fields(first_service)
+  #   visit new_admins_service_request_path
+  #   #save_and_open_page
+  #   select first_service.name, from: 'service_request[service_id]'
+  #
+  #   expect(page).to have_content "Field one"
+  #   expect(page).to have_content "Field two"
+  # end
 
   scenario 'I can see the requester full name and email' do
     visit admins_service_requests_path
@@ -71,21 +73,6 @@ feature 'As an admin I can manage service requests' do
     click_button t('update')
     expect(current_path).to eq edit_admins_service_request_path(service_request)
     expect(page).to have_content services.last.name
-  end
-
-  scenario 'I can update the message of a service request', js: true do
-    message = create(:message, service: service_request.service, status: service_request.status)
-    visit edit_admins_service_request_path(service_request)
-    within '.edit_service_request' do
-      select message.status.name, from: 'service_request[status_id]'
-      choose "message"
-    end
-    click_button 'Actualizar'
-
-    within '.stream' do
-      # Message content should be posted as a comment on the service request
-      expect(page).to have_content message.content
-    end
   end
 
   scenario 'I can delete a service request' do

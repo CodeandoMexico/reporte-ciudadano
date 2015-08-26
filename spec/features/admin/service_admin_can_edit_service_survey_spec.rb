@@ -22,8 +22,8 @@ feature 'As a service admin I can edit a survey' do
     end
 
     fill_in "service_survey_title", with: "Mi encuesta editada"
-    expect(service_checkbox_for(service)).to be_checked
-    check "service_survey_service_ids_#{another_service.id}"
+    expect(selection_in_select_for(service)).to be_selected
+    select_from_chosen_by_css(another_service.name, from: "#service_survey_service_ids")
 
     expect(questions_count).to eq 1
     click_link "Agregar pregunta"
@@ -77,7 +77,7 @@ feature 'As a service admin I can edit a survey' do
     all(".js-question").count
   end
 
-  def service_checkbox_for(service)
-    find("#service_survey_service_ids_#{service.id}")
+  def selection_in_select_for(service)
+    find("#service_survey_service_ids").find(:xpath, "option[@value=#{service.id}]")
   end
 end

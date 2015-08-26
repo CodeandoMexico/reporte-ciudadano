@@ -37,9 +37,6 @@
             = t('form.labels.status')
             %i.icon-chevron-down
           %th
-            = t('.votes')
-            %i.icon-chevron-down
-          %th
             = t('crud.delete')
       %tbody
         - @service_requests.each do |service_request|
@@ -50,7 +47,6 @@
               %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
               %td= truncate service_request.address, length: 45
               %td= service_request.status
-              %td= service_request.votes_for
               %td= link_to t('crud.delete'), admins_service_request_path(service_request), method: :delete
 
   = paginate @service_requests
