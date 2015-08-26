@@ -50,6 +50,8 @@ feature 'Admin can ignore survey answers' do
   end
 
   def given_survey_report_exists_for(survey)
-    ServiceSurveyReport.create!(service_survey_id: survey.id)
+    survey.services.each do |a|
+      ServiceSurveyReport.create!(service_survey_id: survey.id, service_id: a.id)
+    end
   end
 end

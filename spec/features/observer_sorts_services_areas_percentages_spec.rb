@@ -44,7 +44,9 @@ feature 'Observer sorts services areas percentages' do
   end
 
   def given_survey_report_exists_for(survey)
-    ServiceSurveyReport.create!(service_survey_id: survey.id)
+    survey.services.each do |a|
+      ServiceSurveyReport.create!(service_survey_id: survey.id, service_id: a.id)
+    end
   end
 
   def given_questions_has_answers(answers_count, questions, score: 1)
