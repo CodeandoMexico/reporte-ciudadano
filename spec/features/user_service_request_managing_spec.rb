@@ -37,7 +37,7 @@ feature 'Managing service requests' do
         fill_in 'comment[content]', with: comment_content
         click_button  'Comentar'
       end
-      expect(current_url).to eq service_request_url(service_request)
+      expect(current_path).to eq service_request_path(service_request)
       expect(page).to have_content(comment_content)
       expect(page).to have_xpath("//img[@src=\"/uploads/comment/image/1/comment_avatar.png\"]")
     end
