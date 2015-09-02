@@ -181,8 +181,10 @@ feature 'As a service admin I can create a new survey' do
 
     expect(page).not_to have_content "La encuesta se ha creado exitosamente."
     expect(page).not_to have_content "1 pregunta"
-    expect(page).to have_content "Preguntas con valor deben sumar 100% y actualmente suman: 20.0%"
-    expect(page).to have_content "Etapa de la encuesta no puede estar en blanco"
+    within "#error_explanation" do
+      expect(page).to have_content "deben sumar 100% y actualmente suman: 20.0%"
+    end
+    # expect(page).to have_content "Etapa de la encuesta no puede estar en blanco"
   end
 
   scenario 'and select question text and answer type from previous questions box', js: true do
