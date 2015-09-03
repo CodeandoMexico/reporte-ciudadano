@@ -1,4 +1,4 @@
-# Carga inicial de Base de datos
+# Carga inicial de Base de datos para pruebas
 Admin.destroy_all
 User.destroy_all
 Service.destroy_all
@@ -11,6 +11,19 @@ revision_status = Status.create(name: "Revisión")
 close_status = Status.create(name: "Cerrado")
 
 super_admin = Admin.create(name: "Super admin", email: "admin@admin.com", password: "password", password_confirmation: "password", active: true)
+
+service_admin_1 = Admin.create(name: "Admin servicio 1", email: "serviceadmin1@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 1', is_service_admin: true, active: true)
+service_admin_2 = Admin.create(name: "Admin servicio 2", email: "serviceadmin2@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 2', is_service_admin: true, active: true)
+service_admin_3 = Admin.create(name: "Admin servicio 3", email: "serviceadmin3@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 3', is_service_admin: true, active: true)
+
+public_servant_1 = Admin.create(name: "Servidor público 1", email: "publicservant1@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 1', is_public_servant: true, active: true)
+public_servant_2 = Admin.create(name: "Servidor público 2", email: "publicservant2@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 2', is_public_servant: true, active: true)
+public_servant_3 = Admin.create(name: "Servidor público 3", email: "publicservant3@admin.com", password: "password", password_confirmation: "password", dependency: 'Dependencia 3', is_public_servant: true, active: true)
+
+
+
+user = User.create(name: "Juan Villanueva", email: 'juan@juan.com', password: "userpassword", password_confirmation: "userpassword")
+
 user = User.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
 
 status = Status.first
