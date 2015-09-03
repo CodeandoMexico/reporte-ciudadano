@@ -31,7 +31,7 @@ feature 'As an admin I can create new service admins' do
     select dependency, from: "admin[dependency]"
     select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Director"
-    check "admin_services_ids_1"
+    #check "admin_services_ids_1"
 
     click_button "Guardar"
 
