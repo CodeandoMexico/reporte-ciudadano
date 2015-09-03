@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :service_request do
     service
     status
-    cis [1]
     public_servant_id FactoryGirl.build(:admin, :public_servant)
     association :requester, factory: :user
     address     { FFaker::Lorem.words(3) }
