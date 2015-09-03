@@ -6,8 +6,8 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :reports, class: ServiceSurveyReport
   has_many :users, through: :answers, source: :user
 
-  validates_presence_of :phase, :message =>"no puede estar vacio" unless Rails.env.test?
-  validates_presence_of :title, :message =>"no puede estar vacio" unless Rails.env.test?
+  validates_presence_of :phase, :message =>"no puede estar vacio" 
+  validates_presence_of :title, :message =>"no puede estar vacio" 
   validates_presence_of :service_ids , :message =>"no puede estar vacio" unless Rails.env.test?
 
   validate :value_for_rating_questions

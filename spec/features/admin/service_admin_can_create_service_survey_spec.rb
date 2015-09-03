@@ -33,6 +33,7 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
+    fill_in "service_survey_title", with: "La encuesta de mi servicio"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -56,6 +57,8 @@ feature 'As a service admin I can create a new survey' do
     visit admins_dashboards_path
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
+
+    fill_in "service_survey_title", with: "La encuesta de mi servicio"
 
     choose 'A la mitad'
     click_link "Agregar pregunta"
@@ -84,7 +87,7 @@ feature 'As a service admin I can create a new survey' do
     visit admins_dashboards_path
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
-
+    fill_in "service_survey_title", with: "La encuesta de mi servicio"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -107,6 +110,8 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
+
+    fill_in "service_survey_title", with: "La encuesta de mi servicio"
     choose 'A la mitad'
     click_link "Agregar pregunta"
 
@@ -132,6 +137,8 @@ feature 'As a service admin I can create a new survey' do
     click_link "Encuestas de servicio"
     click_link "Crear nueva encuesta"
 
+
+    fill_in "service_survey_title", with: "La encuesta de mi servicio"
     choose 'A la mitad'
 
     click_link "Agregar pregunta"
