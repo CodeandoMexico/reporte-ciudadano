@@ -44,8 +44,6 @@ feature 'Managing service requests' do
 
     def expect_service_request_email_sent_to(email)
       last_email = ActionMailer::Base.deliveries.pop || :no_email_sent
-      print "El ultimo correo en la cola #{last_email} \n"
-      print "Correo del usuario #{email} \n"
       expect(last_email.to).to include(email)
     end
   end
