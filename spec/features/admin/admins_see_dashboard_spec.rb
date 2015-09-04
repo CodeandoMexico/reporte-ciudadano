@@ -36,16 +36,16 @@ feature 'Admins see dashboard' do
     within ".recent-reports" do
       expect(page).to have_content first_service_request.service.name
       expect(page).to have_content second_service_request.service.name
-      expect(page).not_to have_content third_service_request.service.name
+      expect(page).to have_content third_service_request.service.name
     end
 
     within ".highcharts-container" do
       expect(page).to have_content first_service_request.service.name
       expect(page).to have_content second_service_request.service.name
-      expect(page).not_to have_content third_service_request.service.name
+      expect(page).to have_content third_service_request.service.name
     end
 
-    expect(services_request_count).to eq 2
+    expect(services_request_count).to eq 3
   end
 
   scenario 'as public servant' do
