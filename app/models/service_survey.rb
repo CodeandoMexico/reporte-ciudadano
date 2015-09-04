@@ -6,6 +6,7 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :reports, class: ServiceSurveyReport
   has_many :users, through: :answers, source: :user
 
+  #TODO: se debe de internacionalizar los textos.
   validates_presence_of :phase, :message =>"no puede estar vacio" 
   validates_presence_of :title, :message =>"no puede estar vacio" 
 

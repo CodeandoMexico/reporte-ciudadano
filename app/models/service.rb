@@ -19,6 +19,7 @@ class Service < ActiveRecord::Base
 
     serialize :cis, Array
 
+  #TODO: se debe de internacionalizar los textos.
      validates_presence_of :name, :message =>"Nombre no puede estar vacio ni tener caracteres especiales"
      validates_presence_of :service_type, :message =>"Tipo de servicio no puede estar vacio"
      validates_presence_of :dependency, :message =>"Dependencia no puede estar vacio"
