@@ -19,20 +19,20 @@ feature 'As an admin I can create new service admins' do
   end
 
   scenario 'I can create a new service admin with valid data' do
-    services = create_list(:service, 2)
+   services = create_list(:service, 1)
     last_service = services.last
 
     visit admins_service_admins_path
-    click_link "Agregar administrador"
 
+
+    click_link "Agregar administrador"
     fill_in "admin[name]", with: "María Gómez"
     fill_in "admin[email]", with: "maria@mail.com"
     fill_in "admin[record_number]", with: "Ma01"
     select dependency, from: "admin[dependency]"
     select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Director"
-    check "admin_services_ids_2"
-
+    check "admin_services_ids_1"
     click_button "Guardar"
 
     expect(page).to have_content "El administrador de trámites se ha registrado exitosamente."

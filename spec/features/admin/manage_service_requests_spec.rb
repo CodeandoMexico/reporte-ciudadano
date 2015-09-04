@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'As an admin I can manage service requests' do
 
   let(:admin) {create(:admin)}
-  let!(:service_request) {create(:service_request)}
+  let!(:service_request) {create(:service_request, public_servant_id: :admin)}
 
   background do
     sign_in_admin admin

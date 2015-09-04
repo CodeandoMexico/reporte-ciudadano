@@ -24,11 +24,12 @@ feature 'Managing service requests' do
         select_from_chosen_by_css Services.service_cis.last[:name], from: '#service_request_cis'
         click_button  'Guardar'
       end
+      expect_service_request_email_sent_to user.email
       expect_service_request_email_sent_to public_servant.email
     end
 
 
-    scenario 'can comment on a service request'  do
+    scenario 'can comment on a service request', js: true  do
       comment_content = 'This is my comment'
       visit service_request_path(service_request)
       within '#new_comment' do
@@ -36,15 +37,14 @@ feature 'Managing service requests' do
         fill_in 'comment[content]', with: comment_content
         click_button  'Comentar'
       end
-      expect(current_url).to eq service_request_url(service_request)
+      expect(current_path).to eq service_request_path(service_request)
       expect(page).to have_content(comment_content)
       expect(page).to have_xpath("//img[@src=\"/uploads/comment/image/1/comment_avatar.png\"]")
     end
 
     def expect_service_request_email_sent_to(email)
-      last_email = ActionMailer::Base.deliveries.last || :no_email_sent
+      last_email = ActionMailer::Base.deliveries.pop || :no_email_sent
       expect(last_email.to).to include(email)
-      expect(last_email.subject).to include "Nuevo reporte de servicio"
     end
   end
 end
