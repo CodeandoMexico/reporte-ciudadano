@@ -8,6 +8,7 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def new
     @admin = Admin.new
+    @services = Service.all
   end
 
   def create
