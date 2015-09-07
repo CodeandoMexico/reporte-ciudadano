@@ -59,7 +59,7 @@ module Reports
 
     def total_by_area(areas_hash_array, key, acc)
       return acc if areas_hash_array.empty?
-      next_value = areas_hash_array.shift[key]
+      next_value = areas_hash_array.shift[key].to_f
       total_by_area(areas_hash_array, key, acc + next_value)
     end
 
