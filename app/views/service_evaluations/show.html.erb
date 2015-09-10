@@ -22,17 +22,19 @@
         <div class="col-md-6">
           <%= link_to t(".export_csv"), export_csv_service_evaluation_path(@service, service_survey_id: @service_survey), class: "btn btn-primary pull-right", disabled: @service_survey.answers.empty? %>
         </div>
-        <div class="col-md-6">
-          <%= form_for([:admin,@service_survey_report], url: admins_service_survey_reports_path,
-               html: { method: :post, style:'margin-bottom: 0px;', id: "new-report-#{@service_survey.id}" }) do |f| %>
-            <%= f.hidden_field :service_survey_id, value: @service_survey.id %>
-            <%unless @service_survey.services.last.nil?%>
-              <%= f.hidden_field :service_id, value: @service_survey.services.last.id  %>
-            <%end%>
-            <%= f.submit t('service_report.new'), class: 'hidden' %>
-          <% end %>
-          <%= link_to t('service_report.new'), "#", class: "js-generate-report btn btn-primary pull-right", "data-submit" => "#new-report-#{@service_survey.id}", disabled: @service_survey.answers.empty?  %>
-        </div>
+        <%unless current_admin.is_observer%>
+          <div class="col-md-6">
+            <%= form_for([:admin,@service_survey_report], url: admins_service_survey_reports_path,
+                 html: { method: :post, style:'margin-bottom: 0px;', id: "new-report-#{@service_survey.id}" }) do |f| %>
+              <%= f.hidden_field :service_survey_id, value: @service_survey.id %>
+              <%unless @service_survey.services.last.nil?%>
+                <%= f.hidden_field :service_id, value: @service_survey.services.last.id  %>
+              <%end%>
+              <%= f.submit t('service_report.new'), class: 'hidden' %>
+            <% end %>
+            <%= link_to t('service_report.new'), "#", class: "js-generate-report btn btn-primary pull-right", "data-submit" => "#new-report-#{@service_survey.id}", disabled: @service_survey.answers.empty?  %>
+          </div>
+        <%end%>
       </div>
     </div>
   </div>
