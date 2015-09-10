@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Observer sorts services areas percentages' do
-  let(:observer) { create(:user, :observer) }
+  let(:observer) { create(:admin, :observer) }
 
   scenario 'from cis evaluation', js: true do
     service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
@@ -15,7 +15,7 @@ feature 'Observer sorts services areas percentages' do
     given_survey_report_exists_for other_survey
     sleep 6
 
-    sign_in_user observer
+    sign_in_admin observer
     sleep 2
     visit cis_evaluation_path(id: 1)
     sleep 3.5

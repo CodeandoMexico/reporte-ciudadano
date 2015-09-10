@@ -1,6 +1,6 @@
 require 'spec_helper'
 feature 'Observer can see cis evaluation results', :js => true do
-  let(:observer) { create(:user, :observer) }
+  let(:observer) { create(:admin, :observer) }
 
   scenario 'from dashboard' do
     service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
@@ -11,9 +11,10 @@ feature 'Observer can see cis evaluation results', :js => true do
     given_survey_report_exists_for survey
     sleep 2.0
 
-    sign_in_user observer
-    expect(current_path).to eq evaluations_path
+    sign_in_admin observer
+    expect(current_path).to eq admins_dashboards_path
 
+    click_link 'Evaluaciones'
     expect(page).to have_content cis_name
     sleep 3.0
 
@@ -44,7 +45,7 @@ feature 'Observer can see cis evaluation results', :js => true do
     given_survey_has_answers survey, 1.0
     given_survey_report_exists_for survey
 
-    sign_in_user observer
+    sign_in_admin observer
     visit cis_evaluation_path(id: 1)
     sleep 3
 
@@ -71,7 +72,7 @@ feature 'Observer can see cis evaluation results', :js => true do
     given_survey_report_exists_for survey
     given_survey_report_exists_for other_survey
 
-    sign_in_user observer
+    sign_in_admin observer
     visit cis_evaluation_path(id: 1)
     sleep 3
 
@@ -100,7 +101,7 @@ feature 'Observer can see cis evaluation results', :js => true do
     given_report_has_public_servants_evaluation survey_report, 60.0
     given_report_has_public_servants_evaluation other_survey_report, 80.0
 
-    sign_in_user observer
+    sign_in_admin observer
     visit cis_evaluation_path(id: 1)
     sleep 3
 
@@ -118,7 +119,7 @@ feature 'Observer can see cis evaluation results', :js => true do
   scenario 'with no evaluated services message' do
     services = create_list(:service, 3, cis: ["1", "2"], admins: [create(:admin, :public_servant)])
 
-    sign_in_user observer
+    sign_in_admin observer
     visit cis_evaluation_path(id: 1)
     sleep 3
 
