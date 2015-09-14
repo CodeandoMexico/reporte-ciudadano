@@ -251,6 +251,7 @@ es:
         no_requests: "No tiene trámites asignados"
         change_password: "Cambiar contraseña"
         service_surveys: "Encuestas de servicio"
+        reports: "Reportes"
     sessions:
       new:
         header: "Iniciar sesión"
