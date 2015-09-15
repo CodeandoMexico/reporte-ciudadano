@@ -319,6 +319,7 @@ es:
         send: "Enviar"
         export: "Exportar"
         view: "Previsualizar"
+        subtitle: "Reportes predeterminados:"        
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de trámites"
@@ -639,6 +640,7 @@ es:
         status: "Estatus"
         description: "Descripción"
         cis: "Centro de atención"
+        criterion_select: "Reporte predeterminado"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"

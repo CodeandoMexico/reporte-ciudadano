@@ -1,7 +1,7 @@
 class Admins::ServiceSurveyReportsController < ApplicationController
   layout 'admins'
   helper_method :service_cis_options
-  helper_method :criterion_options
+  helper_method :criterion_options,:service_reports
   #Metodo que se utiliza al crear reportes desde la vista de observador
   def create
     @service_survey_report = ServiceSurveyReport.new(service_survey_report_params)
@@ -15,8 +15,17 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def make_report
-
+    unless params[:post].blank?
+      @start_date = params[:post][:start_date]
+      @services = params[:post][:services]
+      @cis = params[:post][:cis]
+      @end_date = params[:post][:end_date]
+      @criterio_name = params[:criterio][:name]
+      @predetermined = params[:post][:predetermined]
+      @commit = params[:commit]
+    end
   end
+
 
   private
 
@@ -34,4 +43,9 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   def criterion_options
     ServiceSurveys.criterion_options
   end
+
+  def service_reports
+    Services.service_reports
+  end
+
 end

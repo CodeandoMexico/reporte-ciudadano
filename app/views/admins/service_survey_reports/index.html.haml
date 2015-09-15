@@ -1,29 +1,29 @@
 .content-header
-  %h2= t('.title')
+  %h1= t('.title')
 
 .page-content.inset
   = form_tag(make_report_admins_service_survey_reports_path, method: "get") do
     .form-group.col-md-12
       .row
+        .col-md-6.texto-right
+          %h2= t('.subtitle')
         .col-md-6
-          reportes predeterminados
-        .col-md-6
-          = select("post", "criterio", criterion_options, { prompt: I18n.t("form.options.criterion_select")}, class: 'chosen-select')
+          = select("post", "predetermined", service_reports.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('form.labels.admin.criterion_select') }, class: 'chosen-select ')
     .form-group.col-md-12
       .row
         .col-md-4
-          = text_field "start_date", "start_date", placeholder: t('.start_date'), class: 'datepicker form-control '
+          = text_field "post", "start_date", placeholder: t('.start_date'), class: 'datepicker form-control '
         .col-md-4
-          = collection_select "services", "services", Service.active,:id,:name,{ include_blank: t('form.labels.admin.service') }, class: 'chosen-select '
+          = collection_select "post", "services", Service.active,:id,:name,{ include_blank: t('form.labels.admin.service') }, class: 'chosen-select '
         .col-md-4
           = select("post", "cis", service_cis_options.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select ')
         
     .form-group.col-md-12
       .row
         .col-md-4
-          = text_field "end_date", "end_date", placeholder: t('.end_date'), class: 'datepicker form-control'
+          = text_field "post", "end_date", placeholder: t('.end_date'), class: 'datepicker form-control'
         .col-md-4
-          = select_tag "criterion[name]", options_for_select(criterion_options), { prompt: I18n.t("form.options.criterion_select"), class: 'chosen-select ',:multiple=>true}
+          = select_tag "criterio[name]", options_for_select(criterion_options), { prompt: I18n.t("form.options.criterion_select"), class: 'chosen-select ',:multiple=>true}
         .col-md-4
     .form-group.col-md-12
       .row
@@ -41,11 +41,11 @@
   $(document).on('page:load', loadChosen);
   
   $(function() {
-    $( "#end_date_end_date" ).datepicker({
+    $( "#post_start_date" ).datepicker({
     format: 'yyyy-dd-mm',
     startDate: '-3d'
     });
-    $( "#start_date_start_date" ).datepicker({
+    $( "#post_end_date" ).datepicker({
     format: 'yyyy-dd-mm',
     startDate: '-3d'
     });

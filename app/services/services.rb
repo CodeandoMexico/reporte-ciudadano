@@ -26,6 +26,12 @@ module Services
     load_values(:cis)
   end
 
+  def self.service_reports
+    load_values(:reports).map do |cis|
+      { id: cis[:id], label: cis[:name] }
+    end
+  end
+
   def self.service_cis_label(cis_id)
     return "" unless cis_id.present?
     service_cis_options.select { |cis| cis[:id].to_s == cis_id }.first[:label]
