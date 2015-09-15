@@ -311,6 +311,14 @@ es:
         votes: "Votos"
         created_at: "Fecha de creación"
         service_requests_for: "Quejas o sugerencias de %{service}"
+    service_survey_reports:
+      index:
+        title: "Reportes dinámicos"
+        start_date: "Fecha de inicio"
+        end_date: "Fecha de fin"
+        send: "Enviar"
+        export: "Exportar"
+        view: "Previsualizar"
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de trámites"
