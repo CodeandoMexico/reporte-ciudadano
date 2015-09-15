@@ -319,7 +319,8 @@ es:
         send: "Enviar"
         export: "Exportar"
         view: "Previsualizar"
-        subtitle: "Reportes predeterminados:"        
+        subtitle: "Reportes predeterminados:"  
+        title_table: "Previsualización del reporte"      
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de trámites"

@@ -24,6 +24,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       @predetermined = params[:post][:predetermined]
       @commit = params[:commit]
     end
+
+      @report_table = nil
   end
 
 
