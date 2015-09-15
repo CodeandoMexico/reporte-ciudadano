@@ -18,14 +18,14 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <%= link_to edit_user_registration_path do %>
+                <%= link_to edit_admins_registration_path(current_admin) do %>
                   <i class="icon-cog"></i>
                   <%= t('public_nav_bar.edit_profile') %>
                 <% end %>
               </li>
               <li class="divider"></li>
               <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
+                <%= link_to destroy_admin_session_path, method: :delete do %>
                   <i class="icon-off"></i>
                   <%= t('public_nav_bar.sign_out') %>
                 <% end %>

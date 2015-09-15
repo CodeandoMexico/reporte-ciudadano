@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Observer can export csv from service evaluation' do
-  let(:observer) { create(:user, :observer) }
+  let(:observer) { create(:admin, :observer) }
 
   scenario 'from cis results with every answer' do
     user = create :user, name: nil
@@ -10,7 +10,7 @@ feature 'Observer can export csv from service evaluation' do
 
     given_survey_has_answers_for(survey, user: user, binary: "Sí", rating: "Regular", list: "Custom", open: "Mis sugerencias", score: 1.0 )
 
-    sign_in_user observer
+    sign_in_admin observer
     visit service_evaluation_path(service)
     click_link "Exportar CSV"
 

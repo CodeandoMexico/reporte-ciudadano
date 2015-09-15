@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Observer sees service evaluation' do
-  let(:observer) { create(:user, :observer) }
+  let(:observer) { create(:admin, :observer) }
 
   scenario 'from cis results with every answer', js: true  do
     user = create :user
@@ -16,7 +16,7 @@ feature 'Observer sees service evaluation' do
     given_survey_report_exists_for survey
     given_survey_report_exists_for other_survey
 
-    sign_in_user observer
+    sign_in_admin observer
     visit cis_evaluation_path(id: 1)
     sleep 2.5
 
