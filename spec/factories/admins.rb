@@ -24,7 +24,9 @@ FactoryGirl.define do
       is_service_admin true
       active true
     end
-
+    trait :observer do
+      is_observer true
+    end
     trait :public_servant do
       is_public_servant true
       active true

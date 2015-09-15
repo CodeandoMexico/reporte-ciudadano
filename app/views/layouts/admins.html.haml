@@ -12,6 +12,8 @@
         = render "admins/shared/service_admin_sidebar"
       - elsif admin_signed_in? && current_admin.is_public_servant?
         = render "admins/shared/public_servant_sidebar"
+      - elsif admin_signed_in? && current_admin.is_observer?
+        = render "admins/shared/observer_sidebar"
       - elsif admin_signed_in?
         = render "admins/shared/super_admin_sidebar"
 

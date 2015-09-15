@@ -26,7 +26,7 @@ class ServiceEvaluationsController < ApplicationController
   private
 
   def can_ignore_answers?(admin)
-    admin && (admin.is_super_admin? || admin.is_service_admin?)
+    admin && (admin.is_super_admin? || admin.is_service_admin?) && !admin.is_observer
   end
 
   def csv_summary_answers(service_survey)

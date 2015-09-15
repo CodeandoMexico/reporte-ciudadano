@@ -845,7 +845,7 @@ es:
     title_not_found: "Ruta no encontrada"
     not_found: "Lo sentimos pero la Ruta ingresada no existe"
     title_server_error: "Falla inesperada"
-    server_error: "Lo sentimos pero hubo una falla inseperada. Estamos trabajando en reparar esto."
+    server_error: "Lo sentimos pero hubo una falla inesperada. Estamos trabajando en reparar esto."
   titles:
     page_title: Evalúa Tu Trámite
   activerecord:

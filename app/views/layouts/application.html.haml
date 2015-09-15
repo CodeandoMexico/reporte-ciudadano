@@ -20,7 +20,7 @@
       }(document, 'script', 'facebook-jssdk'));
 
     #wrap
-      - if current_user && current_user.is_observer?
+      - if current_admin && current_admin.is_observer?
         = render "shared/observer_header"
       - else
         = render "shared/header"
