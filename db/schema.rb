@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20150910164451) do
     t.boolean  "active",                 default: false
     t.text     "surname"
     t.text     "second_surname"
-    t.text     "second_name"
     t.boolean  "is_observer",            default: false
   end
 
