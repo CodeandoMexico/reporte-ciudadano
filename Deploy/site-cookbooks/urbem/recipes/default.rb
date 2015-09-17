@@ -93,6 +93,13 @@ directory "/www/sitios/" do
   action :create
 end
 
+directory "/www/sitios/storage" do
+  owner "root"
+  group "root"
+  mode "755"
+  action :create
+end
+
 git "/www/sitios/EvaluatuTramite" do
   revision node["urbem"]["branch"]
   repository "https://github.com/civica-digital/urbem-puebla.git"
@@ -161,6 +168,7 @@ docker_container "urbem" do
   container_name "urbem"
   link ["postgres:postgres", "redis:redis"]
   env  list_creds
+  volume '/www/sitios/storage:/home/app/urbem/storage:rw'
   detach true
   port ['80:80', "443:443"]
   notifies :redeploy, "docker_container[sidekiq]", :immediately
