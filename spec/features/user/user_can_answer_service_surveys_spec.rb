@@ -14,7 +14,8 @@ feature 'User can answer service surveys' do
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [first_question, second_question])
 
     visit service_surveys_path
-    select_from_chosen_by_css "Encuesta acta de nacimiento", from: "#service_survey_selector"
+    select_from_chosen_by_css 'Al inicio - Encuesta acta de nacimiento ', from: '#service_survey_selector'
+    select_from_chosen_by_css 'SSEP Hospital General de Puebla Sur (Módulo de afiliación del Seguro Popular)', from: '#cis_selector'
     click_link "Iniciar evaluación"
 
     within (".pt-page-current") do
@@ -58,17 +59,21 @@ feature 'User can answer service surveys' do
     expect(page).to have_content "Gracias por evaluar el servicio."
   end
 
-  scenario 'but only once' do
+  scenario 'but only once', js: true do
     service = create :service, name: "Actas de nacimiento"
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
-    answer = create :survey_answer, user_id: user.id, question_id: survey.questions.first.id
+    answer = create :survey_answer, user_id: user.id, question_id: survey.questions.first.id, cis_id: 1
 
     visit service_surveys_path
-    expect(page).to have_content "Encuesta acta de nacimiento"
-    expect(page).to have_content "Evaluada"
-    expect(page).not_to have_link "Iniciar evaluación"
+    within all(".service-surveys").first do
+      select_from_chosen_by_css 'Al inicio - Encuesta acta de nacimiento ', from: '#service_survey_selector'
+      select_from_chosen_by_css 'SSEP Hospital General de Puebla Sur (Módulo de afiliación del Seguro Popular)', from: '#cis_selector'
+      expect(page).to have_content "Encuesta acta de nacimiento"
+      expect(page).to have_content "Evaluada"
+      expect(page).not_to have_link "Iniciar evaluación"
+    end
 
-    visit new_answer_path(service_survey_id: survey.id)
+    visit new_answer_path(service_survey_id: survey.id, cis_id: 1)
     expect(current_path).to eq service_surveys_path
     expect(page).to have_content "Ya has evaluado la encuesta seleccionada."
   end
@@ -80,7 +85,8 @@ feature 'User can answer service surveys' do
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [first_question, second_question])
 
     visit service_surveys_path
-    select_from_chosen_by_css "Encuesta acta de nacimiento", from: "#service_survey_selector"
+    select_from_chosen_by_css 'Al inicio - Encuesta acta de nacimiento ', from: '#service_survey_selector'
+    select_from_chosen_by_css 'SSEP Hospital General de Puebla Sur (Módulo de afiliación del Seguro Popular)', from: '#cis_selector'
     click_link "Iniciar evaluación"
 
     within (".pt-page-current") do
