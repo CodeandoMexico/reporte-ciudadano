@@ -43,11 +43,12 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
 end
 
 group :development,:test do
-  gem 'factory_girl_rails'
+  
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'byebug'
