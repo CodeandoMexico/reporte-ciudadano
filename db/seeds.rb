@@ -11,9 +11,7 @@ revision_status = Status.create(name: "Revisión")
 close_status = Status.create(name: "Cerrado")
 
 super_admin = Admin.create(name: "Super admin", email: "admin@admin.com", password: "password", password_confirmation: "password", active: true)
-user = Admin.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
-
-
+observer = Admin.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
 Service.all.each do |service|
   service.messages.create(status_id: open_status.id, content: 'Mensaje para status abierto')
   service.messages.create(status_id: verification_status.id, content: 'Mensaje para status verificado')

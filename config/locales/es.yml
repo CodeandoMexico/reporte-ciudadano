@@ -476,6 +476,7 @@ es:
   service_requests:
     index: 
       complaints_or_suggestions: "Realiza Queja o Sugerencia"
+      title: "Para la mejor atención de la queja o denuncia se solicita que la narración sea concreta, describiendo la forma en que sucedieron los hechos, especificando el orden en que acontecieron, los nombres de las personas involucradas, acompañantes, servidores . públicos o bien personas presentes durante el desarrollo de éstos y su participación en los mismos, evitando descripciones de situaciones vagas e imprecisas."
       search: "Buscar"
       delete: "Eliminar"
       service: "Todos los servicios"
