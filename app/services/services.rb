@@ -59,11 +59,13 @@ module Services
   private
 
   def self.load_values(object)
-   File.open(path_to(object)) { |file|  
+  Rails.cache.fetch("#{object}-service-cache", :expires_in => 6.hours) do
+      File.open(path_to(object)) { |file|
 
-    YAML.load(file.read) 
+        YAML.load(file.read)
 
-     }
+      }
+    end
   end
 
   def self.path_to(object)

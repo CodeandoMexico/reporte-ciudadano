@@ -7,11 +7,11 @@ class AnswersController < ApplicationController
   def new
     service_survey = ServiceSurvey.find(params[:service_survey_id])
     @service_survey = ServiceSurveys.form_for_answers(service_survey)
-    
+    @cis_id = params[:cis_id]
   end
 
   def create
-    answers = ServiceSurveys.generate_answer_records(answers_params, current_user.id)
+    answers = ServiceSurveys.generate_answer_records(answers_params, current_user.id, params[:cis_id])
     answers.each do |answer|
       answer = SurveyAnswer.new(answer)
       answer.save
@@ -37,13 +37,13 @@ class AnswersController < ApplicationController
 
   def authorize_user_to_answer
     service_survey = ServiceSurvey.find(params[:service_survey_id])
-
-    if service_survey.has_been_answered_by?(current_user)
+    cis = params[:cis_id]
+    if service_survey.has_been_answered_by?(current_user,cis)
       redirect_to service_surveys_path, notice: t('.answers_already_sent')
     end
   end
 
-  def save_path
+      def save_path
      session[:my_previous_url] = request.fullpath
   end
 
