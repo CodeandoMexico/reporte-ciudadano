@@ -589,6 +589,11 @@ es:
         password: "Contraseña"
         rememberme: "Recuérdame"
         enter: "Entrar"
+        restart_password: "Recuperar contraseña"
+    passwords:
+      edit:
+        change: "Cambiar contraseña"
+        title: "Cambia tu contraseña"
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
