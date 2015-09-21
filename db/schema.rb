@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 20150910164451) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "ignored",     default: false
+    t.integer  "cis_id",      default: -1
   end
 
   add_index "survey_answers", ["question_id"], name: "index_survey_answers_on_question_id", using: :btree
