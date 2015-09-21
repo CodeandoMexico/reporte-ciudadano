@@ -16,6 +16,16 @@
               = f.text_field :name, class: 'form-control'
         %fieldset
           .form-group
+            = f.label :surname, t('form.labels.surname'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :surname, class: 'form-control'
+        %fieldset
+          .form-group
+            = f.label :second_surname, t('form.labels.second_surname'), class: 'col-md-2 control-label'
+            .col-md-5
+              = f.text_field :second_surname, class: 'form-control'
+        %fieldset
+          .form-group
             = f.label :email, t('form.labels.email'), class: 'col-md-2 control-label'
             .col-md-5
               = f.text_field :email, class: 'form-control'
@@ -29,12 +39,12 @@
           .form-group
             = f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label'
             .col-md-5
-              = f.select :dependency, dependency_options
+              = f.select :dependency, dependency_options, { include_blank:  t('form.labels.dependency')}, class: 'chosen-select'
         %fieldset
           .form-group
             = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label'
             .col-md-5
-              = f.select :administrative_unit, administrative_unit_options
+              = f.select :administrative_unit, administrative_unit_options, { include_blank: t('form.labels.administrative_unit') }, class: 'chosen-select'
         %fieldset
           .form-group
             = f.label :charge, t('form.labels.charge'), class: 'col-md-2 control-label'
@@ -52,3 +62,7 @@
 
         .actions.col-md-2
           = f.submit "Guardar", class: 'btn btn-primary'
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

@@ -1,0 +1,33 @@
+$('.request_service_description').addClass("hide");
+$('.request_service_id').addClass("hide");
+<%unless @admins_services.nil?%>
+	$('.request_service_id').removeClass("hide");
+	$('#service_request_public_servant_id').empty();
+	$('#service_request_public_servant_id').trigger("chosen:updated");
+	<%@admins_services.each_with_index do |value, index|%>
+	  <%@array_line[index] = value.name.to_s%>
+	  <%@array_id[index] = value.id.to_s;%>
+	<%end%>
+	<%@array_line[@array_line.size] = "No me acuerdo"%>
+	<%@array_id[@array_id.size] = "0";%>
+	var array_line = <%= raw @array_line%>
+	var array_id = <%= raw @array_id%>
+	var sel = document.getElementById('service_request_public_servant_id');
+	for(var i = 0; i < array_line.length; i++) {
+	  var opt = document.createElement('option');
+	  opt.innerHTML = array_line[i];
+	  opt.value = array_id[i];
+	  opt.id = array_id[i];
+	  opt.data = array_line[i]
+	  sel.appendChild(opt);
+	}
+	$('#service_request_public_servant_id').trigger("chosen:updated");
+<%end%>
+<%unless @who.nil?%>
+	<%if @who == "0"%>
+		$('.request_service_description').removeClass("hide");
+		$('.request_service_id').removeClass("hide");
+	<%else%>
+		$('.request_service_id').removeClass("hide");
+	<%end%>
+<%end%>

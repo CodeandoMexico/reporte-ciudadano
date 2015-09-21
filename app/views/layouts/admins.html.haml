@@ -1,24 +1,27 @@
 !!! 5
 %html
   %head
-    %title Reporte Ciudadano
+    %title=t('titles.page_title')
     = stylesheet_link_tag    "admin", :media => "all"
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = csrf_meta_tags
     = javascript_include_tag "application"
-    %script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_KEY']}")
   %body
     #wrapper{class: ("is-logged-in" if admin_signed_in?) }
       - if admin_signed_in? && current_admin.is_service_admin?
         = render "admins/shared/service_admin_sidebar"
       - elsif admin_signed_in? && current_admin.is_public_servant?
         = render "admins/shared/public_servant_sidebar"
+      - elsif admin_signed_in? && current_admin.is_observer?
+        = render "admins/shared/observer_sidebar"
       - elsif admin_signed_in?
         = render "admins/shared/super_admin_sidebar"
 
+      = render "shared/header_admin"
       #page-content-wrapper
         .container
           - flash.each do |name, msg|
-            = content_tag :div, :class => "alert #{flash_class(name)}" do
+            = content_tag :div, :class => "alert #{flash_class(name)} padding-top" do
               = msg
-          = yield
+          .padding-top
+            = yield
