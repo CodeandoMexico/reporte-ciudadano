@@ -1,4 +1,5 @@
 CarrierWave.configure do |config|
+=begin
   unless Rails.env.test?
     config.fog_credentials = {
       :provider               => 'AWS',
@@ -7,10 +8,11 @@ CarrierWave.configure do |config|
     }
     config.fog_directory  = ENV['S3_BUCKET']
   end
+=end
   config.fog_public     = true
-  # config.root      = Rails.root.join('tmp')
-  # config.cache_dir = 'files'
+  config.root      = Rails.root.join('storage')
+  # config.cache_dir = "tmp"
   config.permissions = 0600
-  config.storage(Rails.env.test? || Rails.env.development? ? :file : :fog)
+  config.storage(:file)
   config.enable_processing = false if Rails.env.test?
 end
