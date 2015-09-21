@@ -845,6 +845,7 @@ es:
     not_found: "Lo sentimos pero la Ruta ingresada no existe"
     title_server_error: "Falla inesperada"
     server_error: "Lo sentimos pero hubo una falla inesperada. Estamos trabajando en reparar esto."
+
   titles:
     page_title: Evalúa Tu Trámite
   activerecord:
@@ -858,3 +859,19 @@ es:
         phase: "Frase"
       questions:
         answer_type: "Tipo de respuesta"
+    errors:
+      models:
+        service:
+          attributes:
+            name:
+              blank: "Nombre no puede estar vacio ni tener caracteres especiales"
+            service_type:
+              blank: "Tipo de servicio no puede estar vacio"
+            dependency:
+              blank: "Dependencia no puede estar vacio"
+            administrative_unit:
+              blank: "Unidad administrativa no puede estar vacio"
+            cis:
+              blank: "Cis no puede estar vacio"
+            service_admin_id:
+              blank: "Administador del servicio no puede estar vacio"
