@@ -3,7 +3,6 @@ class Admins::ServiceSurveyReportsController < ApplicationController
 
   def create
     @service_survey_report = ServiceSurveyReport.new(service_survey_report_params)
-
     if @service_survey_report.save
       generate_services_and_cis_reports
       redirect_to  service_survey_report_path(@service_survey_report), notice: t('service_report.created')
