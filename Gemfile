@@ -31,6 +31,7 @@ gem 'active_model_serializers'
 gem 'coveralls', require: false
 gem 'cocoon'
 gem 'jquery-turbolinks'
+gem 'datagrid'
 
 # Async backgroun job handling
 gem 'sidekiq'
