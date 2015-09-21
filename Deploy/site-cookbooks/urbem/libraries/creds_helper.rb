@@ -45,5 +45,9 @@ module Creds
       creds = creds_h
       creds['postgres']['password']
     end
+
+    def papertrail_creds
+      creds_h["papertrail"] if creds_h.has_key?("papertrail")
+    end
   end
 end

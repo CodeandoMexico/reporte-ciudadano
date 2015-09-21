@@ -57,6 +57,26 @@ docker_container "logs" do
   tag "v2"
   container_name "logs"
   detach true
+
+  if papertrail_creds
+     syslog =  "syslog://#{papertrail_creds}"
+  else
+     syslog =  "syslog://#{node["urbem"]["papertrail"]}"
+  end
+  command syslog
+
+  logs = begin
+    Docker::Container.get("logs")
+  rescue
+    action :run
+    nil
+  end
+
+  if logs and (logs.json["Args"].length < 1 or logs.json["Args"][0] != syslog)
+      action :redeploy
+      notifies :redeploy, 'docker_container[urbem]', :immediately
+  end
+
   volume ["/var/run/docker.sock:/tmp/docker.sock", "/var/log/urbem:/mnt/routes"]
   port "127.0.0.1:8000:8000"
   cmd_timeout 600
