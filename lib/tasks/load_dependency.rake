@@ -1,4 +1,4 @@
-namespace :csv_to_haml do
+namespace :csv_to_yaml do
 require 'csv'
 require 'yaml'
   
