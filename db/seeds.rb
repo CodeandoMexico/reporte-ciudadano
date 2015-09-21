@@ -11,7 +11,7 @@ revision_status = Status.create(name: "Revisión")
 close_status = Status.create(name: "Cerrado")
 
 super_admin = Admin.create(name: "Super admin", email: "admin@admin.com", password: "password", password_confirmation: "password", active: true)
-user = User.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
+user = Admin.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
 
 status = Status.first
 
