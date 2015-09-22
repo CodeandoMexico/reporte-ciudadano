@@ -865,12 +865,23 @@ es:
   activerecord:
     models: 
       service_survey: "Encuesta"
+      dynamic_reports: "Reportes dinámicos"
     attributes:
+      dynamic_reports:
+        service_id: "ID"
+        title: "Titulo"
+        phase: "Fase"
+        is_open: "¿Está abierta?"
+        people_who_participated: "Personas que participaron"
+        negative_overall_perception: "Percepción negativa total"
+        positive_overall_perception: "Percepción positiva total"
+        created_at: "Creada el"
+        areas_results: "Resultados de áreas"
       service_survey:
         title: "Titulo"
         service_ids: "Trámites"
         questions: "La respuesta"
-        phase: "Frase"
+        phase: "Fase"
         open: "¿Está abierta?"
       questions:
         answer_type: "Tipo de respuesta"
