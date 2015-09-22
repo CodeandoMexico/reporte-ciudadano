@@ -99,6 +99,6 @@ class ServiceRequestsController < ApplicationController
   def create_array
     @array_line=[]
     @array_id=[]
-    @public_servant_admins  = Service.last.admins
+    @public_servant_admins  = {}
   end
 end
