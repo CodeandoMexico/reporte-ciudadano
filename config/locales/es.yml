@@ -887,3 +887,11 @@ es:
               blank: "Cis no puede estar vacio"
             service_admin_id:
               blank: "Administador del servicio no puede estar vacio"
+  datagrid:
+    form:
+      search: "Filtrar"
+      reset:  "Limpiar forma"
+    table:
+      order:
+        asc: "↑"
+        desc: "↓"
