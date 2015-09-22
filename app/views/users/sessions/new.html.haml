@@ -13,9 +13,12 @@
         %span.social-signup-text=t('.twtter')
   = f.email_field :email, autofocus: true, class: 'form-control top-field', placeholder: t('.mail')
   = f.password_field :password, placeholder: t('.password'), class: 'form-control bottom-field'
-  - if devise_mapping.rememberable?
-    %div
-      = f.label :remember_me do
-        = f.check_box :remember_me
-        =t('.rememberme')
+  %div.row
+    - if devise_mapping.rememberable?
+      .col-md-6
+        = f.label :remember_me do
+          = f.check_box :remember_me
+          =t('.rememberme')
+    .col-md-6
+      = link_to t('.restart_password'), new_user_password_path
   .actions= f.submit t('.enter'), class: 'btn btn-lg btn-primary btn-block'

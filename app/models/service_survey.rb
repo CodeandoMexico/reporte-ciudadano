@@ -45,9 +45,9 @@ class ServiceSurvey < ActiveRecord::Base
     questions.order(id: :asc)
   end
 
-  def has_been_answered_by?(user)
-    return false if user.blank?
-    answers.any? { |answer| answer.user_id == user.id }
+  def has_been_answered_by?(user, cis_id)
+    return false if user.blank? || cis_id.blank?
+    answers.where(user_id: user.id, cis_id:cis_id).any?
   end
 
   def answers_by(user_id)
