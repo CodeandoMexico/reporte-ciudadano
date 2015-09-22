@@ -14,6 +14,13 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     end
   end
 
+  def index
+    @grid = DynamicReports.new(params[:dynamic_reports]) do |scope|
+      scope.page(params[:page])
+    end
+
+  end
+
   def make_report
     unless params[:post].blank?
       @start_date = params[:post][:start_date]
