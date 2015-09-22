@@ -35,6 +35,12 @@ module Creds
           "AWS_KEY=#{creds['aws']['aws_key']}"
         ]
 
+        if creds['rails']['env'].downcase == "production" and creds.has_key?('smtp')
+          for key in ['user', 'password', 'domain', 'address', 'port']
+            list_creds.push "SMTP_#{key.upcase}=#{creds['smtp'][key]}"
+          end
+        end
+
         list_creds.push "APP_NAME=#{if creds['app_name'] then  creds['app_name'] else "urbem" end}"
         list_creds.push "HOST=#{if creds['host'] then  creds['host'] else "urbem:80" end}"
 

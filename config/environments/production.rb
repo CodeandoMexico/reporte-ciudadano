@@ -85,11 +85,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => ENV['HOST'] }
   config.action_mailer.smtp_settings = {
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
+    :user_name      => ENV["SMTP_USER"] || ENV['SENDGRID_USERNAME'],
+    :password       => ENV["SMTP_PASSWORD"] || ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV["SMTP_DOMAIN"] || 'heroku.com',
+    :address        => ENV["SMTP_ADDRESS"] || 'smtp.sendgrid.net',
+    :port           => ENV["SMTP_PORT"] || '587',
     :authentication => :plain,
     :enable_starttls_auto => true
   }
