@@ -1,6 +1,8 @@
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
 
 es:
+  "true": "Sí"
+  "false": "No"
   date:
     abbr_day_names:
     - dom
@@ -869,6 +871,7 @@ es:
         service_ids: "Trámites"
         questions: "La respuesta"
         phase: "Frase"
+        open: "¿Está abierta?"
       questions:
         answer_type: "Tipo de respuesta"
     errors:
