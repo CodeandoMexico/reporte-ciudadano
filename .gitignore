@@ -20,6 +20,7 @@
 /config/env_variables.yml
 /public/uploads/*
 *.dump
+/storage
 
 # Ignore application configuration
 /config/application.yml
