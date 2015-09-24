@@ -7,12 +7,12 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :users, through: :answers, source: :user
 
   #TODO: se debe de internacionalizar los textos.
-  validates_presence_of :phase, :message =>"no puede estar vacio" 
-  validates_presence_of :title, :message =>"no puede estar vacio" 
+  validates_presence_of :phase, :message =>"Fase no puede estar vacio" 
+  validates_presence_of :title, :message =>"Titulo no puede estar vacio" 
 
   #todo
   #No funciona en las pruebas el select del multichose (gem chosen-rails) cuando se tiene  js:true , pero este se ocupa para otras funcionalidades de la prueba 
-  validates_presence_of :service_ids , :message =>"no puede estar vacio" unless Rails.env.test?
+  validates_presence_of :service_ids , :message =>"Servicio no puede estar vacio" unless Rails.env.test?
 
   validate :value_for_rating_questions
 

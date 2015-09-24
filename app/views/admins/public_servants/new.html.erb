@@ -5,7 +5,7 @@
       <%= form_for(:admin, url: admins_public_servants_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
       <% if @admin.errors.any? %>
       <div id="error_explanation">
-        <h2><%= t 'form.errors.prohibited', number_of_errors: @service.errors.count%></h2>
+        <h2><%= t 'form.errors.prohibited', number_of_errors: @admin.errors.count%></h2>
       </div>
       <% end %>
 

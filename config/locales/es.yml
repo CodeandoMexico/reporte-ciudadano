@@ -101,9 +101,9 @@ es:
     format: ! '%{message}'
     messages:
       accepted: "debe ser aceptado"
-      blank: "no puede estar en blanco"
+      blank: "No puede estar en blanco"
       confirmation: "no coincide con la confirmación"
-      empty: "no puede estar vacío"
+      empty: "No pueden estar vacío"
       equal_to: "debe ser igual a %{count}"
       even: "debe ser par"
       exclusion: "está reservado"
@@ -808,8 +808,8 @@ es:
       text: "Texto introducido por el usuario..."
   service_survey:
     errors: 
-      total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
-      presence_of_value: "con valor deben contener un porcentaje de valor mayor a 0%"
+      total_values: "Valor deben sumar 100% y actualmente suman: %{count}%"
+      presence_of_value: "Valor deben contener un porcentaje de valor mayor a 0%"
   cis_reports:
     title: "Satisfacción general de servicios"
   #Reports
@@ -872,6 +872,11 @@ es:
           attributes:
             content:
               blank: "El comentario no puede estar vacio"
+        question:
+          attributes:
+            answer_type:
+              inclusion: "Tipo de respuesta invalido"
+              blank: "Tipo de respuesta invalido"
         service:
           attributes:
             name:
