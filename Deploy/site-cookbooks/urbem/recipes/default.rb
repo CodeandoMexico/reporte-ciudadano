@@ -150,7 +150,7 @@ docker_image 'urbem-puebla' do
   source "/www/sitios/EvaluatuTramite"
   begin
      Docker::Image.get("urbem-puebla")
-     action :nothing
+     action :redeploy
   rescue
      action :build
   end
