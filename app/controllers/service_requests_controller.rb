@@ -1,6 +1,6 @@
 class ServiceRequestsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new, :index, :show]
-  before_action :create_array, only: [:create, :new]
+  before_action :create_array, only: [:new]
   helper_method :service_cis_options, :service_cis_label
 
   def index
@@ -99,6 +99,6 @@ class ServiceRequestsController < ApplicationController
   def create_array
     @array_line=[]
     @array_id=[]
-    @public_servant_admins  = Service.last.admins
+    @public_servant_admins  = {}
   end
 end
