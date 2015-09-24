@@ -877,7 +877,9 @@ es:
       dynamic_reports:
         service_id: "ID"
         title: "Titulo"
+        overall_satisfaction: "Satisfacción promedio"
         phase: "Fase"
+        status: "Estatus"
         cis: "Lugar de evaluación"
         dependency: "Dependencia o unidad administrativa"
         is_open: "Estatus de encuestas del servicio"
