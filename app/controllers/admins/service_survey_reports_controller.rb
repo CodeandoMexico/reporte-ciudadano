@@ -14,9 +14,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def index
-    @grid = DynamicReports.new(params[:dynamic_reports]) do |scope|
-      scope.page(params[:page])
-    end
+
+    dynamic_reports_select
 
   end
 
@@ -56,4 +55,24 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     Services.service_reports
   end
 
+  def dynamic_reports_select
+    case params[:report_type]
+      when "service_public_servants_report"
+        @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+      when "best_service_report"
+        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+      when "service_status_report"
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+      else
+        @grid = DynamicReports::Panacea.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+      end
+    end
+  end
 end
