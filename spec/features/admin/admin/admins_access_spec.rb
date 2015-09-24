@@ -14,7 +14,6 @@ feature 'Admins access' do
       expect(page).to have_link "Quejas o sugerencias"
       expect(page).to have_link "Trámites"
       expect(page).to have_link "Administradores de trámites"
-      expect(page).to have_link "API"
       expect(page).to have_link "Personalizar quejas o sugerencias"
       expect(page).to have_link "Servidores públicos"
     end
@@ -26,7 +25,6 @@ feature 'Admins access' do
     within ".sidebar-nav" do
       expect(page).not_to have_link "Resumen"
       expect(page).not_to have_link "Administradores de trámites"
-      expect(page).not_to have_link "API"
       expect(page).not_to have_link "Personalizar quejas o sugerencias"
 
       expect(page).to have_link "Quejas o sugerencias"
@@ -42,7 +40,6 @@ feature 'Admins access' do
     within ".sidebar-nav" do
       expect(page).not_to have_link "Resumen"
       expect(page).not_to have_link "Administradores de servicios"
-      expect(page).not_to have_link "API"
       expect(page).not_to have_link "Personalizar quejas o sugerencias"
       expect(page).not_to have_link "Trámites"
       expect(page).not_to have_link "Servidores públicos"

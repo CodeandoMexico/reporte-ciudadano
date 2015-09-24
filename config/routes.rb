@@ -27,7 +27,11 @@ Rails.application.routes.draw do
   resources :reportes_estadisticos, as: :service_survey_reports, only: [:new, :create, :show, :index], controller: :service_survey_reports
 
   namespace  :administradores, as: :admins, module: :admins , controller: :admin do
-    resources :service_survey_reports, only: [:new, :create, :show, :index]
+    resources :service_survey_reports, only: [:new, :create, :show, :index] do
+      collection do
+        get 'make_report'
+      end
+    end
     resources :solicitudes_de_servicio, as: :services , controller: :services , :path_names => { :new => "nuevo", :edit => "editar" } do
       collection do
         get 'disable_service'

@@ -1,6 +1,8 @@
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
 
 es:
+  "true": "Sí"
+  "false": "No"
   date:
     abbr_day_names:
     - dom
@@ -251,6 +253,7 @@ es:
         no_requests: "No tiene trámites asignados"
         change_password: "Cambiar contraseña"
         service_surveys: "Encuestas de servicio"
+        reports: "Reportes"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -310,6 +313,16 @@ es:
         votes: "Votos"
         created_at: "Fecha de creación"
         service_requests_for: "Quejas o sugerencias de %{service}"
+    service_survey_reports:
+      index:
+        title: "Reportes dinámicos"
+        start_date: "Fecha de inicio"
+        end_date: "Fecha de fin"
+        send: "Enviar"
+        export: "Exportar"
+        view: "Previsualizar"
+        subtitle: "Reportes predeterminados:"  
+        title_table: "Previsualización del reporte"      
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de trámites"
@@ -637,6 +650,7 @@ es:
         status: "Estatus"
         description: "Descripción"
         cis: "Centro de atención"
+        criterion_select: "Reporte predeterminado"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -858,12 +872,33 @@ es:
   activerecord:
     models: 
       service_survey: "Encuesta"
+      dynamic_reports: "Reportes dinámicos"
     attributes:
+      dynamic_reports:
+        service_id: "ID"
+        title: "Titulo"
+        overall_satisfaction: "Satisfacción promedio"
+        phase: "Fase"
+        status: "Estatus"
+        cis: "Lugar de evaluación"
+        dependency: "Dependencia o unidad administrativa"
+        is_open: "Estatus de encuestas del servicio"
+        open:
+          "true": "Abierto"
+          "false": "Cerrado"
+        people_who_participated: "Personas que participaron"
+        negative_overall_perception: "Percepción negativa total"
+        positive_overall_perception: "Percepción positiva total"
+        created_at: "Creada el"
+        areas_results: "Resultados de áreas"
+        service_name: "Nombre del trámite, servicio, programa de apoyo"
+        survey_titles: "Títulos de encuestas"
       service_survey:
         title: "Titulo"
         service_ids: "Trámites"
         questions: "La respuesta"
-        phase: "Frase"
+        phase: "Fase"
+        open: "¿Está abierta?"
       questions:
         answer_type: "Tipo de respuesta"
     errors:
@@ -882,3 +917,11 @@ es:
               blank: "Cis no puede estar vacio"
             service_admin_id:
               blank: "Administador del servicio no puede estar vacio"
+  datagrid:
+    form:
+      search: "Filtrar"
+      reset:  "Limpiar forma"
+    table:
+      order:
+        asc: "↑"
+        desc: "↓"
