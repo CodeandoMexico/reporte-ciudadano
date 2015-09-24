@@ -489,7 +489,6 @@ es:
   service_requests:
     index: 
       complaints_or_suggestions: "Realiza Queja o Sugerencia"
-      title: "Para la mejor atención de la queja o denuncia se solicita que la narración sea concreta, describiendo la forma en que sucedieron los hechos, especificando el orden en que acontecieron, los nombres de las personas involucradas, acompañantes, servidores . públicos o bien personas presentes durante el desarrollo de éstos y su participación en los mismos, evitando descripciones de situaciones vagas e imprecisas."
       search: "Buscar"
       delete: "Eliminar"
       service: "Todos los servicios"
@@ -505,7 +504,7 @@ es:
       prompt_center: 'Centro de atención'
       prompt_who: 'No recuerdo'
       address_placeholder: 'Ej. Av Revolucion 2342, 64830 Monterrey, Nuevo León, México'
-      description_placeholder: 'Por favor proporcione detalles particulares sobre la queja o sugerencia y la ubicación para facilitar su atención.'
+      description_placeholder: 'Para la mejor atención de la queja o denuncia se solicita que la narración sea concreta, describiendo la forma en que sucedieron los hechos, especificando el orden en que acontecieron, los nombres de las personas involucradas, acompañantes, servidores públicos o bien personas presentes durante el desarrollo de éstos y su participación en los mismos, evitando descripciones de situaciones vagas e imprecisas.'
       map_help: 'Este marcador es aproximado. En caso de estar fuera de lugar ubícalo manualmente.'
     show:
       votes: "Votos"
