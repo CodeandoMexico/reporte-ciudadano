@@ -7,7 +7,7 @@
 
         - if @admin.errors.any?
           #error_explanation
-            %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@admin.errors.count, "error")
+            %h2= t 'form.errors.prohibited', number_of_errors: @service.errors.count
         %fieldset
           .form-group
             = f.label :name, t('form.labels.name'), class: 'col-md-2 control-label'

@@ -1,7 +1,7 @@
 = nested_form_for([:admins, @service], html: { class: 'form-horizontal' }) do |f|
   - if @service.errors.any?
     #error_explanation
-      %h2= t 'form.errors.prohibited', number_of_errors: pluralize(@service.errors.count, "error")
+      %h2= t 'form.errors.prohibited', number_of_errors: @service.errors.count
       .ul.list-unstyled
         - @service.errors.messages.each do |error_message| 
           .li.text-danger

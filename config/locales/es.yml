@@ -668,7 +668,7 @@ es:
       confirm_password: "Confirmar nueva contraseña"
       description_public_servant_placeholder: "Escribe una descripción breve de como era el funcionario que te atendió"
     errors:
-      prohibited: "%{number_of_errors} evitó que la operación se realizara."
+      prohibited: "Número de errores: %{number_of_errors}, esto evitó que la operación se realizara."
     options:
       service_type_select: "Selecciona tipo de servicio"
       cis_select: "Selecciona Centro de atención"

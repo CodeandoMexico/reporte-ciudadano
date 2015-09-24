@@ -5,7 +5,7 @@
       <%= form_for(@service_survey, url: admins_service_surveys_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
         <% if @service_survey.errors.any? %>
           <div id="error_explanation">
-            <h2><%= t 'form.errors.prohibited', number_of_errors: pluralize(@service_survey.errors.count, "error") %></h2>
+            <h2><%= t 'form.errors.prohibited', number_of_errors: @service.errors.count %></h2>
             <ul class="list-unstyled">
               <% @service_survey.errors.messages.each do |error_message| %>
                 <li class="text-danger"><%= error_message.last.last.html_safe %></li>
