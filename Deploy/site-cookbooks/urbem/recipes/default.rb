@@ -148,11 +148,7 @@ end
 docker_image 'urbem-puebla' do
   tag 'latest'
   source "/www/sitios/EvaluatuTramite"
-  begin
-     Docker::Image.get("urbem-puebla")
-     action :redeploy
-  rescue
-     action :build
+   action :build
   end
   notifies :run, 'docker_container[urbem_create]', :immediately
   cmd_timeout 2400
