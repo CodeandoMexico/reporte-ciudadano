@@ -37,7 +37,7 @@
 -unless @grid.nil?
   .content-header
     %h1= t('.title_table')
-    = datagrid_form_for @grid, :method => :get, :url => make_report_admins_service_survey_reports_path
+    =# datagrid_form_for @grid, :method => :get, :url => make_report_admins_service_survey_reports_path
     = paginate(@grid.assets)
     = datagrid_table(@grid,{:html =>{:class=>"datagrid dynamic_reports table"}})
     = paginate(@grid.assets)
