@@ -9,7 +9,7 @@
           %h2= t('.subtitle')
         .col-md-6
           = select("post", "predetermined", service_reports.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('form.labels.admin.criterion_select') }, class: 'chosen-select ')
-    .form-group.col-md-12.hidden
+    .form-group.col-md-12
       .row
         .col-md-4
           = text_field "post", "start_date", placeholder: t('.start_date'), class: 'datepicker form-control '
@@ -18,14 +18,14 @@
         .col-md-4
           = select("post", "cis", service_cis_options.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select ')
         
-    .form-group.col-md-12.hidden
+    .form-group.col-md-12
       .row
         .col-md-4
           = text_field "post", "end_date", placeholder: t('.end_date'), class: 'datepicker form-control'
         .col-md-4
           = select_tag "criterio[name]", options_for_select(criterion_options), { prompt: I18n.t("form.options.criterion_select"), class: 'chosen-select ',:multiple=>true}
         .col-md-4
-    .form-group.col-md-12.hidden
+    .form-group.col-md-12
       .row
         .col-md-6.col-md-offset-3
           .row

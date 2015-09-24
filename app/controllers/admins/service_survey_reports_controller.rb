@@ -14,22 +14,27 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def index
-
     dynamic_reports_select
-
   end
+
 
   def make_report
     unless params[:post].blank?
-      @start_date = params[:post][:start_date]
+      @start_date = params[:post][:start_date] 
       @services = params[:post][:services]
       @cis = params[:post][:cis]
-      @end_date = params[:post][:end_date]
-      @criterio_name = params[:criterio][:name]
+      @end_date = params[:post][:end_date] 
+      @criterio_name = params[:post][:criterio]
       @predetermined = params[:post][:predetermined]
       @commit = params[:commit]
-    end
 
+      if @predetermined
+        puts "****************"
+        puts @predetermined
+        redirect_to admins_service_survey_reports_path({:report_type => get_report_type(@predetermined)})
+      end
+
+    end
       @report_table = nil
   end
 
@@ -75,4 +80,25 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       end
     end
   end
+
+
+  def get_report_type(type)
+    case type
+      when "1"
+        "service_status_report"
+      when "2"
+        "best_procedure_or_service"
+      when "3"
+        "best_service_report"
+      when "4"
+        "service_public_servants_report"
+      when "5"
+        "service_for_cis"
+      when "6"
+        "service_late"
+      else 
+        "default_report"
+    end
+  end
+
 end
