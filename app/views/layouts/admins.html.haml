@@ -22,7 +22,10 @@
         .container
           - flash.each do |name, msg|
             = content_tag :div, :class => "alert #{flash_class(name)} padding-top" do
-              -msg.each do |val|
-                = val
+              -if msg.kind_of?(Array)
+                -msg.each do |val|
+                  = val
+              -else
+                =msg
           .padding-top
             = yield
