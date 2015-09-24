@@ -7,12 +7,12 @@ class ServiceSurvey < ActiveRecord::Base
   has_many :users, through: :answers, source: :user
 
 
-  validates_presence_of :phase, :message => I18n.t('errors.messages.phase'))
-  validates_presence_of :title, :message => I18n.t('errors.messages.title'))
+  validates_presence_of :phase, :message => I18n.t('errors.messages.phase')
+  validates_presence_of :title, :message => I18n.t('errors.messages.title')
 
   #todo
   #No funciona en las pruebas el select del multichose (gem chosen-rails) cuando se tiene  js:true , pero este se ocupa para otras funcionalidades de la prueba 
-  validates_presence_of :service_ids , :message => I18n.t('errors.messages.service')) unless Rails.env.test?
+  validates_presence_of :service_ids , :message => I18n.t('errors.messages.service') unless Rails.env.test?
 
   validate :value_for_rating_questions
 
