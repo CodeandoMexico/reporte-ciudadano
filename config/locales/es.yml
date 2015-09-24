@@ -98,7 +98,7 @@ es:
       second: "Segundos"
       year: "Año"
   errors: &errors
-    format: ! '%{attribute} %{message}'
+    format: ! '%{message}'
     messages:
       accepted: "debe ser aceptado"
       blank: "no puede estar en blanco"
@@ -868,6 +868,10 @@ es:
         answer_type: "Tipo de respuesta"
     errors:
       models:
+        comment:
+          attributes:
+            content:
+              blank: "El comentario no puede estar vacio"
         service:
           attributes:
             name:
