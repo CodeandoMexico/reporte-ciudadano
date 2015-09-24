@@ -100,6 +100,9 @@ es:
   errors: &errors
     format: ! '%{message}'
     messages:
+      phase: "Fase no puede estar vacio"
+      title: "Titulo no puede estar vacio"
+      service: "Servicio no puede estar vacio"
       accepted: "debe ser aceptado"
       blank: "No puede estar en blanco"
       confirmation: "no coincide con la confirmación"
