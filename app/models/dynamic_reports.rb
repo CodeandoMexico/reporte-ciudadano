@@ -57,6 +57,9 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+    end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
     end
