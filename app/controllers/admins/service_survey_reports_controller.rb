@@ -29,8 +29,6 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       @commit = params[:commit]
 
       if @predetermined
-        puts "****************"
-        puts @predetermined
         redirect_to admins_service_survey_reports_path({:report_type => get_report_type(@predetermined)})
       end
 
