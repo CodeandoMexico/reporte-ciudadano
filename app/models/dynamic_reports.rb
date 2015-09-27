@@ -1,5 +1,22 @@
 module DynamicReports
 
+  class ServicePublicServantsReport
+    include Datagrid
+
+    scope do
+      Admin.where(is_public_servant: true)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:name)
+    column(:is_service_admin)
+    column(:dependency)
+    column(:administrative_unit)
+    column(:disabled)
+    column(:is_observer)
+    column(:email)
+
+  end
   class  BestServiceReport
     include Datagrid
 
