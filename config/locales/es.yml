@@ -881,7 +881,8 @@ es:
         phase: "Fase"
         status: "Estatus"
         cis: "Lugar de evaluación"
-        dependency: "Dependencia o unidad administrativa"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad Administrativa"
         is_open: "Estatus de encuestas del servicio"
         open:
           "true": "Abierto"
