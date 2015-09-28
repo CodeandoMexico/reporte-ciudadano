@@ -901,6 +901,8 @@ es:
         created_at: "Creada el"
         areas_results: "Resultados de áreas"
         service_name: "Nombre del trámite, servicio, programa de apoyo"
+        service_surveys_count: "Número de encuestas"
+        service_survey_names: "Nombres de las encuestas"
         service_names: "Nombres del trámite, servicio, programa de apoyo"
         survey_titles: "Títulos de encuestas"
         public_servant_evaluation: "Evaluación de los servidores públicos"
