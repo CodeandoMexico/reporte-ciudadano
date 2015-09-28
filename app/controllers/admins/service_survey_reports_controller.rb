@@ -60,16 +60,26 @@ class Admins::ServiceSurveyReportsController < ApplicationController
 
   def dynamic_reports_select
     case params[:report_type]
+      when "service_status_report"
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+      when "best_procedure_or_service"
+        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+
+      when "best_public_servants_report"
+        @grid = DynamicReports::BestPublicServantsReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+
       when "service_public_servants_report"
         @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
-      when "best_service_report"
-        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
-      when "service_status_report"
-        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
+      when "cis_services"
+        @grid = DynamicReports::CisServices.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
       else
@@ -87,13 +97,13 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "2"
         "best_procedure_or_service"
       when "3"
-        "best_service_report"
+        "best_public_servants_report"
       when "4"
         "service_public_servants_report"
       when "5"
-        "service_for_cis"
-      when "6"
         "service_late"
+      when "6"
+        "cis_services"
       else 
         "default_report"
     end
