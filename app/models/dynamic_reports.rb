@@ -59,7 +59,7 @@ module DynamicReports
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
     column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
       record.administrative_unit
-    end
+  end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
     end
@@ -95,12 +95,14 @@ module DynamicReports
       I18n.t("service_survey_phase_options.#{record.service_survey_phase}")
     end
     column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
-    column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception'))
-    column(:negative_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.negative_overall_perception'))
     column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
     column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
+    column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception')) do |record|
+      "#{record.positive_overall_perception}%"
+    end
+
 
     column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.areas_results')) do |record|
       """
