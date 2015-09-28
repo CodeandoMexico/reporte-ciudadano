@@ -41,8 +41,8 @@ module DynamicReports
     end
 
     column(:overall_satisfaction, header: I18n.t('activerecord.attributes.dynamic_reports.overall_satisfaction')) do |record|
+      elementos= record.service_surveys_reports.map(&:positive_overall_perception)
       unless elementos.blank?
-        elementos= record.service_surveys_reports.map(&:positive_overall_perception)
         (elementos.reduce(:+)/elementos.count).round(2).to_s + "%"
       end
     end
