@@ -4,7 +4,7 @@ module DynamicReports
     include Datagrid
 
     scope do
-      Admin.where(is_public_servant: true).joins(:services).select(:id).distinct(:id)
+      Admin.where(is_public_servant: true).joins(:services).distinct(:id)
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
