@@ -5,7 +5,6 @@ module DynamicReports
 
     scope do
       CisReport
-      # Services.service_cis_options.to_a
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
