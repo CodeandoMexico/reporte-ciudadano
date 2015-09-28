@@ -1,5 +1,29 @@
 module DynamicReports
 
+  class CisServices
+    include Datagrid
+
+    scope do
+      CisReport
+      # Services.service_cis_options.to_a
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:cis_name, header: I18n.t('activerecord.attributes.dynamic_reports.cis'))do |record|
+      Services.service_cis_label(record.cis_id.to_s)
+    end
+    column(:cis_services, header: I18n.t('activerecord.attributes.dynamic_reports.cis_services'))do |record|
+      Service.for_cis(record.cis_id).map{|service| "#{service.name}"}.join("; ")
+    end
+    column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception')) do |record|
+      "#{record.positive_overall_perception}%"
+    end
+    column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
+      "#{record.respondents_count}"
+    end
+
+  end
+
   class ServicePublicServantsReport
     include Datagrid
 
