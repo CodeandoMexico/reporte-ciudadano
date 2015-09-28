@@ -877,6 +877,11 @@ es:
       dynamic_reports:
         service_id: "ID"
         title: "Titulo"
+        name: "Nombre"
+        email: "Email"
+        is_service_admin: "¿Administra servicios?"
+        disabled: "¿Está desactivado?"
+        is_observer: "¿Es observador?"
         overall_satisfaction: "Satisfacción promedio"
         phase: "Fase"
         status: "Estatus"
@@ -884,6 +889,9 @@ es:
         dependency: "Dependencia"
         administrative_unit: "Unidad Administrativa"
         is_open: "Estatus de encuestas del servicio"
+        affirmation:
+          "true": "Sí"
+          "false": "No"
         open:
           "true": "Abierto"
           "false": "Cerrado"
@@ -893,7 +901,9 @@ es:
         created_at: "Creada el"
         areas_results: "Resultados de áreas"
         service_name: "Nombre del trámite, servicio, programa de apoyo"
+        service_names: "Nombres del trámite, servicio, programa de apoyo"
         survey_titles: "Títulos de encuestas"
+        public_servant_evaluation: "Evaluación de los servidores públicos"
       service_survey:
         title: "Titulo"
         service_ids: "Trámites"
