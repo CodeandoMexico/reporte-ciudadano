@@ -78,8 +78,16 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
-      when "cis_services"
-        @grid = DynamicReports::CisServices.new(params[:dynamic_reports]) do |scope|
+      when "service_demand_report"
+        @grid = DynamicReports::ServiceDemandReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+      when "cis_services_report"
+        @grid = DynamicReports::CisServicesReport.new(params[:dynamic_reports]) do |scope|
+          scope.page(params[:page])
+        end
+      when "service_performance_report"
+        @grid = DynamicReports::ServicePerformanceReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
       else
@@ -101,9 +109,11 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "4"
         "service_public_servants_report"
       when "5"
-        "service_late"
+        "service_demand_report"
       when "6"
-        "cis_services"
+        "cis_services_report"
+      when "7"
+        "service_performance_report"
       else 
         "default_report"
     end
