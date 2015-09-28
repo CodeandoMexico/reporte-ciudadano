@@ -1,6 +1,36 @@
 module DynamicReports
 
-  class CisServices
+  class ServicePerformanceReport
+    include Datagrid
+
+    scope do
+      ServiceReport.joins(:service)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+      record.created_at.to_date
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.service.administrative_unit
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.service.dependency
+    end
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.service.cis
+          # .map{|c|  "#{Service.for_cis(c)}"}.join("; ")
+    end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.service.name
+    end
+    column(:performance, header: I18n.t('activerecord.attributes.dynamic_reports.performance')) do |record|
+      "#{record.overall_areas[:performance]} %"
+
+    end
+  end
+
+  class CisServicesReport
     include Datagrid
 
     scope do
@@ -19,6 +49,38 @@ module DynamicReports
     end
     column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
       "#{record.respondents_count}"
+    end
+
+  end
+
+  class ServiceDemandReport
+    include Datagrid
+
+    scope do
+      Service.joins(:service_surveys).joins(:service_reports).distinct(:id)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+      record.service_reports.last.created_at.to_date
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.dependency
+    end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.name
+    end
+    column(:service_survey_names, header: I18n.t('activerecord.attributes.dynamic_reports.service_survey_names')) do |record|
+      record.service_surveys.map{|a| a.title}.join("; ")
+    end
+    column(:service_surveys, header: I18n.t('activerecord.attributes.dynamic_reports.service_surveys_count')) do |record|
+      record.service_surveys.count
+    end
+    column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
+      record.service_reports.last.respondents_count
     end
 
   end
