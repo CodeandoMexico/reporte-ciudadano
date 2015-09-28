@@ -904,6 +904,8 @@ es:
         service_names: "Nombres del trámite, servicio, programa de apoyo"
         survey_titles: "Títulos de encuestas"
         public_servant_evaluation: "Evaluación de los servidores públicos"
+        cis_services: "Servicios en centro de atención"
+        respondents_count: "Número de personas que evaluaron"
       service_survey:
         title: "Titulo"
         service_ids: "Trámites"
