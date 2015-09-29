@@ -875,7 +875,7 @@ es:
       dynamic_reports: "Reportes dinámicos"
     attributes:
       dynamic_reports:
-        service_id: "ID"
+        service_id: "Id"
         title: "Titulo"
         name: "Nombre"
         email: "Email"
