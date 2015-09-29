@@ -64,36 +64,42 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
-      when "best_procedure_or_service"
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
+          when "best_procedure_or_service"
         @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
-
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
       when "best_public_servants_report"
         @grid = DynamicReports::BestPublicServantsReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
-
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_public_servants_report')
       when "service_public_servants_report"
         @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_public_servants_report')
       when "service_demand_report"
         @grid = DynamicReports::ServiceDemandReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_demand_report')
       when "cis_services_report"
         @grid = DynamicReports::CisServicesReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.cis_services_report')
       when "service_performance_report"
         @grid = DynamicReports::ServicePerformanceReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
         end
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_performance_report')
       else
-        @grid = DynamicReports::Panacea.new(params[:dynamic_reports]) do |scope|
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
           scope.page(params[:page])
-      end
+        end
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
     end
   end
 
