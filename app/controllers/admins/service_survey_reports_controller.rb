@@ -15,6 +15,20 @@ class Admins::ServiceSurveyReportsController < ApplicationController
 
   def index
     dynamic_reports_select
+    respond_to do |f|
+      f.html do
+        @grid.scope do |scope|
+          scope.page(params[:page])
+        end
+        @title
+      end
+      f.csv do
+        send_data @grid.to_csv.encode!(Encoding::ISO_8859_1),
+                  type: "text/csv; charset=iso-8859-1; header=present'",
+                  disposition: 'inline',
+                  filename: "#{params[:report_type]}-#{Time.now.to_s}.csv"
+      end
+    end
   end
 
 
@@ -29,7 +43,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       @commit = params[:commit]
 
       if @predetermined
-        redirect_to admins_service_survey_reports_path({:report_type => get_report_type(@predetermined)})
+        redirect_to admins_service_survey_reports_path({:report_type => get_report_type(@predetermined),
+                                                          :format => params[:format]})
       end
 
     end
@@ -61,44 +76,28 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   def dynamic_reports_select
     case params[:report_type]
       when "service_status_report"
-        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
-          when "best_procedure_or_service"
-        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+      when "best_procedure_or_service"
+        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
       when "best_public_servants_report"
-        @grid = DynamicReports::BestPublicServantsReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::BestPublicServantsReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_public_servants_report')
       when "service_public_servants_report"
-        @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_public_servants_report')
       when "service_demand_report"
-        @grid = DynamicReports::ServiceDemandReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::ServiceDemandReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_demand_report')
       when "cis_services_report"
-        @grid = DynamicReports::CisServicesReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::CisServicesReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.cis_services_report')
       when "service_performance_report"
-        @grid = DynamicReports::ServicePerformanceReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::ServicePerformanceReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_performance_report')
       else
-        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
     end
   end
