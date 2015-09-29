@@ -1,5 +1,145 @@
 module DynamicReports
 
+  class ServicePerformanceReport
+    include Datagrid
+
+    scope do
+      ServiceReport.joins(:service)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+      record.created_at.to_date
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.service.administrative_unit
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.service.dependency
+    end
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
+    end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.service.name
+    end
+    column(:performance, header: I18n.t('activerecord.attributes.dynamic_reports.performance')) do |record|
+      "#{record.overall_areas[:performance]} %"
+
+    end
+  end
+
+  class CisServicesReport
+    include Datagrid
+
+    scope do
+      CisReport
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:cis_name, header: I18n.t('activerecord.attributes.dynamic_reports.cis'))do |record|
+      Services.service_cis_label(record.cis_id.to_s)
+    end
+    column(:cis_services, header: I18n.t('activerecord.attributes.dynamic_reports.cis_services'))do |record|
+      Service.for_cis(record.cis_id).map{|service| "#{service.name}"}.join("; ")
+    end
+    column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception')) do |record|
+      "#{record.positive_overall_perception}%"
+    end
+    column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
+      "#{record.respondents_count}"
+    end
+
+  end
+
+  class ServiceDemandReport
+    include Datagrid
+
+    scope do
+      Service.joins(:service_surveys).joins(:service_reports).distinct(:id)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+      record.service_reports.last.created_at.to_date
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.dependency
+    end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.name
+    end
+    column(:service_survey_names, header: I18n.t('activerecord.attributes.dynamic_reports.service_survey_names')) do |record|
+      record.service_surveys.map{|a| a.title}.join("; ")
+    end
+    column(:service_surveys, header: I18n.t('activerecord.attributes.dynamic_reports.service_surveys_count')) do |record|
+      record.service_surveys.count
+    end
+    column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
+      record.service_reports.last.respondents_count
+    end
+
+  end
+
+  class ServicePublicServantsReport
+    include Datagrid
+
+    scope do
+      Admin.where(is_public_servant: true).joins(:services).distinct(:id)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name'))
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'))
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+    column(:disabled, header: I18n.t('activerecord.attributes.dynamic_reports.disabled')) do |record|
+      I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{record.disabled}")
+    end
+    column(:is_service_admin, header: I18n.t('activerecord.attributes.dynamic_reports.is_service_admin'))do |record|
+      I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{!!record.is_service_admin}")
+    end
+
+    column(:is_observer, header: I18n.t('activerecord.attributes.dynamic_reports.is_observer')) do |record|
+      I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{record.is_observer}")
+    end
+    column(:service_names, header: I18n.t('activerecord.attributes.dynamic_reports.service_names')) do |record|
+      record.services.map{|b| "#{b.name}"}.join("; ")
+    end
+
+  end
+
+  class BestPublicServantsReport
+    include Datagrid
+
+    scope do
+      ServiceReport.joins(:service)
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+      record.created_at.to_date
+    end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.service.name
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.service.administrative_unit
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.service.dependency
+    end
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
+    end
+    column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant_evaluation')) do |record|
+      record.overall_areas[:public_servant]
+
+    end
+  end
+
   class  BestServiceReport
     include Datagrid
 
@@ -31,7 +171,6 @@ module DynamicReports
     end
 
   end
-
   class  ServiceStatusReport
     include Datagrid
 
@@ -40,6 +179,9 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+  end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
     end
@@ -75,12 +217,14 @@ module DynamicReports
       I18n.t("service_survey_phase_options.#{record.service_survey_phase}")
     end
     column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
-    column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception'))
-    column(:negative_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.negative_overall_perception'))
     column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
     column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
+    column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception')) do |record|
+      "#{record.positive_overall_perception}%"
+    end
+
 
     column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.areas_results')) do |record|
       """
@@ -93,5 +237,4 @@ module DynamicReports
       """
     end
   end
-
 end

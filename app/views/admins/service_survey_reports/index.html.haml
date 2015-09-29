@@ -1,15 +1,15 @@
 .content-header
-  %h1= t('.title')
+  %h1.text-center= t('.title')
 
 .page-content.inset
-  = form_tag(make_report_admins_service_survey_reports_path, method: "get") do
+  = form_tag(make_report_admins_service_survey_reports_path(format: :html), method: "get") do
     .form-group.col-md-12
       .row
         .col-md-6.texto-right
           %h2= t('.subtitle')
         .col-md-6
           = select("post", "predetermined", service_reports.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('form.labels.admin.criterion_select') }, class: 'chosen-select ')
-    .form-group.col-md-12.hidden
+    .form-group.col-md-12
       .row
         .col-md-4
           = text_field "post", "start_date", placeholder: t('.start_date'), class: 'datepicker form-control '
@@ -18,27 +18,29 @@
         .col-md-4
           = select("post", "cis", service_cis_options.collect {|opt| [opt[:label], opt[:id]]}, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select ')
         
-    .form-group.col-md-12.hidden
+    .form-group.col-md-12
       .row
         .col-md-4
           = text_field "post", "end_date", placeholder: t('.end_date'), class: 'datepicker form-control'
         .col-md-4
           = select_tag "criterio[name]", options_for_select(criterion_options), { prompt: I18n.t("form.options.criterion_select"), class: 'chosen-select ',:multiple=>true}
         .col-md-4
-    .form-group.col-md-12.hidden
+    .form-group.col-md-12
       .row
         .col-md-6.col-md-offset-3
           .row
             .col-md-6
-              = submit_tag t('.view'), class: "btn btn-primary half_content"
+              = submit_tag t('.view'), class: "btn btn-primary half_content", onClick: "$(this).closest('form').attr('action', '#{ make_report_admins_service_survey_reports_path(format: :html) }')"
             .col-md-6
-              = submit_tag t('.export'), class: "btn btn-primary half_content"
+              = submit_tag t('.export'), class: "btn btn-primary half_content", onClick: "$(this).closest('form').attr('action', '#{ make_report_admins_service_survey_reports_path(format: :csv) }')"
+
 
 -unless @grid.nil?
-  .content-header
-    %h1= t('.title_table')
-    =# datagrid_form_for @grid, :method => :get, :url => make_report_admins_service_survey_reports_path
-    = paginate(@grid.assets)
+  =# datagrid_form_for @grid, :method => :get, :url => make_report_admins_service_survey_reports_path
+%hr
+  .content-header.dynamic-report-container
+    %h1.dynamic-report-title.text-center= t('.title_table')+":"
+    %h4.text-center=@title
     = datagrid_table(@grid,{:html =>{:class=>"datagrid dynamic_reports table"}})
     = paginate(@grid.assets)
 

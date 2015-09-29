@@ -14,22 +14,40 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def index
-
     dynamic_reports_select
-
+    respond_to do |f|
+      f.html do
+        @grid.scope do |scope|
+          scope.page(params[:page])
+        end
+        @title
+      end
+      f.csv do
+        send_data @grid.to_csv.encode!(Encoding::ISO_8859_1),
+                  type: "text/csv; charset=iso-8859-1; header=present'",
+                  disposition: 'inline',
+                  filename: "#{params[:report_type]}-#{Time.now.to_s}.csv"
+      end
+    end
   end
+
 
   def make_report
     unless params[:post].blank?
-      @start_date = params[:post][:start_date]
+      @start_date = params[:post][:start_date] 
       @services = params[:post][:services]
       @cis = params[:post][:cis]
-      @end_date = params[:post][:end_date]
-      @criterio_name = params[:criterio][:name]
+      @end_date = params[:post][:end_date] 
+      @criterio_name = params[:post][:criterio]
       @predetermined = params[:post][:predetermined]
       @commit = params[:commit]
-    end
 
+      if @predetermined
+        redirect_to admins_service_survey_reports_path({:report_type => get_report_type(@predetermined),
+                                                          :format => params[:format]})
+      end
+
+    end
       @report_table = nil
   end
 
@@ -57,22 +75,53 @@ class Admins::ServiceSurveyReportsController < ApplicationController
 
   def dynamic_reports_select
     case params[:report_type]
-      when "service_public_servants_report"
-        @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
-      when "best_service_report"
-        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
       when "service_status_report"
-        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-        end
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
+      when "best_procedure_or_service"
+        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
+      when "best_public_servants_report"
+        @grid = DynamicReports::BestPublicServantsReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_public_servants_report')
+      when "service_public_servants_report"
+        @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_public_servants_report')
+      when "service_demand_report"
+        @grid = DynamicReports::ServiceDemandReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_demand_report')
+      when "cis_services_report"
+        @grid = DynamicReports::CisServicesReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.cis_services_report')
+      when "service_performance_report"
+        @grid = DynamicReports::ServicePerformanceReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_performance_report')
       else
-        @grid = DynamicReports::Panacea.new(params[:dynamic_reports]) do |scope|
-          scope.page(params[:page])
-      end
+        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
     end
   end
+
+
+  def get_report_type(type)
+    case type
+      when "1"
+        "service_status_report"
+      when "2"
+        "best_procedure_or_service"
+      when "3"
+        "best_public_servants_report"
+      when "4"
+        "service_public_servants_report"
+      when "5"
+        "service_demand_report"
+      when "6"
+        "cis_services_report"
+      when "7"
+        "service_performance_report"
+      else 
+        "default_report"
+    end
+  end
+
 end
