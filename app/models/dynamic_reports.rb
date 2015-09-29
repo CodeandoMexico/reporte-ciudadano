@@ -18,8 +18,7 @@ module DynamicReports
       record.service.dependency
     end
     column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
-      record.service.cis
-          # .map{|c|  "#{Service.for_cis(c)}"}.join("; ")
+      record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
     end
     column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
       record.service.name
@@ -123,6 +122,9 @@ module DynamicReports
     column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.service.name
+    end
     column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
       record.service.administrative_unit
     end
@@ -130,10 +132,7 @@ module DynamicReports
       record.service.dependency
     end
     column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
-      record.service.cis
-    end
-    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
-      record.service.name
+      record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
     end
     column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant_evaluation')) do |record|
       record.overall_areas[:public_servant]
