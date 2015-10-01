@@ -100,12 +100,15 @@ es:
       second: "Segundos"
       year: "Año"
   errors: &errors
-    format: ! '%{attribute} %{message}'
+    format: ! '%{message}'
     messages:
+      phase: "Fase no puede estar vacio"
+      title: "Titulo no puede estar vacio"
+      service: "Servicio no puede estar vacio"
       accepted: "debe ser aceptado"
-      blank: "no puede estar en blanco"
+      blank: "No puede estar en blanco"
       confirmation: "no coincide con la confirmación"
-      empty: "no puede estar vacío"
+      empty: "No pueden estar vacío"
       equal_to: "debe ser igual a %{count}"
       even: "debe ser par"
       exclusion: "está reservado"
@@ -681,7 +684,7 @@ es:
       confirm_password: "Confirmar nueva contraseña"
       description_public_servant_placeholder: "Escribe una descripción breve de como era el funcionario que te atendió"
     errors:
-      prohibited: "%{number_of_errors} evitó que la operación se realizara."
+      prohibited: "Número de errores: %{number_of_errors}, esto evitó que la operación se realizara."
     options:
       service_type_select: "Selecciona tipo de servicio"
       cis_select: "Selecciona Centro de atención"
@@ -821,8 +824,8 @@ es:
       text: "Texto introducido por el usuario..."
   service_survey:
     errors: 
-      total_values: "con valor deben sumar 100% y actualmente suman: %{count}%"
-      presence_of_value: "con valor deben contener un porcentaje de valor mayor a 0%"
+      total_values: "Valor deben sumar 100% y actualmente suman: %{count}%"
+      presence_of_value: "Valor deben contener un porcentaje de valor mayor a 0%"
   cis_reports:
     title: "Satisfacción general de servicios"
   #Reports
@@ -927,6 +930,15 @@ es:
         answer_type: "Tipo de respuesta"
     errors:
       models:
+        comment:
+          attributes:
+            content:
+              blank: "El comentario no puede estar vacio"
+        question:
+          attributes:
+            answer_type:
+              inclusion: "Tipo de respuesta invalido"
+              blank: "Tipo de respuesta invalido"
         service:
           attributes:
             name:
