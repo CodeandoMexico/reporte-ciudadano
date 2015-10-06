@@ -74,8 +74,6 @@ module RegistrationsHelper
       params["utf8"] = creds["utf8"]
       params["commit"] = creds["commit"]
       params.delete(:jCryption)
-      puts "credentials => #{params}"
-      puts "array => #{creds}"
     end
   end
 end
