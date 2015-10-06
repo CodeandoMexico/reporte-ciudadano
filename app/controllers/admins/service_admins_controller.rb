@@ -1,6 +1,6 @@
 class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
-  before_action :set_services, only: [:new, :create]
+  before_action :set_services
   before_action :set_title
   helper_method :dependency_options, :administrative_unit_options,:service_cis_options, :service_admins_name_options, :record_number_options
   before_action :set_search, only: :index
@@ -71,7 +71,7 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def set_services
-    @services ||= Service.unmanaged
+    @services = Service.all#.unmanaged 
   end
 
   def dependency_options
