@@ -35,3 +35,8 @@ $(document).on 'ready page:load', ->
     $(this).tab('show')
 
   $(".js-tooltip").tooltip()
+
+  $("#new_user").jCryption
+    getKeysURL : "/rsakeys"
+    handshakeURL : "/rsakeys"
+    formFieldSelector:':input:not([name=authenticity_token])'
