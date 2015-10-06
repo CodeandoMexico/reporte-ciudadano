@@ -229,7 +229,7 @@ module DynamicReports
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.status')) do |value, scope, grid|
 
-      scope.where("services.status similar to ? ", "%(#{value.uniq.join("|")})%")
+      scope.where("services.status similar to ? ", "(#{value.uniq.join("|")})%")
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
