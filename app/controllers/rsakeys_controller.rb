@@ -8,6 +8,7 @@ class RsakeysController < ApplicationController
 
   def create
     data = get_encrypted_data(params["key"])
+    session[:session_base] = data
     render :json => { "challenge" =>  get_aes_data(data, data).rstrip}
   end
 

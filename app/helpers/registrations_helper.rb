@@ -35,4 +35,47 @@ module RegistrationsHelper
     encrypted_data = cipher.update(data) + cipher.final
     Base64.strict_encode64('Salted__' + salt + encrypted_data)
   end
+
+  def get_raw_data(edata, password)
+    require 'digest'
+    require 'base64'
+
+    data = Base64::strict_decode64(edata)
+    salt = data.slice(8, 8)
+    body = data[16..-1]
+
+    round = 3
+    data00 = password + salt
+    md5_hash = []
+    result = md5_hash[0] = Digest::MD5.new.digest data00
+
+    (1..2).each do | step |
+      md5_hash[step] = Digest::MD5.new.digest (md5_hash[step - 1] + data00)
+      result += md5_hash[step]
+    end
+
+    key = result.slice(0, 32)
+    iv = result.slice(32, 16)
+
+    decipher = OpenSSL::Cipher.new('aes-256-cbc')
+    decipher.decrypt
+    decipher.key = key
+    decipher.iv = iv
+
+    decipher.update(body) + decipher.final
+  end
+
+  def build_params
+    if params["jCryption"]
+      data = get_raw_data(params["jCryption"], session[:session_base])
+      creds = Rack::Utils.parse_nested_query(data)
+
+      params["user"] = creds["user"]
+      params["utf8"] = creds["utf8"]
+      params["commit"] = creds["commit"]
+      params.delete(:jCryption)
+      puts "credentials => #{params}"
+      puts "array => #{creds}"
+    end
+  end
 end
