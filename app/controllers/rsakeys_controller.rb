@@ -1,6 +1,8 @@
-class RsakeyController < ApplicationController
-  def new
-    public = File.read('~/.ssh/id_rsa.pub')
-    render :json => { "publickey" => public }.as_json
+class RsakeysController < ApplicationController
+
+  def show
+    public = File.read("#{ENV['SSL_PUBLIC']}")
+    render :json => { "publickey" => public.rstrip }.as_json
   end
+
 end
