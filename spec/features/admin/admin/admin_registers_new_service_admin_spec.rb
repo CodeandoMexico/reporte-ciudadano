@@ -32,7 +32,8 @@ feature 'As an admin I can create new service admins' do
     select dependency, from: "admin[dependency]"
     select administrative_unit, from: "admin[administrative_unit]"
     fill_in "admin[charge]", with: "Director"
-    check "admin_services_ids_1"
+    #TODO Implementar helper de choise
+    #check "admin_services_ids_1"
     click_button "Guardar"
 
     expect(page).to have_content "El administrador de trámites se ha registrado exitosamente."
