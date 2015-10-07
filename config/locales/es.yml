@@ -911,6 +911,7 @@ es:
         cis_services: "Servicios en centro de atención"
         respondents_count: "Número de personas que evaluaron"
         performance: "Desempeño"
+        service_type: "Tramite, servicio o programa de apoyo "
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
           best_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa mejor evaluados globalmente"
@@ -954,7 +955,10 @@ es:
             service_admin_id:
               blank: "Administador del servicio no puede estar vacio"
   datagrid:
+    no_results: "No hay resultados"
+
     form:
+      export: "Exportar"
       search: "Filtrar"
       reset:  "Limpiar forma"
     table:

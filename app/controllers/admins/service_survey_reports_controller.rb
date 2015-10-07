@@ -14,6 +14,14 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def index
+    unless params[:dynamic_reports].blank?
+      if params[:dynamic_reports][:id].nil?
+        params[:dynamic_reports][:id] = 0
+      end
+      params[:report_type] = get_report_type(params[:dynamic_reports][:id])
+    else
+      params[:dynamic_reports] = {}.merge(:id => 0)
+    end
     dynamic_reports_select
     respond_to do |f|
       f.html do
@@ -33,24 +41,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
 
 
   def make_report
-    unless params[:post].blank?
-      @start_date = params[:post][:start_date] 
-      @services = params[:post][:services]
-      @cis = params[:post][:cis]
-      @end_date = params[:post][:end_date] 
-      @criterio_name = params[:post][:criterio]
-      @predetermined = params[:post][:predetermined]
-      @commit = params[:commit]
-
-      if @predetermined
-        redirect_to admins_service_survey_reports_path({:report_type => get_report_type(@predetermined),
-                                                          :format => params[:format]})
-      end
-
-    end
-      @report_table = nil
+    redirect_to admins_service_survey_reports_path(params)
   end
-
 
   private
 
@@ -76,28 +68,28 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   def dynamic_reports_select
     case params[:report_type]
       when "service_status_report"
-        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::ServiceStatusReport.new(params["dynamic_reports_service_status_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
       when "best_procedure_or_service"
-        @grid = DynamicReports::BestServiceReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::BestServiceReport.new(params["dynamic_reports_best_service_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
       when "best_public_servants_report"
-        @grid = DynamicReports::BestPublicServantsReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::BestPublicServantsReport.new(params["dynamic_reports_best_public_servants_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_public_servants_report')
       when "service_public_servants_report"
-        @grid = DynamicReports::ServicePublicServantsReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::ServicePublicServantsReport.new(params["dynamic_reports_service_public_servants_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_public_servants_report')
       when "service_demand_report"
-        @grid = DynamicReports::ServiceDemandReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::ServiceDemandReport.new(params["dynamic_reports_service_demand_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_demand_report')
       when "cis_services_report"
-        @grid = DynamicReports::CisServicesReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::CisServicesReport.new(params["dynamic_reports_cis_services_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.cis_services_report')
       when "service_performance_report"
-        @grid = DynamicReports::ServicePerformanceReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::ServicePerformanceReport.new(params["dynamic_reports_service_performance_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_performance_report')
       else
-        @grid = DynamicReports::ServiceStatusReport.new(params[:dynamic_reports])
+        @grid = DynamicReports::ServiceStatusReport.new(params["dynamic_reports_service_status_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
     end
   end
