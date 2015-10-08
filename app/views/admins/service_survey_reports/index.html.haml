@@ -32,13 +32,15 @@
   $("select.enum_filter").addClass("chosen-select");
   $(document).ready(loadChosen);
   $(document).on('page:load', loadChosen);
+  $("input.created_at").addClass("datepicker","form-control");
+
   
   $(function() {
-    $( "#post_start_date" ).datepicker({
+    $( ".to" ).datepicker({
     format: 'yyyy-dd-mm',
     startDate: '-3d'
     });
-    $( "#post_end_date" ).datepicker({
+    $( ".from" ).datepicker({
     format: 'yyyy-dd-mm',
     startDate: '-3d'
     });
