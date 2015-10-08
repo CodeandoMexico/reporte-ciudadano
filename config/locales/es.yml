@@ -909,6 +909,11 @@ es:
         cis_services: "Servicios en centro de atención"
         respondents_count: "Número de personas que evaluaron"
         performance: "Desempeño"
+        transparency: "Transparencia"
+        quality_service: "Calidad de servicio"
+        accessibility: "Accesibilidad"
+        infrastructure: "Infraestructura"
+        public_servant: "Servidor público"
         service_type: "Tramite, servicio o programa de apoyo "
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
