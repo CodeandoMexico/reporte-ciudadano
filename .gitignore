@@ -21,6 +21,7 @@
 /public/uploads/*
 *.dump
 /storage
+*.rdb
 
 # Ignore application configuration
 /config/application.yml
