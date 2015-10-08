@@ -945,7 +945,10 @@ es:
               blank: "Administador del servicio no puede estar vacio"
   datagrid:
     no_results: "No hay resultados"
-
+    filters:
+      xboolean:
+        yes: "Sí"
+        no: "No"
     form:
       export: "Exportar"
       search: "Filtrar"
