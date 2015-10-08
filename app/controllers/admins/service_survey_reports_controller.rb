@@ -14,14 +14,6 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def index
-    unless params[:dynamic_reports].blank?
-      if params[:dynamic_reports][:id].nil?
-        params[:dynamic_reports][:id] = 0
-      end
-      params[:report_type] = get_report_type(params[:dynamic_reports][:id])
-    else
-      params[:dynamic_reports] = {}.merge(:id => 0)
-    end
     dynamic_reports_select
     respond_to do |f|
       f.html do
@@ -66,11 +58,21 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   end
 
   def dynamic_reports_select
+    if params["report_type"] && params["report_type"]["name"]
+      params[:report_type] = params["report_type"]["name"].split("/").last
+      params[:dynamic_reports] = {}.merge(:id => get_report_type(params[:report_type]))
+    elsif params[:dynamic_reports] && params[:dynamic_reports][:id]
+      params[:report_type] = get_report_type(params[:dynamic_reports][:id])
+      params[:dynamic_reports] = {}.merge(:id => get_report_type(params[:report_type]))
+    else
+      params[:dynamic_reports] = {}.merge(:id => 0)
+      params[:report_type] = get_report_type(params[:dynamic_reports][:id])
+    end
     case params[:report_type]
       when "service_status_report"
         @grid = DynamicReports::ServiceStatusReport.new(params["dynamic_reports_service_status_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
-      when "best_procedure_or_service"
+      when "best_service_report"
         @grid = DynamicReports::BestServiceReport.new(params["dynamic_reports_best_service_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
       when "best_public_servants_report"
@@ -100,7 +102,7 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "1"
         "service_status_report"
       when "2"
-        "best_procedure_or_service"
+        "best_service_report"
       when "3"
         "best_public_servants_report"
       when "4"
@@ -111,6 +113,22 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         "cis_services_report"
       when "7"
         "service_performance_report"
+      when "service_status_report"
+        "1"
+      when "best_service_report"
+        "2"
+      when "best_public_servants_report"
+        "3"
+      when "service_public_servants_report"
+        "4"
+      when "service_demand_report"
+        "5"
+      when "cis_services_report"
+        "6"
+      when "service_performance_report"
+        "7"
+      when "default_report"
+        "1"
       else 
         "default_report"
     end

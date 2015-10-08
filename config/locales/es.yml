@@ -887,7 +887,7 @@ es:
         overall_satisfaction: "Satisfacción promedio"
         phase: "Fase"
         status: "Estatus"
-        cis: "Lugar de evaluación"
+        cis: "Centro de atención"
         dependency: "Dependencia"
         administrative_unit: "Unidad Administrativa"
         is_open: "Estatus de encuestas del servicio"
@@ -911,6 +911,11 @@ es:
         cis_services: "Servicios en centro de atención"
         respondents_count: "Número de personas que evaluaron"
         performance: "Desempeño"
+        transparency: "Transparencia"
+        quality_service: "Calidad de servicio"
+        accessibility: "Accesibilidad"
+        infrastructure: "Infraestructura"
+        public_servant: "Servidor público"
         service_type: "Tramite, servicio o programa de apoyo "
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
@@ -956,7 +961,10 @@ es:
               blank: "Administador del servicio no puede estar vacio"
   datagrid:
     no_results: "No hay resultados"
-
+    filters:
+      xboolean:
+        "yes": "Sí"
+        "no": "No"
     form:
       export: "Exportar"
       search: "Filtrar"
