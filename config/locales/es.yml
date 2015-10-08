@@ -885,7 +885,7 @@ es:
         overall_satisfaction: "Satisfacción promedio"
         phase: "Fase"
         status: "Estatus"
-        cis: "Lugar de evaluación"
+        cis: "Centro de atención"
         dependency: "Dependencia"
         administrative_unit: "Unidad Administrativa"
         is_open: "Estatus de encuestas del servicio"
@@ -947,8 +947,8 @@ es:
     no_results: "No hay resultados"
     filters:
       xboolean:
-        yes: "Sí"
-        no: "No"
+        "yes": "Sí"
+        "no": "No"
     form:
       export: "Exportar"
       search: "Filtrar"
