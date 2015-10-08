@@ -186,7 +186,7 @@ docker_container "urbem" do
   container_name "urbem"
   link ["postgres:postgres", "redis:redis"]
   env  list_creds
-  volume ['/www/sitios/storage:/home/app/urbem/storage:rw', '/www/sitios/EvaluatuTramite:/home/app/urbem']
+  volume ['/www/sitios/EvaluatuTramite:/home/app/urbem', '/www/sitios/storage:/home/app/urbem/storage:rw']
   detach true
   port ['80:80', "443:443"]
   notifies :redeploy, "docker_container[sidekiq]", :immediately
@@ -198,7 +198,7 @@ docker_container "sidekiq" do
   image "urbem-puebla"
   container_name "sidekiq"
   link ["postgres:postgres", "redis:redis"]
-  volume ['/www/sitios/storage:/home/app/urbem/storage:rw', '/www/sitios/EvaluatuTramite:/home/app/urbem']
+  volume ['/www/sitios/EvaluatuTramite:/home/app/urbem', '/www/sitios/storage:/home/app/urbem/storage:rw']
   env list_creds
   detach true
   entrypoint "sidekiq"
