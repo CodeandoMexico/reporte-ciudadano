@@ -71,7 +71,7 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def set_services
-    @services = Service.all#.unmanaged 
+    @services = Service.unmanaged 
   end
 
   def dependency_options
