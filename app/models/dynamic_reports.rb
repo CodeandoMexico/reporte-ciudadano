@@ -118,22 +118,22 @@ module DynamicReports
       "#{record.respondents_count}"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.transparency')) do |record|
-      "#{record.overall_areas[:transparency].round(2)}"
+      "#{record.overall_areas[:transparency].round(2)}%git"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.performance')) do |record|
-      "#{record.overall_areas[:performance].round(2)}"
+      "#{record.overall_areas[:performance].round(2)}%"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.quality_service')) do |record|
-      "#{record.overall_areas[:quality_service].round(2)}"
+      "#{record.overall_areas[:quality_service].round(2)}%"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.accessibility')) do |record|
-      "#{record.overall_areas[:accessibility].round(2)}"
+      "#{record.overall_areas[:accessibility].round(2)}%"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.infrastructure')) do |record|
-      "#{record.overall_areas[:infrastructure].round(2)}"
+      "#{record.overall_areas[:infrastructure].round(2)}%"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant')) do |record|
-      "#{record.overall_areas[:public_servant].round(2)}"
+      "#{record.overall_areas[:public_servant].round(2)}%"
     end
 
 
