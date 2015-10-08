@@ -52,13 +52,11 @@
               = f.text_field :charge, class: 'form-control'
 
         %fieldset
-          .form-group.col-md-5
+          .form-group
             %h3
               = t(".services_to_assign")
-            - @services.each do |service|
-              .checkbox
-                = f.check_box :services_ids, { multiple: true }, service.id, nil
-                = f.label :services_ids, service.name, value: service.id
+            .col-md-5
+              = f.select :services_ids, @services.collect {|p| [p.name, p.id ]}, { }, { class: 'js-load_service_fields chosen-select',:multiple=>true }
 
         .actions.col-md-2
           = f.submit "Guardar", class: 'btn btn-primary'
