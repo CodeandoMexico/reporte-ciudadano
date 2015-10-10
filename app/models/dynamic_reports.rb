@@ -247,7 +247,9 @@ module DynamicReports
     filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
                                    uniq.order(:administrative_unit).map(&:administrative_unit),
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
-    filter(:disabled, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.disabled'))
+    filter(:disabled, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.active')) do |value, scope, grid|
+        scope.where(disabled: !value)
+    end
     filter(:is_service_admin, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.is_service_admin'))
     filter(:is_observer, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.is_observer'))
     filter(:dependency,
@@ -261,8 +263,8 @@ module DynamicReports
     column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name'))
     column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'))
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
-    column(:disabled, header: I18n.t('activerecord.attributes.dynamic_reports.disabled')) do |record|
-      I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{record.disabled}")
+    column(:disabled, header: I18n.t('activerecord.attributes.dynamic_reports.active')) do |record|
+      I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{!record.disabled}")
     end
     column(:is_service_admin, header: I18n.t('activerecord.attributes.dynamic_reports.is_service_admin'))do |record|
       I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{!!record.is_service_admin}")
