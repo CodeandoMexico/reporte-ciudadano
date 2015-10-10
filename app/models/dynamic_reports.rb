@@ -118,7 +118,7 @@ module DynamicReports
       "#{record.respondents_count}"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.transparency')) do |record|
-      "#{record.overall_areas[:transparency].round(2)}%git"
+      "#{record.overall_areas[:transparency].round(2)}%"
     end
     column(:overall_areas, header: I18n.t('activerecord.attributes.dynamic_reports.performance')) do |record|
       "#{record.overall_areas[:performance].round(2)}%"
@@ -230,7 +230,7 @@ module DynamicReports
     include Datagrid
 
     scope do
-      Admin.where(is_public_servant: true).joins(:services).distinct(:id)
+      Admin.includes(:services).distinct(:id)
     end
 
     filter(:id,
@@ -345,7 +345,7 @@ module DynamicReports
       record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
     end
     column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant_evaluation')) do |record|
-      record.overall_areas[:public_servant]
+     "#{record.overall_areas[:public_servant].round(2)}%"
 
     end
   end
