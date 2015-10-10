@@ -881,6 +881,7 @@ es:
         email: "Email"
         is_service_admin: "¿Administra servicios?"
         disabled: "¿Está desactivado?"
+        active: "¿Está activo?"
         is_observer: "¿Es observador?"
         overall_satisfaction: "Satisfacción promedio"
         phase: "Fase"
