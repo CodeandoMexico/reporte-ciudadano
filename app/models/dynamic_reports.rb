@@ -240,7 +240,7 @@ module DynamicReports
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
     filter(:name,
            :enum,
-           :select => scope.uniq(:id).order(:id).map{|a| ["#{a.name.presence || "" + a.surname.presence || ""  + a.second_surname.presence || ""}", a.id]},
+           :select => scope.uniq(:id).order(:id).map{|a| ["#{a.name.presence || ""} #{a.surname.presence || ""} #{a.second_surname.presence || ""}", a.id]},
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |value, scope, grid|
       scope.where(id: value)
@@ -263,7 +263,7 @@ module DynamicReports
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
     column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |record|
-      "#{record.name.presence || "" + record.surname.presence || ""  + record.second_surname.presence || ""}"
+      "#{record.name.presence || ""} #{record.surname.presence || ""} #{record.second_surname.presence || ""}"
     end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
     column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'))
