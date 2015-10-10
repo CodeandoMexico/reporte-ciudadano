@@ -230,7 +230,7 @@ module DynamicReports
     include Datagrid
 
     scope do
-      Admin.includes(:services).distinct(:id)
+      Admin.includes(:services).includes(:admins_services).distinct(:id)
     end
 
     filter(:id,
@@ -240,10 +240,16 @@ module DynamicReports
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
     filter(:name,
            :enum,
-           :select => scope.select(:name).uniq.order(:name).map(&:name),
+           :select => scope.uniq(:id).order(:id).map{|a| ["#{a.name.presence || "" + a.surname.presence || ""  + a.second_surname.presence || ""}", a.id]},
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.name'))
-
+           header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |value, scope, grid|
+      scope.where(id: value)
+    end
+    filter(:dependency,
+           :enum,
+           :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
     filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
                                    uniq.order(:administrative_unit).map(&:administrative_unit),
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
@@ -252,17 +258,15 @@ module DynamicReports
     end
     filter(:is_service_admin, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.is_service_admin'))
     filter(:is_observer, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.is_observer'))
-    filter(:dependency,
-           :enum,
-           :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
-           :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
 
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name'))
-    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'))
+    column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |record|
+      "#{record.name.presence || "" + record.surname.presence || ""  + record.second_surname.presence || ""}"
+    end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'))
     column(:disabled, header: I18n.t('activerecord.attributes.dynamic_reports.active')) do |record|
       I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{!record.disabled}")
     end
@@ -274,9 +278,12 @@ module DynamicReports
       I18n.t("activerecord.attributes.dynamic_reports.affirmation.#{record.is_observer}")
     end
     column(:service_names, header: I18n.t('activerecord.attributes.dynamic_reports.service_names')) do |record|
-      record.services.map{|b| "#{b.name}"}.join("; ")
+      if record.is_service_admin
+        record.managed_services.map(&:name).join("; ")
+      else
+        record.services.map{|b| "#{b.name || b.managed_services.map(&:name)}"}.join("; ")
+      end
     end
-
   end
 
   class BestPublicServantsReport
