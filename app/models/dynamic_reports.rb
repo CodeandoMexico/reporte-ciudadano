@@ -522,9 +522,6 @@ module DynamicReports
       record.name + " (#{I18n.t("service_type_options.#{record.service_type}")})"
     end
     column(:status, header: I18n.t('activerecord.attributes.dynamic_reports.status'))
-    column(:survey_titles, header: I18n.t('activerecord.attributes.dynamic_reports.survey_titles')) do |record|
-      record.service_surveys.map{|a| "#{a.title} - #{I18n.t("activerecord.attributes.dynamic_reports.open.#{a.open}")} "}.join(",")
-    end
   end
 
   class  Panacea
