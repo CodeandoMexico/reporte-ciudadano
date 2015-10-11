@@ -32,16 +32,6 @@ module DynamicReports
       scope.where("services.administrative_unit similar to ? ", "%(#{value.uniq.join("|")})%")
     end
 
-    filter(:cis,
-           :enum,
-           :select => scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
-           :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
-
-      scope.where("services.cis similar to ? ", "%(#{value.uniq.join("|")})%")
-    end
-
-
     filter(:service_name,
            :enum,
            :select => scope.select("services.name").uniq.order("services.name").map(&:name),
@@ -61,15 +51,17 @@ module DynamicReports
     column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
       record.service.administrative_unit
     end
-    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
-      record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
-    end
     column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
       record.service.name
     end
     column(:performance, header: I18n.t('activerecord.attributes.dynamic_reports.performance')) do |record|
       "#{record.overall_areas[:performance]} %"
-
+    end
+    column(:service_surveys, header: I18n.t('activerecord.attributes.dynamic_reports.service_surveys_count')) do |record|
+      record.service.service_surveys.count
+    end
+    column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
+      "#{record.respondents_count}"
     end
   end
 
