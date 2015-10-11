@@ -75,10 +75,10 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "best_service_report"
         @grid = DynamicReports::BestServiceReport.new(params["dynamic_reports_best_service_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
-      when "worst_service_report"
-        @grid = DynamicReports::BestServiceReport.new(params["dynamic_reports_best_service_report"])
-        @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
       when "best_public_servants_report"
+        @grid = DynamicReports::BestPublicServantsReport.new(params["dynamic_reports_best_public_servants_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_public_servants_report')
+      when "worst_public_servants_report"
         @grid = DynamicReports::WorstPublicServantsReport.new(params["dynamic_reports_worst_public_servants_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.worst_public_servants_report')
       when "service_public_servants_report"
@@ -124,7 +124,7 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         "2"
       when "best_public_servants_report"
         "3"
-      when "best_public_servants_report"
+      when "worst_public_servants_report"
         "4"
       when "service_public_servants_report"
         "5"
