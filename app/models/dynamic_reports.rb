@@ -158,15 +158,15 @@ module DynamicReports
            :default => proc { [1.month.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
 
-    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
-                                   uniq.order(:administrative_unit).map(&:administrative_unit),
-           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
-
     filter(:dependency,
            :enum,
            :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
+    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
+                                   uniq.order(:administrative_unit).map(&:administrative_unit),
+           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
 
     filter(:cis,
            :enum,
@@ -200,11 +200,11 @@ module DynamicReports
     column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.service_reports.last.created_at.to_date
     end
-    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
-      record.administrative_unit
-    end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
     end
     column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
       record.name + " (#{I18n.t("service_type_options.#{record.service_type}")})"
