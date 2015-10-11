@@ -372,15 +372,15 @@ module DynamicReports
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
 
-    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
-                                   uniq.order(:administrative_unit).map(&:administrative_unit),
-           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
-
     filter(:dependency,
            :enum,
            :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
+    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
+                                   uniq.order(:administrative_unit).map(&:administrative_unit),
+           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
 
     filter(:cis,
            :enum,
@@ -420,11 +420,11 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
-      record.administrative_unit
-    end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
     end
 
     column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
