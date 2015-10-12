@@ -883,6 +883,7 @@ es:
         email: "Email"
         is_service_admin: "¿Administra servicios?"
         disabled: "¿Está desactivado?"
+        active: "¿Está activo?"
         is_observer: "¿Es observador?"
         overall_satisfaction: "Satisfacción promedio"
         phase: "Fase"
@@ -917,14 +918,19 @@ es:
         infrastructure: "Infraestructura"
         public_servant: "Servidor público"
         service_type: "Tramite, servicio o programa de apoyo "
+        date_start: "Fecha de inicio"
+        date_end: "Fecha de fin"
+        date_range: "Rango de fechas"
+        not_qualified: "No califica"
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
           best_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa mejor evaluados globalmente"
           best_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con mejores servidores públicos"
+          worst_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con peores servidores públicos"
           service_public_servants_report: "Servidores públicos relacionados por Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
           service_demand_report: "Número de Trámites, Servicios y Programas de Apoyo realizados por Dependencia, Entidad o Institución Educativa, por fecha "
           cis_services_report: "Trámites, Servicios y Programas de Apoyo por Centros de Evaluación con su evaluación"
-          service_performance_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con su evaluación de desempeño"
+          service_performance_report: "Trámites, Servicios o Programas de Apoyo con retraso en su realización por usuario, dependencia, Entidad y por Institución Educativa"
 
       service_survey:
         title: "Titulo"
