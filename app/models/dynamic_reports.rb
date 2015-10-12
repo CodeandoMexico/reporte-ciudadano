@@ -15,7 +15,7 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
@@ -42,7 +42,11 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
     column(:dependency, order:"services.dependency", header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
@@ -80,7 +84,7 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:cis_id,
            :enum,
@@ -91,7 +95,10 @@ module DynamicReports
       scope.where(cis_id: value.uniq.join(","))
     end
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
     column(:cis_name, header: I18n.t('activerecord.attributes.dynamic_reports.cis'))do |record|
@@ -186,8 +193,11 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
-      record.service_reports.last.created_at.to_date
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.service_surveys.last.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+      record.service_surveys.last.created_at.to_date
     end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
@@ -227,6 +237,13 @@ module DynamicReports
            :select => scope.select(:id).uniq.order(:id).map(&:id),
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+
     filter(:name,
            :enum,
            :select => scope.uniq(:id).order(:id).map{|a| ["#{a.name.presence || ""} #{a.surname.presence || ""} #{a.second_surname.presence || ""}", a.id]},
@@ -251,6 +268,9 @@ module DynamicReports
 
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+      record.created_at.to_date
+    end
     column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |record|
       "#{record.name.presence || ""} #{record.surname.presence || ""} #{record.second_surname.presence || ""}"
     end
@@ -291,7 +311,7 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
@@ -327,7 +347,10 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
     column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
@@ -364,7 +387,7 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
@@ -400,7 +423,10 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
     column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
@@ -433,6 +459,12 @@ module DynamicReports
            :select => scope.select(:id).uniq.order(:id).map(&:id),
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
@@ -482,6 +514,12 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+      record.created_at.to_date
+    end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
     end
@@ -520,6 +558,12 @@ module DynamicReports
            :select => scope.select(:id).uniq.order(:id).map(&:id),
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
@@ -569,6 +613,12 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+      record.created_at.to_date
+    end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
     end
@@ -605,7 +655,7 @@ module DynamicReports
     end
     column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
     column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
+    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |record|
       record.created_at.to_date
     end
     column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception')) do |record|
