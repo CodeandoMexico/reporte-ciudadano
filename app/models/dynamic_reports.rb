@@ -45,19 +45,16 @@ module DynamicReports
     column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
-    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+    column(:dependency, order:"service.dependency", header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.service.dependency
     end
-    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+    column(:administrative_unit, order: "service.administrative_unit", header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
       record.service.administrative_unit
     end
-    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+    column(:service_name,order: "service.name" , header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
       record.service.name
     end
-    column(:performance, header: I18n.t('activerecord.attributes.dynamic_reports.performance')) do |record|
-      "#{record.overall_areas[:performance]} %"
-    end
-    column(:service_surveys, header: I18n.t('activerecord.attributes.dynamic_reports.service_surveys_count')) do |record|
+    column(:service_surveys,order: "service.service_surveys.count", header: I18n.t('activerecord.attributes.dynamic_reports.service_surveys_count')) do |record|
       record.service.service_surveys.count
     end
     column(:respondents_count, header: I18n.t('activerecord.attributes.dynamic_reports.respondents_count')) do |record|
