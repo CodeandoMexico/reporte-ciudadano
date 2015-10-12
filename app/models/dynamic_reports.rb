@@ -366,8 +366,11 @@ module DynamicReports
       record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
     end
     column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant_evaluation')) do |record|
-      "#{record.overall_areas[:public_servant].round(2)}%"
-
+      if record.overall_areas[:public_servant] < 70
+        "#{record.overall_areas[:public_servant].round(2)}%"
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_qualified')
+      end
     end
   end
 
@@ -442,7 +445,12 @@ module DynamicReports
       record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
     end
     column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant_evaluation')) do |record|
-     "#{record.overall_areas[:public_servant].round(2)}%"
+     if record.overall_areas[:public_servant].round(2) > 85
+      "#{record.overall_areas[:public_servant].round(2)}%"
+     else
+       I18n.t('activerecord.attributes.dynamic_reports.not_qualified')
+     end
+
 
     end
   end
@@ -540,7 +548,11 @@ module DynamicReports
     column(:overall_satisfaction, header: I18n.t('activerecord.attributes.dynamic_reports.overall_satisfaction')) do |record|
       elementos= record.service_surveys_reports.map(&:positive_overall_perception)
       unless elementos.blank?
-        (elementos.reduce(:+)/elementos.count).round(2).to_s + "%"
+        if (elementos.reduce(:+)/elementos.count).round(2) > 84
+          (elementos.reduce(:+)/elementos.count).round(2).to_s + "%"
+        else
+          I18n.t('activerecord.attributes.dynamic_reports.not_qualified')
+        end
       end
     end
 
