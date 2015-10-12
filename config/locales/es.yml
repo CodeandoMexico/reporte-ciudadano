@@ -919,6 +919,7 @@ es:
         date_start: "Fecha de inicio"
         date_end: "Fecha de fin"
         date_range: "Rango de fechas"
+        not_qualified: "No califica"
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
           best_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa mejor evaluados globalmente"
