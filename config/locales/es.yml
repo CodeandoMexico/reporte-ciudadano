@@ -923,7 +923,7 @@ es:
           service_public_servants_report: "Servidores públicos relacionados por Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
           service_demand_report: "Número de Trámites, Servicios y Programas de Apoyo realizados por Dependencia, Entidad o Institución Educativa, por fecha "
           cis_services_report: "Trámites, Servicios y Programas de Apoyo por Centros de Evaluación con su evaluación"
-          service_performance_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con su evaluación de desempeño"
+          service_performance_report: "Trámites, Servicios o Programas de Apoyo con retraso en su realización por usuario, dependencia, Entidad y por Institución Educativa"
 
       service_survey:
         title: "Titulo"
