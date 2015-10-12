@@ -64,6 +64,11 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     elsif params[:dynamic_reports] && params[:dynamic_reports][:id]
       params[:report_type] = get_report_type(params[:dynamic_reports][:id])
       params[:dynamic_reports] = {}.merge(:id => get_report_type(params[:report_type]))
+    elsif
+      params.keys.count == 3
+      current_report_name_array = params.keys.first.split("_")
+      params[:report_type] = current_report_name_array.last(current_report_name_array.count - 2).join("_").to_s
+      params[:dynamic_reports] = {}.merge(:id => get_report_type(params[:report_type]))
     else
       params[:dynamic_reports] = {}.merge(:id => 0)
       params[:report_type] = get_report_type(params[:dynamic_reports][:id])
