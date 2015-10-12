@@ -71,9 +71,37 @@ module RegistrationsHelper
       creds = Rack::Utils.parse_nested_query(data)
 
       params["user"] = creds["user"]
+      params["email"] = creds["user"]["email"]
+      params["password"] = creds["user"]["password"]
+      params["remember_me"] = creds["user"]["remember_me"]
       params["utf8"] = creds["utf8"]
       params["commit"] = creds["commit"]
       params.delete(:jCryption)
+
+      env["rack.request.form_hash"] = { :user => creds["user"] }
+      env["rack.request.form_hash"].delete(:jCryption)
+
+      # env["rack.request.form_vars"]
+      env["rack.request.form_vars"] = { :user => creds["user"] }
+
+      env["rack.request.form_vars"].delete(:jCryption)
+
+      Rack::Request.new(env).update_param(:user, creds["user"])
+
+      env["action_dispatch.request.request_parameters"] = { :user => {
+          :password => creds["user"]["password"],
+          :email => creds["user"]["email"],
+          :remember_me => creds["user"]["remember_me"]
+      }}
+      env["action_dispatch.request.request_parameters"].delete(:jCryption)
+
+      env["action_dispatch.request.parameters"] = { :user => {
+          :password => creds["user"]["password"],
+          :email => creds["user"]["email"],
+          :remember_me => creds["user"]["remember_me"]
+      }}
+      env["action_dispatch.request.parameters"].delete(:jCryption)
+
     end
   end
 end
