@@ -922,7 +922,10 @@ es:
         not_qualified: "No califica"
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
+          all_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa evaluados globalmente"
           best_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa mejor evaluados globalmente"
+          worst_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa peor evaluados globalmente"
+          all_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con evaluación de servidores públicos"
           best_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con mejores servidores públicos"
           worst_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con peores servidores públicos"
           service_public_servants_report: "Servidores públicos relacionados por Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
