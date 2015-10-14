@@ -66,7 +66,7 @@ module RegistrationsHelper
   end
 
   def build_params
-    if params["jCryption"]
+    if params["jCryption"] or (ENV["SSL_SECRET"] != nil and ENV["SSL_PUBLIC"] != nil)
       begin
         data = get_raw_data(params["jCryption"], session[:session_base])
         session.delete :session_base
