@@ -13,6 +13,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     end
   end
 
+  #TODO: mover esta funcionalidad de crear reportes dinámicos a
+  # un controlador de reportes dinámicos.
   def index
     dynamic_reports_select
     respond_to do |f|
