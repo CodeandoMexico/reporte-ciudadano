@@ -139,7 +139,7 @@ module DynamicReports
     include Datagrid
 
     scope do
-      Service.joins(:service_surveys).joins(:service_reports).distinct(:id)
+      Service.includes(:service_surveys).joins(:service_reports).uniq("service_surveys.id")
     end
 
     filter(:id,
@@ -205,10 +205,10 @@ module DynamicReports
     column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
       record.administrative_unit
     end
-    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+    column(:service_name, order: "services.name", header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
       record.name + " (#{I18n.t("service_type_options.#{record.service_type}")})"
     end
-    column(:service_survey_names, header: I18n.t('activerecord.attributes.dynamic_reports.service_survey_names')) do |record|
+    column(:service_survey_names, order: "service_surveys.title", header: I18n.t('activerecord.attributes.dynamic_reports.service_survey_names')) do |record|
       record.service_surveys.map{|a| a.title}.join("; ")
     end
     column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
@@ -900,10 +900,10 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+    column(:date_start, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
       record.created_at.to_date - 3.days
     end
-    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+    column(:date_end, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
@@ -917,7 +917,7 @@ module DynamicReports
         Services.service_cis_label(cis_id)
       end.join(";")
     end
-    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+    column(:service_name,order: "services.name", header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
       record.name + " (#{I18n.t("service_type_options.#{record.service_type}")})"
     end
     column(:status, header: I18n.t('activerecord.attributes.dynamic_reports.status'))
