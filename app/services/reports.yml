@@ -2,16 +2,24 @@
 - :id: 1
   :name: 'Estatus de los Trámites, Servicios y Programas de Apoyo por dependencia'
 - :id: 2
-  :name: 'Trámite, Servicios o Programas de Apoyo mejor evaluado'
+  :name: 'Trámite, Servicios o Programas de Apoyo evaluados'
 - :id: 3
-  :name: 'Servidor Público mejor evaluado'
+  :name: 'Trámite, Servicios o Programas de Apoyo mejor evaluado'
 - :id: 4
-  :name: 'Servidor Público peor evaluado'
+  :name: 'Trámite, Servicios o Programas de Apoyo peor evaluado'
 - :id: 5
-  :name: 'Trámites, Servicios o Programas de Apoyo relacionados por Servidor Público'
+  :name: 'Servidor Público evaluado'
 - :id: 6
-  :name: 'Trámites, Servicios o Programas de Apoyo realizados por usuario, por Dependencia, Entidad o por Institución educativa por fecha'
+  :name: 'Servidor Público mejor evaluado'
 - :id: 7
-  :name: 'Trámites, Servicios o Programas de Apoyo realizados por CIS con su respectiva evaluación'
+  :name: 'Servidor Público peor evaluado'
 - :id: 8
-  :name: 'Trámites, Servicios o Programas de Apoyo con retraso en su realización por usuario, dependencia, Entidad y por Institución Educativa' 
+  :name: 'Trámites, Servicios o Programas de Apoyo relacionados por Servidor Público'
+- :id: 9
+  :name: 'Trámites, Servicios o Programas de Apoyo realizados por usuario, por Dependencia, Entidad o por Institución educativa por fecha'
+- :id: 10
+  :name: 'Trámites, Servicios o Programas de Apoyo realizados por CIS con su respectiva evaluación'
+- :id: 11
+  :name: 'Trámites, Servicios o Programas de Apoyo con retraso en su realización por usuario, dependencia, Entidad y por Institución Educativa'
+- :id: 12
+  :name: 'Trámites, Servicios o Programas de Apoyo con toda su información'
