@@ -43,10 +43,10 @@ module DynamicReports
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
 
-    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+    column(:date_start, order:"service_reports.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
       record.created_at.to_date - 3.days
     end
-    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+    column(:date_end, order:"service_reports.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
     column(:dependency, order:"services.dependency", header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
