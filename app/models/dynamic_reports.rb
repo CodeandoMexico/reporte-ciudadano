@@ -295,6 +295,81 @@ module DynamicReports
     end
   end
 
+  class AllPublicServantsReport
+    include Datagrid
+
+    scope do
+      ServiceReport.joins(:service).uniq
+    end
+    filter(:id,
+           :enum,
+           :select => scope.select(:id).uniq.order(:id).map(&:id),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+
+    filter(:dependency,
+           :enum,
+           :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
+    filter(:administrative_unit,
+           :enum,
+           :select => scope.select("services.administrative_unit").
+               uniq.order("services.administrative_unit").map(&:administrative_unit),
+           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),) do |value, scope, grid|
+
+      scope.where("services.administrative_unit similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:cis,
+           :enum,
+           :select => scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
+
+      scope.where("services.cis similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:status,
+           :enum,
+           :select => scope.select(:status).uniq.map(&:status),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.status')) do |value, scope, grid|
+
+      scope.where("services.status similar to ? ", "(#{value.uniq.join("|")})%")
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:date_start, :order => "service_reports.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end,:order => "service_reports.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+      record.created_at.to_date
+    end
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.service.name
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.service.dependency
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.service.administrative_unit
+    end
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.service.cis.map{|service| "#{Services.service_cis_label(service)}"}.join("; ")
+    end
+    column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant_evaluation')) do |record|
+        "#{record.overall_areas[:public_servant].round(2)}%"
+    end
+  end
+
   class WorstPublicServantsReport
     include Datagrid
 
@@ -455,6 +530,104 @@ module DynamicReports
     end
   end
 
+  class  AllServiceReport
+    include Datagrid
+
+    scope do
+      Service.joins(:service_surveys_reports).uniq
+    end
+
+    filter(:id,
+           :enum,
+           :select => scope.select(:id).uniq.order(:id).map(&:id),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+
+    filter(:dependency,
+           :enum,
+           :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
+    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
+                                   uniq.order(:administrative_unit).map(&:administrative_unit),
+           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
+
+    filter(:cis,
+           :enum,
+           :select => scope.select(:cis).map{|a| a.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
+
+      scope.where("services.cis similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:service_name,
+           :enum,
+           :select => scope.select(:name).uniq.order(:name).map(&:name),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |value, scope, grid|
+
+      scope.where("services.name similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:service_type,
+           :enum,
+           :select => scope.select(:service_type).uniq.order(:service_type).
+               map{|a| ["#{I18n.t("service_type_options.#{a.service_type}")}", a.service_type]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_type')) do |value, scope, grid|
+
+      scope.where("services.service_type similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:status,
+           :enum,
+           :select => scope.select(:status).uniq.map(&:status),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.status')) do |value, scope, grid|
+
+      scope.where("services.status similar to ? ", "(#{value.uniq.join("|")})%")
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+      record.created_at.to_date
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.dependency
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+    end
+
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.cis.map do |cis_id|
+        Services.service_cis_label(cis_id)
+      end.join(";")
+    end
+
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.name + " (#{I18n.t("service_type_options.#{record.service_type}")})"
+    end
+
+    column(:overall_satisfaction, header: I18n.t('activerecord.attributes.dynamic_reports.overall_satisfaction')) do |record|
+      elementos= record.service_surveys_reports.map(&:positive_overall_perception)
+      unless elementos.blank?
+          (elementos.reduce(:+)/elementos.count).round(2).to_s + "%"
+      end
+    end
+  end
+
   class  BestServiceReport
     include Datagrid
 
@@ -555,6 +728,108 @@ module DynamicReports
         end
       end
     end
+  end
+
+  class  WorstServiceReport
+    include Datagrid
+
+    scope do
+      Service.joins(:service_surveys_reports).uniq
+    end
+
+    filter(:id,
+           :enum,
+           :select => scope.select(:id).uniq.order(:id).map(&:id),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+
+    filter(:dependency,
+           :enum,
+           :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
+    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
+                                   uniq.order(:administrative_unit).map(&:administrative_unit),
+           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
+
+    filter(:cis,
+           :enum,
+           :select => scope.select(:cis).map{|a| a.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
+
+      scope.where("services.cis similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:service_name,
+           :enum,
+           :select => scope.select(:name).uniq.order(:name).map(&:name),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |value, scope, grid|
+
+      scope.where("services.name similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:service_type,
+           :enum,
+           :select => scope.select(:service_type).uniq.order(:service_type).
+               map{|a| ["#{I18n.t("service_type_options.#{a.service_type}")}", a.service_type]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_type')) do |value, scope, grid|
+
+      scope.where("services.service_type similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
+
+    filter(:status,
+           :enum,
+           :select => scope.select(:status).uniq.map(&:status),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.status')) do |value, scope, grid|
+
+      scope.where("services.status similar to ? ", "(#{value.uniq.join("|")})%")
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+    column(:date_start, header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+      record.created_at.to_date
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.dependency
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+    end
+
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.cis.map do |cis_id|
+        Services.service_cis_label(cis_id)
+      end.join(";")
+    end
+
+    column(:service_name, header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |record|
+      record.name + " (#{I18n.t("service_type_options.#{record.service_type}")})"
+    end
+
+    column(:overall_satisfaction, header: I18n.t('activerecord.attributes.dynamic_reports.overall_satisfaction')) do |record|
+      elementos= record.service_surveys_reports.map(&:positive_overall_perception)
+      unless elementos.blank?
+        if (elementos.reduce(:+)/elementos.count).round(2) < 70
+          (elementos.reduce(:+)/elementos.count).round(2).to_s + "%"
+        else
+          I18n.t('activerecord.attributes.dynamic_reports.not_qualified')
+        end
+      end
+    end
 
   end
   class  ServiceStatusReport
@@ -648,7 +923,7 @@ module DynamicReports
     column(:status, header: I18n.t('activerecord.attributes.dynamic_reports.status'))
   end
 
-  class  Panacea
+  class  ServicesAllInformation
     include Datagrid
 
     scope do
