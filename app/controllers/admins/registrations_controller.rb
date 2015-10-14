@@ -1,5 +1,6 @@
 class Admins::RegistrationsController < Admins::AdminController
   skip_before_action :ensure_admin_is_active, only: [:set_password, :update]
+  append_before_action :build_params
 
   def edit
     @admin = current_admin
@@ -45,4 +46,7 @@ class Admins::RegistrationsController < Admins::AdminController
   def token_generator
     UniqueTokenGenerator.new(Admin, :authentication_token)
   end
+
+  include RegistrationsHelper
+
 end
