@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 before_filter :configure_permitted_parameters
+append_before_action :build_params
   def new
     session[:omniauth] = nil # delete omniauth saved state
     super
@@ -17,6 +18,8 @@ before_filter :configure_permitted_parameters
   end
 
   private
+
+  include RegistrationsHelper
 
   def build_resource(hash=nil)
     super
