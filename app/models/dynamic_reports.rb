@@ -927,38 +927,176 @@ module DynamicReports
     include Datagrid
 
     scope do
-      ServiceSurveyReport.includes(:service_survey).includes(:services)
+      Service.includes(:service_surveys).includes(:service_reports)
     end
 
-    column(:service_id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:title, header: I18n.t('activerecord.attributes.dynamic_reports.title')) do |record|
-      record.service_survey_title
+    filter(:id,
+           :enum,
+           :select => scope.select(:id).uniq.order(:id).map(&:id),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    filter(:created_at,
+           :date,
+           :range => true,
+           :default => proc { [1.month.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+
+    filter(:dependency,
+           :enum,
+           :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+
+    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
+                                   uniq.order(:administrative_unit).map(&:administrative_unit),
+           :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
+
+    filter(:cis,
+           :enum,
+           :select => scope.select(:cis).map{|a| a.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
+
+      scope.where("services.cis similar to ? ", "%(#{value.uniq.join("|")})%")
     end
-    column(:is_open, header: I18n.t('activerecord.attributes.dynamic_reports.is_open')) do |record|
-      I18n.t(".#{record.service_survey.open}")
+
+    filter(:service_name,
+           :enum,
+           :select => scope.select(:name).uniq.order(:name).map(&:name),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |value, scope, grid|
+
+      scope.where("services.name similar to ? ", "%(#{value.uniq.join("|")})%")
     end
-    column(:phase, header: I18n.t('activerecord.attributes.dynamic_reports.phase')) do |record|
-      I18n.t("service_survey_phase_options.#{record.service_survey_phase}")
+    filter(:service_type,
+           :enum,
+           :select => scope.select(:service_type).uniq.order(:service_type).
+               map{|a| ["#{I18n.t("service_type_options.#{a.service_type}")}", a.service_type]},
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.service_type')) do |value, scope, grid|
+
+      scope.where("services.service_type similar to ? ", "%(#{value.uniq.join("|")})%")
     end
-    column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
-    column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))
-    column(:created_at, header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |record|
+
+    filter(:status,
+           :enum,
+           :select => scope.select(:status).uniq.map(&:status),
+           :multiple => true,
+           header: I18n.t('activerecord.attributes.dynamic_reports.status')) do |value, scope, grid|
+
+      scope.where("services.status similar to ? ", "(#{value.uniq.join("|")})%")
+    end
+
+    column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
+
+    column(:date_start, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
+      record.created_at.to_date - 3.days
+    end
+    column(:date_end, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
       record.created_at.to_date
     end
+    column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |record|
+      record.name
+    end
+    column(:service_type, :order => "services.name" , header: I18n.t('activerecord.attributes.dynamic_reports.service_type')) do |record|
+      "(#{I18n.t("service_type_options.#{record.service_type}")})"
+    end
+    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+      record.dependency
+    end
+    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+      record.administrative_unit
+    end
+    column(:manager, header: I18n.t('activerecord.attributes.dynamic_reports.admins')) do |record|
+      record.service_admin.name
+    end
+    column(:admins, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant')) do |record|
+      record.admins.map(&:name).join("; ")
+    end
+    column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
+      record.cis.map do |cis_id|
+        Services.service_cis_label(cis_id)
+      end.join(";")
+    end
+    column(:title, header: I18n.t('activerecord.attributes.dynamic_reports.survey_titles')) do |record|
+      record.service_surveys.map(&:title).join(";")
+    end
+    column(:people_who_participated, header: I18n.t('activerecord.attributes.dynamic_reports.people_who_participated'))  do |record|
+      record.service_reports.map(&:respondents_count).reduce(:+)
+    end
     column(:positive_overall_perception, header: I18n.t('activerecord.attributes.dynamic_reports.positive_overall_perception')) do |record|
-      "#{record.positive_overall_perception}%"
+      if record.service_reports.order(:created_at).map(&:positive_overall_perception).last
+        "#{record.service_reports.order(:created_at).map(&:positive_overall_perception).last}%"
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_evaluated')
+      end
     end
 
 
-    column(:areas_results, header: I18n.t('activerecord.attributes.dynamic_reports.areas_results')) do |record|
-      """
-      #{I18n.t("question_criterion_options.transparency")}: #{record.areas_results[:transparency]},
-      #{I18n.t("question_criterion_options.performance")}: #{record.areas_results[:performance]},
-      #{I18n.t("question_criterion_options.quality_service")}: #{record.areas_results[:quality_service]},
-      #{I18n.t("question_criterion_options.accessibility")}: #{record.areas_results[:accessibility]},
-      #{I18n.t("question_criterion_options.infrastructure")}: #{record.areas_results[:infrastructure]},
-      #{I18n.t("question_criterion_options.public_servant")}: #{record.areas_results[:public_servant]}.
-      """
+    column(:areas_results, header: I18n.t("question_criterion_options.transparency")) do |record|
+      if record.service_reports.order(:created_at).map{|a| a.overall_areas[:transparency]}.last
+        """
+          #{record.service_reports.order(:created_at).map{|a| a.overall_areas[:transparency]}.last.round(2)} %
+        """
+      end
+
     end
+
+
+    column(:areas_results, header: I18n.t("question_criterion_options.performance")) do |record|
+      if record.service_reports.order(:created_at).map{|a| a.overall_areas[:performance]}.last
+        """
+          #{record.service_reports.order(:created_at).map{|a| a.overall_areas[:performance]}.last.round(2)} %
+        """
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_evaluated')
+      end
+
+    end
+
+    column(:areas_results, header: I18n.t("question_criterion_options.quality_service")) do |record|
+      if record.service_reports.order(:created_at).map{|a| a.overall_areas[:quality_service]}.last
+        """
+          #{record.service_reports.order(:created_at).map{|a| a.overall_areas[:quality_service]}.last.round(2)} %
+        """
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_evaluated')
+      end
+
+    end
+
+    column(:areas_results, header: I18n.t("question_criterion_options.accessibility")) do |record|
+      if record.service_reports.order(:created_at).map{|a| a.overall_areas[:accessibility]}.last
+        """
+          #{record.service_reports.order(:created_at).map{|a| a.overall_areas[:accessibility]}.last.round(2)} %
+        """
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_evaluated')
+      end
+
+    end
+
+    column(:areas_results, header: I18n.t("question_criterion_options.infrastructure")) do |record|
+      if record.service_reports.order(:created_at).map{|a| a.overall_areas[:infrastructure]}.last
+        """
+          #{record.service_reports.order(:created_at).map{|a| a.overall_areas[:infrastructure]}.last.round(2)} %
+        """
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_evaluated')
+      end
+
+    end
+
+    column(:areas_results, header: I18n.t("question_criterion_options.public_servant")) do |record|
+      if record.service_reports.order(:created_at).map{|a| a.overall_areas[:public_servant]}.last
+        """
+          #{record.service_reports.order(:created_at).map{|a| a.overall_areas[:public_servant]}.last.round(2)} %
+        """
+      else
+        I18n.t('activerecord.attributes.dynamic_reports.not_evaluated')
+      end
+    end
+
   end
 end
