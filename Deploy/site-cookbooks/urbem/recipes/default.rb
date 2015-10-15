@@ -9,6 +9,7 @@
 #
 
 Chef::Resource::DockerContainer.send(:include, Creds::Helper)
+Chef::Resource::Execute.send(:include, Creds::Helper)
 
 chef_gem 'docker-api'
 require 'docker'
