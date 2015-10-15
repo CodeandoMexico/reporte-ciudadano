@@ -109,6 +109,9 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "service_performance_report"
         @grid = DynamicReports::ServicePerformanceReport.new(params["dynamic_reports_service_performance_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_performance_report')
+      when "services_all_information_report"
+        @grid = DynamicReports::ServicesAllInformationReport.new(params["dynamic_reports_services_all_information_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.services_all_information_report')
       else
         @grid = DynamicReports::ServiceStatusReport.new(params["dynamic_reports_service_status_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
@@ -140,6 +143,9 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         "cis_services_report"
       when "11"
         "service_performance_report"
+      when "12"
+        "services_all_information_report"
+
 
       when "service_status_report"
         "1"
@@ -163,6 +169,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         "10"
       when "service_performance_report"
         "11"
+      when "services_all_information_report"
+        "12"
       when "default_report"
         "1"
       else 
