@@ -52,6 +52,10 @@ module Creds
         list_creds
     end
 
+    def ssl_secrets
+      creds_h.has_key? :ssl ? creds_h['ssl'] : {}
+    end
+
     def postgres_pwd
       creds = creds_h
       creds['postgres']['password']
