@@ -922,15 +922,21 @@ es:
         date_end: "Fecha de fin"
         date_range: "Rango de fechas"
         not_qualified: "No califica"
+        not_evaluated: "No evaluado"
+        admins: "Administradores del servicio"
         type:
           service_status_report: "Estatus de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
+          all_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa evaluados globalmente"
           best_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa mejor evaluados globalmente"
+          worst_procedure_or_service: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa peor evaluados globalmente"
+          all_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con evaluación de servidores públicos"
           best_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con mejores servidores públicos"
           worst_public_servants_report: "Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con peores servidores públicos"
           service_public_servants_report: "Servidores públicos relacionados por Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa"
           service_demand_report: "Número de Trámites, Servicios y Programas de Apoyo realizados por Dependencia, Entidad o Institución Educativa, por fecha "
           cis_services_report: "Trámites, Servicios y Programas de Apoyo por Centros de Evaluación con su evaluación"
           service_performance_report: "Trámites, Servicios o Programas de Apoyo con retraso en su realización por usuario, dependencia, Entidad y por Institución Educativa"
+          services_all_information_report: Trámites, Servicios o Programas de Apoyo con toda la información"
 
       service_survey:
         title: "Titulo"
