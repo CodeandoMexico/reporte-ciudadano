@@ -13,6 +13,8 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     end
   end
 
+  #TODO: mover esta funcionalidad de crear reportes dinámicos a
+  # un controlador de reportes dinámicos.
   def index
     dynamic_reports_select
     respond_to do |f|
@@ -64,6 +66,11 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     elsif params[:dynamic_reports] && params[:dynamic_reports][:id]
       params[:report_type] = get_report_type(params[:dynamic_reports][:id])
       params[:dynamic_reports] = {}.merge(:id => get_report_type(params[:report_type]))
+    elsif
+      params.keys.count == 3
+      current_report_name_array = params.keys.first.split("_")
+      params[:report_type] = current_report_name_array.last(current_report_name_array.count - 2).join("_").to_s
+      params[:dynamic_reports] = {}.merge(:id => get_report_type(params[:report_type]))
     else
       params[:dynamic_reports] = {}.merge(:id => 0)
       params[:report_type] = get_report_type(params[:dynamic_reports][:id])
@@ -72,12 +79,24 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "service_status_report"
         @grid = DynamicReports::ServiceStatusReport.new(params["dynamic_reports_service_status_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
+      when "all_service_report"
+        @grid = DynamicReports::AllServiceReport.new(params["dynamic_reports_all_service_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.all_procedure_or_service')
       when "best_service_report"
         @grid = DynamicReports::BestServiceReport.new(params["dynamic_reports_best_service_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_procedure_or_service')
+      when "worst_service_report"
+        @grid = DynamicReports::WorstServiceReport.new(params["dynamic_reports_worst_service_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.worst_procedure_or_service')
+      when "all_public_servants_report"
+        @grid = DynamicReports::AllPublicServantsReport.new(params["dynamic_reports_all_public_servants_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.all_public_servants_report')
       when "best_public_servants_report"
         @grid = DynamicReports::BestPublicServantsReport.new(params["dynamic_reports_best_public_servants_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.best_public_servants_report')
+      when "worst_public_servants_report"
+        @grid = DynamicReports::WorstPublicServantsReport.new(params["dynamic_reports_worst_public_servants_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.worst_public_servants_report')
       when "service_public_servants_report"
         @grid = DynamicReports::ServicePublicServantsReport.new(params["dynamic_reports_service_public_servants_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_public_servants_report')
@@ -90,6 +109,9 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "service_performance_report"
         @grid = DynamicReports::ServicePerformanceReport.new(params["dynamic_reports_service_performance_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_performance_report')
+      when "services_all_information_report"
+        @grid = DynamicReports::ServicesAllInformationReport.new(params["dynamic_reports_services_all_information_report"])
+        @title = I18n.t('activerecord.attributes.dynamic_reports.type.services_all_information_report')
       else
         @grid = DynamicReports::ServiceStatusReport.new(params["dynamic_reports_service_status_report"])
         @title = I18n.t('activerecord.attributes.dynamic_reports.type.service_status_report')
@@ -102,31 +124,53 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       when "1"
         "service_status_report"
       when "2"
-        "best_service_report"
+        "all_service_report"
       when "3"
-        "best_public_servants_report"
+        "best_service_report"
       when "4"
-        "service_public_servants_report"
+        "worst_service_report"
       when "5"
-        "service_demand_report"
+        "all_public_servants_report"
       when "6"
-        "cis_services_report"
+        "best_public_servants_report"
       when "7"
+        "worst_public_servants_report"
+      when "8"
+        "service_public_servants_report"
+      when "9"
+        "service_demand_report"
+      when "10"
+        "cis_services_report"
+      when "11"
         "service_performance_report"
+      when "12"
+        "services_all_information_report"
+
+
       when "service_status_report"
         "1"
-      when "best_service_report"
+      when  "all_service_report"
         "2"
-      when "best_public_servants_report"
+      when "best_service_report"
         "3"
-      when "service_public_servants_report"
+      when "worst_service_report"
         "4"
-      when "service_demand_report"
+      when "all_public_servants_report"
         "5"
-      when "cis_services_report"
+      when "best_public_servants_report"
         "6"
-      when "service_performance_report"
+      when "worst_public_servants_report"
         "7"
+      when "service_public_servants_report"
+        "8"
+      when "service_demand_report"
+        "9"
+      when "cis_services_report"
+        "10"
+      when "service_performance_report"
+        "11"
+      when "services_all_information_report"
+        "12"
       when "default_report"
         "1"
       else 
