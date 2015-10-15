@@ -923,7 +923,7 @@ module DynamicReports
     column(:status, header: I18n.t('activerecord.attributes.dynamic_reports.status'))
   end
 
-  class  ServicesAllInformation
+  class  ServicesAllInformationReport
     include Datagrid
 
     scope do
