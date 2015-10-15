@@ -1009,10 +1009,10 @@ module DynamicReports
       record.administrative_unit
     end
     column(:manager, header: I18n.t('activerecord.attributes.dynamic_reports.admins')) do |record|
-      record.service_admin.name
+      "#{record.service_admin.name} #{record.service_admin.surname}"
     end
     column(:admins, header: I18n.t('activerecord.attributes.dynamic_reports.public_servant')) do |record|
-      record.admins.map(&:name).join("; ")
+      record.admins.map{|a| "#{a.name} #{a.surname}" }.join("; ")
     end
     column(:cis, header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |record|
       record.cis.map do |cis_id|
