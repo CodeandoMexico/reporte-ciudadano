@@ -153,7 +153,7 @@ docker_container "commit_db" do
   container_name "backup_db"
   ignore_failure true
   action :nothing
-  notifies :run, "docker_container[urbem_create]", :immediately
+  notifies :run, "docker_image[urbem-puebla]", :immediately
   cmd_timeout 600
 end
 
@@ -175,7 +175,6 @@ docker_container 'urbem_create' do
   env list_creds
   action :run
   notifies :run, "docker_container[urbem_migrate]", :immediately
-  volume [ '/www/sitios/EvaluatuTramite:/home/app/urbem']
   cmd_timeout 1000
 end
 
@@ -187,7 +186,6 @@ docker_container 'urbem_migrate' do
   container_name "migrate_dbs"
   remove_automatically true
   env  list_creds
-  volume [ '/www/sitios/EvaluatuTramite:/home/app/urbem']
   action :nothing
   notifies :redeploy, "docker_container[urbem]", :immediately
   cmd_timeout 1000
@@ -212,7 +210,7 @@ docker_container "sidekiq" do
   image "urbem-puebla"
   container_name "sidekiq"
   link ["postgres:postgres", "redis:redis"]
-  volume ['/www/sitios/EvaluatuTramite:/home/app/urbem', '/www/sitios/storage:/home/app/urbem/storage:rw']
+  volume ['/www/sitios/storage:/home/app/urbem/storage:rw']
   env list_creds
   detach true
   entrypoint "sidekiq"
