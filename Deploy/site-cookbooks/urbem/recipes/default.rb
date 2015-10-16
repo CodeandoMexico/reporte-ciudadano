@@ -153,7 +153,7 @@ docker_container "commit_db" do
   container_name "backup_db"
   ignore_failure true
   action :nothing
-  notifies :build,  "docker_image[urbem_create]", :immediately
+  notifies :run, "docker_container[urbem_create]", :immediately
   cmd_timeout 600
 end
 
