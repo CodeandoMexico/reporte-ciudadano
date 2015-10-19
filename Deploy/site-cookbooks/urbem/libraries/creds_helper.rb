@@ -44,7 +44,7 @@ module Creds
         list_creds.push "APP_NAME=#{if creds['app_name'] then  creds['app_name'] else "urbem" end}"
         list_creds.push "HOST=#{if creds['host'] then  creds['host'] else "urbem:80" end}"
 
-        if creds.has_key? :ssl
+        if creds.has_key? 'ssl'
           list_creds.push "SSL_SECRET=#{creds['ssl']['secret']}"
           list_creds.push "SSL_PUBLIC=#{creds['ssl']['public']}"
         end
