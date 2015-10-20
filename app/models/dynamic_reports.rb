@@ -14,14 +14,17 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
            :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
+
+      scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
 
     filter(:administrative_unit,
            :enum,
@@ -83,12 +86,12 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:cis_id,
            :enum,
-           :select => scope.select(:cis_id).map{|a| a}.flatten.uniq.map{|a| [Services.service_cis_label(a.cis_id.to_s), a.cis_id]},
+           :select => scope.select(:cis_id).uniq.map{|a| a}.flatten.uniq.map{|a| [Services.service_cis_label(a.cis_id.to_s), a.cis_id]},
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
 
@@ -151,7 +154,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
 
     filter(:dependency,
@@ -241,7 +244,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
 
     filter(:name,
@@ -310,14 +313,17 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
            :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))do |value, scope, grid|
+
+      scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
 
     filter(:administrative_unit,
            :enum,
@@ -385,14 +391,17 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
            :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
+
+      scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
 
     filter(:administrative_unit,
            :enum,
@@ -464,14 +473,17 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
            :enum,
            :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
+
+      scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
 
     filter(:administrative_unit,
            :enum,
@@ -546,7 +558,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -644,7 +656,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -746,7 +758,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -849,7 +861,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -939,7 +951,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
