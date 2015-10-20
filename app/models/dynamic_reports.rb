@@ -14,7 +14,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -86,7 +86,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:cis_id,
@@ -154,7 +154,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
 
     filter(:dependency,
@@ -244,7 +244,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
 
     filter(:name,
@@ -313,7 +313,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -391,7 +391,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -473,7 +473,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -558,7 +558,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -656,7 +656,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -758,7 +758,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -861,7 +861,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -951,7 +951,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [1.year.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
