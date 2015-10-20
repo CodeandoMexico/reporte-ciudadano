@@ -398,7 +398,10 @@ module DynamicReports
            :enum,
            :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
+
+      scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
 
     filter(:administrative_unit,
            :enum,
@@ -477,7 +480,10 @@ module DynamicReports
            :enum,
            :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
+
+      scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
+    end
 
     filter(:administrative_unit,
            :enum,
