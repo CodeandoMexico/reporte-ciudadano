@@ -1,25 +1,25 @@
 ---
 - :id: 1
-  :name: 'status de Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa'
+  :name: 'Estatus de trámites (Activo, Inactivo)'
 - :id: 2
-  :name: 'Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa evaluados globalmente'
+  :name: 'Evaluación global de trámites'
 - :id: 3
-  :name: 'Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa mejor evaluados globalmente'
+  :name: 'Trámites mejor evaluados globalmente'
 - :id: 4
-  :name: 'Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa peor evaluados globalmente'
+  :name: 'Trámites peor evaluados globalmente'
 - :id: 5
-  :name: 'Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con evaluación de servidores públicos'
+  :name: 'Trámites con evaluación de servidores públicos'
 - :id: 6
-  :name: 'Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con mejores servidores públicos'
+  :name: 'Trámites con mejores servidores públicos evaluados'
 - :id: 7
-  :name: 'Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa con peores servidores públicos'
+  :name: 'Trámites con peores servidores públicos evaluados'
 - :id: 8
-  :name: 'Servidores públicos relacionados por Trámites, Servicios y Programas de Apoyo por Dependencia, Entidad o Institución Educativa'
+  :name: 'Servidores públicos relacionados por trámites'
 - :id: 9
-  :name: 'Trámites, Servicios o Programas de Apoyo realizados por demanda de usuarios, por Dependencia, Entidad o por Institución educativa por fecha'
+  :name: 'Trámites con demanda en encuestas'
 - :id: 10
-  :name: 'Trámites, Servicios y Programas de Apoyo por Centros de Evaluación con su evaluación'
+  :name: 'Evaluación de trámites por centros de atención '
 - :id: 11
-  :name: 'Trámites, Servicios o Programas de Apoyo con retraso en su realización por usuario, dependencia, Entidad y por Institución Educativa'
+  :name: 'Trámites con retraso en su realización'
 - :id: 12
-  :name: 'Trámites, Servicios o Programas de Apoyo con toda su información'
+  :name: 'Trámites con toda la información'
