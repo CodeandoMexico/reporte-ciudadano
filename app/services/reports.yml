@@ -1,25 +1,25 @@
 ---
 - :id: 1
-  :name: 'Estatus de trámites (Activo, Inactivo)'
+  :name: '1. Estatus de trámites (Activo, Inactivo)'
 - :id: 2
-  :name: 'Evaluación global de trámites'
+  :name: '2. Evaluación global de trámites'
 - :id: 3
-  :name: 'Trámites mejor evaluados globalmente'
+  :name: '3. Trámites mejor evaluados globalmente'
 - :id: 4
-  :name: 'Trámites peor evaluados globalmente'
+  :name: '4. Trámites peor evaluados globalmente'
 - :id: 5
-  :name: 'Trámites con evaluación de servidores públicos'
+  :name: '5. Trámites con evaluación de servidores públicos'
 - :id: 6
-  :name: 'Trámites con mejores servidores públicos evaluados'
+  :name: '6. Trámites con mejores servidores públicos evaluados'
 - :id: 7
-  :name: 'Trámites con peores servidores públicos evaluados'
+  :name: '7. Trámites con peores servidores públicos evaluados'
 - :id: 8
-  :name: 'Servidores públicos relacionados por trámites'
+  :name: '8. Servidores públicos relacionados por trámites'
 - :id: 9
-  :name: 'Trámites con demanda en encuestas'
+  :name: '9. Trámites con demanda en encuestas'
 - :id: 10
-  :name: 'Evaluación de trámites por centros de atención '
+  :name: '10. Evaluación de trámites por centros de atención'
 - :id: 11
-  :name: 'Trámites con retraso en su realización'
+  :name: '11. Trámites con retraso en su realización'
 - :id: 12
-  :name: 'Trámites con toda la información'
+  :name: '12. Trámites con toda la información'
