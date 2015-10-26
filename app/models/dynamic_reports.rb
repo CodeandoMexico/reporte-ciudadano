@@ -90,7 +90,9 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+      scope.where("cis_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:cis_id,
            :enum,
