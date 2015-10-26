@@ -12,10 +12,13 @@ module DynamicReports
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
     filter(:created_at,
-           :date,
-           :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+          :date,
+          :range => true,
+          :default => proc { [1.month.ago.to_date, Date.today]},
+          header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+
+     scope.where("service_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -87,7 +90,9 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+      scope.where("cis_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:cis_id,
            :enum,
@@ -155,7 +160,9 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |value, scope, grid|
+      scope.where("service_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -244,8 +251,10 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))
+           :default => proc { [1.year.ago.to_date, Date.today]},
+           header: I18n.t('activerecord.attributes.dynamic_reports.created_at'))  do |value, scope, grid|
+      scope.where("admins.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:name,
            :enum,
@@ -314,7 +323,10 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+
+      scope.where("service_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -392,7 +404,10 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+
+      scope.where("service_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -474,7 +489,10 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+
+      scope.where("service_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -559,7 +577,10 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+
+      scope.where("service_survey_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -657,7 +678,10 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))do |value, scope, grid|
+
+      scope.where("service_survey_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -759,7 +783,10 @@ module DynamicReports
            :date,
            :range => true,
            :default => proc { [1.month.ago.to_date, Date.today]},
-           header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
+           header: I18n.t('activerecord.attributes.dynamic_reports.date_range')) do |value, scope, grid|
+
+      scope.where("service_survey_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
+    end
 
     filter(:dependency,
            :enum,
@@ -1002,10 +1029,7 @@ module DynamicReports
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
 
-    column(:date_start, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
-      record.created_at.to_date - 3.days
-    end
-    column(:date_end, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+    column(:created_at, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
     column(:name, header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |record|
