@@ -1029,7 +1029,6 @@ module DynamicReports
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
 
-
     column(:created_at, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
