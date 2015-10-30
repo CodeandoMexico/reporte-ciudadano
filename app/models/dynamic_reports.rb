@@ -888,7 +888,7 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [1.month.ago.to_date, Date.today]},
+           :default => proc { [Service.all.select(:created_at).order("created_at ASC").first.created_at, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
@@ -939,10 +939,7 @@ module DynamicReports
     end
 
     column(:id, header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
-    column(:date_start, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_start')) do |record|
-      record.created_at.to_date - 3.days
-    end
-    column(:date_end, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.date_end')) do |record|
+    column(:created_at, order: "services.created_at", header: I18n.t('activerecord.attributes.dynamic_reports.created_at')) do |record|
       record.created_at.to_date
     end
     column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
