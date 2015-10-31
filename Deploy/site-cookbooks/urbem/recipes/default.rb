@@ -217,3 +217,7 @@ docker_container "sidekiq" do
   action :run
   cmd_timeout 600
 end
+
+execute "Change owner of the storage volume" do
+  command "docker exec urbem chown app:app /home/app/urbem/public/storage"
+end
