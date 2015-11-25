@@ -1,0 +1,16 @@
+<% if ENV['SSL_SECRET'] != nil and ENV['SSL_PUBLIC'] %>
+
+$(function () {
+    $("#new_user").jCryption({
+        getKeysURL: "/rsakeys",
+        handshakeURL: "/rsakeys",
+        formFieldSelector: ':input:not([name=authenticity_token])'
+    });
+
+    $("#new_admin").jCryption({
+        getKeysURL: "/rsakeys",
+        handshakeURL: "/rsakeys",
+        formFieldSelector: ':input:not([name=authenticity_token])'
+    });
+});
+<% end %>

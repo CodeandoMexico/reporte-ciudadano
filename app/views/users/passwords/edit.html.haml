@@ -1,0 +1,15 @@
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put,class: 'form-short-stacked' }) do |f| 
+  %h2=t('.title')
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+  .form-group
+    = f.label :password, t('form.labels.password')
+    .row
+      .col-lg-12
+        = f.password_field :password, placeholder: t('form.placeholders.password'), class: 'form-control', :autofocus => true
+  .form-group
+    = f.label :password_confirmation, t('form.labels.password_confirmation')
+    .row
+      .col-lg-12
+        = f.password_field :password_confirmation, placeholder: t('form.placeholders.password'), class: 'form-control'
+  .actions= f.submit t('.change'), class: 'btn btn-lg btn-primary btn-block'

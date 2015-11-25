@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
+before_filter :configure_permitted_parameters
+append_before_action :build_params
   def new
     session[:omniauth] = nil # delete omniauth saved state
     super
@@ -18,6 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
+  include RegistrationsHelper
+
   def build_resource(hash=nil)
     super
     if session[:omniauth]
@@ -28,5 +31,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def omniauth_hash
     session[:omniauth].deep_symbolize_keys
+  end
+
+  protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up).push(:name, :email, :password)
   end
 end
