@@ -1,5 +1,5 @@
 class CisEvaluationsController < ApplicationController
-  layout 'observers'
+  layout 'admins'
   before_action :authenticate_user_or_admin!
   before_action :authorize_observer
   before_action :set_search, only: :show
