@@ -30,3 +30,11 @@
           - if current_admin
             .font-titles
               = @title_page
+
+      - unless @cis.nil? || @cis.kind_of?(Array)
+        %div
+          %h3
+            .text-one-line
+              = link_to evaluations_path do
+                %span.glyphicon.glyphicon-chevron-left
+              = t("cis_evaluations.show.cis_evaluation_for", name: @cis.name)
