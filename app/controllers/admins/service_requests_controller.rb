@@ -68,7 +68,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   def service_requests_for_search
-    if current_admin.is_super_admin?
+    if current_admin.is_super_admin? || current_admin.is_observer
       ServiceRequest.unscoped
     else
       Admins.service_requests_for(current_admin, {})
