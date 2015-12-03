@@ -1,7 +1,21 @@
 <% if ENV['SSL_SECRET'] != nil and ENV['SSL_PUBLIC'] %>
 
+var blacklist_paths_array = new Array("/users/password/new", "/admins/password/new",
+				"/admins/password","/users/password");
+
+function an_element_in_array(an_element, an_array){
+		found = false;
+		for (i = 0; i < an_array.length && !found; i++) {
+				if (an_array[i] === an_element) {
+						found = true;
+				}
+		}
+		return found;
+
+}
+
 $(function () {
-		if(!(window.location.pathname in ["/users/password", "/admins/password/new"])) {
+		if(!(an_element_in_array(window.location.pathname, blacklist_paths_array))) {
 				$("#new_user").jCryption({
 						getKeysURL: "/rsakeys",
 						handshakeURL: "/rsakeys",
