@@ -40,7 +40,7 @@
             = t('crud.delete')
       %tbody
         - @service_requests.each do |service_request|
-          -if current_admin.id ==  service_request.public_servant_id || !Admin.find(current_admin.id).is_public_servant
+          -if current_admin.id ==  service_request.public_servant_id || !Admin.find(current_admin.id).is_public_servant || current_admin.is_observer
             %tr
               %td= link_to service_request.id, edit_admins_service_request_path(service_request)
               %td= l service_request.created_at, format: :short
