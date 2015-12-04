@@ -50,11 +50,18 @@
                 %td= service.service_fields_names
                 %td
                   .btn-group
-                    = link_to edit_admins_service_path(service), class: 'btn btn-default' do
+                    = link_to edit_admins_service_path(service), class: 'btn btn-default',
+                    "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.edit')}" do
                       %span.glyphicon.glyphicon-wrench
-                    = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
+                    = link_to admins_service_path(service), method: :delete,
+                    data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger',
+                    disabled: service.cant_be_deleted?,
+                    "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.delete')}" do
                       %span.glyphicon.glyphicon-trash
-                    = link_to t(".disable"), disable_service_admins_services_path(id: "#{service.id}"), class: "btn btn-danger", :data => {:confirm => t(".disable_service_confirm")}
+                    = link_to t(".disable"), disable_service_admins_services_path(id: "#{service.id}"),
+                    class: "btn btn-danger", :data => {:confirm => t(".disable_service_confirm")},
+                    "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.disable')}"
+
 
     .tab-pane{:id=>"disabled"}
       .table-responsive
@@ -70,11 +77,17 @@
                 %td= service.service_fields_names
                 %td
                   .btn-group
-                    = link_to edit_admins_service_path(service), class: 'btn btn-default' do
+                    = link_to edit_admins_service_path(service), class: 'btn btn-default',
+                     "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.edit')}" do
                       %span.glyphicon.glyphicon-wrench
-                    = link_to admins_service_path(service), method: :delete, data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn', class: 'btn btn-danger', disabled: service.cant_be_deleted? do
+                    = link_to admins_service_path(service), method: :delete,
+                    data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn',
+                    class: 'btn btn-danger', disabled: service.cant_be_deleted?,
+                    "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.delete')}" do
                       %span.glyphicon.glyphicon-trash
-                    = link_to t(".enable"), enable_service_admins_services_path(id: "#{service.id}"), class: "btn btn-success", :data => {:confirm => t(".enable_service_confirm")}
+                    = link_to t(".enable"), enable_service_admins_services_path(id: "#{service.id}"),
+                    class: "btn btn-success", :data => {:confirm => t(".enable_service_confirm")},
+                     "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.activate')}"
 
 
 
@@ -89,10 +102,12 @@
       %tr
         %td= status.name
         %td
-          = link_to edit_admins_status_path(status), class: 'btn btn-default' do
+          = link_to edit_admins_status_path(status), class: 'btn btn-default',
+          "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.edit')}" do
             %span.glyphicon.glyphicon-wrench
 
 
 :javascript
   $(document).ready(loadChosen);
   $(document).on('page:load', loadChosen);
+  $('[data-toggle="tooltip"]').tooltip()
