@@ -1,0 +1,7 @@
+es:
+  admin:
+    services:
+      delete: "Borrar"
+      edit: "Editar"
+      disable: "No lo borra"
+      activate: "Lo vuelve a activar"
