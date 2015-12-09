@@ -71,7 +71,7 @@ module RegistrationsHelper
         data = get_raw_data(params["jCryption"], session[:session_base])
         session.delete :session_base
       rescue
-        # error ocacionado por la cache del navegador
+        # error ocasionado por la cache del navegador
         session.delete :session_base
         flash[:notice] = "Algo fue mal, por favor refresca la pagina"
         return
@@ -90,6 +90,7 @@ module RegistrationsHelper
         h = creds["admin"]
       end
       params["email"] = h["email"]
+      params["telephone_number"] = h["telephone_number"]
       params["password"] = h["password"]
       params["remember_me"] = h["remember_me"]
       params["utf8"] = creds["utf8"]
