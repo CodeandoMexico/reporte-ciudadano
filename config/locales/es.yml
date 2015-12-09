@@ -672,7 +672,7 @@ es:
       text: "Texto"
       answer_type: "Tipo de respuesta"
       value: "Valor %"
-      who: "¿Quién te atendió?*"
+      who: "¿Quién te atendió?"
       second_surname: "Segundo apellido:"
       surname: "Primer apellido:"
       description_public_servant: "Describe al funcionario"
