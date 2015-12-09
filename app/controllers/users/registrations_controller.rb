@@ -35,6 +35,6 @@ append_before_action :build_params
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:name, :email, :password)
+    devise_parameter_sanitizer.for(:sign_up).push(:name, :email, :telephone_number, :password)
   end
 end
