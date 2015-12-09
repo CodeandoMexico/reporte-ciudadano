@@ -4,7 +4,7 @@
   .other-logins.clearfix.l-margin-m-bottom
     %p.other-logins-registration
       ¿Ya eres usuario?
-      = link_to 'Inicia Sesión', new_user_session_path
+      = link_to t('devise.login'), new_user_session_path
     %div.social-sign-in
       = link_to user_omniauth_authorize_path(:facebook), class: 'social-signup social-signup-fb l-margin-s-right' do
         %span.i-facebook.rc-icon
@@ -12,8 +12,9 @@
       = link_to user_omniauth_authorize_path(:twitter), class: 'social-signup social-signup-tt' do
         %span.i-twitter.rc-icon
         %span.social-signup-text Twitter
-  = f.email_field :email, autofocus: true, class: "form-control #{f.object.password_required? ? 'top-field' : 'one-field'}", placeholder: 'Email'
+  = f.email_field :email, autofocus: true, class: "form-control #{f.object.password_required? ? 'top-field' : 'one-field'}", placeholder: t('devise.email')
+  = f.text_field :telephone_number, autofocus: true, class: "form-control", placeholder: t('devise.telephone_number')
   - if f.object.password_required?
-    = f.password_field :password, placeholder: 'Password', class: 'form-control si'
-    = f.password_field :password_confirmation, placeholder: 'Confirmación password', class: 'form-control bottom-field'
-  .actions= f.submit "Registrarme", class: 'btn btn-lg btn-primary btn-block'
+    = f.password_field :password, placeholder: t('devise.password'), class: 'form-control si'
+    = f.password_field :password_confirmation, placeholder: t('devise.password_confirmation'), class: 'form-control bottom-field'
+  .actions= f.submit t('devise.register'), class: 'btn btn-lg btn-primary btn-block'

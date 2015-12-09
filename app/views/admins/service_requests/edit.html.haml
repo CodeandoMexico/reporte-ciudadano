@@ -52,6 +52,8 @@
           - if @service_request.service_fields?
             - @service_request.service_fields_hash.each do |service_field|
               %p= "#{service_field[:name]}: #{service_field[:value]}"
+          - unless @service_request.requester.telephone_number.nil?
+            %p= t('devise.telephone_number') + " " + @service_request.requester.telephone_number
 
           - if @service_request.media.present?
             .image.tight
