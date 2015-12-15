@@ -102,9 +102,9 @@ es:
   errors: &errors
     format: ! '%{message}'
     messages:
-      phase: "Fase no puede estar vacio"
-      title: "Titulo no puede estar vacio"
-      service: "Servicio no puede estar vacio"
+      phase: "Fase no puede estar vacío"
+      title: "Titulo no puede estar vacío"
+      service: "Servicio no puede estar vacío"
       accepted: "debe ser aceptado"
       blank: "No puede estar en blanco"
       confirmation: "no coincide con la confirmación"
@@ -952,7 +952,7 @@ es:
         comment:
           attributes:
             content:
-              blank: "El comentario no puede estar vacio"
+              blank: "El comentario no puede estar vacío"
         question:
           attributes:
             answer_type:
@@ -961,17 +961,17 @@ es:
         service:
           attributes:
             name:
-              blank: "Nombre no puede estar vacio ni tener caracteres especiales"
+              blank: "Nombre no puede estar vacío ni tener caracteres especiales"
             service_type:
-              blank: "Tipo de servicio no puede estar vacio"
+              blank: "Tipo de servicio no puede estar vacío"
             dependency:
-              blank: "Dependencia no puede estar vacio"
+              blank: "Dependencia no puede estar vacío"
             administrative_unit:
-              blank: "Unidad administrativa no puede estar vacio"
+              blank: "Unidad administrativa no puede estar vacío"
             cis:
-              blank: "Cis no puede estar vacio"
+              blank: "Cis no puede estar vacío"
             service_admin_id:
-              blank: "Administador del servicio no puede estar vacio"
+              blank: "Administador del servicio no puede estar vacío"
   datagrid:
     no_results: "No hay resultados"
     filters:
