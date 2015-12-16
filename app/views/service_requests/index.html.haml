@@ -4,9 +4,9 @@
 
 = search_form_for @search, method: :get, class: "filters form-inline" do |f|
   .form-group.col-md-3
-    = f.text_field :date_gteq, placeholder: t('.start_date'), class: 'datepicker form-control col-lg-6'
+    = f.text_field :date_gteq, placeholder: t('.start_date'), class: 'datepicker form-control from col-lg-6'
   .form-group.form-group-separator.col-md-3
-    = f.text_field :date_lteq, placeholder: t('.end_date'), class: 'datepicker form-control col-lg-6'
+    = f.text_field :date_lteq, placeholder: t('.end_date'), class: 'datepicker form-control to col-lg-6'
   .form-group.form-group-separator.col-md-3
     = f.collection_select :service_id_eq, Service.active, :id, :name, { include_blank: t('.service') }, class: 'chosen-select'
   .form-group.form-group-separator.col-md-3
@@ -40,7 +40,7 @@
       - @service_requests.each do |service_request|
         %tr
           %td= link_to service_request.id, service_request
-          %td= l service_request.created_at, format: :short
+          %td= l service_request.created_at, format: :long
           %td= link_to service_request.service_name, service_request_path(service_request)
           %td= truncate service_request.description
           %td= service_request.status
@@ -51,3 +51,12 @@
 :javascript
   $(document).ready(loadChosen);
   $(document).on('page:load', loadChosen);
+
+  $(function() {
+    $( ".to" ).datepicker({
+    dateFormat: 'mm/dd/yy',
+    });
+    $( ".from" ).datepicker({
+    dateFormat: 'mm/dd/yy',
+    });
+  });
