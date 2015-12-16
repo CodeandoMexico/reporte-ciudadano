@@ -45,8 +45,9 @@
                       <%= f.submit t('service_report.new'), class: 'hidden' %>
                   <% end %>
 
+                  <li><%= link_to t('service_report.go_to_index'), service_survey_reports_path(service_survey_id: survey.id),"target"=> "_blank" %></li>
                   <li><%= link_to t('service_report.new'), "#", class: "js-generate-report", "data-submit" => "#new-report-#{survey.id}" %></li>
-                  <li><%= link_to t('service_report.go_to_index'), service_survey_reports_path(service_survey_id: survey.id) %></li>
+
                 </ul>
               </div>
 
