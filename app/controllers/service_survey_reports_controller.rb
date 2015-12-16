@@ -2,7 +2,6 @@ class ServiceSurveyReportsController < ApplicationController
 
   before_action :set_reports_for_index, :only => :index
 
-     layout 'observers'
 
   def index
     @service_surveys_reports = set_reports_for_index
