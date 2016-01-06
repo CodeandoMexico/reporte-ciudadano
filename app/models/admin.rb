@@ -86,6 +86,9 @@ class Admin < ActiveRecord::Base
     services.pluck(:name).join(", ")
   end
 
+  def full_name
+    "#{self.name} #{self.surname} #{self.second_surname}"
+  end
   private
 
   def generate_authentication_token
