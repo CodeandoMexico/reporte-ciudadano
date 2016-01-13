@@ -545,13 +545,13 @@ ul
 .report-show {
 
   .report-show-title {
-    background-color: #FAFAFA;
-    height: 60px;
+    background-color: transparent;
+    color: #045396;
+    min-height: 60px;
     font-size: 30px;
     padding: 0 20px;
     line-height: 60px;
     margin: 0;
-    overflow: scroll;
   }
   .report-show-map {
     background-color: #CCCCCC;
