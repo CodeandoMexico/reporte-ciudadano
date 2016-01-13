@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     get 'users/finish_registration', to: 'users/registrations#finish_registration'
   end
 
-  resource :rsakeys
   resources :comments
 
   resources :quejas_y_sugerencias, as: :service_requests, controller: :service_requests  , :path_names => { :new => "nuevo"}do
