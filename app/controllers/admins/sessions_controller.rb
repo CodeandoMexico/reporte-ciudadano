@@ -1,7 +1,5 @@
 class Admins::SessionsController < Devise::SessionsController
   layout 'admins'
-  append_before_action :build_params, only: [:create]
-
 
   def after_sign_in_path_for(resource)
     return admins_service_requests_path if current_admin.is_public_servant?
@@ -13,6 +11,5 @@ class Admins::SessionsController < Devise::SessionsController
   end
 
   private
-  include RegistrationsHelper
 
 end
