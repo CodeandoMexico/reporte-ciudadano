@@ -108,17 +108,6 @@ directory "/www" do
   action :create
 end
 
-execute "Crypto SSL secret" do
-  command "openssl genrsa -out #{ssl_secrets["secret"]} 1024"
-  creates ssl_secrets["secret"]
-end
-
-execute "Crypto SSL public" do
-  command "openssl rsa -pubout -in #{ssl_secrets["secret"]} -out #{ssl_secrets["public"]}"
-  creates ssl_secrets["public"]
-end
-
-
 directory "/www/sitios/" do
   owner "root"
   group "root"
@@ -196,9 +185,7 @@ docker_container "urbem" do
   container_name "urbem"
   link ["postgres:postgres", "redis:redis"]
   env  list_creds
-  volume ['/www/sitios/storage:/home/app/urbem/storage:rw',
-          "#{ssl_secrets['secret']}:#{ssl_secrets['secret']}:ro",
-          "#{ssl_secrets['public']}:#{ssl_secrets['public']}:ro"]
+  volume ['/www/sitios/storage:/home/app/urbem/storage:rw']
   detach true
   port ['80:80', "443:443"]
   notifies :redeploy, "docker_container[sidekiq]", :immediately
