@@ -57,6 +57,10 @@ module Services
     Admins.public_servants_for(admin).pluck(:name)
   end
 
+    def self.public_servants_fullname_options(admin)
+    Admins.public_servants_for(admin)
+  end
+
   def self.generate_homoclave_for(service)
     time = Time.new
     "#{type_of_service(service.service_type.to_s)}#{service.dependency.to_s[0]}#{service.administrative_unit.to_s[0] }#{time.strftime("%Y%m%d%H%M%S")}"

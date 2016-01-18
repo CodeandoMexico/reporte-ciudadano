@@ -1,6 +1,6 @@
 class Admins::PublicServantsController < ApplicationController
 
-  helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?,:service_cis_options,:public_servants_name_options,:record_number_options
+  helper_method :dependency_options, :administrative_unit_options, :is_assigned_to_public_servant?,:service_cis_options,:public_servants_name_options,:public_servants_fullname_options,:record_number_options
   before_action :set_search, only: :index
   before_action :set_title
   layout 'admins'
@@ -115,18 +115,22 @@ class Admins::PublicServantsController < ApplicationController
     Services.public_servants_name_options(current_admin)
   end
 
+    def public_servants_fullname_options
+    Services.public_servants_fullname_options(current_admin)
+  end
+
   def record_number_options
     Services.record_number_options
   end
 
   def search_public_servants
     if params[:q].present?
-      @public_servants = @public_servants.where(name: params[:q][:name] ) unless params[:q][:name].blank?
+      @public_servants = @public_servants.where(id: params[:q][:name]) unless params[:q][:name].blank?
       @public_servants = @public_servants.where(dependency: params[:q][:dependency]) unless params[:q][:dependency].blank?
       @public_servants = @public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @public_servants = @public_servants.where(record_number:  params[:q][:record_number] ) unless params[:q][:record_number].blank?
 
-      @disabled_public_servants = @disabled_public_servants.where(name: params[:q][:name] ) unless params[:q][:name].blank?
+      @disabled_public_servants = @disabled_public_servants.where(id: params[:q][:name]) unless params[:q][:name].blank?
       @disabled_public_servants = @disabled_public_servants.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
       @disabled_public_servants = @disabled_public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @disabled_public_servants = @disabled_public_servants.where(record_number: params[:q][:record_number] ) unless params[:q][:record_number].blank?
