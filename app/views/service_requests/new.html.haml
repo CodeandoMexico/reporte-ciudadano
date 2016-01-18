@@ -22,7 +22,7 @@
       .form-group.request_service_id.hide
         = f.label :public_servant_id, t('form.labels.who'), class: 'col-md-2 control-label font-title-table'
         .col-md-10
-          = f.select :public_servant_id, @public_servant_admins.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' ,:onchange=>"changeWho()"}
+          = f.select :public_servant_id, @public_servant_admins.collect {|p| [ "#{p.name} #{p.charge}",  p.id] }, { prompt: t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' ,:onchange=>"changeWho()"}
 
       .form-group.request_service_description.hide
         = f.label :public_servant_description, t('form.labels.description_public_servant'), class: 'col-md-2 control-label font-title-table'

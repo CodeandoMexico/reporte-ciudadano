@@ -5,7 +5,7 @@ $('.request_service_id').addClass("hide");
 	$('#service_request_public_servant_id').empty();
 	$('#service_request_public_servant_id').trigger("chosen:updated");
 	<%@admins_services.each_with_index do |value, index|%>
-	  <%@array_line[index] = value.name.to_s%>
+	  <%@array_line[index] = "#{value.name} - #{value.charge}" %>
 	  <%@array_id[index] = value.id.to_s;%>
 	<%end%>
 	<%@array_line[@array_line.size] = "No me acuerdo"%>
