@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209025931) do
+ActiveRecord::Schema.define(version: 20160118214621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,8 +219,10 @@ ActiveRecord::Schema.define(version: 20151209025931) do
     t.integer  "service_surveys_count", default: 0
     t.text     "homoclave"
     t.text     "status",                default: "activo"
+    t.integer  "comptroller_admin_id"
   end
 
+  add_index "services", ["comptroller_admin_id"], name: "index_services_on_comptroller_admin_id", using: :btree
   add_index "services", ["service_admin_id"], name: "index_services_on_service_admin_id", using: :btree
 
   create_table "services_service_surveys", force: :cascade do |t|

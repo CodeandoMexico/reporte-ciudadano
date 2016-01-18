@@ -666,6 +666,7 @@ es:
       service_type: "Tipo de servicio"
       cis: "Centros de atención*"
       admin_id: "Administrador de servicio"
+      comptroller_id: "Contraloria"
       services: "Trámites"
       phase: "Etapa de la encuesta"
       criterion: "Criterio a evaluar"

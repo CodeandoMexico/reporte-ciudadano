@@ -43,6 +43,13 @@
       = f.label :service_admin_id, "#{t('form.labels.admin_id')}*", class: 'col-lg-2 control-label'
       .col-lg-8
         = f.select :service_admin_id, @available_admins.collect{|opt| [ "#{opt.name} #{opt.surname} #{opt.second_surname}", opt.id]},{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
+  %fieldset
+    .form-group
+      = f.label :comptroller_admin_id, "#{t('form.labels.comptroller_id')}*", class: 'col-lg-2 control-label'
+      .col-lg-8
+        = f.select :comptroller_admin_id, @available_admins.collect{|opt| [ "#{opt.name} #{opt.surname} #{opt.second_surname}", opt.id]},{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
+
+        
 
   =t('service_requests.new.rules')
   %hr
