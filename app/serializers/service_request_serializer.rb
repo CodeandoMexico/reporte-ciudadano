@@ -2,7 +2,7 @@ class ServiceRequestSerializer < ActiveModel::Serializer
   self.root = 'request'
   attributes :service_request_id, :status, :status_notes, :service_name,
              :service_code, :description, :requested_datetime, :updated_datetime,
-             :address, :lat, :long, :media_url
+             :address, :media_url
 
   def service_request_id
     object.id
@@ -32,13 +32,4 @@ class ServiceRequestSerializer < ActiveModel::Serializer
   def updated_datetime
     object.updated_at
   end
-
-  def long
-    object.lng.to_f
-  end
-
-  def lat
-    object.lat.to_f
-  end
-
 end

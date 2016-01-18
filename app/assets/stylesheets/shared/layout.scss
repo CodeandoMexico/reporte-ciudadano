@@ -22,14 +22,20 @@
   margin-top: 0px;
 }
 
+.pipe-left{
+    display: inline;
+    padding: 0 10px;
+    border-left: solid 1px black;
+}
+
 #wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   /* Negative indent footer by its height */
-  margin: 0 auto -100px;
+  margin: 0 auto 0px;
   /* Pad bottom by footer height */
-  padding: 0 0 100px;
+  padding: 0 0 50px;
 }
 
 #wrap > .container {
@@ -40,12 +46,30 @@
   padding: 15px;
 }
 
-#footer {
-  height: 100px;
-  background-color: #303030;
-  color: #FFF;
+navbar-logo-full {
+  width: 260px !important;
+}
 
-  .footer-logo {
-    margin: 0 auto;
-  }
+img.navbar-logo {
+  width: 160px;
+}
+
+.navbar-nav {
+  padding: 5px;
+}
+
+.pagination-right {
+  float: right;
+}
+
+#footer{
+  height: 35px;
+  color: #FFF;
+  padding-bottom: 0;
+  background: url(image_path('footer.png')) left bottom;
+  background-size: contain;
+}
+
+.table-responsive {
+  overflow-x: visible;
 }
