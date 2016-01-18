@@ -26,6 +26,7 @@ class Service < ActiveRecord::Base
      validates_presence_of :administrative_unit
      validates_presence_of :cis
      validates_presence_of :service_admin_id
+     validates_presence_of :comptroller_admin_id
 
   scope :with_open_surveys, ->{
     joins(:service_surveys)
