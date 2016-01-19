@@ -6,7 +6,10 @@
 
 = search_form_for @search, url: admins_service_admins_path, method: :get, class: "filters form-inline" do |f|
   .form-group.col-md-6
-    = f.select :name, service_admins_name_options, { prompt: t('.name') }, class: 'chosen-select'
+    = f.select :id,
+                service_admins_name_options.map{|e| [e.join(" "), e[0]]},
+                { prompt: t('.name') },
+                class: 'chosen-select'
   .form-group.col-md-6
     = f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'
   .form-group.col-md-6

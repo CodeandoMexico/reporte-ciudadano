@@ -39,7 +39,7 @@ feature 'Managing service requests' do
       end
       expect(current_path).to eq service_request_path(service_request)
       expect(page).to have_content(comment_content)
-      expect(page).to have_xpath("//img[@src=\"/uploads/comment/image/1/comment_avatar.png\"]")
+      expect(page).to have_xpath("//img[contains(@src, 'avatar.png')]")
     end
 
     def expect_service_request_email_sent_to(email)

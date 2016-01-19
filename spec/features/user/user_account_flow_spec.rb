@@ -26,8 +26,9 @@ feature 'Signing in' do
       fill_in 'user[email]', with: 'eddie@myemail.com'
       fill_in 'user[password]', with: 'superinsecurepassword'
       fill_in 'user[password_confirmation]', with: 'superinsecurepassword'
+      fill_in 'user[telephone_number]', with: "2222222222"
     end
-    click_button 'Registrarme'
+    click_button "Regístrate"
     expect(page).to have_content 'eddie@myemail.com'
     expect(current_url).to eq root_url
   end

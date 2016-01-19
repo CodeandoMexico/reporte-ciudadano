@@ -10,7 +10,7 @@
 
 <%= search_form_for @search, url: admins_public_servants_path, method: :get, class: "filters form-inline" do |f|%>
   <div class="form-group col-md-6">
-    <%= f.select :name, public_servants_name_options, { prompt: t('.name') }, class: 'chosen-select'%>
+    <%= f.select :id, public_servants_name_options.map {|e| [e.join(" "), e[0]]}, { prompt: t('.name') }, class: 'chosen-select'%>
   </div>
   <div class="form-group col-md-6">
     <%= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'%>
@@ -62,7 +62,7 @@
         <tbody>
           <% @public_servants.each do |public_servant| %>
             <tr class="public_servant">
-              <td><%= public_servant.name %></td>
+              <td><%= "#{public_servant.name} #{public_servant.surname} #{public_servant.second_surname}" %></td>
               <td><%= public_servant.email %></td>
               <td><%= public_servant.record_number %></td>
               <td><%= public_servant.dependency %></td>
@@ -106,7 +106,7 @@
       <tbody>
         <% @disabled_public_servants.each do |public_servant| %>
           <tr class="public_servant">
-            <td><%= public_servant.name %></td>
+            <td><%= "#{public_servant.name} #{public_servant.surname} #{public_servant.second_surname}" %></td>
             <td><%= public_servant.email %></td>
             <td><%= public_servant.record_number %></td>
             <td><%= public_servant.dependency %></td>

@@ -46,15 +46,21 @@ module Services
   end
 
   def self.service_admins_name_options
-    Admin.service_admins_sorted_by_name.pluck(:name)
+    Admin.
+      service_admins_sorted_by_name
+      .pluck(:id, :name, :surname, :second_surname)
   end
 
   def self.record_number_options
-    Admin.service_admins_sorted_by_name.pluck(:record_number)
+    Admin.
+      service_admins_sorted_by_name
+      .pluck(:record_number)
   end
 
   def self.public_servants_name_options(admin)
-    Admins.public_servants_for(admin).pluck(:name)
+    Admins.
+      public_servants_for(admin)
+      .pluck(:id, :name, :surname, :second_surname)
   end
 
   def self.generate_homoclave_for(service)

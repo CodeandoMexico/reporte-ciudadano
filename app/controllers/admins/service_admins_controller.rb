@@ -96,7 +96,8 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def search_service_admins
     if params[:q].present?
-      @service_admins = @service_admins.where(name: params[:q][:name] ) unless params[:q][:name].blank?
+      @service_admins = @service_admins.
+        where(id: params[:q][:id]) unless params[:q][:id].blank?
       @service_admins = @service_admins.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
       @service_admins = @service_admins.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @service_admins = @service_admins.where(record_number: params[:q][:record_number] ) unless  params[:q][:record_number].blank?

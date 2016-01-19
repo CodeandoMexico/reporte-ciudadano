@@ -1,13 +1,13 @@
 language: ruby
 rvm:
-  - 2.2.2
+  - 2.2.3
 env:
   - DB=postgresql
 bundler_args: --without development
 script:
   - export RAILS_ENV=test
-  - bundle exec rake db:create db:migrate
-  - bundle exec rake db:test:prepare
+  - bundle exec rake db:drop db:create
+  - bundle exec rake test:prepare
   - bundle exec rspec spec
 before_install: 
   - cp config/database.travis.yml config/database.yml

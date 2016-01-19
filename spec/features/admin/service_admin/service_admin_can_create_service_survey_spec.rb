@@ -246,7 +246,7 @@ feature 'As a service admin I can create a new survey' do
     expect(page).to have_content "La encuesta se ha creado exitosamente."
     click_link "La encuesta de mi servicio"
 
-    within first(".question") do
+    within all(".question")[0] do
       expect(page).to have_content "Opcional"
     end
 
