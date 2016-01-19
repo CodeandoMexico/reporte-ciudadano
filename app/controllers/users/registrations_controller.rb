@@ -10,6 +10,7 @@ before_filter :configure_permitted_parameters
     session[:omniauth] = nil unless resource.new_record?
   end
 
+
   def finish_registration
     self.resource = resource_class.new
     self.resource.apply_omniauth(omniauth_hash)
@@ -33,5 +34,6 @@ before_filter :configure_permitted_parameters
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:name, :email, :telephone_number, :password)
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :telephone_number, :password, :password_confirmation, :current_password) }
   end
 end

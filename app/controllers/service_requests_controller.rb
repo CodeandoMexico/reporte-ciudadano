@@ -22,7 +22,7 @@ class ServiceRequestsController < ApplicationController
     @service_request = current_user.service_requests.build(service_request_params)
     @service_request.user_id = current_user.id
     if @service_request.save
-      notify_public_servants(@service_request)
+      #notify_public_servants(@service_request)
       notify_user(@service_request)
       redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
