@@ -46,7 +46,7 @@ module Services
   end
 
   def self.service_admins_name_options
-    Admin.service_admins_sorted_by_name.pluck(:name)
+    Admin.service_admins_sorted_by_name.pluck(:id, :name, :surname, :second_surname)
   end
 
   def self.record_number_options
