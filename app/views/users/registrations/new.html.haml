@@ -18,3 +18,5 @@
     = f.password_field :password, placeholder: t('devise.password'), class: 'form-control si'
     = f.password_field :password_confirmation, placeholder: t('devise.password_confirmation'), class: 'form-control bottom-field'
   .actions= f.submit t('devise.register'), class: 'btn btn-lg btn-primary btn-block'
+
+= render "users/shared/aviso_privacidad"

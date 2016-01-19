@@ -13,3 +13,5 @@
       .col-lg-12
         = f.password_field :password_confirmation, placeholder: t('form.placeholders.password'), class: 'form-control'
   .actions= f.submit t('.change'), class: 'btn btn-lg btn-primary btn-block'
+
+= render "users/shared/aviso_privacidad"

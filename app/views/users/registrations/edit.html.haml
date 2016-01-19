@@ -35,3 +35,5 @@
   %p
     = t('.unhappy')
     = link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: "#{t('alerts.destroy_confirmation')}" }, method: :delete, class: 'btn btn-danger'
+
+= render "users/shared/aviso_privacidad"
