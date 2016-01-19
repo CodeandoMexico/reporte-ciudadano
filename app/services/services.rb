@@ -54,7 +54,7 @@ module Services
   end
 
   def self.public_servants_name_options(admin)
-    Admins.public_servants_for(admin).pluck(:name)
+    Admins.public_servants_for(admin).pluck(:id, :name, :surname, :second_surname)
   end
 
   def self.generate_homoclave_for(service)
