@@ -121,8 +121,8 @@ class Admins::PublicServantsController < ApplicationController
 
   def search_public_servants
     if params[:q].present?
-      @public_servants = @public_servants
-                             .where(id: params[:q][:id]) unless params[:q][:id].blank?
+      @public_servants = @public_servants.
+        where(id: params[:q][:id]) unless params[:q][:id].blank?
       @public_servants = @public_servants.where(dependency: params[:q][:dependency]) unless params[:q][:dependency].blank?
       @public_servants = @public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @public_servants = @public_servants.where(record_number:  params[:q][:record_number] ) unless params[:q][:record_number].blank?

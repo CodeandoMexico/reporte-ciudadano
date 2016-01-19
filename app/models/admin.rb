@@ -87,7 +87,7 @@ class Admin < ActiveRecord::Base
   end
 
   def full_name
-    "#{self.name} #{self.surname} #{self.second_surname}"
+    "#{name} #{surname} #{second_surname}"
   end
   private
 
