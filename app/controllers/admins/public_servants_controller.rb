@@ -128,7 +128,7 @@ class Admins::PublicServantsController < ApplicationController
       @public_servants = @public_servants.where(record_number:  params[:q][:record_number] ) unless params[:q][:record_number].blank?
 
       @disabled_public_servants = @disabled_public_servants.
-        where(id: params[:q][:id] ) unless params[:q][:id].blank?
+        where(id: params[:q][:id]) unless params[:q][:id].blank?
       @disabled_public_servants = @disabled_public_servants.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
       @disabled_public_servants = @disabled_public_servants.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @disabled_public_servants = @disabled_public_servants.where(record_number: params[:q][:record_number] ) unless params[:q][:record_number].blank?
