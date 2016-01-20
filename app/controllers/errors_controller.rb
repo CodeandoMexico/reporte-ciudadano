@@ -1,5 +1,5 @@
 class ErrorsController < ApplicationController
-  def file_not_found
+  def not_found
   end
 
   def unprocessable
