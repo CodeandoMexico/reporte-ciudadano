@@ -4,6 +4,7 @@ class ServiceRequest < ActiveRecord::Base
 
   validates :service_id, :description, presence: true
   validate :service_extra_fields
+  before_create :public_servant_description_validation
 
   before_validation :assign_default_status, on: :create
   after_update :send_notification_for_status_update
@@ -84,6 +85,11 @@ class ServiceRequest < ActiveRecord::Base
     requests
   end
 
+  def public_servant_description_validation
+      if public_servant_id == nil
+        public_servant_description = "No aplica"
+      end
+  end
   def service_requester
     if self.anonymous?
       { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' , email: 'Anónimo'}
