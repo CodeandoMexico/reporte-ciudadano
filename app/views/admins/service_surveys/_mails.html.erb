@@ -1,0 +1,5 @@
+<%= form_tag(invitation_user_mail_admins_service_surveys_path, method: "post") do %>
+	<%= t('.instructions_send')%>
+	<%= text_area(:get, :body, class: 'match_parent')%>
+	<%= submit_tag("Search") %>
+<% end %>

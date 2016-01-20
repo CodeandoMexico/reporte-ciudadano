@@ -11,7 +11,7 @@
             = t('.created_at')
             %i.icon-chevron-down
           %th
-            = t('form.labels.service')
+            = t('form.labels.admin.service')
             %i.icon-chevron-down
           %th
             = t('form.labels.address')
@@ -24,10 +24,11 @@
             %i.icon-chevron-down
       %tbody
         - @service_requests.each do |service_request|
-          %tr.service_request
-            %td= link_to service_request.id, edit_admins_service_request_path(service_request)
-            %td= l service_request.created_at, format: :short
-            %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
-            %td= truncate service_request.address, length: 45
-            %td= service_request.status
-            %td= service_request.votes_for
+          -if current_admin.id ==  service_request.public_servant_id
+            %tr.service_request
+              %td= link_to service_request.id, edit_admins_service_request_path(service_request)
+              %td= l service_request.created_at, format: :short
+              %td= link_to service_request.service.name, edit_admins_service_request_path(service_request)
+              %td= truncate service_request.address, length: 45
+              %td= service_request.status
+              %td= service_request.votes_for

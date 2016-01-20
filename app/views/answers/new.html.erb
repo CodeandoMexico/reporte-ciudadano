@@ -1,0 +1,63 @@
+<%= form_tag(answers_path, method: :post) do %>
+  <div class="pt-wrapper">
+    <h3><%= t('.current_survey', title: @service_survey.title) %></h3>
+    <% @service_survey.questions.each_with_index do |question, index| %>
+      <%= hidden_field_tag :service_survey_id, @service_survey.id %>
+      <%= hidden_field_tag :cis_id, @cis_id %>
+      <div class="pt-page pt-page-<%= index + 1 %>">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-2">
+            <% if index > 0 %>
+              <%= link_to t(".previous_question"), "#", class: "pt-trigger", "data-goto" => index, "data-animation" => "2" %>
+            <% end %>
+          </div>
+          <div class="col-md-2 pull-right text-muted">
+            <em><%= t(".questions_left", count: ((@service_survey.questions_count - 1) - index)) %></em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1 text-right">
+            <span class="label label-info">
+              <%= t("question_criterion_options.#{question.criterion}") %>
+            </span>
+          </div>
+          <div class="col-md-9">
+            <p><strong><%= question.text %></strong></p>
+            <% if question.required? %>
+              <span class="glyphicon glyphicon-warning-sign text-warning"></span>
+              <small class="text-muted"><em><%= t(".need_to_answer_message") %></em></small>
+            <% end %>
+          </div>
+        </div>
+        <div class="row answers-wrapper">
+          <div class="col-md-6 col-md-offset-3 well">
+            <%= hidden_field_tag "answers[#{index}][question_id]", question.id %>
+            <%= hidden_field_tag "answers[#{index}][question_value]", question.value %>
+            <%= hidden_field_tag "answers[#{index}][question_answer_type]", question.answer_type %>
+            <% if question.has_open_answer? %>
+              <%= text_area_tag "answers[#{index}][text]", nil, rows: 3, class: "form-control js-answer" %>
+            <% else %>
+              <% question.answers.each do |answer| %>
+                <ul class="list-unstyled">
+                  <li>
+                    <%= radio_button_tag "answers[#{index}][text]", answer.text, false, class: "js-answer" %>
+                    <%= label_tag "answers[#{index}][text][#{answer.text}]", answer.text %>
+                  </li>
+                </ul>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row button-wrapper">
+          <div class="col-md-2 col-md-offset-5">
+            <% if index != (@service_survey.questions_count - 1) %>
+              <%= link_to t(".next_question"), "#", class: "btn btn-default btn-block pt-trigger js-button", "data-goto" => (index + 2), "data-animation" => "1", disabled: question.required? %>
+            <% else %>
+              <%= submit_tag t(".finish_survey"), class: "btn btn-success btn-block js-button", disabled: question.required? %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
