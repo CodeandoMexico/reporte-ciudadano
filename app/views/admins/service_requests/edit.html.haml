@@ -64,14 +64,16 @@
           %h4= t('.update_service_request')
           = form_for [:admins, @service_request] do |f|
             -unless f.object.errors.empty?
-              = f.object.errors.messages 
+              = f.object.errors.messages
             -unless current_admin.is_service_admin? || current_admin.is_public_servant?
               .form-group
                 = f.label :public_servant_id, t('form.labels.admin.who')
-                - if @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0
+                - if  @service_request.public_servant_id == 0
                   = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' }
                   = t('form.labels.admin.description')
                   = @service_request.public_servant_description
+                -elsif @service_request.public_servant_id.nil?
+                  = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.doesnt_apply') }, { class: 'js-load_service_fields form-control' }
                 -else
                   -unless current_admin.is_public_servant?
                     = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
