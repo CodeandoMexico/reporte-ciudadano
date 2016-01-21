@@ -17,13 +17,25 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def create
-    @admin = Admin.new(public_servant_params.merge(password: password, password_confirmation: password))
-    if @admin.save
-      AdminMailer.send_public_servant_account(admin: @admin).deliver
-      redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
+    if params[:admin][:is_comptroller] == '1'
+      @admin = Admin.new(comptroller_params.merge(password: password, password_confirmation: password))
+      if @admin.save
+        AdminMailer.send_comptroller_account(admin: @admin).deliver
+        redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
+      else
+        render :new
+      end
     else
-      render :new
+      @admin = Admin.new(public_servant_params.merge(password: password, password_confirmation: password))
+      if @admin.save
+        AdminMailer.send_public_servant_account(admin: @admin).deliver
+        redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
+      else
+        render :new
+      end
     end
+    
+    
   end
 
   def edit
@@ -75,8 +87,14 @@ class Admins::PublicServantsController < ApplicationController
 
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :surname, :second_surname, :is_observer)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :surname, :second_surname, :is_observer,:is_comptroller)
       .merge(services: services, is_public_servant: true)
+  end
+
+  def comptroller_params
+    params
+      .require(:admin)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :surname, :second_surname,:is_comptroller)
   end
 
   def password

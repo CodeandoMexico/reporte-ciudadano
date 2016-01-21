@@ -25,7 +25,6 @@ feature 'Managing service requests' do
         click_button  'Guardar'
       end
       expect_service_request_email_sent_to user.email
-      expect_service_request_email_sent_to public_servant.email
     end
 
 
