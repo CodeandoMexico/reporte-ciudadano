@@ -25,6 +25,9 @@ feature 'Managing service requests' do
         click_button  'Guardar'
       end
       expect_service_request_email_sent_to user.email
+      Admin.where(is_comptroller: true).each do |admin|
+        expect_service_request_email_sent_to admin.email
+      end
     end
 
 
