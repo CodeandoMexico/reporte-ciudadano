@@ -22,7 +22,7 @@ class ServiceRequestsController < ApplicationController
     @service_request = current_user.service_requests.build(service_request_params)
     @service_request.user_id = current_user.id
     if @service_request.save
-      #notify_public_servants(@service_request)
+      notify_comptroller(@service_request)
       notify_user(@service_request)
       redirect_to root_path, flash: { success: I18n.t("flash.service_requests.success")}
     else
@@ -77,9 +77,11 @@ class ServiceRequestsController < ApplicationController
     Services.service_cis_label(cis_id)
   end
 
-  def notify_public_servants(service_request)
-    if service_request.public_servant_id.present? && !service_request.public_servant_id.zero?
-      AdminMailer.notify_new_request(admin: Admin.find(service_request.public_servant_id), service_request: service_request).deliver
+  def notify_comptroller(service_request)
+    Admin.where(is_comptroller: true).each do |admin|
+      if service_request.public_servant_id.present? && !service_request.public_servant_id.zero?
+        AdminMailer.notify_new_request(admin: admin, service_request: service_request).deliver
+      end
     end
   end
 
