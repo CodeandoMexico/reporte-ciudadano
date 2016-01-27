@@ -7,8 +7,6 @@ matrix:
   fast_finish: true
 env:
   - DB=postgresql
-bundler_args: --without
-
 before_script:
   - psql -c 'create database urbem_puebla_test;' -U postgres
   - bundle exec rake db:create RAILS_ENV=test
