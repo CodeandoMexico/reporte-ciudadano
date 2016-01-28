@@ -888,7 +888,8 @@ module DynamicReports
     filter(:created_at,
            :date,
            :range => true,
-           :default => proc { [Service.all.select(:created_at).order("created_at ASC").first.created_at, Date.today]},
+           :default => proc { [Service.all.select(:created_at).order("created_at ASC").first.blank? ? Date.today : Service.all.select(:created_at).order("created_at ASC").first.created_at,
+                               Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
     filter(:dependency,
