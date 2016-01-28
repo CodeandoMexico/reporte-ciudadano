@@ -17,13 +17,23 @@ module Services
   end
 
   def self.service_cis_options
-    load_values(:cis).map do |cis|
-      { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }
+    unless Rails.env.test? 
+      load_values(:cis).map do |cis|
+        { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }
+      end
+    else
+      load_values(:cis_test).map do |cis|
+        { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }
+      end
     end
   end
 
   def self.service_cis
-    load_values(:cis)
+    unless Rails.env.test? 
+      load_values(:cis)
+    else
+      load_values(:cis_test)
+    end
   end
 
   def self.service_reports
@@ -71,9 +81,8 @@ module Services
   private
 
   def self.load_values(object)
-  Rails.cache.fetch("#{object}-service-cache", :expires_in => 6.hours) do
+    Rails.cache.fetch("#{object}-service-cache", :expires_in => 6.hours) do
       File.open(path_to(object)) { |file|
-
         YAML.load(file.read)
 
       }
