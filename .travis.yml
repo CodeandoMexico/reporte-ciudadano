@@ -1,15 +1,20 @@
 language: ruby
 rvm:
   - 2.2.3
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+  fast_finish: true
 env:
   - DB=postgresql
-bundler_args: --without development
+before_script:
+  - psql -c 'create database urbem_puebla_test;' -U postgres
+  - bundle exec rake db:create RAILS_ENV=test
+  - bundle exec rake db:test:prepare RAILS_ENV=test
 script:
   - export RAILS_ENV=test
-  - bundle exec rake db:drop db:create
-  - bundle exec rake test:prepare
   - bundle exec rspec spec
-before_install: 
+before_install:
   - cp config/database.travis.yml config/database.yml
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
