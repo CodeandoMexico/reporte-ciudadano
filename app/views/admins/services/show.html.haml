@@ -24,7 +24,7 @@
             %i.icon-chevron-down
       %tbody
         - @service_requests.each do |service_request|
-          -if current_admin.id ==  service_request.public_servant_id
+          -if current_admin.id ==  service_request.public_servant_id || current_admin.is_service_admin
             %tr.service_request
               %td= link_to service_request.id, edit_admins_service_request_path(service_request)
               %td= l service_request.created_at, format: :short

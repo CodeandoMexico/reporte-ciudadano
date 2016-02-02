@@ -21,7 +21,7 @@ feature 'As a service admin I can see managed service requests' do
     end
 
     expect(page).to have_content "Primer servicio"
-    expect(services_request_count).to eq 0
+    expect(services_request_count).to eq 2
 
     within "#sidebar-wrapper" do
       click_link "Quejas o sugerencias"
@@ -29,7 +29,7 @@ feature 'As a service admin I can see managed service requests' do
     end
 
     expect(page).to have_content "Segundo servicio"
-    expect(services_request_count).to eq 0
+    expect(services_request_count).to eq 3
   end
 
   scenario 'Unless I have no services assigned' do
