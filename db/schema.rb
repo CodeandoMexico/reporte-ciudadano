@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20160121165906) do
     t.datetime "updated_at"
   end
 
-  add_index "application_settings", ["type"], name: "index_application_settings_on_type", unique: true, using: :btree
+  add_index "application_settings", ["type"], name: "index_application_settings_on_type", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
