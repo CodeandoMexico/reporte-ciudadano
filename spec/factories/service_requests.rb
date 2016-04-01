@@ -1,13 +1,13 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
+require 'ffaker'
 
 FactoryGirl.define do
   factory :service_request do
     service
     status
+    public_servant_id FactoryGirl.build(:admin, :public_servant)
     association :requester, factory: :user
-    address     { Faker::Lorem.words(3) }
-    description { Faker::Lorem.paragraph(2) }
-    lat         { '123'}
-    lng         { '1233' }
+    address     { FFaker::Lorem.words(3) }
+    description { FFaker::Lorem.paragraph(2) }
   end
 end

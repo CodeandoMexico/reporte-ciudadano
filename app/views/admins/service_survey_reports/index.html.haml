@@ -1,0 +1,46 @@
+.content-header
+  %h1.text-center= t('.title')
+
+.page-content.inset
+  = form_tag(make_report_admins_service_survey_reports_path(format: :html), method: "get") do
+    .form-group.col-md-12
+      .row
+        .col-md-6.col-md-offset-4
+          %h2= t('.subtitle')
+        .col-md-6.col-md-offset-3
+          = select("dynamic_reports", "id", service_reports.collect {|opt| [opt[:label], opt[:id]]}, {selected: params[:dynamic_reports][:id] }, class: 'chosen-select')
+    .form-group.col-md-12
+      .row
+        .col-md-6.col-md-offset-4
+          = submit_tag t('.view'), class: "btn btn-primary btn-lg half_content", onClick: "$(this).closest('form').attr('action', '#{ make_report_admins_service_survey_reports_path(format: :html) }')"
+
+%h3 Filtros del reporte
+-unless @grid.nil?
+  = datagrid_form_for @grid, :method => :get, :url => admins_service_survey_reports_path
+%hr
+  .content-header.dynamic-report-container
+    %h1.dynamic-report-title.text-center= t('.title_table')+":"
+    %h4.text-center=@title
+    = datagrid_table(@grid,{:html =>{:class=>"datagrid dynamic_reports table"}})
+    = paginate(@grid.assets)
+
+
+
+
+
+:javascript
+  $("select.enum_filter").addClass("chosen-select");
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+  $("input.created_at").addClass("datepicker","form-control");
+
+  
+  $(function() {
+    $( ".to" ).datepicker({
+    dateFormat: 'dd/mm/yy',
+    });
+    $( ".from" ).datepicker({
+    dateFormat: 'dd/mm/yy',
+    });
+  });
+

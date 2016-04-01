@@ -1,0 +1,34 @@
+!!! 5
+%html
+  %head
+    %title=t('titles.page_title')
+    = stylesheet_link_tag    current_theme, :media => "all", 'data-turbolinks-track' => true
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    = csrf_meta_tags
+    = yield :head
+  %body{:class => "#{controller_name} #{action_name}",id:"landing"}
+
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=#{ENV['FACEBOOK_KEY']}";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    #wrap
+      - if current_admin && current_admin.is_observer?
+        = render "shared/observer_header"
+      - else
+        = render "shared/header"
+
+      .container
+        - flash.each do |name, msg|
+          = content_tag :div, :class => "alert #{flash_class(name)} padding-top" do
+            = msg
+        .padding-top-container
+          = yield
+    = render "shared/footer"
