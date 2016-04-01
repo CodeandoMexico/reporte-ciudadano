@@ -7,6 +7,6 @@ class CreateApplicationSettings < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :application_settings, :type, unique: true
+    add_index :application_settings, :type
   end
 end

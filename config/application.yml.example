@@ -37,3 +37,4 @@ GOOGLE_KEY: ''
 
 # Vimeo video for main page ID
 VIMEO_VIDEO_KEY: ''
+VEDA_ELECTORAL: # true or false cambia el template
