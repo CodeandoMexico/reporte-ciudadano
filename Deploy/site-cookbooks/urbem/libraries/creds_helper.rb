@@ -30,6 +30,7 @@ module Creds
           "RAILS_ENV=#{creds['rails']['env']}",
           "PASSENGER_APP_ENV=#{creds['rails']['env']}",
           "POSTGRES_PASSWORD=#{creds['postgres']['password']}",
+          "VEDA_ELECTORAL=#{creds['veda_electoral']}",
           "S3_BUCKET=#{creds['aws']['s3_bucket_name']}",
           "AWS_SECRET=#{creds['aws']['aws_secret']}",
           "AWS_KEY=#{creds['aws']['aws_key']}"
