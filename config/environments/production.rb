@@ -90,10 +90,8 @@ Rails.application.configure do
     :domain         => ENV["SMTP_DOMAIN"] || 'heroku.com',
     :address        => ENV["SMTP_ADDRESS"] || 'smtp.sendgrid.net',
     :port           => ENV["SMTP_PORT"] || '587',
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    :authentication => :login,
+    :enable_starttls_auto => false,
+    :openssl_verify_mode => "peer"
   }
-
-
-
 end
