@@ -4,11 +4,11 @@
 #  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Colonia Agua Santa, C.P 72490 Puebla, Pue.
 #  :phone: "(01 222) 228-56-50"
 #  :schedule: Lunes a Viernes de 08:00 a 17:00 horas. Sábado de 08:00 a 14:00 horas.
-#- :id: 2
-#  :name: CIS Centro Integral de Servicios Edificio Norte
-#  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción Las Lajas, C.P 72190 Puebla,Pue.
-#  :phone: "(01 222) 303-46-00"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 2
+  :name: CIS Centro Integral de Servicios Edificio Norte
+  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción Las Lajas, C.P 72190 Puebla,Pue.
+  :phone: "(01 222) 303-46-00"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 3
 #  :name: SSEP Hospital General de la Zona Norte (Módulo de afiliación del Seguro Popular)
 #  :address: Calle 88 Poniente y 7 Norte s/n Colonia Villa Frontera, C.P 72230 Puebla,Pue.
@@ -2481,12 +2481,12 @@
 #  :address: Avenida 11 Oriente No. 2003 Colonia Azcárate, C.P 72501 Puebla, Pue.
 #  :phone: "(01 222)  235-08-82"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 461
-#  :name: SGG Juzgado Primero del Registro Civil
-#  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
-#    las Lajas (CIS Sótano del Edificio Sur), C.P 72190 Puebla, Pue.
-#  :phone: "(01 222) 303-46-00 Extensiones 1017, 1019, 1022 y 1023"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas. Sábados y Domingos consultar Juzgado que se encuentre en guardia para el fin de semana requerido
+- :id: 461
+  :name: SGG Juzgado Primero del Registro Civil
+  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
+    las Lajas (CIS Sótano del Edificio Sur), C.P 72190 Puebla, Pue.
+  :phone: "(01 222) 303-46-00 Extensiones 1017, 1019, 1022 y 1023"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas. Sábados y Domingos consultar Juzgado que se encuentre en guardia para el fin de semana requerido
 #- :id: 462
 #  :name: SGG Juzgado Segundo del Registro Civil
 #  :address: Avenida 11 Oriente No. 2003 Colonia Azcárate, C.P 72501 Puebla, Pue.
@@ -2506,13 +2506,13 @@
 #  :phone: "(01 222) 235-27-45"
 #  :schedule: Lunes a Viernes de 09:00 a 16:00 horas. Sábados y Domingos consultar Juzgado
 #    que se encuentre en guardia para el fin de semana requerido
-#- :id: 465
-#  :name: SGG Juzgado Quinto del Registro Civil
-#  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
-#    las Lajas (CIS Sótano del Edificio Norte), C.P 72190 Puebla, Pue.
-#  :phone: "(01 222) 303-46-00 ext. 2055, 5057 y 2058"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas. Sábados y Domingos consultar Juzgado
-#    que se encuentre en guardia para el fin de semana requerido
+- :id: 465
+  :name: SGG Juzgado Quinto del Registro Civil
+  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
+    las Lajas (CIS Sótano del Edificio Norte), C.P 72190 Puebla, Pue.
+  :phone: "(01 222) 303-46-00 ext. 2055, 5057 y 2058"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas. Sábados y Domingos consultar Juzgado
+    que se encuentre en guardia para el fin de semana requerido
 #- :id: 466
 #  :name: Instituto Tecnológico Superior de Libres
 #  :address: Calle 5 Poniente N° 133, Col. Centro. C.P. 73780 Libres ,Pue.
