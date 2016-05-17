@@ -781,12 +781,12 @@
 #  :address: Calle 17 Poniente No. 1704 Colonia Santiago, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 237-82-85"
 #  :schedule: Lunes a Viernes 08:00 a 16:00 horas. Sábados 09:30 a 14:30 horas.
-#- :id: 153
-#  :name: CIS Centro Integral de Servicios Edificio Ejecutivo
-#  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
-#    Las Lajas, C.P 72190 Puebla, Pue.
-#  :phone: "(01 222) 303-46-00"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 153
+  :name: CIS Centro Integral de Servicios Edificio Ejecutivo
+  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
+    Las Lajas, C.P 72190 Puebla, Pue.
+  :phone: "(01 222) 303-46-00"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 154
 #  :name: CEAIAMP Oficina de Representación - Mi casa es Puebla, Los Ángeles, CA.
 #  :address: 328 South Indiana Street, Los Ángeles, CA. 90063 LA,California,EUA
