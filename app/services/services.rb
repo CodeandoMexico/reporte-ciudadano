@@ -44,7 +44,7 @@ module Services
 
   def self.service_cis_label(cis_id)
     return "" unless cis_id.present?
-    service_cis_options.select { |cis| cis[:id].to_s == cis_id }.first[:label]
+    service_cis_options.select { |cis| cis[:id].to_s == cis_id.to_s }.first[:label]
   end
 
   def self.is_assigned_to_public_servant?(service, public_servant)
