@@ -28,7 +28,7 @@ $(document).on 'click', '.js-question-item', ->
 
   $(element).val(questionText)
   $(element).parent().closest(".js-question").find(".js-answer-selection option[value='" + answerType + "']").attr('selected', 'selected')
-  showAnswerType(this, answerType)
+  showAnswerType($(element).parent().closest(".js-question"), answerType)
 
 showAnswerType = (element, answerType) ->
   if answerType == 'binary' || answerType == 'rating'
