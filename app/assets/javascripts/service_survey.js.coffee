@@ -1,6 +1,7 @@
 $ ->
   # Este watcher se usa en vista de admin
-  # de service_surveys
+  # de service_surveys y sirve para generar reportes
+  # con una forma oculta.
 
   $(".js-generate-report").click  ->
     submit_object = $(this).data('submit')
