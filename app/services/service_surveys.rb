@@ -197,7 +197,7 @@ module ServiceSurveys
       @question_answer_type = attrs[:question_answer_type]
       @user_id = attrs[:user_id] || nil
       @cis_id = attrs[:cis_id] || nil,
-      @cis_id = attrs[:service_id] || nil
+      @service_id = attrs[:service_id] || nil
     end
 
     def score
