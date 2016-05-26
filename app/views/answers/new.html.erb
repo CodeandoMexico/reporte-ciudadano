@@ -4,6 +4,7 @@
     <% @service_survey.questions.each_with_index do |question, index| %>
       <%= hidden_field_tag :service_survey_id, @service_survey.id %>
       <%= hidden_field_tag :cis_id, @cis_id %>
+      <%= hidden_field_tag :service_id, @service_id %>
       <div class="pt-page pt-page-<%= index + 1 %>">
         <div class="row">
           <div class="col-md-2 col-md-offset-2">
