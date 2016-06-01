@@ -46,7 +46,7 @@ feature 'User can answer service surveys' do
     question = create :question, :binary, text: "¿Te pareció bueno el servicio?", value: 100
     survey = create(:service_survey, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true, questions: [question])
 
-    visit new_answer_path(service_survey_id: survey.id)
+    visit new_answer_path(service_survey_id: survey.id, cis_id: 1, service_id: 1)
 
     within all(".pt-page").first do
       expect(page).to have_button "Terminar evaluación"
@@ -62,7 +62,7 @@ feature 'User can answer service surveys' do
   scenario 'but only once', js: true do
     service = create :service, name: "Actas de nacimiento"
     survey = create(:survey_with_binary_question, services: [service], title: "Encuesta acta de nacimiento", phase: "start", open: true)
-    answer = create :survey_answer, user_id: user.id, question_id: survey.questions.first.id, cis_id: 1
+    answer = create(:survey_answer, user_id: user.id, question_id: survey.questions.first.id, cis_id: 1, service_id: service.id)
 
     visit service_surveys_path
     within all(".service-surveys").first do
@@ -73,8 +73,7 @@ feature 'User can answer service surveys' do
       expect(page).not_to have_link "Iniciar evaluación"
     end
 
-    visit new_answer_path(service_survey_id: survey.id, cis_id: 1)
-    expect(current_path).to eq service_surveys_path
+    visit new_answer_path(service_survey_id: survey.id, cis_id: 1, service_id: service)
     expect(page).to have_content "Ya has evaluado la encuesta seleccionada."
   end
 

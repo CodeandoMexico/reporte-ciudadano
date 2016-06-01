@@ -30,8 +30,8 @@ module ServiceSurveys
     ServiceSurveyForm.new(service_survey_record)
   end
 
-  def self.generate_answer_records(answer_params, user_id, cis_id)
-    answer_params.map { |answer| AnswerForm.new(answer.merge(user_id: user_id, cis_id: cis_id).symbolize_keys).to_record_params }
+  def self.generate_answer_records(answer_params, user_id, cis_id, service_id)
+    answer_params.map { |answer| AnswerForm.new(answer.merge(user_id: user_id, cis_id: cis_id, service_id: service_id).symbolize_keys).to_record_params }
   end
 
   def self.criterion_options_available
@@ -188,7 +188,7 @@ module ServiceSurveys
   end
 
   class AnswerForm
-    attr_reader :text, :question_id, :question_value, :question_answer_type, :cis_id
+    attr_reader :text, :question_id, :question_value, :question_answer_type, :cis_id, :service_id
 
     def initialize(attrs)
       @text = attrs[:text]
@@ -196,7 +196,8 @@ module ServiceSurveys
       @question_id = attrs[:question_id]
       @question_answer_type = attrs[:question_answer_type]
       @user_id = attrs[:user_id] || nil
-      @cis_id = attrs[:cis_id] || nil
+      @cis_id = attrs[:cis_id] || nil,
+      @service_id = attrs[:service_id] || nil
     end
 
     def score
@@ -211,7 +212,8 @@ module ServiceSurveys
         question_id: question_id,
         score: score,
         user_id: user_id,
-        cis_id: cis_id
+        cis_id: cis_id,
+        service_id: service_id
       }
     end
 
