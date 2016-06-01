@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
   def authorize_user_to_answer
     service_survey = ServiceSurvey.find(params[:service_survey_id])
     cis = params[:cis_id]
-    survey = params[:survey_id]
+    survey = params[:service_survey_id]
     if service_survey.has_been_answered_by?(current_user,cis, survey)
       redirect_to service_surveys_path, notice: t('.answers_already_sent')
     end
