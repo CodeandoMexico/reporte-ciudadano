@@ -38,7 +38,7 @@ module ServicesSurveys
         "cis_id" => "1",
         "service_id" => "1"
       }
-      first_answer = generate_answer_records([answer_params], "user-id", cis_id).first
+      first_answer = generate_answer_records([answer_params], "user-id", cis_id, service_id).first
       expect(first_answer).to include(text: "No", question_id: "question-id", score: 0.0, user_id: 'user-id')
     end
 

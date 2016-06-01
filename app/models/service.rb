@@ -68,7 +68,7 @@ class Service < ActiveRecord::Base
   end
 
   def answered_surveys
-    service_surveys.select { |survey| survey.answers.any? }.count
+    SurveyAnswer.where(service_id: "#{self.id}").count
   end
 
   def has_not_been_evaluated?
