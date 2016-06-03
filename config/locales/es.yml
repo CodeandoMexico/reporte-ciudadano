@@ -1,6 +1,8 @@
 # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/es.yml
 
 es:
+  "true": "Sí"
+  "false": "No"
   date:
     abbr_day_names:
     - dom
@@ -91,48 +93,51 @@ es:
         one: '1 segundo'
         other: '%{count} segundos'
     prompts:
-      day: Día
-      hour: Hora
-      minute: Minutos
-      month: Mes
-      second: Segundos
-      year: Año
+      day: "Día"
+      hour: "Hora"
+      minute: "Minutos"
+      month: "Mes"
+      second: "Segundos"
+      year: "Año"
   errors: &errors
-    format: ! '%{attribute} %{message}'
+    format: ! '%{message}'
     messages:
-      accepted: debe ser aceptado
-      blank: no puede estar en blanco
-      confirmation: no coincide con la confirmación
-      empty: no puede estar vacío
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser mayor que %{count}
-      greater_than_or_equal_to: debe ser mayor que o igual a %{count}
-      inclusion: no está incluido en la lista
-      invalid: no es válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que o igual a %{count}
-      not_a_number: no es un número
-      not_an_integer: debe ser un entero
-      odd: debe ser impar
+      phase: "Fase no puede estar vacío"
+      title: "Titulo no puede estar vacío"
+      service: "Servicio no puede estar vacío"
+      accepted: "debe ser aceptado"
+      blank: "No puede estar en blanco"
+      confirmation: "no coincide con la confirmación"
+      empty: "No pueden estar vacío"
+      equal_to: "debe ser igual a %{count}"
+      even: "debe ser par"
+      exclusion: "está reservado"
+      greater_than: "debe ser mayor que %{count}"
+      greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
+      inclusion: "no está incluido en la lista"
+      invalid: "no es válido"
+      less_than: "debe ser menor que %{count}"
+      less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+      not_a_number: "no es un número"
+      not_an_integer: "debe ser un entero"
+      odd: "debe ser impar"
       record_invalid: ! 'La validación falló: %{errors}'
-      taken: ya está en uso
-      too_long: es demasiado largo (%{count} caracteres máximo)
-      too_short: es demasiado corto (%{count} caracteres mínimo)
-      wrong_length: no tiene la longitud correcta (%{count} caracteres exactos)
+      taken: "ya está en uso"
+      too_long: "es demasiado largo (%{count} caracteres máximo)"
+      too_short: "es demasiado corto (%{count} caracteres mínimo)"
+      wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
     template:
       body: ! 'Se encontraron problemas con los siguientes campos:'
       header:
-        one: No se pudo guardar este/a %{model} porque se encontró 1 error
-        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
+        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
+        other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
   helpers:
     select:
-      prompt: Por favor seleccione
+      prompt: "Por favor seleccione"
     submit:
-      create: Crear %{model}
-      submit: Guardar %{model}
-      update: Actualizar %{model}
+      create: "Crear %{model}"
+      submit: "Guardar %{model}"
+      update: "Actualizar %{model}"
   number:
     currency:
       format:
@@ -153,11 +158,11 @@ es:
       decimal_units:
         format: ! '%n %u'
         units:
-          billion: mil millones
-          million: millón
-          quadrillion: mil billones
-          thousand: mil
-          trillion: billón
+          billion: "mil millones"
+          million: "millón"
+          quadrillion: "mil billones"
+          thousand: "mil"
+          trillion: "billón"
           unit: ''
       format:
         delimiter: ''
@@ -168,12 +173,12 @@ es:
         format: ! '%n %u'
         units:
           byte:
-            one: Byte
-            other: Bytes
-          gb: GB
-          kb: KB
-          mb: MB
-          tb: TB
+            one: "Byte"
+            other: "Bytes"
+          gb: "GB"
+          kb: "KB"
+          mb: "MB"
+          tb: "TB"
     percentage:
       format:
         delimiter: ''
@@ -210,6 +215,12 @@ es:
         name: 'nombre'
       comment:
         content: "Contenido"
+      service_survey:
+        questions: "Preguntas"
+        phase: "Etapa de la encuesta"
+      service_survey/questions:
+        text: "Texto de preguntas"
+        answer_type: "Tipo de respuesta de preguntas"
 
   # Ends template file
   admin:
@@ -222,26 +233,30 @@ es:
         title: 'Nuevo servicio'
       show:
         columns:
-          name: 'Tipo'
+          name: 'Nombre'
           extras: 'Campos adicionales'
-        title: 'Servicios'
+        title: 'Trámites'
 
   admins:
     shared:
       sidebar:
         dashboard: "Panel de administración"
         summary: "Resumen"
-        requests: "Reportes"
-        config_requests: "Personalizar reportes"
+        requests: "Quejas o sugerencias"
+        reports_public_servants: "Mis quejas y sugerencias"
+        config_requests: "Personalizar quejas o sugerencias"
         design: "Diseño"
         api: "API"
+        evaluations: "Evaluaciones"
         edit_profile: "Editar perfil"
         sign_out: "Cerrar sesión"
-        service_admins: "Administradores de servicios"
-        public_servants: "Servidores Públicos"
-        services: "Servicios"
-        no_requests: "No tiene servicios asignados"
+        service_admins: "Administradores de trámites"
+        public_servants: "Servidores públicos"
+        services: "Trámites"
+        no_requests: "No tiene trámites asignados"
         change_password: "Cambiar contraseña"
+        service_surveys: "Encuestas de servicio"
+        reports: "Reportes"
     sessions:
       new:
         header: "Iniciar sesión"
@@ -265,9 +280,8 @@ es:
     services:
       index:
         header: "Personalizar solicitudes de servicio"
-        page-description: "Personaliza el tipo de servicios y status con las cuales las solicitudes de servicio serán creados. Los usuarios
-                          seleccionarán las servicios al crear la solicitud de servicio."
-        services: "Servicios"
+        page-description: "En este sitio usted podrá evaluar la atención que se le brinda en los Trámites, Servicios y Programas de Apoyo del Gobierno del Estado de Puebla. Además, podrá levantar y dar seguimiento a las Quejas y Sugerencias que usted desee presentar. Lo anterior con el fin de mejorar la atención y el servicio."
+        services: "Trámites"
         statuses: "Estatus actuales"
         new_service: "Nuevo servicio"
         new_status: "Nuevo estatus"
@@ -275,6 +289,12 @@ es:
         geographical_area: "Área geográfica de los reportes"
         geographical_area_description: "Modifica el zoom del mapa para definir la zona donde se pueden crear reportes"
         save_restriction: "Guardar restricción"
+        enable: 'Habilitar'
+        disable: 'Deshabilitar'
+        enabled: 'Habilitados'
+        disabled: 'Deshabilitados'
+        disable_service_confirm: "¿Estás seguro de desactivar el servicio?"
+        enable_service_confirm: "¿Estás seguro de activar el servicio?"
       new:
         header: 'Nuevo servicio'
       edit:
@@ -284,7 +304,7 @@ es:
         remove_message: "Borrar mensaje"
         add_message: "Agregar mensaje"
         add_service_field: "Agregar campo adicional"
-        messages_title: 'Mensajes para estatuses'
+        messages_title: 'Mensajes para cambios en estatus'
         service_fields_title: 'Campos adicionales'
         remove_service_field: 'Borrar campo adicional'
         save: "Guardar"
@@ -295,11 +315,21 @@ es:
         additional_fields: "Campos adicionales"
         votes: "Votos"
         created_at: "Fecha de creación"
-        service_requests_for: "Reportes de %{service}"
+        service_requests_for: "Quejas o sugerencias de %{service}"
+    service_survey_reports:
+      index:
+        title: "Reportes dinámicos"
+        start_date: "Fecha de inicio"
+        end_date: "Fecha de fin"
+        send: "Enviar"
+        export: "Exportar"
+        view: "Previsualizar"
+        subtitle: "Reportes predeterminados:"  
+        title_table: "Previsualización del reporte"      
     service_admins:
       new:
-        new_service_admin: "Nuevo administrador de servicios"
-        services_to_assign: "Asignar servicios"
+        new_service_admin: "Nuevo administrador de trámites"
+        services_to_assign: "Asignar trámites"
       index:
         id: '#'
         name: "Nombre completo"
@@ -308,13 +338,13 @@ es:
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
         charge: "Cargo"
-        service_admins: "Administradores de servicios"
+        service_admins: "Administradores de trámites"
         new_service_admin: "Agregar administrador"
         edit: "Editar"
       edit:
-        edit_service_admin: "Editar administrador de servicios"
+        edit_service_admin: "Editar administrador de trámites"
         update: "Actualizar"
-        services_to_assign: "Asignar servicios"
+        services_to_assign: "Asignar trámites"
     public_servants:
       index:
         id: '#'
@@ -324,15 +354,15 @@ es:
         dependency: "Dependencia"
         administrative_unit: "Unidad administrativa"
         charge: "Cargo"
-        public_servants: "Servidores Públicos"
+        public_servants: "Servidores públicos"
         new_public_servant: "Agregar servidor público"
         edit: "Editar"
         disable: "Desactivar"
         disable_admin_confirm: "¿Estás seguro de desactivar el servidor público?"
         enable_admin_confirm: "¿Estás seguro que deseas volver a activar el servidor público?"
-        assign_services: "Asignar servicios"
+        assign_services: "Asignar trámites"
         assign: "Asignar"
-        services: "Servicios"
+        services: "Trámites"
         enabled: "Activos"
         disabled: "Inactivos"
         enable: "Activar"
@@ -342,8 +372,45 @@ es:
         edit_public_servant: "Editar servidor público"
         update: "Actualizar"
       assign_services:
-        assign_services: "Asignar servicios"
+        assign_services: "Asignar trámites"
         assign: "Asignar"
+    service_surveys:
+      index:
+        service_surveys: "Encuestas de servicio"
+        new_service_survey: "Crear nueva encuesta"
+        send_survey: "Enviar encuesta"
+        title: "Título"
+        phase: "Etapa"
+        services: "Trámites"
+        admin: "Administrador de servicio"
+        number_of_questions: "Número de preguntas"
+        questions_number:
+          one: "1 pregunta"
+          other: "%{count} preguntas"
+        edit: "Editar"
+        preview: "Vista preliminar"
+        open: "Abrir encuesta"
+        close: "Cerrar encuesta"
+        instructions_send: 'Coloca los correos de quienes quieres enviar la encuesta separados por ";"'
+        send: "Enviar"
+        add_user: "Enviar encuesta"
+        cancel: "Cancelar"
+      new:
+        new_service_survey: "Nueva encuesta de servicio"
+        add_question: "Agregar pregunta"
+        save_survey: "Guardar encuesta"
+      show:
+        service_survey_for: "Encuesta para evaluar los trámites: %{services}"
+        edit_service_survey: "Editar encuesta"
+        optional: "Opcional"
+        required: "Requerida"
+      edit:
+        edit_service_survey: "Editar encuesta de servicio"
+        add_question: "Agregar pregunta"
+        save_survey: "Guardar encuesta"
+      question_fields:
+        enter_answer: "Ingresa la posible respuesta"
+        custom_answer: "Respuesta %{number}:"
     dashboards:
       design:
         header: "Diseño"
@@ -355,7 +422,7 @@ es:
       index:
         header: "Resumen de actividad"
       services:
-        managed_services: "Servicios administrados"
+        managed_services: "Trámites administrados"
         name: "Nombre"
         service_type: "Tipo"
         dependency: "Dependencia"
@@ -378,20 +445,21 @@ es:
     service_requests:
       edit:
         address: "Dirección: %{address}"
+        cis: "Centro de atención: %{cis}"
         time_ago: "Hace %{created_at}"
         status: "Estatus: %{status}"
         user_id: "ID del usuario: %{id}"
-        update_service_request: "Actualizar reporte"
+        update_service_request: "Actualizar queja o sugerencia"
         user_info: "Datos del usuario"
         votes: "Votos"
       index:
-        header: "Todos los reportes"
-        new_service_request: "Crear nuevo reporte"
+        header: "Todas las quejas o sugerencias"
+        new_service_request: "Crear nueva queja o sugerencia"
         id: "Folio"
         created_at: "Fecha de creación"
         votes: "Votos"
       new:
-        header: "Crear nuevo reporte"
+        header: "Crear nueva queja o sugerencia"
       form:
         media: "Imagen"
         service: "Servicio"
@@ -407,47 +475,157 @@ es:
         generate_key: "Generar llave"
 
   dashboards:
-    total_requests: "Total de reportes"
-    open_requests: "Reportes abiertos"
-    closed_requests: "Reportes resueltos"
+    total_requests: "Total de quejas o sugerencias"
+    open_requests: "Quejas o sugerencias abiertas"
+    closed_requests: "Quejas o sugerencias resueltas"
     recent_requests: "Solicitudes recientes"
-    requests_by_service_chart: "Reportes por tipo de servicio"
-    requests_map: "Mapa de reportes"
+    requests_by_service_chart: "Quejas o sugerencias por tipo de trámite"
+    requests_map: "Mapa de quejas o sugerencias"
+    total_cities: "Ciudadanos que han participado."
+    total_procedures_services: "Trámites, servicios o programas de apoyo"
+    total_evaluations: "Servidores públicos evaluados"
 
   comments:
     comment:
       destroy: "Eliminar"
 
   service_requests:
+    index: 
+      complaints_or_suggestions: "Realiza Queja o Sugerencia"
+      search: "Buscar"
+      delete: "Eliminar"
+      service: "Todos los servicios"
+      status: "Todos los estatus"
+      start_date: "De la fecha"
+      end_date: "A la fecha"
     new:
-      header: "Crear nuevo reporte"
+      header: "Crear nueva queja o sugerencia"
+      rules: "* obligatorios"
     form:
       anonymise: "Ocultar identidad"
-      prompt_service: 'Tipo de servicio'
+      prompt_service: 'Tipo de trámite'
+      prompt_center: 'Centro de atención'
+      prompt_who: 'No recuerdo'
+      doesnt_apply: "No aplica"
       address_placeholder: 'Ej. Av Revolucion 2342, 64830 Monterrey, Nuevo León, México'
-      description_placeholder: 'Por favor proporcione detalles particulares sobre el reporte y la ubicación para facilitar su atención.'
+      description_placeholder: 'Para la mejor atención de la queja o denuncia se solicita que la narración sea concreta, describiendo la forma en que sucedieron los hechos, especificando el orden en que acontecieron, los nombres de las personas involucradas, acompañantes, servidores públicos o bien personas presentes durante el desarrollo de éstos y su participación en los mismos, evitando descripciones de situaciones vagas e imprecisas.'
       map_help: 'Este marcador es aproximado. En caso de estar fuera de lugar ubícalo manualmente.'
     show:
       votes: "Votos"
       share_it: "Compártelo"
       image: "Imagen"
-
+      public_servant: "Servidor público"
+      unknown: "Desconocido"
+  service_surveys:
+    index:
+      title: "Título"
+      services: "Trámites"
+      surveys: "Encuestas y su etapa"
+      phase: "Etapa"
+      cis: "Centro de Atención"
+      no_service_surveys: "No existen encuestas abiertas para ningún trámite."
+      start_survey: "Iniciar evaluación"
+      answered: "Evaluada"
+  answers:
+    new:
+      answers_already_sent: "Ya has evaluado la encuesta seleccionada."
+      current_survey: "Estas evaluando %{title}"
+      previous_question: "Pregunta anterior"
+      next_question: "Siguiente pregunta"
+      questions_left:
+        one: "1 Pregunta restante"
+        other: "%{count} Preguntas restantes"
+      finish_survey: "Terminar evaluación"
+      need_to_answer_message: "Necesitas responder esta pregunta para continuar."
+    create:
+      answers_created_successfully: "Gracias por evaluar el servicio."
+  evaluations:
+    index:
+      service_evaluations: "Evaluaciones por servicio"
+      name: "Nombre de servicio"
+      cis: "Nombre del Centro"
+      service_surveys: "Encuestas"
+      answered_surveys: "Encuestas contestadas"
+      cis_name: "Centro de atención - %{name}"
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      see_results: "Ver resultados"
+      cis_evaluations: "Evaluaciones por Centro de atención"
+  cis_evaluations:
+    index:
+      cis: "Centro de atención - %{name}"
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      see_results: "Ver resultados"
+      cis_evaluations: "Evaluaciones por Centro de atención"
+    show:
+      evaluated_services_count: "Trámites, servicios o programas"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      survey_participants_count: "Ciudadanos han participado"
+      cis_evaluation_for: "Evaluación del Centro de atención %{name}"
+      by_services: "Por servicios"
+      no_services: "El centro de atención no cuenta con servicios asignados."
+      by_area: "Por áreas"
+      best_evaluated_service: "Servicio mejor evaluado"
+      worst_evaluated_service: "Servicio peor evaluado"
+      best_public_servants_service: "Servicio con Servidores Públicos mejor evaluado"
+      worst_public_servants_service: "Servicio con Servidores Públicos peor evaluado"
+      no_evaluated_services: "Ningún servicio ha sido evaluado o no tiene encuestas respondidas."
+      general: "Evaluación general"
+      not_evaluated: "Sin evaluar"
+      no_report_data: "No hay datos en reportes de encuestas para generar el reporte."
+      see_answers: "Ver respuestas"
+      see_service_answers: "Ver respuestas de servicio"
+  service_evaluations:
+    show:
+      user: "Usuario"
+      service_evaluation: "Evaluaciones de %{name}"
+      service_survey_answers: "Respuestas de encuesta %{survey}"
+      see_other_survey_answers: "Ver respuestas de otras encuestas"
+      no_answers: "Ningún usuario ha respondido esta encuesta."
+      ignore: "¿Ignorar?"
+      ignore_answers: Ignorar
+      ignored: "Ignoradas"
+      export_csv: "Exportar CSV"
+      no_service_surveys_for_service: "El servicio no tiene encuestas asignadas"
+      enable_answers: "Habilitar"
   users:
     registrations:
       edit:
         edit_profile: "Editar perfil"
         cancel_my_account: "Cancelar mi cuenta"
         unhappy: "¿Estás insatisfecho?"
-
+    sessions:
+      new:
+        signin: 'Regístrate'
+        facebook: "Facebook"
+        twtter: "Twitter"
+        mail: "Correo"
+        password: "Contraseña"
+        rememberme: "Recuérdame"
+        enter: "Entrar"
+        restart_password: "Recuperar contraseña"
+    passwords:
+      edit:
+        change: "Cambiar contraseña"
+        title: "Cambia tu contraseña"
   public_nav_bar:
     name: "Reporte Ciudadano"
     summary: "Resumen"
-    service_requests: "Reportes"
-    new_service_request: "Realizar reporte"
+    service_requests: "Quejas o sugerencias"
+    new_service_request: "Realizar queja o sugerencia"
     edit_profile: "Editar perfil"
     sign_out: "Cerrar sesión"
     sign_up: "Registrarme"
     sign_in: "Iniciar sesión"
+    service_surveys: "Evalúa un servicio"
+    home: "Inicio"
+    requests: "Quejas y sugerencias"
+    evaluate_a_submission: "Evalúa trámite"
+    evaluations: "Evaluaciones"
+    panel: "Panel"
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
@@ -467,38 +645,63 @@ es:
       email: "Correo electrónico"
       title: "Título"
       address: "Dirección"
-      description: "Descripción"
-      service: "Servicio"
+      description: "Descripción*"
+      service: "Trámites*"
+      is_observer: "¿Es observador?"
+      is_comptroller: "¿Es contraloría?"
+      admin:
+        service: "Trámites"
+        who: "¿Quién lo atendió?"
+        status: "Estatus"
+        description: "Descripción"
+        cis: "Centro de atención"
+        criterion_select: "Reporte predeterminado"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
       password_confirmation: "Confirmar contraseña"
       current_password: "Contraseña actual"
-      record_number: "Número de registro"
+      record_number: "Número de Expediente"
       dependency: "Dependencia"
       administrative_unit: "Unidad administrativa"
       charge: "Cargo"
       service_type: "Tipo de servicio"
-      cis: "Centros de atención"
+      cis: "Centros de atención*"
       admin_id: "Administrador de servicio"
+      services: "Trámites"
+      phase: "Etapa de la encuesta"
+      criterion: "Criterio a evaluar"
+      text: "Texto"
+      answer_type: "Tipo de respuesta"
+      value: "Valor %"
+      who: "¿Quién te atendió?"
+      second_surname: "Segundo apellido:"
+      surname: "Primer apellido:"
+      description_public_servant: "Describe al funcionario"
+      optional: "Pregunta opcional"
     placeholders:
       email: "correo@correo.com"
       password: "contraseña"
       current_password: "contraseña actual"
       new_password: "Nueva contraseña"
       confirm_password: "Confirmar nueva contraseña"
+      description_public_servant_placeholder: "Escribe una descripción breve de como era el funcionario que te atendió"
     errors:
-      prohibited: "%{number_of_errors} evitó que la operación se realizara."
+      prohibited: "Número de errores: %{number_of_errors}, esto evitó que la operación se realizara."
     options:
       service_type_select: "Selecciona tipo de servicio"
       cis_select: "Selecciona Centro de atención"
       admin_select: "Selecciona Administrador de servicio"
-
+      answer_type_select: "Selecciona un tipo de respuesta"
+      criterion_select: "Selecciona criterio a evaluar en la pregunta"
+      service_type_dependency: "Selecciona la dependencia"
+      service_type_administrative: "Selecciona el centro de atención"
+      service_type_service_admin: "Selecciona al administrador"
   search_form:
     from_date: "De la fecha"
     to_date: "A la fecha"
     status: "Cualquier estatus"
-    service: "Todos los servicios"
+    service: "Todos los trámites"
     id: "No. Folio"
 
   comments_form:
@@ -520,16 +723,23 @@ es:
 
   flash:
     dashboards:
-      requests_not_found: 'No se encontraron reportes.'
+      requests_not_found: 'No se encontraron quejas o sugerencias.'
     service_requests:
-      created: "El reporte fue creado correctamente"
-      updated: "El reporte fue actualizado correctamente"
-      destroyed: "El reporte fue eliminado correctamente"
+      created: "Queja o sugerencia creada correctamente"
+      updated: "Queja o sugerencia actualizada correctamente"
+      destroyed: "Queja o sugerencia eliminada correctamente"
       try_again: "Hubo problemas, intenta de nuevo."
+      empty: "No se encontraron solicitudes de servicio."
+      success: 'La solicitud fue creada satisfactoriamente'
+      error: "Hubo problemas, intenta de nuevo"
     service:
       created: 'Servicio creado correctamente.'
       updated: 'Servicio actualizado correctamente.'
       destroyed: 'Servicio ha sido eliminado.'
+      disabled: 'Trámite desactivado correctamente'
+      enabled: 'Trámite activado correctamente'
+      could_not_be_disabled: 'Trámite no pudo ser desactivado'
+      could_not_be_enabled: 'Trámite no pudo ser activado'
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
@@ -541,14 +751,23 @@ es:
       updated: 'Logo actualizado correctamente.'
       destroyed: 'Logo ha sigo eliminado.'
     service_admin:
-      created: "El administrador de servicios se ha registrado exitosamente."
-      updated: "El administrador de servicios se ha actualizado exitosamente."
+      created: "El administrador de trámites se ha registrado exitosamente."
+      updated: "El administrador de trámites se ha actualizado exitosamente."
     public_servant:
       created: "El servidor público se ha registrado exitosamente."
       updated: "El servidor público se ha actualizado exitosamente."
       disabled: "El servidor público se ha desactivado exitosamente."
       enabled: "El servidor público se ha activado exitosamente."
       disabled_admin: "Tu cuenta ha sido desactivada, por favor contacta a tu Administrador."
+    service_survey:
+      created: "La encuesta se ha creado exitosamente."
+      updated: "La encuesta se ha actualizado exitosamente."
+      emailsend: "Correos enviados"
+      noemailsend: "Correos no enviados"
+      answers_ignored: "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
+      answers_ignored:
+        "true": "Las respuestas del usuario serán ignoradas en la generación de nuevos reportes."
+        "false": "Las respuestas del usuario han sido habilitadas en la generación de nuevos reportes."
   navbar:
     admin:
       design: "Diseño"
@@ -557,5 +776,215 @@ es:
     service: "Servicio"
     step: "Trámite"
     support_program: "Programa de Apoyo"
+  pages:
+    index:
+      video_explication: "En este sitio usted podrá evaluar la atención que se le brinda en los Trámites, Servicios y Programas de Apoyo del Gobierno del Estado de Puebla. Además, podrá levantar y dar seguimiento a las Quejas y Sugerencias que usted desee presentar. Lo anterior con el fin de mejorar la atención y el servicio."
+      join: "¡PARTICIPA!"
+      complaints_or_suggestions: "Realiza Queja o Sugerencia"
+      evaluate_a_submission: "Evalúa Trámite"
+  service_survey_phase_options:
+    start: "Al inicio"
+    middle: "A la mitad"
+    end: "Al cierre"
+  question_criterion_options:
+    blank: "Sin criterio específico"
+    transparency: "Transparencia"
+    performance: "Desempeño"
+    quality_service: "Calidad de servicio"
+    accessibility: "Accesibilidad"
+    infrastructure: "Infraestructura"
+    public_servant: "Servidor público"
+  question_answer_type_options:
+    binary: "Seleccionar de 2 posibles (Sí/No)"
+    rating: "Seleccionar de 5 posibles en un rango"
+    list: "Seleccionar de una lista"
+    open: "Respuesta abierta"
+  question_selected_answer:
+    binary: "Respuesta Sí/No"
+    rating: "Respuesta rango"
+    list: "Respuesta personalizada"
+    open: "Respuesta abierta"
+  answer_type:
+    binary:
+      positive: "Sí"
+      negative: "No"
+    rating:
+      good_answers: "Muy bueno - Muy malo"
+      satisfied_answers: "Muy satisfecho - Nada satisfecho"
+      good:
+        first: "Muy bueno"
+        second: "Bueno"
+        third: "Regular"
+        fourth: "Malo"
+        fifth: "Muy malo"
+      satisfied:
+        first: "Muy satisfecho"
+        second: "Satisfecho"
+        third: "Regular"
+        fourth: "Poco satisfecho"
+        fifth: "Nada satisfecho"
+    open:
+      text: "Texto introducido por el usuario..."
+  service_survey:
+    errors: 
+      total_values: "Valor deben sumar 100% y actualmente suman: %{count}%"
+      presence_of_value: "Valor deben contener un porcentaje de valor mayor a 0%"
+  cis_reports:
+    title: "Satisfacción general de servicios"
+  #Reports
+  service_report:
+    no_reports: "No hay respuestas para generar reporte"
+    created: "El reporte ha sido generado"
+    name: "Reportes"
+    new: "Generar Reporte"
+    go_to_index: "Ver reportes"
+    show_report: "Ver reporte"
+    index:
+      existent_reports: "Reportes Existentes"
+      total: "Número de reportes: %{number_of_reports}"
+      thanks_for_answering: "Gracias por contestar a las preguntas."
+      no_report: "Aún no hay reportes estadísticos sobre esta encuesta."
+      return_to_root_path: "Regresa a la página principal"
+      table:
+        name: "Nombre"
+        phase: "Fase"
+        link: "Vínculo"
+        creation_date: "Fecha de creación"
+        go_to_report: "Ir al reporte %{id}"
+    show:
+      title: "Reporte de %{title}"
+      people_who_participated: "ciudadanos han participado."
+      return_to_index: "Ver todos los reportes"
+      service_survey_phase: "Parte del proceso evaluada"
+      created_time_ago: "Creado hace: %{time_ago}"
+      no_report: Aún no hay reportes sobre las encuestas de este servicio.
+      question_analysis: "Análisis por pregunta"
+      question_value: "Valor total de la pregunta: %{value}%"
+      question_criterion: "Criterio de la pregunta: %{criterion}"
+      question_type: "Tipo de pregunta: %{type}"
 
+    general_survey:
+      title: "General"
+      subtitle: "Satisfacción General del Servicio"
+  error:
+    title_not_found: "Ruta no encontrada"
+    not_found: "Lo sentimos pero la Ruta ingresada no existe"
+    title_server_error: "Falla inesperada"
+    server_error: "Lo sentimos pero hubo una falla inesperada. Estamos trabajando en reparar esto."
 
+  titles:
+    page_title: Evalúa Tu Trámite
+  activerecord:
+    models: 
+      service_survey: "Encuesta"
+      dynamic_reports: "Reportes dinámicos"
+    attributes:
+      dynamic_reports:
+        service_id: "Id"
+        title: "Titulo"
+        name: "Nombre"
+        email: "Email"
+        is_service_admin: "¿Administra servicios?"
+        disabled: "¿Está desactivado?"
+        active: "¿Está activo?"
+        is_observer: "¿Es observador?"
+        overall_satisfaction: "Satisfacción promedio"
+        phase: "Fase"
+        status: "Estatus"
+        cis: "Centro de atención"
+        dependency: "Dependencia"
+        administrative_unit: "Unidad Administrativa"
+        is_open: "Estatus de encuestas del servicio"
+        affirmation:
+          "true": "Sí"
+          "false": "No"
+        open:
+          "true": "Abierto"
+          "false": "Cerrado"
+        people_who_participated: "Personas que participaron"
+        negative_overall_perception: "Percepción negativa total"
+        positive_overall_perception: "Percepción positiva total"
+        created_at: "Creada el"
+        areas_results: "Resultados de áreas"
+        service_name: "Nombre del trámite, servicio, programa de apoyo"
+        service_surveys_count: "Número de encuestas"
+        service_survey_names: "Nombres de las encuestas"
+        service_names: "Nombres del trámite, servicio, programa de apoyo"
+        survey_titles: "Títulos de encuestas"
+        public_servant_evaluation: "Evaluación de los servidores públicos"
+        cis_services: "Servicios en centro de atención"
+        respondents_count: "Número de personas que evaluaron"
+        performance: "Desempeño"
+        transparency: "Transparencia"
+        quality_service: "Calidad de servicio"
+        accessibility: "Accesibilidad"
+        infrastructure: "Infraestructura"
+        public_servant: "Servidor público"
+        service_type: "Tramite, servicio o programa de apoyo "
+        date_start: "Fecha de inicio"
+        date_end: "Fecha de fin"
+        date_range: "Rango de fechas"
+        not_qualified: "No califica"
+        not_evaluated: "No evaluado"
+        admins: "Administradores del servicio"
+        type:
+          service_status_report: "1. Estatus de trámites (Activo, Inactivo)"
+          all_procedure_or_service: "2. Evaluación global de trámites"
+          best_procedure_or_service: "3. Trámites mejor evaluados globalmente"
+          worst_procedure_or_service: "4. Trámites peor evaluados globalmente"
+          all_public_servants_report: "5. Trámites con evaluación de servidores públicos"
+          best_public_servants_report: "6. Trámites con mejores servidores públicos evaluados"
+          worst_public_servants_report: "7. Trámites con peores servidores públicos evaluados"
+          service_public_servants_report: "8. Servidores públicos relacionados por trámites"
+          service_demand_report: "9. Trámites con demanda en encuestas"
+          cis_services_report: "10. Evaluación de trámites por centros de atención "
+          service_performance_report: "11. Trámites con retraso en su realización"
+          services_all_information_report: "12. Trámites con toda la información"
+
+      service_survey:
+        title: "Titulo"
+        service_ids: "Trámites"
+        questions: "La respuesta"
+        phase: "Fase"
+        open: "¿Está abierta?"
+      questions:
+        answer_type: "Tipo de respuesta"
+    errors:
+      models:
+        comment:
+          attributes:
+            content:
+              blank: "El comentario no puede estar vacío"
+        question:
+          attributes:
+            answer_type:
+              inclusion: "Tipo de respuesta invalido"
+              blank: "Tipo de respuesta invalido"
+        service:
+          attributes:
+            name:
+              blank: "Nombre no puede estar vacío ni tener caracteres especiales"
+            service_type:
+              blank: "Tipo de servicio no puede estar vacío"
+            dependency:
+              blank: "Dependencia no puede estar vacío"
+            administrative_unit:
+              blank: "Unidad administrativa no puede estar vacío"
+            cis:
+              blank: "Cis no puede estar vacío"
+            service_admin_id:
+              blank: "Administador del servicio no puede estar vacío"
+  datagrid:
+    no_results: "No hay resultados"
+    filters:
+      xboolean:
+        "yes": "Sí"
+        "no": "No"
+    form:
+      export: "Exportar"
+      search: "Filtrar"
+      reset:  "Limpiar forma"
+    table:
+      order:
+        asc: "↑"
+        desc: "↓"

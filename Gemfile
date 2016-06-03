@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.3'
 
 gem 'rails', '4.2.0'
 
@@ -29,30 +29,37 @@ gem 'ransack'
 gem 'figaro'
 gem 'active_model_serializers'
 gem 'coveralls', require: false
+gem 'cocoon'
+gem 'jquery-turbolinks'
+gem 'datagrid'
 
 # Async backgroun job handling
 gem 'sidekiq'
+
+gem 'chosen-rails' #autocompletar
+gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 group :test do
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
 end
 
 group :development,:test do
-  gem 'factory_girl_rails'
+  
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'byebug'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
 end
 
 group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
@@ -71,7 +78,7 @@ end
 gem 'sass-rails',   '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'haml-rails'
-gem 'compass-rails'
+gem 'compass-rails', github: 'Compass/compass-rails'
 gem "modular-scale", "~> 1.0.6"
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 gem 'uglifier', '>= 1.3.0'

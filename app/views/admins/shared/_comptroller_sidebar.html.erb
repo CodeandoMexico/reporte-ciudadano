@@ -1,0 +1,28 @@
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+   <li class="sidebar-brand">
+    </li> 
+    <li>
+      <%= link_to i18n_admin_sidebar('.summary'), admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to i18n_admin_sidebar('.services'), services_admins_dashboards_path %>
+    </li>
+    <li>
+      <%= link_to i18n_admin_sidebar('.service_surveys'), admins_service_surveys_path %>
+    </li>
+    <li>
+      <%= link_to i18n_admin_sidebar('.requests'), admins_service_requests_path %>
+    </li>
+    <li>
+      <%= link_to i18n_admin_sidebar('.public_servants'), admins_public_servants_path %>
+    </li>
+    <li>
+      <%= link_to i18n_admin_sidebar('.evaluations'), evaluations_path %>
+    </li>
+    <li>
+      <%= link_to i18n_admin_sidebar('.reports'), admins_service_survey_reports_path %>
+      <%#= link_to i18n_admin_sidebar('.api'), admins_api_keys_path %>
+    </li>
+  </ul>
+</div>

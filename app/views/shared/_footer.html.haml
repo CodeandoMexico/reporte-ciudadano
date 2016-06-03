@@ -1,2 +1,19 @@
 #footer
-  = image_tag "logo_codeando-footer.png", class: 'footer-logo img-responsive'
+  - if ENV["VEDA_ELECTORAL"] == "true" then
+    / Modal
+    #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} &times;
+            %h4#myModalLabel.modal-title Aviso
+          .modal-body
+            CON FUNDAMENTO EN EL ARTÍCULO 41BASE III, APARTADO C DE LA CONSTITUCIÓN POLÍTICA DE LOS ESTADOS UNIDOS MEXICANOS Y POR
+            EL ARTÍCULO 217 DEL CÓDIGO DE PROCEDIMIENTOS Y PROCESOS ELECTORALES DEL ESTADO DE PUEBLA, EL CONTENIDO DE LA PRESENTE
+            PÁGINA SE ENCUENTRA LIMITADA O MODIFICADA POR EL PERÍODO COMPRENDIDO DEL 3 DE ABRIL AL 5 DE JUNIO DEL AÑO 2016, QUE
+            DISPONEN SUSPENDER LA DIFUSION DE TODA PROPAGANDA GUBERNAMENTAL.
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+    :javascript
+      $('#myModal').modal('show')
