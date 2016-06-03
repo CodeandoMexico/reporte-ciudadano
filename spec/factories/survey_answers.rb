@@ -6,7 +6,7 @@ FactoryGirl.define do
     association :user, factory: :user
     ignored false
     cis_id 1
-    association :service_id, factory: :service
+    service_id 1
     factory :survey_answer_binary do
       score nil
       user nil
