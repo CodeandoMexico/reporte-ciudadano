@@ -68,7 +68,7 @@ class Service < ActiveRecord::Base
   end
 
   def answered_surveys
-    SurveyAnswer.where(service_id: "#{self.id}").count
+    SurveyAnswer.where(service_id: "#{self.id}").includes(:question).pluck(:user_id, :service_survey_id).uniq.count
   end
 
   def has_not_been_evaluated?
