@@ -2,8 +2,15 @@ class PagesController < ApplicationController
     layout 'landing'
   def index
     @services_count = Service.count
-    @active_citizen_count = SurveyAnswer.pluck(:user_id).uniq.count
-    @public_servant_assessed_count = Question.with_public_servant_type.map(&:services).flatten.map(&:admins).flatten.uniq.count
+    @active_citizen_count =
+        Rails.cache.fetch("active-citizens-count-landing-page-cache", :expires_in => 1.hours) do
+          SurveyAnswer.pluck(:user_id).uniq.count
+        end
+
+    @public_servant_assessed_count =
+        Rails.cache.fetch("public-servant-assessed-count-landing-page-cache", :expires_in => 1.hours) do
+          Admin.public_servants_sorted_by_name.joins(:services).pluck(:id,:service_id).uniq.count
+        end
     @url_video = ENV['VIMEO_VIDEO_KEY'] || '134171429'
   end
 end

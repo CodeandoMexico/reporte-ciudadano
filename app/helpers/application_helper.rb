@@ -45,8 +45,9 @@ def embed_video(vimeo_url)
       return "//player.vimeo.com/video/#{vimeo_id}"
   end
 
-  def pretty_kpi_data(value, message)
+  def pretty_kpi_data(name, value, message)
       kpi_panel = {
+          name: name,
           panel: 'panel-gray',
           awesome_icons_class: '#',
           path: '#',
