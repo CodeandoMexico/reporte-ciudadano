@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 
     @public_servant_assessed_count =
         Rails.cache.fetch("public-servant-assessed-count-landing-page-cache", :expires_in => 1.hours) do
-          Admin.public_servants_sorted_by_name.joins(:services).pluck(:id,:service_id).uniq.count
+      Admin.public_servants_sorted_by_name.count
         end
     @url_video = ENV['VIMEO_VIDEO_KEY'] || '134171429'
   end
