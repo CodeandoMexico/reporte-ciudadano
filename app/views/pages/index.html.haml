@@ -4,10 +4,10 @@
 .row.col-md-10.col-md-offset-1.video-text
   .p
     = t('.video_explication')
-.row.reports-stats{data: { total: ServiceRequest.count } }
-  = render "kpis/kpi", kpi: pretty_kpi_data(@active_citizen_count,t('dashboards.total_cities'))
-  = render "kpis/kpi", kpi: pretty_kpi_data(@services_count,t('dashboards.total_procedures_services'))
-  = render "kpis/kpi", kpi: pretty_kpi_data(@public_servant_assessed_count,t('dashboards.total_evaluations'))
+.row.reports-stats
+  = render "kpis/kpi", kpi: pretty_kpi_data("active-citizen-count",@active_citizen_count,t('dashboards.total_cities'))
+  = render "kpis/kpi", kpi: pretty_kpi_data("services-count", @services_count,t('dashboards.total_procedures_services'))
+  = render "kpis/kpi", kpi: pretty_kpi_data("public-servants-assesed", @public_servant_assessed_count,t('dashboards.total_evaluations'))
 
 .div.col-md-8.col-md-offset-2
   .h1.col-md-12.text-center.join-text
