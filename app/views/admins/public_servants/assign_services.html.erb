@@ -5,7 +5,7 @@
   <fieldset>
     <div class="form-group">
       <div class="col-md-5">
-        <%= f.select :services_ids, @available_services.collect {|p| [p.name, p.id,selected: is_assigned_to_public_servant?(p, @public_servant)]}, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select',:multiple=>true }%>  
+        <%= f.select :services_ids, @available_services.collect {|p| [p.name, p.id,selected: is_assigned_to_public_servant?(p, @public_servant)]}, { prompt: "" }, { class: 'js-load_service_fields chosen-select',:multiple=>true }%>
       </div>
     </div>
   </fieldset>
