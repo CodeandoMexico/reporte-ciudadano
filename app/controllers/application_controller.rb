@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_observer
-    unless (current_user && current_user.is_observer?) || current_admin
+    unless current_admin || current_user.is_observer?
       redirect_to root_path
     end
   end
