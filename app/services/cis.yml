@@ -4,11 +4,11 @@
 #  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Colonia Agua Santa, C.P 72490 Puebla, Pue.
 #  :phone: "(01 222) 228-56-50"
 #  :schedule: Lunes a Viernes de 08:00 a 17:00 horas. Sábado de 08:00 a 14:00 horas.
-- :id: 2
-  :name: CIS Centro Integral de Servicios Edificio Norte
-  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción Las Lajas, C.P 72190 Puebla,Pue.
-  :phone: "(01 222) 303-46-00"
-  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+#- :id: 2
+#  :name: CIS Centro Integral de Servicios Edificio Norte
+#  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción Las Lajas, C.P 72190 Puebla,Pue.
+#  :phone: "(01 222) 303-46-00"
+#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 3
 #  :name: SSEP Hospital General de la Zona Norte (Módulo de afiliación del Seguro Popular)
 #  :address: Calle 88 Poniente y 7 Norte s/n Colonia Villa Frontera, C.P 72230 Puebla,Pue.
