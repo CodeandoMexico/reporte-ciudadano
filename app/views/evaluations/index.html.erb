@@ -58,7 +58,7 @@
   <%end%>
 
 <% @cis.each do |cis| %>
-<%if  @id_cis.blank? || (Services.service_cis_options[@id_cis.to_i - 1][:label].include? cis.name) %>
+<%if  @id_cis.blank? || (Services.service_cis_label(@id_cis).include? cis.name) %>
   <div class="row">
     <div clasS="col-md-10 col-md-offset-1">
       <div class="panel panel-info cis">
