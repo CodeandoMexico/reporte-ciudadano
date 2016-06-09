@@ -68,7 +68,6 @@ class Service < ActiveRecord::Base
   end
 
   def answered_surveys
-    #SurveyAnswer.where(service_id: "#{self.id}").includes(:question).pluck(:user_id, :service_survey_id).uniq.count
     answers.count
   end
 
