@@ -1,6 +1,7 @@
 class SurveyAnswer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
+  belongs_to :service
   has_one :service_survey, through: :question
 
   scope :validated, -> {

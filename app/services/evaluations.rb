@@ -76,11 +76,11 @@ module Evaluations
     attr_reader :services_records
 
     def survey_participants_ids
-      service_surveys
-        .map(&:answers)
-        .flatten
-        .map(&:user_id)
-        .uniq
+      services_records.
+          map{|a| a.answers.where("survey_answers.cis_id = ?", self.id)}
+          .map{|a| a.pluck(:user_id)}
+          .flatten
+
     end
 
     def services_evaluations
