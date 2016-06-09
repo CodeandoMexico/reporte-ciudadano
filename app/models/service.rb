@@ -7,7 +7,7 @@ class Service < ActiveRecord::Base
   has_many :service_fields
   has_many :messages
   has_many :service_reports
-  has_many :answers, through: :service_surveys
+  has_many :answers, class: SurveyAnswer, source: :survey_answers
   has_many :service_surveys_reports, class: ServiceSurveyReport, through: :service_surveys, source: :reports
   has_many :questions, through: :service_surveys
   belongs_to :service_admin, class: Admin, foreign_key: :service_admin_id
@@ -68,7 +68,8 @@ class Service < ActiveRecord::Base
   end
 
   def answered_surveys
-    SurveyAnswer.where(service_id: "#{self.id}").includes(:question).pluck(:user_id, :service_survey_id).uniq.count
+    #SurveyAnswer.where(service_id: "#{self.id}").includes(:question).pluck(:user_id, :service_survey_id).uniq.count
+    answers.count
   end
 
   def has_not_been_evaluated?
