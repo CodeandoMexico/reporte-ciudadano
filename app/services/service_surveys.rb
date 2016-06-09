@@ -188,7 +188,7 @@ module ServiceSurveys
   end
 
   class AnswerForm
-    attr_reader :text, :question_id, :question_value, :question_answer_type, :cis_id, :service_id
+    attr_reader :text, :question_id, :question_value, :question_answer_type, :user_id, :cis_id, :service_id
 
     def initialize(attrs)
       @text = attrs[:text]
@@ -196,7 +196,7 @@ module ServiceSurveys
       @question_id = attrs[:question_id]
       @question_answer_type = attrs[:question_answer_type]
       @user_id = attrs[:user_id] || nil
-      @cis_id = attrs[:cis_id] || nil,
+      @cis_id = attrs[:cis_id]  || nil
       @service_id = attrs[:service_id] || nil
     end
 
