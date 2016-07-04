@@ -68,7 +68,7 @@ class Service < ActiveRecord::Base
   end
 
   def answered_surveys
-    answers.count
+    answers.pluck(:user_id, :cis_id).uniq.count
   end
 
   def has_not_been_evaluated?
