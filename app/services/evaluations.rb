@@ -80,7 +80,7 @@ module Evaluations
           map{|a| a.answers.where("survey_answers.cis_id = ?", self.id)}
           .map{|a| a.pluck(:user_id)}
           .flatten
-
+          .uniq
     end
 
     def services_evaluations
