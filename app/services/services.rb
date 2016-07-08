@@ -47,6 +47,10 @@ module Services
     selected_cis.present? ? selected_cis.first[:label] : ""
   end
 
+  def self.service_cis_name(cis_id)
+    service_cis_label(cis_id).split("-").first
+  end
+
   def self.is_assigned_to_public_servant?(service, public_servant)
     public_servant.services.include?(service)
   end
