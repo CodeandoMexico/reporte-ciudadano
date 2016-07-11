@@ -108,7 +108,8 @@ $blue-line: #005195;
 }
 
 .page-content {
-  h2 {
+
+  h1, h2, h3, h4, h5 {
     color: $blue-line !important;
     font-family:  "Helvetica Neue Light" !important;
   }
