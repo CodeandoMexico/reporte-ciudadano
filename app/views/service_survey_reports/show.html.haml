@@ -52,21 +52,21 @@
           =  t('service_report.show.question_analysis')
         %hr
         - previous_criterion = ""
-        - @service_surveys_report.total_by_question[:questions].each do |p|
-          -unless p.criterion.to_s.eql? previous_criterion.to_s
+        - @service_surveys_report.reported_questions.order(:question_criterion).each do |p|
+          -unless p.question_criterion.to_s.eql? previous_criterion.to_s
             %h2
               %span.glyphicon.glyphicon-check{:aria_hidden => "true"}
-              =t("question_criterion_options.#{p.criterion}")
+              =t("question_criterion_options.#{p.question_criterion}")
 
           %div.row.padding-top.col-sm-12.col-md-12
             %h3
-              = p.text
+              = p.question_text
             %p.col-sm-12.col-md-6
-              = t('service_report.show.question_value', value: "%.2f" % p.value)
+              = t('service_report.show.question_value', value: "%.2f" % p.value_in_survey)
               %br
-              = t('service_report.show.question_criterion', criterion: t("question_criterion_options.#{p.criterion}"))
+              = t('service_report.show.question_criterion', criterion: t("question_criterion_options.#{p.question_criterion}"))
               %br
-              = t('service_report.show.question_type', type: t("question_answer_type_options.#{p.answer_type}"))
-              -if p.value >0
-                = progress_bar @service_surveys_report.total_by_question[:scores][p.id]/ p.value * 100
-            - previous_criterion = p.criterion
+              = t('service_report.show.question_type', type: t("question_answer_type_options.#{p.question_type}"))
+              -if p.value_in_survey >0
+                = progress_bar p.result_reported
+            - previous_criterion = p.question_criterion
