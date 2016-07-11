@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20160711161120) do
 
   add_index "questions", ["service_survey_id"], name: "index_questions_on_service_survey_id", using: :btree
 
-  create_table "reported_question_results", force: :cascade do |t|
+  create_table "reported_questions", force: :cascade do |t|
     t.integer "service_survey_report_id", default: 0
     t.integer "service_survey_id",        default: 0
     t.integer "service_id",               default: 0

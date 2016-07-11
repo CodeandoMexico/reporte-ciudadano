@@ -1,6 +1,6 @@
-class CreateReportedQuestionResults < ActiveRecord::Migration
+class CreateReportedQuestions < ActiveRecord::Migration
   def change
-    create_table :reported_question_results do |t|
+    create_table :reported_questions do |t|
       t.integer  :service_survey_report_id, default: 0
       t.integer  :service_survey_id, default: 0
       t.integer  :service_id, default: 0
