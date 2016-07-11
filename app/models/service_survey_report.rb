@@ -1,10 +1,13 @@
 class ServiceSurveyReport < ActiveRecord::Base
   belongs_to :service_survey
   has_many :services, through: :service_survey
+  has_many :reported_questions
 
   validates :existing_answers, presence: true
 
   before_create :compute_and_set_results_for_report
+
+  after_create :create_reported_questions
 
   serialize :areas_results, Hash
 
@@ -16,17 +19,8 @@ class ServiceSurveyReport < ActiveRecord::Base
     service_survey.phase
   end
 
-  def total_by_question
-    questions_avg_score = rating_and_binary_answers(self.service_survey_id, self.cis_id, self.service_id)
-        .group('questions.id')
-        .average('survey_answers.score')
-    questions = rating_and_binary_questions(self.service_survey_id).order(:criterion)
-    {}.merge(:scores => questions_avg_score).merge(:questions => questions)
-  end
 
-
-
-  private
+  # private
 
   def compute_and_set_results_for_report
     survey_report = compute_report_hash_for(self.service_survey_id, self.cis_id, self.service_id)
@@ -34,6 +28,25 @@ class ServiceSurveyReport < ActiveRecord::Base
     self.negative_overall_perception = survey_report[:survey][:negative]
     self.people_who_participated = survey_report[:people_count]
     self.areas_results = survey_report[:overall_areas]
+  end
+
+  def create_reported_questions
+    rating_and_binary_questions(service_survey_id).each do |q|
+      ReportedQuestion.create(service_survey_report_id: self.id,
+                              service_survey_id: self.service_survey_id,
+                              service_id: self.service_id,
+                              cis_id: self.cis_id,
+                              question_id: q.id,
+                              question_text: q.text,
+                              question_criterion: q.criterion,
+                              question_type: q.answer_type,
+                              answer_text: q.answers.join(", "),
+                              answer_rating_range: q.answer_rating_range,
+                              question_is_optional: q.optional,
+                              has_ignored_questions: survey_has_ignored_questions?,
+                              value_in_survey: q.value,
+                              result_reported: average_for_question(q.id))
+    end
   end
 
   def compute_report_hash_for(service_survey_id, cis_id, service_id)
@@ -90,6 +103,12 @@ class ServiceSurveyReport < ActiveRecord::Base
     end
   end
 
+  def average_for_question(question_id)
+    rating_and_binary_answers(service_survey_id, cis_id, service_id).
+        where(question_id: question_id)
+        .map(&:score).sum.to_i/compute_people_count_for(service_survey_id, cis_id, service_id)
+  end
+
   def existing_answers
     rating_and_binary_answers(self.service_survey_id, self.cis_id, self.service_id)
   end
@@ -110,6 +129,11 @@ class ServiceSurveyReport < ActiveRecord::Base
     get_service_survey(service_survey_id).rating_and_binary_answers.where(cis_id: cis_id, service_id: service_id)
   end
 
+  def survey_has_ignored_questions?
+    get_service_survey(service_survey_id).
+        answers.where(cis_id: cis_id, service_id: service_id, ignored: true)
+        .any?
+  end
   def get_service_survey(service_survey_id)
     ServiceSurvey.find(service_survey_id)
   end
