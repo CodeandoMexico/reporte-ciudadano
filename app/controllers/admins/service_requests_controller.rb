@@ -50,7 +50,9 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def destroy
     @service_request = ServiceRequest.find params[:id]
-    @service_request.destroy
+    erased_status = Status.where("name ILIKE ?", "%eliminado%").last
+    @service_request.status_id = erased_status.id
+    @service_request.save
     redirect_to :back, flash: { success: I18n.t('flash.service_requests.destroyed') }
   end
 
