@@ -56,6 +56,12 @@ class Admins::ServiceRequestsController < Admins::AdminController
     redirect_to :back, flash: { success: I18n.t('flash.service_requests.destroyed') }
   end
 
+  def csv_export
+    service_requests = ServiceRequest.all
+    csv_file, csv_filename = ServiceRequests::ServiceRequestsFile.new(service_requests).to_csv
+    send_data csv_file, filename: csv_filename
+  end
+
   private
   def set_title
     @title_page = I18n.t('admins.service_requests.index.header')

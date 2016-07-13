@@ -456,6 +456,7 @@ es:
         user_didnt_provide_telephone: "El usuario no proporcionó su teléfono."
       index:
         header: "Todas las quejas o sugerencias"
+        export_csv: "Exportar quejas a CSV"
         new_service_request: "Crear nueva queja o sugerencia"
         id: "Folio"
         created_at: "Fecha de creación"
