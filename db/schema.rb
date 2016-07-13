@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525223334) do
+ActiveRecord::Schema.define(version: 20160711161120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,23 @@ ActiveRecord::Schema.define(version: 20160525223334) do
 
   add_index "questions", ["service_survey_id"], name: "index_questions_on_service_survey_id", using: :btree
 
+  create_table "reported_questions", force: :cascade do |t|
+    t.integer "service_survey_report_id", default: 0
+    t.integer "service_survey_id",        default: 0
+    t.integer "service_id",               default: 0
+    t.integer "cis_id",                   default: 0
+    t.integer "question_id",              default: 0
+    t.string  "question_text",            default: ""
+    t.string  "question_criterion",       default: ""
+    t.string  "question_type",            default: ""
+    t.string  "answer_text",              default: ""
+    t.string  "answer_rating_range",      default: ""
+    t.boolean "question_is_optional",     default: false
+    t.boolean "has_ignored_questions",    default: false
+    t.decimal "value_in_survey",          default: 0.0
+    t.decimal "result_reported",          default: 0.0
+  end
+
   create_table "service_fields", force: :cascade do |t|
     t.string   "name"
     t.integer  "service_id"
@@ -193,6 +210,7 @@ ActiveRecord::Schema.define(version: 20160525223334) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "areas_results"
+    t.integer  "cis_id"
   end
 
   add_index "service_survey_reports", ["service_survey_id"], name: "index_service_survey_reports_on_service_survey_id", using: :btree

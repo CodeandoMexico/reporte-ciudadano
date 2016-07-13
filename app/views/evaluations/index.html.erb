@@ -59,7 +59,7 @@
 
 <% @cis.each do |cis| %>
 <%if  @id_cis.blank? || (Services.service_cis_label(@id_cis).include? cis.name) %>
-  <div class="row">
+  <div class="row" cis-id-data="<%= "#{cis.id}" %>">
     <div clasS="col-md-10 col-md-offset-1">
       <div class="panel panel-info cis">
         <div class="panel-heading">

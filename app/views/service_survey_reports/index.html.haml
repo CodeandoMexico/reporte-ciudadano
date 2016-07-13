@@ -13,6 +13,10 @@
               %th
                 =t('service_report.index.table.name')
               %th
+                =t('service_report.index.table.cis')
+              %th
+                =t('service_report.index.table.service')
+              %th
                 =t('service_report.index.table.phase')
               %th
                 =t('service_report.index.table.link')
@@ -24,6 +28,10 @@
               %tr.service_survey
                 %td
                   = report.service_survey_title
+                %td
+                  = Services.service_cis_name(report.cis_id)
+                %td
+                  = Service.find(report.service_id).name
                 %td
                   = t("service_survey_phase_options.#{report.service_survey_phase}")
                 %td

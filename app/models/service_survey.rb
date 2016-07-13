@@ -70,6 +70,10 @@ class ServiceSurvey < ActiveRecord::Base
     reports.order(created_at: :asc).last
   end
 
+  def last_report_for_cis(cis_id)
+    reports.where(cis_id: cis_id).references(:reports).order(created_at: :asc).last
+  end
+
   def respondents
     users.uniq
   end

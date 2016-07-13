@@ -22,12 +22,15 @@ class ServiceSurveyReportsController < ApplicationController
   private
 
   def service_survey_report_params
-    params.permit(:id, :service_survey_id, :service_survey_report, :page)
+    params.permit(:id, :service_survey_id, :cis_id, :service_id, :service_survey_report, :page)
   end
 
   def set_reports_for_index
-    if service_survey_report_params.has_key?(:service_survey_id)
-     ServiceSurveyReport.where(service_survey_id: service_survey_report_params[:service_survey_id])
+    if service_survey_report_params.has_key?(:service_survey_id) && service_survey_report_params.has_key?(:service_id) &&  service_survey_report_params.has_key?(:cis_id)
+     ServiceSurveyReport.where(
+                            service_survey_id: service_survey_report_params[:service_survey_id],
+                            service_id: service_survey_report_params[:service_id],
+                            cis_id: service_survey_report_params[:cis_id])
                          .order(created_at: :desc)
                          .page(service_survey_report_params[:page]).per(25)
     else

@@ -68,7 +68,7 @@ class Service < ActiveRecord::Base
   end
 
   def answered_surveys
-    answers.count
+    answers.pluck(:user_id, :cis_id).uniq.count
   end
 
   def has_not_been_evaluated?
@@ -87,7 +87,21 @@ class Service < ActiveRecord::Base
     service_surveys.map(&:last_report).reject(&:blank?).uniq
   end
 
+  def last_survey_reports_for_cis(cis_id)
+    service_surveys.
+        map{ |service_survey| service_survey.last_report_for_cis(cis_id)}
+        .reject(&:blank?)
+        .uniq
+  end
+
   def last_report
     service_reports.order(created_at: :asc).last
+  end
+
+  def last_report_for_cis(cis_id)
+    service_reports.
+        where(cis_id: cis_id)
+        .order(created_at: :asc)
+        .last
   end
 end
