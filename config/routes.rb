@@ -50,6 +50,7 @@ Rails.application.routes.draw do
         put 'update_status'
       end
       collection do
+        get 'csv_export'
         get 'dashboard'
       end
     end
