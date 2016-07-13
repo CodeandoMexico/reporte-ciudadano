@@ -47,13 +47,20 @@
         .row.well
           %h4= t('.user_info')
           %p= t(".user_id", id: @service_request.requester.id)
-          %p= @service_request.requester.name
+          %p
+            - if @service_request.requester.name.present?
+              = @service_request.requester.name
+            - else
+              = t(".user_didnt_provide_name")
+
           %p= @service_request.requester.email
           - if @service_request.service_fields?
             - @service_request.service_fields_hash.each do |service_field|
               %p= "#{service_field[:name]}: #{service_field[:value]}"
-          - unless @service_request.requester.telephone_number.nil?
+          - if @service_request.requester.telephone_number.present?
             %p= t('devise.telephone_number') + " " + @service_request.requester.telephone_number
+          - else
+            = t(".user_didnt_provide_telephone")
 
           - if @service_request.media.present?
             .image.tight

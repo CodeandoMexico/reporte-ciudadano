@@ -452,6 +452,8 @@ es:
         update_service_request: "Actualizar queja o sugerencia"
         user_info: "Datos del usuario"
         votes: "Votos"
+        user_didnt_provide_name: "El usuario no proporcionó su nombre."
+        user_didnt_provide_telephone: "El usuario no proporcionó su teléfono."
       index:
         header: "Todas las quejas o sugerencias"
         new_service_request: "Crear nueva queja o sugerencia"
