@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
   def create
     answers = ServiceSurveys.generate_answer_records(answers_params, current_user.id, params[:cis_id], params[:service_id])
     @service_survey = ServiceSurvey.find(params[:service_survey_id])
-    unless SurveyAnswer.where(user_id: current_user.id, cis_id: params[:cis_id], service_id: params[:service_id] ).any?
+    unless survey_has_been_answered
       answers.each do |answer|
         answer = SurveyAnswer.new(answer)
         answer.save
@@ -25,6 +25,14 @@ class AnswersController < ApplicationController
   end
 
   private
+  def survey_has_been_answered
+    ServiceSurvey.find(params[:service_survey_id]).
+                                                  answers
+                                                  .where( user_id: current_user.id,
+                                                  cis_id: params[:cis_id],
+                                                  service_id: params[:service_id] ).any?
+
+  end
 
   def answers_params
     params.require(:answers).values
@@ -44,9 +52,11 @@ class AnswersController < ApplicationController
 
   def authorize_user_to_answer
     service_survey = ServiceSurvey.find(params[:service_survey_id])
+
     cis = params[:cis_id]
     survey = params[:service_survey_id]
-    if service_survey.has_been_answered_by?(current_user,cis, survey)
+    service = params[:service_id]
+    if service_survey.has_been_answered_by?(current_user, cis, service)
       redirect_to service_surveys_path, notice: t('.answers_already_sent')
     end
   end
