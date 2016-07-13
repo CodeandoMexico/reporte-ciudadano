@@ -1,5 +1,8 @@
 .content-header
   %h2= t('.header')
+  -if current_admin.is_super_admin?
+    .btn-group.pull-right
+      =link_to t(".export_csv"), csv_export_admins_service_requests_path, class:"btn btn-primary"
 
 .page-content.inset
   = search_form_for @search, url: admins_service_requests_path, method: :get, class: "filters form-inline" do |f|

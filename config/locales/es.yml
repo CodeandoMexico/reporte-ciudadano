@@ -454,6 +454,7 @@ es:
         votes: "Votos"
       index:
         header: "Todas las quejas o sugerencias"
+        export_csv: "Exportar quejas a CSV"
         new_service_request: "Crear nueva queja o sugerencia"
         id: "Folio"
         created_at: "Fecha de creación"
