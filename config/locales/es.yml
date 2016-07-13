@@ -542,6 +542,7 @@ es:
       need_to_answer_message: "Necesitas responder esta pregunta para continuar."
     create:
       answers_created_successfully: "Gracias por evaluar el servicio."
+      answers_already_sent: "Ya has contestado la encuesta previamente."
   evaluations:
     index:
       service_evaluations: "Evaluaciones por servicio"
