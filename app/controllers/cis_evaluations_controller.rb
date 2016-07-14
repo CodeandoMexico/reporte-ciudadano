@@ -13,7 +13,7 @@ class CisEvaluationsController < ApplicationController
   def show
     services_records = SurveyAnswer.where(cis_id: params[:id]).map(&:service).uniq
     @cis = Evaluations.cis_evaluation_for(cis, services_records)
-    @survey_reports =  @cis.services.map{|service| service.last_survey_reports_for_cis(params[:id])}.uniq
+    @survey_reports =  @cis.services.map{|service| service.last_survey_reports_for_cis(params[:id])}.flatten.uniq
     @cis_report = Reports.current_cis_report_for(
       cis,
       cis_report_store: CisReport,
