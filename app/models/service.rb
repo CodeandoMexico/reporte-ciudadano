@@ -92,7 +92,6 @@ class Service < ActiveRecord::Base
         map{ |service_survey| service_survey.last_report_for_cis(cis_id)}
         .reject(&:blank?)
         .uniq
-        .flatten
   end
 
   def last_report
