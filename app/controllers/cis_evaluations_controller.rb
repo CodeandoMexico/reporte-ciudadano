@@ -11,12 +11,13 @@ class CisEvaluationsController < ApplicationController
   end
 
   def show
-    services_records = Service.includes(:service_surveys, :service_reports, :answers, :service_surveys_reports).active
+    services_records = SurveyAnswer.where(cis_id: params[:id]).map(&:service).uniq
     @cis = Evaluations.cis_evaluation_for(cis, services_records)
+    @survey_reports =  @cis.services.map{|service| service.last_survey_reports_for_cis(params[:id])}.uniq
     @cis_report = Reports.current_cis_report_for(
       cis,
       cis_report_store: CisReport,
-      survey_reports: @cis.services.map(&:last_survey_reports).flatten.uniq,
+      survey_reports: @survey_reports,
       translator: I18n.method(:t))
     @services = sorted_services(@cis.services)
     @next_possible_direction = toggle_sort_direction
