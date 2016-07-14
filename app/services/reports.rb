@@ -16,8 +16,11 @@ module Reports
       report: last_report)
   end
 
-  def self.current_service_report_for(service, services_report_store:)
-    build_report(service.last_report, service.last_survey_reports, services_report_store, service_id: service.id)
+  def self.current_service_report_for(service, cis_id, services_report_store:)
+    build_report(service.last_report_for_cis(cis_id),
+                 service.last_survey_reports_for_cis(cis_id),
+                 services_report_store,
+                 {service_id: service.id, cis_id: cis_id})
   end
 
   def self.build_report(last_report, survey_reports, report_store, params)
@@ -51,16 +54,25 @@ module Reports
       return overall_areas_hash if survey_reports_to_quantify.empty?
 
       overall_areas_hash.each do |key, value|
-        overall_areas_hash[key] = total_by_area(survey_reports.map(&:areas_results), key, value) / survey_reports.count
+        overall_areas_hash[key] = total_average_by_area(survey_reports.map(&:areas_results), key, value, 0)
       end
 
       overall_areas_hash
     end
 
-    def total_by_area(areas_hash_array, key, acc)
-      return acc if areas_hash_array.empty?
+    def total_average_by_area(areas_hash_array, key, acc, counter)
+
+      return 0 if areas_hash_array.empty? && counter == 0
+      return acc/counter if areas_hash_array.empty?
+
       next_value = areas_hash_array.shift[key].to_f
-      total_by_area(areas_hash_array, key, acc + next_value)
+      next_counter = next_value > 0 ? 1 : 0
+
+      total_average_by_area( areas_hash_array,
+                             key,
+                             acc + next_value,
+                             counter + next_counter )
+
     end
 
     def to_record_params
