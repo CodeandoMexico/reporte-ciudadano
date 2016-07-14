@@ -85,7 +85,6 @@ module Evaluations
 
     def services_evaluations
       services_records
-        .select { |service| Services.is_assigned_to_cis?(service, id)}
         .map { |service| ServiceEvaluation.new(service, id) }
     end
   end
@@ -120,7 +119,7 @@ module Evaluations
 
     def get_service_report
       @report = Reports.current_service_report_for(self,
-      services_report_store: ::ServiceReport, cis_id: cis_id)
+         cis_id, services_report_store: ::ServiceReport)
     end
 
     def total_by_area(areas_hash_array, key, acc)
