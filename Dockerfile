@@ -4,12 +4,12 @@ MAINTAINER "Mikesaurio & Miguel Angel Gordian"
 ENV HOME /root
 
 CMD ["/sbin/my_init"]
-RUN bash -lc 'rvm install ruby-2.2.3'
-RUN bash -lc 'rvm --default use ruby-2.2.3'
+RUN bash -lc 'rvm install ruby-2.2.5'
+RUN bash -lc 'rvm --default use ruby-2.2.5'
 
 
 USER app
-
+RUN bash -lc 'rvm --default use ruby-2.2.5'
 WORKDIR /home/app/urbem
 ADD . /home/app/urbem
 ADD docker/urbem.conf /etc/nginx/sites-enabled/
