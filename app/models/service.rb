@@ -88,9 +88,8 @@ class Service < ActiveRecord::Base
   end
 
   def last_survey_reports_for_cis(cis_id)
-    service_surveys.
-        map{ |service_survey| service_survey.last_report_for_cis(cis_id)}
-        .reject(&:blank?)
+    service_surveys_reports.
+        where(service_id: id,cis_id: cis_id)
         .uniq
   end
 
