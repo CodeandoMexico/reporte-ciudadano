@@ -66,12 +66,11 @@ module Reports
       return acc/counter if areas_hash_array.empty?
 
       next_value = areas_hash_array.shift[key].to_f
-      next_counter = next_value > 0 ? 1 : 0
 
       total_average_by_area( areas_hash_array,
                              key,
                              acc + next_value,
-                             counter + next_counter )
+                             counter + 1 )
 
     end
 
