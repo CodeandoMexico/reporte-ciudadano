@@ -16,6 +16,8 @@
         = render "admins/shared/public_servant_sidebar"
       - elsif admin_signed_in? && current_admin.is_comptroller?
         = render "admins/shared/comptroller_sidebar"
+      - elsif admin_signed_in? && current_admin.is_evaluation_comptroller?
+        = render "admins/shared/evaluation_comptroller_sidebar"
       - elsif admin_signed_in?
         = render "admins/shared/super_admin_sidebar"
 
