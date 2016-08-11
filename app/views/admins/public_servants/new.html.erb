@@ -90,6 +90,15 @@
           </div>
         </div>
       </fieldset>
+
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :is_comptroller, t('form.labels.is_evaluation_comptroller'), class: 'col-md-2 control-label' %>
+          <div class="col-md-5 checkbox">
+            <%= f.check_box :is_evaluation_comptroller, class: '' %>
+          </div>
+        </div>
+      </fieldset>
       <div class="actions col-md-2">
         <%= f.submit "Guardar", class: 'btn btn-primary' %>
       </div>
@@ -103,13 +112,13 @@
 
   document.getElementById('admin_is_observer').onclick = function() {
     if ( this.checked ) {
-        $("#admin_is_comptroller").prop('checked', false); 
-    } 
+        $("#admin_is_comptroller").prop('checked', false);
+    }
   };
     document.getElementById('admin_is_comptroller').onclick = function() {
     if ( this.checked ) {
-        $("#admin_is_observer").prop('checked', false); 
-    } 
+        $("#admin_is_observer").prop('checked', false);
+    }
   };
-  
+
 </script>

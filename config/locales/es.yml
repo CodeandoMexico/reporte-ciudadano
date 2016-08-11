@@ -324,8 +324,8 @@ es:
         send: "Enviar"
         export: "Exportar"
         view: "Previsualizar"
-        subtitle: "Reportes predeterminados:"  
-        title_table: "Previsualización del reporte"      
+        subtitle: "Reportes predeterminados:"
+        title_table: "Previsualización del reporte"
     service_admins:
       new:
         new_service_admin: "Nuevo administrador de trámites"
@@ -496,7 +496,7 @@ es:
       destroy: "Eliminar"
 
   service_requests:
-    index: 
+    index:
       complaints_or_suggestions: "Realiza Queja o Sugerencia"
       search: "Buscar"
       delete: "Eliminar"
@@ -656,6 +656,7 @@ es:
       service: "Trámites*"
       is_observer: "¿Es observador?"
       is_comptroller: "¿Es contraloría?"
+      is_evaluation_comptroller: "¿Es contraloría-evaluaciones?"
       admin:
         service: "Trámites"
         who: "¿Quién lo atendió?"
@@ -833,7 +834,7 @@ es:
     open:
       text: "Texto introducido por el usuario..."
   service_survey:
-    errors: 
+    errors:
       total_values: "Valor deben sumar 100% y actualmente suman: %{count}%"
       presence_of_value: "Valor deben contener un porcentaje de valor mayor a 0%"
   cis_reports:
@@ -886,7 +887,7 @@ es:
   titles:
     page_title: Evalúa Tu Trámite
   activerecord:
-    models: 
+    models:
       service_survey: "Encuesta"
       dynamic_reports: "Reportes dinámicos"
     attributes:
