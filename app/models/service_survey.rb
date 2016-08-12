@@ -11,7 +11,7 @@ class ServiceSurvey < ActiveRecord::Base
   validates_presence_of :title, :message => I18n.t('errors.messages.title')
 
   #todo
-  #No funciona en las pruebas el select del multichose (gem chosen-rails) cuando se tiene  js:true , pero este se ocupa para otras funcionalidades de la prueba 
+  #No funciona en las pruebas el select del multichose (gem chosen-rails) cuando se tiene  js:true , pero este se ocupa para otras funcionalidades de la prueba
   validates_presence_of :service_ids , :message => I18n.t('errors.messages.service') unless Rails.env.test?
 
   validate :value_for_rating_questions
@@ -76,6 +76,10 @@ class ServiceSurvey < ActiveRecord::Base
 
   def respondents
     users.uniq
+  end
+
+  def respondents_count
+    respondents.count
   end
 
   private

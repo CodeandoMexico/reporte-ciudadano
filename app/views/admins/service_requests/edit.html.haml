@@ -13,7 +13,7 @@
             = t('.cis', cis: service_cis_label(@service_request.cis))
           %p
             = t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
-            
+
 
         .stream
           .activity.start
@@ -32,16 +32,17 @@
 
           = render partial: 'comments/comment', collection: @comments
 
-          .activity.form
-            = image_tag current_admin.avatar_url(:thumb), class: "avatar"
-            = form_for Comment.new do |f|
-              = f.text_area :content, placeholder: t('comments_form.placeholders.add')
-              = f.file_field :image, class: "l-margin-s-bottom"
-              = f.submit t('comments_form.comment'), class: "btn btn-primary"
-              = f.hidden_field :service_request_id, value: @service_request.id
-            .date
-              %i.icon-time
-              = Date.today.strftime("%d/%m/%Y")
+          - if @service_request.active?
+            .activity.form
+              = image_tag current_admin.avatar_url(:thumb), class: "avatar"
+              = form_for Comment.new do |f|
+                = f.text_area :content, placeholder: t('comments_form.placeholders.add')
+                = f.file_field :image, class: "l-margin-s-bottom"
+                = f.submit t('comments_form.comment'), class: "btn btn-primary"
+                = f.hidden_field :service_request_id, value: @service_request.id
+              .date
+                %i.icon-time
+                = Date.today.strftime("%d/%m/%Y")
 
       %aside.col-md-4
         .row.well
@@ -86,7 +87,7 @@
                     = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
                   -else
                     = Admin.find(@service_request.public_servant_id).name
-              
+
             .form-group
               = f.label :service_id, t('form.labels.admin.service')
               = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }

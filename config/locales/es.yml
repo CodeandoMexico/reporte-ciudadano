@@ -398,6 +398,10 @@ es:
         send: "Enviar"
         add_user: "Enviar encuesta"
         cancel: "Cancelar"
+        answered_count: "Número de Encuestas contestadas"
+        answered_count_number:
+          one: "1 encuesta"
+          other: "%{count} encuestas"
       new:
         new_service_survey: "Nueva encuesta de servicio"
         add_question: "Agregar pregunta"
