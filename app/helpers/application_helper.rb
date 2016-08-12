@@ -40,7 +40,23 @@ module ApplicationHelper
     t("admins.shared.sidebar.#{option}")
   end
 
-def embed_video(vimeo_url)
+  def sidebar_for(admin)
+    if admin.is_service_admin?
+      "service_admin"
+    elsif admin.is_observer? && admin.is_public_servant?
+      "observer"
+    elsif admin.is_public_servant?
+      "public_servant"
+    elsif admin.is_comptroller?
+      "comptroller"
+    elsif admin.is_evaluation_comptroller?
+      "evaluation_comptroller"
+    else
+      "super_admin"
+    end
+  end
+
+  def embed_video(vimeo_url)
       vimeo_id = vimeo_url.split("=").last
       return "//player.vimeo.com/video/#{vimeo_id}"
   end

@@ -660,6 +660,7 @@ es:
       service: "Trámites*"
       is_observer: "¿Es observador?"
       is_comptroller: "¿Es contraloría?"
+      is_evaluation_comptroller: "¿Es contraloría-evaluaciones?"
       admin:
         service: "Trámites"
         who: "¿Quién lo atendió?"

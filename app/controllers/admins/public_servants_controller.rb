@@ -17,25 +17,13 @@ class Admins::PublicServantsController < ApplicationController
   end
 
   def create
-    if params[:admin][:is_comptroller] == '1'
-      @admin = Admin.new(comptroller_params.merge(password: password, password_confirmation: password))
-      if @admin.save
-        AdminMailer.send_comptroller_account(admin: @admin).deliver
-        redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
-      else
-        render :new
-      end
+    @admin = Admin.new(admin_params.merge(password: password, password_confirmation: password))
+    if @admin.save
+      send_admin_email(@admin)
+      redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
     else
-      @admin = Admin.new(public_servant_params.merge(password: password, password_confirmation: password))
-      if @admin.save
-        AdminMailer.send_public_servant_account(admin: @admin).deliver
-        redirect_to admins_public_servants_path, notice: t('flash.public_servant.created')
-      else
-        render :new
-      end
+      render :new
     end
-    
-    
   end
 
   def edit
@@ -74,6 +62,19 @@ class Admins::PublicServantsController < ApplicationController
 
   private
 
+  def admin_params
+    return comptroller_params if (params[:admin][:is_comptroller] == "1" || params[:admin][:is_evaluation_comptroller] == "1")
+    public_servant_params
+  end
+
+  def send_admin_email(admin)
+    if admin.is_comptroller? || admin.is_evaluation_comptroller?
+      AdminMailer.send_comptroller_account(admin: admin).deliver
+    else
+      AdminMailer.send_public_servant_account(admin: @admin).deliver
+    end
+  end
+
   def set_title
     @title_page = I18n.t('admins.public_servants.index.public_servants')
   end
@@ -94,7 +95,7 @@ class Admins::PublicServantsController < ApplicationController
   def comptroller_params
     params
       .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :surname, :second_surname,:is_comptroller)
+      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge, :surname, :second_surname,:is_comptroller, :is_evaluation_comptroller)
   end
 
   def password
