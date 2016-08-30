@@ -101,6 +101,7 @@
                 <tr>
                   <th> <%= t(".cis_where_evaluated") %></th>
                   <th><%= t(".number_of_questions") %></th>
+                  <th><%= t(".answered_count") %></th>
                   <th><%= t(".admin") %></th>
                   <th></th>
                   <th></th>
@@ -113,6 +114,7 @@
                   <tr class="service-survey">
                     <td><%= Services.service_cis_name(cis) %></td>
                     <td><%= t(".questions_number", count: survey.questions_count) %></td>
+                    <td><%= t(".answered_count_number", count: survey.respondents_count) %></td>
                     <td><%= survey.admin_name %></td>
 
                     <td>
