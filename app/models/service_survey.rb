@@ -82,6 +82,13 @@ class ServiceSurvey < ActiveRecord::Base
     respondents.count
   end
 
+  def answered_count_by_cis(cis_id)
+    answers_by_cis = answers.where(cis_id: cis_id)
+    return 0 unless answers_by_cis.any?
+
+    answers_by_cis.map(&:user).count
+  end
+
   private
 
   def value_for_rating_questions

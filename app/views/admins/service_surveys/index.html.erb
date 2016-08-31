@@ -114,7 +114,7 @@
                   <tr class="service-survey">
                     <td><%= Services.service_cis_name(cis) %></td>
                     <td><%= t(".questions_number", count: survey.questions_count) %></td>
-                    <td><%= t(".answered_count_number", count: survey.respondents_count) %></td>
+                    <td><%= t(".answered_count_number", count: survey.answered_count_by_cis(cis)) %></td>
                     <td><%= survey.admin_name %></td>
 
                     <td>
