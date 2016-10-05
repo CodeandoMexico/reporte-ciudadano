@@ -3,7 +3,22 @@
 
 .page-content.inset
   .row
+    .btn-group.admin-actions
+      = button_tag t('.upload_services_csv'), class: 'btn btn-primary', "data-toggle" => "modal", "data-target" => "#services_csv"
+  .row
     .col-md-10
       = render 'form'
 
   = link_to t('back'), admins_services_path
+
+#services_csv.modal.fade
+  .modal-dialog.modal-md
+    .modal-content
+      .modal-header
+        .modal-title
+          %h4= t(".upload_services_csv")
+      .modal-body
+        = form_tag  import_admins_services_path, multipart: true do
+          %p
+            = file_field_tag :file
+          = submit_tag t(".upload"), class: "btn btn-primary"

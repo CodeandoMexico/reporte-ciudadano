@@ -297,6 +297,8 @@ es:
         enable_service_confirm: "¿Estás seguro de activar el servicio?"
       new:
         header: 'Nuevo servicio'
+        upload_services_csv: "Subir servicios en bulk"
+        upload: "Subir"
       edit:
         header: "Editar servicio"
       form:

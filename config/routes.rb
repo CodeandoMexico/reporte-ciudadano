@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'filter'
       get 'markers_for_gmap'
     end
-   
+
     member do
       post :vote
     end
@@ -34,12 +34,13 @@ Rails.application.routes.draw do
     end
     resources :solicitudes_de_servicio, as: :services , controller: :services , :path_names => { :new => "nuevo", :edit => "editar" } do
       collection do
+        post :import
         get 'disable_service'
         get 'enable_service'
       end
       resources :messages, only: :index
     end
-    resources :estatus, as: :statuses, except: [:destroy], controller: :statuses , :path_names => { :new => "nuevo", :edit => "editar" } 
+    resources :estatus, as: :statuses, except: [:destroy], controller: :statuses , :path_names => { :new => "nuevo", :edit => "editar" }
     resources :registro, as: :registrations, only: [:edit, :update] , :path_names => { :new => "nuevo", :edit => "editar" } , controller: :registrations do
       get :set_password, on: :member
       put :update_password, on: :member
@@ -118,10 +119,10 @@ Rails.application.routes.draw do
       resources :requests, as: :service_requests, controller: :service_requests, only: [:show, :index]
     end
   end
-if Rails.env.production?  
+if Rails.env.production?
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 end
-  
+
 end
