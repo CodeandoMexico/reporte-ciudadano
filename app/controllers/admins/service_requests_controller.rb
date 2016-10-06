@@ -1,6 +1,6 @@
 class Admins::ServiceRequestsController < Admins::AdminController
   before_action :authorize_admin, only: :edit
-  helper_method :service_cis_options, :service_cis_label
+  helper_method :service_cis_options, :service_cis_label, :classification_options
   before_action :set_title
 
   def index
@@ -63,6 +63,11 @@ class Admins::ServiceRequestsController < Admins::AdminController
   end
 
   private
+
+  def classification_options
+    ServiceRequests.classification_options
+  end
+
   def set_title
     @title_page = I18n.t('admins.service_requests.index.header')
   end
@@ -96,7 +101,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id).tap do |whitelisted|
+    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id, :classification).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
     end
   end

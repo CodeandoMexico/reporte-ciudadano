@@ -94,5 +94,8 @@
             .form-group
               = f.label :status_id, t('form.labels.admin.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm', data: {service_id: @service_request.service_id} }
+            .form-group
+              = f.label :classification, t("form.labels.admin.classification")
+              = f.select :classification, options_for_select(classification_options, @service_request.classification || t("classification_options.regulatory")), {}, { class: 'form-control input-sm' }
 
             = f.submit t('update'), class: 'btn btn-primary'

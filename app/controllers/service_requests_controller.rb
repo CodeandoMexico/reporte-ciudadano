@@ -95,6 +95,7 @@ class ServiceRequestsController < ApplicationController
     service_fields = params[:service_request].delete(:service_fields)
     params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id, :public_servant_description, :homoclave,:user_id).tap do |whitelisted|
       whitelisted[:service_fields] = service_fields || {}
+      whitelisted[:classification] = t("classification_options.regulatory")
     end
   end
 

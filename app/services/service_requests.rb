@@ -1,4 +1,8 @@
 module ServiceRequests
+  def self.classification_options
+    I18n.t("classification_options").values
+  end
+
   class ServiceRequestsFile
 
     def initialize(service_requests)
