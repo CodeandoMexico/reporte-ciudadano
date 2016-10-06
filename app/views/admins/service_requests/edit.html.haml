@@ -1,16 +1,19 @@
-.content-header
-  %h1
+.row.content-header
+  %h2
     = "##{@service_request.id}"
     = @service_request.service.name
 
-.page-content.inset
+.row.page-content.inset
   .report-show
     .row
       .col-md-8
-        .report-show-map#show-report-map{ "data-longitude" => @service_request.lng, "data-latitude" => @service_request.lat, "data-description" => service_request_info_window(@service_request), style: "width:100%; height: 200px;"}
         .report-show-information
           = t('.address', address: @service_request.address)
-          %p= t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
+          %p
+            = t('.cis', cis: service_cis_label(@service_request.cis))
+          %p
+            = t('.time_ago', created_at: time_ago_in_words(@service_request.created_at))
+
 
         .stream
           .activity.start
@@ -29,49 +32,67 @@
 
           = render partial: 'comments/comment', collection: @comments
 
-          .activity.form
-            = image_tag current_admin.avatar_url(:thumb), class: "avatar"
-            = form_for Comment.new do |f|
-              = f.text_area :content, placeholder: t('comments_form.placeholders.add')
-              = f.file_field :image, class: "l-margin-s-bottom"
-              = f.submit t('comments_form.comment'), class: "btn btn-primary"
-              = f.hidden_field :service_request_id, value: @service_request.id
-            .date
-              %i.icon-time
-              = Date.today.strftime("%d/%m/%Y")
+          - if @service_request.active?
+            .activity.form
+              = image_tag current_admin.avatar_url(:thumb), class: "avatar"
+              = form_for Comment.new do |f|
+                = f.text_area :content, placeholder: t('comments_form.placeholders.add')
+                = f.file_field :image, class: "l-margin-s-bottom"
+                = f.submit t('comments_form.comment'), class: "btn btn-primary"
+                = f.hidden_field :service_request_id, value: @service_request.id
+              .date
+                %i.icon-time
+                = Date.today.strftime("%d/%m/%Y")
 
       %aside.col-md-4
         .row.well
           %h4= t('.user_info')
           %p= t(".user_id", id: @service_request.requester.id)
-          %p= @service_request.requester.name
+          %p
+            - if @service_request.requester.name.present?
+              = @service_request.requester.name
+            - else
+              = t(".user_didnt_provide_name")
+
           %p= @service_request.requester.email
           - if @service_request.service_fields?
             - @service_request.service_fields_hash.each do |service_field|
               %p= "#{service_field[:name]}: #{service_field[:value]}"
+          - if @service_request.requester.telephone_number.present?
+            %p= t('devise.telephone_number') + " " + @service_request.requester.telephone_number
+          - else
+            = t(".user_didnt_provide_telephone")
 
           - if @service_request.media.present?
             .image.tight
               = image_tag @service_request.media_url
 
-        .row.well
-          %h4= t('.votes')
-          .profile-report-count
-            = @service_request.votes_for
 
         .row.well
           %h4= t('.update_service_request')
           = form_for [:admins, @service_request] do |f|
-            = f.object.errors.messages unless f.object.errors.empty?
+            -unless f.object.errors.empty?
+              = f.object.errors.messages
+            -unless current_admin.is_service_admin? || current_admin.is_public_servant?
+              .form-group
+                = f.label :public_servant_id, t('form.labels.admin.who')
+                - if  @service_request.public_servant_id == 0
+                  = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.prompt_who') }, { class: 'js-load_service_fields form-control' }
+                  = t('form.labels.admin.description')
+                  = @service_request.public_servant_description
+                -elsif @service_request.public_servant_id.nil?
+                  = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { :include_blank =>  t('service_requests.form.doesnt_apply') }, { class: 'js-load_service_fields form-control' }
+                -else
+                  -unless current_admin.is_public_servant?
+                    = f.select :public_servant_id, @admins_services.collect {|p| [ p.name,  p.id] }, { prompt: t('service_requests.form.prompt_who'), :selected => Admin.find(@service_request.public_servant_id).id }, { class: 'js-load_service_fields form-control' }
+                  -else
+                    = Admin.find(@service_request.public_servant_id).name
 
             .form-group
-              = f.label :service_id, t('form.labels.service')
+              = f.label :service_id, t('form.labels.admin.service')
               = f.select :service_id, Service.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, { class: 'form-control input-sm' }
             .form-group
-              = f.label :status_id, t('form.labels.status')
+              = f.label :status_id, t('form.labels.admin.status')
               = f.collection_select :status_id, Status.all, :id, :name, { include_blank: true }, { class: 'form-control input-sm', data: {service_id: @service_request.service_id} }
-            .form-group#service_request_message
-              - if @messages
-                = render 'admins/messages/message_options', messages: @messages
 
             = f.submit t('update'), class: 'btn btn-primary'
