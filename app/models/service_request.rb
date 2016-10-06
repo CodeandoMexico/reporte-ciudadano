@@ -1,12 +1,10 @@
 #encoding: utf-8
 class ServiceRequest < ActiveRecord::Base
-  #attr_accessible :anonymous, :service_id, :description, :lat, :lng,
-   #               :service_fields, :media, :status_id, :address, :title
-
   attr_accessor :message
 
-  validates :service_id, :description, :lat, :lng, :address, presence: true
+  validates :service_id, :description, presence: true
   validate :service_extra_fields
+  before_create :public_servant_description_validation
 
   before_validation :assign_default_status, on: :create
   after_update :send_notification_for_status_update
@@ -87,12 +85,29 @@ class ServiceRequest < ActiveRecord::Base
     requests
   end
 
+  def public_servant_description_validation
+      if public_servant_id == nil
+        public_servant_description = "No aplica"
+      end
+  end
   def service_requester
     if self.anonymous?
-      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' }
+      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' , email: 'Anónimo'}
     else
-      { avatar_url: self.requester.avatar_url, name: self.requester.name }
+      { avatar_url: self.requester.avatar_url, name: self.requester.name,  email: self.requester.email }
     end
+  end
+
+  def requester_name
+    if anonymous?
+      'Anónimo'
+    else
+      requester.name
+    end
+  end
+
+  def service_name
+    service.name
   end
 
   def date
@@ -122,6 +137,10 @@ class ServiceRequest < ActiveRecord::Base
 
   def open?
     !closed?
+  end
+
+  def active?
+    status.name != "Atendido por la Dirección de atención a Quejas y Denuncias"
   end
 
   private

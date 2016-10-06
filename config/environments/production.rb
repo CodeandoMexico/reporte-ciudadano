@@ -11,7 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false #para ocultar las rutas false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -53,8 +53,8 @@ Rails.application.configure do
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
+  # Cache store in production
+  config.cache_store = :memory_store, { size: 96.megabytes }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -85,15 +85,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => ENV['HOST'] }
   config.action_mailer.smtp_settings = {
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    :user_name      => ENV["SMTP_USER"] || ENV['SENDGRID_USERNAME'],
+    :password       => ENV["SMTP_PASSWORD"] || ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV["SMTP_DOMAIN"] || 'heroku.com',
+    :address        => ENV["SMTP_ADDRESS"] || 'smtp.sendgrid.net',
+    :port           => ENV["SMTP_PORT"] || '587',
+    :authentication => :login,
+    :enable_starttls_auto => true,
+    :openssl_verify_mode => "none"
   }
-
-
-
 end

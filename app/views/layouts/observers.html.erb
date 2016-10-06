@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title><%=t('titles.page_title')%></title>
+    <%= stylesheet_link_tag current_theme, media: "all", 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    "admin", :media => "all" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  </head>
+  <body class='<%= "#{controller_name} #{action_name}" %>'>
+    <div id="wrap">
+
+      <div class="<%= ("is-logged-in" if admin_signed_in?) %>" id="wrapper">
+        <% if admin_signed_in? && current_admin.is_service_admin? %>
+            <%= render "admins/shared/service_admin_sidebar" %>
+        <% elsif admin_signed_in? && current_admin.is_observer? %>
+            <%= render "admins/shared/observer_sidebar" %>
+        <% elsif admin_signed_in? && current_admin.is_public_servant? %>
+            <%= render "admins/shared/public_servant_sidebar" %>
+        <% elsif admin_signed_in? %>
+            <%= render "admins/shared/super_admin_sidebar" %>
+        <% end %>
+        <%= render "shared/header_admin" %>
+      </div>
+      <div class="container ">
+        <%= render "shared/observer_header" %>
+
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, class: "alert #{flash_class(name)} padding-top" do %>
+            <%= msg %>
+          <% end %>
+        <% end %>
+        <div class="padding-top">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
