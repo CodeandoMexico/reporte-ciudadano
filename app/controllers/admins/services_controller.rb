@@ -9,7 +9,7 @@ class Admins::ServicesController < Admins::AdminController
     @services = Service.all
     search_services
     @statuses = Status.all
-    
+
   end
 
   def new
@@ -72,6 +72,11 @@ class Admins::ServicesController < Admins::AdminController
     else
       redirect_to admins_services_path, notice: t('flash.service.could_not_be_enabled')
     end
+  end
+
+  def import
+    ServicesUploader.import_services_from(params[:file])
+    redirect_to admins_services_path, notice: I18n.t('flash.service.services_bulk')
   end
 
   private

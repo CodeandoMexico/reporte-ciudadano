@@ -748,6 +748,7 @@ es:
       success: 'La solicitud fue creada satisfactoriamente'
       error: "Hubo problemas, intenta de nuevo"
     service:
+      services_bulk: "Se han creado los servicios"
       created: 'Servicio creado correctamente.'
       updated: 'Servicio actualizado correctamente.'
       destroyed: 'Servicio ha sido eliminado.'
