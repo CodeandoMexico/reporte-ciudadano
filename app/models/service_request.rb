@@ -143,6 +143,10 @@ class ServiceRequest < ActiveRecord::Base
     status.name != "Atendido por la Dirección de atención a Quejas y Denuncias"
   end
 
+  def status_name
+    status.name
+  end
+
   private
 
   def service_extra_fields

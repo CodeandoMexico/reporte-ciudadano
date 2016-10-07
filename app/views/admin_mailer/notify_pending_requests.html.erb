@@ -1,0 +1,25 @@
+<p>Hola <strong><%= @admin.name %></strong>, Hoy tienes las siguientes quejas y estatus:</p>
+
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Título del Servicio</th>
+    <th>Descripción</th>
+    <th>Estatus</th>
+  </thead>
+  <tbody>
+    <% @service_requests.each do |request| %>
+      <tr>
+        <td><%= request.id %></td>
+        <td><%= request.service_name %></td>
+        <td><%= request.description %></td>
+        <td><%= request.status_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<p>Saludos,
+Evalúa Tu Trámite
+</p>

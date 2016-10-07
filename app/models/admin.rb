@@ -18,6 +18,9 @@ class Admin < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  scope :super_admins, ->{ where(is_service_admin: false, is_public_servant: false) }
+  scope :service_admins, ->{ where(is_service_admin: true) }
+
   def to_s
     self.email
   end

@@ -1,6 +1,7 @@
 es:
   mailer:
     subject:
+      send_request_pending: 'Pendientes Evalúa tu trámite %{current_date}'
       status_change_notification: 'Cambio de estatus en reporte'
       send_account_invitation: "Bienvenido a Encuestas de Satisfacción"
       notify_new_request: "Nuevo reporte de servicio"

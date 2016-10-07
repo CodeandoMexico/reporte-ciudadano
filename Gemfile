@@ -32,6 +32,7 @@ gem 'coveralls', require: false
 gem 'cocoon'
 gem 'jquery-turbolinks'
 gem 'datagrid'
+gem 'whenever', require: false
 
 # Async backgroun job handling
 gem 'sidekiq'
@@ -49,7 +50,7 @@ group :test do
 end
 
 group :development,:test do
-  
+
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'byebug'
