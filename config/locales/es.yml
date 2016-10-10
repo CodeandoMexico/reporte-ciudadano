@@ -671,6 +671,7 @@ es:
         description: "Descripción"
         cis: "Centro de atención"
         criterion_select: "Reporte predeterminado"
+        classification: "Clasificación"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -792,6 +793,9 @@ es:
     service: "Servicio"
     step: "Trámite"
     support_program: "Programa de Apoyo"
+  classification_options:
+    regulatory: "Regulatoria"
+    administrative: "Administrativa"
   pages:
     index:
       video_explication: "En este sitio usted podrá evaluar la atención que se le brinda en los Trámites, Servicios y Programas de Apoyo del Gobierno del Estado de Puebla. Además, podrá levantar y dar seguimiento a las Quejas y Sugerencias que usted desee presentar. Lo anterior con el fin de mejorar la atención y el servicio."
