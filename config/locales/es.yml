@@ -297,6 +297,8 @@ es:
         enable_service_confirm: "¿Estás seguro de activar el servicio?"
       new:
         header: 'Nuevo servicio'
+        upload_services_csv: "Subir servicios en bulk"
+        upload: "Subir"
       edit:
         header: "Editar servicio"
       form:
@@ -746,6 +748,7 @@ es:
       success: 'La solicitud fue creada satisfactoriamente'
       error: "Hubo problemas, intenta de nuevo"
     service:
+      services_bulk: "Se han creado los servicios"
       created: 'Servicio creado correctamente.'
       updated: 'Servicio actualizado correctamente.'
       destroyed: 'Servicio ha sido eliminado.'
