@@ -8,7 +8,6 @@
       %i= t('.page-description')
 
   .btn-group.admin-actions
-    = link_to t('.new_service'), new_admins_service_path, class: 'btn btn-primary'
     = link_to t('.new_status'), new_admins_status_path, class: 'btn btn-primary'
 
 
@@ -27,11 +26,11 @@
       = button_tag class: "submit btn btn-default" do
         %i.glyphicon.glyphicon-search
         = t('search')
-        
+
 .tabbable
   %ul.nav.nav-tabs
     %li.active
-      = link_to t(".enabled"), "#enabled", :data => {:toggle => "tab"} 
+      = link_to t(".enabled"), "#enabled", :data => {:toggle => "tab"}
     %li
       = link_to t(".disabled"), "#disabled", :data => {:toggle => "tab"}
 

@@ -429,6 +429,7 @@ es:
       index:
         header: "Resumen de actividad"
       services:
+        new_service: "Nuevo Servicio"
         managed_services: "Trámites administrados"
         name: "Nombre"
         service_type: "Tipo"
