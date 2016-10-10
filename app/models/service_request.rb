@@ -47,7 +47,7 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   scope :closed, -> {
-    where(status_id: 4)
+    on_status_name("Cerrado")
   }
 
   scope :not_closed, -> {
@@ -55,7 +55,8 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   scope :open, -> {
-    where(status: 1)
+    closed_status_id = Status.find_by_name("Cerrado").try(:id)
+    where("status_id <> #{closed_status_id}")
   }
 
   def service?
