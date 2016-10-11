@@ -19,8 +19,9 @@
   .row.blk-summary.l-margin-l-bottom
     .container
       %h2.blk-summary-title= t('dashboards.requests_by_service_chart')
+      = link_to t(".export_to_csv"), export_admins_dashboards_path, class: "btn btn-primary pull-right"
       #reports-chart{ data: { chart_data: @chart_data, status_data: @status_data }}
-      
+
   -unless current_admin.is_observer
     .row.blk-summary.l-margin-l-bottom.recent-reports
       .container

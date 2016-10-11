@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
     resources  :panel, as: :dashboards, only: [:index] ,controller: :dashboards do
       collection do
+        get "export"
         get 'design'
         get "services" , :path => "servicios"
       end
