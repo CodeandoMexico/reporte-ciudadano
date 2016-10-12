@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006221722) do
+ActiveRecord::Schema.define(version: 20161012200001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20161006221722) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_service_admin"
+    t.boolean  "is_service_admin",          default: false
     t.string   "record_number"
     t.string   "dependency"
     t.string   "administrative_unit"
     t.string   "charge"
-    t.boolean  "is_public_servant"
+    t.boolean  "is_public_servant",         default: false
     t.boolean  "disabled",                  default: false
     t.boolean  "active",                    default: false
     t.text     "surname"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 20161006221722) do
     t.text     "public_servant_description"
     t.integer  "user_id"
     t.string   "classification"
+    t.string   "dependency"
   end
 
   add_index "service_requests", ["requester_id", "requester_type"], name: "index_service_requests_on_requester_id_and_requester_type", using: :btree
