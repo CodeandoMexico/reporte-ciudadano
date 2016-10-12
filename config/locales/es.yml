@@ -430,6 +430,7 @@ es:
         color_scheme: "Esquemas de colores"
       index:
         header: "Resumen de actividad"
+        export_to_csv: "Exportar a CSV"
       services:
         new_service: "Nuevo Servicio"
         managed_services: "Trámites administrados"

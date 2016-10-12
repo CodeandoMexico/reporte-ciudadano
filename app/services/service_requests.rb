@@ -3,6 +3,58 @@ module ServiceRequests
     I18n.t("classification_options").values
   end
 
+  def self.general_report_csv
+    services = Service.all
+    statuses = Status.all
+    GeneralReport.new(services, statuses)
+  end
+
+  class GeneralReport
+    def initialize(services, statuses)
+      @services = services
+      @statuses = statuses
+    end
+
+    def to_csv
+      [file, filename]
+    end
+
+    private
+
+    def columns_headers
+      [ "Servicio" ] + statuses.map(&:name) + ["Total"]
+    end
+
+    def rows
+      services.map do |service|
+        row_for(service).to_a
+      end
+    end
+
+    def filename
+      "Reporte_general_quejas_#{Date.today.to_s.gsub(/[\/]/,'-')}.csv"
+    end
+
+    def table
+      [columns_headers] + rows
+    end
+
+    def file
+      CSV.generate do |csv|
+        table.each { |row| csv << row }
+      end
+    end
+
+    def row_for(service)
+      [ service.name.to_s,
+        statuses.map{ |status| service.service_requests_for_status(status.id).to_s },
+        service.service_requests_count.to_s
+      ].flatten
+    end
+
+    attr_reader :services, :statuses
+  end
+
   class ServiceRequestsFile
 
     def initialize(service_requests)

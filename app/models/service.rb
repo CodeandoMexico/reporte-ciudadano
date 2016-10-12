@@ -1,9 +1,8 @@
 class Service < ActiveRecord::Base
-  has_many :service_requests
-
   validates :name, presence: true
   validates_associated :service_fields
 
+  has_many :service_requests
   has_many :service_fields
   has_many :messages
   has_many :service_reports
@@ -102,5 +101,13 @@ class Service < ActiveRecord::Base
         where(cis_id: cis_id)
         .order(created_at: :asc)
         .last
+  end
+
+  def service_requests_for_status(status_id)
+    service_requests.select{ |request| request.status_id == status_id }.size
+  end
+
+  def service_requests_count
+    service_requests.count
   end
 end
