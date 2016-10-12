@@ -25,6 +25,11 @@ class Admins::DashboardsController < Admins::AdminController
     @search_service = Service.active
   end
 
+  def export
+    csv_file, csv_filename = ServiceRequests.general_report_csv.to_csv
+    send_data csv_file, filename: csv_filename
+  end
+
   private
 
   def authorize_admin

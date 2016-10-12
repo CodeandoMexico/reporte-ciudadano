@@ -20,6 +20,7 @@ class Admin < ActiveRecord::Base
 
   scope :super_admins, ->{ where(is_service_admin: false, is_public_servant: false) }
   scope :service_admins, ->{ where(is_service_admin: true) }
+  scope :with_dependency, ->(dependency){ where(dependency: dependency) }
 
   def to_s
     self.email
