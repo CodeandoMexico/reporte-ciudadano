@@ -47,14 +47,16 @@ class Admins::ServiceRequestsController < Admins::AdminController
       if dependency_changed
         admins = Admin.with_dependency(@service_request.dependency)
         admins.each do |admin|
-          AdminMailer.notify_new_request(admin: admin, service_request: @service_request).deliver
+          AdminMailer.send_public_servant_update_request(admin: admin, name: admin.dependency).deliver
         end
       end
 
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
         #enviar correo al servidor publico
       unless @service_request.public_servant_id.blank? || current_admin.is_public_servant
-        AdminMailer.send_public_servant_update_request(admin: Admin.find(@service_request.public_servant_id)).deliver
+        AdminMailer.send_public_servant_update_request(
+          admin: Admin.find(@service_request.public_servant_id),
+          name: admin.name).deliver
       end
     else
      render :edit

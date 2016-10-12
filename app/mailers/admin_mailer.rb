@@ -27,8 +27,9 @@ class AdminMailer < ActionMailer::Base
     mail to: @admin.email, subject: I18n.t('mailer.subject.notify_new_request')
   end
 
-  def send_public_servant_update_request(admin:)
+  def send_public_servant_update_request(admin:, name:)
     @admin = admin
+    @name = name
     mail to: admin.email, subject: I18n.t('mailer.subject.send_request_new')
   end
 
