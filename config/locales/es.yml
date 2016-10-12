@@ -672,6 +672,7 @@ es:
         cis: "Centro de atención"
         criterion_select: "Reporte predeterminado"
         classification: "Clasificación"
+        dependency: "Dependencia"
       status: "Estatus"
       message: "Mensaje"
       password: "Contraseña"
@@ -707,6 +708,7 @@ es:
     options:
       service_type_select: "Selecciona tipo de servicio"
       cis_select: "Selecciona Centro de atención"
+      dependency_select: "Selecciona la dependencia"
       admin_select: "Selecciona Administrador de servicio"
       answer_type_select: "Selecciona un tipo de respuesta"
       criterion_select: "Selecciona criterio a evaluar en la pregunta"

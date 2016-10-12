@@ -1,6 +1,7 @@
 class Admins::ServiceRequestsController < Admins::AdminController
   before_action :authorize_admin, only: :edit
   helper_method :service_cis_options, :service_cis_label, :classification_options
+  helper_method :dependency_options
   before_action :set_title
 
   def index
@@ -36,11 +37,23 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def update
     @service_request = ServiceRequest.find params[:id]
-    if @service_request.update_attributes(service_request_params)
-      @service_request.comments.create content: params[:message], commentable: current_admin if params[:message].present?
+    @service_request.assign_attributes(service_request_params)
+    dependency_changed = @service_request.dependency_changed?
+    if @service_request.save
+      if params[:message].present?
+        @service_request.comments.create content: params[:message], commentable: current_admin
+      end
+
+      if dependency_changed
+        admins = Admin.with_dependency(@service_request.dependency)
+        admins.each do |admin|
+          AdminMailer.notify_new_request(admin: admin, service_request: @service_request).deliver
+        end
+      end
+
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
         #enviar correo al servidor publico
-      unless @service_request.public_servant_id.nil? || @service_request.public_servant_id == 0 || Admin.find(current_admin.id).is_public_servant
+      unless @service_request.public_servant_id.blank? || current_admin.is_public_servant
         AdminMailer.send_public_servant_update_request(admin: Admin.find(@service_request.public_servant_id)).deliver
       end
     else
@@ -101,15 +114,26 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def service_request_params
     service_fields = params[:service_request].delete(:service_fields)
-    params.require(:service_request).permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis, :public_servant_id, :classification).tap do |whitelisted|
-      whitelisted[:service_fields] = service_fields || {}
-    end
+    params
+      .require(:service_request)
+      .permit(:address, :status_id, :service_id, :description, :media, :anonymous, :cis,
+      :public_servant_id, :classification, :dependency).tap do |whitelisted|
+        whitelisted[:service_fields] = service_fields || {}
+      end
   end
 
   def notify_public_servants
     public_servants = @service_request.service.admins
     public_servants.each do |public_servant|
       AdminMailer.notify_new_request(admin: public_servant, service_request: @service_request).deliver
+    end
+  end
+
+  def dependency_options
+    if current_admin.is_super_admin?
+      Services.service_dependency_options
+    else
+      [current_admin.dependency]
     end
   end
 end
