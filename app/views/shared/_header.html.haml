@@ -6,12 +6,14 @@
         %span.icon-bar
         %span.icon-bar
       %row
-        .col-md-12 
+        .col-md-12
           = link_to root_path, class: 'navbar-brand navbar-logo-full' do
             - if ENV["VEDA_ELECTORAL"] == "true" then
               = image_tag 'image_navbar_grises.png', class: "navbar-logo navbar-logo-full"
             - else
               = image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"
+            = image_tag 'mr_logo.png', class: "navbar-additional-logo"
+
     .navbar-collapse.collapse.pagination-right
       - if current_user
         %ul.nav.navbar-nav.padding-top
