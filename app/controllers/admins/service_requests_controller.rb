@@ -54,8 +54,9 @@ class Admins::ServiceRequestsController < Admins::AdminController
       redirect_to edit_admins_service_request_path(@service_request), flash: { success: I18n.t('flash.service_requests.updated') }
         #enviar correo al servidor publico
       unless @service_request.public_servant_id.blank? || current_admin.is_public_servant
+        admin = Admin.find(@service_request.public_servant_id)
         AdminMailer.send_public_servant_update_request(
-          admin: Admin.find(@service_request.public_servant_id),
+          admin: admin,
           name: admin.name).deliver
       end
     else
