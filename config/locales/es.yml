@@ -567,6 +567,7 @@ es:
       survey_participants_count: "Ciudadanos han participado"
       see_results: "Ver resultados"
       cis_evaluations: "Evaluaciones por Centro de atención"
+      cis_count: "Centros de Atención"
   cis_evaluations:
     index:
       cis: "Centro de atención - %{name}"

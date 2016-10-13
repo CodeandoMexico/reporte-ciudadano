@@ -74,6 +74,10 @@ class Service < ActiveRecord::Base
     answered_surveys.zero?
   end
 
+  def cis_count
+    cis.size
+  end
+
   def cis_names
     Services
       .service_cis
@@ -109,5 +113,9 @@ class Service < ActiveRecord::Base
 
   def service_requests_count
     service_requests.count
+  end
+
+  def evaluated_public_servants_count
+    admins.count
   end
 end
