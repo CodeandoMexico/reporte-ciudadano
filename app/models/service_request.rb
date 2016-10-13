@@ -59,6 +59,10 @@ class ServiceRequest < ActiveRecord::Base
     where("status_id <> #{closed_status_id}")
   }
 
+  scope :with_status_and_dependency, -> (status_id, dependency){
+    where(dependency: dependency, status_id: status_id)
+  }
+
   def service?
     service.present?
   end
