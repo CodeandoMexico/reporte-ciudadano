@@ -109,7 +109,9 @@ Rails.application.routes.draw do
   resources :encuestas, as: :answers, only: [:new, :index, :create] , :path_names => { :new => "nuevo"}, controller: :answers do
 
   end
-  resources  :evaluaciones, as: :evaluations, only: [:index], controller: :evaluations
+  resources  :evaluaciones, as: :evaluations, only: [:index], controller: :evaluations do
+    get :service, on: :collection
+  end
   resources :evaluaciones_centros_de_atencion, as: :cis_evaluations, only: [:index, :show] , controller: :cis_evaluations
   resources :evaluacion_de_servicio, as: :service_evaluations, controller: :service_evaluations do
     get :export_csv, on: :member

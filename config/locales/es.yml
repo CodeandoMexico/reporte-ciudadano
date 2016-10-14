@@ -556,6 +556,11 @@ es:
       answers_created_successfully: "Gracias por evaluar el servicio."
       answers_already_sent: "Ya has contestado la encuesta previamente."
   evaluations:
+    service:
+      survey_participants_count: "Ciudadanos han participado"
+      evaluated_public_servants_count: "Servidores públicos evaluados"
+      by_area: "Por áreas"
+      cis_count: "Centros de Atención"
     index:
       service_evaluations: "Evaluaciones por servicio"
       name: "Nombre de servicio"
@@ -568,6 +573,7 @@ es:
       survey_participants_count: "Ciudadanos han participado"
       see_results: "Ver resultados"
       cis_evaluations: "Evaluaciones por Centro de atención"
+      cis_count: "Centros de Atención"
   cis_evaluations:
     index:
       cis: "Centro de atención - %{name}"

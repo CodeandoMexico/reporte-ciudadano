@@ -74,6 +74,10 @@ class Service < ActiveRecord::Base
     answered_surveys.zero?
   end
 
+  def cis_count
+    cis.size
+  end
+
   def cis_names
     Services
       .service_cis
@@ -97,10 +101,11 @@ class Service < ActiveRecord::Base
   end
 
   def last_report_for_cis(cis_id)
-    service_reports.
-        where(cis_id: cis_id)
-        .order(created_at: :asc)
-        .last
+    service_reports.with_cis_id(cis_id).last
+  end
+
+  def last_general_report
+    service_reports.with_cis_id(nil).last
   end
 
   def service_requests_for_status(status_id)
@@ -109,5 +114,9 @@ class Service < ActiveRecord::Base
 
   def service_requests_count
     service_requests.count
+  end
+
+  def evaluated_public_servants_count
+    admins.count
   end
 end

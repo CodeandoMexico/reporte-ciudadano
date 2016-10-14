@@ -23,6 +23,11 @@ module Reports
                  {service_id: service.id, cis_id: cis_id})
   end
 
+  def self.current_general_service_report_for(service, services_report_store:)
+    build_report(service.last_general_report, service.last_survey_reports,
+      services_report_store, { service_id: service.id })
+  end
+
   def self.build_report(last_report, survey_reports, report_store, params)
     return last_report if (last_report.present? && last_report.created_at > 3.days.ago)
     return if survey_reports.blank?

@@ -12,6 +12,11 @@ class EvaluationsController < ApplicationController
     search_services
   end
 
+  def service
+    @service = Service.find(params[:service_id])
+    @service_report = Evaluations.service_evaluation_for(@service)
+  end
+
   private
 
   def set_search
