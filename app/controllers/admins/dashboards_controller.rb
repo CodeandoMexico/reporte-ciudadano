@@ -13,6 +13,7 @@ class Admins::DashboardsController < Admins::AdminController
     @closed_service_requests =  admin_requests.where(status_id: 2).count#.select(&:closed?).count
     @all_service_requests = admin_requests.count
     @chart_data = chart_data.to_json
+    @dependencies_chart_data = DependenciesChart.data(dependency_options).to_json
     @status_data = Status.select(:name, :id).to_json
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
     @title_page = I18n.t('.admins.dashboards.index.header')

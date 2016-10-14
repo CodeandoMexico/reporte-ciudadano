@@ -4,8 +4,7 @@ module Services
   end
 
   def self.service_dependency_options
-     t1 = Time.now
-    a = load_values(:dependencies).fetch("dependencies").values
+    load_values(:dependencies).fetch("dependencies").values
   end
 
   def self.service_administrative_unit_options

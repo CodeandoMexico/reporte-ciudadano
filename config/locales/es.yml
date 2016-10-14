@@ -494,6 +494,7 @@ es:
     closed_requests: "Quejas o sugerencias resueltas"
     recent_requests: "Solicitudes recientes"
     requests_by_service_chart: "Quejas o sugerencias por tipo de trámite"
+    requests_by_dependency_chart: "Quejas o sugerencias por dependencia"
     requests_map: "Mapa de quejas o sugerencias"
     total_cities: "Ciudadanos que han participado."
     total_procedures_services: "Trámites, servicios o programas de apoyo"
