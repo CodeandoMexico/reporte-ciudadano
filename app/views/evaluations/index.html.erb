@@ -46,7 +46,7 @@
             </div>
           </div>
           <div class="row">
-            <%= link_to "#", class: "col-md-2 pull-right" do %>
+            <%= link_to service_evaluations_path(service_id: service.id), class: "col-md-2 pull-right" do %>
               <%= t(".see_results") %>
               <span class="glyphicon glyphicon-chevron-right"></span>
             <% end %>

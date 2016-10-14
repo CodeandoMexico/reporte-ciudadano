@@ -9,6 +9,7 @@ module ServiceSurveyReportsHelper
   end
 
   def class_range_for(percentage)
+    return "danger" if percentage.blank?
     if percentage.between?(0.0, 69.0)
       "danger"
     elsif percentage.between?(70.0, 84.0)

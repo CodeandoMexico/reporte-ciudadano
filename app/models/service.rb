@@ -101,10 +101,11 @@ class Service < ActiveRecord::Base
   end
 
   def last_report_for_cis(cis_id)
-    service_reports.
-        where(cis_id: cis_id)
-        .order(created_at: :asc)
-        .last
+    service_reports.with_cis_id(cis_id).last
+  end
+
+  def last_general_report
+    service_reports.with_cis_id(nil).last
   end
 
   def service_requests_for_status(status_id)

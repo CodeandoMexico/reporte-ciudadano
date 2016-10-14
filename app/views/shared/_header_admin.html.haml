@@ -16,7 +16,7 @@
               %li
                 = link_to destroy_admin_session_path, method: :delete do
                   %i.icon-off
-                  = t('public_nav_bar.sign_out')             
+                  = t('public_nav_bar.sign_out')
     .col-md-12
       .navbar-header
         %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -38,3 +38,10 @@
               = link_to evaluations_path do
                 %span.glyphicon.glyphicon-chevron-left
               = t("cis_evaluations.show.cis_evaluation_for", name: @cis.name)
+      - if @service_report.present? && @service.present?
+        %div
+          %h3
+            .text-one-line
+              = link_to evaluations_path do
+                %span.glyphicon.glyphicon-chevron-left
+              = @service.name

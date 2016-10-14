@@ -1,6 +1,6 @@
 module EvaluationsHelper
   def overall_progress_by_criterion(overall)
-    content_tag :div, "#{sprintf '%.f', overall[1]}%", class: "progress-bar progress-bar-#{class_range_for(overall[1])}", style: "width: #{overall[1]}%; color: black"
+    content_tag :div, "#{sprintf '%.f', overall[1].to_f}%", class: "progress-bar progress-bar-#{class_range_for(overall[1])}", style: "width: #{overall[1]}%; color: black"
   end
 
   def label_for(overall)
@@ -20,6 +20,7 @@ module EvaluationsHelper
   end
 
   def class_range_for(percentage)
+    return "danger" if percentage.blank?
     if percentage.between?(0.0, 69.0)
       "danger"
     elsif percentage.between?(70.0, 84.0)

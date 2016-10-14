@@ -11,6 +11,10 @@ module Evaluations
     SurveyReportFile.new(service_survey).to_csv
   end
 
+  def self.service_evaluation_for(service)
+    ServiceEvaluation.new(service)
+  end
+
   private
 
   class Cis
@@ -85,11 +89,11 @@ module Evaluations
 
     def services_evaluations
       services_records
-        .map { |service| ServiceEvaluation.new(service, id) }
+        .map { |service| CisServiceEvaluation.new(service, id) }
     end
   end
 
-  class ServiceEvaluation < SimpleDelegator
+  class CisServiceEvaluation < SimpleDelegator
     attr_reader :report
 
     def initialize(record, cis_id)
@@ -120,6 +124,50 @@ module Evaluations
     def get_service_report
       @report = Reports.current_service_report_for(self,
          cis_id, services_report_store: ::ServiceReport)
+    end
+
+    def total_by_area(areas_hash_array, key, acc)
+      return acc if areas_hash_array.empty?
+      next_value = areas_hash_array.shift[key]
+      total_by_area(areas_hash_array, key, acc + next_value)
+    end
+  end
+
+  class ServiceEvaluation < SimpleDelegator
+    attr_accessor :report
+
+    def initialize(record)
+      super(record)
+      @report = get_service_report
+    end
+
+    def overall_evaluation_for(criterion)
+      return report.overall_areas[criterion] if report.present?
+      return nil if last_survey_reports.empty?
+      total_by_area(last_survey_reports.map(&:areas_results), criterion, 0.0) / last_survey_reports.size
+    end
+
+    def positive_overall_perception
+      return report.positive_overall_perception if report.present?
+      return nil if last_survey_reports.empty?
+      last_survey_reports.map(&:positive_overall_perception).sum / last_survey_reports.size
+    end
+
+    def negative_overall_perception
+      return report.negative_overall_perception if report.present?
+      return nil if last_survey_reports.empty?
+      last_survey_reports.map(&:negative_overall_perception).sum / last_survey_reports.size
+    end
+
+    def public_servant_evaluated?
+      questions.any? { |question| question.criterion.to_sym == :public_servant }
+    end
+
+    private
+
+    def get_service_report
+      @report = Reports.current_general_service_report_for(
+        self, services_report_store: ::ServiceReport)
     end
 
     def total_by_area(areas_hash_array, key, acc)
