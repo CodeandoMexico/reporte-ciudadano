@@ -20,7 +20,7 @@ class ServiceEvaluationsController < ApplicationController
   def export_csv
     service_survey = ServiceSurvey.find(params[:service_survey_id])
     csv_file, csv_filename = csv_summary_answers(service_survey)
-    send_data csv_file, filename: csv_filename
+    send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
   end
 
   private

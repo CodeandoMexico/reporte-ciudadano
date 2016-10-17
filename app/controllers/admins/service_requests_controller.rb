@@ -75,7 +75,7 @@ class Admins::ServiceRequestsController < Admins::AdminController
   def csv_export
     service_requests = ServiceRequest.all
     csv_file, csv_filename = ServiceRequests::ServiceRequestsFile.new(service_requests).to_csv
-    send_data csv_file, filename: csv_filename
+    send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
   end
 
   private
