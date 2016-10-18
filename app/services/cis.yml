@@ -39,11 +39,11 @@
 #  :address: Lateral de la Recta a Cholula Km. 5.5 No. 2401, C.P 72810 San Andrés Cholula, Pue.
 #  :phone: "(01 222) 273-68-10 o  (01 222) 273-68-00 ext. 2110"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 9
-#  :name: SDRSOT Parque Estatal General Lázaro Cárdenas "Flor del Bosque"
-#  :address: Calle Carril a San Bartolo s/n Colonia Casa Blanca Ex Hacienda Flor del Bosque, C.P 72360 Puebla, Pue.
-#  :phone: "(01 222) 286-04-03; 286-00-77"
-#  :schedule: Lunes a domingo de 08:00 a 16:00 horas.
+- :id: 9
+  :name: SDRSOT Parque Estatal General Lázaro Cárdenas "Flor del Bosque"
+  :address: Calle Carril a San Bartolo s/n Colonia Casa Blanca Ex Hacienda Flor del Bosque, C.P 72360 Puebla, Pue.
+  :phone: "(01 222) 286-04-03; 286-00-77"
+  :schedule: Lunes a domingo de 08:00 a 16:00 horas.
 #- :id: 10
 #  :name: SDS Secretaría de Desarrollo Social
 #  :address: Calle 20 Oriente No. 2036  Colonia Humboldt, C.P 72370 Puebla, Pue.
@@ -64,36 +64,36 @@
 #  :address: Avenida 31 Poniente No. 2326 Colonia Benito Juárez  (2do. Piso), C.P 72410 Puebla, Pue.
 #  :phone: "(01 222) 211-63-08 o (01 222) 211-63-46"
 #  :schedule: Lunes a Viernes de 09:15 a 15:00 horas.
-#- :id: 14
-#  :name: SSP Centro de Reinserción Social del Estado
-#  :address: Carretera al Batán Km 2.5 Colonia Lomas de San Miguel, C.P 72573 Puebla, Pue.
-#  :phone: "(01 222) 216-00-30; (01 222) 216-00-31; (01 222) 216-00-26; (01 222) 216-05-19"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
-#- :id: 15
-#  :name: SSP Centro de Reinserción Social  de Ciudad Serdán, Puebla
-#  :address: Poblado de Santa Ines Borbolla, C.P 75535 Ciudad Serdán, Pue.
-#  :phone: "(01 245 ) 452-25-80"
-#  :schedule: Lunes a Domingo de 09:00 a 17:00 horas.
-#- :id: 16
-#  :name: SSP Centro de Reinserción Social  de Tepexi de Rodríguez, Puebla
-#  :address: Carretera Federal Ahuatempan Km 25 , Huejoyuca, Tepexi de Rodriguez, Pue.
-#  :phone: "(01 224 ) 421-55-89 o (01 224) 421-55-91"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
-#- :id: 17
-#  :name: SSP Centro de Internamiento Especilizado para Adolescentes
-#  :address: Carretera Federal Puebla- Atlixco Km 4.5 Colonia Emiliano Zapata, C.P 72824 San Andres Cholula, Pue.
-#  :phone: "(01 222) 284-13-03; (01 222) 284-01-06 o (01 222) 284-01-55"
-#  :schedule: Lunes a Domingo de 09:00 a 18:00 horas.
-#- :id: 18
-#  :name: Secretaría de Finanzas y Administración. Oficina 20 Sur
-#  :address: Calle 20 sur No. 1110 Colonia Azcárate, C.P 72501 Puebla, Pue.
-#  :phone: "(01 222) 229-70-37 o (01 222) 229-70-48"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 19
-#  :name: Instituto Tecnológico Superior de Tepeaca
-#  :address: Avenida Tecnológico  s/n Ex Hacienda Santa Ana, San Pedro Actipan, C.P 75219 Tepeaca, Pue.
-#  :phone: "(01 223) 275-14-49 o (01 223) 102-01-71 y (01 223) 102-01-57 ext. 100 -138"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 14
+  :name: SSP Centro de Reinserción Social del Estado
+  :address: Carretera al Batán Km 2.5 Colonia Lomas de San Miguel, C.P 72573 Puebla, Pue.
+  :phone: "(01 222) 216-00-30; (01 222) 216-00-31; (01 222) 216-00-26; (01 222) 216-05-19"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
+- :id: 15
+  :name: SSP Centro de Reinserción Social  de Ciudad Serdán, Puebla
+  :address: Poblado de Santa Ines Borbolla, C.P 75535 Ciudad Serdán, Pue.
+  :phone: "(01 245 ) 452-25-80"
+  :schedule: Lunes a Domingo de 09:00 a 17:00 horas.
+- :id: 16
+  :name: SSP Centro de Reinserción Social  de Tepexi de Rodríguez, Puebla
+  :address: Carretera Federal Ahuatempan Km 25 , Huejoyuca, Tepexi de Rodriguez, Pue.
+  :phone: "(01 224 ) 421-55-89 o (01 224) 421-55-91"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
+- :id: 17
+  :name: SSP Centro de Internamiento Especilizado para Adolescentes
+  :address: Carretera Federal Puebla- Atlixco Km 4.5 Colonia Emiliano Zapata, C.P 72824 San Andres Cholula, Pue.
+  :phone: "(01 222) 284-13-03; (01 222) 284-01-06 o (01 222) 284-01-55"
+  :schedule: Lunes a Domingo de 09:00 a 18:00 horas.
+- :id: 18
+  :name: Secretaría de Finanzas y Administración. Oficina 20 Sur
+  :address: Calle 20 sur No. 1110 Colonia Azcárate, C.P 72501 Puebla, Pue.
+  :phone: "(01 222) 229-70-37 o (01 222) 229-70-48"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 19
+  :name: Instituto Tecnológico Superior de Tepeaca
+  :address: Avenida Tecnológico  s/n Ex Hacienda Santa Ana, San Pedro Actipan, C.P 75219 Tepeaca, Pue.
+  :phone: "(01 223) 275-14-49 o (01 223) 102-01-71 y (01 223) 102-01-57 ext. 100 -138"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 20
 #  :name: SIT Secretaría de Infraestructura y Transportes Oficinas La Paz
 #  :address: Avenida Rosendo Márquez No.1501 Colonia La Paz, C.P 72160 Puebla, Pue.
@@ -119,11 +119,11 @@
 #  :address: Prolongación Manuel  Ávila Camacho s/n Barrio de Teoconchila, C.P 73300 Chignahuapan, Pue.
 #  :phone: "(01 275) 432-60-26 o (01 222) 432-52-64"
 #  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
-#- :id: 25
-#  :name: CECyTE Plantel Magdalena.
-#  :address: Prolongación Avenida Juárez, s/n número Colonia Magdalena Tetela de Morelos, C.P 75118 Acajete, Puebla.
-#  :phone: "(01 223) 275-59-89"
-#  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
+- :id: 25
+  :name: CECyTE Plantel Magdalena.
+  :address: Prolongación Avenida Juárez, s/n número Colonia Magdalena Tetela de Morelos, C.P 75118 Acajete, Puebla.
+  :phone: "(01 223) 275-59-89"
+  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
 #- :id: 26
 #  :name: CECyTE Plantel Tecamachalco.
 #  :address: Carretera  San Mateo -Tlaixpan Km 18, C.P 75780 Tecamachalco, Pue.
@@ -189,11 +189,11 @@
 #  :address: Plaza Principal s/n Colonia Naranjastitla, C.P 75940 San Sebastian Tlacotepec De Porfirio Díaz,Pue.
 #  :phone: "(01 278) 596-63-99"
 #  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
-#- :id: 39
-#  :name: SGG Dirección General de Defensoróa Pública / Dirección de Oficinas Regionales
-#  :address: Calle 14 Norte No. 205 Barrio de la Luz, C.P 72377 Puebla, Pue.
-#  :phone: "(01 222) 246-31-88"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
+- :id: 39
+  :name: SGG Dirección General de Defensoría Pública / Dirección de Oficinas Regionales
+  :address: Calle 14 Norte No. 205 Barrio de la Luz, C.P 72377 Puebla, Pue.
+  :phone: "(01 222) 246-31-88"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
 #- :id: 40
 #  :name: SGG Dirección General de Defensoría Pública / Dirección de Asuntos Civiles,Familiares y Administrativos
 #  :address: Periferico Ecológico No. 4000 Arco Sur en Ciudad Judicial, C.P 72830 San Andres Cholula, Pue.
@@ -204,16 +204,16 @@
 #  :address: Avenida 12 Poniente No. 608 Colonia Centro, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 216-16-65"
 #  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
-#- :id: 42
-#  :name: SSP Dirección de Vial:idad Estatal ( Encierro o corralón del Estado - San Francisco Totimehuacan)
-#  :address: Calle Arenillas s/n, C.P 72960 San Francisco Totimehuacan, Pue.
-#  :phone:
-#  :schedule: Lunes a Viernes de 08:00 a 17:00 horas. Sábados de 09:00 a 13:00 horas.
-#- :id: 43
-#  :name: SDRSOT Subsecretaría de Desarrollo Rural
-#  :address: Avenida 26 Norte No. 1202 Edificio B Colonia Humboldt, C.P 72370 Puebla,Pue.
-#  :phone: "(01 222) 777-65-00"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 42
+  :name: SSP Dirección de Vialidad Estatal ( Encierro o corralón del Estado - San Francisco Totimehuacan)
+  :address: Calle Arenillas s/n, C.P 72960 San Francisco Totimehuacan, Pue.
+  :phone:
+  :schedule: Lunes a Viernes de 08:00 a 17:00 horas. Sábados de 09:00 a 13:00 horas.
+- :id: 43
+  :name: SDRSOT Subsecretaría de Desarrollo Rural
+  :address: Avenida 26 Norte No. 1202 Edificio B Colonia Humboldt, C.P 72370 Puebla,Pue.
+  :phone: "(01 222) 777-65-00"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 44
 #  :name: SDRSOT Oficinas Col. Resurgimiento
 #  :address: Calle 32 Norte No. 639-E Colonia Resurgimiento, C.P 72370 Puebla, Pue.
@@ -449,11 +449,11 @@
 #  :address: Plaza Principal Casa 23, Lado Oriente Colonia Centro, Frente al Exconvento Franciscano. C.P. 74160 Huejotzingo,Pue.
 #  :phone: "(01-227) 276 - 11 - 98"
 #  :schedule: De lunes a viernes de 09:00 a 15:00 horas.
-#- :id: 91
-#  :name: IRCEP Direccion del Registro Publico de la Propiedad Puebla
-#  :address: Calle 7 Norte No.1006 Colonia Centro C.P. 72000 Puebla,Pue.
-#  :phone: "(01 222) 232-25-61"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 91
+  :name: IRCEP Direccion del Registro Publico de la Propiedad Puebla
+  :address: Calle 7 Norte No.1006 Colonia Centro C.P. 72000 Puebla,Pue.
+  :phone: "(01 222) 232-25-61"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 92
 #  :name: IRCEP Oficina del Registro Público de la Propiedad de Izucar de Matamoros.
 #  :address: Boulevard Eje Poniente s/n , Carretera Atencingo Km. 5 esq. Herculano Sánchez, C.P. 74400 Izúcar de Matamoros,Pue.
@@ -504,16 +504,16 @@
 #  :address: Calle Bravo No. 3 Interior 9 Colonia Centro ,C.P 73310 Zacatlán, Pue.
 #  :phone: "(01 797) 975-73-58 Ext. 3200"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 102
-#  :name: SDRSOT Delegación Xicotepec de Juárez
-#  :address: Avenida Zaragoza No. 130 Colonia Centro, C.P 73080 Xicotepec de Juárez,Pue.
-#  :phone: "(01 764) 764-49-18"
-#  :schedule: Lunes a Viernes de 08:30 a 19:00 horas. Sábado de 08:30 a 15:00 horas.
-#- :id: 103
-#  :name: SSP Dirección Técnica de la Dirección General de Centros de Reinserción Social del Estado.
-#  :address: Avenida 35 Oriente No. 1006 Colonia Anzures, C.P 72530 Puebla, Pue.
-#  :phone: "(01 222) 271-83-26 o (01 222) 243-38-91"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 102
+  :name: SDRSOT Delegación Xicotepec de Juárez
+  :address: Avenida Zaragoza No. 130 Colonia Centro, C.P 73080 Xicotepec de Juárez,Pue.
+  :phone: "(01 764) 764-49-18"
+  :schedule: Lunes a Viernes de 08:30 a 19:00 horas. Sábado de 08:30 a 15:00 horas.
+- :id: 103
+  :name: SSP Dirección Técnica de la Dirección General de Centros de Reinserción Social del Estado.
+  :address: Avenida 35 Oriente No. 1006 Colonia Anzures, C.P 72530 Puebla, Pue.
+  :phone: "(01 222) 271-83-26 o (01 222) 243-38-91"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 104
 #  :name: SOAPAP Modulo San Manuel.
 #  :address: Calle Río Grijalva No. 5310 Colonia Jardines de San Manuel, C.P 72570 Puebla, Pue.
@@ -569,18 +569,18 @@
 #  :address: Vía Atlixcayotl No. 1504 D6 Reserva Territorial Atlixcayotl, C.P  72810 Puebla, Pue.
 #  :phone:
 #  :schedule: Lunes a Viernes de 09:00 a 17:00 horas. Sábados de 09:00 a 14:00 horas.
-#- :id: 115
-#  :name: UPA Univers:idad Politécnica de Amozoc.
-#  :address: Calle Ampliación Luis Oropeza s/n Colonia Ampliación San Ándres Las Vegas,
-#    C.P 72980 Amozoc, Pue.
-#  :phone: "(01 222) 168-85-67 o (01 222) 168-83-58"
-#  :schedule: Lunes a Viernes de 08:00 a 17:00 horas.
-#- :id: 116
-#  :name: Univers:idad Politécnica de Puebla.
-#  :address: Tercer Carril del Ej:ido "Serrano" s/n Colonia San Mateo Cuanalá, C.P 72640
-#    Juan C. Bonilla, Pue.
-#  :phone: "(01 222) 774-66-40"
-#  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
+- :id: 115
+  :name: UPA Universidad Politécnica de Amozoc.
+  :address: Calle Ampliación Luis Oropeza s/n Colonia Ampliación San Ándres Las Vegas,
+    C.P 72980 Amozoc, Pue.
+  :phone: "(01 222) 168-85-67 o (01 222) 168-83-58"
+  :schedule: Lunes a Viernes de 08:00 a 17:00 horas.
+- :id: 116
+  :name: Universidad Politécnica de Puebla.
+  :address: Tercer Carril del Ej:ido "Serrano" s/n Colonia San Mateo Cuanalá, C.P 72640
+    Juan C. Bonilla, Pue.
+  :phone: "(01 222) 774-66-40"
+  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
 #- :id: 117
 #  :name: SIT Secretaría de Infraestructura y Transportes Dirección Técnica
 #  :address: Calle 15 Oriente No. 1623 Colonia Azcárate, C.P 72501 Puebla, Pue.
@@ -625,7 +625,7 @@
 #  :schedule: Lunes a Viernes de 08:00 a 15:00 horas y de 16:00 a 17:00 horas y las 24 horas del día los 365 días del año para el caso de haber deten:ido.
 #- :id: 124
 #  :name: SGG Dirección General de Defensoría Pública/Sexta Delegación del Ministerio Público. (margarita).
-#  :address: Calle 40 Sur No. 5701 local 11, Un:idad Habitacional La Margarita, C.P 72560
+#  :address: Calle 40 Sur No. 5701 local 11, Unidad Habitacional La Margarita, C.P 72560
 #    Puebla,Pue.
 #  :phone: "(01 222) 233-78-69"
 #  :schedule: Lunes a Viernes de 08:00 a 15:00 horas y de 16:00 a 17:00 horas y las 24 horas del día los 365 días del año para el caso de haber deten:ido.
@@ -660,22 +660,22 @@
 #  :address: Privada Alfonso G. Alarcon No.2126 Colonia Bellavista, C.P 72500 Puebla,Pue.
 #  :phone: "(01 222) 240-79-58"
 #  :schedule: Lunes a Viernes de 08:00 a 15:00 horas y de 16:00 a 17:00 horas y las 24 horas del día los 365 días del año para el caso de haber deten:ido.
-#- :id: 130
-#  :name: CAPCEE Comité Administrador Poblano para la Construcción de Espacios Educativos.
-#  :address: Avenida 23 Poniente No. 2301 Colonia Volcanes, C.P 72410 Puebla, Pue.
-#  :phone: "(01 222) 243-14-77, (01 222) 237-80-46 y (01 222) 237-80-36"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 130
+  :name: CAPCEE Comité Administrador Poblano para la Construcción de Espacios Educativos.
+  :address: Avenida 23 Poniente No. 2301 Colonia Volcanes, C.P 72410 Puebla, Pue.
+  :phone: "(01 222) 243-14-77, (01 222) 237-80-46 y (01 222) 237-80-36"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 131
 #  :name: CONCYTEP Consejo de Ciencia y Tecnología del Estado de Puebla.
 #  :address: Calle 29 Sur No. 718 Colonia La Paz, C.P 72160 Puebla,Pue.
 #  :phone: "(01 222) 249-76-22 o (01 222) 231-58-07"
 #  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
-#- :id: 132
-#  :name: Instituto Tecnológico Superior de Acatlán de Osorio.
-#  :address: Carretera Acatlán-San Juan Ixcaquixtla Km.5.5 Un:idad Tecnológica, C.P 74949
-#    Acatlán de Osorio,Pue.
-#  :phone: "(01 953) 534-18-78 o (01 953) 534-18-77"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 132
+  :name: Instituto Tecnológico Superior de Acatlán de Osorio.
+  :address: Carretera Acatlán-San Juan Ixcaquixtla Km.5.5 Unidad Tecnológica, C.P 74949
+    Acatlán de Osorio,Pue.
+  :phone: "(01 953) 534-18-78 o (01 953) 534-18-77"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 133
 #  :name: PGJ Direccion  General de Derechos  Humanos  y Asuntos  Indígenas.
 #  :address: Avenida 10 Oriente  No. 414 Colonia Centro, C.P 72000 Puebla,Pue.
@@ -686,55 +686,55 @@
 #  :address: Calle 12 Poniente No. 905 Colonia Centro, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 232-04-48"
 #  :schedule: Lunes a Viernes 09:00 a 13:00 horas.
-#- :id: 135
-#  :name: Univers:idad Tecnológica de Huejotzingo.
-#  :address: Camino Real a San Mateo s/n Colonia Santa Ana Xalmimilulco, C.P 74169 Huejotzingo,
-#    Pue.
-#  :phone: "(01 227) 275-93-06"
-#  :schedule: Lunes a Viernes 09:00 a 18:00 horas.
-#- :id: 136
-#  :name: CCONV Parque del Arte
-#  :address: Calle Sirio s/n Colonia Concepción Las Lajas, C.P 72190 San Andrés Cholula,Pue.
-#  :phone: "(01 222) 233-83-74"
-#  :schedule: Lunes a Viernes de 08:30 a 19:00 horas y Sábado de 08:30 a 15:00 horas.
-#- :id: 137
-#  :name: CCONV Parque Ecológico Revolución Mexicana
-#  :address: Calle 26 sur s/n Colonia Azcárate, C.P 72501 Puebla Pue.
-#  :phone: "(01 222) 233-83-74"
-#  :schedule: De lunes a viernes de 08:30 a 19:00 horas y Sábado de 08:30 a 15:00 horas.
-#- :id: 138
-#  :name: Instituto Tecnológico Superior de Huauchinango
-#  :address: Avenida Tecnológico No.80 Colonia 5 de Octubre, C.P 73173 Huauchinango,
-#    Pue.
-#  :phone: "(01 776) 762-52-60 o (01 776) 762-52-50."
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 139
-#  :name: Univers:idad Intercultural del Estado de Puebla
-#  :address: Calle Principal a Lipuntahuaca s/n Colonia Lipuntahuaca, C.P 73475 Huehuetla,
-#    Pue.
-#  :phone: "(01 233) 596-92-08 o (01 233) 596-92-34"
-#  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
+- :id: 135
+  :name: Universidad Tecnológica de Huejotzingo.
+  :address: Camino Real a San Mateo s/n Colonia Santa Ana Xalmimilulco, C.P 74169 Huejotzingo,
+    Pue.
+  :phone: "(01 227) 275-93-06"
+  :schedule: Lunes a Viernes 09:00 a 18:00 horas.
+- :id: 136
+  :name: CCONV Parque del Arte
+  :address: Calle Sirio s/n Colonia Concepción Las Lajas, C.P 72190 San Andrés Cholula,Pue.
+  :phone: "(01 222) 233-83-74"
+  :schedule: Lunes a Viernes de 08:30 a 19:00 horas y Sábado de 08:30 a 15:00 horas.
+- :id: 137
+  :name: CCONV Parque Ecológico Revolución Mexicana
+  :address: Calle 26 sur s/n Colonia Azcárate, C.P 72501 Puebla Pue.
+  :phone: "(01 222) 233-83-74"
+  :schedule: De lunes a viernes de 08:30 a 19:00 horas y Sábado de 08:30 a 15:00 horas.
+- :id: 138
+  :name: Instituto Tecnológico Superior de Huauchinango
+  :address: Avenida Tecnológico No.80 Colonia 5 de Octubre, C.P 73173 Huauchinango,
+    Pue.
+  :phone: "(01 776) 762-52-60 o (01 776) 762-52-50."
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 139
+  :name: Universidad Intercultural del Estado de Puebla
+  :address: Calle Principal a Lipuntahuaca s/n Colonia Lipuntahuaca, C.P 73475 Huehuetla,
+    Pue.
+  :phone: "(01 233) 596-92-08 o (01 233) 596-92-34"
+  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
 #- :id: 140
 #  :name: SEDIF Departamento del Adulto Mayor
 #  :address: Calle 11 Norte No.1810, Colonia Tamborcito, C.P 72100 Puebla, Pue.
 #  :phone: "(01 222) 242-31-45 ext.5710"
 #  :schedule: Lunes a Viernes de 9:00 a 18:00 horas.
-#- :id: 141
-#  :name: SEDIF Departamento de Ecología de la Salud
-#  :address: Avenida 25 Poniente No. 2302 Colonia Volcanes, C.P 72410 Puebla, Pue.
-#  :phone: "(01 222) 240-37-57"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 142
-#  :name: SEDIF Departamento de Salud Mental
-#  :address: Avenida 25 Poniente No. 2302 Colonia Volcanes, C.P 72410 Puebla,Pue.
-#  :phone: "(01 222) 243-02-40"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 143
-#  :name: SEDIF Centro de Rehabilitación y Educación Especial (CREE)
-#  :address: Carretera a la Calera s/n Colonia Lomas de San Miguel, C.P 72573 Puebla,
-#    Pue.
-#  :phone: "(01 222) 216-00-21"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 141
+  :name: SEDIF Departamento de Ecología de la Salud
+  :address: Avenida 25 Poniente No. 2302 Colonia Volcanes, C.P 72410 Puebla, Pue.
+  :phone: "(01 222) 240-37-57"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 142
+  :name: SEDIF Departamento de Salud Mental
+  :address: Avenida 25 Poniente No. 2302 Colonia Volcanes, C.P 72410 Puebla,Pue.
+  :phone: "(01 222) 243-02-40"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 143
+  :name: SEDIF Centro de Rehabilitación y Educación Especial (CREE)
+  :address: Carretera a la Calera s/n Colonia Lomas de San Miguel, C.P 72573 Puebla,
+    Pue.
+  :phone: "(01 222) 216-00-21"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 144
 #  :name: SEDIF Departamento de orientación nutricional
 #  :address: Calle 5 de Mayo No. 1606 Colonia Centro, C.P 72000 Puebla,Pue.
@@ -777,7 +777,7 @@
 #  :schedule: Lunes a Viernes 9:00 a 15:00 horas.
 #- :id: 152
 #  :name: PGJ Dirección General de Protección a Víctimas de Delito y Servicios a la
-#    Comun:idad
+#    ComUnidad
 #  :address: Calle 17 Poniente No. 1704 Colonia Santiago, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 237-82-85"
 #  :schedule: Lunes a Viernes 08:00 a 16:00 horas. Sábados 09:30 a 14:30 horas.
@@ -890,41 +890,41 @@
 #  :phone: "(01 222) 229-33-00"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 173
-#  :name: SSP Dirección de Vial:idad Estatal (Departamento de Servicios de Segur:idad
+#  :name: SSP Dirección de Vialidad Estatal (Departamento de Servicios de Segur:idad
 #    Vial)
 #  :address: Avenida 105 Poniente y Calle Sonora s/n Colonia Coatepec, C.P 72490  Puebla,
 #    Pue.
 #  :phone: "(01 222) 777-41-80."
 #  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
 #- :id: 174
-#  :name: SSP Dirección de Vial:idad Estatal (Departamento de Operaciones Viales)
+#  :name: SSP Dirección de Vialidad Estatal (Departamento de Operaciones Viales)
 #  :address: Avenida 105 Poniente y Calle Sonora s/n Colonia Coatepec, C.P 72490  Puebla,
 #    Pue.
 #  :phone: "(01 222) 777-41-74 o (01 222) 777-41-75"
 #  :schedule: Lunes a Viernes de 08:00 a 21:00 horas.
 #- :id: 175
-#  :name: SSP Dirección de Vial:idad Estatal (Departamento Técnico y de Proyectos)
+#  :name: SSP Dirección de Vialidad Estatal (Departamento Técnico y de Proyectos)
 #  :address: Avenida 105 Poniente y Calle Sonora s/n Colonia Coatepec, C.P 72490  Puebla,
 #    Pue.
 #  :phone: "(01 222) 777-41-64 o (01 222) 777-41-78."
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.  
-#- :id: 176
-#  :name: SSP Dirección de Vial:idad Estatal (Área de infracciones)
-#  :address: Avenida 105 Poniente y Calle Sonora s/n Colonia Coatepec, C.P 72490  Puebla,
-#    Pue.
-#  :phone: "(01 222) 777-41-52 o (01 222) 777-41-53."
-#  :schedule: Lunes a Viernes de 08:00 a 21:00 horas. Sábado de 09:00 a 13:00 horas.
+- :id: 176
+  :name: SSP Dirección de Vialidad Estatal (Área de infracciones)
+  :address: Avenida 105 Poniente y Calle Sonora s/n Colonia Coatepec, C.P 72490  Puebla,
+    Pue.
+  :phone: "(01 222) 777-41-52 o (01 222) 777-41-53."
+  :schedule: Lunes a Viernes de 08:00 a 21:00 horas. Sábado de 09:00 a 13:00 horas.
 #- :id: 177
 #  :name: PGJ Procuraduría General de Justicia del Estado de Puebla, Edificio Central
 #  :address: Boulevard 5 de Mayo esquina con Avenida 31 Oriente s/n Colonia Ladrillera
 #    de Benitez C. P 72530 Puebla, Pue.
 #  :phone: "(01 222) 211-79-00"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 178
-#  :name: SEP Complejo Deportivo Cuautlancingo Salomón Jauli Dávila
-#  :address: Kilómetro 3, Periférico Ecológico, C.P. 72706.
-#  :phone: "(01 222) 222-39-15, 222-39-16, 222-39-41, 222-10-13"
-#  :schedule: Lunes a Viernes de  09:00 a 18:00 horas.
+- :id: 178
+  :name: SEP Complejo Deportivo Cuautlancingo Salomón Jauli Dávila
+  :address: Kilómetro 3, Periférico Ecológico, C.P. 72706.
+  :phone: "(01 222) 222-39-15, 222-39-16, 222-39-41, 222-10-13"
+  :schedule: Lunes a Viernes de  09:00 a 18:00 horas.
 #- :id: 179
 #  :name: PGJ Acatlán de Osorio
 #  :address: Avenida Reforma Palacio Municipal No.1 Colonia Centro, C.P 74949 Acatán
@@ -1012,11 +1012,11 @@
 #    Colonia Centro, C.P 73170 Huauchinango, Pue.
 #  :phone: "(01 776) 762-00-46 (Fax) 762-35-69"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 194
-#  :name: SFA Oficina Recaudadora y de Asistencia al Contribuyente de Ciudad Serdán
-#  :address: Avenida 2 Norte No. 5 Colonia Centro, C.P 75520 Ciudad Serdán, Pue.
-#  :phone: "(01 245) 452-00-57"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 194
+  :name: Oficina Recaudadora y de Asistencia al Contribuyente de Ciudad Serdán
+  :address: "Carretera Federal El Seco-Esperanza, Km. 29, Chalchicomula de Sesma, Pue."
+  :phone: "(01 245) 452-00-57"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 195
 #  :name: SFA Oficina Recaudadora y de Asistencia al Contribuyente de Chiautla
 #  :address: Calle 2 Sur No. 8 esquina 3 Poniente, Colonia Centro, C.P 74730 Chiautla,
@@ -1104,22 +1104,22 @@
 #    C.P 73080  Xicotepec, Pue.
 #  :phone: "(01 764) 764-28-61   (Fax) 764-03-20"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 210
-#  :name: SSP Dirección del Hco. Cpo. De Bomberos, Oficina de Medidas Preventivas
-#  :address: Boulevard Capitán Carlos Camacho Espiritu s/n esquina Calle Correg:idora
-#    de la Junta Auxiliar de San Baltazar Campeche, C.P 72550 Puebla,Pue
-#  :phone: "(01 222) 245-84-77 o (01 222) 245-73-92"
-#  :schedule: Lunes a Viernes de 08:00  a 15:00 horas.
-#- :id: 211
-#  :name: SDRSOT Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial (Para recepción de solicitudes)
-#  :address: Recta Puebla-Cholula Km. 5.5 No. 2401 San Andrés Cholula, Pue.
-#  :phone: "(01 222) 273-68-00"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 212
-#  :name: CCONV Módulo de Información del Río Atoyac
-#  :address: Calle Gabino Barreda esquina José María Morelos y Pavón s/n Colonia Concepción Guadalupe, C.P 72450 Puebla,Pue.
-#  :phone: "(01 222) 237-82-81"
-#  :schedule: Martes a Domingo de 09:00 a 17:00 horas.
+- :id: 210
+  :name: SSP Dirección del Hco. Cpo. De Bomberos, Oficina de Medidas Preventivas
+  :address: Boulevard Capitán Carlos Camacho Espiritu s/n esquina Calle Correg:idora
+    de la Junta Auxiliar de San Baltazar Campeche, C.P 72550 Puebla,Pue
+  :phone: "(01 222) 245-84-77 o (01 222) 245-73-92"
+  :schedule: Lunes a Viernes de 08:00  a 15:00 horas.
+- :id: 211
+  :name: SDRSOT Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial (Para recepción de solicitudes)
+  :address: Recta Puebla-Cholula Km. 5.5 No. 2401 San Andrés Cholula, Pue.
+  :phone: "(01 222) 273-68-00"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 212
+  :name: CCONV Módulo de Información del Río Atoyac
+  :address: Calle Gabino Barreda esquina José María Morelos y Pavón s/n Colonia Concepción Guadalupe, C.P 72450 Puebla,Pue.
+  :phone: "(01 222) 237-82-81"
+  :schedule: Martes a Domingo de 09:00 a 17:00 horas.
 #- :id: 213
 #  :name: Secretaría de Finanzas y Administración. Teziutlán
 #  :address: Avenida H:idalgo No.1629 Edificio Real Planta Baja Colonia Centro, C.P 73800 Teziutlán, Pue.
@@ -1169,25 +1169,25 @@
 #  :address: Calle 20 Sur No. 1110 Colonia Azcárate, C.P 72501 Puebla, Pue.
 #  :phone: "(01 222) 229-70-73"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 222
-#  :name: Instituto Tecnológico Superior de Zacapoaxtla
-#  :address: Carretera Acuaco - Zacapoaxtla Km. 8 Colonia Totoltepec, C.P 73680 Zacapoaxtla,Pue.
-#  :phone: "(01 233) 317-50-00 o (01 233) 317-50-14 ext. 303"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 223
-#  :name: Instituto Tenologico Superior de la Sierra Norte de Puebla
-#  :address: Avenida José Luis Martínez Vázquez No. 2000 Colonia Jicolapa,C.P 73315
-#    Zacatlán,Pue.
-#  :phone: "(01 797) 975-16-94 ext. 133"
-#  :schedule: Lunes a Viernes de 09:00 a 17:30 horas.
-#- :id: 224
-#  :name: CCONV Ex Hacienda de Chautla
-#  :address: Kilometro 4.5 Carretera Federal México-Puebla Colonia San Lucas el Grande,
-#    C.P 74135 San Salvador el Verde, Puebla, Pue.
-#  :phone: "(01 248) 481-00-52 o (01 222) 232-33-65 Ext.112 y 212"
-#  :schedule: Lunes a Domingo de 09:00 a 18:00 horas. Los 365 días del año
+- :id: 222
+  :name: Instituto Tecnológico Superior de Zacapoaxtla
+  :address: Carretera Acuaco - Zacapoaxtla Km. 8 Colonia Totoltepec, C.P 73680 Zacapoaxtla,Pue.
+  :phone: "(01 233) 317-50-00 o (01 233) 317-50-14 ext. 303"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 223
+  :name: Instituto Tenologico Superior de la Sierra Norte de Puebla
+  :address: Avenida José Luis Martínez Vázquez No. 2000 Colonia Jicolapa,C.P 73315
+    Zacatlán,Pue.
+  :phone: "(01 797) 975-16-94 ext. 133"
+  :schedule: Lunes a Viernes de 09:00 a 17:30 horas.
+- :id: 224
+  :name: CCONV Ex Hacienda de Chautla
+  :address: Kilometro 4.5 Carretera Federal México-Puebla Colonia San Lucas el Grande,
+    C.P 74135 San Salvador el Verde, Puebla, Pue.
+  :phone: "(01 248) 481-00-52 o (01 222) 232-33-65 Ext.112 y 212"
+  :schedule: Lunes a Domingo de 09:00 a 18:00 horas. Los 365 días del año
 #- :id: 225
-#  :name: SECOTRADE Un:idad de Enlace Izúcar de Matamoros
+#  :name: SECOTRADE Unidad de Enlace Izúcar de Matamoros
 #  :address: Boulevard Eje Poniente esquina Avenida José María Herculano Sánchez s/n
 #    Colonia Centro, C.P 74400 Izúcar de Matamoros, Pue.
 #  :phone: "(01 243) 436-64-73"
@@ -1205,18 +1205,18 @@
 #    Lajas, C.P 72810 Puebla, Pue.
 #  :phone: "(01 222) 303-46-00 ext. 2382, 2383 y 2387"
 #  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
-#- :id: 228
-#  :name: SEP Dirección de Control Escolar.
-#  :address: Boulevard Hermanos Serdán No. 201 Col. Valle del Rey C.P. 72140 (BINE)
-#  :phone: "(01-222) 229-69-37"
-#  :schedule: De lunes a viernes de 08:00 a 15:00 horas.
-#- :id: 229
-#  :name: SEP Dirección General de Desarrollo Educativo (Coordinaciones Regionales de
-#    Desarrollo Educativo)
-#  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
-#    Pue.
-#  :phone: "(01 222) 229-69-40 o (01 222) 229-69-41"
-#  :schedule: Lunes a Viernes de 08:00 a 15:00 horas.
+- :id: 228
+  :name: SEP Dirección de Control Escolar.
+  :address: Boulevard Hermanos Serdán No. 201 Col. Valle del Rey C.P. 72140 (BINE)
+  :phone: "(01-222) 229-69-37"
+  :schedule: De lunes a viernes de 08:00 a 15:00 horas.
+- :id: 229
+  :name: SEP Dirección General de Desarrollo Educativo (Coordinaciones Regionales de
+    Desarrollo Educativo)
+  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
+    Pue.
+  :phone: "(01 222) 229-69-40 o (01 222) 229-69-41"
+  :schedule: Lunes a Viernes de 08:00 a 15:00 horas.
 #- :id: 230
 #  :name: SEP Dirección de Becas y Apoyo para la Promoción Académica
 #  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
@@ -1229,19 +1229,19 @@
 #    Puebla, Pue.
 #  :phone: "(01 222) 594-77-72"
 #  :schedule: "Lunes a Viernes de 08:00 a 15:00 horas. (para maestros en SEP). En Centros de Educación Básica para adultos es de Lunes a Viernes de 16:00 a 20:00 horas."
-#- :id: 232
-#  :name: SEP Departamento de Preparatoria Abierta.
-#  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
-#    Pue.
-#  :phone: "(01 222) 229-69-65"
-#  :schedule: Lunes a Viernes de 09:00 a 14:00 horas.
-#- :id: 233
-#  :name: SEP Departamento de Planeación e Integración Presupuestales de la Dirección
-#    General de Planeación y Programación Presupuestales.
-#  :address: Recta a Cholula No. 4543, Colonia Belisario Domínguez,C.P 72180 Puebla,
-#    Pue.
-#  :phone: "(01 222) 273-59-09; 273-59-30 y 248-53-24 Ext. 7115"
-#  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
+- :id: 232
+  :name: SEP Departamento de Preparatoria Abierta.
+  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
+    Pue.
+  :phone: "(01 222) 229-69-65"
+  :schedule: Lunes a Viernes de 09:00 a 14:00 horas.
+- :id: 233
+  :name: SEP Departamento de Planeación e Integración Presupuestales de la Dirección
+    General de Planeación y Programación Presupuestales.
+  :address: Recta a Cholula No. 4543, Colonia Belisario Domínguez,C.P 72180 Puebla,
+    Pue.
+  :phone: "(01 222) 273-59-09; 273-59-30 y 248-53-24 Ext. 7115"
+  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
 #- :id: 234
 #  :name: SGG Dirección General de Protección Civil.
 #  :address: Calle 3 Poniente No. 725 Colonia Centro, C.P 72000 Puebla, Pue.
@@ -1254,122 +1254,122 @@
 #  :schedule: Lunes a Viernes de 08:00 a 14:00 horas para recepción de documentos; De
 #    08:00 a 15:00 horas para entrega de documentos y de 08:00 a 12:00 horas, para
 #    recepción y entrega de paquetes.
-#- :id: 236
-#  :name: Instituto Tecnológico Superior de Teziutlán
-#  :address: Fracción I y II s/n Aire Libre Colonia Mexcalcuautla, C.P 73960 Teziutlán,
-#    Pue.
-#  :phone: "(01 231) 311-40-02  o (01 231) 311-40-03"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 237
-#  :name: ICATEP Un:idad de Capacitación Puebla
-#  :address: Calle 121 Poniente No. 1121 Colonia Ex Hacienda el Mayorazgo, C.P 72456
-#    Puebla,Pue.
-#  :phone: "(01 222) 241-12-00"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 236
+  :name: Instituto Tecnológico Superior de Teziutlán
+  :address: Fracción I y II s/n Aire Libre Colonia Mexcalcuautla, C.P 73960 Teziutlán,
+    Pue.
+  :phone: "(01 231) 311-40-02  o (01 231) 311-40-03"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 237
+  :name: ICATEP Unidad de Capacitación Puebla
+  :address: Calle 121 Poniente No. 1121 Colonia Ex Hacienda el Mayorazgo, C.P 72456
+    Puebla,Pue.
+  :phone: "(01 222) 241-12-00"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 238
-#  :name: ICATEP Un:idad de Capacitación Tehuacán
+#  :name: ICATEP Unidad de Capacitación Tehuacán
 #  :address: Libramiento Tecnológico San Marcos No. 2300 Ex Rancho Tochapa, C.P 75730
 #    Tehuacán,Pue.
 #  :phone: "(01 238) 383-64-20 o (01 238) 383-15-70"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 239
-#  :name: ICATEP Un:idad de Capacitación San Martín Texmelucan
+#  :name: ICATEP Unidad de Capacitación San Martín Texmelucan
 #  :address: Autopista San Martín - Tlaxcala  Km 4 Ej:ido de Tlaixco, C.P 74000 San Martín
 #    Texmelucan,Pue.
 #  :phone: "(01 248) 484-40-53"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 240
-#  :name: ICATEP Un:idad de Capacitación Izúcar de Matamoros
+#  :name: ICATEP Unidad de Capacitación Izúcar de Matamoros
 #  :address: Calle El Arenal s/n, San Martín Alchichica,C.P 74570 Izúcar de Matamoros,Pue.
 #  :phone: "(01 243) 436-27-32 o (01 243) 436-66-06"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 241
-#  :name: ICATEP Un:idad de Capacitación Acatlán de  Osorio
-#  :address: Calle Río Nopala s/n Un:idad Habitacional Fovisste ,C.P 74940 Acatlán de
-#    Osorio,Pue.
-#  :phone: "(01 953) 534-12-87"
-#  :schedule: De Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 241
+  :name: ICATEP Unidad de Capacitación Acatlán de Osorio
+  :address: Calle Río Nopala s/n Unidad Habitacional Fovisste ,C.P 74940 Acatlán de
+    Osorio,Pue.
+  :phone: "(01 953) 534-12-87"
+  :schedule: De Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 242
-#  :name: ICATEP Un:idad de Capacitación Ciudad Serdán
+#  :name: ICATEP Unidad de Capacitación Ciudad Serdán
 #  :address: Prolongación Francisco I. Madero No.7 Colonia La Gloria,C.P 75520 Ciudad
 #    Serdán,Pue.
 #  :phone: "(01 245) 452-08-47"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 243
-#  :name: ICATEP Un:idad de Capacitación Tecamachalco
+#  :name: ICATEP Unidad de Capacitación Tecamachalco
 #  :address: Avenida Libertad Sur s/n, Barrio de la Villita, C.P 75482 Tecamachalco,Pue.
 #  :phone: "(01 249) 422-18-03 o (01 249) 422-42-94"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 244
-#  :name: ICATEP Un:idad de Capacitación Teziutlán
+#  :name: ICATEP Unidad de Capacitación Teziutlán
 #  :address: Avenida Francisco I. Madero s/n Barrio del Fresnillo, C.P 73887 Teziutlán,Pue.
 #  :phone: "(01 231) 313-18-95 o (01 231) 313-56-28"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 245
-#  :name: ICATEP Un:idad de Capacitación Amozoc de Mota
+#  :name: ICATEP Unidad de Capacitación Amozoc de Mota
 #  :address: Calle Vicente Guerrero No. 406  Barrio la Concepción, C.P 72982 Amozoc
 #    de Mota,Pue.
 #  :phone: "(01 222) 271-01-77 o (01 222) 271-14-84"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 246
-#  :name: ICATEP Un:idad de Capacitación Chiautla de Tapia
+#  :name: ICATEP Unidad de Capacitación Chiautla de Tapia
 #  :address: Carretera Chiautla-Izúcar de Matamoros Km. 5 Crucero La Palma Chiautla,Pue.
 #  :phone: "(01 275) 431-26-37"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 247
-#  :name: ICATEP Un:idad de Capacitación Huauchinango
+#  :name: ICATEP Unidad de Capacitación Huauchinango
 #  :address: Prolongación 16 de Septiembre s/n Colonia La mesita, Camino a Puga, C.P
 #    73160 Huauchinango,Pue.
 #  :phone: "(01 776) 762-32-87"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 248
-#  :name: ICATEP Un:idad de Capacitación Zacatlán
+#  :name: ICATEP Unidad de Capacitación Zacatlán
 #  :address: Carretera Zacatlán - Jicolapán Km 3.5, C.P 73310  Zacatlán,Pue.
 #  :phone: "(01 797) 975-40-61"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 249
-#  :name: ICATEP Un:idad de Capacitación Tepexi de Rodríguez
+#  :name: ICATEP Unidad de Capacitación Tepexi de Rodríguez
 #  :address: Avenida Tecnológico s/n Barrio San Sebastián, C.P 74690 Tepexi de Rodríguez,
 #    Pue.
 #  :phone: "(01 224) 421-58-03"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 250
-#  :name: ICATEP Un:idad de Capacitación Atlixco
+#  :name: ICATEP Unidad de Capacitación Atlixco
 #  :address: Prolongación Aquiles Serdán s/n Colonia El León, C.P 74360 Atlixco,Pue.
 #  :phone: "(01 244) 446-36-90"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 251
-#  :name: ICATEP Un:idad de Capacitación San Pedro Cholula
+#  :name: ICATEP Unidad de Capacitación San Pedro Cholula
 #  :address: Calle 22 Oriente No. 615 Barrio de Jesús Tlatempa,C.P 72760 San Pedro Cholula,Pue.
 #  :phone: "(01 222) 409-00-08"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 252
-#  :name: ICATEP Un:idad de Capacitación Oriental
+#  :name: ICATEP Unidad de Capacitación Oriental
 #  :address: Carretera Oriental – Tepeyahualco Km.1  s/n  Colonia La Coco,C.P 75020
 #    Oriental,Pue.
 #  :phone: "(01 276) 477-14-06"
 #  :schedule: "Lunes a Viernes de 09:00 a 18:00 horas."
-#- :id: 253
-#  :name: SDRSOT Centro Piscícola San Diego Acapulco
-#  :address: Calle Emiliano Zapata s/n  (adelante del Jagüey) Colonia San Diego Acapulco,
-#    C.P 74365 Atlixco, Pue.
-#  :phone: '0'
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
-#- :id: 254
-#  :name: Univers:idad Politécnica Metropolitana de Puebla
-#  :address: Calle Popocatepetl  s/n Colonia Tres Cerritos, C.P 72480 Puebla, Pue.
-#  :phone: "(01 222) 641-35-22"
-#  :schedule: Lunes a Viernes de 09:00 a 21:00 horas.
+- :id: 253
+  :name: SDRSOT Centro Piscícola San Diego Acapulco
+  :address: Calle Emiliano Zapata s/n  (adelante del Jagüey) Colonia San Diego Acapulco,
+    C.P 74365 Atlixco, Pue.
+  :phone: '0'
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
+- :id: 254
+  :name: Universidad Politécnica Metropolitana de Puebla
+  :address: Calle Popocatepetl  s/n Colonia Tres Cerritos, C.P 72480 Puebla, Pue.
+  :phone: "(01 222) 641-35-22"
+  :schedule: Lunes a Viernes de 09:00 a 21:00 horas.
 #- :id: 255
 #  :name: CECAP Dirección de Museos
 #  :address: Calle 4 Norte No. 203 Colonia Centro, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 246-66-18"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 256
-#  :name: CECAP Fonoteca Vicente T. Mendoza
-#  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 256
+  :name: CECAP Fonoteca Vicente T. Mendoza
+  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 257
 #  :name: 'CECAP Biblioteca Pública Central del Estado (Titular: Judith Pérez Lima)'
 #  :address: Calle 4 Norte No.203 Colonia Centro, C.P 72000 Puebla,Pue
@@ -1401,41 +1401,41 @@
 #  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 246-69-22"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 263
-#  :name: CECAP Cinemateca Luis Buñuel
-#  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
-#  :schedule: Lunes a Viernes de 09:00 a 20:00 horas.
-#- :id: 264
-#  :name: CECAP Biblioteca Palafoxiana
-#  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P72000 Puebla,Pue.
-#  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
-#  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
+- :id: 263
+  :name: CECAP Cinemateca Luis Buñuel
+  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
+  :schedule: Lunes a Viernes de 09:00 a 20:00 horas.
+- :id: 264
+  :name: CECAP Biblioteca Palafoxiana
+  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P72000 Puebla,Pue.
+  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
+  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
 #- :id: 265
 #  :name: CECAP Imagina Museo Interactivo
 #  :address: Calzada Ejercito de Oriente s/n y Cazadores de Morelia, Unidad Civica 5 de Mayo Colonia Los Fuertes, C.P 72266 Puebla,Pue.
 #  :phone: "(01 222) 235-98-40 o (01 222) 234-70-06"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 266
-#  :name: CECAP Coordinación de Espacios San Pedro Museo de Arte
-#  :address: Calle 4 Norte No. 203 Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 246-66-18"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 266
+  :name: CECAP Coordinación de Espacios San Pedro Museo de Arte
+  :address: Calle 4 Norte No. 203 Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 246-66-18"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 267
 #  :name: CECAP Talleres de Iniciación Artística
 #  :address: Avenida 7 Oriente No.2 Colonia Centro, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 268
-#  :name: CECAP Dirección de Música
-#  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 269
-#  :name: CECAP Casa del Escritor
-#  :address: Avenida 5 Oriente No. 201 Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 246-33-29"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 268
+  :name: CECAP Dirección de Música
+  :address: Avenida 5 Oriente No. 5 Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 232-02-86 o (01 222) 246-31-86"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 269
+  :name: CECAP Casa del Escritor
+  :address: Avenida 5 Oriente No. 201 Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 246-33-29"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 270
 #  :name: SC Comisaria Pública de la Contraloría en el COBAEP
 #  :address: Avenida San Ignacio No. 1026 Colonia Jardines de San Manuel, C.P 72570
@@ -1458,21 +1458,21 @@
 #  :address: Calle 12 Norte No.607, Bario del Alto, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 236-09-36 o (01 222) 236-09-01 y (01 222) 236-09-04 Ext. 222"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 274
-#  :name: SECTUR Secretaria de Turismo (5 de mayo)
-#  :address: Boulevard 5 de Mayo No. 402  Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 241-31-61"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 274
+  :name: SECTUR Secretaria de Turismo (5 de mayo)
+  :address: Boulevard 5 de Mayo No. 402  Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 241-31-61"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 275
 #  :name: CECAP Museo de la Revolución Mexicana
 #  :address: Avenida 6 Oriente No. 206 Colonia Centro, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 242-10-76"
 #  :schedule: Lunes  a Viernes de 10:00  a 17:00 horas.
-#- :id: 276
-#  :name: CECAP Museo de Arte Popular Poblano Exconvento de Santa Rosa
-#  :address: Calle 3 Norte No.1203 Colonia Centro, C.P 72000 Puebla,Pue
-#  :phone: "(01 222) 232-77-92"
-#  :schedule: Lunes  a Viernes de 10:00  a 17:00 horas.
+- :id: 276
+  :name: CECAP Museo de Arte Popular Poblano Exconvento de Santa Rosa
+  :address: Calle 3 Norte No.1203 Colonia Centro, C.P 72000 Puebla,Pue
+  :phone: "(01 222) 232-77-92"
+  :schedule: Lunes  a Viernes de 10:00  a 17:00 horas.
 #- :id: 277
 #  :name: CECAP Museo José Luis Bello y González
 #  :address: Avenida 3 Poniente esquina con Calle 3 Sur No.302 Colonia Centro, C.P 72000
@@ -1484,36 +1484,36 @@
 #  :address: Avenida 4 Oriente No. 416 Colonia Centro, C.P 72000 Puebla,Pue
 #  :phone: "(01 222) 232-04-58 o (01 222) 232-94-75"
 #  :schedule: Lunes  a Viernes de 10:00  a 17:00 horas.
-#- :id: 279
-#  :name: Instituto Tecnológico Superior de la Sierra Negra de Ajalpan
-#  :address: Avenida Rafael Ávila Camacho Oriente No. 3509 Barrio la Fátima, C.P 75910
-#    Ajalpan, Pue.
-#  :phone: "(01 236) 381-21-62 o (01 236) 381-21-63"
-#  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
-#- :id: 280
-#  :name: Instituto Tecnológico Superior de San Martín Texmelucan
-#  :address: Camino a la Barranca de Pesos s/n San Lucas Atoyatenco, C.P 74120 San Martín
-#    Texmelucan, Pue.
-#  :phone: "(01 248) 111-11-32 o (01 248) 111-11-33"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 279
+  :name: Instituto Tecnológico Superior de la Sierra Negra de Ajalpan
+  :address: Avenida Rafael Ávila Camacho Oriente No. 3509 Barrio la Fátima, C.P 75910
+    Ajalpan, Pue.
+  :phone: "(01 236) 381-21-62 o (01 236) 381-21-63"
+  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
+- :id: 280
+  :name: Instituto Tecnológico Superior de San Martín Texmelucan
+  :address: Camino a la Barranca de Pesos s/n San Lucas Atoyatenco, C.P 74120 San Martín
+    Texmelucan, Pue.
+  :phone: "(01 248) 111-11-32 o (01 248) 111-11-33"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 281
 #  :name: SEDIF Casa del Abue
 #  :address: Calle 11 Norte No.1810, Colonia Tamborcito, C.P 72100 Puebla, Pue.
 #  :phone: "(01 222) 242-31-45 ext.5710"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 282
-#  :name: SEDIF Oficinas Centrales
-#  :address: Calle 5 de Mayo No. 1606 Colonia Centro, C.P 72000 Puebla, Pue.
-#  :phone: "(01 222) 229-52-00"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 282
+  :name: SEDIF Oficinas Centrales
+  :address: Calle 5 de Mayo No. 1606 Colonia Centro, C.P 72000 Puebla, Pue.
+  :phone: "(01 222) 229-52-00"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 283
-#  :name: SECOTRADE Servicio Nacional de Empleo Puebla. Un:idad Regional Tehuacán
+#  :name: SECOTRADE Servicio Nacional de Empleo Puebla. Unidad Regional Tehuacán
 #  :address: Avenida Adolfo López Mateos Local 400-B Plaza Teohuacán Colonia Centro,
 #    C.P 73800 Tehuacán, Pue.
 #  :phone: "(01 238) 382-42-92 o (01 238) 382-46-99"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 284
-#  :name: SECOTRADE  Servicio Nacional de Empleo Puebla. Un:idad Regional Teziutlán
+#  :name: SECOTRADE  Servicio Nacional de Empleo Puebla. Unidad Regional Teziutlán
 #  :address: Avenida H:idalgo No.1629 -B Planta Baja Colonia San Rafael, C.P 73800 Teziutlán,Pue.
 #  :phone: "(01231) 313-68-64"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
@@ -1554,22 +1554,22 @@
 #  :address: Avenida 4 Oriente No. 806 Colonia Centro, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 242-08-94"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 292
-#  :name: SEDIF Departamento de vinculación educativa
-#  :address: Avenida 2 Oriente No. 810 Colonia Centro, C.P 72000 Puebla, Pue.
-#  :phone: "(01 222) 242-08-94"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 292
+  :name: SEDIF Departamento de vinculación educativa
+  :address: Avenida 2 Oriente No. 810 Colonia Centro, C.P 72000 Puebla, Pue.
+  :phone: "(01 222) 242-08-94"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 293
 #  :name: SEDIF Casa del adolescente
 #  :address: Calle 18 Norte No. 406 Colonia Centro, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 234-18-86"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 294
-#  :name: Univers:idad Tecnológica de Tecamachalco
-#  :address: Avenida Univers:idad Tecnológica No. 1 Barrio La Villita, C.P 75483 Tecamachalco,
-#    Pue.
-#  :phone: "(01 249) 422-33-00 ; (01 249) 422 33 05 o (01 800) 00 01 888"
-#  :schedule: Lunes a Viernes de 08:00 a 17:00 horas.
+- :id: 294
+  :name: Universidad Tecnológica de Tecamachalco
+  :address: Avenida Universidad Tecnológica No. 1 Barrio La Villita, C.P 75483 Tecamachalco,
+    Pue.
+  :phone: "(01 249) 422-33-00 ; (01 249) 422 33 05 o (01 800) 00 01 888"
+  :schedule: Lunes a Viernes de 08:00 a 17:00 horas.
 #- :id: 295
 #  :name: CEAIAMP Oficina de Representación - Mi casa es Puebla, Passaic, NJ.
 #  :address: Calle 77 3rd St, Passaic, NJ 07055, New Jersey, EUA
@@ -1582,12 +1582,12 @@
 #    Centro, C.P 75520 Ciudad Serdán, Pue.
 #  :phone: "(01 245) 452-05-05"
 #  :schedule: Lunes a Viernes de 09:00 a 14:30 horas.
-#- :id: 297
-#  :name: CEAIAMP Coordinación Estatal de Asuntos Internacionales y de Apoyo a Migrantes
-#    Poblanos
-#  :address: Calle Mitla No.16 Colonia Nueva Antequera, C.P 72180 Puebla, Pue.
-#  :phone: "(01 222) 249-70-28 o (01 222)  249-71-33"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 297
+  :name: CEAIAMP Coordinación Estatal de Asuntos Internacionales y de Apoyo a Migrantes
+    Poblanos
+  :address: Calle Mitla No.16 Colonia Nueva Antequera, C.P 72180 Puebla, Pue.
+  :phone: "(01 222) 249-70-28 o (01 222)  249-71-33"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 298
 #  :name: Delegación de la  Secretaría de Competitiv:idad, Trabajo y Desarrollo Económico
 #    en Teziutlán
@@ -1607,11 +1607,11 @@
 #  :address: Avenida 5 Oriente No.3 Colonia Centro, C.P 72000 Puebla,Pue.
 #  :phone: "(01 800) 326-86-56"
 #  :schedule: Lunes a Domingo de 08:00 a 20:00 horas.
-#- :id: 301
-#  :name: SFA Puebla I Finanzas
-#  :address: Avenida 11 Oriente No. 2224 Colonia Azcárate, C.P 72501 Puebla,Pue.
-#  :phone: "(01 222) 229-70-71 o (01 222) 229-70-00 ext. 2014,  7071"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 301
+  :name: SFA Puebla I Finanzas
+  :address: Avenida 11 Oriente No. 2224 Colonia Azcárate, C.P 72501 Puebla,Pue.
+  :phone: "(01 222) 229-70-71 o (01 222) 229-70-00 ext. 2014,  7071"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 302
 #  :name: COESPO Consejo Estatal de Población del Estado de Puebla
 #  :address: Calle 3 Sur No. 301 Desp. 4 y 5, Colonia Centro, C.P. 72000 Puebla, Pue.
@@ -1714,12 +1714,12 @@
 #  :address: Calle 20 Oriente No. 1416 Colonia Xonaca, C.P 72280 Puebla, Pue.
 #  :phone: "(01 222) 229-33-00 Ext. 2101, 2155, 2162, 2166, 2119 y 2168."
 #  :schedule: Lunes a Viernes de 09:00 a 20:00 horas.
-#- :id: 322
-#  :name: Univers:idad Tecnológica de Xicotepec de Juárez
-#  :address: Avenida Univers:idad Tecnológica No.1000 Colonia Tierra Negra, C.P 73080
-#    Xicotepec de Juárez, Pue.
-#  :phone: "(01 764) 764-38-00 o (01 764) 764-37-00"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 322
+  :name: Universidad Tecnológica de Xicotepec de Juárez
+  :address: Avenida Universidad Tecnológica No.1000 Colonia Tierra Negra, C.P 73080
+    Xicotepec de Juárez, Pue.
+  :phone: "(01 764) 764-38-00 o (01 764) 764-37-00"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 323
 #  :name: Delegación de la  Secretaría de Competitiv:idad, Trabajo y Desarrollo Económico
 #    en Huauchinango
@@ -1755,17 +1755,17 @@
 #  :address: Calle 10 Este, 39th, Piso 11th, NY 10016  Nueva York,EUA
 #  :phone: 212 213 20 93
 #  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
-#- :id: 329
-#  :name: Instituto Tecnológico Superior de Ciudad Serdán
-#  :address: Avenida Instituto Tecnológico s/n Colonia La Gloria, C.P 75520 Ciudad Serdán,
-#    Pue.
-#  :phone: "(01 245) 452-18-34 o (01 245) 452-18-35 y (01 245) 452-18-36 ext. 118"
-#  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
-#- :id: 330
-#  :name: SGG Dirección de Tenencia de la Tierra de la Secretaría General de Gobierno
-#  :address: Avenida Reforma No.703 Planta baja Colonia Centro, C.P 72000 Puebla, Pue.
-#  :phone: "(01 222) 246-03-28; 246-02-70"
-#  :schedule: Lunes a Viernes de 9:00 a 16:00 horas.
+- :id: 329
+  :name: Instituto Tecnológico Superior de Ciudad Serdán
+  :address: Avenida Instituto Tecnológico s/n Colonia La Gloria, C.P 75520 Ciudad Serdán,
+    Pue.
+  :phone: "(01 245) 452-18-34 o (01 245) 452-18-35 y (01 245) 452-18-36 ext. 118"
+  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
+- :id: 330
+  :name: SGG Dirección de Tenencia de la Tierra de la Secretaría General de Gobierno
+  :address: Avenida Reforma No.703 Planta baja Colonia Centro, C.P 72000 Puebla, Pue.
+  :phone: "(01 222) 246-03-28; 246-02-70"
+  :schedule: Lunes a Viernes de 9:00 a 16:00 horas.
 #- :id: 331
 #  :name: Plaza del Sol Finanzas
 #  :address: Calle 24 sur No. 501 locales 48 y 49, Plaza del Sol Finanzas Colonia Azcárate,
@@ -1777,19 +1777,19 @@
 #  :address: Privada 5 B Sur No.3706 Colonia Gabriel Pastor, C.P 72420 Puebla, Pue.
 #  :phone: "(01 222) 243-37-05 o (01 222) 237-20-24"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 333
-#  :name: Instituto Tecnológico Superior de Atlixco
-#  :address: Calle Heliotropo No. 1201,Un:idad 8 Norte Nueva Xalpatlaco C.P 74210 Atlixco,Pue.
-#  :phone: "(01 244) 446-22-12 o (01 244) 446-04-65"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 334
-#  :name: Univers:idad Interserrana del Estado de Puebla-Chilchotla
-#  :address: Avenida Miguel H:idalgo s/n  (Municipio de Rafael J. García), C.P 75070
-#    Chilchotla, Pue.
-#  :phone: "(01 282) 828-61-01"
-#  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
+- :id: 333
+  :name: Instituto Tecnológico Superior de Atlixco
+  :address: Calle Heliotropo No. 1201,Unidad 8 Norte Nueva Xalpatlaco C.P 74210 Atlixco,Pue.
+  :phone: "(01 244) 446-22-12 o (01 244) 446-04-65"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 334
+  :name: Universidad Interserrana del Estado de Puebla-Chilchotla
+  :address: Avenida Miguel H:idalgo s/n  (Municipio de Rafael J. García), C.P 75070
+    Chilchotla, Pue.
+  :phone: "(01 282) 828-61-01"
+  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
 #- :id: 335
-#  :name: SECOTRADE Un:idad de Enlace Teziutlán
+#  :name: SECOTRADE Unidad de Enlace Teziutlán
 #  :address: Avenida H:idalgo No.1629 Interior 7 Edificio Real Colonia Centro, C.P 73800 Teziutlán, Pue.
 #  :phone:
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
@@ -1800,56 +1800,56 @@
 #  :phone: "(01 222) 229-82-00"
 #  :schedule: Llunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 337
-#  :name: SECOTRADE Un:idad de Enlace  Huauchinango
+#  :name: SECOTRADE Unidad de Enlace  Huauchinango
 #  :address: Calle Guerrero No.12 Galerias Roma Colonia Centro, C.P 73160 Huauchinango,
 #    Pue.
 #  :phone: "(01 776) 762-55-06"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 338
-#  :name: SECOTRADE Dirección de Promoción
-#  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
-#    C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 229-82-00"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
+- :id: 338
+  :name: SECOTRADE Dirección de Promoción
+  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
+    C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 229-82-00"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
 #- :id: 339
 #  :name: SECOTRADE Dirección General de Gestión, Promoción y Evaluación de Fondos
 #  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
 #    C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 229-82-00"
 #  :schedule: Martes y Jueves de 09:00 a 14:00  y de 15:00 a 18:00 horas.
-#- :id: 340
-#  :name: SECOTRADE Dirección de Comercio Exterior y Centro Pymexporta
-#  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
-#    C.P 72000 Puebla,Pue.
-#  :phone: "(01 222)  229-82-00"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 340
+  :name: SECOTRADE Dirección de Comercio Exterior y Centro Pymexporta
+  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
+    C.P 72000 Puebla,Pue.
+  :phone: "(01 222)  229-82-00"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 341
 #  :name: SECOTRADE Dirección de Comercio Interior
 #  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
 #    C.P 72000 Puebla,Pue.
 #  :phone: "(01 222)  229-82-00"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 342
-#  :name: SECOTRADE Procuraduria de la Defensa del Trabajo
-#  :address: Calle 20 sur No. 902 Colonia Azcárate, C.P 72501 Puebla, Pue.
-#  :phone: "(01 222) 235-61-60 o (01 222) 235-65-17"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 343
-#  :name: SECOTRADE Dirección General de Competitiv:idad, Trabajo y Previsión Social
-#  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
-#    C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 246-57-76"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 342
+  :name: SECOTRADE Procuraduria de la Defensa del Trabajo
+  :address: Calle 20 sur No. 902 Colonia Azcárate, C.P 72501 Puebla, Pue.
+  :phone: "(01 222) 235-61-60 o (01 222) 235-65-17"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 343
+  :name: SECOTRADE Dirección General de Competitiv:idad, Trabajo y Previsión Social
+  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
+    C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 246-57-76"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 344
 #  :name: SECOTRADE Dirección de  Comercio
 #  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 229-82-00"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 345
-#  :name: SECOTRADE Junta Local de Conciliación y Arbitraje (B)
-#  :address: Calle 20 sur No. 902 Colonia Azcárate, C.P 72501 Puebla, Pue.
-#  :phone: "(01 222) 235-65-17"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 345
+  :name: SECOTRADE Junta Local de Conciliación y Arbitraje (B)
+  :address: Calle 20 sur No. 902 Colonia Azcárate, C.P 72501 Puebla, Pue.
+  :phone: "(01 222) 235-65-17"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 346
 #  :name: SECOTRADE Junta Local de Conciliación y Arbitraje (A)
 #  :address: Calle 20 sur No. 902 Colonia Azcárate, C.P 72501 Puebla, Pue.
@@ -1886,7 +1886,7 @@
 #  :phone: "(01 222) 246-55-56. ext. 126."
 #  :schedule: 'Para desempleados o subempleados: De Lunes a Viernes de 09:00 a 14:00 horas. Para empresas:  De Lunes a Viernes de 09:00 a 18:00 horas.'
 #- :id: 352
-#  :name: Univers:idad del Desarrollo del Estado de Puebla
+#  :name: Universidad del Desarrollo del Estado de Puebla
 #  :address: Avenida 13 Poniente No. 2904 Colonia la Paz, C.P 72160 Puebla,Pue.
 #  :phone: "(01 222) 620-03-00"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
@@ -1895,11 +1895,11 @@
 #  :address: Calle Venustiano Carranza No. 810 Colonia San Baltazar Campeche, C.P 72550 Puebla, Pue.
 #  :phone: "(01 222) 551-02-00 o (01 222) 551-03-00"
 #  :schedule: Lunes a Viernes de 08:00 a 15:00 horas.
-#- :id: 354
-#  :name: ISSSTEP Cursos en el Centro de Bienestar Social y Cultural.
-#  :address: Avenida 17 Oriente No.1408 Colonia El Ángel, C.P 72500 Puebla,Pue.
-#  :phone: "(01 222) 551-02-00 O (01 222) 551-03-00"
-#  :schedule: Lunes a Viernes 08:00 a 20:00 horas. Sábados de 09:00 a 13:00 horas.
+- :id: 354
+  :name: ISSSTEP Cursos en el Centro de Bienestar Social y Cultural.
+  :address: Avenida 17 Oriente No.1408 Colonia El Ángel, C.P 72500 Puebla,Pue.
+  :phone: "(01 222) 551-02-00 O (01 222) 551-03-00"
+  :schedule: Lunes a Viernes 08:00 a 20:00 horas. Sábados de 09:00 a 13:00 horas.
 #- :id: 355
 #  :name: ISSSTEP Afiliación
 #  :address: Calle Venustiano Carranza No. 810 Colonia San Baltazar Campeche, C.P 72550
@@ -1934,80 +1934,80 @@
 #  :address: 20 Oriente No. 1416 Colonia Xonaca, C.P 72280 Puebla, Pue.
 #  :phone: "(01 222) 234-95-99 ext. 115"
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 361
-#  :name: SEP Secretaría de Educación Pública del Estado de Puebla (Oficinas Centrales)
-#  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
-#    Pue.
-#  :phone: "(01-222) 229-69-00 ext. 7206"
-#  :schedule: De lunes a viernes de 08:00 a 15:00 horas.
-#- :id: 362
-#  :name: SSEP Hospital General de Puebla Sur
-#  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Colonia Agua Santa, C.P 72490
-#    Puebla, Pue.
-#  :phone: "(01 222) 623-10-00 Ext. 176"
-#  :schedule:
-#- :id: 363
-#  :name: SSEP Hospital General de la Zona Norte
-#  :address: Calle 88 Poniente y 7 Norte s/n Colonia Villa Frontera, C.P 72230 Puebla,
-#    Pue.
-#  :phone: "(01 222) 288-08-92 o (01 222) 367-92-84"
-#  :schedule:
-#- :id: 364
-#  :name: SSEP Dirección de protección contra riesgos sanitarios
-#  :address: Boulevard Atlixcayotl No.1101  Reserva Territorial Atlixcayotl Colonia Concepción las Lajas (CIS Edificio Sur), C.P 72190 Puebla, Pue.
-#  :phone: "(01 222) 303-46-00 Ext. 1121, 1122"
-#  :schedule: Lunes  a Viernes de 09:00 a 15:00 horas.
-#- :id: 365
-#  :name: SSEP Centro Estatal de Salud Mental
-#  :address: Carretera Puebla - Valsequillo Km 7.5 Colonia Lomas de San Miguel, C.P
-#    72573 Puebla,Pue.
-#  :phone: "(01 222) 216-18-68 o (01 222) 216-20-66"
-#  :schedule: 24 horas del día
-#- :id: 366
-#  :name: SSEP Laboratorio Estatal de Salud Pública
-#  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Colonia Agua Santa, C.P 72490
-#    Puebla, Pue.
-#  :phone: "(01 222) 399-60-68 o (01 222) 399-60-69."
-#  :schedule:
-#- :id: 367
-#  :name: SSEP Un:idad de Oncología
-#  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350  y 9 Sur Colonia Agua Santa,
-#    C.P 72490 Puebla, Pue.
-#  :phone: "(01 222) 395-11-68 o (01 222) 393-09-37"
-#  :schedule:
-#- :id: 368
-#  :name: SSEP Comisión Estatal de Arbitraje médico
-#  :address: Calle 15 Sur No. 303 Colonia Zona Esmeralda, C.P 72090 Puebla, Pue.
-#  :phone: "(01 800) 640-87-34 ; (01 222) 242-01-35 o (01 222) 246-79-86."
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 361
+  :name: SEP Secretaría de Educación Pública del Estado de Puebla (Oficinas Centrales)
+  :address: Avenida Jesús Reyes Heroles s/n Colonia Nueva Aurora, C.P 72070 Puebla,
+    Pue.
+  :phone: "(01-222) 229-69-00 ext. 7206"
+  :schedule: De lunes a viernes de 08:00 a 15:00 horas.
+- :id: 362
+  :name: SSEP Hospital General de Puebla Sur
+  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Colonia Agua Santa, C.P 72490
+    Puebla, Pue.
+  :phone: "(01 222) 623-10-00 Ext. 176"
+  :schedule:
+- :id: 363
+  :name: SSEP Hospital General de la Zona Norte
+  :address: Calle 88 Poniente y 7 Norte s/n Colonia Villa Frontera, C.P 72230 Puebla,
+    Pue.
+  :phone: "(01 222) 288-08-92 o (01 222) 367-92-84"
+  :schedule:
+- :id: 364
+  :name: SSEP Dirección de protección contra riesgos sanitarios
+  :address: Boulevard Atlixcayotl No.1101  Reserva Territorial Atlixcayotl Colonia Concepción las Lajas (CIS Edificio Sur), C.P 72190 Puebla, Pue.
+  :phone: "(01 222) 303-46-00 Ext. 1121, 1122"
+  :schedule: Lunes  a Viernes de 09:00 a 15:00 horas.
+- :id: 365
+  :name: SSEP Centro Estatal de Salud Mental
+  :address: Carretera Puebla - Valsequillo Km 7.5 Colonia Lomas de San Miguel, C.P
+    72573 Puebla,Pue.
+  :phone: "(01 222) 216-18-68 o (01 222) 216-20-66"
+  :schedule: 24 horas del día
+- :id: 366
+  :name: SSEP Laboratorio Estatal de Salud Pública
+  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Colonia Agua Santa, C.P 72490
+    Puebla, Pue.
+  :phone: "(01 222) 399-60-68 o (01 222) 399-60-69."
+  :schedule:
+- :id: 367
+  :name: SSEP Unidad de Oncología
+  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350  y 9 Sur Colonia Agua Santa,
+    C.P 72490 Puebla, Pue.
+  :phone: "(01 222) 395-11-68 o (01 222) 393-09-37"
+  :schedule:
+- :id: 368
+  :name: SSEP Comisión Estatal de Arbitraje médico
+  :address: Calle 15 Sur No. 303 Colonia Zona Esmeralda, C.P 72090 Puebla, Pue.
+  :phone: "(01 800) 640-87-34 ; (01 222) 242-01-35 o (01 222) 246-79-86."
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 369
 #  :name: HNP Hospital para el Niño Poblano
 #  :address: Blvd. del Niño Poblano No.5307 Colonia Concepción La Cruz,C.P72197 Puebla,
 #    Pue.
 #  :phone: "(01 222) 404-90-04"
 #  :schedule: "- Urgencias Pediatricas de Especial:idad, las 24 Hr"
-#- :id: 370
-#  :name: CCONV Parque Bicentenario "18 de Noviembre"
-#  :address: Calle 6 Sur s/n Colonia Arenillas, C.P 72595 Puebla,Pue.
-#  :phone: "(01 222) 233-83-74"
-#  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
-#- :id: 371
-#  :name: CCONV Centro de Convenciones Puebla
-#  :address: Boulevard 5 de Mayo No. 402 Colonia Centro, C.P 72000 Puebla Pue.
-#  :phone: "(01 222) 122-11-00"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 372
-#  :name: Univers:idad Tecnológica de Izúcar de Matamoros
-#  :address: Prolongación Reforma No.168 Barrio de Santiago Mihuacan, C.P 74420  Izúcar
-#    de Matamoros, Pue.
-#  :phone: "(01 243) 436-38-94 ; (01 243) 436-38-95 o (01 243) 436-38-96"
-#  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
-#- :id: 373
-#  :name: CONCYTEP Planetario Puebla "Germán Martínez H:idalgo"
-#  :address: Calzada Ejercito de Oriente s/n y Cazadores de Morelia, Zona de los Fuertes,
-#    Un:idad Cívica 5 de Mayo, C.P 72266 Puebla, Pue.
-#  :phone: "(222) 236.69.98"
-#  :schedule: Martes a domingo de 09:00 a 19:00 horas.
+- :id: 370
+  :name: CCONV Parque Bicentenario "18 de Noviembre"
+  :address: Calle 6 Sur s/n Colonia Arenillas, C.P 72595 Puebla,Pue.
+  :phone: "(01 222) 233-83-74"
+  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
+- :id: 371
+  :name: CCONV Centro de Convenciones Puebla
+  :address: Boulevard 5 de Mayo No. 402 Colonia Centro, C.P 72000 Puebla Pue.
+  :phone: "(01 222) 122-11-00"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 372
+  :name: Universidad Tecnológica de Izúcar de Matamoros
+  :address: Prolongación Reforma No.168 Barrio de Santiago Mihuacan, C.P 74420  Izúcar
+    de Matamoros, Pue.
+  :phone: "(01 243) 436-38-94 ; (01 243) 436-38-95 o (01 243) 436-38-96"
+  :schedule: Lunes a Viernes de 08:00 a 18:00 horas.
+- :id: 373
+  :name: CONCYTEP Planetario Puebla "Germán Martínez H:idalgo"
+  :address: Calzada Ejercito de Oriente s/n y Cazadores de Morelia, Zona de los Fuertes,
+    Unidad Cívica 5 de Mayo, C.P 72266 Puebla, Pue.
+  :phone: "(222) 236.69.98"
+  :schedule: Martes a domingo de 09:00 a 19:00 horas.
 #- :id: 374
 #  :name: SDRSOT Centro de Verificación Vehicular 2111, San Pedro Cholula, Puebla.
 #  :address: Anillo Periférico NL-5, entre puente La Carcaña y Recta a Cholula, Santiago
@@ -2020,12 +2020,12 @@
 #    Atlixco, Pue.
 #  :phone: S/N
 #  :schedule: Lunes a Sábado  de 8:00 a 20:00 horas.
-#- :id: 376
-#  :name: SSEP Departamento de enfermedades transmitibles
-#  :address: Privada 5 "B" Sur No. 4302 esquina 43 Poniente, Col. Huexotitla, Puebla,
-#    Pue.
-#  :phone: "(01 222) 551-04-41 Ext. 3403"
-#  :schedule: De lunes a viernes de 08:00 a 14:00 horas.
+- :id: 376
+  :name: SSEP Departamento de enfermedades transmitibles
+  :address: Privada 5 "B" Sur No. 4302 esquina 43 Poniente, Col. Huexotitla, Puebla,
+    Pue.
+  :phone: "(01 222) 551-04-41 Ext. 3403"
+  :schedule: De lunes a viernes de 08:00 a 14:00 horas.
 #- :id: 377
 #  :name: SEDIF Centro de Rehabilitación Integral Infantil
 #  :address: Antiguo Camino a Santa Clara Ocoyucan No.14 Colonia Emiliano Zapata, C.P
@@ -2037,12 +2037,12 @@
 #  :address: Calle Huitzo No. 1720, Colonia Xochipilli, Tehuacán, Pue.
 #  :phone: S/N
 #  :schedule: Lunes a Sábado  de 8:00 a 20:00 horas.
-#- :id: 379
-#  :name: SEP Un:idad Deportiva "Mario Vázquez Raña"
-#  :address: Calzada Un:idad Deportiva N° 2418, Col. Maravillas C.P 72220 Puebla, Pue.
-#  :phone: "(01-222) 220 - 05 - 17"
-#  :schedule: De martes a sábado de 09:00 a 18:00 horas. Domingo de 09:00 a 16:00 horas.
-#    Lunes no labora personal administrativo.
+- :id: 379
+  :name: SEP Unidad Deportiva "Mario Vázquez Raña"
+  :address: Calzada Unidad Deportiva N° 2418, Col. Maravillas C.P 72220 Puebla, Pue.
+  :phone: "(01-222) 220 - 05 - 17"
+  :schedule: De martes a sábado de 09:00 a 18:00 horas. Domingo de 09:00 a 16:00 horas.
+    Lunes no labora personal administrativo.
 #- :id: 380
 #  :name: SSEP Hospital General de Cholula
 #  :address: Osa Menor II, Lateral de Periférico S/N, Colonia Judicial, C.P. 72810.
@@ -2125,7 +2125,7 @@
 #  :phone: "( 01 953) 534-19-37; 53-26-29"
 #  :schedule: Lunes a Viernes de 9:00 a 18:00 hrs.
 #- :id: 395
-#  :name: UNIS Un:idad Integral de Servicios Centro Histórico Módulo de Licencias de
+#  :name: UNIS Unidad Integral de Servicios Centro Histórico Módulo de Licencias de
 #    conducir
 #  :address: Av. Juan de Palafox y Mendoza No. 206 Col. Centro C.P. 72000 Puebla Pue
 #  :phone: "(01 222) 242-31-68"
@@ -2181,17 +2181,17 @@
 #  :phone:
 #  :schedule:
 #- :id: 405
-#  :name: UNIS Un:idad Integral de Servicios Centro Histórico
+#  :name: UNIS Unidad Integral de Servicios Centro Histórico
 #  :address: Av. Juan de Palafox y Mendoza No. 206 Col. Centro C.P. 72000 Puebla Pue
 #  :phone:
 #  :schedule: Lunes a Viernes de 9:00 a 15:00 hrs.
-#- :id: 406
-#  :name: UNIS Un:idad Integral de Servicios El Alto Módulo de Licencias de conducir
-#  :address: 8 Oriente No. 1007 Barrio El Alto C.P. 72000 Puebla Pue.
-#  :phone: "(01 222) 234-86-87"
-#  :schedule: Martes a Sábado de 9:00 a 14:30
+- :id: 406
+  :name: UNIS Unidad Integral de Servicios El Alto Módulo de Licencias de conducir
+  :address: 8 Oriente No. 1007 Barrio El Alto C.P. 72000 Puebla Pue.
+  :phone: "(01 222) 234-86-87"
+  :schedule: Martes a Sábado de 9:00 a 14:30
 #- :id: 407
-#  :name: UNIS Un:idad Integral de Servicios El Alto, Módulo de Expedición de Permisos
+#  :name: UNIS Unidad Integral de Servicios El Alto, Módulo de Expedición de Permisos
 #    Mercantiles
 #  :address: 8 Oriente No. 1007 Barrio El Alto C.P. 72000 Puebla Pue.
 #  :phone: "(01 222) 235-22-10"
@@ -2206,31 +2206,31 @@
 #  :address: Calle 36 "A" Poniente N° 1907 Col. San Miguel Hueyotlipan Puebla, Pue.
 #  :phone: "(01-222) 594-77-72; 285-43-97"
 #  :schedule: "De lunes a viernes de 08:00 a 15:00 horas (para maestros en SEP). En CEBA, CEDEX y SEA (dos horas) de 16:00 a 18:00 horas o de 15:00 a 19:00 horas, y MC (siete horas) de 12:00 a 19:00 horas."
-#- :id: 410
-#  :name: CIS Centro Integral de Servicios Edificio Norte (Departamento de Asuntos Profesionales)
-#  :address: Vía. Atlixcáyotl No.1101 Edificio Sur, planta baja Col. Concepción Las
-#    Lajas. Puebla, Pue.
-#  :phone: "(01-222) 303-46-00 ext. 2361"
-#  :schedule: De lunes a viernes 08:00 a 14:30 horas.
-#- :id: 411
-#  :name: SEP Centro de  Desarrollo, Formación y Recreación.
-#  :address: Avenida Ejército de Oriente y Ejército de Morelia s/n Colonia Un:idad Cívica
-#    5 de Mayo, Puebla, Pue. C.P. 72260.
-#  :phone: "(01-222) 249-01-33 y 249-04-08"
-#  :schedule: De lunes a viernes de 08:00 a 16:00 horas.
+- :id: 410
+  :name: CIS Centro Integral de Servicios Edificio Norte (Departamento de Asuntos Profesionales)
+  :address: Vía. Atlixcáyotl No.1101 Edificio Sur, planta baja Col. Concepción Las
+    Lajas. Puebla, Pue.
+  :phone: "(01-222) 303-46-00 ext. 2361"
+  :schedule: De lunes a viernes 08:00 a 14:30 horas.
+- :id: 411
+  :name: SEP Centro de  Desarrollo, Formación y Recreación.
+  :address: Avenida Ejército de Oriente y Ejército de Morelia s/n Colonia Unidad Cívica
+    5 de Mayo, Puebla, Pue. C.P. 72260.
+  :phone: "(01-222) 249-01-33 y 249-04-08"
+  :schedule: De lunes a viernes de 08:00 a 16:00 horas.
 #- :id: 412
 #  :name: SEP Departamento de Analisis Administrativo.
 #  :address: Blvd. Hermanos Serdán N° 201 Col. Valle del Rey, Puebla, Pue. C.P. 72140
 #  :phone: 01-800-71-47-108
 #  :schedule: De lunes a viernes de 08:00 a 19:00 horas.
-#- :id: 413
-#  :name: SSEP CAPASITS
-#  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Col. Agua Santa C.P. 72490
-#    Puebla Pue.
-#  :phone: "(01 222) 395-00-64"
-#  :schedule: Lunes a Viernes de 8:00 a 15:00 hrs.
+- :id: 413
+  :name: SSEP CAPASITS
+  :address: Antiguo Camino a Guadalupe H:idalgo No. 11350 Col. Agua Santa C.P. 72490
+    Puebla Pue.
+  :phone: "(01 222) 395-00-64"
+  :schedule: Lunes a Viernes de 8:00 a 15:00 hrs.
 #- :id: 414
-#  :name: UNIS Un:idad Integral de Servicios El Alto, Oficina de la PGJ
+#  :name: UNIS Unidad Integral de Servicios El Alto, Oficina de la PGJ
 #  :address: 8 Oriente No. 1007 Barrio El Alto C.P. 72000 Puebla Pue.
 #  :phone:
 #  :schedule: Lunes a viernes de 9:00 a 14:00 hrs.
@@ -2278,38 +2278,38 @@
 #    Pue.
 #  :phone: S/N
 #  :schedule: Lunes a Sábado de 08:00 a 20:00 horas.
-#- :id: 423
-#  :name: SDRSOT Centro de Verificación Vehicular 2106 Bella Vista, Puebla.
-#  :address: Avenida 25 Oriente No. 1812 Colonia Bella Vista, C.P 72500 Puebla, Pue.
-#  :phone: S/N
-#  :schedule: Lunes a Sábado  de  8:00 a 20:00 horas.
-#- :id: 424
-#  :name: CAPPC Corporación Auxiliar de Policía de Protección Ciudadana
-#  :address: Avenida de los Palos s/n ,C.P 72014 San Pablo Xochimehuacán Pue.
-#  :phone: "(01 222) 223-13-41 o (01 222) 223-13-14"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 425
-#  :name: SGG Archivo General del Estado de Puebla
-#  :address: Avenida Reforma No. 1305  Colonia Centro, C.P 72000 Puebla, Pue.
-#  :phone: "(01 222) 232-01-80 o (01 222) 242-46-88"
-#  :schedule: Lunes a Viernes de 8:00 a 15:00 horas.
+- :id: 423
+  :name: SDRSOT Centro de Verificación Vehicular 2106 Bella Vista, Puebla.
+  :address: Avenida 25 Oriente No. 1812 Colonia Bella Vista, C.P 72500 Puebla, Pue.
+  :phone: S/N
+  :schedule: Lunes a Sábado  de  8:00 a 20:00 horas.
+- :id: 424
+  :name: CAPPC Corporación Auxiliar de Policía de Protección Ciudadana
+  :address: Avenida de los Palos s/n ,C.P 72014 San Pablo Xochimehuacán Pue.
+  :phone: "(01 222) 223-13-41 o (01 222) 223-13-14"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 425
+  :name: SGG Dirección del Archivo General del Estado de Puebla
+  :address: 20 Sur No. 902 Sótano, Col. Azcarate, C.P. 72501 Puebla Pue.
+  :phone: "(01 222) 232-01-80 o (01 222) 242-46-88"
+  :schedule: Lunes a Viernes de 8:00 a 15:00 horas.
 #- :id: 426
 #  :name: CEASPUE Comisión Estatal de Agua y Saneamiento de Puebla
 #  :address: Avenida 31 Oriente No.21 Colonia Huexotitla, C.P 72534 Puebla, Pue
 #  :phone: "(01 222) 237-20-99  Ext. 115"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas
-#- :id: 427
-#  :name: Univers:idad Tecnológica de Puebla
-#  :address: Antiguo Camino de la Resurrección No. 1002-A Zona Industrial Puebla Oriente,
-#    C.P 72300 Puebla, Pue.
-#  :phone: "(01 222) 309-88-43 ; (01 222) 309-88-78 o (01 222) 309-88-43"
-#  :schedule: Lunes a Viernes de 08:00 a 17:00 horas.
-#- :id: 428
-#  :name: Univers:idad Tecnológica de Tehuacán
-#  :address: Prolongación de la 1 Sur No. 1101 Colonia San Pablo Tepetzingo, C.P 75859
-#    Tehuacán, Pue.
-#  :phone: "(01 238) 380-31-00"
-#  :schedule: Lunes a Viernes de 08:00 a 20:00 horas.
+- :id: 427
+  :name: Universidad Tecnológica de Puebla
+  :address: Antiguo Camino de la Resurrección No. 1002-A Zona Industrial Puebla Oriente,
+    C.P 72300 Puebla, Pue.
+  :phone: "(01 222) 309-88-43 ; (01 222) 309-88-78 o (01 222) 309-88-43"
+  :schedule: Lunes a Viernes de 08:00 a 17:00 horas.
+- :id: 428
+  :name: Universidad Tecnológica de Tehuacán
+  :address: Prolongación de la 1 Sur No. 1101 Colonia San Pablo Tepetzingo, C.P 75859
+    Tehuacán, Pue.
+  :phone: "(01 238) 380-31-00"
+  :schedule: Lunes a Viernes de 08:00 a 20:00 horas.
 #- :id: 429
 #  :name: PC Centro de Educación a Distancia Atlequizayan
 #  :address: Avenida Independencia s/n Colonia Centro, C.P 73490 Atlequizayán, Pue.
@@ -2392,17 +2392,16 @@
 #    Pue.
 #  :phone: "(01 797) 975-23-63"
 #  :schedule: Lunes a Viernes de 10:00 a 19:00 horas.
-#- :id: 444
-#  :name: SGG Dirección del Archivo de Notarías
-#  :address: 20 Sur No. 902 Primer piso Plaza Finanzas Col. Azcárate C.P. 72501 Puebla,
-#    Pue.
-#  :phone: "(01 222) 232-73-43 o (01 222) 232-30-32"
-#  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
-#- :id: 445
-#  :name: IEEA Instituto Estatal de Educación para Adultos
-#  :address: Avenida 15 Poniente No. 902 Colonia Santiago, C.P 72410 Puebla,Pue.
-#  :phone: "(01 222) 211-91-80"
-#  :schedule: Lunes a Viernes de 08:00 a 15:00 horas.
+- :id: 444
+  :name: SGG Dirección del Archivo de Notarías
+  :address: 20 Sur No. 902 Primer piso Plaza Finanzas Col. Azcárate C.P. 72501 Puebla, Pue.
+  :phone: "(01 222) 232-73-43 o (01 222) 232-30-32"
+  :schedule: Lunes a Viernes de 09:00 a 16:00 horas.
+- :id: 445
+  :name: IEEA Instituto Estatal de Educación para Adultos
+  :address: Avenida 15 Poniente No. 902 Colonia Santiago, C.P 72410 Puebla,Pue.
+  :phone: "(01 222) 211-91-80"
+  :schedule: Lunes a Viernes de 08:00 a 15:00 horas.
 #- :id: 446
 #  :name: IEEA Coordinación Cholula
 #  :address: Calle 7 Oriente No.13-B  Colonia Centro ,C.P 72160 San Pedro Cholula,Pue.
@@ -2476,11 +2475,11 @@
 #  :address: Calle Rio de Janeiro No.14 Colonia America Norte, C.P 72340 Puebla,Pue.
 #  :phone: "(01 222) 235-17-41"
 #  :schedule: Lunes a Viernes de 08:00 a 15:00 horas.
-#- :id: 460
-#  :name: SGG Dirección General del Registro del Estado Civil de las Personas
-#  :address: Avenida 11 Oriente No. 2003 Colonia Azcárate, C.P 72501 Puebla, Pue.
-#  :phone: "(01 222)  235-08-82"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 460
+  :name: SGG Dirección General del Registro del Estado Civil de las Personas
+  :address: Avenida 11 Oriente No. 2003 Colonia Azcárate, C.P 72501 Puebla, Pue.
+  :phone: "(01 222)  235-08-82"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 - :id: 461
   :name: SGG Juzgado Primero del Registro Civil
   :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
@@ -2513,39 +2512,39 @@
   :phone: "(01 222) 303-46-00 ext. 2055, 5057 y 2058"
   :schedule: Lunes a Viernes de 09:00 a 16:00 horas. Sábados y Domingos consultar Juzgado
     que se encuentre en guardia para el fin de semana requerido
-#- :id: 466
-#  :name: Instituto Tecnológico Superior de Libres
-#  :address: Calle 5 Poniente N° 133, Col. Centro. C.P. 73780 Libres ,Pue.
-#  :phone: "(01 276) 47 3 20 52"
-#  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
-#- :id: 467
-#  :name: Instituto Tecnológico Superior de Tepexi de Rodríguez
-#  :address: Avenida Tecnológico s/n Barrio de San Sebastián 1ra. Sección, C.P 74690,
-#    Tepexi de Rodríguez, Pue.
-#  :phone: "(01 224) 421-55-85 o (01 224) 421-55-74"
-#  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
-#- :id: 468
-#  :name: IPM Instituto Poblano de las Mujeres
-#  :address: Calle 2 Sur No. 902 Colonia Centro, C.P 72000 Puebla,Pue.
-#  :phone: "(01 222) 309-09-00"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 469
-#  :name: Univers:idad Tecnológica de Oriental
-#  :address: Prolongación de la 37 Norte No.3402 Colonia Centro, C.P 75020 Oriental,
-#    Pue.
-#  :phone: "(01 276) 4771422 ; (01 276) 477-15-01 o (01 276) 477-15-10"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 470
-#  :name: Instituto Tecnológico Superior de Venustiano Carranza
-#  :address: Avenida Tecnológico s/n Colonia El Huasteco, Villa Lázaro Cárdenas, C.P
-#    73049 Venustiano Carranza,Pue.
-#  :phone: "(01 746) 843-57-53 o (01 746) 843-66-28"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 471
-#  :name: SGG Dirección de Notarías de la Secretaría General de Gobierno
-#  :address: Avenida 3 Poniente No. 716 Colonia Centro, C.P 72000 Puebla, Pue.
-#  :phone: "(01 222) 246-49-02"
-#  :schedule: Lunes a Viernes de 9:00 a 16:00 horas.
+- :id: 466
+  :name: Instituto Tecnológico Superior de Libres
+  :address: Calle 5 Poniente N° 133, Col. Centro. C.P. 73780 Libres ,Pue.
+  :phone: "(01 276) 47 3 20 52"
+  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
+- :id: 467
+  :name: Instituto Tecnológico Superior de Tepexi de Rodríguez
+  :address: Avenida Tecnológico s/n Barrio de San Sebastián 1ra. Sección, C.P 74690,
+    Tepexi de Rodríguez, Pue.
+  :phone: "(01 224) 421-55-85 o (01 224) 421-55-74"
+  :schedule: Lunes a Viernes de 08:00 a 16:00 horas.
+- :id: 468
+  :name: IPM Instituto Poblano de las Mujeres
+  :address: Calle 2 Sur No. 902 Colonia Centro, C.P 72000 Puebla,Pue.
+  :phone: "(01 222) 309-09-00"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 469
+  :name: Universidad Tecnológica de Oriental
+  :address: Prolongación de la 37 Norte No.3402 Colonia Centro, C.P 75020 Oriental,
+    Pue.
+  :phone: "(01 276) 4771422 ; (01 276) 477-15-01 o (01 276) 477-15-10"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 470
+  :name: Instituto Tecnológico Superior de Venustiano Carranza
+  :address: Avenida Tecnológico s/n Colonia El Huasteco, Villa Lázaro Cárdenas, C.P
+    73049 Venustiano Carranza,Pue.
+  :phone: "(01 746) 843-57-53 o (01 746) 843-66-28"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 471
+  :name: SGG Dirección de Notarías de la Secretaría General de Gobierno
+  :address: Avenida 3 Poniente No. 716 Colonia Centro, C.P 72000 Puebla, Pue.
+  :phone: "(01 222) 246-49-02"
+  :schedule: Lunes a Viernes de 9:00 a 16:00 horas.
 #- :id: 472
 #  :name: CONALEP Colegio de Educación Profesional Técnica del Estado de Puebla
 #  :address: Avenida San Martín Texmelucan No. 72 Colonia La Paz, C.P 72160 Puebla,Pue.
@@ -2592,11 +2591,11 @@
 #  :address: Privada 24 A Sur No. 3511 Fraccionamiento Santa Mónica, C.P 72540 Puebla,Pue.
 #  :phone: "(01 222) 211-79-00 ext. 6060"
 #  :schedule: 24 horas del día
-#- :id: 480
-#  :name: SEP Pabellón Olímpico
-#  :address: Calzada Un:idad Deportiva No. 2418 Colonia Maravillas, C.P 72220 Puebla,Pue.
-#  :phone: "(01-222) 168-46-29"
-#  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
+- :id: 480
+  :name: SEP Pabellón Olímpico
+  :address: Calzada Unidad Deportiva No. 2418 Colonia Maravillas, C.P 72220 Puebla,Pue.
+  :phone: "(01-222) 168-46-29"
+  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
 #- :id: 481
 #  :name: PGJ Agencia del Ministerio Público primera mesa par adscrita a la Dirección
 #    de Investigación de Robo de vehículos
@@ -2666,7 +2665,7 @@
 #  :phone: "(01 238) 393-00-25"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 493
-#  :name: SECOTRADE Servicio Nacional de Empleo Puebla.  Un:idad Central
+#  :name: SECOTRADE Servicio Nacional de Empleo Puebla.  Unidad Central
 #  :address: Callejón de la 10 Norte No. 806 Paseo de San Francisco Barrio del Alto,
 #    C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 246-57-76"
@@ -2677,12 +2676,12 @@
 #    , C.P 72498 Puebla,Pue.
 #  :phone:
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 495
-#  :name: SGG Dirección Sanciones de la Secretaría General de Gobierno
-#  :address: Avenida Reforma No. 703 Segundo Piso Colonia Centro, C.P 72000 Puebla,
-#    Pue.
-#  :phone: "(01 222) 242-67-71"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 495
+  :name: SGG Dirección Sanciones de la Secretaría General de Gobierno
+  :address: Avenida Reforma No. 703 Segundo Piso Colonia Centro, C.P 72000 Puebla,
+    Pue.
+  :phone: "(01 222) 242-67-71"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 496
 #  :name: CEAIAMP Oficina Regional de Acatlán
 #  :address: Privada Epigmenio Martínez No.10 Colonia Barrio San Rafael, C.P 74949 (en
@@ -2705,18 +2704,18 @@
 #  :address: Calle Nigromante No.8 Colonia La Ciénega, C.P 73310 Zacatlán,Pue.
 #  :phone: "(01 797) 975-16-36"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
-#- :id: 500
-#  :name: CCONV Eco Parque Metropolitano
-#  :address: Circuito Interior Blvd. Las Torres No.2 Reserva Territorial Atlixcayotl,
-#    San Andres Cholula, Puebla.
-#  :phone: 01(222) 122 11 00 Ext. 6411
-#  :schedule: Lunes a Viernes de 06:00 a 21:00 horas
-#- :id: 501
-#  :name: SDRSOT Centro Estatal de Prevención y Combate de Incendios Forestales
-#  :address: Calle Carril a San Bartolo s/n Colonia Casa Blanca Ex Hacienda Flor del
-#    Bosque, C.P 72360 Puebla, Pue.
-#  :phone: "(01 222) 291-46-81 o (01 800) 821-06-06"
-#  :schedule: Lunes a Domingo de 09:00 a 18:00 horas durante los meses de Enero a Junio; De Lunes a Viernes de 09:00 a 18:00 horas durante los meses de Julio a Diciembre
+- :id: 500
+  :name: CCONV Eco Parque Metropolitano
+  :address: Circuito Interior Blvd. Las Torres No.2 Reserva Territorial Atlixcayotl,
+    San Andres Cholula, Puebla.
+  :phone: 01(222) 122 11 00 Ext. 6411
+  :schedule: Lunes a Viernes de 06:00 a 21:00 horas
+- :id: 501
+  :name: SDRSOT Centro Estatal de Prevención y Combate de Incendios Forestales
+  :address: Calle Carril a San Bartolo s/n Colonia Casa Blanca Ex Hacienda Flor del
+    Bosque, C.P 72360 Puebla, Pue.
+  :phone: "(01 222) 291-46-81 o (01 800) 821-06-06"
+  :schedule: Lunes a Domingo de 09:00 a 18:00 horas durante los meses de Enero a Junio; De Lunes a Viernes de 09:00 a 18:00 horas durante los meses de Julio a Diciembre
 #- :id: 502
 #  :name: SIT Secretaría de Infraestructura y Transportes Módulo de Licencias Chignahuapan
 #  :address: Portal Guerrero No. 20 Colonia Centro, C.P 73300 Chignahuapan, Pue.
@@ -2728,29 +2727,29 @@
 #    Tepeaca, Pue.
 #  :phone: "(01 223) 102-11-17"
 #  :schedule: Lunes a Viernes de 09:00 a 14:30 horas.
-#- :id: 504
-#  :name: ISSSTEP Clínica uno
-#  :address: Calle 24 Norte No. 802 Colonia Miguel Negrete, C.P 72370 Puebla,Pue.
-#  :phone: "(01 222) 235-13-18  o (01 222) 235-13-57"
-#  :schedule: Lunes a Viernes de 07:00 a 21:00 horas.
+- :id: 504
+  :name: ISSSTEP Clínica uno
+  :address: Calle 24 Norte No. 802 Colonia Miguel Negrete, C.P 72370 Puebla,Pue.
+  :phone: "(01 222) 235-13-18  o (01 222) 235-13-57"
+  :schedule: Lunes a Viernes de 07:00 a 21:00 horas.
 #- :id: 505
 #  :name: ISSSTEP Clínica dos
 #  :address: Privada 3 A Sur No. 5750, Colonia El Cerrito, C.P 72440 Puebla,Pue.
 #  :phone: "(01 222) 551 - 02 - 00  ext. 3106, 3101, 3103"
 #  :schedule: De lunes a viernes de 07:00 a 21:30 horas.
-#- :id: 506
-#  :name: CIS Centro Integral de Servicios Edificio Sur
-#  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción,
-#    C.P 72190 Las Lajas Puebla, Pue.
-#  :phone: "(01 222) 303-46-00"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 506
+  :name: CIS Centro Integral de Servicios Edificio Sur
+  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción,
+    C.P 72190 Las Lajas Puebla, Pue.
+  :phone: "(01 222) 303-46-00"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
 #- :id: 507
 #  :name: SEDIF Dirección de asistencia y rehabilitación
 #  :address: Calle 5 de Mayo No. 1606 Colonia Centro, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 229-52-81 o (01 222) 229-52-90"
 #  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 508
-#  :name: SECOTRADE Un:idad de Enlace Tehuacán
+#  :name: SECOTRADE Unidad de Enlace Tehuacán
 #  :address: Avenida Adolfo López Mateos Local 400-B Plaza Teohuacán Colonia Centro,
 #    C.P 73800 Tehuacán, Pue.
 #  :phone: "(01 238) 380-39-30 ext. 229"
@@ -2846,17 +2845,17 @@
 #  :address: Calle 2 Sur No. 902 Colonia Centro, C.P 72000 Puebla,Pue.
 #  :phone: "(01 222) 309-09-00"
 #  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
-#- :id: 525
-#  :name: SDRSOT Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial
-#  :address: Recta Puebla-Cholula Km. 5.5 No. 2401 San Andrés Cholula, Pue.
-#  :phone: "(01 222) 273-68-00"
-#  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 526
-#  :name: SIT Secretaría de Infraestructura y Transportes Oficinas La Paz (Módulo de
-#    Licencias)
-#  :address: Avenida Rosendo Márquez No.1501 Colonia La Paz, C.P 72160 Puebla, Pue.
-#  :phone: "(01 222) 229-06-00 Ext. 4302, 4303"
-#  :schedule: Lunes a Viernes de 09:00 a 14:30 horas.
+- :id: 525
+  :name: SDRSOT Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial
+  :address: Recta Puebla-Cholula Km. 5.5 No. 2401 San Andrés Cholula, Pue.
+  :phone: "(01 222) 273-68-00"
+  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
+- :id: 526
+  :name: SIT Secretaría de Infraestructura y Transportes Oficinas La Paz (Módulo de
+    Licencias)
+  :address: Avenida Rosendo Márquez No.1501 Colonia La Paz, C.P 72160 Puebla, Pue.
+  :phone: "(01 222) 229-06-00 Ext. 4302, 4303"
+  :schedule: Lunes a Viernes de 09:00 a 14:30 horas.
 #- :id: 527
 #  :name: SGG Dirección General de Defensoría Pública/Dirección General de Investigación
 #    y Combate al Delito de Secuestros y Dirección General de Atención a Delitos de
@@ -2870,18 +2869,18 @@
 #  :address: 6 Norte 613, colonia Centro, C.P. 72000, Puebla, Pue.
 #  :phone: "(01 222) 229- 15- 00, Extensiones 3115, 3032."
 #  :schedule: Lunes a Viernes de 09:00 a 15:00 horas.
-#- :id: 529
-#  :name: SEDIF Centro Cultural y Deportivo "Margarita Maza de Juárez"
-#  :address: Calle 12 Norte No. 2206 Colonia Xanenetla, C.P 72290 Puebla, Pue.
-#  :phone: "(01 222) 235-55-48"
-#  :schedule: Martes a Viernes de 07:00 a 17:30 horas.Sábado y Domingo de 09:00 a 16:00
-#    horas.
-#- :id: 530
-#  :name: Univers:idad Interserrana del Estado de Puebla – Ahuacatlán
-#  :address: Carretera Amixtlán-San Andrés Tlayehualancingo Km 1 (Avenida Los Llanos)  ,
-#    C.P 73330  Ahuacatlán, Pue.
-#  :phone: "(01 764) 763-31-68 o (01 764) 763-31-45"
-#  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
+- :id: 529
+  :name: SEDIF Centro Cultural y Deportivo "Margarita Maza de Juárez"
+  :address: Calle 12 Norte No. 2206 Colonia Xanenetla, C.P 72290 Puebla, Pue.
+  :phone: "(01 222) 235-55-48"
+  :schedule: Martes a Viernes de 07:00 a 17:30 horas.Sábado y Domingo de 09:00 a 16:00
+    horas.
+- :id: 530
+  :name: Universidad Interserrana del Estado de Puebla – Ahuacatlán
+  :address: Carretera Amixtlán-San Andrés Tlayehualancingo Km 1 (Avenida Los Llanos)  ,
+    C.P 73330  Ahuacatlán, Pue.
+  :phone: "(01 764) 763-31-68 o (01 764) 763-31-45"
+  :schedule: Lunes a Viernes de 09:00 a 17:00 horas.
 #- :id: 531
 #  :name: CIS Centro Integral de Servicios Edificio Sur (Módulo SOAPAP)
 #  :address: Vía Atlixcayotl No.1101 Reserva Territorial Atlixcayotl Colonia Concepción
@@ -2900,29 +2899,29 @@
 #    Benitez ,C. P 72530 Puebla, Pue.
 #  :phone: "(01 222) 211-79-00"
 #  :schedule: Lunes a Viernes de 09:30 a 20:30 horas.
-#- :id: 534
-#  :name: SEP Instituto Poblano de Cultura Física y Deportiva
-#  :address: Libramiento a Tehuacán s/n Gimnasio Miguel H:idalgo Colonia Maravillas,
-#    C.P 72220 Puebla, Pue.
-#  :phone: "(01 222) 222-39-15; (01 222) 222-39-16; (01 222) 222-39-41"
-#  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
+- :id: 534
+  :name: SEP Instituto Poblano de Cultura Física y Deportiva
+  :address: Libramiento a Tehuacán s/n Gimnasio Miguel H:idalgo Colonia Maravillas,
+    C.P 72220 Puebla, Pue.
+  :phone: "(01 222) 222-39-15; (01 222) 222-39-16; (01 222) 222-39-41"
+  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
 #- :id: 535
 #  :name: SEP Instituto Poblano de la Juventud
 #  :address: Calle 11 Norte N° 806 Colonia Centro, C.P 72000 Puebla, Pue.
 #  :phone: "(01 222) 232-34-36 ó 232-34-44"
 #  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
-#- :id: 536
-#  :name: SEP Pol:ideportivo Parque Ecológico
-#  :address: 26 sur y Juan de Palafox y Medoza, Colonia Azcarate. C.P. 72380, Puebla,
-#    Pue.
-#  :phone: "(01 222) 213-04-11"
-#  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
-#- :id: 537
-#  :name: SEP Pol:ideportivo San Andrés Cholula
-#  :address: Lateral Sur Recta Cholula No. 420 Colonia Ex hacienda Santa Teresa, C.P
-#    72813 San Andrés Cholula,Pue.
-#  :phone: "(01 222) 221-82-58"
-#  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
+- :id: 536
+  :name: SEP Polideportivo Parque Ecológico
+  :address: 26 sur y Juan de Palafox y Medoza, Colonia Azcarate. C.P. 72380, Puebla,
+    Pue.
+  :phone: "(01 222) 213-04-11"
+  :schedule: De lunes a viernes de 09:00 a 18:00 horas.
+- :id: 537
+  :name: SEP Polideportivo San Andrés Cholula
+  :address: Lateral Sur Recta Cholula No. 420 Colonia Ex hacienda Santa Teresa, C.P
+    72813 San Andrés Cholula,Pue.
+  :phone: "(01 222) 221-82-58"
+  :schedule: Lunes a Viernes de 09:00 a 18:00 horas.
 #- :id: 538
 #  :name: CIS Edificio Sur. Secretaría de Infraestructura y Transportes, Dirección de
 #    Obra Pública

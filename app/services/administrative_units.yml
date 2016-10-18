@@ -12,7 +12,7 @@ administrative_units:
   11: 'Dirección General del Registro del Estado Civil de las Personas'
   12: 'Consejo Estatal de Población'
   13: 'Dirección General de Seguridad Privada'
-  14: 'Dirección de Ingresos'
+  14: 'Dirección de Ingresos / Subdirección técnica de ingresos'
   15: 'Dirección de Fiscalización'
   16: 'Dirección de Recaudación'
   17: 'Dirección de Asuntos Fiscales Litigiosos'
@@ -138,4 +138,95 @@ administrative_units:
   137: 'Universidad Interserrana del Estado de Puebla  hilchotla'
   138: 'Universidad Interserrana del Estado de Puebla  huacatlán'
   139: 'Universidad Politécnica Metropolitana de Puebla'
-  140: 'Sin Unidad Administrativa'
+  140: 'Dirección del Registro Público de la Propiedad'
+  141: 'Dirección de Catastro'
+  142: 'Departamento de Escuelas Particulares de Media Superior'
+  143: 'Subdirección de Profesiones'
+  144: 'Dirección de Inicial y Preescolar'
+  145: 'Dirección de Primaria'
+  146: 'Dirección de Actualización, Capacitación y Superación Profesional'
+  147: 'Dirección de Control  Escolar y Dirección General de Desarrollo Educativo'
+  148: 'Dirección de Control Escolar'
+  149: 'Instituto Poblano del Deporte y Juventud'
+  150: 'Dirección de Empresas de Seguridad Privada'
+  151: "Centro de Reinserción Social de Puebla"
+  152: "Centro de Reinserción Social de de Tepexi de Rodríguez"
+  153: "Centro de Internamiento Especializado para Adolescentes"
+  154: "Departamento de Comercialización de la Dirección Técnica"
+  155: "Coordinación General de Recursos Naturales"
+  156: "Dirección de Desarrollo Forestal"
+  157: "Subdirección de Inspección y Vigilancia"
+  158: "Dirección de Mercadotecnia y Ventas."
+  159: "Departamento del Parque Bicentenario '18 de Noviembre'"
+  160: "Módulo de Información del Río atoyac (MIRAtoyac)"
+  161: "Dirección de Parques, Mantenimiento, Seguridad y Tecnologías de la Información."
+  162: "Departamento del Parque Ecológico Revolución Mexicana"
+  163: "Exhacienda de Chiautla."
+  164: "Dirección de Logística y Operación."
+  165: "Subdirección de Proyectos e Ingeniería"
+  166: "Subdirección de Construcción y Supervisión"
+  167: "Dirección de Promoción y Ventas de la Corporación Auxiliar de Policía y Protección Ciudadana"
+  168: "Entidad de Certificación y Evaluación ICATEP (ECE)"
+  169: "Unidad de Acceso a la Información Pública"
+  170: "Departamento de Desarrollo Administrativo"
+  171: "Subdirección de Asuntos Jurídicos y Orientación Psicológica. Subdirección de Fortalecimiento y Vinculación Regional"
+  172: "Centro de Bienestar Social y Cultural"
+  173: "Subdirección General Médica"
+  174: "Dirección de Asistencia y Rehabilitación"
+  175: "Departamento de Vinculación con la Sociedad Civil"
+  176: "Departamento de Salud Mental"
+  177: "Dirección de Asistencia Jurídica"
+  178: "Dirección de Salud Pública y Vigilancia Epidemiológica"
+  179: "Dirección de Protección Contra Riesgos Sanitarios"
+  180: "Departamento de Enfermedades Transmisibles"
+  181: "Departamento de Salud Reproductiva"
+  182: "Comisión Estatal de Arbitraje Médico"
+  183: "Subdirección de Hospitales"
+  184: "Coordinación Estatal de Trasplante de Órganos y Tejidos"
+  185: "Centro Estatal de Salud Mental"
+  186: "Departamento de Atención Primaria a la Salud"
+  187: "Subdirección de Laboratorio de Salud Pública"
+  188: "Departamento de Enfermedades Crónicas No Transmisibles"
+  189: "Dirección de Afiliación y Operación"
+  190: "Dirección de Gestión de Servicios de Salud"
+  191: "Fonoteca Vicente T. Mendoza"
+  192: "Dirección de Museos"
+  193: "Dirección de Música"
+  194: "Coordinación de Espacios, Instituto Cultural Poblano"
+  195: "Departamento de Medios Audiovisuales"
+  196: "Departamento del Museo Imagina"
+  197: "Dirección de Literatura"
+  198: "Departamento de Registro y Control Escolar del COBAEP"
+  199: "Dirección Académica"
+  200: "Servicios Escolares"
+  201: "Departamento de Servicios Escolares de la Subdirección de Planeación y Vinculación del Instituto Tecnológico Superior de Acatlán de Osorio"
+  202: "Departamento de Control Escolar del Instituto Tecnológico Superior de Huauchinango, 'Edificio J' Planta alta"
+  203: "Instituto Tecnológico Superior de Libres Departamento de Servicios Escolares"
+  204: "Departamento de Servicios Escolares de la Subdirección de Planeación y Evaluación del Instituto Tecnológico Superior de Tepeaca."
+  205: "Departamento de Desarrollo Académico del Instituto Tecnológico Superior de Teziutlán"
+  206: "Departamento de Desarrollo Académico"
+  207: "Departamento de Servicios Escolares (Edificio A)"
+  208: "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Venustiano Carranza"
+  209: "Dirección de Administración y Finanzas"
+  210: "Departamento: Prensa y Difusión"
+  211: "Oficina de Control Escolar de la Universidad Politécnica Metropolitana de Puebla"
+  212: "Departamento de Servicios Escolares de la Subdirección de Planeación y Vinculación del Instituto Tecnológico Superior de Acatlán de Osorio"
+  213: "Departamento de Control Escolar del Instituto Tecnológico Superior de Huauchinango, Edificio J Planta alta"
+  214: "Instituto Tecnológico Superior de Libres Departamento de Servicios Escolares"
+  215: "Departamento de Servicios Escolares de la Subdirección de Planeación y Evaluación del Instituto Tecnológico Superior de Tepeaca."
+  216: "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Tepexi de Rodríguez"
+  217: "Departamento de Desarrollo Académico del Instituto Tecnológico Superior de Teziutlán"
+  218: "Departamento de Servicios Escolares (Edificio A)"
+  219: "Departamento de Servicios Escolares de la UTP"
+  220: "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Venustiano Carranza"
+  221: "Coordinación de Servicios Escolares"
+  222: "Oficina Control Escolar de la UPMP"
+  223: "Subdirección Académica"
+  224: "Servicios Escolares y Jefes de Divisiones de Carrera"
+  225: "Departamento de Vinculación"
+  226: "Departamento de educación continua"
+  227: "Centro Incubador de Empresas de Base Tecnológica Universidad Tecnológica de Izúcar de Matamoros (UTIM)"
+  228: "Subdirección de Procesos Curriculares y la oficina de Control Escolar."
+  229: "Coordinación de Campus"
+  230: "Subdirección de Procesos Curriculares e Investigacion."
+  231: 'Sin Unidad Administrativa'
