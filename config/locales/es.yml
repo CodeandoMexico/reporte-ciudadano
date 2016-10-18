@@ -503,6 +503,8 @@ es:
   comments:
     comment:
       destroy: "Eliminar"
+      approve: "Aprobar"
+      approved: "Aprobado"
 
   service_requests:
     index:

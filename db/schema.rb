@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012200001) do
+ActiveRecord::Schema.define(version: 20161018220121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,12 +98,13 @@ ActiveRecord::Schema.define(version: 20161012200001) do
   create_table "comments", force: :cascade do |t|
     t.text     "content",            default: ""
     t.integer  "service_request_id"
-    t.integer  "commentable_id",                  null: false
-    t.string   "commentable_type",                null: false
+    t.integer  "commentable_id",                     null: false
+    t.string   "commentable_type",                   null: false
     t.string   "ancestry"
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",           default: false
   end
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree

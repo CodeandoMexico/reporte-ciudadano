@@ -33,7 +33,7 @@ class ServiceRequestsController < ApplicationController
 
   def show
     @service_request = ServiceRequest.find(params[:id])
-    @comments = @service_request.comments.order("comments.created_at ASC")
+    @comments = @service_request.comments.approved.default_order
     @public_servants = Admin.where(id: @service_request.public_servant_id).last
   end
 
