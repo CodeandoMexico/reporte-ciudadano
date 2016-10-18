@@ -6,4 +6,7 @@ class Comment < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates_presence_of :content, presence: true
+
+  scope :default_order, ->{ order(created_at: :asc) }
+  scope :approved, ->{ where(approved: true) }
 end

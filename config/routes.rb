@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     get 'users/finish_registration', to: 'users/registrations#finish_registration'
   end
 
-  resources :comments
+  resources :comments do
+    get :approve, on: :member
+  end
 
   resources :quejas_y_sugerencias, as: :service_requests, controller: :service_requests  , :path_names => { :new => "nuevo"}do
     collection do
