@@ -26,7 +26,7 @@ class Admins::ServiceSurveyReportsController < ApplicationController
       end
       f.csv do
         send_data @grid.to_csv.encode!(Encoding::ISO_8859_1),
-                  type: "text/csv; charset=iso-8859-1; header=present'",
+                  type: "text/csv; charset=utf-8; header=present'",
                   disposition: 'inline',
                   filename: "#{params[:report_type]}-#{Time.now.to_s}.csv"
       end
@@ -50,7 +50,7 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   def service_cis_options
     Services.service_cis_options
   end
-  
+
   def criterion_options
     ServiceSurveys.criterion_options
   end
@@ -173,7 +173,7 @@ class Admins::ServiceSurveyReportsController < ApplicationController
         "12"
       when "default_report"
         "1"
-      else 
+      else
         "default_report"
     end
   end
