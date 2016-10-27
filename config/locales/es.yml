@@ -280,7 +280,7 @@ es:
     services:
       index:
         header: "Personalizar solicitudes de servicio"
-        page-description: "En este sitio usted podrá evaluar la atención que se le brinda en los Trámites, Servicios y Programas de Apoyo del Gobierno del Estado de Puebla. Además, podrá levantar y dar seguimiento a las Quejas y Sugerencias que usted desee presentar. Lo anterior con el fin de mejorar la atención y el servicio."
+        page-description: "En este sitio usted podrá evaluar la atención que se le brinda en los Trámites y Servicios del Gobierno del Estado de Puebla. Además, podrá levantar y dar seguimiento a las Quejas y Sugerencias que usted desee presentar. Lo anterior con el fin de mejorar la atención y el servicio."
         services: "Trámites"
         statuses: "Estatus actuales"
         new_service: "Nuevo servicio"
@@ -497,7 +497,7 @@ es:
     requests_by_dependency_chart: "Quejas o sugerencias por dependencia"
     requests_map: "Mapa de quejas o sugerencias"
     total_cities: "Ciudadanos que han participado."
-    total_procedures_services: "Trámites, servicios o programas de apoyo"
+    total_procedures_services: "Trámites o servicios"
     total_evaluations: "Servidores públicos evaluados"
 
   comments:
@@ -884,7 +884,7 @@ es:
         name: "Nombre"
         phase: "Fase"
         link: "Vínculo"
-        service: "Trámite, servicio o programa de apoyo"
+        service: "Trámite o servicio"
         cis: "Centro de evaluación"
         creation_date: "Fecha de creación"
         go_to_report: "Ir al reporte %{id}"
