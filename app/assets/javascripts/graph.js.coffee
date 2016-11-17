@@ -8,8 +8,8 @@ $(document).on 'ready page:load', ->
     color_ = null
     for status in status_data
       if(index == 0)
-        color_ =  "#6fbbcf"; 
-      if(index == 1) 
+        color_ =  "#6fbbcf";
+      if(index == 1)
         color_ =  "#005195";
       if(index == 2)
         color_ =  "#f07b05";
