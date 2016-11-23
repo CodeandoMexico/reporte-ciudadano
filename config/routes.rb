@@ -70,8 +70,9 @@ Rails.application.routes.draw do
     resources  :panel, as: :dashboards, only: [:index] ,controller: :dashboards do
       collection do
         get "export"
+        get "export_dependencies"
         get 'design'
-        get "services" , :path => "servicios"
+        get "services" , path: "servicios"
       end
     end
 
