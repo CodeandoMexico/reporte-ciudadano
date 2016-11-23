@@ -1,4 +1,4 @@
-<p>Hola <strong><%= @admin.name %></strong>, Hoy tienes las siguientes quejas y estatus:</p>
+<p>Hola <strong><%= @admin.name || @admin.email %></strong>, Hoy tienes las siguientes quejas y estatus:</p>
 
 <table>
   <thead>
@@ -14,6 +14,25 @@
         <td><%= request.service_name %></td>
         <td><%= request.description %></td>
         <td><%= request.status_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <th>Dependencia</th>
+    <% @status.each do |status| %>
+      <th><%= status.name %></th>
+    <% end %>
+  </thead>
+  <tbody>
+    <% @dependencies.each do |dependency| %>
+      <tr>
+        <td><%= dependency %></td>
+        <% @status.each do |status| %>
+          <td><%= ServiceRequest.with_status_and_dependency(status.id, dependency).count %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -33,9 +33,11 @@ class AdminMailer < ActionMailer::Base
     mail to: admin.email, subject: I18n.t('mailer.subject.send_request_new')
   end
 
-  def notify_pending_requests(admin, service_requests)
+  def notify_pending_requests(admin, service_requests, dependencies, status)
     @admin = admin
     @service_requests = service_requests
+    @dependencies = dependencies
+    @status = status
     mail to: admin.email, subject: I18n.t('mailer.subject.send_request_pending', current_date: Date.today)
   end
 end
