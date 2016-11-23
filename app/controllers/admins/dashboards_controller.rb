@@ -31,6 +31,11 @@ class Admins::DashboardsController < Admins::AdminController
     send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
   end
 
+  def export_dependencies
+    csv_file, csv_filename = DependenciesChart.general_report_csv(dependency_options).to_csv
+    send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
+  end
+
   private
 
   def authorize_admin
