@@ -1,0 +1,19 @@
+<h3>Estimado(a) <%= @user.email %>,</h3>
+
+<p>
+  ¡Te damos la bienvenida a la plataforma Evalúa tu Trámite!
+  <br>
+  En este sitio podrás evaluar la atención brindada en los Trámites y Servicios del Gobierno del Estado de Puebla. Además, podrás levantar y dar seguimiento a las Quejas y Sugerencias que desees presentar. Lo anterior con el fin de mejorar la atención y el servicio.
+</p>
+
+<p>
+  Te registraste con el siguiente correo electrónico: <%= @user.email %>
+  <br>
+  Para editar tu información o cambiar tu contraseña visita tu <%= link_to 'Perfil', edit_user_registration_url %>.
+</p>
+
+<p>
+  Gracias por tu participación.
+  <br>
+  Evalúa tu Trámite del Gobierno del Estado de Puebla.
+</p>
