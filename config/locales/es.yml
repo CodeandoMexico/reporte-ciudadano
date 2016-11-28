@@ -343,6 +343,12 @@ es:
         service_admins: "Administradores de trámites"
         new_service_admin: "Agregar administrador"
         edit: "Editar"
+        enabled: "Activos"
+        disabled: "Inactivos"
+        enable: "Activar"
+        disable: "Desactivar"
+        disable_admin_confirm: "¿Estás seguro de desactivar este administrador de servicio?"
+        enable_admin_confirm: "¿Estás seguro de activar este administrador de servicio?"
       edit:
         edit_service_admin: "Editar administrador de trámites"
         update: "Actualizar"

@@ -1,8 +1,8 @@
 .page-content.inset
   %h2
-    = t('.service_admins')
+    = t('admins.service_admins.index.service_admins')
     .btn-group.pull-right
-      = link_to t('.new_service_admin'), new_admins_service_admin_path, class: 'btn btn-primary'
+      = link_to t('admins.service_admins.index.new_service_admin'), new_admins_service_admin_path, class: 'btn btn-primary'
 
 = search_form_for @search, url: admins_service_admins_path, method: :get, class: "filters form-inline" do |f|
   .form-group.col-md-6
@@ -22,36 +22,19 @@
       %i.glyphicon.glyphicon-search
       = t('search')
 
-.table-responsive
-  %table.table.table-striped
-    %thead
-      %tr
-        %th
-          =t(".id")
-        %th
-          =t(".name")
-        %th
-          =t(".email")
-        %th
-          =t(".record_number")
-        %th
-          =t(".dependency")
-        %th
-          =t(".administrative_unit")
-        %th
-          =t(".charge")
-        %th
-    %tbody
-      - @service_admins.each do |service_admin|
-        %tr.service_admin
-          %td= service_admin.id
-          %td= "#{service_admin.name} #{service_admin.surname} #{service_admin.second_surname}"
-          %td= service_admin.email
-          %td= service_admin.record_number
-          %td= service_admin.dependency
-          %td= service_admin.administrative_unit
-          %td= service_admin.charge
-          %td= link_to t(".edit"), edit_admins_service_admin_path(service_admin), class: "btn btn-default", id: "edit_service_admin_#{service_admin.id}"
+
+
+%ul.js-tabs.nav.nav-tabs.padding-top
+  %li.active
+    = link_to t("admins.service_admins.index.enabled"), '#enabled', data: { toggle: 'tab' }
+  %li
+    = link_to t("admins.service_admins.index.disabled"), '#disabled', data: { toggle: 'tab' }
+
+.tab-content
+  #enabled.tab-pane.active
+    = render partial: 'service_admins', locals: { service_admins: @service_admins }
+  #disabled.tab-pane
+    = render partial: 'service_admins', locals: { service_admins: @disabled_service_admins }
 
 :javascript
   $(document).ready(loadChosen);

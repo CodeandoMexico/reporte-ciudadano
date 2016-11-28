@@ -22,6 +22,9 @@ class Admin < ActiveRecord::Base
   scope :service_admins, ->{ where(is_service_admin: true) }
   scope :with_dependency, ->(dependency){ where(dependency: dependency) }
 
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+
   def to_s
     self.email
   end
