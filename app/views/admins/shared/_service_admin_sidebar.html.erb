@@ -3,6 +3,16 @@
    <li class="sidebar-brand">
     </li>
     <li>
+      <%= link_to admins_inbox_index_path do %>
+        <strong>
+          <%= i18n_admin_sidebar('.inbox') %>
+        </strong>
+        <% if Admins.service_requests_for(current_admin, nil).count > 0 %>
+          <span class='inbox-counter label label-success'><%= Admins.service_requests_for(current_admin, nil).count %></span>
+        <% end %>
+      <% end %>
+    </li>
+    <li>
       <%= link_to i18n_admin_sidebar('.services'), services_admins_dashboards_path %>
     </li>
     <li>

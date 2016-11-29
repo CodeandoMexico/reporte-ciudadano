@@ -238,8 +238,17 @@ es:
         title: 'Trámites'
 
   admins:
+    inbox:
+      index:
+        title: 'Bandeja de entrada'
+        enabled: Quejas
+        disabled: Encuestas
+        status: Status
+        service_request: Queja
+        created_at: Fecha de creación
     shared:
       sidebar:
+        inbox: Bandela de entrada
         dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Quejas o sugerencias"

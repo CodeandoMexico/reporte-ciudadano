@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   resources :reportes_estadisticos, as: :service_survey_reports, only: [:new, :create, :show, :index], controller: :service_survey_reports
 
   namespace  :administradores, as: :admins, module: :admins , controller: :admin do
+
+    resources :inbox
+
     resources :service_survey_reports, only: [:new, :create, :show, :index] do
       collection do
         get 'make_report'
