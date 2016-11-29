@@ -1,0 +1,34 @@
+<br>
+<%= search_form_for @q,
+                    url: admins_inbox_index_path,
+                    method: :get,
+                    class: "filters form-inline" do |f| %>
+
+  <div class="form-group col-lg-3">
+    <%= f.text_field :date_gteq,
+                     placeholder: t('search_form.from_date'),
+                     class: 'datepicker form-control from' %>
+  </div>
+
+  <div class="form-group form-group-separator col-lg-3">
+    <%= f.text_field :date_lteq,
+                     placeholder: t('search_form.to_date'),
+                     class: 'datepicker form-control to' %>
+  </div>
+
+  <div class="form-group form-group-separator col-lg-3">
+    <%= f.collection_select :status_id_eq,
+                            Status.all,
+                            :id,
+                            :name,
+                            { include_blank: t('form.labels.status') },
+                            class: 'chosen-select col-lg-6' %>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= button_tag class: "submit btn btn-default" do %>
+      <i class="glyphicon glyphicon-search"></i>
+      <%= t('search') %>
+    <% end %>
+  </div>
+<%end%>

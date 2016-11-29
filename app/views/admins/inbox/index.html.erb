@@ -1,0 +1,66 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('.title') %>
+  </h2>
+</div>
+
+<ul class="js-tabs nav nav-tabs padding-top">
+  <li class="active">
+    <%= link_to t(".enabled"), "#enabled", "data-toggle" => "tab" %>
+  </li>
+  <li>
+    <%= link_to t(".disabled"), "#disabled", "data-toggle" => "tab" %>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="enabled">
+
+    <%= render 'filters' %>
+
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= t(".status") %></th>
+            <th><%= t(".service_request") %></th>
+            <th><%= t(".created_at") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @service_requests.each do |service_request| %>
+            <tr>
+              <td><%= service_request.status %></td>
+              <td>
+                <%= link_to service_request.service.name,
+                            edit_admins_service_request_path(service_request) %>
+              </td>
+              <td>
+                <%= l service_request.created_at, format: :long %>
+              </td>
+              <td>
+                <%= link_to t('crud.delete'),
+                            admins_service_request_path(service_request),
+                            method: :delete %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <div class="tab-pane" id="disabled">
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+
+  $(function() {
+    $( ".to" ).datepicker({ dateFormat: 'mm/dd/yy' });
+    $( ".from" ).datepicker({ dateFormat: 'mm/dd/yy' });
+  });
+</script>
