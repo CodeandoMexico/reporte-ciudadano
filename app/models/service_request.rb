@@ -55,7 +55,7 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   scope :open, -> {
-    closed_status_id = Status.find_by_name("Cerrado").try(:id)
+    closed_status_id = Status.close.try(:id)
     where("status_id <> #{closed_status_id}")
   }
 
@@ -150,7 +150,8 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def active?
-    status.name != "Atendido por la Dirección de atención a Quejas y Denuncias"
+    # status.name != "Atendido por la Dirección de atención a Quejas y Denuncias"
+    status_id != Status.close.id
   end
 
   def status_name

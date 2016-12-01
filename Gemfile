@@ -41,16 +41,15 @@ gem 'chosen-rails' #autocompletar
 gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 group :test do
-  gem 'ffaker'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
 end
 
 group :development,:test do
-
+  gem 'ffaker'
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'byebug'

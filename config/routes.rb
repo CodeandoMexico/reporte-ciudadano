@@ -24,11 +24,24 @@ Rails.application.routes.draw do
 
   end
 
-  root :to => 'pages#index'
+  resources :pages do
+    get :help, path: 'ayuda', on: :collection
+  end
+
+  root to: 'pages#index'
 
   resources :reportes_estadisticos, as: :service_survey_reports, only: [:new, :create, :show, :index], controller: :service_survey_reports
 
   namespace  :administradores, as: :admins, module: :admins , controller: :admin do
+
+    resources :inbox,
+              path_names: {
+                service_requests: 'quejas',
+                surveys: 'encuestas'
+              } do
+      get :surveys, on: :collection
+    end
+
     resources :service_survey_reports, only: [:new, :create, :show, :index] do
       collection do
         get 'make_report'
@@ -89,7 +102,15 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :administrador_de_tramites, as: :service_admins, controller: :service_admins , :path_names => { :new => "nuevo", :edit => "editar" }
+    resources :administrador_de_tramites,
+              as: :service_admins,
+              controller: :service_admins ,
+              path_names: {
+                new: 'nuevo',
+                edit: 'editar'
+              } do
+      patch :change_status, on: :member
+    end
 
     resources :servidores_publicos, as: :public_servants, controller: :public_servants  , :path_names => { :new => "nuevo", :edit => "editar" } do
       get :disable, on: :member

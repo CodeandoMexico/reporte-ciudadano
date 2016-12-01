@@ -20,4 +20,9 @@ class Status < ActiveRecord::Base
     self.is_default = Status.first.nil?
     true
   end
+
+  def self.close
+    @@close ||= Status.find_by_name("Cerrado")
+    @@close
+  end
 end

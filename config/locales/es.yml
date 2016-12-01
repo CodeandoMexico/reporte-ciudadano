@@ -196,6 +196,7 @@ es:
       default: ! '%A, %d de %B de %Y %H:%M:%S %z'
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
+      compact: ! '%b %d %H:%M'
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -238,8 +239,17 @@ es:
         title: 'Trámites'
 
   admins:
+    inbox:
+      index:
+        title: 'Bandeja de entrada'
+        enabled: Quejas
+        disabled: Encuestas
+        status: Status
+        service_request: Queja
+        created_at: Fecha de creación
     shared:
       sidebar:
+        inbox: Bandela de entrada
         dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Quejas o sugerencias"
@@ -343,6 +353,12 @@ es:
         service_admins: "Administradores de trámites"
         new_service_admin: "Agregar administrador"
         edit: "Editar"
+        enabled: "Activos"
+        disabled: "Inactivos"
+        enable: "Activar"
+        disable: "Desactivar"
+        disable_admin_confirm: "¿Estás seguro de desactivar este administrador de servicio?"
+        enable_admin_confirm: "¿Estás seguro de activar este administrador de servicio?"
       edit:
         edit_service_admin: "Editar administrador de trámites"
         update: "Actualizar"
@@ -650,6 +666,7 @@ es:
     evaluate_a_submission: "Evalúa trámite"
     evaluations: "Evaluaciones"
     panel: "Panel"
+    help: 'Ayuda'
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
@@ -1027,3 +1044,23 @@ es:
       order:
         asc: "↑"
         desc: "↓"
+
+  service_surveys:
+    index:
+      search:
+        name_cont: Busca tu trámite por nombre
+
+  sections:
+    public:
+      help:
+        title: Ayuda
+        subtitle: En esta sección encontrarás las guías para poder realizar exitosamente una Queja, Sugerencia o la evaluación de tu trámite. Descárgalas aquí y comienza a participar
+        download_guide: Descargar guía
+        service_requests:
+          title: QUEJAS O SUGERENCIAS
+          subtitle: descarga la guía para hacer una queja o sugerencia
+          icon: help_service_request_icon.png
+        surveys:
+          title: EVALÚA TU TRÁMITE
+          subtitle: Descarga la guía para evaluar tus trámites
+          icon: help_survey_icon.png
