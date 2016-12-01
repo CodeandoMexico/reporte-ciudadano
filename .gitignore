@@ -19,6 +19,7 @@
 /config/database.yml
 /config/env_variables.yml
 /public/uploads/*
+/public/storage/uploads/*
 *.dump
 /storage
 *.rdb
@@ -29,3 +30,4 @@
 .rspec
 Guardfile
 coverage
+.powder

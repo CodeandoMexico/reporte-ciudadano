@@ -6,6 +6,13 @@ class Admins::ServiceAdminsController < ApplicationController
   before_action :set_search, only: :index
   layout 'admins'
 
+  def index
+    @service_admins = Admin.active.service_admins_sorted_by_name
+    @disabled_service_admins = Admin.inactive.service_admins_sorted_by_name
+
+    search_service_admins
+  end
+
   def new
     @admin = Admin.new
     @services = Service.all
@@ -21,10 +28,6 @@ class Admins::ServiceAdminsController < ApplicationController
     end
   end
 
-  def index
-    @service_admins = Admin.service_admins_sorted_by_name
-    search_service_admins
-  end
 
   def edit
     @admin = Admin.find(params[:id])
@@ -45,6 +48,11 @@ class Admins::ServiceAdminsController < ApplicationController
     @search = Admin.search(params[:q])
   end
 
+  def change_status
+    @admin = Admin.find(params[:id])
+    @admin.update_attributes(admin_status_params)
+    redirect_to admins_service_admins_path, notice: t('flash.service_admin.updated')
+  end
 
   private
   def set_title
@@ -58,12 +66,21 @@ class Admins::ServiceAdminsController < ApplicationController
     end
   end
 
+  def admin_status_params
+    params.require(:admin).permit(:disabled, :active)
+  end
+
   def service_admin_params
     services = Service.where(id: params[:admin].delete(:services_ids))
-    params
-      .require(:admin)
-      .permit(:name, :email, :record_number, :dependency, :administrative_unit, :charge,:second_surname,:surname)
-      .merge(managed_services: services, is_service_admin: true)
+    params.require(:admin).permit(
+      :name,
+      :email,
+      :record_number,
+      :dependency,
+      :administrative_unit,
+      :charge,:second_surname,:surname
+    )
+    .merge(managed_services: services, is_service_admin: true)
   end
 
   def password
@@ -71,7 +88,7 @@ class Admins::ServiceAdminsController < ApplicationController
   end
 
   def set_services
-    @services = Service.unmanaged 
+    @services = Service.unmanaged
   end
 
   def dependency_options
@@ -96,8 +113,7 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def search_service_admins
     if params[:q].present?
-      @service_admins = @service_admins.
-        where(id: params[:q][:id]) unless params[:q][:id].blank?
+      @service_admins = @service_admins.where(id: params[:q][:id]) unless params[:q][:id].blank?
       @service_admins = @service_admins.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
       @service_admins = @service_admins.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @service_admins = @service_admins.where(record_number: params[:q][:record_number] ) unless  params[:q][:record_number].blank?

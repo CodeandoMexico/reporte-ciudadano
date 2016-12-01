@@ -1,0 +1,28 @@
+%tr.service_admin
+  %td= service_admin.id
+  %td= "#{service_admin.name} #{service_admin.surname} #{service_admin.second_surname}"
+  %td= service_admin.email
+  %td= service_admin.record_number
+  %td= service_admin.dependency
+  %td= service_admin.administrative_unit
+  %td= service_admin.charge
+  / %td= link_to t("admins.service_admins.index.edit"), edit_admins_service_admin_path(service_admin), class: "btn btn-default", id: "edit_service_admin_#{service_admin.id}"
+  %td
+    = link_to t("admins.service_admins.index.edit"), edit_admins_service_admin_path(service_admin),
+              class: "btn btn-default",
+              id: "edit_service_admin_#{service_admin.id}"
+  %td
+    - if service_admin.is_active?
+      = link_to t("admins.service_admins.index.disable"),
+                change_status_admins_service_admin_path(service_admin, admin: { active: false, disabled: true }),
+                method: :patch,
+                class: "btn btn-danger",
+                id: "disable_service_admin_#{service_admin.id}",
+                "data-confirm" => t("admins.service_admins.index.disable_admin_confirm")
+    - else
+      = link_to t("admins.service_admins.index.enable"),
+                change_status_admins_service_admin_path(service_admin, admin: { active: true, disabled: false }),
+                method: :patch,
+                class: "btn btn-success",
+                id: "enable_service_admin_#{service_admin.id}",
+                "data-confirm" => t("admins.service_admins.index.enable_admin_confirm")

@@ -89,7 +89,15 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :administrador_de_tramites, as: :service_admins, controller: :service_admins , :path_names => { :new => "nuevo", :edit => "editar" }
+    resources :administrador_de_tramites,
+              as: :service_admins,
+              controller: :service_admins ,
+              path_names: {
+                new: 'nuevo',
+                edit: 'editar'
+              } do
+      patch :change_status, on: :member
+    end
 
     resources :servidores_publicos, as: :public_servants, controller: :public_servants  , :path_names => { :new => "nuevo", :edit => "editar" } do
       get :disable, on: :member
