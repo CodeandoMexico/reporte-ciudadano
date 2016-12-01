@@ -8,7 +8,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def index
-    @service_requests = admin_requests.page(params[:page])
+    @service_requests = admin_requests.pending_moderation.page(params[:page])
     @open_service_requests = admin_requests.where(status_id: 1).count#select(&:open?).count
     @closed_service_requests =  admin_requests.where(status_id: 2).count#.select(&:closed?).count
     @all_service_requests = admin_requests.count
