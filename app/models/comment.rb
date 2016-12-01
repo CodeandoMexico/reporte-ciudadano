@@ -9,4 +9,6 @@ class Comment < ActiveRecord::Base
 
   scope :default_order, ->{ order(created_at: :asc) }
   scope :approved, ->{ where(approved: true) }
+
+  scope :pending, ->{ where(approved: false) }
 end

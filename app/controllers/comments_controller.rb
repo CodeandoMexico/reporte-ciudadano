@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment = @current_session.comments.build(comment_params)
     if @comment.save
       flash[:success] = "Tu comentario ha sido publicado"
+      notify_admins
       redirect_to after_comment_path
     else
       flash[:error] = @comment.errors.full_messages
@@ -30,6 +31,16 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def notify_admins
+    pending_comments = Comment.includes(:service_request).pending
+    Admin.super_admins.each do |admin|
+      AdminMailer.comments_with_pending_moderation_notification(
+        admin: admin,
+        pending_comments: pending_comments
+      ).deliver_now
+    end
+  end
 
   def notify_user(comment)
     service_request = ServiceRequest.find(comment.service_request_id)

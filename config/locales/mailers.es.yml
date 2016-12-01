@@ -10,3 +10,4 @@ es:
       comment_change_notification: "Se han hecho comentarios a tu Queja o Sugerencia"
       new_survey: "Por favor evalúanos en Evalúa tu Trámite"
       notify_new_request_user: "Gracias por tu Queja o Sugerencia"
+      notify_pending_comments: 'Comentarios pendientes de moderación'
