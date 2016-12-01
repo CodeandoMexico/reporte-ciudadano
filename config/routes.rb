@@ -24,7 +24,11 @@ Rails.application.routes.draw do
 
   end
 
-  root :to => 'pages#index'
+  resources :pages do
+    get :help, path: 'ayuda', on: :collection
+  end
+
+  root to: 'pages#index'
 
   resources :reportes_estadisticos, as: :service_survey_reports, only: [:new, :create, :show, :index], controller: :service_survey_reports
 

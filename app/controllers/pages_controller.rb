@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-    layout 'landing'
+  layout 'landing'
+
   def index
     @services_count = Service.count
     @active_citizen_count =
@@ -12,5 +13,9 @@ class PagesController < ApplicationController
       Admin.public_servants_sorted_by_name.count
         end
     @url_video = ENV['VIMEO_VIDEO_KEY'] || '134171429'
+  end
+
+  def help
+    render layout: 'application'
   end
 end

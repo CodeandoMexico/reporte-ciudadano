@@ -656,6 +656,7 @@ es:
     evaluate_a_submission: "Evalúa trámite"
     evaluations: "Evaluaciones"
     panel: "Panel"
+    help: 'Ayuda'
 
   # Global words. Commonly used thru the platform
   search: 'Buscar'
@@ -1033,3 +1034,18 @@ es:
       order:
         asc: "↑"
         desc: "↓"
+
+  sections:
+    public:
+      help:
+        title: Ayuda
+        subtitle: En esta sección encontrarás las guías para poder realizar exitosamente una Queja, Sugerencia o la evaluación de tu trámite. Descárgalas aquí y comienza a participar
+        download_guide: Descargar guía
+        service_requests:
+          title: QUEJAS O SUGERENCIAS
+          subtitle: descarga la guía para hacer una queja o sugerencia
+          icon: help_service_request_icon.png
+        surveys:
+          title: EVALÚA TU TRÁMITE
+          subtitle: Descarga la guía para evaluar tus trámites
+          icon: help_survey_icon.png
