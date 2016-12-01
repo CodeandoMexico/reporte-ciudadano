@@ -78,3 +78,27 @@ img.navbar-logo {
   padding: 7px 0 0 5px;
   max-height: 30px;
 }
+
+
+.search-single-element.search-single-element {
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: 4px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  pointer-events: none;
+  color: #ccc;
+}
+
+.has-feedback label~.form-control-feedback {
+  top: 25px;
+}

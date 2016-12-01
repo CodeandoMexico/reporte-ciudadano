@@ -1,10 +1,13 @@
 class ServiceSurveysController < ApplicationController
 before_action :authenticate_user!
   def index
-    @services = Service.preload(:service_surveys)
+    params[:q] ||= {}
+    @q = Service.preload(:service_surveys)
                        .with_open_surveys
                        .uniq(:id)
-                       .page(params[:page])
-                       .per(20)
+                       .ransack(params[:q])
+
+    @services = @q.result.page(params[:page])
+                         .per(20)
   end
 end

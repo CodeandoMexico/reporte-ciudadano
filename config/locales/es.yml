@@ -1027,3 +1027,8 @@ es:
       order:
         asc: "↑"
         desc: "↓"
+
+  service_surveys:
+    index:
+      search:
+        name_cont: Busca tu trámite por nombre

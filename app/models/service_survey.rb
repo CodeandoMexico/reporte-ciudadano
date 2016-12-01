@@ -47,7 +47,7 @@ class ServiceSurvey < ActiveRecord::Base
 
   def has_been_answered_by?(user, cis_id, service_id)
     return false if user.blank? || cis_id.blank? || service_id.blank?
-    answers.where(user_id: user.id, cis_id: cis_id, service_id: service_id).any?
+    answers.exists?(user_id: user.id, cis_id: cis_id, service_id: service_id)
   end
 
   def answers_by(user_id)

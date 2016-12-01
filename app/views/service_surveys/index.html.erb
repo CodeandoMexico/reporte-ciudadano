@@ -1,3 +1,19 @@
+<br>
+<%= search_form_for @q,
+                    url: service_surveys_path,
+                    method: :get,
+                    class: "form-inline" do |f| %>
+
+  <div class="search-single-element form-group has-feedback col-md-3">
+    <%= f.text_field :name_cont,
+                     placeholder: t('service_surveys.index.search.name_cont'),
+                     class: 'form-control' %>
+    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+  </div>
+  <br>
+<%end%>
+
+
 <% if @services.any? %>
     <div class="table-responsive service-surveys">
       <table class="table sortable_table table-striped">
