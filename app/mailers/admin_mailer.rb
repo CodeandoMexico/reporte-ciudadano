@@ -40,4 +40,10 @@ class AdminMailer < ActionMailer::Base
     @status = status
     mail to: admin.email, subject: I18n.t('mailer.subject.send_request_pending', current_date: Date.today)
   end
+
+  def comments_with_pending_moderation_notification(admin:, pending_comments:)
+    @admin = admin
+    @comments = pending_comments
+    mail to: @admin.email, subject: I18n.t('mailer.subject.notify_pending_comments')
+  end
 end

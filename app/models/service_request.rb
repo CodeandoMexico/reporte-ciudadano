@@ -63,6 +63,11 @@ class ServiceRequest < ActiveRecord::Base
     where(dependency: dependency, status_id: status_id)
   }
 
+  scope :pending_moderation, -> do
+    joins(:comments)
+    .where(comments: { approved: false })
+  end
+
   def service?
     service.present?
   end

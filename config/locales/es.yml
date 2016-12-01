@@ -515,7 +515,7 @@ es:
     total_cities: "Ciudadanos que han participado."
     total_procedures_services: "Trámites o servicios"
     total_evaluations: "Servidores públicos evaluados"
-
+    pending_moderation: "Aprobaciones pendientes"
   comments:
     comment:
       destroy: "Eliminar"
