@@ -28,8 +28,8 @@
                 <%= select_tag("service_survey_selector",
                                options_for_select(
                                service.service_surveys
-                                       .where(open: true)
-                                       .order(phase: 'desc')
+                                       .select { |ss| ss.open? }
+                                       .sort { |a,z| z.phase <=> a.phase }
                                        .map{|a| [t("service_survey_phase_options.#{a.phase}")+" - #{a.title} ", a.id ]}),
                                {include_blank: true,
                                 class:"js-select-survey js-selector-service-#{service.id} chosen-select",
