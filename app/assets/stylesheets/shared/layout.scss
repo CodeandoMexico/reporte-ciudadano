@@ -46,7 +46,7 @@
   padding: 15px;
 }
 
-navbar-logo-full {
+.navbar-logo-full {
   width: 260px !important;
 }
 
@@ -79,7 +79,6 @@ img.navbar-logo {
   max-height: 30px;
 }
 
-
 .search-single-element.search-single-element {
   padding: 0;
   margin-bottom: 20px;
@@ -101,4 +100,50 @@ img.navbar-logo {
 
 .has-feedback label~.form-control-feedback {
   top: 25px;
+}
+
+
+// Help section
+.btn-blue {
+  color: #fff;
+  background-color: #0844a4;
+  border-color: #0844a4;
+  border-radius: 6px;
+
+  &:hover {
+    color: #fff;
+    opacity: 0.8;
+  }
+}
+
+
+.pages.help {
+  background-color: #fff;
+  section {
+    max-width: 960px;
+    margin: auto;
+
+    header {
+      padding: 80px 0;
+
+      p {
+        font-size: 16px;
+      }
+    }
+
+    article {
+      img {
+        margin: 50px auto;
+      }
+
+      h4 {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      p {
+        margin-bottom: 30px;
+      }
+    }
+  }
 }

@@ -42,6 +42,7 @@ r = {
     address: "Calle Benito Juarez",
     status_id: status.id
 }
+
 user.service_requests.build(r).save
 
 c = Service.create(

@@ -1,13 +1,16 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-before_filter :configure_permitted_parameters
+  before_filter :configure_permitted_parameters
+
   def new
     session[:omniauth] = nil # delete omniauth saved state
     super
   end
 
   def create
-    super
-    session[:omniauth] = nil unless resource.new_record?
+    super do |user|
+      UserMailer.welcome(user).deliver_now
+      session[:omniauth] = nil unless resource.new_record?
+    end
   end
 
 
