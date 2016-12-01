@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t("admins.inbox.index.status") %></th>
+        <th><%= t("admins.inbox.index.service_request") %></th>
+        <th><%= t("admins.inbox.index.created_at") %></th>
+        <!-- <th></th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_requests.each do |service_request| %>
+        <tr>
+          <td><%= service_request.status %></td>
+          <td>
+            <%= link_to edit_admins_service_request_path(service_request) do %>
+              <%= truncate service_request.description, length: 100, omission: '…', separator: ' ' %>
+            <% end %>
+          </td>
+          <td>
+            <%= l service_request.created_at, format: :compact %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
