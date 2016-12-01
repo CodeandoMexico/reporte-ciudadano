@@ -30,7 +30,13 @@ Rails.application.routes.draw do
 
   namespace  :administradores, as: :admins, module: :admins , controller: :admin do
 
-    resources :inbox
+    resources :inbox,
+              path_names: {
+                service_requests: 'quejas',
+                surveys: 'encuestas'
+              } do
+      get :surveys, on: :collection
+    end
 
     resources :service_survey_reports, only: [:new, :create, :show, :index] do
       collection do

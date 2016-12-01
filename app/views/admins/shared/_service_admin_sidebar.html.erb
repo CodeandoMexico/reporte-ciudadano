@@ -8,7 +8,7 @@
           <%= i18n_admin_sidebar('.inbox') %>
         </strong>
         <% if Admins.service_requests_for(current_admin, nil).count > 0 %>
-          <span class='inbox-counter label label-success'><%= Admins.service_requests_for(current_admin, nil).count %></span>
+          <span class='inbox-counter label label-success'><%= Admins.service_requests_for(current_admin, nil).open.count %></span>
         <% end %>
       <% end %>
     </li>

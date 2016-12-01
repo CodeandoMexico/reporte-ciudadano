@@ -4,12 +4,17 @@
   </h2>
 </div>
 
-<ul class="js-tabs nav nav-tabs padding-top">
+
+<ul class=" nav nav-tabs padding-top">
   <li class="active">
-    <%= link_to t(".enabled"), "#enabled", "data-toggle" => "tab" %>
+    <%= link_to t(".enabled"), admins_inbox_index_path %>
   </li>
   <li>
-    <%= link_to t(".disabled"), "#disabled", "data-toggle" => "tab" %>
+    <%= link_to t(".disabled"), surveys_admins_inbox_index_path %>
+  </li>
+  <li class="pull-right tab-pagination">
+    <%= page_entries_info_compact @service_requests %>
+    <%= paginate @service_requests, theme: 'compact' %>
   </li>
 </ul>
 <div class="tab-content">

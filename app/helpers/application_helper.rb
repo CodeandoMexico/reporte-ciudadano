@@ -71,4 +71,16 @@ module ApplicationHelper
           message: message
       }
   end
+
+  def page_entries_info_compact(collection)
+    content_tag :div, class: 'entries-info' do
+      if collection.total_pages < 2
+        t('helpers.page_entries_info.one_page.display_entries_compact', count: collection.total_count)
+      else
+        first = collection.offset_value + 1
+        last = (sum = collection.offset_value + collection.limit_value) > collection.total_count ? collection.total_count : sum
+        t('helpers.page_entries_info.more_pages.display_entries_compact', first: first, last: last, total: collection.total_count)
+      end.html_safe
+    end.html_safe
+  end
 end
