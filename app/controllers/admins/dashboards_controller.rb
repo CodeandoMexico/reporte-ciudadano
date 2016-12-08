@@ -1,7 +1,11 @@
 class Admins::DashboardsController < Admins::AdminController
   before_action :authorize_admin, only: :index
   before_action :set_search
-  helper_method :dependency_options, :administrative_unit_options, :cis_options
+
+  helper_method :dependency_options,
+                :organisation_options,
+                :administrative_unit_options,
+                :cis_options
 
   def design
     @logos = Logo.by_position
@@ -56,8 +60,17 @@ class Admins::DashboardsController < Admins::AdminController
     Services.service_dependency_options
   end
 
+  def organisation_options
+    @organisation_opts ||= Organisation.pluck(:name)
+    @organisation_opts
+  end
+
   def administrative_unit_options
     Services.service_administrative_unit_options
+  end
+
+  def agency_options
+    Agency.pluck(:name, :id)
   end
 
   def cis_options
