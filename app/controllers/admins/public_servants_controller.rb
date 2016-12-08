@@ -1,7 +1,7 @@
 class Admins::PublicServantsController < ApplicationController
 
   helper_method :dependency_options,
-                :organization_options,
+                :organisation_options,
                 :administrative_unit_options,
                 :agency_options,
                 :is_assigned_to_public_servant?,
@@ -143,7 +143,7 @@ class Admins::PublicServantsController < ApplicationController
     end
   end
 
-  def organization_options
+  def organisation_options
     if current_admin.is_super_admin?
       Organisation.pluck(:name, :id)
     else

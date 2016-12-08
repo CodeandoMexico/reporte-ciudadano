@@ -27,7 +27,7 @@ class Admin < ActiveRecord::Base
 
   scope :with_dependency, ->(dependency){ where(dependency: dependency) }
 
-  scope :with_organization, ->(organization){ where(organization_id: organization.id) }
+  scope :with_organisation, ->(organisation){ where(organisation_id: organisation.id) }
 
   scope :active, -> { where(active: true) }
 

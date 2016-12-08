@@ -2,11 +2,20 @@ class Admins::ServiceAdminsController < ApplicationController
   before_action :verify_super_admin_access
   before_action :set_services
   before_action :set_title
-  helper_method :dependency_options, :administrative_unit_options,:service_cis_options, :service_admins_name_options, :record_number_options
+
+  helper_method :dependency_options,
+                :administrative_unit_options,
+                :organisation_options,
+                :agency_options,
+                :service_cis_options,
+                :service_admins_name_options,
+                :record_number_options
+
   before_action :set_search, only: :index
   layout 'admins'
 
   def index
+    params[:q] ||= {}
     @service_admins = Admin.active.service_admins_sorted_by_name
     @disabled_service_admins = Admin.inactive.service_admins_sorted_by_name
 
@@ -76,9 +85,13 @@ class Admins::ServiceAdminsController < ApplicationController
       :name,
       :email,
       :record_number,
-      :dependency,
-      :administrative_unit,
-      :charge,:second_surname,:surname
+      # :dependency,
+      # :administrative_unit,
+      :organisation_id,
+      :agency_id,
+      :charge,
+      :second_surname,
+      :surname
     )
     .merge(managed_services: services, is_service_admin: true)
   end
@@ -91,12 +104,19 @@ class Admins::ServiceAdminsController < ApplicationController
     @services = Service.unmanaged
   end
 
-  def dependency_options
-    Services.service_dependency_options
+  # def dependency_options
+  #   Services.service_dependency_options
+  # end
+  def organisation_options
+    Organisation.pluck(:name, :id)
   end
 
-  def administrative_unit_options
-    Services.service_administrative_unit_options
+  # def administrative_unit_options
+  #   Services.service_administrative_unit_options
+  # end
+
+  def agency_options
+    Agency.pluck(:name, :id)
   end
 
   def service_cis_options
@@ -114,8 +134,10 @@ class Admins::ServiceAdminsController < ApplicationController
   def search_service_admins
     if params[:q].present?
       @service_admins = @service_admins.where(id: params[:q][:id]) unless params[:q][:id].blank?
-      @service_admins = @service_admins.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
-      @service_admins = @service_admins.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+      # @service_admins = @service_admins.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+      @service_admins = @service_admins.where(organisation_id: params[:q][:organisation_id] ) unless params[:q][:organisation_id].blank?
+      # @service_admins = @service_admins.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+      @service_admins = @service_admins.where(agency_id: params[:q][:agency_id] ) unless params[:q][:agency_id].blank?
       @service_admins = @service_admins.where(record_number: params[:q][:record_number] ) unless  params[:q][:record_number].blank?
     end
     @service_admins = @service_admins.page(params[:page]).per(25)

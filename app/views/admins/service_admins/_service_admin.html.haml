@@ -3,8 +3,10 @@
   %td= "#{service_admin.name} #{service_admin.surname} #{service_admin.second_surname}"
   %td= service_admin.email
   %td= service_admin.record_number
-  %td= service_admin.dependency
-  %td= service_admin.administrative_unit
+  / %td= service_admin.dependency
+  %td= service_admin.organisation.name if service_admin.organisation
+  / %td= service_admin.administrative_unit
+  %td= service_admin.agency.name if service_admin.agency
   %td= service_admin.charge
   / %td= link_to t("admins.service_admins.index.edit"), edit_admins_service_admin_path(service_admin), class: "btn btn-default", id: "edit_service_admin_#{service_admin.id}"
   %td

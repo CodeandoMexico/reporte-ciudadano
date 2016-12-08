@@ -20,7 +20,7 @@ Services.load_values(:administrative_units).fetch('administrative_units').each d
   agency.save!
 end
 
-# populate organizations with dependencies
+# populate organisations with dependencies
 Organisation.delete_all
 Services.load_values(:dependencies).fetch('dependencies').each do |id, name|
   organisation = Organisation.new(name: name)
