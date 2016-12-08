@@ -28,14 +28,26 @@
               = f.text_field :record_number, class: 'form-control'
         %fieldset
           .form-group
-            = f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label'
+            / = f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label'
+            = f.label :organisation_id,
+                      t('form.labels.dependency'),
+                      class: 'col-md-2 control-label'
             .col-md-5
-              = f.select :dependency, dependency_options, prompt: I18n.t("form.options.dependency_select")
+              / = f.select :dependency, dependency_options, prompt: I18n.t("form.options.dependency_select")
+              = f.select :organisation_id,
+                         organization_options,
+                         prompt: I18n.t("form.options.dependency_select")
         %fieldset
           .form-group
-            = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label'
+            / = f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label'
+            = f.label :agency_id,
+                      t('form.labels.administrative_unit'),
+                      class: 'col-md-2 control-label'
             .col-md-5
-              = f.select :administrative_unit, administrative_unit_options, prompt: I18n.t("form.options.administrative_unit_select")
+              / = f.select :administrative_unit, administrative_unit_options, prompt: I18n.t("form.options.administrative_unit_select")
+              = f.select :agency_id,
+                         agency_options,
+                         prompt: I18n.t("form.options.administrative_unit_select")
         %fieldset
           .form-group
             = f.label :charge, t('form.labels.charge'), class: 'col-md-2 control-label'
