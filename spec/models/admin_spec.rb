@@ -19,6 +19,8 @@ describe Admin do
     it { should have_many :comments }
     it { should have_many :service_requests }
     it { should have_one :api_key }
+    it { should belong_to :agency }
+    it { should belong_to :organisation }
   end
   context 'methods' do
     let(:admin) { create(:admin) }

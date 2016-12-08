@@ -6,6 +6,10 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   before_create :generate_authentication_token
 
+  belongs_to :agency
+  belongs_to :organisation
+
+
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
   has_many :managed_services, class: Service, foreign_key: :service_admin_id
@@ -20,9 +24,13 @@ class Admin < ActiveRecord::Base
 
   scope :super_admins, ->{ where(is_service_admin: false, is_public_servant: false) }
   scope :service_admins, ->{ where(is_service_admin: true) }
+
   scope :with_dependency, ->(dependency){ where(dependency: dependency) }
 
+  scope :with_organization, ->(organization){ where(organization_id: organization.id) }
+
   scope :active, -> { where(active: true) }
+
   scope :inactive, -> { where(active: false) }
 
   def to_s

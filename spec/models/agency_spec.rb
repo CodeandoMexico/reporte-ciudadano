@@ -9,6 +9,10 @@ RSpec.describe Agency, type: :model do
     it { should respond_to :name }
   end
 
+  context 'associations' do
+    it { should have_many :admins }
+  end
+
   context 'validations' do
     it { should validate_presence_of :name }
     it { should be_valid }
