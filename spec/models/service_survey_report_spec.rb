@@ -4,7 +4,9 @@ describe ServiceSurveyReport do
   context 'factories' do
     it 'has a valid factories' do
       service = create :service, name: "Actas de nacimiento", cis: ["1", "2"], admins: [create(:admin, :public_servant)]
+
       expect(create(:valid_service_survey_report, service_id: service.id)).to be_valid
+
       expect(create(:valid_service_survey_report_100, service_id: service.id)).to be_valid
       expect(create(:valid_service_survey_report_75, service_id: service.id)).to be_valid
     end

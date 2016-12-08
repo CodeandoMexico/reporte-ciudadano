@@ -1,7 +1,4 @@
 class Service < ActiveRecord::Base
-  validates :name, presence: true
-  validates_associated :service_fields
-
   has_many :service_requests
   has_many :service_fields
   has_many :messages
@@ -16,24 +13,28 @@ class Service < ActiveRecord::Base
   accepts_nested_attributes_for :service_fields, allow_destroy: true
   accepts_nested_attributes_for :messages, allow_destroy: true, reject_if: lambda { |attr| attr[:content].blank? }
 
-    serialize :cis, Array
+  serialize :cis, Array
 
   #TODO: se debe de internacionalizar los textos.
-     validates_presence_of :name
-     validates_presence_of :service_type
-     validates_presence_of :dependency
-     validates_presence_of :administrative_unit
-     validates_presence_of :cis
-     validates_presence_of :service_admin_id
+  validates :name,
+            :service_type,
+            :dependency,
+            :administrative_unit,
+            :cis,
+            :service_admin_id,
+            presence: true
 
-  scope :with_open_surveys, ->{
+  validates_associated :service_fields
+
+  scope :with_open_surveys, -> do
     joins(:service_surveys)
-      .where('service_surveys.open = ?', true)
-  }
-  scope :active, ->{ where(status: "activo") }
+    .where('service_surveys.open = ?', true)
+  end
+
+  scope :active, -> { where(status: "activo") }
 
   def service_fields_names
-    self.service_fields.map(&:name).join(', ')
+    self.service_fields.pluck(:name).join(', ')
   end
 
   def self.chart_data(service_admin_id: nil)
@@ -79,11 +80,10 @@ class Service < ActiveRecord::Base
   end
 
   def cis_names
-    Services
-      .service_cis
-      .select { |cis_hash| cis.include?(cis_hash[:id].to_s) }
-      .map { |cis_hash| cis_hash[:name] }
-      .join(", ")
+    Services.service_cis
+            .select { |cis_hash| cis.include?(cis_hash[:id].to_s) }
+            .map { |cis_hash| cis_hash[:name] }
+            .join(", ")
   end
 
   def last_survey_reports
@@ -91,9 +91,7 @@ class Service < ActiveRecord::Base
   end
 
   def last_survey_reports_for_cis(cis_id)
-    service_surveys_reports.
-        where(service_id: id,cis_id: cis_id)
-        .uniq
+    service_surveys_reports.where(service_id: id, cis_id: cis_id).uniq
   end
 
   def last_report

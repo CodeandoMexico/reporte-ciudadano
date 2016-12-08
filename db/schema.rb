@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018220121) do
+ActiveRecord::Schema.define(version: 20161208042455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 20161018220121) do
   create_table "admins_services", force: :cascade do |t|
     t.integer "admin_id",   null: false
     t.integer "service_id", null: false
+  end
+
+  create_table "agencies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -129,6 +135,21 @@ ActiveRecord::Schema.define(version: 20161018220121) do
 
   add_index "messages", ["service_id"], name: "index_messages_on_service_id", using: :btree
   add_index "messages", ["status_id"], name: "index_messages_on_status_id", using: :btree
+
+  create_table "offices", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "phone"
+    t.text     "schedule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organisations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "questions", force: :cascade do |t|
     t.decimal  "value"

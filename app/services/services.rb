@@ -4,11 +4,11 @@ module Services
   end
 
   def self.service_dependency_options
-    load_values(:dependencies).fetch("dependencies").values
+    load_values(:dependencies).fetch('dependencies').values
   end
 
   def self.service_administrative_unit_options
-   load_values(:administrative_units).fetch("administrative_units").values
+   load_values(:administrative_units).fetch('administrative_units').values
   end
 
   def self.service_name_options

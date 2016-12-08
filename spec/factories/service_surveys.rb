@@ -3,6 +3,7 @@ FactoryGirl.define do
     title "A survey title"
     phase "start"
     open true
+
     association :admin, factory: :admin
 
     factory :survey_with_binary_question do

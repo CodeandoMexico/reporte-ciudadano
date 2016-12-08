@@ -56,7 +56,7 @@ class ServiceRequest < ActiveRecord::Base
 
   scope :open, -> {
     closed_status_id = Status.close.try(:id)
-    where("status_id <> #{closed_status_id}")
+    where("status_id != #{Status.close.try(:id)}") if Status.close.present?
   }
 
   scope :with_status_and_dependency, -> (status_id, dependency){

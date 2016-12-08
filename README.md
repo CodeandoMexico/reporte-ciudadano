@@ -53,3 +53,8 @@ El core team:
 
 Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members), 2013 - 2015.
 Disponible bajo la licencia GNU Affero General Public License (AGPL) v3.0. Ver el documento [LICENSE](/LICENSE) para más información.
+
+
+### Testing
+
+Asegúrate de instalar geckodriver y exportar el PATH en tu entorno.

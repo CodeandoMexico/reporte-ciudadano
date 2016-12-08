@@ -19,7 +19,6 @@ class ServiceSurveyReport < ActiveRecord::Base
     service_survey.phase
   end
 
-
   # private
 
   def compute_and_set_results_for_report
