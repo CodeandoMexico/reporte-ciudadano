@@ -4,7 +4,10 @@ class Admins::InboxController < Admins::AdminController
   def index
     params[:q] ||= {}
     @q = ServiceRequest.ransack(params[:q])
-    @service_requests = @q.result.page(params[:page]).per(10)
+    @service_requests = @q.result
+                          .where(service_id: current_admin.managed_service_ids)
+                          .open
+                          .page(params[:page]).per(10)
   end
 
   def surveys

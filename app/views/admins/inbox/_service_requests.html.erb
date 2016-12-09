@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <th><%= t("admins.inbox.index.status") %></th>
@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <% @service_requests.each do |service_request| %>
-        <tr>
+        <tr class="service-request <%= 'unread' if service_request.unread?(current_admin) %>">
           <td><%= service_request.status %></td>
           <td>
             <%= link_to edit_admins_service_request_path(service_request) do %>

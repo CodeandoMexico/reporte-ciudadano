@@ -18,7 +18,7 @@
 
   <div class="form-group form-group-separator col-md-3">
     <%= f.collection_select :status_id_eq,
-                            Status.all,
+                            Status.exclude_closed,
                             :id,
                             :name,
                             { include_blank: t('form.labels.status') },
