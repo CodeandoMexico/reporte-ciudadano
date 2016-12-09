@@ -104,6 +104,17 @@ class Admin < ActiveRecord::Base
   def full_name
     "#{name} #{surname} #{second_surname}"
   end
+
+  # Override method in order to support legacy
+  def dependency
+    self.organisation.try(:name)
+  end
+
+  # Override method in order to support legacy
+  def administrative_unit
+    self.agency.try(:name)
+  end
+
   private
 
   def generate_authentication_token

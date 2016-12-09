@@ -1,0 +1,394 @@
+[
+  {
+    "name": "Colegio de Bachilleres del Estado de Puebla",
+    "agencies": [
+      {
+        "name": "Departamento de Registro y Control Escolar del COBAEP"
+      }
+    ]
+  },
+  {
+    "name": "Colegio de Educación Profesional Técnica del Estado de Puebla",
+    "agencies": [
+      {
+        "name": "Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla",
+    "agencies": [
+      {
+        "name": "Dirección Académica"
+      }
+    ]
+  },
+  {
+    "name": "Comité Administrador Poblano para la Construcción de Espacios Educativos",
+    "agencies": [
+      {
+        "name": "Subdirección de Proyectos e Ingeniería"
+      },
+      {
+        "name": "Subdirección de Construcción y Supervisión"
+      }
+    ]
+  },
+  {
+    "name": "Consejo Estatal para la Cultura y las Artes",
+    "agencies": [
+      {
+        "name": "Fonoteca Vicente T. Mendoza"
+      },
+      {
+        "name": "Dirección de Museos"
+      },
+      {
+        "name": "Dirección de Música."
+      },
+      {
+        "name": "Coordinación de Espacios, Instituto Cultural Poblano"
+      },
+      {
+        "name": "Departamento de Medios Audiovisuales"
+      },
+      {
+        "name": "Departamento del Museo Imagina"
+      },
+      {
+        "name": "Dirección de Literatura"
+      }
+    ]
+  },
+  {
+    "name": "Convenciones y Parques",
+    "agencies": [
+      {
+        "name": "Dirección de Mercadotecnia y Ventas."
+      }
+    ]
+  },
+  {
+    "name": "Coordinación Estatal de Asuntos Internacionales y de Apoyo a Migrantes Poblanos",
+    "agencies": [
+      {
+        "name": "Dirección de apoyo y protección de migrantes"
+      }
+    ]
+  },
+  {
+    "name": "Corporación Auxiliar de Policía y Protección Ciudadana",
+    "agencies": [
+      {
+        "name": "Dirección de Promoción y Ventas de la Corporación Auxiliar de Policía y Protección Ciudadana."
+      }
+    ]
+  },
+  {
+    "name": "Instituto de Capacitación para el Trabajo",
+    "agencies": [
+      {
+        "name": "Entidad de Certificación y Evaluación ICATEP (ECE)"
+      },
+      {
+        "name": "Unidad de Acceso a la Información Pública"
+      }
+    ]
+  },
+  {
+    "name": "Instituto de Educación Digital del Estado de Puebla",
+    "agencies": [
+      {
+        "name": "Subdirección de Procesos Curriculares y la oficina de Control Escolar."
+      },
+      {
+        "name": "Control Escolar."
+      }
+    ]
+  },
+  {
+    "name": "Instituto de Seguridad y Servicios Sociales de los Trabajadores al Servicio de los Poderes del Estado de Puebla",
+    "agencies": [
+      {
+        "name": "Centro de Bienestar Social y Cultural"
+      },
+      {
+        "name": "Subdirección General Médica"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Estatal de Educación para Adultos",
+    "agencies": [
+      {
+        "name": "Departamento de Desarrollo Administrativo"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Poblano de las Mujeres",
+    "agencies": [
+      {
+        "name": "Subdirección de Asuntos Jurídicos y Orientación Psicológica. "
+      },
+      {
+        "name": "Subdirección de Fortalecimiento y Vinculación Regional"
+      },
+      {
+        "name": "Subdirección de Transversalización e Institucionalización de la Perspectiva de Género. "
+      },
+      {
+        "name": "Subdirección de Fortalecimiento y Vinculación Regional"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico de Venustiano Carranza",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Venustiano Carranza."
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Acatlán de Osorio",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares de la Subdirección de Planeación y Vinculación del Instituto Tecnológico Superior de Acatlán de Osorio."
+      },
+      {
+        "name": "Subdirección Académica"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Atlixco ",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Ciudad Serdán",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Huauchinango",
+    "agencies": [
+      {
+        "name": "Departamento de Control Escolar del Instituto Tecnológico Superior de Huauchinango, \"Edificio J\" Planta alta."
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de la Sierra Negra de Ajalpan",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares."
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de la Sierra Norte de Puebla",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares."
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Libres",
+    "agencies": [
+      {
+        "name": "Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de San Martín Texmelucan",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares"
+      },
+      {
+        "name": "Servicios Escolares y Jefes de Divisiones de Carrera"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Tepeaca",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares de la Subdirección de Planeación y Evaluación del Instituto Tecnológico Superior de Tepeaca."
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Tepexi de Rodríguez",
+    "agencies": [
+      {
+        "name": "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Tepexi de Rodríguez"
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Teziutlán",
+    "agencies": [
+      {
+        "name": "Departamento de Desarrollo Académico del Instituto Tecnológico Superior de Teziutlán."
+      }
+    ]
+  },
+  {
+    "name": "Instituto Tecnológico Superior de Zacapoaxtla",
+    "agencies": [
+      {
+        "name": "Departamento de Desarrollo Académico"
+      },
+      {
+        "name": "Departamento de Vinculación"
+      }
+    ]
+  },
+  {
+    "name": "Régimen Estatal de Protección Social en Salud",
+    "agencies": [
+      {
+        "name": "Dirección de Afiliación y Operación"
+      },
+      {
+        "name": "Dirección de Gestión de Servicios de Salud"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Competitividad, Trabajo y Desarrollo Económico",
+    "agencies": [
+      {
+        "name": "Junta Local de Conciliación y Arbitraje"
+      },
+      {
+        "name": "Dirección General de Asuntos Legales"
+      },
+      {
+        "name": "Dirección de Comercio Exterior y Centro Pymexporta"
+      },
+      {
+        "name": "Dirección General de Competitividad, Trabajo y Previsión Social"
+      },
+      {
+        "name": "Procuraduría de la Defensa del Trabajo.(PRODET)"
+      },
+      {
+        "name": "Dirección de Promoción"
+      },
+      {
+        "name": "Dirección General de Gestión, Promoción y Evaluación de Fondos"
+      },
+      {
+        "name": "Dirección General del Servicio Estatal de Empleo"
+      }
+
+    ]
+  },
+  {
+    "name": "Secretaría de Contraloría",
+    "agencies": [
+      {
+        "name": "Coordinación General Jurídica"
+      },
+      {
+        "name": "Subsecretaría de Auditoría a Gasto Corriente"
+      },
+      {
+        "name": "Dirección de Sistemas para el Control de la Gestión"
+      },
+      {
+        "name": "Dirección de Atención a Quejas y Denuncias"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial ",
+    "agencies": [
+      {
+        "name": "Coordinación General de Agronegocios"
+      },
+      {
+        "name": "Coordinación General de Recursos Naturales"
+      },
+      {
+        "name": "Coordinación General de Recursos Naturales / Dirección de Desarrollo Forestal"
+      },
+      {
+        "name": "Dirección de Agricultura"
+      },
+      {
+        "name": "Dirección de Calidad del Aire y Cambio Climático"
+      },
+      {
+        "name": "Dirección de Desarrollo de Capacidades y Aseguramiento"
+      },
+      {
+        "name": "Dirección de Ganadería y Acuacultura"
+      },
+      {
+        "name": "Dirección de Gestión Ambiental"
+      },
+      {
+        "name": "Dirección de Ordenamiento Territorial y Desarrollo Urbano"
+      },
+      {
+        "name": "Dirección de Seguridad Alimentaria"
+      },
+      {
+        "name": "Subdirección de Inspección y Vigilancia"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Educación Pública",
+    "agencies": [
+      {
+        "name": "Departamento de Escuelas Particulares de Básica"
+      },
+      {
+        "name": "Departamento de Preparatoria Abierta."
+      },
+      {
+        "name": "Dirección de Control Escolar"
+      },
+      {
+        "name": "Dirección de Control  Escolar y Dirección General de Desarrollo Educativo."
+      },
+      {
+        "name": "Dirección de Formación de Docentes"
+      },
+      {
+        "name": "Dirección de Inicial y Preescolar"
+      },
+      {
+        "name": "Dirección General de Educación Superior"
+      },
+      {
+        "name": "Instituto Poblano del Deporte y Juventud"
+      },
+      {
+        "name": "Subdirección de Profesiones"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Finanzas y Administración",
+    "agencies": [
+      {
+        "name": "Dirección de asuntos fiscales litigiosos"
+      }
+    ]
+  }
+]
