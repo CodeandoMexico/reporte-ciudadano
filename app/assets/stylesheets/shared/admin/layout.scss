@@ -234,3 +234,9 @@ ul.pagination.compact {
   margin-right: 10px;
   margin-top: 8px;
 }
+
+tr.unread {
+  td {
+    font-weight: bold;
+  }
+}

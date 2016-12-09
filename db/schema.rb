@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018220121) do
+ActiveRecord::Schema.define(version: 20161209085726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20161018220121) do
     t.boolean  "is_observer",               default: false
     t.boolean  "is_comptroller",            default: false
     t.boolean  "is_evaluation_comptroller", default: false
+    t.integer  "agency_id"
+    t.integer  "organisation_id"
   end
 
   add_index "admins", ["authentication_token"], name: "index_admins_on_authentication_token", unique: true, using: :btree
@@ -54,6 +56,12 @@ ActiveRecord::Schema.define(version: 20161018220121) do
   create_table "admins_services", force: :cascade do |t|
     t.integer "admin_id",   null: false
     t.integer "service_id", null: false
+  end
+
+  create_table "agencies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -130,6 +138,21 @@ ActiveRecord::Schema.define(version: 20161018220121) do
   add_index "messages", ["service_id"], name: "index_messages_on_service_id", using: :btree
   add_index "messages", ["status_id"], name: "index_messages_on_status_id", using: :btree
 
+  create_table "offices", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "phone"
+    t.text     "schedule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organisations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.decimal  "value"
     t.string   "criterion"
@@ -181,6 +204,16 @@ ActiveRecord::Schema.define(version: 20161018220121) do
   end
 
   add_index "service_reports", ["service_id"], name: "index_service_reports_on_service_id", using: :btree
+
+  create_table "service_request_readings", force: :cascade do |t|
+    t.integer  "service_request_id"
+    t.integer  "admin_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "service_request_readings", ["admin_id"], name: "index_service_request_readings_on_admin_id", using: :btree
+  add_index "service_request_readings", ["service_request_id"], name: "index_service_request_readings_on_service_request_id", using: :btree
 
   create_table "service_requests", force: :cascade do |t|
     t.text     "description",                default: ""
@@ -312,6 +345,8 @@ ActiveRecord::Schema.define(version: 20161018220121) do
 
   add_foreign_key "questions", "service_surveys"
   add_foreign_key "service_reports", "services"
+  add_foreign_key "service_request_readings", "admins"
+  add_foreign_key "service_request_readings", "service_requests"
   add_foreign_key "service_surveys", "admins"
   add_foreign_key "survey_answers", "questions"
   add_foreign_key "survey_answers", "users"
