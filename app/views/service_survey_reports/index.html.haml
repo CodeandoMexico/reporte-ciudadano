@@ -1,0 +1,49 @@
+%div.container
+  %div.col-sm-12.col-md-12
+  - unless @service_surveys_reports.empty?
+    %h1
+      =t('service_report.index.existent_reports')
+    %div.row.container.col-md-12
+      %p.text-right
+        = t('service_report.index.total', number_of_reports:@service_surveys_reports.count)
+      .table-responsive.surveys-table
+        %table.table.table-striped
+          %thead
+            %tr
+              %th
+                =t('service_report.index.table.name')
+              %th
+                =t('service_report.index.table.cis')
+              %th
+                =t('service_report.index.table.service')
+              %th
+                =t('service_report.index.table.phase')
+              %th
+                =t('service_report.index.table.link')
+              %th
+                =t('service_report.index.table.creation_date')
+
+          %tbody
+            - @service_surveys_reports.each do |report|
+              %tr.service_survey
+                %td
+                  = report.service_survey_title
+                %td
+                  = Services.service_cis_name(report.cis_id)
+                %td
+                  = Service.find(report.service_id).name
+                %td
+                  = t("service_survey_phase_options.#{report.service_survey_phase}")
+                %td
+                  = link_to  t("service_report.index.table.go_to_report", id: report.id),service_survey_report_path(report.id)
+                %td
+                  = report.created_at.to_date
+    = paginate(@service_surveys_reports)
+  - else
+    %h1.text-center
+      = t('service_report.index.thanks_for_answering')
+      %br
+      = t('service_report.index.no_report')
+    %p.text-center
+      %br
+      = link_to(t('service_report.index.return_to_root_path'), root_path, class: "btn btn-lg btn-primary")

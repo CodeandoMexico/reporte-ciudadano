@@ -1,0 +1,38 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('.title') %>
+  </h2>
+</div>
+
+
+<ul class=" nav nav-tabs padding-top">
+  <li class="active">
+    <%= link_to t(".enabled"), admins_inbox_index_path %>
+  </li>
+  <li>
+    <%= link_to t(".disabled"), surveys_admins_inbox_index_path %>
+  </li>
+  <li class="pull-right tab-pagination">
+    <%= page_entries_info_compact @service_requests %>
+    <%= paginate @service_requests, theme: 'compact' %>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="enabled">
+    <%= render 'filters' %>
+    <%= render 'service_requests' %>
+  </div>
+  <div class="tab-pane" id="disabled">
+    <%= render 'filters' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+
+  $(function() {
+    $( ".to" ).datepicker({ dateFormat: 'mm/dd/yy' });
+    $( ".from" ).datepicker({ dateFormat: 'mm/dd/yy' });
+  });
+</script>

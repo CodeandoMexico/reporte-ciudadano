@@ -1,11 +1,21 @@
 class PagesController < ApplicationController
+  layout 'landing'
+
   def index
-    @service_requests = ServiceRequest.filter_by_search(params).page(params[:page])
-    @open_service_requests = ServiceRequest.not_closed.count
-    @closed_service_requests = ServiceRequest.closed.count
-    @all_service_requests = ServiceRequest.count
-    @chart_data = Service.chart_data.to_json
-    @status_data = Status.select(:name, :id).to_json
-    flash.now[:notice] = "No se encontraron solicitudes de servicio." if @service_requests.empty?
+    @services_count = Service.count
+    @active_citizen_count =
+        Rails.cache.fetch("active-citizens-count-landing-page-cache", :expires_in => 1.hours) do
+          SurveyAnswer.pluck(:user_id).uniq.count
+        end
+
+    @public_servant_assessed_count =
+        Rails.cache.fetch("public-servant-assessed-count-landing-page-cache", :expires_in => 1.hours) do
+      Admin.public_servants_sorted_by_name.count
+        end
+    @url_video = ENV['VIMEO_VIDEO_KEY'] || '134171429'
+  end
+
+  def help
+    render layout: 'application'
   end
 end

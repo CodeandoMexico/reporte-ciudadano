@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t("admins.service_surveys.index.title") %></th>
+        <th><%= t("admins.service_surveys.index.services") %></th>
+        <th><%= t("admins.service_surveys.index.phase") %></th>
+        <th><%= t("admins.service_surveys.index.number_of_questions") %></th>
+        <th><%= t("admins.service_surveys.index.answered_count") %></th>
+        <th><%= t("admins.service_surveys.index.admin") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @surveys.each do |survey| %>
+        <tr>
+          <td>
+            <%= link_to survey.title, admins_service_survey_path(survey) %>
+          </td>
+          <td>
+            <%= survey.services_names %>
+          </td>
+          <td>
+            <%= t("service_survey_phase_options.#{survey.phase}") %>
+          </td>
+          <td>
+            <%= t("admins.service_surveys.index.questions_number", count: survey.questions_count) %>
+          </td>
+          <td>
+            <%= t("admins.service_surveys.index.answered_count_number", count: survey.respondents_count) %>
+          </td>
+          <td>
+            <%= survey.admin_name %>
+          </td>
+          <td>
+            <%= link_to t("admins.service_surveys.index.preview"), admins_service_survey_path(survey), class: "btn btn-info" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

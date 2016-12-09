@@ -3,11 +3,16 @@ es:
     page_entries_info:
       more_pages:
         display_entries: Mostrando <b>%{first}&nbsp;-&nbsp;%{last}</b> %{entry_name} de <b>%{total}</b> en total
+        display_entries_compact: <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b>
       one_page:
         display_entries:
           one: Mostrando <b>%{count}</b> %{entry_name}
           other: Mostrando <b>un total de %{count}</b> %{entry_name}
           zero: No se han encontrado %{entry_name}
+        display_entries_compact:
+          one: <b>%{count}</b>
+          other: <b>%{count}</b>
+          zero: 0
   views:
     pagination:
       first: '&laquo; Primera'
@@ -15,3 +20,5 @@ es:
       next: '&raquo;'
       previous: '&laquo;'
       truncate: '&hellip;'
+
+

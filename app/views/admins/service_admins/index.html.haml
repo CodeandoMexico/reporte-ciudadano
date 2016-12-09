@@ -1,36 +1,41 @@
 .page-content.inset
   %h2
-    = t('.service_admins')
+    = t('admins.service_admins.index.service_admins')
     .btn-group.pull-right
-      = link_to t('.new_service_admin'), new_admins_service_admin_path, class: 'btn btn-primary'
+      = link_to t('admins.service_admins.index.new_service_admin'), new_admins_service_admin_path, class: 'btn btn-primary'
 
-.table-responsive
-  %table.table.table-striped
-    %thead
-      %tr
-        %th
-          =t(".id")
-        %th
-          =t(".name")
-        %th
-          =t(".email")
-        %th
-          =t(".record_number")
-        %th
-          =t(".dependency")
-        %th
-          =t(".administrative_unit")
-        %th
-          =t(".charge")
-        %th
-    %tbody
-      - @service_admins.each do |service_admin|
-        %tr.service_admin
-          %td= service_admin.id
-          %td= service_admin.name
-          %td= service_admin.email
-          %td= service_admin.record_number
-          %td= service_admin.dependency
-          %td= service_admin.administrative_unit
-          %td= service_admin.charge
-          %td= link_to t(".edit"), edit_admins_service_admin_path(service_admin), class: "btn btn-default", id: "edit_service_admin_#{service_admin.id}"
+= search_form_for @search, url: admins_service_admins_path, method: :get, class: "filters form-inline" do |f|
+  .form-group.col-md-6
+    = f.select :id,
+                service_admins_name_options.map{|e| [e.join(" "), e[0]]},
+                { prompt: t('.name') },
+                class: 'chosen-select'
+  .form-group.col-md-6
+    = f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'
+  .form-group.col-md-6
+    = f.select :administrative_unit, administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') }, class: 'chosen-select'
+  .form-group.col-md-6
+    = f.select :record_number, record_number_options, { prompt: t('.record_number') }, class: 'chosen-select'
+
+  .form-group.col-md-12
+    = button_tag class: "submit btn btn-default" do
+      %i.glyphicon.glyphicon-search
+      = t('search')
+
+
+
+%ul.js-tabs.nav.nav-tabs.padding-top
+  %li.active
+    = link_to t("admins.service_admins.index.enabled"), '#enabled', data: { toggle: 'tab' }
+  %li
+    = link_to t("admins.service_admins.index.disabled"), '#disabled', data: { toggle: 'tab' }
+
+.tab-content
+  #enabled.tab-pane.active
+    = render partial: 'service_admins', locals: { service_admins: @service_admins }
+  #disabled.tab-pane
+    = render partial: 'service_admins', locals: { service_admins: @disabled_service_admins }
+
+:javascript
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);

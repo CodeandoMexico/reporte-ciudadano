@@ -10,5 +10,15 @@
     %i.icon-time
     = comment.created_at.strftime("%d/%m/%Y")
     - if admin_signed_in?
-      .destroy_comment
-        = link_to t('.destroy'), comment_path(comment), method: :delete
+      - if comment.approved && comment.commentable.is_a?(Admin)
+        %small.text-success
+          %em= t(".approved")
+        %span
+          |
+      - elsif current_admin.is_super_admin? && comment.commentable.is_a?(Admin)
+        %small= link_to t('.approve'), approve_comment_path(comment)
+        %span
+          |
+      %small= link_to t('.destroy'), comment_path(comment), method: :delete
+
+

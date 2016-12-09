@@ -1,0 +1,47 @@
+.navbar.navbar-default-admin.navbar-default
+  .containerer
+    .col-md-12.navbar-up.margin-bottom
+      %ul.navbar-nav.navbar-right
+        - if current_admin
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = current_admin.name || current_admin.email
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                = link_to  edit_admins_registration_path(current_admin) do
+                  %i.icon-cog
+                  = t('public_nav_bar.edit_profile')
+              %li.divider
+              %li
+                = link_to destroy_admin_session_path, method: :delete do
+                  %i.icon-off
+                  = t('public_nav_bar.sign_out')
+    .col-md-12
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to root_path, class: 'navbar-brand' do
+          = image_tag 'puebla-logo.png', class: "navbar-logo"
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav.navbar-right.text-right.padding-top
+          - if current_admin
+            .font-titles
+              = @title_page
+
+      - unless @cis.nil? || @cis.kind_of?(Array)
+        %div
+          %h3
+            .text-one-line
+              = link_to evaluations_path do
+                %span.glyphicon.glyphicon-chevron-left
+              = t("cis_evaluations.show.cis_evaluation_for", name: @cis.name)
+      - if @service_report.present? && @service.present?
+        %div
+          %h3
+            .text-one-line
+              = link_to evaluations_path do
+                %span.glyphicon.glyphicon-chevron-left
+              = @service.name

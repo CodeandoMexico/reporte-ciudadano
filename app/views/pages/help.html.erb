@@ -1,0 +1,21 @@
+<section class="help-section">
+  <header>
+    <h2 class='text-center'><%= t('sections.public.help.title') %></h2>
+    <p class='text-center'><%= t('sections.public.help.subtitle') %></p>
+  </header>
+
+  <div class="row">
+    <article class="col-md-6 text-center">
+      <%= image_tag t('sections.public.help.service_requests.icon') %>
+      <h4><%= t('sections.public.help.service_requests.title') %></h4>
+      <p><%= t('sections.public.help.service_requests.subtitle') %></p>
+      <%= link_to t('sections.public.help.download_guide'), '/descargas/guia_para_queja_o_sugerencia.docx', class: 'btn btn-blue' %>
+    </article>
+    <article class="col-md-6 text-center">
+      <%= image_tag t('sections.public.help.surveys.icon') %>
+      <h4><%= t('sections.public.help.surveys.title') %></h4>
+      <p><%= t('sections.public.help.surveys.subtitle') %></p>
+      <%= link_to t('sections.public.help.download_guide'), '/descargas/guia_para_evaluar_tramite.docx', class: 'btn btn-blue' %>
+    </article>
+  </div>
+</section>

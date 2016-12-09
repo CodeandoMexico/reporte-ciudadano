@@ -1,0 +1,83 @@
+<div class="navbar navbar-default navbar-fixed-top margin-observer">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"%>
+      <% end %>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right padding-top">
+        <% if current_admin %>
+          <li>
+            <%= link_to t('public_nav_bar.panel'), admins_dashboards_path %>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <%= current_admin.name || current_admin.email %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to edit_admins_registration_path(current_admin) do %>
+                  <i class="icon-cog"></i>
+                  <%= t('public_nav_bar.edit_profile') %>
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                  <i class="icon-off"></i>
+                  <%= t('public_nav_bar.sign_out') %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+
+        <% elsif current_user %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <%= current_user.name || current_user.email %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t("public_nav_bar.evaluations"), evaluations_path %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                  <i class="icon-cog"></i>
+                  <%= t('public_nav_bar.edit_profile') %>
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="icon-off"></i>
+                  <%= t('public_nav_bar.sign_out') %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to t('public_nav_bar.sign_up'), new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to t('public_nav_bar.sign_in'), new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <%unless @cis.nil? || @cis.kind_of?(Array) %>
+      <div >
+        <h3>
+          <div class="text-one-line">
+          <%= link_to evaluations_path do %>
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          <% end %>
+          <%= t("cis_evaluations.show.cis_evaluation_for", name: @cis.name) %>
+        </div>
+        </h3>
+      </div>
+    <%end%>
+  </div>
+</div>
