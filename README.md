@@ -8,10 +8,9 @@ Para utilizar el script de deploy con Chef se debe de correr:
 
 Hay algunos prerrequisitos como:
 - Verificar que en la carpeta `Deploy/data_bags/keys/secret.json` se encuentre la información correspondiente al
-ambiente que se va a hacer deploy. [Ver archivo de ejemplo](https://github.com/civica-digital/urbem-puebla/blob/master/Deploy/data_bags/keys/secret.json.example)
-
+ambiente que se va a hacer deploy.
 - Verificar que `Deploy/nodes/dominio.json` donde el nombre de archivo `dominio` corresponde a la IP o al dominio
-del ambiente objetivo. [Ver archivo de ejemplo](https://github.com/civica-digital/urbem-puebla/blob/master/Deploy/nodes/104.154.88.10.json)
+del ambiente objetivo.
 
 - Si vas a agregar nuevas variables de entorno para el contenedor de Ruby, asegúrate de agregarlas en el `hash` de
 `Deploy/site-cookbooks/urbem/libraries/creds_helper.rb`, además agregarlas en `docker/urbem-env.conf` para que se importen al
