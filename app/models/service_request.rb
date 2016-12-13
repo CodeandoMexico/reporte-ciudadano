@@ -15,6 +15,8 @@ class ServiceRequest < ActiveRecord::Base
   has_many :comments
   has_many :public_servants, through: :service, source: :admins
 
+  has_many :service_request_readings
+
   serialize :service_fields, JSON
 
   mount_uploader :media, ImageUploader
@@ -156,6 +158,18 @@ class ServiceRequest < ActiveRecord::Base
 
   def status_name
     status.name
+  end
+
+  def has_been_read_by?(admin)
+    service_request_readings.exists?(admin_id: admin.id)
+  end
+
+  def unread?(admin)
+    !service_request_readings.exists?(admin_id: admin.id)
+  end
+
+  def mark_as_read!(admin)
+    service_request_readings.where(admin_id: admin).first_or_create
   end
 
   private

@@ -7,7 +7,7 @@
         %span.icon-bar
       %row
         .col-md-12
-          = link_to root_path, class: 'navbar-brand navbar-logo-full' do
+          = link_to root_path, class: 'navbar-brand' do
             - if ENV["VEDA_ELECTORAL"] == "true" then
               = image_tag 'image_navbar_grises.png', class: "navbar-logo navbar-logo-full"
             - else

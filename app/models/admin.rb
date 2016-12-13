@@ -14,6 +14,9 @@ class Admin < ActiveRecord::Base
   has_many :service_requests, as: :requester
   has_many :managed_services, class: Service, foreign_key: :service_admin_id
   has_many :managed_service_requests, through: :managed_services, source: :service_requests
+
+  has_many :service_request_readings
+
   has_many :service_surveys
   has_one :api_key
   has_and_belongs_to_many :services

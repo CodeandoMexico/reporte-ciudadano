@@ -25,4 +25,8 @@ class Status < ActiveRecord::Base
     @@close ||= Status.find_by_name("Cerrado")
     @@close
   end
+
+  def self.exclude_closed
+    where("name != 'Cerrado'")
+  end
 end

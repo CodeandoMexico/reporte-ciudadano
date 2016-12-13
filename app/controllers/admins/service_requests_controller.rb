@@ -31,6 +31,9 @@ class Admins::ServiceRequestsController < Admins::AdminController
 
   def edit
     @service_request = ServiceRequest.find params[:id]
+
+    @service_request.mark_as_read!(current_admin)
+
     @comments = @service_request.comments.order("comments.created_at ASC")
     @admins_services = Service.where(id: @service_request.service.id).last.admins
   end

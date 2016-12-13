@@ -3,8 +3,6 @@
 # Cookbook Name:: urbem
 # Recipe:: default
 #
-# Copyright 2015, Cívica Digital
-#
 # AGPL License
 #
 

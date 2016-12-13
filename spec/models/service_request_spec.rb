@@ -21,6 +21,7 @@ describe ServiceRequest do
     it { should belong_to :requester }
     it { should belong_to :status }
     it { should have_many :comments }
+    it { should have_many :service_request_readings }
   end
 
   context 'callbacks' do
