@@ -101,8 +101,8 @@ class Admins::PublicServantsController < ApplicationController
       :name,
       :email,
       :record_number,
-      # :dependency,
-      # :administrative_unit,
+      :dependency,
+      :administrative_unit,
       :organisation_id,
       :agency_id,
       :charge,
@@ -120,8 +120,8 @@ class Admins::PublicServantsController < ApplicationController
       :name,
       :email,
       :record_number,
-      # :dependency,
-      # :administrative_unit,
+      :dependency,
+      :administrative_unit,
       :organisation_id,
       :agency_id,
       :charge,
@@ -157,13 +157,13 @@ class Admins::PublicServantsController < ApplicationController
     Services.is_assigned_to_public_servant?(service, public_servant)
   end
 
- # def dependency_options
- #    Services.service_dependency_options
- #  end
+  def dependency_options
+    Services.service_dependency_options
+  end
 
-  # def administrative_unit_options
-  #   Services.service_administrative_unit_options
-  # end
+  def administrative_unit_options
+    Services.service_administrative_unit_options
+  end
 
   def agency_options
     Agency.pluck(:name, :id)
