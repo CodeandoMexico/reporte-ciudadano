@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208061333) do
+ActiveRecord::Schema.define(version: 20161213092608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,12 @@ ActiveRecord::Schema.define(version: 20161208061333) do
 
   create_table "agencies", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organisation_id"
   end
+
+  add_index "agencies", ["organisation_id"], name: "index_agencies_on_organisation_id", using: :btree
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "access_token"
@@ -205,6 +208,16 @@ ActiveRecord::Schema.define(version: 20161208061333) do
 
   add_index "service_reports", ["service_id"], name: "index_service_reports_on_service_id", using: :btree
 
+  create_table "service_request_readings", force: :cascade do |t|
+    t.integer  "service_request_id"
+    t.integer  "admin_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "service_request_readings", ["admin_id"], name: "index_service_request_readings_on_admin_id", using: :btree
+  add_index "service_request_readings", ["service_request_id"], name: "index_service_request_readings_on_service_request_id", using: :btree
+
   create_table "service_requests", force: :cascade do |t|
     t.text     "description",                default: ""
     t.boolean  "anonymous",                  default: false
@@ -333,8 +346,11 @@ ActiveRecord::Schema.define(version: 20161208061333) do
   add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true, using: :btree
   add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
+  add_foreign_key "agencies", "organisations"
   add_foreign_key "questions", "service_surveys"
   add_foreign_key "service_reports", "services"
+  add_foreign_key "service_request_readings", "admins"
+  add_foreign_key "service_request_readings", "service_requests"
   add_foreign_key "service_surveys", "admins"
   add_foreign_key "survey_answers", "questions"
   add_foreign_key "survey_answers", "users"

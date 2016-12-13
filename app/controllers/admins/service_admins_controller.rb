@@ -85,8 +85,8 @@ class Admins::ServiceAdminsController < ApplicationController
       :name,
       :email,
       :record_number,
-      # :dependency,
-      # :administrative_unit,
+      :dependency,
+      :administrative_unit,
       :organisation_id,
       :agency_id,
       :charge,
@@ -107,6 +107,7 @@ class Admins::ServiceAdminsController < ApplicationController
   # def dependency_options
   #   Services.service_dependency_options
   # end
+
   def organisation_options
     Organisation.pluck(:name, :id)
   end

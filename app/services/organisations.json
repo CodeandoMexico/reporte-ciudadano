@@ -1,7 +1,7 @@
 [
   {
     "name": "Colegio de Bachilleres del Estado de Puebla",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Registro y Control Escolar del COBAEP"
       }
@@ -9,7 +9,7 @@
   },
   {
     "name": "Colegio de Educación Profesional Técnica del Estado de Puebla",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Servicios Escolares"
       }
@@ -17,7 +17,7 @@
   },
   {
     "name": "Colegio de Estudios Científicos y Tecnológicos del Estado de Puebla",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Dirección Académica"
       }
@@ -25,18 +25,18 @@
   },
   {
     "name": "Comité Administrador Poblano para la Construcción de Espacios Educativos",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Subdirección de Proyectos e Ingeniería"
       },
       {
-        "name": "Subdirección de Construcción y Supervisión"
+        "name": "Subdirección de Construcción y Supervisión."
       }
     ]
   },
   {
     "name": "Consejo Estatal para la Cultura y las Artes",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Fonoteca Vicente T. Mendoza"
       },
@@ -62,7 +62,7 @@
   },
   {
     "name": "Convenciones y Parques",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Dirección de Mercadotecnia y Ventas."
       }
@@ -70,7 +70,7 @@
   },
   {
     "name": "Coordinación Estatal de Asuntos Internacionales y de Apoyo a Migrantes Poblanos",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Dirección de apoyo y protección de migrantes"
       }
@@ -78,7 +78,7 @@
   },
   {
     "name": "Corporación Auxiliar de Policía y Protección Ciudadana",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Dirección de Promoción y Ventas de la Corporación Auxiliar de Policía y Protección Ciudadana."
       }
@@ -86,7 +86,7 @@
   },
   {
     "name": "Instituto de Capacitación para el Trabajo",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Entidad de Certificación y Evaluación ICATEP (ECE)"
       },
@@ -97,7 +97,7 @@
   },
   {
     "name": "Instituto de Educación Digital del Estado de Puebla",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Subdirección de Procesos Curriculares y la oficina de Control Escolar."
       },
@@ -108,7 +108,7 @@
   },
   {
     "name": "Instituto de Seguridad y Servicios Sociales de los Trabajadores al Servicio de los Poderes del Estado de Puebla",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Centro de Bienestar Social y Cultural"
       },
@@ -119,7 +119,7 @@
   },
   {
     "name": "Instituto Estatal de Educación para Adultos",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Desarrollo Administrativo"
       }
@@ -127,24 +127,18 @@
   },
   {
     "name": "Instituto Poblano de las Mujeres",
-    "agencies": [
+    "administrative_units": [
       {
-        "name": "Subdirección de Asuntos Jurídicos y Orientación Psicológica. "
+        "name": "Subdirección de Asuntos Jurídicos y Orientación Psicológica. Subdirección de Fortalecimiento y Vinculación Regional"
       },
       {
-        "name": "Subdirección de Fortalecimiento y Vinculación Regional"
-      },
-      {
-        "name": "Subdirección de Transversalización e Institucionalización de la Perspectiva de Género. "
-      },
-      {
-        "name": "Subdirección de Fortalecimiento y Vinculación Regional"
+        "name": "Subdirección de Transversalización e Institucionalización de la Perspectiva de Género. Subdirección de Fortalecimiento y Vinculación Regional"
       }
     ]
   },
   {
     "name": "Instituto Tecnológico de Venustiano Carranza",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Venustiano Carranza."
       }
@@ -152,7 +146,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Acatlán de Osorio",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares de la Subdirección de Planeación y Vinculación del Instituto Tecnológico Superior de Acatlán de Osorio."
       },
@@ -163,7 +157,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Atlixco ",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares"
       }
@@ -171,7 +165,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Ciudad Serdán",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares"
       }
@@ -179,7 +173,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Huauchinango",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Control Escolar del Instituto Tecnológico Superior de Huauchinango, \"Edificio J\" Planta alta."
       }
@@ -187,23 +181,23 @@
   },
   {
     "name": "Instituto Tecnológico Superior de la Sierra Negra de Ajalpan",
-    "agencies": [
+    "administrative_units": [
       {
-        "name": "Departamento de Servicios Escolares."
+        "name": "Departamento de Servicios Escolares"
       }
     ]
   },
   {
     "name": "Instituto Tecnológico Superior de la Sierra Norte de Puebla",
-    "agencies": [
+    "administrative_units": [
       {
-        "name": "Departamento de Servicios Escolares."
+        "name": "Departamento de Servicios Escolares"
       }
     ]
   },
   {
     "name": "Instituto Tecnológico Superior de Libres",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Servicios Escolares"
       }
@@ -211,7 +205,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de San Martín Texmelucan",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares"
       },
@@ -222,7 +216,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Tepeaca",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares de la Subdirección de Planeación y Evaluación del Instituto Tecnológico Superior de Tepeaca."
       }
@@ -230,7 +224,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Tepexi de Rodríguez",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Servicios Escolares del Instituto Tecnológico Superior de Tepexi de Rodríguez"
       }
@@ -238,7 +232,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Teziutlán",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Desarrollo Académico del Instituto Tecnológico Superior de Teziutlán."
       }
@@ -246,7 +240,7 @@
   },
   {
     "name": "Instituto Tecnológico Superior de Zacapoaxtla",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Desarrollo Académico"
       },
@@ -257,7 +251,7 @@
   },
   {
     "name": "Régimen Estatal de Protección Social en Salud",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Dirección de Afiliación y Operación"
       },
@@ -268,7 +262,7 @@
   },
   {
     "name": "Secretaría de Competitividad, Trabajo y Desarrollo Económico",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Junta Local de Conciliación y Arbitraje"
       },
@@ -293,12 +287,11 @@
       {
         "name": "Dirección General del Servicio Estatal de Empleo"
       }
-
     ]
   },
   {
     "name": "Secretaría de Contraloría",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Coordinación General Jurídica"
       },
@@ -314,8 +307,8 @@
     ]
   },
   {
-    "name": "Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial ",
-    "agencies": [
+    "name": "Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial",
+    "administrative_units": [
       {
         "name": "Coordinación General de Agronegocios"
       },
@@ -353,7 +346,7 @@
   },
   {
     "name": "Secretaría de Educación Pública",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Departamento de Escuelas Particulares de Básica"
       },
@@ -385,9 +378,293 @@
   },
   {
     "name": "Secretaría de Finanzas y Administración",
-    "agencies": [
+    "administrative_units": [
       {
         "name": "Dirección de asuntos fiscales litigiosos"
+      },
+      {
+        "name": "Dirección de Catastro"
+      },
+      {
+        "name": "Dirección de Fiscalización"
+      },
+      {
+        "name": "Dirección de Ingresos"
+      },
+      {
+        "name": "Dirección de Ingresos / Subdirección de control vehicular"
+      },
+      {
+        "name": "Dirección de Ingresos / Subdirección técnica de ingresos"
+      },
+      {
+        "name": "Dirección de Recaudación"
+      },
+      {
+        "name": "Dirección del Registro Público de la Propiedad"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Infraestructura y Transportes",
+    "administrative_units": [
+      {
+        "name": "Dirección de Administración de Concesiones y Permisos"
+      },
+      {
+        "name": "Dirección de Conservación"
+      },
+      {
+        "name": "Dirección de Licencias y Capacitación"
+      },
+      {
+        "name": "Dirección de Operación del Transporte"
+      },
+      {
+        "name": "Dirección de Operación del Transporte y Dirección de Ingeniería"
+      },
+      {
+        "name": "Dirección de Proyectos"
+      },
+      {
+        "name": "Dirección General Jurídica"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Seguridad Pública",
+    "administrative_units": [
+      {
+        "name": "Centro de Reinserción Social de Puebla"
+      },
+      {
+        "name": "Departamento de Comercialización de la Dirección Técnica"
+      },
+      {
+        "name": "Dirección de Empresas de Seguridad Privada"
+      },
+      {
+        "name": "Dirección de Vialidad"
+      },
+      {
+        "name": "Dirección del Heroico Cuerpo de Bomberos"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Turismo",
+    "administrative_units": [
+      {
+        "name": "Dirección de Relaciones Públicas / Dirección de Atención y Servicios al Turista"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría General de Gobierno",
+    "administrative_units": [
+      {
+        "name": "Dirección de Legalización y Apostilla"
+      },
+      {
+        "name": "Dirección de Notarías"
+      },
+      {
+        "name": "Dirección de Sanciones"
+      },
+      {
+        "name": "Dirección de Tenencia"
+      },
+      {
+        "name": "Dirección del Archivo de Notarías"
+      },
+      {
+        "name": "Dirección del Archivo General del Estado"
+      },
+      {
+        "name": "Dirección del Periódico Oficial del Estado"
+      },
+      {
+        "name": "Dirección General de Defensoría Pública"
+      },
+      {
+        "name": "Dirección General de Protección Civil"
+      },
+      {
+        "name": "Dirección General del Registro del Estado Civil de las Personas"
+      }
+    ]
+  },
+  {
+    "name": "Servicios de Salud del Estado de Puebla",
+    "administrative_units": [
+      {
+        "name": "Centro Estatal de la Transfusión Sanguínea."
+      },
+      {
+        "name": "Centro Estatal de Salud Mental"
+      },
+      {
+        "name": "Comisión Estatal de Arbitraje Médico"
+      },
+      {
+        "name": "Coordinación Estatal de Trasplante de Órganos y Tejidos."
+      },
+      {
+        "name": "Departamento de Enfermedades Crónicas No Transmisibles"
+      },
+      {
+        "name": "Departamento de Enfermedades Transmisibles"
+      },
+      {
+        "name": "Departamento de Salud Reproductiva"
+      },
+      {
+        "name": "Dirección de Protección Contra Riesgos Sanitarios."
+      },
+      {
+        "name": "Dirección de Salud Pública y Vigilancia Epidemiológica"
+      },
+      {
+        "name": "Subdirección de Hospitales"
+      },
+      {
+        "name": "Subdirección de Laboratorio de Salud Pública"
+      },
+      {
+        "name": "Unidad de Oncología"
+      }
+    ]
+  },
+  {
+    "name": "Sistema Integral para el Desarrollo Integral de la Familia",
+    "administrative_units": [
+      {
+        "name": "Departamento de Salud Mental"
+      },
+      {
+        "name": "Departamento de Vinculación con la Sociedad Civil"
+      },
+      {
+        "name": "Dirección de Asistencia Jurídica"
+      },
+      {
+        "name": "Dirección de Asistencia y Rehabilitación"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Intercultural del Estado de Puebla",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Interserrana del Estado de Puebla - Ahuacatlán",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares."
+      }
+    ]
+  },
+  {
+    "name": "Universidad Interserrana del Estado de Puebla - Chilchotla",
+    "administrative_units": [
+      {
+        "name": "Coordinación de Servicios Escolares."
+      }
+    ]
+  },
+  {
+    "name": "Universidad Politécnica de Amozoc",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Politécnica de Puebla",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares."
+      }
+    ]
+  },
+  {
+    "name": "Universidad Politécnica Metropolitana de Puebla",
+    "administrative_units": [
+      {
+        "name": "Oficina de Control Escolar de la Universidad Politécnica Metropolitana de Puebla"
+      },
+      {
+        "name": "Oficina Control Escolar de la UPMP"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Huejotzingo",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares (Edificio \"A\")"
+      },
+      {
+        "name": "Departamento de educación continua"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Izúcar de Matamoros",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios."
+      },
+      {
+        "name": "Centro Incubador de Empresas de Base Tecnológica Universidad Tecnológica de Izúcar de Matamoros (UTIM)"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Oriental",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares."
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Puebla",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares de la UTP."
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Tecamachalco",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Tehuacán",
+    "administrative_units": [
+      {
+        "name": "Departamento: Servicios Escolares"
+      },
+      {
+        "name": "Departamento: Prensa y Difusión"
+      }
+    ]
+  },
+  {
+    "name": "Universidad Tecnológica de Xicotepec de Juárez",
+    "administrative_units": [
+      {
+        "name": "Departamento de Servicios Escolares"
       }
     ]
   }

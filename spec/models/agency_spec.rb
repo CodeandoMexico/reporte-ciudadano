@@ -11,6 +11,7 @@ RSpec.describe Agency, type: :model do
 
   context 'associations' do
     it { should have_many :admins }
+    it { should belong_to :organisation }
   end
 
   context 'validations' do

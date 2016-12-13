@@ -28,9 +28,9 @@ class EvaluationsController < ApplicationController
     @search = Service.search(params[:q])
   end
 
-  # def service_cis_options
-  #   Services.service_cis_options
-  # end
+  def service_cis_options
+    Services.service_cis_options
+  end
 
   def service_office_options
     Office.pluck(:name, :id)
