@@ -18,7 +18,7 @@
         .modal-title
           %h4= t(".upload_services_csv")
       .modal-body
-        = form_tag  import_admins_services_path, multipart: true do
+        = form_tag import_admins_services_path, multipart: true do
           %p
             = file_field_tag :file
           = submit_tag t(".upload"), class: "btn btn-primary"

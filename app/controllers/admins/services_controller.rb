@@ -2,14 +2,24 @@ class Admins::ServicesController < Admins::AdminController
   before_action :authorize_admin, only: :show
   before_action :set_title
   before_action :set_search, only: :index
-  helper_method :service_type_options, :service_dependency_options, :service_administrative_unit_options, :service_cis_options, :is_assigned_to_cis?,:service_name_options
+
+
+  helper_method :service_type_options,
+                :organisation_options,
+                :service_dependency_options,
+                :agency_options,
+                :service_administrative_unit_options,
+                :service_cis_options,
+                :is_assigned_to_cis?,
+                :service_name_options
+
   before_action :set_admin
 
   def index
+    params[:q] ||= {}
     @services = Service.all
     search_services
     @statuses = Status.all
-
   end
 
   def new
@@ -108,8 +118,22 @@ class Admins::ServicesController < Admins::AdminController
     Services.service_dependency_options
   end
 
+  def organisation_options
+    if current_admin.is_super_admin?
+      Organisation.pluck(:name, :id)
+    else
+      [
+        [current_admin.organisation.name, current_admin.organisation.id]
+      ]
+    end
+  end
+
   def service_administrative_unit_options
     Services.service_administrative_unit_options
+  end
+
+  def agency_options
+    Agency.pluck(:name, :id)
   end
 
   def service_cis_options
@@ -124,6 +148,10 @@ class Admins::ServicesController < Admins::AdminController
     if params[:q].present?
       @services = @services.where(name:  params[:q][:name]) unless params[:q][:name].blank?
       @services = @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
+
+      @services = @services.where(organisation_id: params[:q][:organisation_id]) unless params[:q][:organisation_id].blank?
+      @services = @services.where(agency_id: params[:q][:agency_id] ) unless params[:q][:agency_id].blank?
+
       @services = @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
       @services = @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
     end
@@ -134,6 +162,16 @@ class Admins::ServicesController < Admins::AdminController
   end
 
   def service_params
-    params.require(:service).permit(:status, :name, :service_type, :dependency, :administrative_unit, :service_admin_id, messages: [:content, :status_id], service_fields: [:name], cis: [])
+    params.require(:service).permit(
+      :status,
+      :name,
+      :service_type,
+      :dependency,
+      :organisation_id,
+      :administrative_unit,
+      :agency_id,
+      :service_admin_id,
+      messages: [:content, :status_id], service_fields: [:name], cis: []
+    )
   end
 end

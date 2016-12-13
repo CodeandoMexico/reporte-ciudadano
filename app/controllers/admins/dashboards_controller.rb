@@ -24,6 +24,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
+    params[:q] ||= {}
     @services = Admins.services_for(current_admin).active
     search_service
     @title_page = I18n.t('.admins.dashboards.services.managed_services')
@@ -89,6 +90,9 @@ class Admins::DashboardsController < Admins::AdminController
     if params[:q].present?
       @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
       @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+
+      @services =  @services.where(organisation_id: params[:q][:organisation_id] ) unless params[:q][:organisation_id].blank?
+      @services =   @services.where(agency_id: params[:q][:agency_id] ) unless params[:q][:agency_id].blank?
       @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
     end
   end

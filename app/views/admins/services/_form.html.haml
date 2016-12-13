@@ -3,10 +3,10 @@
     #error_explanation
       %h2= t 'form.errors.prohibited', number_of_errors: @service.errors.count
       .ul.list-unstyled
-        - @service.errors.messages.each do |error_message| 
+        - @service.errors.messages.each do |error_message|
           .li.text-danger
             = error_message.last.last.html_safe
-          
+
   %fieldset
     .form-group
       -if @service.homoclave
@@ -25,14 +25,28 @@
         = f.select :service_type, service_type_options,{ prompt: I18n.t("form.options.service_type_select")},{ class: 'chosen-select'}
   %fieldset
     .form-group
-      = f.label :dependency, "#{t('form.labels.dependency')}*", class: 'col-lg-2 control-label'
+      / = f.label :dependency, "#{t('form.labels.dependency')}*", class: 'col-lg-2 control-label'
+      = f.label :organisation_id,
+                t('form.labels.dependency'),
+                class: 'col-md-2 control-label'
       .col-lg-8
-        = f.select :dependency, service_dependency_options,{ prompt: I18n.t("form.options.service_type_dependency")}, { class: 'chosen-select'}
+        / = f.select :dependency, service_dependency_options,{ prompt: I18n.t("form.options.service_type_dependency")}, { class: 'chosen-select'}
+        = f.select :organisation_id,
+                   organisation_options,
+                   { prompt: I18n.t("form.options.dependency_select") },
+                   class: 'chosen-select autocomplete-organisation_id'
   %fieldset
     .form-group
-      = f.label :administrative_unit, "#{t('form.labels.administrative_unit')}*", class: 'col-lg-2 control-label'
+      / = f.label :administrative_unit, "#{t('form.labels.administrative_unit')}*", class: 'col-lg-2 control-label'
+      = f.label :agency_id,
+                t('form.labels.administrative_unit'),
+                class: 'col-md-2 control-label'
       .col-lg-8
-        = f.select :administrative_unit, service_administrative_unit_options,{ prompt: I18n.t("form.options.service_type_administrative")},{ class: 'chosen-select'}
+        / = f.select :administrative_unit, service_administrative_unit_options,{ prompt: I18n.t("form.options.service_type_administrative")},{ class: 'chosen-select'}
+        = f.select :agency_id,
+                   agency_options,
+                   { prompt: I18n.t("form.options.administrative_unit_select") },
+                   class: 'chosen-select autocomplete-agency_id'
   %fieldset
     .form-group
       = f.label :cis, "#{t('form.labels.admin.cis')}*", class: 'col-md-2 control-label'

@@ -1,4 +1,6 @@
 class Service < ActiveRecord::Base
+  belongs_to :organisation
+  belongs_to :agency
   has_many :service_requests
   has_many :service_fields
   has_many :messages
@@ -32,6 +34,16 @@ class Service < ActiveRecord::Base
   end
 
   scope :active, -> { where(status: "activo") }
+
+  # Override method in order to support legacy
+  def dependency
+    self.organisation.try(:name)
+  end
+
+  # Override method in order to support legacy
+  def administrative_unit
+    self.agency.try(:name)
+  end
 
   def service_fields_names
     self.service_fields.pluck(:name).join(', ')
