@@ -42,23 +42,22 @@ gem 'bootstrap-switch-rails', '~> 3.0.0'
 
 group :test do
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'selenium-webdriver'
   gem 'capybara'
   gem 'selenium-webdriver'
 end
 
 group :development,:test do
+  gem 'rspec-rails'
   gem 'ffaker'
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'byebug'
-  # Spring speeds up development by keeping your application running in the background
+  gem 'byebug', platform: :mri
   gem 'spring'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -86,5 +85,4 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

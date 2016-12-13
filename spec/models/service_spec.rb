@@ -15,6 +15,8 @@ describe Service do
   context 'associations' do
     it { should have_many :service_fields }
     it { should have_many :messages }
+    it { should belong_to :organisation }
+    it { should belong_to :agency }
   end
   context 'methods' do
     let(:service) { create(:service) }

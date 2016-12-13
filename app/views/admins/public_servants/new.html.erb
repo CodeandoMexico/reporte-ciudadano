@@ -3,11 +3,11 @@
     <div class="col-md-12">
       <h2><%= t('.new_public_servant') %></h2>
       <%= form_for(:admin, url: admins_public_servants_path, html: { method: :post, class: 'form-horizontal' }) do |f| %>
-      <% if @admin.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= t 'form.errors.prohibited', number_of_errors: @admin.errors.count%></h2>
-      </div>
-      <% end %>
+        <% if @admin.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= t 'form.errors.prohibited', number_of_errors: @admin.errors.count%></h2>
+          </div>
+        <% end %>
 
       <fieldset>
         <div class="form-group">
@@ -52,17 +52,27 @@
       </fieldset>
       <fieldset>
         <div class="form-group">
-          <%= f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
+          <%#= f.label :dependency, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
+          <%= f.label :organisation_id, t('form.labels.dependency'), class: 'col-md-2 control-label' %>
           <div class="col-md-5">
-            <%= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') },class: 'chosen-select'%>
+            <%#= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') },class: 'chosen-select'%>
+            <%= f.select :organisation_id,
+                         organisation_options,
+                         { prompt: t('form.labels.dependency') },
+                         class: 'chosen-select' %>
           </div>
         </div>
       </fieldset>
       <fieldset>
         <div class="form-group">
-          <%= f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
+          <%#= f.label :administrative_unit, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
+          <%= f.label :agency_id, t('form.labels.administrative_unit'), class: 'col-md-2 control-label' %>
           <div class="col-md-5">
-            <%= f.select :administrative_unit, administrative_unit_options, { prompt: t('form.labels.administrative_unit') },class: 'chosen-select'  %>
+            <%#= f.select :agency_id, administrative_unit_options, { prompt: t('form.labels.administrative_unit') },class: 'chosen-select'  %>
+            <%= f.select :agency_id,
+                         agency_options,
+                         { prompt: t('form.labels.administrative_unit') },
+                         class: 'chosen-select' %>
           </div>
         </div>
       </fieldset>

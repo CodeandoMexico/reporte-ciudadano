@@ -1,4 +1,4 @@
-<div class="page-content  inset">
+<div class="page-content inset">
   <h2>
     <%= t('.public_servants') %>
     <div class="btn-group pull-right">
@@ -7,31 +7,7 @@
   </h2>
 </div>
 
-
-<%= search_form_for @search, url: admins_public_servants_path, method: :get, class: "filters form-inline" do |f|%>
-  <div class="form-group col-md-6">
-    <%= f.select :id, public_servants_name_options.map {|e| [e.join(" "), e[0]]}, { prompt: t('.name') }, class: 'chosen-select'%>
-  </div>
-  <div class="form-group col-md-6">
-    <%= f.select :dependency, dependency_options, { prompt: t('form.labels.dependency') }, class: 'chosen-select'%>
-  </div>
-  <div class="form-group col-md-6">
-   <%= f.select :administrative_unit, administrative_unit_options.map { |e| e}, { prompt: t('form.labels.administrative_unit') },class: 'chosen-select'%>
-    </div>
-    <div class="form-group col-md-6">
-   <%= f.select :record_number, @public_servants_record_number.map { |e| e}, { prompt: t('.record_number') },class: 'chosen-select'%>
-    </div>
-  <div class="form-group col-md-12">
-    <%= button_tag class: "submit btn btn-default" do %>
-     <div class="i glyphicon glyphicon-search">
-      <%= t('search')%>
-    </div>
-    <%end%>
-  </div>
-  <%end%>
-
-
-
+<%= render 'search_form' %>
 
 <ul class="js-tabs nav nav-tabs padding-top">
   <li class="active">
@@ -41,6 +17,7 @@
     <%= link_to t(".disabled"), "#disabled", "data-toggle" => "tab" %>
   </li>
 </ul>
+
 <div class="tab-content">
   <div class="tab-pane active" id="enabled">
     <div class="table-responsive">
@@ -55,35 +32,10 @@
             <th><%= t(".charge") %></th>
             <th><%= t(".services") %></th>
             <th></th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          <% @public_servants.each do |public_servant| %>
-            <tr class="public_servant">
-              <td><%= "#{public_servant.name} #{public_servant.surname} #{public_servant.second_surname}" %></td>
-              <td><%= public_servant.email %></td>
-              <td><%= public_servant.record_number %></td>
-              <td><%= public_servant.dependency %></td>
-              <td><%= public_servant.administrative_unit %></td>
-              <td><%= public_servant.charge %></td>
-              <td>
-                <% unless public_servant.has_no_services? %>
-                  <%= public_servant.services_names %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to t(".assign_services"), assign_services_admins_public_servant_path(public_servant), class: "btn btn-default" %>
-              </td>
-              <td>
-                <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
-              </td>
-              <td>
-                <%= link_to t(".disable"), disable_admins_public_servant_path(public_servant), class: "btn btn-danger", id: "disable_public_servant_#{public_servant.id}", "data-confirm" => t(".disable_admin_confirm") %>
-              </td>
-            </tr>
-          <% end %>
+          <%= render partial: 'public_servant', collection: @public_servants, as: 'public_servant' %>
         </tbody>
       </table>
     </div>
@@ -100,31 +52,10 @@
           <th><%= t(".charge") %></th>
           <th><%= t(".services") %></th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
-        <% @disabled_public_servants.each do |public_servant| %>
-          <tr class="public_servant">
-            <td><%= "#{public_servant.name} #{public_servant.surname} #{public_servant.second_surname}" %></td>
-            <td><%= public_servant.email %></td>
-            <td><%= public_servant.record_number %></td>
-            <td><%= public_servant.dependency %></td>
-            <td><%= public_servant.administrative_unit %></td>
-            <td><%= public_servant.charge %></td>
-            <td>
-              <% unless public_servant.has_no_services? %>
-                <%= public_servant.services_names %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
-            </td>
-            <td>
-              <%= link_to t(".enable"), enable_admins_public_servant_path(public_servant), class: "btn btn-success", id: "enable_public_servant_#{public_servant.id}", "data-confirm" => t(".enable_admin_confirm") %>
-            </td>
-          </tr>
-        <% end %>
+        <%= render partial: 'public_servant', collection: @disabled_public_servants, as: 'public_servant' %>
       </tbody>
     </table>
   </div>

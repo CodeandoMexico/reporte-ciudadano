@@ -742,6 +742,7 @@ es:
       service_type_dependency: "Selecciona la dependencia"
       service_type_administrative: "Selecciona el centro de atención"
       service_type_service_admin: "Selecciona al administrador"
+      administrative_unit_select: 'Selecciona una unidad administrativa'
   search_form:
     from_date: "De la fecha"
     to_date: "A la fecha"

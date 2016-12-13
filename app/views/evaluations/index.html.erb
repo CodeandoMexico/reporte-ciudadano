@@ -5,7 +5,11 @@
     <%= f.select :name, service_name_options, { prompt: t('.name') }, class: 'chosen-select'%>
   </div>
   <div class="form-group col-md-4">
-    <%= f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'%>
+    <%#= f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'%>
+    <%= f.select :cis,
+                 service_office_options,
+                 { prompt: t('form.labels.admin.cis') },
+                 class: 'chosen-select' %>
   </div>
   <div class="form-group col-md-12">
     <%= button_tag class: "submit btn btn-default" do %>
@@ -14,8 +18,8 @@
     </div>
     <%end%>
   </div>
-  <%end%>
-  <br>
+<%end%>
+<br>
 
 <% @services.each do |service| %>
   <div class="row">
@@ -60,7 +64,11 @@
 <h3><%= t('.cis_evaluations') %></h3>
 <%= search_form_for @search, url: evaluations_path, method: :get, class: "filters form-inline" do |f|%>
   <div class="form-group col-md-4">
-    <%= f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'%>
+    <%#= f.select :cis, service_cis_options.collect {|opt| [opt[:label], opt[:id]] }, { prompt: t('form.labels.admin.cis') }, class: 'chosen-select'%>
+    <%= f.select :cis,
+                 service_office_options,
+                 { prompt: t('form.labels.admin.cis') },
+                 class: 'chosen-select' %>
   </div>
   <div class="form-group col-md-12">
     <%= button_tag class: "submit btn btn-default" do %>

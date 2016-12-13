@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       get :surveys, on: :collection
     end
 
+    resources :agencies, only: :index
+
     resources :service_survey_reports, only: [:new, :create, :show, :index] do
       collection do
         get 'make_report'

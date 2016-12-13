@@ -1,7 +1,11 @@
 class Admins::DashboardsController < Admins::AdminController
   before_action :authorize_admin, only: :index
   before_action :set_search
-  helper_method :dependency_options, :administrative_unit_options, :cis_options
+
+  helper_method :dependency_options,
+                :organisation_options,
+                :administrative_unit_options,
+                :cis_options
 
   def design
     @logos = Logo.by_position
@@ -9,8 +13,8 @@ class Admins::DashboardsController < Admins::AdminController
 
   def index
     @service_requests = admin_requests.pending_moderation.page(params[:page])
-    @open_service_requests = admin_requests.open.count#select(&:open?).count
-    @closed_service_requests =  admin_requests.where(status_id: 2).count#.select(&:closed?).count
+    @open_service_requests = admin_requests.open.count #select(&:open?).count
+    @closed_service_requests =  admin_requests.where(status_id: 2).count #.select(&:closed?).count
     @all_service_requests = admin_requests.count
     @chart_data = chart_data.to_json
     @dependencies_chart_data = DependenciesChart.data(dependency_options).to_json
@@ -20,6 +24,7 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def services
+    params[:q] ||= {}
     @services = Admins.services_for(current_admin).active
     search_service
     @title_page = I18n.t('.admins.dashboards.services.managed_services')
@@ -56,8 +61,17 @@ class Admins::DashboardsController < Admins::AdminController
     Services.service_dependency_options
   end
 
+  def organisation_options
+    @organisation_opts ||= Organisation.pluck(:name)
+    @organisation_opts
+  end
+
   def administrative_unit_options
     Services.service_administrative_unit_options
+  end
+
+  def agency_options
+    Agency.pluck(:name, :id)
   end
 
   def cis_options
@@ -76,6 +90,9 @@ class Admins::DashboardsController < Admins::AdminController
     if params[:q].present?
       @services =  @services.where(dependency: params[:q][:dependency] ) unless params[:q][:dependency].blank?
       @services =   @services.where(administrative_unit: params[:q][:administrative_unit] ) unless params[:q][:administrative_unit].blank?
+
+      @services =  @services.where(organisation_id: params[:q][:organisation_id] ) unless params[:q][:organisation_id].blank?
+      @services =   @services.where(agency_id: params[:q][:agency_id] ) unless params[:q][:agency_id].blank?
       @services =  @services.where("cis ILIKE ANY ( array[?] )", "%#{params[:q][:cis]}%") unless params[:q][:cis].blank?
     end
   end

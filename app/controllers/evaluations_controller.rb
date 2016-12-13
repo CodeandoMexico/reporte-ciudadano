@@ -1,6 +1,11 @@
 class EvaluationsController < ApplicationController
   layout 'admins'
-  helper_method :service_cis_options, :service_name_options, :cis_options, :dependency_options
+  helper_method :service_cis_options,
+                :service_office_options,
+                :service_name_options,
+                :cis_options,
+                :dependency_options
+
   before_action :authorize_observer
   before_action :set_search, only: :index
   before_action :authenticate_user_or_admin!
@@ -25,6 +30,10 @@ class EvaluationsController < ApplicationController
 
   def service_cis_options
     Services.service_cis_options
+  end
+
+  def service_office_options
+    Office.pluck(:name, :id)
   end
 
   def service_name_options

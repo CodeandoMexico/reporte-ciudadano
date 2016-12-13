@@ -4,11 +4,11 @@ module Services
   end
 
   def self.service_dependency_options
-    load_values(:dependencies).fetch("dependencies").values
+    load_values(:dependencies).fetch('dependencies').values
   end
 
   def self.service_administrative_unit_options
-   load_values(:administrative_units).fetch("administrative_units").values
+   load_values(:administrative_units).fetch('administrative_units').values
   end
 
   def self.service_name_options
@@ -71,9 +71,8 @@ module Services
   end
 
   def self.public_servants_name_options(admin)
-    Admins.
-      public_servants_for(admin)
-      .pluck(:id, :name, :surname, :second_surname)
+    Admins.public_servants_for(admin)
+          .pluck(:id, :name, :surname, :second_surname)
   end
 
   def self.generate_homoclave_for(service)
@@ -82,6 +81,11 @@ module Services
   end
 
   private
+
+  def self.load_organisations
+    file = File.read(Rails.root.join('app','services', 'organisations.json'))
+    JSON.parse(file)
+  end
 
   def self.load_values(object)
     Rails.cache.fetch("#{object}-service-cache", :expires_in => 6.hours) do

@@ -11,3 +11,14 @@ erased_status = Status.create(name: "Eliminado")
 
 super_admin = Admin.create(name: "Super admin", email: "admin@admin.com", password: "password", password_confirmation: "password", active: true)
 observer = Admin.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
+
+# populate organisations with dependencies
+Organisations.build_from_json
+
+# populate offices with cis
+Office.delete_all
+Services.load_values(:cis).each do |cis|
+  office = Office.new(cis)
+  office.id = cis[:id]
+  office.save!
+end
