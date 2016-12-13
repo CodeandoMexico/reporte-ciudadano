@@ -30,7 +30,9 @@ module ServicesUploader
       name: hash_values[0],
       service_type: service_type(hash_values[1]),
       dependency: hash_values[2],
+      organisation_id: Organisation.find_by(name: hash_values[2]).try(:id),
       administrative_unit: hash_values[3],
+      agency_id: Agency.find_by(name: hash_values[3]).try(:id),
       cis: cis_ids(hash_values[4]),
       service_admin_id: service_admin_id_for(hash_values[5])
     }
