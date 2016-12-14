@@ -18,14 +18,22 @@ module DynamicReports
            :default => proc { [1.month.ago.to_date, Date.today]},
            header: I18n.t('activerecord.attributes.dynamic_reports.date_range'))
 
-    filter(:dependency,
+    filter(:organisation_id,
            :enum,
-           :select => scope.select(:dependency).uniq.order(:dependency).map(&:dependency),
+           :select => scope
+           .select(:organisation_id)
+           .uniq
+           .order(:organisation_id)
+           .map { |d| [d.dependency, d.organisation_id] },
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
 
-    filter(:administrative_unit, :enum, :select => scope.select(:administrative_unit).
-                                   uniq.order(:administrative_unit).map(&:administrative_unit),
+    filter(:agency_id,
+           :enum,
+           :select => scope.select(:agency_id)
+           .uniq
+           .order(:agency_id)
+           .map { |d| [d.administrative_unit, d.agency_id] },
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
 
     filter(:cis,
@@ -75,10 +83,10 @@ module DynamicReports
     column(:service_type, :order => "services.name" , header: I18n.t('activerecord.attributes.dynamic_reports.service_type')) do |record|
       "(#{I18n.t("service_type_options.#{record.service_type}")})"
     end
-    column(:dependency, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
+    column(:organisation_id, header: I18n.t('activerecord.attributes.dynamic_reports.dependency')) do |record|
       record.dependency
     end
-    column(:administrative_unit, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
+    column(:agency_id, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit')) do |record|
       record.administrative_unit
     end
     column(:manager, header: I18n.t('activerecord.attributes.dynamic_reports.admins')) do |record|
