@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'As a service admin I can create a new survey' do
 
-  let(:admin) { create(:admin, :service_admin) }
+  let(:admin) { create(:service_admin) }
 
   background do
     sign_in_admin admin

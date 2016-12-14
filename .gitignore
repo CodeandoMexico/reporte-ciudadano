@@ -31,3 +31,5 @@
 Guardfile
 coverage
 .powder
+
+public/assets
