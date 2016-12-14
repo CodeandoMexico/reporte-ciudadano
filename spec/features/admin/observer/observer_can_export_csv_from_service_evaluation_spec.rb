@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Observer can export csv from service evaluation' do
-  let(:observer) { create(:admin, :observer) }
+  let(:observer) { create(:observer) }
 
   scenario 'from cis results with every answer' do
     user = create :user, name: nil
