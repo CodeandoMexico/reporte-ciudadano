@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'As a service admin I can create new public servant' do
 
-  let(:admin) { create(:admin, :service_admin, dependency: dependency) }
+  let(:admin) { create(:service_admin, dependency: dependency) }
   let(:super_admin) { create(:admin) }
 
   scenario 'I can see a list of public servants in my dependency' do

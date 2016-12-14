@@ -13,23 +13,26 @@ FactoryGirl.define do
     disabled false
     active true
     dependency "Dependency"
-
-    factory :invalid_admin do
-      email nil
-      password nil
-      password_confirmation nil
-    end
-
-    trait :service_admin do
-      is_service_admin true
-      active true
-    end
-    trait :observer do
-      is_observer true
-    end
-    trait :public_servant do
-      is_public_servant true
-      active true
-    end
   end
+
+  factory :invalid_admin, parent: :admin do
+    email nil
+    password nil
+    password_confirmation nil
+  end
+
+  factory :service_admin, parent: :admin do
+    is_service_admin true
+    active true
+  end
+
+  factory :observer, parent: :admin do
+    is_observer true
+  end
+
+  factory :public_servant, parent: :admin do
+    is_public_servant true
+    active true
+  end
+
 end

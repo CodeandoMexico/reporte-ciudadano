@@ -8,7 +8,7 @@ FactoryGirl.define do
     dependency "La dependencia"
     administrative_unit "unidad administrativa"
     cis [1]
-    service_admin_id FactoryGirl.build(:admin,is_service_admin: true, active: true, id: 1).id
+    service_admin
     factory :invalid_service do
       name nil
     end

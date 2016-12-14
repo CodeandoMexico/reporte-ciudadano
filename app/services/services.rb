@@ -82,11 +82,6 @@ module Services
 
   private
 
-  def self.load_organisations
-    file = File.read(Rails.root.join('app','services', 'organisations.json'))
-    JSON.parse(file)
-  end
-
   def self.load_values(object)
     Rails.cache.fetch("#{object}-service-cache", :expires_in => 6.hours) do
       File.open(path_to(object)) { |file|

@@ -57,3 +57,14 @@ Disponible bajo la licencia GNU Affero General Public License (AGPL) v3.0. Ver e
 ### Testing
 
 Asegúrate de instalar geckodriver y exportar el PATH en tu entorno.
+
+
+### Migración de dependencias, unidades administrativas y cis a base de datos
+
+Si estás usando rake db:seed todo está bien, el archivo `seeds.rb` invoca a la tarea encargada de migrar
+
+Si deseas hacer la migración manual ejecuta:
+
+```
+$ bundle exec rake organisations:migrate
+```
