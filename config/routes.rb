@@ -57,7 +57,15 @@ Rails.application.routes.draw do
       end
       resources :messages, only: :index
     end
-    resources :estatus, as: :statuses, except: [:destroy], controller: :statuses , :path_names => { :new => "nuevo", :edit => "editar" }
+    resources :estatus,
+              as: :statuses,
+              controller: :statuses,
+              :path_names => {
+                :new => "nuevo",
+                :edit => "editar"
+              } do
+      put :change_status, on: :member
+    end
     resources :registro, as: :registrations, only: [:edit, :update] , :path_names => { :new => "nuevo", :edit => "editar" } , controller: :registrations do
       get :set_password, on: :member
       put :update_password, on: :member

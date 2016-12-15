@@ -305,6 +305,8 @@ es:
         disabled: 'Deshabilitados'
         disable_service_confirm: "¿Estás seguro de desactivar el servicio?"
         enable_service_confirm: "¿Estás seguro de activar el servicio?"
+        disable_status_confirm: "¿Estás seguro de desactivar el estatus?"
+        enable_status_confirm: "¿Estás seguro de activar el estatus?"
       new:
         header: 'Nuevo servicio'
         upload_services_csv: "Subir servicios en bulk"
@@ -495,9 +497,13 @@ es:
         service: "Servicio"
     statuses:
       new:
-        header: "Nuevo status"
+        header: "Nuevo estatus"
       edit:
-        header: 'Editar status'
+        header: 'Editar estatus'
+      alert:
+        delete: 'Borrar estatus'
+        inactive: 'Activar estatus'
+        active: 'Desactivar estatus'
     api_keys:
       index:
         header: "API: Credenciales de autenticación"
@@ -790,6 +796,7 @@ es:
     status:
       created: 'Estatus creado correctamente.'
       updated: 'Estatus actualizado correctamente.'
+      deleted: 'Estatus borrado correctmante'
     admin:
       password_updated: "La contraseña se ha actualizado con éxito."
       updated: 'El perfil fue editado satisfactoriamente.'

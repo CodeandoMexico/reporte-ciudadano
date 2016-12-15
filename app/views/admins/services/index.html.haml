@@ -100,10 +100,14 @@
                     = link_to edit_admins_service_path(service), class: 'btn btn-default',
                      "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.edit')}" do
                       %span.glyphicon.glyphicon-wrench
-                    = link_to admins_service_path(service), method: :delete,
-                    data: { confirm: t('alerts.destroy_confirmation') }, id: 'destroy-btn',
-                    class: 'btn btn-danger', disabled: service.cant_be_deleted?,
-                    "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.delete')}" do
+                    = link_to admins_service_path(service),
+                              method: :delete,
+                              data: { confirm: t('alerts.destroy_confirmation') },
+                              id: 'destroy-btn',
+                              class: 'btn btn-danger', disabled: service.cant_be_deleted?,
+                              "data-toggle":"tooltip",
+                              "data-placement":"top",
+                              "title":"#{t('admin.services.delete')}" do
                       %span.glyphicon.glyphicon-trash
                     = link_to t(".enable"), enable_service_admins_services_path(id: "#{service.id}"),
                     class: "btn btn-success", :data => {:confirm => t(".enable_service_confirm")},
@@ -122,9 +126,39 @@
       %tr
         %td= status.name
         %td
-          = link_to edit_admins_status_path(status), class: 'btn btn-default',
-          "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.edit')}" do
-            %span.glyphicon.glyphicon-wrench
+          .btn-group
+            = link_to edit_admins_status_path(status), class: 'btn btn-default',
+            "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.edit')}" do
+              %span.glyphicon.glyphicon-wrench
+
+            = link_to admins_status_path(status),
+                      method: :delete,
+                      disabled: status.cannot_be_deleted?,
+                      data: { confirm: t('alerts.destroy_confirmation') },
+                      id: 'destroy-btn',
+                      class: 'btn btn-danger',
+                      "data-toggle":"tooltip",
+                      "data-placement":"top",
+                      "title": t('admins.statuses.alert.delete') do
+              %span.glyphicon.glyphicon-trash
+            - if status.active?
+              = link_to t(".disable"),
+                        change_status_admins_status_path(status, status: { status: 'inactive' }),
+                        method: :put,
+                        class: "btn btn-danger",
+                        :data => { :confirm => t(".disable_status_confirm") },
+                        "data-toggle":"tooltip",
+                        "data-placement":"top",
+                        "title": t('admins.statuses.alert.active')
+            - else
+              = link_to t(".enable"),
+                        change_status_admins_status_path(status, status: { status: 'active' }),
+                        method: :put,
+                        class: "btn btn-success",
+                        :data => { :confirm => t(".enable_status_confirm") },
+                        "data-toggle":"tooltip",
+                        "data-placement":"top",
+                        "title": t('admins.statuses.alert.active')
 
 
 :javascript
