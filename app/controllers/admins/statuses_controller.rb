@@ -19,16 +19,14 @@ class Admins::StatusesController < Admins::AdminController
   end
 
   def edit
-    @status = Status.find(params[:id])
   end
 
   def update
-    @status = Status.find(params[:id])
-     if @status.update_attributes(status_params)
+    if @status.update_attributes(status_params)
       redirect_to admins_services_path, flash: { success: I18n.t('flash.status.updated') }
     else
       render :new
-     end
+    end
   end
 
   def change_status
