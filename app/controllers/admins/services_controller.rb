@@ -19,7 +19,7 @@ class Admins::ServicesController < Admins::AdminController
     params[:q] ||= {}
     @services = Service.all
     search_services
-    @statuses = Status.all
+    @statuses = Status.unscoped.all
   end
 
   def new
