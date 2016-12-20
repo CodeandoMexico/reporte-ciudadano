@@ -249,7 +249,7 @@ es:
         created_at: Fecha de creación
     shared:
       sidebar:
-        inbox: Bandela de entrada
+        inbox: Bandeja de entrada
         dashboard: "Panel de administración"
         summary: "Resumen"
         requests: "Quejas o sugerencias"
