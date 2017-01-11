@@ -1,0 +1,1382 @@
+---
+- :id: 1
+  :name: 'CAPCEE Comité Administrador Poblano para la Construcción de Espacios Educativos.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 2
+  :name: 'CAPPC Corporación Auxiliar de Policía de Protección Ciudadana'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 3
+  :name: 'Caravanas de la salud del interior del estado'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 4
+  :name: 'CEAIAMP Coordinación Estatal de Asuntos Internacionales y de Apoyo a Migrantes Poblanos'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 5
+  :name: 'CEAIAMP Oficina de Representación - Mi casa es Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 6
+  :name: 'CECAP Biblioteca Palafoxiana'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 7
+  :name: 'CECAP Casa del Escritor, CECAP Talleres de Iniciación Artística'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 8
+  :name: 'CECAP Cinemateca Luis Buñuel'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 9
+  :name: 'CECAP Coordinación de Espacios San Pedro Museo de Arte'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 10
+  :name: 'CECAP Dirección de Música'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 11
+  :name: 'CECAP Fonoteca Vicente T. Mendoza'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 12
+  :name: 'CECAP Museo de Arte Popular Poblano Exconvento de Santa Rosa'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 13
+  :name: 'CECAP Museo de la Revolución Mexicana'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 14
+  :name: 'CECAP Museo José Luis Bello y González,'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 15
+  :name: 'CECAP Museo Regional Casa del Alfeñique'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 16
+  :name: 'CECAP Talleres de Iniciación Artística'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 17
+  :name: 'CECyTE Plantel Chignahuapan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 18
+  :name: 'CECyTE Plantel Cholula'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 19
+  :name: 'CECyTE Plantel Guadalupe Victoria'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 20
+  :name: 'CECyTE Plantel Huejotzingo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 21
+  :name: 'CECyTE Plantel Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 22
+  :name: 'CECyTE Plantel Tehuitzingo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 23
+  :name: 'CECyTE Plantel Venustiano Carranza'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 24
+  :name: 'CECyTE Plantel Xicotepec de Juárez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 25
+  :name: 'CECyTE Plantel Magdalena'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 26
+  :name: 'Centro de Salud Rural'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 27
+  :name: 'Centro Integral de Servicios Atlixco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 28
+  :name: 'Centro Integral de Servicios Ciudad Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 29
+  :name: 'Centro Integral de Servicios Izúcar de Matamoros'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 30
+  :name: 'Centro Integral de Servicios Puebla Edificio Ejecutivo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 31
+  :name: 'Centro Integral de Servicios Puebla Edificio Norte'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 32
+  :name: 'Centro Integral de Servicios Puebla Edificio Sur'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 33
+  :name: 'Centro Integral de Servicios San Javier'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 34
+  :name: 'Centro Integral de Servicios Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 35
+  :name: 'Centro Integral de Servicios Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 36
+  :name: 'Centro Integral de Servicios Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 37
+  :name: 'Centro Integral de Servicios Xicotepec'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 38
+  :name: 'Centros de Salud Urbano'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 39
+  :name: 'CONALEP Extensión Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 40
+  :name: 'CONALEP Plantel Atencingo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 41
+  :name: 'CONALEP Plantel Calipam'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 42
+  :name: 'CONALEP Plantel Chipilo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 43
+  :name: 'CONALEP Plantel Huauchinango'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 44
+  :name: 'CONALEP Plantel I Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 45
+  :name: 'CONALEP Plantel II Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 46
+  :name: 'CONALEP Plantel III Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 47
+  :name: 'CONALEP Plantel San Martín Texmelucan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 48
+  :name: 'CONALEP Plantel Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 49
+  :name: 'CONALEP Plantel Teziutlan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 50
+  :name: 'CONCYTEP Planetario Puebla "Germán Martínez Hidalgo"'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 51
+  :name: 'Convenciones y Parques (Centro Cívico Cultural Cinco de Mayo)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 52
+  :name: 'Convenciones y Parques (Centro de Convenciones Puebla)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 53
+  :name: 'Convenciones y Parques (Eco Parque Metropolitano)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 54
+  :name: 'Convenciones y Parques (Estrella de Puebla)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 55
+  :name: 'Convenciones y Parques (Hacienda de Chautla)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 56
+  :name: 'Convenciones y Parques (Módulo de Información del Río Atoyac)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 57
+  :name: 'Convenciones y Parques (Parque Bicentenario "18 de Noviembre")'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 58
+  :name: 'Convenciones y Parques (Parque de la niñez)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 59
+  :name: 'Convenciones y Parques (Parque del Arte)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 60
+  :name: 'Convenciones y Parques (Parque Ecológico Revolución Mexicana)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 61
+  :name: 'Convenciones y Parques (Teleférico de Puebla)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 62
+  :name: 'Corde municipal.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 63
+  :name: 'Dirección de Control Escolar'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 64
+  :name: 'Dirección de Escuelas Particulares'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 65
+  :name: 'Dirección General de Desarrollo Educativo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 66
+  :name: 'Dirección General del Registro del Estado Civil de las Personas'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 67
+  :name: 'EMSAD Plantel Boca del Monte'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 68
+  :name: 'EMSaD Plantel Buena Vista'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 69
+  :name: 'EMSaD Plantel La Pahua'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 70
+  :name: 'EMSaD Plantel Mexcaltoxhintla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 71
+  :name: 'EMSaD Plantel Naranjastitla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 72
+  :name: 'EMSaD Plantel Santa Elena'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 73
+  :name: 'EMSaD Plantel Tlaolantongo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 74
+  :name: 'EMSaD Plantel Ameluca'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 75
+  :name: 'Hospital Comunitario'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 76
+  :name: 'Hospital General'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 77
+  :name: 'ICATEP Unidad de Capacitación Chiautla de Tapía'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 78
+  :name: 'ICATEP Unidad de Capacitación Izucar de Matamoros'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 79
+  :name: 'ICATEP Unidad de Capacitación Oriental'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 80
+  :name: 'ICATEP Unidad de Capacitación Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 81
+  :name: 'ICATEP Unidad de Capacitación San Martín Texmelucan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 82
+  :name: 'ICATEP Unidad de Capacitación San Pedro Cholula'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 83
+  :name: 'ICATEP Unidad de Capacitación Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 84
+  :name: 'ICATEP Unidad de Capacitación Tehuacan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 85
+  :name: 'ICATEP Unidad de Capacitación Acatlán de Osorio'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 86
+  :name: 'ICATEP Unidad de Capacitación Amozoc de Mota'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 87
+  :name: 'ICATEP Unidad de Capacitación Atlixco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 88
+  :name: 'ICATEP Unidad de Capacitación Ciudad Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 89
+  :name: 'ICATEP Unidad de Capacitación Huauchinango'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 90
+  :name: 'ICATEP Unidad de Capacitación Tepexi de Rodriguez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 91
+  :name: 'ICATEP Unidad de Capacitación Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 92
+  :name: 'ICATEP Unidad de Capacitación Zacatlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 93
+  :name: 'IEDEP Cuetzalan de Progreso'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 94
+  :name: 'IEDEP Tlatlauquitepec'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 95
+  :name: 'IEDEP Tulancingo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 96
+  :name: 'IEDEP Xicotepec'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 97
+  :name: 'IEDEP Zihuateutla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 98
+  :name: 'IEEA Instituto Estatal de Educación para Adultos'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 99
+  :name: 'Instituto de Educación Digital del Estado de Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 100
+  :name: 'Instituto Tecnológico Superior de Acatlán de Osorio.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 101
+  :name: 'Instituto Tecnológico Superior de Atlixco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 102
+  :name: 'Instituto Tecnológico Superior de Ciudad Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 103
+  :name: 'Instituto Tecnológico Superior de Huauchinango'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 104
+  :name: 'Instituto Tecnológico Superior de la Sierra Negra de Ajalpan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 105
+  :name: 'Instituto Tecnológico Superior de Libres'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 106
+  :name: 'Instituto Tecnológico Superior de San Martín Texmelucan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 107
+  :name: 'Instituto Tecnológico Superior de Tepeaca'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 108
+  :name: 'Instituto Tecnológico Superior de Tepexi de Rodríguez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 109
+  :name: 'Instituto Tecnológico Superior de Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 110
+  :name: 'Instituto Tecnológico Superior de Venustiano Carranza'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 111
+  :name: 'Instituto Tecnológico Superior de Zacapoaxtla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 112
+  :name: 'Instituto Tenológico Superior de la Sierra Norte de Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 113
+  :name: 'IPM Instituto Poblano de las Mujeres'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 114
+  :name: 'IRCEP Direccion del Registro Publico de la Propiedad Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 115
+  :name: 'IRCEP Oficina Catastral de Acatlán de Osorio'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 116
+  :name: 'IRCEP Oficina Catastral de Atlixco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 117
+  :name: 'IRCEP Oficina Catastral de Chiautla de Tapia'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 118
+  :name: 'IRCEP Oficina Catastral de Chignahuapan.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 119
+  :name: 'IRCEP Oficina Catastral de Cholula'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 120
+  :name: 'IRCEP Oficina Catastral de Ciudad Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 121
+  :name: 'IRCEP Oficina Catastral de Huauchinango.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 122
+  :name: 'IRCEP Oficina Catastral de Huejotzingo.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 123
+  :name: 'IRCEP Oficina Catastral de Izucar de Matamoros.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 124
+  :name: 'IRCEP Oficina Catastral de Libres.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 125
+  :name: 'IRCEP Oficina Catastral de Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 126
+  :name: 'IRCEP Oficina Catastral de Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 127
+  :name: 'IRCEP Oficina Catastral de Tepeaca'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 128
+  :name: 'IRCEP Oficina Catastral de Tepexi de Rodríguez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 129
+  :name: 'IRCEP Oficina Catastral de Tetela de Ocampo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 130
+  :name: 'IRCEP Oficina Catastral de Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 131
+  :name: 'IRCEP Oficina Catastral de Tlatlauquitepec.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 132
+  :name: 'IRCEP Oficina Catastral de Xicotepec de Juárez.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 133
+  :name: 'IRCEP Oficina Catastral de Zacapoaxtla.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 134
+  :name: 'IRCEP Oficina Catastral de Zacatlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 135
+  :name: 'IRCEP Oficina Catastral Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 136
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Acatlán de Osorio'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 137
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Atlixco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 138
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Chiautla de Tapia'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 139
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Chignahuapan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 140
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Cholula'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 141
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Ciudad Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 142
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Huauchinango.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 143
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Huejotzingo.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 144
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Izucar de Matamoros.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 145
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Libres.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 146
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tecali de Herrera'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 147
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 148
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 149
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tepeaca'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 150
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tepexi de Rodríguez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 151
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tetela de Ocampo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 152
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 153
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Tlatlauquitepec.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 154
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Xicotepec de Juárez.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 155
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Zacapoaxtla.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 156
+  :name: 'IRCEP Oficina del Registro Público de la Propiedad de Zacatlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 157
+  :name: 'IRCEP OficinaCatastral de Tecali de Herrera'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 158
+  :name: 'ISSSTEP Clínica uno'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 159
+  :name: 'ISSSTEP Cursos en el Centro de Bienestar Social y Cultural.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 160
+  :name: 'Módulo de atención de Chiautla de Tapia'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 161
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Acatlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 162
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Atlixco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 163
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Cholula'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 164
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Ciudad Serdán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 165
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Huauchinango'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 166
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Izúcar De Matamoros'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 167
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 168
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Tepeaca'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 169
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Tepexi de Rodríguez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 170
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Tetela de Ocampo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 171
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 172
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Tlatlauquitepec'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 173
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Xicotepec'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 174
+  :name: 'Oficina Recaudadora y de Asistencia al Contribuyente de Zacatlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 175
+  :name: 'Otra oficina recaudadora.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 176
+  :name: 'Otro Juzgado del interior del estado'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 177
+  :name: 'REPSS Seguro Popular'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 178
+  :name: 'SDRSOT Centro de Verificación Vehicular'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 179
+  :name: 'SDRSOT Centro Estatal de Prevención y Combate de Incendios Forestales'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 180
+  :name: 'SDRSOT Centro Piscícola San Diego Acapulco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 181
+  :name: 'SDRSOT Delegación Xicotepec de Juárez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 182
+  :name: 'SDRSOT Parque Estatal General Lázaro Cárdenas "Flor del Bosque"'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 183
+  :name: 'SDRSOT Secretaría de Desarrollo Rural, Sustentabilidad y Ordenamiento Territorial'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 184
+  :name: 'SDRSOT Subsecretaría de Desarrollo Rural'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 185
+  :name: 'SECOTRADE Dirección de Comercio Exterior y Centro Pymexporta'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 186
+  :name: 'SECOTRADE Dirección de Promoción'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 187
+  :name: 'SECOTRADE Dirección General de Asuntos Legales'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 188
+  :name: 'SECOTRADE Dirección General de Competitividad, Trabajo y Previsión Social'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 189
+  :name: 'SECOTRADE Dirección General de Gestión, Promoción y Evaluación de Fondos'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 190
+  :name: 'SECOTRADE Dirección General del Servicio Estatal de Empleo Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 191
+  :name: 'SECOTRADE Dirección General del Servicio Estatal de Empleo Teziutlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 192
+  :name: 'SECOTRADE Junta Local de Conciliación y Arbitraje'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 193
+  :name: 'SECOTRADE Procuraduria de la Defensa del Trabajo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 194
+  :name: 'Secretaría de Educación Pública del Estado de Puebla (Oficina Central)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 195
+  :name: 'Secretaría de Infraestructura y Transportes'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 196
+  :name: 'Secretaría de Infraestructura y Transportes Chignahuapan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 197
+  :name: 'Secretaría de Infraestructura y Transportes Huauchinango'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 198
+  :name: 'Secretaría de Infraestructura y Transportes Módulo de licencias Plaza Finanzas'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 199
+  :name: 'Secretaría de Infraestructura y Transportes Módulo de Licencias Tepeaca'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 200
+  :name: 'Secretaría de Infraestructura y Transportes Oficinas La Paz'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 201
+  :name: 'Secretaría de Infraestructura y Transportes San Martín Texmelucan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 202
+  :name: 'SECTUR Secretaria de Turismo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 203
+  :name: 'SEDIF Centro Cultural y Deportivo "Margarita Maza de Juárez"'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 204
+  :name: 'SEDIF Centro de Rehabilitación y Educación Especial (CREE)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 205
+  :name: 'SEDIF Departamento de Ecología de la Salud'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 206
+  :name: 'SEDIF Departamento de Salud Mental'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 207
+  :name: 'SEDIF Departamento de vinculación educativa'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 208
+  :name: 'SEDIF Oficinas Centrales'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 209
+  :name: 'SEP Centro de Desarrollo, Formación y Recreación.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 210
+  :name: 'SEP Complejo Deportivo Cuautlancingo Salomón Jauli Dávila'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 211
+  :name: 'SEP Departamento de Planeación e Integración Presupuestales de la Dirección General de Planeación y Programación Presupuestales.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 212
+  :name: 'SEP Departamento de Preparatoria Abierta.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 213
+  :name: 'SEP Instituto Poblano de Cultura Física y Deportiva.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 214
+  :name: 'SEP Instituto Poblano del Deporte y Juventud Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 215
+  :name: 'SEP Pabellón Olímpico'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 216
+  :name: 'SEP Polideportivo Parque Ecológico'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 217
+  :name: 'SEP Polideportivo San Andrés Cholula'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 218
+  :name: 'SEP Unidad Deportiva "Mario Vázquez Raña"'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 219
+  :name: 'SGG Dirección de Legalización y Apostilla de la Secretaría General de Gobierno'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 220
+  :name: 'SGG Dirección de Notarías de la Secretaría General de Gobierno'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 221
+  :name: 'SGG Dirección de Tenencia de la Secretaría General de Gobierno'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 222
+  :name: 'SGG Dirección del Archivo de Notarías'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 223
+  :name: 'SGG Dirección del Archivo General del Estado'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 224
+  :name: 'SGG Dirección del Periódico Oficial del Estado de Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 225
+  :name: 'SGG Dirección General de Defensoría Pública / Dirección de Oficinas Regionales'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 226
+  :name: 'SGG Dirección General de Defensoría Pública /Tercera Delegación del Ministerio Público (sur)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 227
+  :name: 'SGG Dirección General de Defensoría Pública/Agencia del Ministerio Publico Especializada en Delitos Sexuales y Violencia Familiar'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 228
+  :name: 'SGG Dirección General de Defensoría Pública/Agencia del Ministerio Público Especializado en Justicia para Adolescentes'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 229
+  :name: 'SGG Dirección General de Defensoría Pública/Agencia Especializada en la Investigación de Robo de Vehículos'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 230
+  :name: 'SGG Dirección General de Defensoría Pública/Cuarta Delegación del Ministerio Público (oriente)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 231
+  :name: 'SGG Dirección General de Defensoría Pública/Dirección General de Investigación y Combate al Delito de Secuestros y Dirección General de Atención a Delitos de Alto Impacto'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 232
+  :name: 'SGG Dirección General de Defensoría Pública/Primera Delegación del Ministerio Público (centro)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 233
+  :name: 'SGG Dirección General de Defensoría Pública/Quinta Delegación del Ministerio Público (popular)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 234
+  :name: 'SGG Dirección General de Defensoría Pública/Segunda Delegación del Ministerio Público (Norte)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 235
+  :name: 'SGG Dirección General de Defensoría Pública/Séptima Delegación del Ministerio Público (bicentenario)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 236
+  :name: 'SGG Dirección General de Defensoría Pública/Sexta Delegación del Ministerio Público (margarita)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 237
+  :name: 'SGG Dirección General de Protección Civil.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 238
+  :name: 'SGG Dirección Sanciones de la Secretaría General de Gobierno'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 239
+  :name: 'SGG Juzgado Cuarto del Registro Civil'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 240
+  :name: 'SGG Juzgado Primero del Registro Civil'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 241
+  :name: 'SGG Juzgado Quinto del Registro Civil'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 242
+  :name: 'SGG Juzgado Segundo del Registro Civil'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 243
+  :name: 'SGG Juzgado Tercero del Registro Civil'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 244
+  :name: 'SSEP CAPASITS'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 245
+  :name: 'SSEP Centro de salud con sevicios ampliados Romero Vargas'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 246
+  :name: 'SSEP Centro de salud con sevicios ampliados San Felipe Hueyotlipan'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 247
+  :name: 'SSEP Centro de salud urbano México 68'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 248
+  :name: 'SSEP Centro Estatal de Salud Mental'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 249
+  :name: 'SSEP Comisión Estatal de Arbitraje médico'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 250
+  :name: 'SSEP Departamento de enfermedades transmitibles'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 251
+  :name: 'SSEP Dirección de protección contra riesgos sanitarios'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 252
+  :name: 'SSEP Hospital General de la Zona Norte'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 253
+  :name: 'SSEP Hospital General de Puebla Sur'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 254
+  :name: 'SSEP Laboratorio Estatal de Salud Pública'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 255
+  :name: 'SSEP Unidad de Oncología'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 256
+  :name: 'SSP Centro de Reinserción Social de Ciudad Serdán, Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 257
+  :name: 'SSP Centro de Reinserción Social de Tepexi de Rodríguez, Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 258
+  :name: 'SSP Centro de Reinserción Social del Estado'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 259
+  :name: 'SSP Dirección de Vialidad Estatal (Área de infracciones)'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 260
+  :name: 'SSP Dirección del Heroico Cuerpo de Bomberos'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 261
+  :name: 'SSP Dirección Técnica de la Dirección General de Centros de Reinserción Social del Estado'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 262
+  :name: 'Unidad Integral de Servicios El Alto'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 263
+  :name: 'Unidad Integral de Servicios Puebla I Finanzas'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 264
+  :name: 'Universidad Intercultural del Estado de Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 265
+  :name: 'Universidad Interserrana del Estado de Puebla – Ahuacatlán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 266
+  :name: 'Universidad Interserrana del Estado de Puebla-Chilchotla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 267
+  :name: 'Universidad Politécnica de Amozoc.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 268
+  :name: 'Universidad Politécnica de Puebla.'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 269
+  :name: 'Universidad Politécnica Metropolitana de Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 270
+  :name: 'Universidad Tecnológica de Huejotzingo'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 271
+  :name: 'Universidad Tecnológica de Izúcar de Matamoros'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 272
+  :name: 'Universidad Tecnológica de Oriental'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 273
+  :name: 'Universidad Tecnológica de Puebla'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 274
+  :name: 'Universidad Tecnológica de Tecamachalco'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 275
+  :name: 'Universidad Tecnológica de Tehuacán'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+- :id: 276
+  :name: 'Universidad Tecnológica de Xicotepec de Juárez'
+  :address: ''
+  :phone: ''
+  :schedule: ''
+
