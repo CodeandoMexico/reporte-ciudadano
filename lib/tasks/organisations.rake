@@ -8,15 +8,18 @@ namespace :organisations do
 
     Organisation.destroy_all
     Agency.destroy_all
+    agency_id = 1
     json_organisations.each_with_index do |item, index|
       organisation = Organisation.new(name: item['name'])
       organisation.id = index + 1
       organisation.save!
 
-      item['administrative_units'].each_with_index do |admin_unit, auindex|
+      item['administrative_units'].each do |admin_unit, auindex|
         agency = Agency.new(name: admin_unit['name'])
+        agency.id = agency_id
         agency.organisation_id = organisation.id
         agency.save!
+        agency_id += 1
       end
     end
     p 'Organisation and agencies migration finished'
