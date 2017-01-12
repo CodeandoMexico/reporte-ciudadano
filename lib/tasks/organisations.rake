@@ -14,7 +14,7 @@ namespace :organisations do
       organisation.id = index + 1
       organisation.save!
 
-      item['administrative_units'].each do |admin_unit, auindex|
+      item['administrative_units'].each do |admin_unit|
         agency = Agency.new(name: admin_unit['name'])
         agency.id = agency_id
         agency.organisation_id = organisation.id
