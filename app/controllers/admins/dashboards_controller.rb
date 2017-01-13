@@ -33,14 +33,12 @@ class Admins::DashboardsController < Admins::AdminController
 
   def export
     csv_file, csv_filename = ServiceRequests.general_report_csv.to_csv
-    send_data csv_file,
-              filename: csv_filename,
-              type: 'text/plain;'
+    send_data csv_file, filename: csv_filename, type: 'text/plain;'
   end
 
   def export_dependencies
     csv_file, csv_filename = DependenciesChart.general_report_csv(dependency_options).to_csv
-    send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
+    send_data csv_file, filename: csv_filename, type: 'text/plain;'
   end
 
   private

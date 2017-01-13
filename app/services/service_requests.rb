@@ -40,7 +40,7 @@ module ServiceRequests
     end
 
     def file
-      CSV.generate do |csv|
+      CSV.generate(encoding: "windows-1250") do |csv|
         table.each { |row| csv << row }
       end
     end
@@ -103,13 +103,10 @@ module ServiceRequests
       "Reporte_quejas_#{Date.today.to_s.gsub(/[\/]/,'-')}.csv"
     end
 
-
     def file
-      CSV.generate do |csv|
+      CSV.generate(encoding: "windows-1250")do |csv|
         table.each { |row| csv << row }
       end
     end
-
-
   end
 end
