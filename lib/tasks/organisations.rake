@@ -42,7 +42,7 @@ namespace :organisations do
 
     p 'Migrating offices'
     Office.delete_all
-    Services.load_values(:cis).each do |cis|
+    Services.load_values(:cis17).each do |cis|
       office = Office.new(cis)
       office.id = cis[:id]
       office.save!

@@ -18,11 +18,11 @@ module Services
   def self.service_cis_options
     unless Rails.env.test?
       load_values(:cis17).map do |cis|
-        { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }
+        { id: cis[:id], label: "#{cis[:name]}" }
       end
     else
       load_values(:cis17_test).map do |cis|
-        { id: cis[:id], label: "#{cis[:name]} - #{cis[:address]}" }
+        { id: cis[:id], label: "#{cis[:name]}" }
       end
     end
   end
