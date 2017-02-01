@@ -14,7 +14,7 @@ class Admins::DashboardsController < Admins::AdminController
   def index
     @service_requests = admin_requests.pending_moderation.page(params[:page])
     @open_service_requests = admin_requests.open.count #select(&:open?).count
-    @closed_service_requests =  admin_requests.where(status_id: 2).count #.select(&:closed?).count
+    @closed_service_requests =  admin_requests.where(status_id: Status.close.id).count #.select(&:closed?).count
     @all_service_requests = admin_requests.count
     @chart_data = chart_data.to_json
     @dependencies_chart_data = DependenciesChart.data(dependency_options).to_json
