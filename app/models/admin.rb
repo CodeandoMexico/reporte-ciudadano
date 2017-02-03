@@ -6,15 +6,35 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   before_create :generate_authentication_token
 
+  belongs_to :agency
+  belongs_to :organisation
+
+
   has_many :comments, as: :commentable
   has_many :service_requests, as: :requester
   has_many :managed_services, class: Service, foreign_key: :service_admin_id
   has_many :managed_service_requests, through: :managed_services, source: :service_requests
+
+  has_many :service_request_readings
+
+  has_many :service_surveys
   has_one :api_key
   has_and_belongs_to_many :services
   has_many :assigned_service_requests, through: :services, source: :service_requests
+  has_many :related_surveys, class: ServiceSurvey, through: :services, source: :service_surveys
 
   mount_uploader :avatar, AvatarUploader
+
+  scope :super_admins, ->{ where(is_service_admin: false, is_public_servant: false) }
+  scope :service_admins, ->{ where(is_service_admin: true) }
+
+  scope :with_dependency, ->(dependency){ where(dependency: dependency) }
+
+  scope :with_organisation, ->(organisation){ where(organisation_id: organisation.id) }
+
+  scope :active, -> { where(active: true) }
+
+  scope :inactive, -> { where(active: false) }
 
   def to_s
     self.email
@@ -28,12 +48,20 @@ class Admin < ActiveRecord::Base
     where(is_service_admin: true).order(name: :asc)
   end
 
+  def self.public_servants_sorted_by_name
+    where(is_public_servant: true,  disabled: false).order(name: :asc)
+  end
+
   def self.public_servants_by_dependency(dependency)
     where(is_public_servant: true, disabled: false, dependency: dependency).order(name: :asc)
   end
 
   def self.disabled_public_servants_by_dependency(dependency)
     where(is_public_servant: true, disabled: true, dependency: dependency).order(name: :asc)
+  end
+
+  def self.disabled_public_servants_sorted_by_name
+    where(is_public_servant: true, disabled: true).order(name: :asc)
   end
 
   def services_ids
@@ -74,6 +102,20 @@ class Admin < ActiveRecord::Base
 
   def services_names
     services.pluck(:name).join(", ")
+  end
+
+  def full_name
+    "#{name} #{surname} #{second_surname}"
+  end
+
+  # Override method in order to support legacy
+  def dependency
+    self.organisation.try(:name)
+  end
+
+  # Override method in order to support legacy
+  def administrative_unit
+    self.agency.try(:name)
   end
 
   private

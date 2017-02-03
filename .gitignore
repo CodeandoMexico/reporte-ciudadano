@@ -19,7 +19,10 @@
 /config/database.yml
 /config/env_variables.yml
 /public/uploads/*
+/public/storage/uploads/*
 *.dump
+/storage
+*.rdb
 
 # Ignore application configuration
 /config/application.yml
@@ -27,3 +30,6 @@
 .rspec
 Guardfile
 coverage
+.powder
+
+public/assets

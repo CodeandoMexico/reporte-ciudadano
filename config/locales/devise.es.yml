@@ -12,6 +12,12 @@ es:
         other: "%{count} errores evitaron que este %{resource} fuera guardado:"
 
   devise:
+    login: "Inicia sesión"
+    email: "Email*"
+    telephone_number: "Número de teléfono"
+    register: "Regístrate"
+    password: "Password*"
+    password_confirmation: "Confirmación de password*"
     failure:
       already_authenticated: 'Ya está dentro del sistema.'
       unauthenticated: 'Necesita ingresar o registrarse para continuar.'

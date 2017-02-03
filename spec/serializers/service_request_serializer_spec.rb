@@ -43,14 +43,6 @@ describe ServiceRequestSerializer do
     expect(json_serializer['request']).to have_key('address')
   end
 
-  it 'has a lat key' do
-    expect(json_serializer['request']).to have_key('lat')
-  end
-
-  it 'has a long key' do
-    expect(json_serializer['request']).to have_key('long')
-  end
-
   it 'has a media_url key' do
     expect(json_serializer['request']).to have_key('media_url')
   end

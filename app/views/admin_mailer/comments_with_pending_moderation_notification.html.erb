@@ -1,0 +1,52 @@
+<p>Hola <strong><%= @admin.name %></strong>,</p>
+
+<p>Hoy tienes los siguientes comentarios pendientes de aprobación:</p>
+
+<table style="border:none;" cellpading="0" cellspacing="0">
+  <thead>
+    <tr>
+      <th style="text-align: left; border-bottom: 1px solid #ccc; padding: 5px 10px 5px 0;">
+        Folio
+      </th>
+      <th style="text-align: left; border-bottom: 1px solid #ccc; padding: 5px 10px 5px 0;">
+        Fecha de creación
+      </th>
+      <th style="text-align: left; border-bottom: 1px solid #ccc; padding: 5px 10px 5px 0;">
+        Trámites
+      </th>
+      <th style="text-align: left; border-bottom: 1px solid #ccc; padding: 5px 10px 5px 0;">
+        Dirección
+      </th>
+      <th style="text-align: left; border-bottom: 1px solid #ccc; padding: 5px 10px 5px 0;">
+        Status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td style="padding: 10px 5px; border-botom: 1px solid #f3f4f5;">
+          <%= link_to edit_admins_service_request_url(comment.service_request_id) do %>
+            #<%= comment.service_request_id %>
+          <% end %>
+        </td>
+        <td style="padding: 10px 5px; border-botom: 1px solid #f3f4f5;">
+          <%= l comment.service_request.created_at %>
+        </td>
+        <td style="padding: 10px 5px; border-botom: 1px solid #f3f4f5;">
+          <%= comment.service_request.service.try(:name) %>
+        </td>
+        <td style="padding: 10px 5px; border-botom: 1px solid #f3f4f5;">
+          <%= comment.service_request.service.try(:address) %>
+        </td>
+        <td style="padding: 10px 5px; border-botom: 1px solid #f3f4f5;">
+          <%= comment.service_request.status %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  Saludos, Evalúa Tu Trámite
+</p>

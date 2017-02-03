@@ -1,0 +1,36 @@
+<div class="page-content inset">
+  <h2>
+    <%= t('admins.inbox.index.title') %>
+  </h2>
+</div>
+
+<ul class=" nav nav-tabs padding-top">
+  <li>
+    <%= link_to t("admins.inbox.index.enabled"), admins_inbox_index_path %>
+  </li>
+  <li class="active">
+    <%= link_to t("admins.inbox.index.disabled"), surveys_admins_inbox_index_path %>
+  </li>
+  <li class="pull-right">
+    <%= page_entries_info_compact @surveys %>
+    <%= paginate @surveys, theme: 'compact' %>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane" id="enabled">
+
+  </div>
+  <div class="tab-pane active" id="disabled">
+    <%= render 'surveys' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+
+  $(function() {
+    $( ".to" ).datepicker({ dateFormat: 'mm/dd/yy' });
+    $( ".from" ).datepicker({ dateFormat: 'mm/dd/yy' });
+  });
+</script>

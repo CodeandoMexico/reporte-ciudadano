@@ -2,3 +2,5 @@
   %h2 Completar registro
   = f.email_field :email, autofocus: true, class: 'form-control one-field', placeholder: 'Email'
   .actions= f.submit "Completar", class: 'btn btn-lg btn-primary btn-block'
+
+= render "users/shared/aviso_privacidad"

@@ -6,6 +6,12 @@
     .row
       .col-lg-6
         = f.email_field :email, autofocus: true, class: 'form-control', placeholder: t('form.placeholders.email')
+
+  .form-group
+    = f.label :telephone_number, t('devise.telephone_number')
+    .row
+      .col-lg-6
+        = f.text_field :telephone_number, autofocus: true, class: 'form-control'
   .form-group
     = f.label :password, t('form.labels.password')
     .row
@@ -29,3 +35,5 @@
   %p
     = t('.unhappy')
     = link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: "#{t('alerts.destroy_confirmation')}" }, method: :delete, class: 'btn btn-danger'
+
+= render "users/shared/aviso_privacidad"

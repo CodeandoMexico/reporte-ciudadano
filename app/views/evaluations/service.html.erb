@@ -1,0 +1,58 @@
+  <div class="row evaluation-overview padding-top-observer">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="well well-md text-center evaluation-overview-participants">
+            <h3><%= @service.answered_surveys %></h3>
+            <small><em><%= t(".survey_participants_count") %></em></small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-md text-center evaluation-overview-services">
+            <h3><%= @service.cis_count %></h3>
+            <small><em><%= t(".cis_count") %></em></small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-md text-center evaluation-overview-public-servants">
+            <h3><%= @service.evaluated_public_servants_count %></h3>
+            <small><em><%= t(".evaluated_public_servants_count") %></em></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row evaluation-overall">
+    <div class="col-md-10 col-md-offset-1">
+      <% if @service_report.present? %>
+        <div class="well well-md col-md-5 js-overall-chart evaluation-overall-chart"
+        data-title="<%= @service.name %>"
+        data-positive="<%= @service_report.positive_overall_perception %>"
+        data-negative="<%= @service_report.negative_overall_perception %>">
+        </div>
+      <% else %>
+        <div class="well well-md col-md-5">
+          <p><em><%= t(".no_report_data") %></em></p>
+        </div>
+      <% end %>
+      <div class="col-md-2"></div>
+      <div class="well well-md col-md-5 evaluation-overall-areas">
+        <h3><%= t(".by_area") %></h3>
+        <ul class="list-unstyled">
+        <% if @service_report.present? %>
+          <% ServiceSurveys.criterion_options_available.each do |criterion| %>
+            <li>
+              <%= label_for([criterion]) %>
+              <div class="progress">
+                <%= overall_progress_by_criterion([criterion, @service_report.overall_evaluation_for(criterion)]) %>
+              </div>
+            </li>
+          <% end %>
+        <% else %>
+          <p><em><%= t(".no_report_data") %></em></p>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
