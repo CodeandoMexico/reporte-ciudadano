@@ -59,7 +59,7 @@
             <%= f.select :organisation_id,
                          organisation_options,
                          { prompt: t('form.labels.dependency') },
-                         class: 'chosen-select' %>
+                         class: 'chosen-select autocomplete-organisation_id' %>
           </div>
         </div>
       </fieldset>
@@ -72,7 +72,7 @@
             <%= f.select :agency_id,
                          agency_options,
                          { prompt: t('form.labels.administrative_unit') },
-                         class: 'chosen-select' %>
+                         class: 'chosen-select autocomplete-agency_id' %>
           </div>
         </div>
       </fieldset>
