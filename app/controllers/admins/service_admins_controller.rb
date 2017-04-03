@@ -16,10 +16,23 @@ class Admins::ServiceAdminsController < ApplicationController
 
   def index
     params[:q] ||= {}
-    @service_admins = Admin.active.service_admins_sorted_by_name
-    @disabled_service_admins = Admin.inactive.service_admins_sorted_by_name
 
-    search_service_admins
+    respond_to do |format|
+      format.html do
+        @service_admins = Admin.active.service_admins_sorted_by_name
+        @disabled_service_admins = Admin.inactive.service_admins_sorted_by_name
+
+        search_service_admins
+      end
+
+      format.json do
+        @q = Admin.ransack(params[:q])
+        @service_admins = @q.result
+                            .active
+                            .service_admins_sorted_by_name
+        render json: @service_admins, root: false
+      end
+    end
   end
 
   def new
