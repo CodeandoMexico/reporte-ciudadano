@@ -17,9 +17,20 @@ class Admins::ServicesController < Admins::AdminController
 
   def index
     params[:q] ||= {}
-    @services = Service.all
-    search_services
-    @statuses = Status.unscoped.all
+
+    respond_to do |format|
+      format.html do
+        @services = Service.all
+        search_services
+        @statuses = Status.unscoped.all
+      end
+
+      format.json do
+        @q = Service.ransack(params[:q])
+        @services = @q.result
+        render json: @services, root: false
+      end
+    end
   end
 
   def new
