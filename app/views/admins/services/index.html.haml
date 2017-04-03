@@ -7,10 +7,6 @@
     %blockquote
       %i= t('.page-description')
 
-  .btn-group.admin-actions
-    = link_to t('.new_status'), new_admins_status_path, class: 'btn btn-primary'
-
-
   %h2= t('.services')
   = search_form_for @search,
                     url: admins_services_path,
@@ -114,8 +110,10 @@
                      "data-toggle":"tooltip", "data-placement":"top", "title":"#{t('admin.services.activate')}"
 
 
+  %hr
 
-
+  .btn-group.admin-actions
+    = link_to t('.new_status'), new_admins_status_path, class: 'btn btn-primary'
 
   %h2= t('.statuses')
   %table.table.table-hover

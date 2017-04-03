@@ -8,11 +8,12 @@
       %row
         .col-md-12
           = link_to root_path, class: 'navbar-brand' do
-            - if ENV["VEDA_ELECTORAL"] == "true" then
-              = image_tag 'image_navbar_grises.png', class: "navbar-logo navbar-logo-full"
-            - else
-              = image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"
-            = image_tag 'mr_logo.png', class: "navbar-additional-logo"
+            / - if ENV["VEDA_ELECTORAL"] == "true" then
+            /   = image_tag 'image_navbar_grises.png', class: "navbar-logo navbar-logo-full"
+            / - else
+            /   = image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"
+            / = image_tag 'mr_logo.png', class: "navbar-additional-logo"
+            = image_tag '2017/Evalua-logos.png', class: "navbar-logo navbar-logo-full"
 
     .navbar-collapse.collapse.pagination-right
       - if current_user

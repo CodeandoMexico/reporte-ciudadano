@@ -5,11 +5,8 @@ Service.destroy_all
 ServiceRequest.destroy_all
 Status.destroy_all
 
-open_status = Status.create(name: "Atendido por la Dirección de atención a Quejas y Denuncias", is_default: true)
+open_status = Status.create(name: "Atendido", is_default: true)
 close_status = Status.create(name: "Cerrado")
 erased_status = Status.create(name: "Eliminado")
-
-super_admin = Admin.create(name: "Super admin", email: "admin@admin.com", password: "password", password_confirmation: "password", active: true)
-observer = Admin.create(name: "Observer juan", email: 'observer@observer.com', password: "password", password_confirmation: "password", is_observer: true)
 
 Rake::Task['organisations:migrate'].invoke

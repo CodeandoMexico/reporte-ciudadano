@@ -53,7 +53,7 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   scope :not_closed, -> {
-    where('status_id != ?', 4)
+    where('status_id != ?', Status.close.try(:id))
   }
 
   scope :open, -> {
@@ -144,7 +144,7 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def closed?
-    status_id == 4
+    status_id == Status.close.try(:id)
   end
 
   def open?

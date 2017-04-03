@@ -14,7 +14,7 @@ namespace :organisations do
       organisation.id = index + 1
       organisation.save!
 
-      item['administrative_units'].each do |admin_unit, auindex|
+      item['administrative_units'].each do |admin_unit|
         agency = Agency.new(name: admin_unit['name'])
         agency.id = agency_id
         agency.organisation_id = organisation.id
@@ -42,7 +42,7 @@ namespace :organisations do
 
     p 'Migrating offices'
     Office.delete_all
-    Services.load_values(:cis).each do |cis|
+    Services.load_values(:cis17).each do |cis|
       office = Office.new(cis)
       office.id = cis[:id]
       office.save!

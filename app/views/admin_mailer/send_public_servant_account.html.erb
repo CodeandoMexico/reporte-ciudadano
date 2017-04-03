@@ -1,11 +1,15 @@
 <p>Estimado(a),<strong><%= @admin.name %></strong>.</p>
 
-<p>Fuiste invitado(a) a la plataforma Encuestas de Satisfacción del Gobierno del Estado de Puebla como Servidor Público. Para iniciar sesión y establecer tu contraseña, puedes hacerlo <%= link_to "aquí", admins_dashboards_url(admin_email: @admin.email, admin_token: @admin.authentication_token) %></p>
+<p>
+  Fuiste invitado(a) a la plataforma Evalúa tu trámite del Gobierno del Estado de Puebla como Servidor Público.
+  Para iniciar sesión y establecer tu contraseña,
+  puedes hacerlo <%= link_to "aquí", admins_dashboards_url(admin_email: @admin.email, admin_token: @admin.authentication_token) %>
+</p>
 
 Email: <strong><%= @admin.email %></strong><br>
 
 <p>
-Gracias por tu colaboración.
-Encuestas de Satisfacción
-Gobierno del Estado de Puebla.
+  Gracias por tu colaboración. <br>
+  Dirección de Gobernanza y Mejora Regulatoria.<br>
+  Secretaría de Finanzas y Administración.
 </p>
