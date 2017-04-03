@@ -95,40 +95,39 @@ class Admins::PublicServantsController < ApplicationController
       services = []
     end
 
-    params
-    .require(:admin)
-    .permit(
-      :name,
-      :email,
-      :record_number,
-      :dependency,
-      :administrative_unit,
-      :organisation_id,
-      :agency_id,
-      :charge,
-      :surname,
-      :second_surname,
-      :is_observer,
-      :is_comptroller)
-    .merge(services: services, is_public_servant: true)
+    params.require(:admin)
+          .permit(
+            :name,
+            :email,
+            :record_number,
+            :dependency,
+            :administrative_unit,
+            :organisation_id,
+            :agency_id,
+            :charge,
+            :surname,
+            :second_surname,
+            :is_observer,
+            :is_comptroller)
+          .merge(services: services, is_public_servant: true)
   end
 
   def comptroller_params
-    params
-    .require(:admin)
-    .permit(
-      :name,
-      :email,
-      :record_number,
-      :dependency,
-      :administrative_unit,
-      :organisation_id,
-      :agency_id,
-      :charge,
-      :surname,
-      :second_surname,
-      :is_comptroller,
-      :is_evaluation_comptroller)
+    params.require(:admin)
+          .permit(
+            :name,
+            :email,
+            :record_number,
+            :dependency,
+            :administrative_unit,
+            :organisation_id,
+            :agency_id,
+            :charge,
+            :surname,
+            :second_surname,
+            :is_comptroller,
+            :is_evaluation_comptroller)
+          .merge(is_public_servant: true)
   end
 
   def password
