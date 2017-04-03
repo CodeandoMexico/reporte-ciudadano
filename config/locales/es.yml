@@ -254,7 +254,7 @@ es:
         summary: "Resumen"
         requests: "Quejas o sugerencias"
         reports_public_servants: "Mis quejas y sugerencias"
-        config_requests: "Personalizar quejas o sugerencias"
+        config_requests: "Personalizar trámites y estatus"
         design: "Diseño"
         api: "API"
         evaluations: "Evaluaciones"

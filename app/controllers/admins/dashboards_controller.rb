@@ -14,7 +14,7 @@ class Admins::DashboardsController < Admins::AdminController
   def index
     @service_requests = admin_requests.pending_moderation.page(params[:page])
     @open_service_requests = admin_requests.open.count #select(&:open?).count
-    @closed_service_requests =  admin_requests.where(status_id: 2).count #.select(&:closed?).count
+    @closed_service_requests =  admin_requests.where(status_id: Status.close.id).count #.select(&:closed?).count
     @all_service_requests = admin_requests.count
     @chart_data = chart_data.to_json
     @dependencies_chart_data = DependenciesChart.data(dependency_options).to_json
@@ -33,12 +33,12 @@ class Admins::DashboardsController < Admins::AdminController
 
   def export
     csv_file, csv_filename = ServiceRequests.general_report_csv.to_csv
-    send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
+    send_data csv_file, filename: csv_filename, type: 'text/plain;'
   end
 
   def export_dependencies
     csv_file, csv_filename = DependenciesChart.general_report_csv(dependency_options).to_csv
-    send_data csv_file, filename: csv_filename, type: 'text/csv; charset=utf-8;'
+    send_data csv_file, filename: csv_filename, type: 'text/plain;'
   end
 
   private
