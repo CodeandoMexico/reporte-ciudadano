@@ -17,7 +17,12 @@ class Admins::DashboardsController < Admins::AdminController
     @closed_service_requests =  admin_requests.where(status_id: Status.close.id).count #.select(&:closed?).count
     @all_service_requests = admin_requests.count
     @chart_data = chart_data.to_json
-    @dependencies_chart_data = DependenciesChart.data(dependency_options).to_json
+
+    # @dependencies_chart_data = DependenciesChart.data(dependency_options).to_json
+
+    @dependencies_chart_data = dependency_chart_data.to_json
+
+    # render json: @dependencies_chart_data and return
     @status_data = Status.select(:name, :id).to_json
     flash.now[:notice] = I18n.t('flash.dashboards.requests_not_found') if @service_requests.empty?
     @title_page = I18n.t('.admins.dashboards.index.header')
@@ -58,7 +63,8 @@ class Admins::DashboardsController < Admins::AdminController
   end
 
   def dependency_options
-    Services.service_dependency_options
+    # Services.service_dependency_options
+    Organisation.pluck(:name)
   end
 
   def organisation_options
@@ -84,6 +90,20 @@ class Admins::DashboardsController < Admins::AdminController
     if current_admin.is_service_admin?
       Service.chart_data(service_admin_id: current_admin.id)
     end
+  end
+
+  def dependency_chart_data
+    data = []
+    @statuses = Status.pluck(:id, :name)
+
+    Organisation.includes({services: [:service_requests]}).each do |organisation|
+      partial_result = { id: organisation.id, name: organisation.name }
+      @statuses.each do |status|
+        partial_result["status_#{status[0]}".to_sym] = organisation.service_requests.select { |sr| sr.status_id == status[0] }.count
+      end
+      data << partial_result
+    end
+    data
   end
 
   def search_service
