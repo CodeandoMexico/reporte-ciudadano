@@ -40,7 +40,7 @@
 
       <%= link_to t("admins.public_servants.index.assign_services"),
                   assign_services_admins_public_servant_path(public_servant),
-                  class: "btn btn-sm btn-default" unless public_servant.is_observer? %>
+                  class: "btn btn-sm btn-default" if !public_servant.is_comptroller? || !public_servant.is_evaluation_comptroller? %>
 
       <%= link_to t("admins.public_servants.index.edit"),
                   edit_admins_public_servant_path(public_servant),
