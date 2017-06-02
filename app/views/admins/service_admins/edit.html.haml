@@ -59,7 +59,7 @@
             %h3
               = t(".services_to_assign")
             .col-md-5
-              = f.select :services_ids, @services.collect {|p| [p.name, p.id]}, { prompt: t('service_requests.form.prompt_center') }, { class: 'js-load_service_fields chosen-select',:multiple=>true }
+              = f.select :services_ids, @services.collect {|p| [p.name, p.id]}, {}, { class: 'js-load_service_fields chosen-select',:multiple=>true }
         .actions.col-md-2
           = f.submit t(".update"), class: 'btn btn-primary'
 
