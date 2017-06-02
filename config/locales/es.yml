@@ -455,7 +455,9 @@ es:
         name: "Nombre"
         service_type: "Tipo"
         dependency: "Dependencia"
+        organisation_id: "Dependencia"
         administrative_unit: "Unidad administrativa"
+        agency_id: "Unidad administrativa"
         cis: "Centros de atención"
         service_type_options:
           step: "Trámite"
@@ -713,7 +715,9 @@ es:
       current_password: "Contraseña actual"
       record_number: "Número de Expediente"
       dependency: "Dependencia"
+      organisation_id: "Dependencia"
       administrative_unit: "Unidad administrativa"
+      agency_id: "Unidad administrativa"
       charge: "Cargo"
       service_type: "Tipo de servicio"
       cis: "Centros de atención*"
@@ -957,7 +961,9 @@ es:
         status: "Estatus"
         cis: "Centro de atención"
         dependency: "Dependencia"
-        administrative_unit: "Unidad Administrativa"
+        organisation_id: "Dependencia"
+        administrative_unit: "Unidad administrativa"
+        agency_id: "Unidad administrativa"
         is_open: "Estatus de encuestas del servicio"
         affirmation:
           "true": "Sí"
@@ -1033,6 +1039,10 @@ es:
             dependency:
               blank: "Dependencia no puede estar vacío"
             administrative_unit:
+              blank: "Unidad administrativa no puede estar vacío"
+            organisation_id:
+              blank: "Dependencia no puede estar vacío"
+            agency_id:
               blank: "Unidad administrativa no puede estar vacío"
             cis:
               blank: "Cis no puede estar vacío"

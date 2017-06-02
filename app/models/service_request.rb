@@ -2,13 +2,6 @@
 class ServiceRequest < ActiveRecord::Base
   attr_accessor :message
 
-  validates :service_id, :description, presence: true
-  validate :service_extra_fields
-  before_create :public_servant_description_validation
-
-  before_validation :assign_default_status, on: :create
-  after_update :send_notification_for_status_update
-
   belongs_to :service
   belongs_to :requester, polymorphic: true
   belongs_to :status
@@ -21,6 +14,14 @@ class ServiceRequest < ActiveRecord::Base
 
   mount_uploader :media, ImageUploader
   acts_as_voteable
+
+  validates :service_id, :description, presence: true
+  validate :service_extra_fields
+  before_create :public_servant_description_validation
+
+  before_validation :assign_default_status, on: :create
+  after_update :send_notification_for_status_update
+
 
   default_scope { order('created_at DESC') }
 

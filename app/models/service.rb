@@ -20,8 +20,10 @@ class Service < ActiveRecord::Base
   #TODO: se debe de internacionalizar los textos.
   validates :name,
             :service_type,
-            :dependency,
-            :administrative_unit,
+            # :dependency,
+            :organisation_id,
+            # :administrative_unit,
+            :agency_id,
             :cis,
             :service_admin_id,
             presence: true
@@ -34,6 +36,13 @@ class Service < ActiveRecord::Base
   end
 
   scope :active, -> { where(status: "activo") }
+
+  before_save :refresh_dependency_attribute
+
+  def refresh_dependency_attribute
+    self[:dependency] = self.organisation.try(:name)
+    self[:administrative_unit] = self.agency.try(:name)
+  end
 
   # Override method in order to support legacy
   def dependency
