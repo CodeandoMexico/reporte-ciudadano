@@ -18,7 +18,11 @@ module Evaluations
   private
 
   class Cis
-    attr_reader :name, :id, :services, :service_surveys, :service_surveys_reports
+    attr_reader :id,
+                :name,
+                :services,
+                :service_surveys,
+                :service_surveys_reports
 
     def initialize(attrs, services_records:)
       @id = attrs[:id]
@@ -33,7 +37,8 @@ module Evaluations
     end
 
     def evaluated_public_servants_count
-      services.map(&:admins).uniq.count
+      # services.map(&:admins).uniq.count
+      services.map(&:admin_ids).flatten.uniq.count
     end
 
     def survey_participants_count
@@ -80,16 +85,29 @@ module Evaluations
     attr_reader :services_records
 
     def survey_participants_ids
-      services_records.
-          map{|a| a.answers.where("survey_answers.cis_id = ?", self.id)}
-          .map{|a| a.pluck(:user_id)}
-          .flatten
-          .uniq
+      # services_records.
+      #     map{|a| a.answers.where("survey_answers.cis_id = ?", self.id)}
+      #     .map{|a| a.pluck(:user_id)}
+      #     .flatten
+      #     .uniq
+
+      # Way faster than iterate thru the relationship (just 0.2ms insted of 120ms)
+      SurveyAnswer.where(cis_id: self.id)
+                  .pluck(:user_id)
+                  .uniq
     end
 
     def services_evaluations
-      services_records
-        .map { |service| CisServiceEvaluation.new(service, id) }
+      # services_records
+      #   .map { |service| CisServiceEvaluation.new(service, id) }
+
+
+      # Select just services with @id included in the service.cis[array]
+      services_records.select do |service|
+        service.cis.include?(self.id.to_s)
+      end.map do |service|
+        CisServiceEvaluation.new(service, id)
+      end
     end
   end
 

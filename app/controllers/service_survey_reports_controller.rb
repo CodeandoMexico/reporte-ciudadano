@@ -1,6 +1,6 @@
 class ServiceSurveyReportsController < ApplicationController
 
-  before_action :set_reports_for_index, :only => :index
+  # before_action :set_reports_for_index, :only => :index
 
 
   def index

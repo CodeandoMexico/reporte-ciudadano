@@ -28,10 +28,11 @@ module Services
   end
 
   def self.service_cis
-    unless Rails.env.test?
-      load_values(:cis17)
-    else
+    if Rails.env.test?
       load_values(:cis17_test)
+    else
+      # TODO: This information could be loaded from the Office model.
+      load_values(:cis17)
     end
   end
 
@@ -86,7 +87,6 @@ module Services
     Rails.cache.fetch("#{object}-service-cache", :expires_in => 6.hours) do
       File.open(path_to(object)) { |file|
         YAML.load(file.read)
-
       }
     end
   end
