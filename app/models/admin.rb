@@ -100,6 +100,12 @@ class Admin < ActiveRecord::Base
     services.empty?
   end
 
+  def can_has_services?
+    [self.is_comptroller,
+     self.is_observer,
+     self.is_evaluation_comptroller].index(true).nil?
+  end
+
   def services_names
     services.pluck(:name).join(", ")
   end

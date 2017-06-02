@@ -52,13 +52,15 @@ class ServiceRequest < ActiveRecord::Base
     on_status_name("Cerrado")
   }
 
+  # Maybe we need to remove this scope
   scope :not_closed, -> {
-    where('status_id != ?', Status.close.try(:id))
+    # At this time status 2 is closed, status 3 is deleted, you need to refactor all statuses feat.
+    where('status_id NOT IN (?)', [2, 3])
   }
 
   scope :open, -> {
-    closed_status_id = Status.close.try(:id)
-    where("status_id != #{Status.close.try(:id)}") if Status.close.present?
+    # At this time status 2 is closed, status 3 is deleted, you need to refactor all statuses feat.
+    where('status_id NOT IN (?)', [2, 3])
   }
 
   scope :with_status_and_dependency, -> (status_id, dependency){
