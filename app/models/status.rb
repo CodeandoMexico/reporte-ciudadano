@@ -9,6 +9,9 @@ class Status < ActiveRecord::Base
 
   default_scope { active.order('created_at') }
 
+  scope :exclude_closed, -> { where("name != 'Cerrado'") }
+  scope :exclude_deleted, -> { where("name != 'Eliminado'") }
+
   def to_s
     name
   end
@@ -30,7 +33,9 @@ class Status < ActiveRecord::Base
     @@close
   end
 
-  def self.exclude_closed
-    where("name != 'Cerrado'")
+  def self.removed
+    @@close ||= Status.find_by_name("Eliminado")
+    @@close
   end
+
 end

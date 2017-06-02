@@ -37,10 +37,9 @@
                   id: "enable_public_servant_#{public_servant.id}",
                   "data-confirm" => t("admins.public_servants.index.enable_admin_confirm") %>
     <% else %>
-
       <%= link_to t("admins.public_servants.index.assign_services"),
                   assign_services_admins_public_servant_path(public_servant),
-                  class: "btn btn-sm btn-default" if !public_servant.is_comptroller? || !public_servant.is_evaluation_comptroller? %>
+                  class: "btn btn-sm btn-default" if public_servant.can_has_services? %>
 
       <%= link_to t("admins.public_servants.index.edit"),
                   edit_admins_public_servant_path(public_servant),
