@@ -20,9 +20,7 @@ class Service < ActiveRecord::Base
   #TODO: se debe de internacionalizar los textos.
   validates :name,
             :service_type,
-            # :dependency,
             :organisation_id,
-            # :administrative_unit,
             :agency_id,
             :cis,
             :service_admin_id,

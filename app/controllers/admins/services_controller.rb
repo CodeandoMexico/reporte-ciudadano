@@ -183,6 +183,14 @@ class Admins::ServicesController < Admins::AdminController
       :agency_id,
       :service_admin_id,
       messages: [:content, :status_id], service_fields: [:name], cis: []
-    )
+    ).tap do |attributes|
+      if attributes["service_admin_id"].blank?
+        attributes["service_admin_id"] = nil
+      end
+
+      if attributes["cis"].reject(&:empty?).empty?
+        attributes["cis"] = nil
+      end
+    end
   end
 end
