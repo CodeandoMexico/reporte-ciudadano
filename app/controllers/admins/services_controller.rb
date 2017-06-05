@@ -184,7 +184,7 @@ class Admins::ServicesController < Admins::AdminController
       :service_admin_id,
       messages: [:content, :status_id], service_fields: [:name], cis: []
     ).tap do |attributes|
-      if attributes["service_admin_id"].blank?
+      if attributes["service_admin_id"].blank? || attributes["service_admin_id"] == "0"
         attributes["service_admin_id"] = nil
       end
 
