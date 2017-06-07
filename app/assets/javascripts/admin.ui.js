@@ -27,7 +27,7 @@ $(document).on('change', '#q_organisation_id', function(e){
 $(document).on('change', '.autocomplete-agency_id', function(e) {
   var params = {
     q: {
-      organisation_id_eq: $('.autocomplete-agency_id:first').val(),
+      organisation_id_eq: $('#service_organisation_id').val(),
       agency_id_eq:  $(this).val()
     }
   };
