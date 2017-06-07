@@ -9,6 +9,4 @@ Datagrid.configure do |config|
   # Note that multiple formats can be specified but only first format used to format timestamp as string.
   # Other formats are just used for parsing timestamp from string in case your App uses multiple.
   config.datetime_formats = ["%d/%m/%Y %h:%M", "%Y-%m-%d %h:%M:%s"]
-
-
 end

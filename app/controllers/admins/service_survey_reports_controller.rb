@@ -16,10 +16,10 @@ class Admins::ServiceSurveyReportsController < ApplicationController
   #TODO: mover esta funcionalidad de crear reportes dinámicos a
   # un controlador de reportes dinámicos.
   def index
-    Service.all.reload
     dynamic_reports_select
     respond_to do |f|
       f.html do
+        @grid.cached = false
         @grid.scope do |scope|
           scope.page(params[:page])
         end
