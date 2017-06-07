@@ -3,7 +3,7 @@ module DynamicReports
     include Datagrid
 
     scope do
-      Service.includes(:service_surveys).reload.uniq
+      Service.includes(:service_surveys).uniq
     end
 
 
@@ -48,7 +48,7 @@ module DynamicReports
 
     filter(:service_name,
            :enum,
-           :select => scope.select(:name).uniq.order(:name).map(&:name),
+           :select => Service.order(:name).pluck(:name).uniq,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |value, scope, grid|
 
