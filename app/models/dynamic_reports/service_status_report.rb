@@ -3,7 +3,7 @@ module DynamicReports
     include Datagrid
 
     scope do
-      Service.includes(:service_surveys).uniq
+      Service.includes(:service_surveys).reload.uniq
     end
 
 
