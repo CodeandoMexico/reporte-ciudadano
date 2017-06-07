@@ -19,10 +19,10 @@ class Admins::ServiceSurveyReportsController < ApplicationController
     dynamic_reports_select
     respond_to do |f|
       f.html do
-        @grid.cached = false
         @grid.scope do |scope|
           scope.page(params[:page])
         end
+        @grid.cached = false
         @title
       end
       f.csv do

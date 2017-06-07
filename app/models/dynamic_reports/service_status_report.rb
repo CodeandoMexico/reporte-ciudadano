@@ -6,6 +6,10 @@ module DynamicReports
       Service.includes(:service_surveys).uniq
     end
 
+    def services_name_select
+      scope.select(:name).uniq.order(:name).map(&:name)
+    end
+
 
     filter(:id,
            :enum,
@@ -48,7 +52,7 @@ module DynamicReports
 
     filter(:service_name,
            :enum,
-           :select => Service.order(:name).pluck(:name).uniq,
+           :select => :services_name_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |value, scope, grid|
 
