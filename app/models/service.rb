@@ -95,7 +95,7 @@ class Service < ActiveRecord::Base
   end
 
   def cis_count
-    cis.size
+    cis.reject(&:blank?).size
   end
 
   def cis_names
