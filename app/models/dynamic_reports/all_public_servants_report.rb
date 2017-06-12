@@ -32,7 +32,7 @@ module DynamicReports
     filter(:administrative_unit,
            :enum,
            :select => scope.select("services.agency_id").
-               uniq.order("services.agency_id").map { |d| [d.administrative_unit, d.agency_id] },
+               uniq.order("services.agency_id").map { |d| [d.try(:administrative_unit), d.try(:agency_id)] },
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),) do |value, scope, grid|
 
       scope.where("services.administrative_unit similar to ? ", "%(#{value.uniq.join("|")})%")
