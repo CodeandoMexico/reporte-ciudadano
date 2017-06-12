@@ -22,7 +22,7 @@ module DynamicReports
 
     filter(:organisation_id,
            :enum,
-           :select => scope.select("services.organisation_id").uniq.order("services.organisation_id").map { |d| [d.dependency, d.organisation_id] },
+           :select => scope.select("services.organisation_id").uniq.order("services.organisation_id").map { |d| [d.try(:dependency), d.try(:organisation_id)] },
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))do |value, scope, grid|
 
