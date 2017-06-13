@@ -19,9 +19,13 @@ module DynamicReports
       scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
     end
 
+    def id_select
+      scope.select(:id).uniq.order(:id).map(&:id)
+    end
+
     filter(:id,
            :enum,
-           :select => scope.select(:id).uniq.order(:id).map(&:id),
+           :select => :id_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
 
