@@ -5,6 +5,20 @@ module DynamicReports
     scope do
       ServiceReport.joins(:service)
     end
+
+    def organisation_select
+      scope.select("services.organisation_id").uniq.order("services.organisation_id").map { |d| [d.try(:dependency), d.try(:organisation_id)] }
+    end
+
+    def administrative_unit_select
+      scope.select("services.agency_id").
+        uniq.order("services.agency_id").map { |d| [d.try(:administrative_unit), d.try(:agency_id)] }
+    end
+
+    def cis_select
+      scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
+    end
+
     filter(:id,
            :enum,
            :select => scope.select(:id).uniq.order(:id).map(&:id),
@@ -22,7 +36,7 @@ module DynamicReports
 
     filter(:organisation_id,
            :enum,
-           :select => scope.select("services.organisation_id").uniq.order("services.organisation_id").map { |d| [d.try(:dependency), d.try(:organisation_id)] },
+           :select => :organisation_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))do |value, scope, grid|
 
@@ -31,8 +45,7 @@ module DynamicReports
 
     filter(:administrative_unit,
            :enum,
-           :select => scope.select("services.agency_id").
-               uniq.order("services.agency_id").map { |d| [d.try(:administrative_unit), d.try(:agency_id)] },
+           :select => :administrative_unit_select,
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),) do |value, scope, grid|
 
       scope.where("services.administrative_unit similar to ? ", "%(#{value.uniq.join("|")})%")
@@ -40,7 +53,7 @@ module DynamicReports
 
     filter(:cis,
            :enum,
-           :select => scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :select => :cis_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
 

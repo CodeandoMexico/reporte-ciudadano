@@ -6,6 +6,29 @@ module DynamicReports
       Service.includes(:service_surveys).joins(:service_reports).uniq("service_surveys.id")
     end
 
+    def service_select
+      scope.select(:name).uniq.order(:name).map(&:name)
+    end
+
+    def cis_select
+      scope.select(:cis).map{|a| a.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
+    end
+
+    def organisation_select
+      scope
+        .select(:organisation_id)
+        .uniq
+        .order(:organisation_id)
+        .map { |d| [d.dependency, d.organisation_id] }
+    end
+
+    def agency_select
+      scope.select(:agency_id)
+        .uniq
+        .order(:agency_id)
+        .map { |d| [d.administrative_unit, d.agency_id] }
+    end
+
     filter(:id,
            :enum,
            :select => scope.select(:id).uniq.order(:id).map(&:id),
@@ -22,25 +45,18 @@ module DynamicReports
 
     filter(:organisation_id,
            :enum,
-           :select => scope
-                      .select(:organisation_id)
-                      .uniq
-                      .order(:organisation_id)
-                      .map { |d| [d.dependency, d.organisation_id] },
+           :select => :organisation_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
 
     filter(:agency_id,
            :enum,
-           :select => scope.select(:agency_id)
-           .uniq
-           .order(:agency_id)
-           .map { |d| [d.administrative_unit, d.agency_id] },
+           :select => :agency_select,
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
 
     filter(:cis,
            :enum,
-           :select => scope.select(:cis).map{|a| a.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :select => :cis_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
 
@@ -49,7 +65,7 @@ module DynamicReports
 
     filter(:service_name,
            :enum,
-           :select => scope.select(:name).uniq.order(:name).map(&:name),
+           :select => :service_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_name')) do |value, scope, grid|
 

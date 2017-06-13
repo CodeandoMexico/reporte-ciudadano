@@ -6,6 +6,25 @@ module DynamicReports
       Admin.includes(:services).includes(:admins_services).distinct(:id)
     end
 
+    def name_select
+      scope.uniq(:id).order(:id).map{|a| ["#{a.name.presence || ""} #{a.surname.presence || ""} #{a.second_surname.presence || ""}", a.id]}
+    end
+
+    def organisation_select
+      scope
+        .select(:organisation_id)
+        .uniq
+        .order(:organisation_id)
+        .map { |d| [d.dependency, d.organisation_id] }
+    end
+
+    def agency_select
+      scope.select(:agency_id)
+        .uniq
+        .order(:agency_id)
+        .map { |d| [d.administrative_unit, d.agency_id] }
+    end
+
     filter(:id,
            :enum,
            :select => scope.select(:id).uniq.order(:id).map(&:id),
@@ -22,7 +41,7 @@ module DynamicReports
 
     filter(:name,
            :enum,
-           :select => scope.uniq(:id).order(:id).map{|a| ["#{a.name.presence || ""} #{a.surname.presence || ""} #{a.second_surname.presence || ""}", a.id]},
+           :select => :name_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.name')) do |value, scope, grid|
       scope.where(id: value)
@@ -30,20 +49,13 @@ module DynamicReports
 
     filter(:organisation_id,
            :enum,
-           :select => scope
-           .select(:organisation_id)
-           .uniq
-           .order(:organisation_id)
-           .map { |d| [d.dependency, d.organisation_id] },
+           :select => :organisation_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))
 
     filter(:agency_id,
            :enum,
-           :select => scope.select(:agency_id)
-           .uniq
-           .order(:agency_id)
-           .map { |d| [d.administrative_unit, d.agency_id] },
+           :select => :agency_select,
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),)
 
     filter(:disabled, :xboolean, header: I18n.t('activerecord.attributes.dynamic_reports.active')) do |value, scope, grid|

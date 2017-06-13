@@ -5,6 +5,31 @@ module DynamicReports
     scope do
       ServiceReport.joins(:service)
     end
+
+    def organisation_select
+      scope
+        .select("services.organisation_id")
+        .uniq
+        .order("services.organisation_id")
+        .map { |d| [d.dependency, d.organisation_id] }
+    end
+
+    def agency_select
+      scope
+        .select("services.agency_id")
+        .uniq
+        .order("services.agency_id")
+        .map { |d| [d.administrative_unit, d.agency_id] }
+    end
+
+    def cis_select
+      scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
+    end
+
+    def status_select
+      scope.select(:status).uniq.map(&:status)
+    end
+
     filter(:id,
            :enum,
            :select => scope.select(:id).uniq.order(:id).map(&:id),
@@ -22,11 +47,7 @@ module DynamicReports
 
     filter(:organisation_id,
            :enum,
-           :select => scope
-           .select("services.organisation_id")
-           .uniq
-           .order("services.organisation_id")
-           .map { |d| [d.dependency, d.organisation_id] },
+           :select => :organisation_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
 
@@ -35,11 +56,7 @@ module DynamicReports
 
     filter(:agency_id,
            :enum,
-           :select => scope
-           .select("services.agency_id")
-           .uniq
-           .order("services.agency_id")
-           .map { |d| [d.administrative_unit, d.agency_id] },
+           :select => :agency_select,
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),) do |value, scope, grid|
 
       scope.where("services.administrative_unit similar to ? ", "%(#{value.uniq.join("|")})%")
@@ -47,7 +64,7 @@ module DynamicReports
 
     filter(:cis,
            :enum,
-           :select => scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :select => :cis_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
 
@@ -56,7 +73,7 @@ module DynamicReports
 
     filter(:status,
            :enum,
-           :select => scope.select(:status).uniq.map(&:status),
+           :select => :status_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.status')) do |value, scope, grid|
 

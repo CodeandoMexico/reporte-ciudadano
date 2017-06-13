@@ -5,6 +5,20 @@ module DynamicReports
     scope do
       ServiceReport.joins(:service)
     end
+
+    def dependency_select
+      scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency)
+    end
+
+    def administrative_unit_select
+      scope.select("services.administrative_unit").
+        uniq.order("services.administrative_unit").map(&:administrative_unit)
+    end
+
+    def cis_select
+      scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
+    end
+
     filter(:id,
            :enum,
            :select => scope.select(:id).uniq.order(:id).map(&:id),
@@ -22,7 +36,7 @@ module DynamicReports
 
     filter(:dependency,
            :enum,
-           :select => scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency),
+           :select => :dependency_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
 
@@ -31,8 +45,7 @@ module DynamicReports
 
     filter(:administrative_unit,
            :enum,
-           :select => scope.select("services.administrative_unit").
-               uniq.order("services.administrative_unit").map(&:administrative_unit),
+           :select => :administrative_unit_select,
            :multiple => true, header: I18n.t('activerecord.attributes.dynamic_reports.administrative_unit'),) do |value, scope, grid|
 
       scope.where("services.administrative_unit similar to ? ", "%(#{value.uniq.join("|")})%")
@@ -40,7 +53,7 @@ module DynamicReports
 
     filter(:cis,
            :enum,
-           :select => scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]},
+           :select => :cis_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.cis')) do |value, scope, grid|
 
