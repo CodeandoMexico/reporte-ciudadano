@@ -14,14 +14,14 @@ module DynamicReports
       scope.select("services.organisation_id")
         .uniq
         .order("services.organisation_id")
-        .map { |d| [d.dependency, d.organisation_id] }
+        .map { |d| [d.try(:dependency), d.try(:organisation_id)] }
     end
 
     def agency_select
       scope.select("services.agency_id")
         .uniq
         .order("services.agency_id")
-        .map { |d| [d.administrative_unit, d.agency_id] }
+        .map { |d| [d.try(:administrative_unit), d.try(:agency_id)] }
     end
 
     filter(:id,

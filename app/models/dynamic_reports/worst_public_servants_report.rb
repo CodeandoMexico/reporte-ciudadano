@@ -7,11 +7,12 @@ module DynamicReports
     end
 
     def organisation_select
+      scope = ServiceReport.joins(:service)
       scope
         .select("services.organisation_id")
         .uniq
         .order("services.organisation_id")
-        .map { |d| [d.dependency, d.organisation_id] }
+        .map { |d| [d.try(:dependency), d.try(:organisation_id)] }
     end
 
     def agency_select
@@ -19,11 +20,11 @@ module DynamicReports
         .select("services.agency_id")
         .uniq
         .order("services.agency_id")
-        .map { |d| [d.administrative_unit, d.agency_id] }
+        .map { |d| [d.try(:administrative_unit), d.try(:agency_id)] }
     end
 
     def cis_select
-      scope.map{|a| a.service.cis}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
+      scope.map{|a| a.service.cis.reject(&:blank?)}.flatten.uniq.map{|a| [Services.service_cis_label(a), a]}
     end
 
     def status_select
