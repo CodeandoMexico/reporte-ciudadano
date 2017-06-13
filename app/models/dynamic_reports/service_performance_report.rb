@@ -19,9 +19,13 @@ module DynamicReports
         uniq.order("services.administrative_unit").map(&:administrative_unit)
     end
 
+    def id_select
+      Service.all.select(:id).uniq.order(:id).map(&:id)
+    end
+
     filter(:id,
            :enum,
-           :select => Service.all.select(:id).uniq.order(:id).map(&:id),
+           :select => :id_select,
            :multiple => true,
            header: I18n.t('activerecord.attributes.dynamic_reports.service_id'))
 
