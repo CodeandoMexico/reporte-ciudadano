@@ -56,7 +56,7 @@
     .form-group
       = f.label :service_admin_id, "#{t('form.labels.admin_id')}*", class: 'col-lg-2 control-label'
       .col-lg-8
-        - if @service.errors.any?
+        - if @service.errors.any? || (@service.agency_id.present? && @service.organisation_id.present?)
           = f.select :service_admin_id, @available_admins.select{ |admin| admin.agency_id == @service.agency_id.to_i && admin.organisation_id == @service.organisation_id.to_i }.collect{|opt| [ "#{opt.name} #{opt.surname} #{opt.second_surname}", opt.id]},{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
         - else
           = f.select :service_admin_id, @available_admins.collect{|opt| [ "#{opt.name} #{opt.surname} #{opt.second_surname}", opt.id]},{ prompt: I18n.t("form.options.service_type_service_admin")}, { class: 'chosen-select'}
