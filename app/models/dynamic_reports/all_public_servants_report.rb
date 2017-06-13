@@ -6,13 +6,13 @@ module DynamicReports
       ServiceReport.joins(:service)
     end
 
-    def organisation_select
-      scope.select("services.organisation_id").uniq.order("services.organisation_id").map { |d| [d.try(:dependency), d.try(:organisation_id)] }
+    def dependency_select
+      scope.select("services.dependency").uniq.order("services.dependency").map(&:dependency)
     end
 
     def administrative_unit_select
-      scope.select("services.agency_id").
-        uniq.order("services.agency_id").map { |d| [d.try(:administrative_unit), d.try(:agency_id)] }
+      scope.select("services.administrative_unit").
+        uniq.order("services.administrative_unit").map(&:administrative_unit)
     end
 
     def cis_select
@@ -34,11 +34,11 @@ module DynamicReports
       scope.where("service_reports.created_at between ? and ? ", value.first + 3.days, value.last + 1.days)
     end
 
-    filter(:organisation_id,
+    filter(:dependency,
            :enum,
-           :select => :organisation_select,
+           :select => :dependency_select,
            :multiple => true,
-           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))do |value, scope, grid|
+           header: I18n.t('activerecord.attributes.dynamic_reports.dependency'))  do |value, scope, grid|
 
       scope.where("services.dependency similar to ? ", "%(#{value.uniq.join("|")})%")
     end
