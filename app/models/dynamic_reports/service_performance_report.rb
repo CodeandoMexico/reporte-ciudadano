@@ -20,7 +20,7 @@ module DynamicReports
     end
 
     def id_select
-      Service.all.select(:id).uniq.order(:id).map(&:id)
+      scope.select(:id).uniq.order(:id).map(&:id)
     end
 
     filter(:id,
