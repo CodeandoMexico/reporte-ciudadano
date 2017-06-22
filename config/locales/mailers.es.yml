@@ -1,6 +1,14 @@
 es:
   mailer:
     subject:
+      send_request_pending: 'Pendientes Evalúa tu trámite %{current_date}'
       status_change_notification: 'Cambio de estatus en reporte'
-      send_account_invitation: "Bienvenido a %{app_name}"
+      send_account_invitation: "Bienvenido a Encuestas de Satisfacción"
       notify_new_request: "Nuevo reporte de servicio"
+      confirm_service_survey_answer: "Gracias por tu evaluación"
+      send_request_new: "Se ha asignado una nueva Queja o Sugerencia con tu nombre"
+      comment_change_notification: "Se han hecho comentarios a tu Queja o Sugerencia"
+      new_survey: "Por favor evalúanos en Evalúa tu Trámite"
+      notify_new_request_user: "Gracias por tu Queja o Sugerencia"
+      notify_pending_comments: 'Comentarios pendientes de moderación'
+      welcome: 'Bienvenido a Evalúa tu Trámite del Gobierno del Estado de Puebla'

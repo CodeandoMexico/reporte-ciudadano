@@ -4,17 +4,6 @@ module ApplicationHelper
     "/auth/#{provider.to_s}"
   end
 
-  def data_position
-    if Rails.env.development?
-      position = Geocoder.search("131.178.128.39").first
-    else
-      position = request.location
-    end
-    lng = position ? position.longitude : "17.065593"
-    lat = position ? position.latitude : "-96.724253"
-    { "data-longitude" => lng, "data-latitude" => lat }
-  end
-
   def timeago(time, options = {})
     options[:class] ||= "timeago"
     content_tag(:abbr, time.to_s, options.merge(:title => time.getutc.iso8601)) if time
@@ -43,11 +32,55 @@ module ApplicationHelper
 
   def errors_on_resource_for_field(resource, field)
     unless resource.errors[field].empty?
-      content_tag :div, resource.errors[field].join(', ').to_s, class: 'errors-form'
+      content_tag :div, resource.errors[field].join(', ').to_s, class: 'errors-form col-md-3'
     end
   end
 
   def i18n_admin_sidebar(option)
     t("admins.shared.sidebar.#{option}")
+  end
+
+  def sidebar_for(admin)
+    if admin.is_service_admin?
+      "service_admin"
+    elsif admin.is_observer? && admin.is_public_servant?
+      "observer"
+    elsif admin.is_public_servant?
+      "public_servant"
+    elsif admin.is_comptroller?
+      "comptroller"
+    elsif admin.is_evaluation_comptroller?
+      "evaluation_comptroller"
+    else
+      "super_admin"
+    end
+  end
+
+  def embed_video(vimeo_url)
+      vimeo_id = vimeo_url.split("=").last
+      return "//player.vimeo.com/video/#{vimeo_id}"
+  end
+
+  def pretty_kpi_data(name, value, message)
+      kpi_panel = {
+          name: name,
+          panel: 'panel-gray',
+          awesome_icons_class: '#',
+          path: '#',
+          value: value,
+          message: message
+      }
+  end
+
+  def page_entries_info_compact(collection)
+    content_tag :div, class: 'entries-info' do
+      if collection.total_pages < 2
+        t('helpers.page_entries_info.one_page.display_entries_compact', count: collection.total_count)
+      else
+        first = collection.offset_value + 1
+        last = (sum = collection.offset_value + collection.limit_value) > collection.total_count ? collection.total_count : sum
+        t('helpers.page_entries_info.more_pages.display_entries_compact', first: first, last: last, total: collection.total_count)
+      end.html_safe
+    end.html_safe
   end
 end

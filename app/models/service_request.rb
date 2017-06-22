@@ -1,15 +1,6 @@
 #encoding: utf-8
 class ServiceRequest < ActiveRecord::Base
-  #attr_accessible :anonymous, :service_id, :description, :lat, :lng,
-   #               :service_fields, :media, :status_id, :address, :title
-
   attr_accessor :message
-
-  validates :service_id, :description, :lat, :lng, :address, presence: true
-  validate :service_extra_fields
-
-  before_validation :assign_default_status, on: :create
-  after_update :send_notification_for_status_update
 
   belongs_to :service
   belongs_to :requester, polymorphic: true
@@ -17,10 +8,20 @@ class ServiceRequest < ActiveRecord::Base
   has_many :comments
   has_many :public_servants, through: :service, source: :admins
 
+  has_many :service_request_readings
+
   serialize :service_fields, JSON
 
   mount_uploader :media, ImageUploader
   acts_as_voteable
+
+  validates :service_id, :description, presence: true
+  validate :service_extra_fields
+  before_create :public_servant_description_validation
+
+  before_validation :assign_default_status, on: :create
+  after_update :send_notification_for_status_update
+
 
   default_scope { order('created_at DESC') }
 
@@ -49,16 +50,28 @@ class ServiceRequest < ActiveRecord::Base
   }
 
   scope :closed, -> {
-    where(status_id: 4)
+    on_status_name("Cerrado")
   }
 
+  # Maybe we need to remove this scope
   scope :not_closed, -> {
-    where('status_id != ?', 4)
+    # At this time status 2 is closed, status 3 is deleted, you need to refactor all statuses feat.
+    where('status_id NOT IN (?)', [2, 3])
   }
 
   scope :open, -> {
-    where(status: 1)
+    # At this time status 2 is closed, status 3 is deleted, you need to refactor all statuses feat.
+    where('status_id NOT IN (?)', [2, 3])
   }
+
+  scope :with_status_and_dependency, -> (status_id, dependency){
+    where(dependency: dependency, status_id: status_id)
+  }
+
+  scope :pending_moderation, -> do
+    joins(:comments)
+    .where(comments: { approved: false })
+  end
 
   def service?
     service.present?
@@ -87,12 +100,29 @@ class ServiceRequest < ActiveRecord::Base
     requests
   end
 
+  def public_servant_description_validation
+      if public_servant_id == nil
+        public_servant_description = "No aplica"
+      end
+  end
   def service_requester
     if self.anonymous?
-      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' }
+      { avatar_url: 'http://www.gravatar.com/avatar/foo', name: 'Anónimo' , email: 'Anónimo'}
     else
-      { avatar_url: self.requester.avatar_url, name: self.requester.name }
+      { avatar_url: self.requester.avatar_url, name: self.requester.name,  email: self.requester.email }
     end
+  end
+
+  def requester_name
+    if anonymous?
+      'Anónimo'
+    else
+      requester.name
+    end
+  end
+
+  def service_name
+    service.name
   end
 
   def date
@@ -117,11 +147,32 @@ class ServiceRequest < ActiveRecord::Base
   end
 
   def closed?
-    status_id == 4
+    status_id == Status.close.try(:id)
   end
 
   def open?
     !closed?
+  end
+
+  def active?
+    # status.name != "Atendido por la Dirección de atención a Quejas y Denuncias"
+    status_id != Status.close.id
+  end
+
+  def status_name
+    status.name
+  end
+
+  def has_been_read_by?(admin)
+    service_request_readings.exists?(admin_id: admin.id)
+  end
+
+  def unread?(admin)
+    !service_request_readings.exists?(admin_id: admin.id)
+  end
+
+  def mark_as_read!(admin)
+    service_request_readings.where(admin_id: admin).first_or_create
   end
 
   private

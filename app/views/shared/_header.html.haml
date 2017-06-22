@@ -5,18 +5,29 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to t('public_nav_bar.name'), root_path, class: 'navbar-brand'
-    .navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to t('public_nav_bar.summary'), root_path, class: "pages index"
-        %li
-          = link_to t('public_nav_bar.service_requests'), service_requests_path, class: "reports index"
-        %li
-          = button_to t('public_nav_bar.new_service_request'), new_service_request_path, method: :get, class: "reports new btn btn-primary navbar-btn"
-      %ul.nav.navbar-nav.navbar-right
+      %row
+        .col-md-12
+          = link_to root_path, class: 'navbar-brand' do
+            / - if ENV["VEDA_ELECTORAL"] == "true" then
+            /   = image_tag 'image_navbar_grises.png', class: "navbar-logo navbar-logo-full"
+            / - else
+            /   = image_tag 'image_navbar.png', class: "navbar-logo navbar-logo-full"
+            / = image_tag 'mr_logo.png', class: "navbar-additional-logo"
+            = image_tag '2017/Evalua-logos.png', class: "navbar-logo navbar-logo-full"
+
+    .navbar-collapse.collapse.pagination-right
+      - if current_user
+        %ul.nav.navbar-nav.padding-top
+          - unless current_page?(root_path)
+            %li
+              = link_to t('public_nav_bar.home'),root_path, class: "pages index"
+          %li
+            = link_to t('public_nav_bar.requests'), service_requests_path, class: "reports index"
+          %li
+            = link_to t('public_nav_bar.evaluate_a_submission'),service_surveys_path, class: "pages index"
+      %ul.nav.navbar-nav.navbar-right.padding-top
         - if current_user
-          %li.dropdown
+          %li.dropdown.pipe-left
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = current_user.name || current_user.email
               %b.caret
@@ -35,3 +46,5 @@
             = link_to t('public_nav_bar.sign_up'), new_user_registration_path
           %li
             = link_to t('public_nav_bar.sign_in'), new_user_session_path
+          %li
+            = link_to t('public_nav_bar.help'), help_pages_path

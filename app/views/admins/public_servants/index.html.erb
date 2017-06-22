@@ -7,7 +7,9 @@
   </h2>
 </div>
 
-<ul class="js-tabs nav nav-tabs">
+<%= render 'search_form' %>
+
+<ul class="js-tabs nav nav-tabs padding-top">
   <li class="active">
     <%= link_to t(".enabled"), "#enabled", "data-toggle" => "tab" %>
   </li>
@@ -15,6 +17,7 @@
     <%= link_to t(".disabled"), "#disabled", "data-toggle" => "tab" %>
   </li>
 </ul>
+
 <div class="tab-content">
   <div class="tab-pane active" id="enabled">
     <div class="table-responsive">
@@ -29,35 +32,10 @@
             <th><%= t(".charge") %></th>
             <th><%= t(".services") %></th>
             <th></th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          <% @public_servants.each do |public_servant| %>
-            <tr class="public_servant">
-              <td><%= public_servant.name %></td>
-              <td><%= public_servant.email %></td>
-              <td><%= public_servant.record_number %></td>
-              <td><%= public_servant.dependency %></td>
-              <td><%= public_servant.administrative_unit %></td>
-              <td><%= public_servant.charge %></td>
-              <td>
-                <% unless public_servant.has_no_services? %>
-                  <%= public_servant.services_names %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to t(".assign_services"), assign_services_admins_public_servant_path(public_servant), class: "btn btn-default" %>
-              </td>
-              <td>
-                <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
-              </td>
-              <td>
-                <%= link_to t(".disable"), disable_admins_public_servant_path(public_servant), class: "btn btn-danger", id: "disable_public_servant_#{public_servant.id}", "data-confirm" => t(".disable_admin_confirm") %>
-              </td>
-            </tr>
-          <% end %>
+          <%= render partial: 'public_servant', collection: @public_servants, as: 'public_servant' %>
         </tbody>
       </table>
     </div>
@@ -74,32 +52,15 @@
           <th><%= t(".charge") %></th>
           <th><%= t(".services") %></th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
-        <% @disabled_public_servants.each do |public_servant| %>
-          <tr class="public_servant">
-            <td><%= public_servant.name %></td>
-            <td><%= public_servant.email %></td>
-            <td><%= public_servant.record_number %></td>
-            <td><%= public_servant.dependency %></td>
-            <td><%= public_servant.administrative_unit %></td>
-            <td><%= public_servant.charge %></td>
-            <td>
-              <% unless public_servant.has_no_services? %>
-                <%= public_servant.services_names %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to t(".edit"), edit_admins_public_servant_path(public_servant), class: "btn btn-default", id: "edit_public_servant_#{public_servant.id}" %>
-            </td>
-            <td>
-              <%= link_to t(".enable"), enable_admins_public_servant_path(public_servant), class: "btn btn-success", id: "enable_public_servant_#{public_servant.id}", "data-confirm" => t(".enable_admin_confirm") %>
-            </td>
-          </tr>
-        <% end %>
+        <%= render partial: 'public_servant', collection: @disabled_public_servants, as: 'public_servant' %>
       </tbody>
     </table>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(loadChosen);
+  $(document).on('page:load', loadChosen);
+</script>

@@ -1,0 +1,56 @@
+<tr class="public_servant">
+  <td><%= "#{public_servant.name} #{public_servant.surname} #{public_servant.second_surname}" %></td>
+
+  <td><%= public_servant.email %></td>
+
+  <td><%= public_servant.record_number %></td>
+
+  <td>
+    <%#= public_servant.dependency %>
+    <%= public_servant.organisation.name if public_servant.organisation %>
+  </td>
+
+  <td>
+    <%#= public_servant.administrative_unit %>
+    <%= public_servant.agency.name if public_servant.agency %>
+  </td>
+
+  <td><%= public_servant.charge %></td>
+
+  <td>
+    <% unless public_servant.has_no_services? %>
+      <%= public_servant.services_names %>
+    <% end %>
+  </td>
+
+  <td class="col-md-3 text-right">
+    <% if public_servant.disabled? %>
+      <%= link_to t("admins.public_servants.index.edit"),
+                  edit_admins_public_servant_path(public_servant),
+                  class: "btn btn-sm btn-default",
+                    id: "edit_public_servant_#{public_servant.id}" %>
+
+
+      <%= link_to t("admins.public_servants.index.enable"),
+                  enable_admins_public_servant_path(public_servant),
+                  class: "btn btn-sm btn-success",
+                  id: "enable_public_servant_#{public_servant.id}",
+                  "data-confirm" => t("admins.public_servants.index.enable_admin_confirm") %>
+    <% else %>
+      <%= link_to t("admins.public_servants.index.assign_services"),
+                  assign_services_admins_public_servant_path(public_servant),
+                  class: "btn btn-sm btn-default" if public_servant.can_has_services? %>
+
+      <%= link_to t("admins.public_servants.index.edit"),
+                  edit_admins_public_servant_path(public_servant),
+                  class: "btn btn-sm btn-default",
+                  id: "edit_public_servant_#{public_servant.id}" %>
+
+      <%= link_to t("admins.public_servants.index.disable"),
+                  disable_admins_public_servant_path(public_servant),
+                  class: "btn btn-sm btn-danger",
+                  id: "disable_public_servant_#{public_servant.id}",
+                  "data-confirm" => t("admins.public_servants.index.disable_admin_confirm") %>
+    <% end %>
+  </td>
+</tr>

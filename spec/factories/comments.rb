@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :comment do
-    content { Faker::Lorem.paragraph(1) }
+    content { FFaker::Lorem.paragraph(1) }
     service_request
     association :commentable, factory: :user
 

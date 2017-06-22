@@ -1,0 +1,21 @@
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          = t("admins.service_admins.index.id")
+        %th
+          = t("admins.service_admins.index.name")
+        %th
+          = t("admins.service_admins.index.email")
+        %th
+          = t("admins.service_admins.index.record_number")
+        %th
+          = t("admins.service_admins.index.dependency")
+        %th
+          = t("admins.service_admins.index.administrative_unit")
+        %th
+          = t("admins.service_admins.index.charge")
+        %th
+    %tbody
+      = render partial: 'service_admin', collection: service_admins

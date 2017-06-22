@@ -1,0 +1,29 @@
+FROM ruby:2.2.5-slim
+
+###############
+#   Runtime   #
+###############
+ENV APP_HOME=/usr/src/app \
+    LANG=C.UTF-8 \
+    PATH=/usr/src/app/bin:$PATH \
+    TERM='xterm-256color' \
+    RAILS_ENV=development
+
+WORKDIR $APP_HOME
+
+EXPOSE 3000
+
+RUN set -ex \
+    && apt-get update -qq \
+    && apt-get install -y \
+      build-essential \
+      libpq-dev \
+      nodejs \
+      git
+
+# Configure Git so it can fetch the gems without an existing user
+RUN set -ex \
+    && git config --system user.name Docker \
+    && git config --system user.email docker@localhost
+
+CMD ["rails", "server", "-b", "0.0.0.0"]

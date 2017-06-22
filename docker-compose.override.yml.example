@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  db:
+    ports:
+      - 5432:5432
+
+  web:
+    user: {{user}}
+    ports:
+      - 3000:3000
+
+  spring:
+    user: {{user}}

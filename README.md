@@ -1,41 +1,52 @@
-## Reporte Ciudadano
+## Evalúa tu trámite Puebla
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CodeandoMexico/reporte-ciudadano?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[Licencia](/LICENSE)
 
-[![Build Status](https://travis-ci.org/CodeandoMexico/reporte-ciudadano.png)](https://travis-ci.org/CodeandoMexico/reporte-ciudadano)
-[![Code Climate](https://codeclimate.com/github/CodeandoMexico/reporte-ciudadano.png)](https://codeclimate.com/github/CodeandoMexico/reporte-ciudadano)
-[![Coverage Status](https://coveralls.io/repos/CodeandoMexico/reporte-ciudadano/badge.png)](https://coveralls.io/r/CodeandoMexico/reporte-ciudadano)
+### Desarrollo
+Si usas Docker, puedes correr `make` para tener todo listo:
+- App: `localhost:3000`
+- Database: `localhost:5432`
 
-Reporte Ciudadano es una plataforma de código abierto para la gestión de reportes ciudadanos. 
-Tiene como fin facilitar una herramienta base para gobiernos y organizaciones civiles en la administración 
-de la comunicación con la ciudadanía y los reportes de cuestiones en sus servicios públicos.
+Para cambiar los puertos, recuerda que puedes modificar el
+`docker-compose.override.yml`
 
-[Sitio web](http://codeandomexico.github.io/reporte-ciudadano/) |
-[Wiki](https://github.com/CodeandoMexico/reporte-ciudadano/wiki) |
-[Bugtracker](https://github.com/CodeandoMexico/reporte-ciudadano/issues) |
-[Licencia](/LICENSE) |
-[Equipo](http://codeandomexico.github.io/reporte-ciudadano/team.html)
+### Deploy
+En nuestro `Makefile` tenemos especificado un target `deploy`.
 
-[README English Version](https://github.com/CodeandoMexico/reporte-ciudadano/blob/master/README.en.md)
+Para correr el target, es necesario tener un
+`docker-compose.production.yml` que describe los servicios que
+se usarán en producción, también es necesario un `.env.production`
+que contiene las variables de ambiente:
 
-### Dependencias
-- Ruby 2.1.5
-- Rails 4.2.0
-- Bootstrap 3.0
-- Rspec 3.2.2
-- Redis 3.2.1
+```bash
+HOST=user@hostname \
+HOST_DIR=/var/www/app \
+make deploy
+```
+
+Pasos:
+- Construir la imagen de la aplicación
+- Subirla a un registro
+- Bajar la imagen en el _host_ donde se quiera correr la aplicación
+- Levantar los servicios correspondientes
+- Hacer un setup de la base de datos
+
+#### Dependencias
+- Bash
+- SSH
+- Docker >= 17.01.0-ce
+- docker-compose >= 1.11.2
+
+#### Si es una instalación nueva
+Asegurate de los prerrequisitos anteriores y utiliza el comando:
+
+`knife solo bootstrap usuario@dominio`
+
+Para más información de la implementación de estos scripts de deploy ver: [knife-solo](https://matschaffer.github.io/knife-solo/)
 
 ### ¿Dudas?
 
-Llevamos toda la conversación en nuestra sección de [issues](https://github.com/CodeandoMexico/reporte-ciudadano/issues), pero si deseas contactarnos, escríbenos a <equipo@codeandomexico.org>.
-
-### Contribuye
-
-Reporte Ciudadano es una iniciativa que requiere de muchas manos para llegar a ser la mejor solución de reportes 311.
-Buscamos que el proyecto sea un resultado colaborativo de la comunidad; puedes apoyarnos con [código](https://github.com/CodeandoMexico/reporte-ciudadano/pulls), [ideas](https://github.com/CodeandoMexico/reporte-ciudadano/issues), [traducciones](https://github.com/CodeandoMexico/reporte-ciudadano/tree/master/config/locales),
-[reportando bugs](https://github.com/CodeandoMexico/reporte-ciudadano/issues) y/o [replicando](http://codeandomexico.github.io/reporte-ciudadano/ejemplos.html) la aplicación en tu ciudad.
-
-Consulta la [guía completa](https://github.com/CodeandoMexico/reporte-ciudadano/blob/master/CONTRIBUTING.md) para conocer los pasos sobre como contribuir.
+Escríbenos a <equipo@codeandomexico.org>.
 
 ### Equipo
 
@@ -44,10 +55,27 @@ El core team:
 - [Eddie Ruvalcaba](https://github.com/eddie-ruva)
 - [Juan Pablo Escobar](https://github.com/juanpabloe)
 - [Abraham Kuri](https://github.com/kurenn)
+- [Noé Domínguez](https://github.com/poguez)
 - [Abi Sosa](https://github.com/abisosa)
+- [Miguel Morán](https://github.com/mikesaurio)
 
 ### Licencia
 
 Creado por [Codeando México](https://github.com/CodeandoMexico?tab=members), 2013 - 2015.
-
 Disponible bajo la licencia GNU Affero General Public License (AGPL) v3.0. Ver el documento [LICENSE](/LICENSE) para más información.
+
+
+### Testing
+
+Asegúrate de instalar geckodriver y exportar el PATH en tu entorno.
+
+
+### Migración de dependencias, unidades administrativas y cis a base de datos
+
+Si estás usando rake db:seed todo está bien, el archivo `seeds.rb` invoca a la tarea encargada de migrar
+
+Si deseas hacer la migración manual ejecuta:
+
+```
+$ bundle exec rake organisations:migrate
+```

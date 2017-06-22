@@ -5,5 +5,10 @@ class Comment < ActiveRecord::Base
   belongs_to :service_request
   mount_uploader :image, ImageUploader
 
-  validates :content, presence: true
+  validates_presence_of :content, presence: true
+
+  scope :default_order, ->{ order(created_at: :asc) }
+  scope :approved, ->{ where(approved: true) }
+
+  scope :pending, ->{ where(approved: false) }
 end

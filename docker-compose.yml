@@ -1,0 +1,43 @@
+version: '2'
+
+volumes:
+  db_data: {}
+  gems: {}
+  redis: {}
+
+services:
+  db:
+    image: postgres:9.4
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:2
+    volumes:
+      - redis:/var/lib/redis/data
+
+  web: &web
+    image: civica-digital/urbem-puebla:development
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+      - gems:/usr/local/bundle
+    environment:
+      - SPRING_PIDFILE=tmp/spring.pid
+      - SPRING_SOCKET=tmp/spring.sock
+      - SPRING_TMP_PATH=tmp
+
+  sidekiq:
+    <<: *web
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+
+  spring:
+    <<: *web
+    command: spring server
+    restart: on-failure

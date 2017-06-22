@@ -1,0 +1,70 @@
+[{
+    "name": "Secretaría de Competitividad, Trabajo y Desarrollo Económico",
+    "administrative_units": [{
+      "name": "Dirección General del Servicio Nacional de Empleo Puebla"
+    }]
+  },
+  {
+    "name": "Instituto Estatal de Educación para Adultos",
+    "administrative_units": [{
+      "name": "Departamento de Desarrollo Administrativo"
+    }]
+  },
+  {
+    "name": "Fiscalía General del Estado de Puebla",
+    "administrative_units": [{
+        "name": "Dirección General de Servicios Periciales"
+      },
+      {
+        "name": "Fiscalía de Investigación Metropolitana"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Finanzas y Administración",
+    "administrative_units": [{
+        "name": "Dirección de Catrasto / Instituto Registral y Catastral del Estado de Puebla"
+      },
+      {
+        "name": "Dirección del Registro Público de la Propiedad"
+      },
+      {
+        "name": "Dirección de Ingresos / Subdirección de Control Vehicular"
+      }
+    ]
+  },
+  {
+    "name": "Desarrollo Integral de la Familia",
+    "administrative_units": [{
+        "name": "Dirección de Asistencia Jurídica / Procuraduría de Protección de los Derechos de Niñas, Niños y Adolecentes"
+      },
+      {
+        "name": "Dirección de Asistencia y Rehabilitación"
+      }
+    ]
+  },
+  {
+    "name": "Secretaría de Salud",
+    "administrative_units": [{
+      "name": "Dirección de Afiliación y Operación / Régimen Estatal de Protección Social en Salud"
+    }]
+  },
+  {
+    "name": "Secretaría de Relaciones Exteriores",
+    "administrative_units": [{
+      "name": "Delegación de la Secretaría de Relaciones Exteriores en Puebla"
+    }]
+  },
+  {
+    "name": "Secretaría de Infraestructura, Movilidad y Transportes",
+    "administrative_units": [{
+      "name": "Dirección de Licencias y Captación"
+    }]
+  },
+  {
+    "name": "Secretaría General de Gobierno",
+    "administrative_units": [{
+      "name": "Dirección General de Registro del Estado Civil de las Personas"
+    }]
+  }
+]

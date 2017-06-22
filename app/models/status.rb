@@ -1,5 +1,5 @@
 class Status < ActiveRecord::Base
-
+  enum status: [:inactive, :active]
   has_many :service_requests
   has_many :messages
 
@@ -7,10 +7,17 @@ class Status < ActiveRecord::Base
 
   before_create :set_default_if_is_the_first
 
-  default_scope { order('created_at') }
+  default_scope { active.order('created_at') }
+
+  scope :exclude_closed, -> { where("name != 'Cerrado'") }
+  scope :exclude_deleted, -> { where("name != 'Eliminado'") }
 
   def to_s
     name
+  end
+
+  def cannot_be_deleted?
+    self.is_default? || self.service_requests.any?
   end
 
   private
@@ -20,4 +27,15 @@ class Status < ActiveRecord::Base
     self.is_default = Status.first.nil?
     true
   end
+
+  def self.close
+    @@close ||= Status.find_by_name("Cerrado")
+    @@close
+  end
+
+  def self.removed
+    @@close ||= Status.find_by_name("Eliminado")
+    @@close
+  end
+
 end
