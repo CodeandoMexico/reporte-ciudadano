@@ -1,1 +1,26 @@
-keys.env
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+docker/
+
+# Logfiles and tempfiles.
+log/
+tmp/
+shared/
+
+# Documentation
+README*
+doc/
+
+# Public folders
+public/system/
+public/assets/
+public/uploads/
+
+# Rails
+.bundle/

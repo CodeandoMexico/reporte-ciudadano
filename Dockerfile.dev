@@ -21,21 +21,9 @@ RUN set -ex \
       nodejs \
       git
 
-############
-#   Gems   #
-############
-COPY Gemfile* $APP_HOME/
+# Configure Git so it can fetch the gems without an existing user
+RUN set -ex \
+    && git config --system user.name Docker \
+    && git config --system user.email docker@localhost
 
-RUN bundle install --without test development --jobs 4 --retry 3
-
-###########
-#   App   #
-###########
-COPY . $APP_HOME
-RUN mkdir log tmp \
-    && mv docker/database.yml config/database.yml \
-    && rake assets:precompile \
-    && chown -R nobody:nogroup $APP_HOME
-
-USER nobody
 CMD ["rails", "server", "-b", "0.0.0.0"]

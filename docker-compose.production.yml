@@ -1,0 +1,39 @@
+version: '2'
+
+volumes:
+  db_data: {}
+  redis: {}
+
+services:
+  db:
+    image: postgres:9.4
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:2
+    volumes:
+      - redis:/var/lib/redis/data
+    restart: always
+
+  web:
+    image: civicadigitaldocker/urbem-puebla
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    restart: always
+    env_file:
+      - ./.env.production
+
+  sidekiq:
+    image: civicadigitaldocker/urbem-puebla
+    build: .
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    restart: always
+    env_file:
+      - ./.env.production

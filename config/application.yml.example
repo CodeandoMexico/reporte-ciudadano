@@ -1,40 +1,28 @@
-# More info at https://github.com/laserlemon/figaro
-
-
-# Facebook credentials
-FACEBOOK_SECRET: ''
+APP_NAME: ''
+AWS_KEY: ''
+AWS_SECRET: ''
+COVERALLS_TOKEN: ''
 FACEBOOK_KEY: ''
-
-# Twitter credentials
+FACEBOOK_SECRET: ''
+HOST: ''
+MAILER_FROM: ''
+POSTGRES_PASSWORD: ''
+POSTGRES_PORT_5432_TCP_ADDR: ''
+POSTGRES_PORT_5432_TCP_PORT: ''
+POSTGRES_USERNAME: ''
+REDIS_PORT_6379_TCP_ADDR: ''
+REDIS_PORT_6379_TCP_PORT: ''
+S3_BUCKET: ''
+SECRET_KEY_BASE: ''
+SENDGRID_PASSWORD: ''
+SENDGRID_USERNAME: ''
+SMTP_ADDRESS: ''
+SMTP_DOMAIN: ''
+SMTP_PASSWORD: ''
+SMTP_PORT: ''
+SMTP_USER: ''
 TWITTER_KEY: ''
-TWITTER_SECRET: ''
 TWITTER_OAUTH_TOKEN: ''
 TWITTER_OAUTH_TOKEN_SECRET: ''
-
-# Sendgrid credentials
-SENDGRID_USERNAME: ''
-SENDGRID_PASSWORD: ''
-
-# Coverall creadentials
-COVERALLS_TOKEN: ''
-
-# From whom do I send the emails from
-MAILER_FROM: ''
-
-# Who's my host?
-HOST: ''
-
-# Redis server URL
-REDISCLOUD_URL: ''
-
-# S3 credentials
-S3_BUCKET: ''
-AWS_SECRET: ''
-AWS_KEY: ''
-
-# Google Maps credentials
-GOOGLE_KEY: ''
-
-# Vimeo video for main page ID
-VIMEO_VIDEO_KEY: ''
-VEDA_ELECTORAL: # true or false cambia el template
+TWITTER_SECRET: ''
+VEDA_ELECTORAL:     # true or false cambia el template

@@ -2,20 +2,40 @@
 
 [Licencia](/LICENSE)
 
+### Desarrollo
+Si usas Docker, puedes correr `make` para tener todo listo:
+- App: `localhost:3000`
+- Database: `localhost:5432`
+
+Para cambiar los puertos, recuerda que puedes modificar el
+`docker-compose.override.yml`
+
 ### Deploy
-Para utilizar el script de deploy con Chef se debe de correr:
-`knife solo cook usuario@dominio`
+En nuestro `Makefile` tenemos especificado un target `deploy`.
 
-Hay algunos prerrequisitos como:
-- Verificar que en la carpeta `Deploy/data_bags/keys/secret.json` se encuentre la información correspondiente al
-ambiente que se va a hacer deploy.
-- Verificar que `Deploy/nodes/dominio.json` donde el nombre de archivo `dominio` corresponde a la IP o al dominio
-del ambiente objetivo.
+Para correr el target, es necesario tener un
+`docker-compose.production.yml` que describe los servicios que
+se usarán en producción, también es necesario un `.env.production`
+que contiene las variables de ambiente:
 
-- Si vas a agregar nuevas variables de entorno para el contenedor de Ruby, asegúrate de agregarlas en el `hash` de
-`Deploy/site-cookbooks/urbem/libraries/creds_helper.rb`, además agregarlas en `docker/urbem-env.conf` para que se importen al
-ambiente del contenedor.
+```bash
+HOST=user@hostname \
+HOST_DIR=/var/www/app \
+make deploy
+```
 
+Pasos:
+- Construir la imagen de la aplicación
+- Subirla a un registro
+- Bajar la imagen en el _host_ donde se quiera correr la aplicación
+- Levantar los servicios correspondientes
+- Hacer un setup de la base de datos
+
+#### Dependencias
+- Bash
+- SSH
+- Docker >= 17.01.0-ce
+- docker-compose >= 1.11.2
 
 #### Si es una instalación nueva
 Asegurate de los prerrequisitos anteriores y utiliza el comando:
@@ -23,15 +43,6 @@ Asegurate de los prerrequisitos anteriores y utiliza el comando:
 `knife solo bootstrap usuario@dominio`
 
 Para más información de la implementación de estos scripts de deploy ver: [knife-solo](https://matschaffer.github.io/knife-solo/)
-
-### Dependencias
-- Ruby
-- Rails
-- Bootstrap sass
-- Rspec
-- Redis
-
-Ver Gemfile para más información
 
 ### ¿Dudas?
 

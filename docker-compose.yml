@@ -1,34 +1,43 @@
-# docker-compose build
-# docker-compose run urbem rake db:create
-# docker-compose run urbem rake db:migrate
-# docker-compose run urbem rake db:seed
-# docker-compose -d up
+version: '2'
 
-postgres:
-  image: postgres:9.4
+volumes:
+  db_data: {}
+  gems: {}
+  redis: {}
 
-redis:
-  image: redis:2
+services:
+  db:
+    image: postgres:9.4
+    volumes:
+      - db_data:/var/lib/postgresql/data
 
-urbem:
-  build: .
-  ports:
-    - "8081:80"
-  links:
-    - redis
-    - postgres
-  env_file: ./keys.env
-  environment:
-    PASSENGER_APP_ENV: production
+  redis:
+    image: redis:2
+    volumes:
+      - redis:/var/lib/redis/data
 
-worker:
-  image: urbempuebla_urbem
-  links:
-    - redis
-    - postgres
-  env_file: ./keys.env
-  volumes_from:
-    - urbem
-  environment:
-    RAILS_ENV: production
-  command: bundle exec sidekiq
+  web: &web
+    image: civica-digital/urbem-puebla:development
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+      - gems:/usr/local/bundle
+    environment:
+      - SPRING_PIDFILE=tmp/spring.pid
+      - SPRING_SOCKET=tmp/spring.sock
+      - SPRING_TMP_PATH=tmp
+
+  sidekiq:
+    <<: *web
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+
+  spring:
+    <<: *web
+    command: spring server
+    restart: on-failure

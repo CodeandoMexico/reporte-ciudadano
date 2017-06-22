@@ -33,3 +33,18 @@ coverage
 .powder
 
 public/assets
+
+# Secrets + Environment
+/config/application.yml
+.env.production
+
+# Development
+.byebug_history
+.pry_history
+.pryrc
+Session.vim
+.envrc
+.ash_history
+
+# Docker
+docker-compose.override.yml

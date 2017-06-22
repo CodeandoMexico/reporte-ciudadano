@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+container='web'
+executable='bash'
+
+execute() {
+  docker-compose \
+    --file ${PWD}/docker-compose.yml \
+    --file ${PWD}/docker-compose.override.yml \
+    exec ${container} ${executable} ${@}
+}
+
+run() {
+  docker-compose \
+    --file ${PWD}/docker-compose.yml \
+    --file ${PWD}/docker-compose.override.yml \
+    run --rm ${container} ${executable} ${@}
+}
+
+new() {
+  read -p "Do you want to run in a new container? [y/n] " answer
+
+  while true; do
+    case $answer in
+      [yY]* ) run ${@}
+              break;;
+
+      * ) rm ${errlog} && exit;;
+    esac
+  done
+}
+
+
+errlog=$(mktemp)
+
+execute ${@} 2> >(tee ${errlog} >&2)
+grep 'No container found' ${errlog} > /dev/null \
+  && new ${@}
+
+rm -f ${errlog}
